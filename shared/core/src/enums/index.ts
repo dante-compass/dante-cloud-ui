@@ -1,3 +1,9 @@
+export enum ThemeModeEnum {
+  DARK = 'dark',
+  LIGHT = 'light',
+  SYSTEM = 'system',
+}
+
 export enum ContentTypeEnum {
   URL_ENCODED,
   MULTI_PART,

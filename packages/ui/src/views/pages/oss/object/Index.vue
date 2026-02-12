@@ -15,29 +15,16 @@
   </q-card>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-
+<script setup lang="ts">
 import { CONSTANTS } from '@/configurations';
 
-import { HOssBucketList, HOssObjectList } from '@/composables/oss';
+import { HOssBucketList, HOssObjectList } from '../components';
 
-export default defineComponent({
+defineOptions({
   name: CONSTANTS.ComponentName.OSS_OBJECT,
-
-  components: {
-    HOssBucketList,
-    HOssObjectList,
-  },
-
-  setup() {
-    const bucketName = ref<string>('');
-    const version = ref<number>(0);
-
-    return {
-      bucketName,
-      version,
-    };
-  },
+  components: { HOssBucketList, HOssObjectList },
 });
+
+const bucketName = ref<string>('');
+const version = ref<number>(0);
 </script>
