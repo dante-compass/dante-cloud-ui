@@ -36,8 +36,8 @@ export default function useOssDownload() {
   const download = (bucketName: string, objectName: string, size?: number) => {
     if (size) {
       showDownLoadProgress('下载');
-      API.oss
-        .object()
+      API.core
+        .ossObject()
         .download(
           { bucketName: bucketName, objectName: objectName },
           (progressEvent: AxiosProgressEvent) => {
@@ -52,8 +52,8 @@ export default function useOssDownload() {
           toast.error('下载失败');
         });
     } else {
-      API.oss
-        .object()
+      API.core
+        .ossObject()
         .download({ bucketName: bucketName, objectName: objectName })
         .then((response) => {
           const data = response as Blob;

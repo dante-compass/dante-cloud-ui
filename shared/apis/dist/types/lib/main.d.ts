@@ -2,6 +2,7 @@ import { HttpClientOptions } from '../declarations';
 import { Axios, HttpConfig } from './base';
 import { OAuth2ApplicationService, OAuth2ScopeService, OAuth2AuthorizationService, OAuth2CredentialRecordService, OAuth2UserLoggingService, OAuth2InterfaceAuditService, SysOrganizationService, SysDepartmentService, SysEmployeeService, SysEmployeeAllocatableService, SysPermissionService, SysRoleService, SysUserService, SysAttributeService, SysDefaultRoleService, SysElementService, SysTenantDataSourceService, SysDictionaryService, SocialBindingService, ExtendedTaskService, MgtCertificateService } from './modules';
 import { DialogueContactService, DialogueDetailService, NotificationService, WebSocketMessageService } from './settings';
+import { BucketService, ObjectService, MultipartUploadService } from './oss';
 export declare class ApiResources {
     private static instance;
     private config;
@@ -33,6 +34,9 @@ export declare class ApiResources {
     webSocketMessage(): WebSocketMessageService;
     task(): ExtendedTaskService;
     mgtCertificate(): MgtCertificateService;
+    ossBucket(): BucketService;
+    ossObject(): ObjectService;
+    ossMultipartUpload(): MultipartUploadService;
 }
 declare const createApi: (http: Axios, options: HttpClientOptions) => ApiResources;
 export { createApi };

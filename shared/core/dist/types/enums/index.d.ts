@@ -1,3 +1,8 @@
+export declare enum ThemeModeEnum {
+    DARK = "dark",
+    LIGHT = "light",
+    SYSTEM = "system"
+}
 export declare enum ContentTypeEnum {
     URL_ENCODED = 0,
     MULTI_PART = 1,

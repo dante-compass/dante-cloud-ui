@@ -1,4 +1,7 @@
-import type { SweetAlertIcon, SweetAlertResult } from 'sweetalert2';
+import type { SweetAlertIcon, SweetAlertResult, SweetAlertTheme } from 'sweetalert2';
+
+import { ThemeModeEnum } from '@/enums';
+
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
@@ -14,25 +17,9 @@ const SwalToast = Swal.mixin({
   },
 });
 
-const standardDeleteNotify = (onConfirm: () => void, onCancel?: () => void) => {
-  Swal.fire({
-    title: '确定删除?',
-    text: '您将无法恢复此操作！',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: '是的, 删除!',
-    cancelButtonText: '取消',
-  }).then((confirm: SweetAlertResult) => {
-    if (confirm.value) {
-      onConfirm();
-    } else {
-      if (onCancel) {
-        onCancel();
-      }
-    }
-  });
+const convertThemeType = (theme: ThemeModeEnum): SweetAlertTheme => {
+  const result = theme === ThemeModeEnum.SYSTEM ? 'auto' : theme;
+  return result as SweetAlertTheme;
 };
 
 /**
@@ -46,12 +33,46 @@ const standardDeleteNotify = (onConfirm: () => void, onCancel?: () => void) => {
  * {@see https://zhuanlan.zhihu.com/p/129264092}
  */
 class Notify {
-  private static instance = new Notify();
+  // 静态私有实例引用
+  private static _instance: Notify | null = null;
 
-  private constructor() {}
+  // 初始化标志
+  private static _initialized = false;
 
+  private theme: SweetAlertTheme;
+
+  private constructor(newTheme: ThemeModeEnum) {
+    this.theme = convertThemeType(newTheme);
+  }
+
+  /**
+   * 初始化单例（仅允许一次）
+   * @param {ThemeModeEnum} newTheme 系统主题
+   * @returns {Notify} 单例实例
+   */
+  public static initialize(newTheme: ThemeModeEnum): Notify {
+    if (Notify._initialized) {
+      throw new Error('RouterUtilities has already been initialized');
+    }
+
+    Notify._instance = new Notify(newTheme);
+    Notify._initialized = true;
+    return Notify._instance;
+  }
+
+  /**
+   * 获取单例实例
+   * @returns {Toast} 单例实例
+   */
   public static getInstance(): Notify {
-    return this.instance;
+    if (!Notify._instance) {
+      throw new Error('RouterUtilities not initialized. Call initialize() first.');
+    }
+    return Notify._instance;
+  }
+
+  public setTheme(newTheme: ThemeModeEnum): void {
+    this.theme = convertThemeType(newTheme);
   }
 
   public information(
@@ -64,6 +85,7 @@ class Notify {
       text: text,
       position: 'top',
       icon: icon,
+      theme: this.theme,
       timer: 5000,
       showConfirmButton: false,
       showClass: {
@@ -94,23 +116,130 @@ class Notify {
   public question(title: string, text = ''): Promise<SweetAlertResult<string>> {
     return this.information(title, text, 'question');
   }
+
+  private getConfirmButtonColor(): string {
+    return this.theme === 'light' ? '#6750A4' : '#2563eb';
+  }
+
+  public standardDeleteNotify(onConfirm: () => void, onCancel?: () => void): void {
+    Swal.fire({
+      title: '确定删除?',
+      text: '您将无法恢复此操作！',
+      icon: 'warning',
+      theme: this.theme,
+      showCancelButton: true,
+      confirmButtonColor: this.getConfirmButtonColor(),
+      cancelButtonColor: '#d33',
+      confirmButtonText: '是的, 删除!',
+      cancelButtonText: '取消',
+    }).then((confirm: SweetAlertResult) => {
+      if (confirm.value) {
+        onConfirm();
+      } else {
+        if (onCancel) {
+          onCancel();
+        }
+      }
+    });
+  }
+
+  public signOutNotify(onConfirm: () => void, onCancel?: () => void): void {
+    Swal.fire({
+      title: '要走了么?',
+      text: '您确定要退出系统！',
+      icon: 'warning',
+      theme: this.theme,
+      showCancelButton: true,
+      confirmButtonColor: this.getConfirmButtonColor(),
+      cancelButtonColor: '#d33',
+      confirmButtonText: '是的',
+      cancelButtonText: '取消',
+    }).then((result: SweetAlertResult) => {
+      if (result.value) {
+        onConfirm();
+      } else {
+        if (onCancel) {
+          onCancel();
+        }
+      }
+    });
+  }
+
+  public tokenExpiresNotify(
+    title: string,
+    text: string,
+    icon: SweetAlertIcon,
+    onClose: () => void,
+  ): void {
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: icon,
+      theme: this.theme,
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown',
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp',
+      },
+      confirmButtonText: '已阅!',
+      willClose: () => {
+        onClose();
+      },
+    });
+  }
 }
 
-const notify: Notify = Notify.getInstance();
+const notify: Notify = Notify.initialize(ThemeModeEnum.LIGHT);
 
 class Toast {
-  private static instance = new Toast();
+  // 静态私有实例引用
+  private static _instance: Toast | null = null;
 
-  private constructor() {}
+  // 初始化标志
+  private static _initialized = false;
 
+  private theme: SweetAlertTheme;
+
+  private constructor(newTheme: ThemeModeEnum) {
+    this.theme = convertThemeType(newTheme);
+  }
+
+  /**
+   * 初始化单例（仅允许一次）
+   * @param {ThemeModeEnum} newTheme 系统主题
+   * @returns {Toast} 单例实例
+   */
+  public static initialize(newTheme: ThemeModeEnum): Toast {
+    if (Toast._initialized) {
+      throw new Error('RouterUtilities has already been initialized');
+    }
+
+    Toast._instance = new Toast(newTheme);
+    Toast._initialized = true;
+    return Toast._instance;
+  }
+
+  /**
+   * 获取单例实例
+   * @returns {Toast} 单例实例
+   */
   public static getInstance(): Toast {
-    return this.instance;
+    if (!Toast._instance) {
+      throw new Error('RouterUtilities not initialized. Call initialize() first.');
+    }
+    return Toast._instance;
+  }
+
+  public setTheme(newTheme: ThemeModeEnum): void {
+    this.theme = convertThemeType(newTheme);
   }
 
   public information(title: string, icon: SweetAlertIcon): Promise<SweetAlertResult<string>> {
     return SwalToast.fire({
       icon: icon,
       title: title,
+      theme: this.theme,
     });
   }
 
@@ -135,6 +264,11 @@ class Toast {
   }
 }
 
-const toast: Toast = Toast.getInstance();
+const toast: Toast = Toast.initialize(ThemeModeEnum.LIGHT);
 
-export { Swal, notify, toast, standardDeleteNotify };
+const changeSwalTheme = (newTheme: ThemeModeEnum) => {
+  notify.setTheme(newTheme);
+  toast.setTheme(newTheme);
+};
+
+export { Swal, notify, toast, changeSwalTheme };

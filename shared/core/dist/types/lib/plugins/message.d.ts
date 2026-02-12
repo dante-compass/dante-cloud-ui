@@ -1,5 +1,5 @@
 import { SweetAlertIcon, SweetAlertResult, default as Swal } from 'sweetalert2';
-declare const standardDeleteNotify: (onConfirm: () => void, onCancel?: () => void) => void;
+import { ThemeModeEnum } from '../../enums';
 /**
  * 这里使用单例模式，主要是因为将静态类，赋值给Vue.prototype会出现 Property '' is a static member of type '' 错误。
  * 参考以下文章
@@ -11,21 +11,51 @@ declare const standardDeleteNotify: (onConfirm: () => void, onCancel?: () => voi
  * {@see https://zhuanlan.zhihu.com/p/129264092}
  */
 declare class Notify {
-    private static instance;
+    private static _instance;
+    private static _initialized;
+    private theme;
     private constructor();
+    /**
+     * 初始化单例（仅允许一次）
+     * @param {ThemeModeEnum} newTheme 系统主题
+     * @returns {Notify} 单例实例
+     */
+    static initialize(newTheme: ThemeModeEnum): Notify;
+    /**
+     * 获取单例实例
+     * @returns {Toast} 单例实例
+     */
     static getInstance(): Notify;
+    setTheme(newTheme: ThemeModeEnum): void;
     information(title: string, text: string, icon: SweetAlertIcon): Promise<SweetAlertResult<string>>;
     info(title: string, text?: string): Promise<SweetAlertResult<string>>;
     error(title: string, text?: string): Promise<SweetAlertResult<string>>;
     warning(title: string, text?: string): Promise<SweetAlertResult<string>>;
     success(title: string, text?: string): Promise<SweetAlertResult<string>>;
     question(title: string, text?: string): Promise<SweetAlertResult<string>>;
+    private getConfirmButtonColor;
+    standardDeleteNotify(onConfirm: () => void, onCancel?: () => void): void;
+    signOutNotify(onConfirm: () => void, onCancel?: () => void): void;
+    tokenExpiresNotify(title: string, text: string, icon: SweetAlertIcon, onClose: () => void): void;
 }
 declare const notify: Notify;
 declare class Toast {
-    private static instance;
+    private static _instance;
+    private static _initialized;
+    private theme;
     private constructor();
+    /**
+     * 初始化单例（仅允许一次）
+     * @param {ThemeModeEnum} newTheme 系统主题
+     * @returns {Toast} 单例实例
+     */
+    static initialize(newTheme: ThemeModeEnum): Toast;
+    /**
+     * 获取单例实例
+     * @returns {Toast} 单例实例
+     */
     static getInstance(): Toast;
+    setTheme(newTheme: ThemeModeEnum): void;
     information(title: string, icon: SweetAlertIcon): Promise<SweetAlertResult<string>>;
     info(text: string): Promise<SweetAlertResult<string>>;
     error(text: string): Promise<SweetAlertResult<string>>;
@@ -34,4 +64,5 @@ declare class Toast {
     question(text: string): Promise<SweetAlertResult<string>>;
 }
 declare const toast: Toast;
-export { Swal, notify, toast, standardDeleteNotify };
+declare const changeSwalTheme: (newTheme: ThemeModeEnum) => void;
+export { Swal, notify, toast, changeSwalTheme };
