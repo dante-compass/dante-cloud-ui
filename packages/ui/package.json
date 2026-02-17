@@ -25,7 +25,6 @@
     "@herodotus-cloud/form-designer": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
     "@herodotus-cloud/framework-kernel": "workspace:^",
-    "@herodotus-cloud/oss-apis": "workspace:^",
     "@mdi/js": "^7.4.47",
     "@quasar/extras": "^1.17.0",
     "@rsocket/composite-metadata": "1.0.0-alpha.3",
