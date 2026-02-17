@@ -11,11 +11,7 @@ const isIncluded = (response: AxiosResponse<any>) => {
   return !(request && excludedRequest.includes(request));
 };
 
-const statusCode = (
-  axiosInstance: AxiosInstance,
-  response?: AxiosResponse<any>,
-  message?: string,
-) => {
+const statusCode = (axiosInstance: AxiosInstance, response?: AxiosResponse<any>, message?: string) => {
   if (response && isIncluded(response)) {
     const information = parseResponseStatus(response, message);
     const content = information.message;
@@ -26,6 +22,9 @@ const statusCode = (
     console.log(status);
 
     switch (status) {
+      case 400:
+        notify.error(content, detail);
+        break;
       case 401:
         if (!code || code === 40109) {
           // console.log('--refresh token --', VARIABLES.getAutoRefreshToken());
@@ -34,11 +33,7 @@ const statusCode = (
           // } else {
           //   ActionUtils.tokenExpires('认证失效!', '登录认证已过期，请重新登录！', 'warning');
           // }
-          SignOutUtilities.getInstance().tokenExpires(
-            '认证失效!',
-            '登录认证已过期，请重新登录！',
-            'warning',
-          );
+          SignOutUtilities.getInstance().tokenExpires('认证失效!', '登录认证已过期，请重新登录！', 'warning');
         } else if ([40103, 40106, 40105, 40111, 40112].includes(code)) {
         } else {
           notify.error(content, detail);
@@ -61,16 +56,16 @@ const statusCode = (
         break;
       case 408:
         break;
+      case 409:
+        notify.error(content, detail);
+        break;
       case 412:
+        notify.warning(content, detail);
         break;
       case 500:
         if (content) {
           if (content === 'Request failed with status code 500') {
-            SignOutUtilities.getInstance().tokenExpires(
-              '网络错误!',
-              '后端服务无法访问或者尚未启动！',
-              'error',
-            );
+            SignOutUtilities.getInstance().tokenExpires('网络错误!', '后端服务无法访问或者尚未启动！', 'error');
           } else {
             notify.error(content, detail);
           }
@@ -104,12 +99,7 @@ export const processor = (axiosInstance: AxiosInstance, error: AxiosError) => {
       SignOutUtilities.getInstance().tokenExpires('网络错误!', '响应超时，请稍后再试！', 'error');
       break;
     case 'ERR_NETWORK':
-      SignOutUtilities.getInstance().tokenExpires(
-        '网络错误!',
-        '系统响应超时，请稍后再试！',
-        'error',
-        true,
-      );
+      SignOutUtilities.getInstance().tokenExpires('网络错误!', '系统响应超时，请稍后再试！', 'error', true);
       break;
     // case 'ERR_BAD_RESPONSE':
     //   ActionUtils.tokenExpires('网络错误!', '响应超时，请稍后再试！', 'error');

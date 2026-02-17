@@ -14,7 +14,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <q-btn color="primary" label="新建表单" @click="toCreate(false)" />
+      <q-btn color="primary" label="新建表单" @click="toCreate()" />
     </template>
 
     <template #body-cell-actions="props">
@@ -40,7 +40,7 @@ import type {
 } from '@/composables/declarations';
 
 import { CONSTANTS, API } from '@/configurations';
-import { toast, standardDeleteNotify } from '@herodotus-cloud/core';
+import { toast, notify } from '@herodotus-cloud/core';
 import { useBaseTable } from '@/composables/hooks';
 
 export default defineComponent({
@@ -99,7 +99,7 @@ export default defineComponent({
     };
 
     const onDeleteItemById = (id: string) => {
-      standardDeleteNotify(() => {
+      notify.standardDeleteNotify(() => {
         API.form
           .dynamicForm()
           .delete(id)

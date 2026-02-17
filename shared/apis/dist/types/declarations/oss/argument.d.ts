@@ -1,21 +1,27 @@
 import { Entity } from '@herodotus-cloud/core';
 import { DeleteDomain, SseCustomerDomain, ChecksumDomain, PutObjectDomain, GrantDomain } from './domain';
-export interface AbstractArgument extends Entity {
+interface AbstractArgument extends Entity {
 }
-export interface AbstractBucketArgument extends AbstractArgument {
+interface AbstractBucketArgument extends AbstractArgument {
     bucketName: string;
 }
-export interface AbstractExpectedBucketOwnerArgument extends AbstractBucketArgument {
+interface AbstractExpectedBucketOwnerArgument extends AbstractBucketArgument {
     expectedBucketOwner?: string;
 }
-export interface AbstractObjectRequestPayerArgument extends AbstractExpectedBucketOwnerArgument {
+interface AbstractObjectRequestPayerArgument extends AbstractExpectedBucketOwnerArgument {
     requestPayer?: string;
 }
-export interface AbstractObjectArgument extends AbstractObjectRequestPayerArgument {
+interface AbstractObjectArgument extends AbstractObjectRequestPayerArgument {
     objectName: string;
 }
-export interface AbstractObjectVersionArgument extends AbstractObjectArgument {
+interface AbstractObjectVersionArgument extends AbstractObjectArgument {
     versionId?: string;
+}
+interface AbstractObjectListArgument extends AbstractObjectRequestPayerArgument {
+    delimiter?: string;
+    encodingType?: string;
+    maxKeys?: number;
+    prefix?: string;
 }
 export interface AbstractGetObjectArgument extends AbstractObjectVersionArgument {
     ifMatch?: string;
@@ -63,14 +69,14 @@ export interface DeleteObjectsArgument extends AbstractObjectRequestPayerArgumen
     bypassGovernanceRetention?: boolean;
     checksumAlgorithm?: string;
 }
-export interface ListObjectsV2Argument extends AbstractObjectRequestPayerArgument {
-    delimiter?: string;
-    encodingType?: string;
-    maxKeys?: number;
-    prefix?: string;
+export interface ListObjectsV2Argument extends AbstractObjectListArgument {
     continuationToken?: string;
     fetchOwner?: boolean;
     startAfter?: string;
+}
+export interface ListObjectVersionsArgument extends AbstractObjectListArgument {
+    keyMarker?: string;
+    versionIdMarker?: string;
 }
 export interface GetObjectArgument extends AbstractGetObjectArgument {
 }
@@ -104,3 +110,4 @@ export interface AbortMultipartUploadArgument extends AbstractObjectArgument {
 }
 export interface CompleteMultipartUploadArgument extends AbortMultipartUploadArgument {
 }
+export {};

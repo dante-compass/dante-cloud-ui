@@ -13,11 +13,13 @@
     >
       <template #top-left>
         <h-button
-          color="green"
-          label="大文件上传"
-          icon="mdi-cloud-upload"
-          @click="openChunkUploadDialog = true"
+          v-if="currentFolder"
+          color="grey"
+          label="返回"
+          icon="mdi-arrow-left-box"
+          @click="onPreviousFolder()"
         />
+
         <h-button
           color="primary"
           label="上传"
@@ -34,51 +36,42 @@
           @click="onBatchDeleteObjects()"
         />
       </template>
+      <template #body-cell-lastModified="props">
+        <q-td key="lastModified" :props="props">
+          {{ defaultFormat(props.lastModified) }}
+        </q-td>
+      </template>
+
+      <template #body-cell-objectName="props">
+        <q-td key="objectName" :props="props">
+          <q-btn v-if="props.row.dir" flat round icon="mdi-folder-open" @click="onOpenFolder(props.row)">
+            {{ displayedObjectName(props.row.objectName) }}
+          </q-btn>
+          <template v-else>{{ displayedObjectName(props.row.objectName) }}</template>
+        </q-td>
+      </template>
+
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
           <h-dense-icon-button
             color="secondary"
             icon="mdi-download-box"
             tooltip="下载"
-            @click="onDownload(props.row)"
+            @click="onDownloadObject(props.row)"
           ></h-dense-icon-button>
-          <!-- <h-dense-icon-button
+          <h-dense-icon-button
             v-if="!props.row.dir"
             color="black"
             icon="mdi-cog-outline"
             tooltip="详情"
-            @click="toSetting(props.row)"></h-dense-icon-button> -->
-          <h-dense-icon-button
-            v-if="props.row.dir"
-            color="orange"
-            icon="mdi-folder-open"
-            tooltip="打开"
-            @click="toFolder(props.row)"
+            @click="toSetting(props.row)"
           ></h-dense-icon-button>
-          <h-delete-button tooltip="删除" @click="onDelete(props.row)"></h-delete-button>
+          <h-delete-button tooltip="删除" @click="onDeleteObject(props.row)"></h-delete-button>
         </q-td>
       </template>
     </h-table>
-    <h-dialog
-      v-model="openChunkUploadDialog"
-      title="分片上传"
-      hide-confirm
-      hide-cancel
-      @close="onFinishChunkUpload"
-    >
-      <h-chunk-uploader v-model="bucketName"></h-chunk-uploader>
-    </h-dialog>
-    <h-dialog
-      v-model="openSimpleUploadDialog"
-      title="文件上传"
-      hide-confirm
-      hide-cancel
-      @close="onFinishSimpleUpload"
-    >
-      <h-simple-uploader
-        v-model="hasNewUploadedFiles"
-        :bucket-name="bucketName"
-      ></h-simple-uploader>
+    <h-dialog v-model="openSimpleUploadDialog" title="文件上传" hide-confirm hide-cancel @close="onFinishSimpleUpload">
+      <h-simple-uploader v-model="hasNewUploadedFiles" :bucket-name="bucketName"></h-simple-uploader>
     </h-dialog>
   </div>
 </template>
@@ -94,18 +87,11 @@ import type { QTableColumnProps } from '@/composables/declarations';
 
 import { format } from 'quasar';
 
-import {
-  HDeleteButton,
-  HDenseIconButton,
-  HTable,
-  HChunkUploader,
-  HSimpleUploader,
-} from '@/components';
-import { useBaseTable } from '@/composables/hooks';
-import { CONSTANTS, API } from '@/configurations';
+import { HDeleteButton, HDenseIconButton, HTable, HChunkUploader, HSimpleUploader } from '@/components';
+import { useBaseTable, useDateTime, useOss } from '@/composables/hooks';
+import { API, CONSTANTS } from '@/configurations';
 import { toast, notify } from '@herodotus-cloud/core';
-import { isEmpty, endsWith, trimEnd, split } from 'lodash-es';
-import { useOssDownload } from '@/composables/hooks';
+import { isEmpty, split, dropRight, join, initial } from 'lodash-es';
 
 defineOptions({
   name: 'HOssObjectList',
@@ -113,19 +99,14 @@ defineOptions({
 });
 
 interface Props {
-  bucketName: string;
   folderName?: string;
   version?: number;
 }
 
 const props = defineProps<Props>();
-
-const { humanStorageSize } = format;
-const { tableRows, loading, toEdit, toAuthorize, hideLoading, showLoading } = useBaseTable<
-  ObjectDomainConditions,
-  ObjectDomain
->(CONSTANTS.ComponentName.OSS_OBJECT, '', false, true);
-const { download } = useOssDownload();
+const bucketName = defineModel<string>({
+  required: true,
+});
 
 const columns: QTableColumnProps = [
   {
@@ -133,9 +114,8 @@ const columns: QTableColumnProps = [
     field: 'objectName',
     align: 'center',
     label: '文件名',
-    format: (value) => (value ? displayedObjectName(value) : ''),
   },
-  { name: 'etag', field: 'etag', align: 'center', label: 'ETAG' },
+  { name: 'eTag', field: 'eTag', align: 'center', label: 'ETAG' },
   {
     name: 'size',
     field: 'size',
@@ -147,33 +127,40 @@ const columns: QTableColumnProps = [
   { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
+const { humanStorageSize } = format;
+
 const rowKey: ObjectDomainProps = 'objectName';
+
+const { toEdit } = useBaseTable<ObjectDomainConditions, ObjectDomain>(
+  CONSTANTS.ComponentName.OSS_OBJECT,
+  'updateTime',
+  false,
+);
+const { defaultFormat } = useDateTime();
+const { humanObjectSize, displayedObjectName, download } = useOss();
+
+const pageNumber = shallowRef(1);
+const pageSize = shallowRef(10);
 const selected = ref([]) as Ref<Array<ObjectDomain>>;
+const openSimpleUploadDialog = shallowRef(false);
+const hasNewUploadedFiles = shallowRef(false);
 
-const openChunkUploadDialog = ref<boolean>(false);
-const openSimpleUploadDialog = ref<boolean>(false);
-const hasNewUploadedFiles = ref<boolean>(false);
-
-const isDisableBatchDelete = computed(() => {
-  return isEmpty(selected.value);
-});
-
-const isShowOpenFolderAction = computed(() => (isDir: boolean) => {
-  return isDir && !props.folderName;
-});
+const loading = shallowRef(false);
+const tableRows = ref([]) as Ref<Array<ObjectDomain>>;
+const currentFolder = shallowRef('');
 
 const fetchObjects = (bucketName: string, folderName = '') => {
-  showLoading();
+  loading.value = true;
   API.core
     .ossObject()
     .listObjectsV2({ bucketName: bucketName, prefix: folderName })
     .then((result) => {
       const data = result.data.contents;
       tableRows.value = data ? data : [];
-      hideLoading();
+      loading.value = false;
     })
     .catch(() => {
-      hideLoading();
+      loading.value = false;
     });
 };
 
@@ -190,17 +177,16 @@ const toDeleteObjectDomain = (objects: Array<ObjectDomain>): Array<DeletedObject
   return deleteObjects;
 };
 
-const displayedObjectName = (realObjectName: string) => {
-  if (endsWith(realObjectName, '/')) {
-    return trimEnd(realObjectName, '/');
-  } else {
-    if (realObjectName.indexOf('/') !== -1) {
-      const names = split(realObjectName, '/');
-      return names[names.length - 1];
-    } else {
-      return realObjectName;
+const getPreviousFolder = () => {
+  if (currentFolder.value) {
+    const names = initial(split(currentFolder.value, '/'));
+    const previous = dropRight(names);
+    if (!isEmpty(previous)) {
+      return join(previous, '/') + '/';
     }
   }
+
+  return '';
 };
 
 /**
@@ -209,18 +195,14 @@ const displayedObjectName = (realObjectName: string) => {
  * @param objects 选中的、待删除对象
  * @param onSuccess 删除成功操作
  */
-const batchDeleteObjects = (
-  bucketName: string,
-  objects: Array<ObjectDomain>,
-  onSuccess: () => void,
-) => {
+const batchDeleteObjects = (bucketName: string, objects: Array<ObjectDomain>, folderName = '') => {
   notify.standardDeleteNotify(() => {
     API.core
       .ossObject()
       .batchDelete({ bucketName: bucketName, delete: toDeleteObjectDomain(objects) })
       .then(() => {
         toast.success('删除成功');
-        onSuccess();
+        fetchObjects(bucketName, folderName);
       })
       .catch((error) => {
         if (error.message) {
@@ -236,16 +218,15 @@ const batchDeleteObjects = (
  * 单独删除对象
  * @param bucketName 存储桶名称
  * @param objectName 对象名称
- * @param onSuccess 删除成功后操作
  */
-const deleteObject = (bucketName: string, objectName: string, onSuccess: () => void) => {
+const deleteObject = (bucketName: string, objectName: string, folderName = '') => {
   notify.standardDeleteNotify(() => {
     API.core
       .ossObject()
       .delete({ bucketName: bucketName, objectName: objectName })
       .then(() => {
         toast.success('删除成功');
-        onSuccess();
+        fetchObjects(bucketName, folderName);
       })
       .catch((error) => {
         if (error.message) {
@@ -257,52 +238,68 @@ const deleteObject = (bucketName: string, objectName: string, onSuccess: () => v
   });
 };
 
-const toFolder = (item: ObjectDomain) => {
-  toEdit(item, { bucketName: props.bucketName });
+const openFolder = (bucketName: string, objectName: string) => {
+  currentFolder.value = objectName;
+  fetchObjects(bucketName, currentFolder.value);
 };
 
+const returnPreviousFolder = (bucketName: string) => {
+  currentFolder.value = getPreviousFolder();
+  fetchObjects(bucketName, currentFolder.value);
+};
+
+const isDisableBatchDelete = computed(() => {
+  return isEmpty(selected.value);
+});
+
+const isDisableUpload = computed(() => {
+  return isEmpty(bucketName.value);
+});
+
 const toSetting = (item: ObjectDomain) => {
-  toAuthorize(item, { bucketName: props.bucketName });
+  toEdit(item, { bucketName: bucketName.value, folderName: props.folderName });
 };
 
 /**
  * 查询数据操作
  */
 const onFetchObjects = () => {
-  fetchObjects(props.bucketName, props.folderName);
+  if (bucketName.value) {
+    fetchObjects(bucketName.value, props.folderName);
+  }
 };
 
 /**
  * 批量删除对象操作
  */
 const onBatchDeleteObjects = () => {
-  batchDeleteObjects(props.bucketName, selected.value, () => {
-    onFetchObjects();
-  });
+  batchDeleteObjects(bucketName.value, selected.value, props.folderName);
 };
 
 /**
  * 删除对象操作
  * @param item 选中的对象条目实体
  */
-const onDelete = (item: ObjectDomain) => {
-  deleteObject(props.bucketName, item.objectName, () => {
-    onFetchObjects();
-  });
+const onDeleteObject = (item: ObjectDomain) => {
+  deleteObject(bucketName.value, item.objectName, props.folderName);
 };
 
-const onDownload = (item: ObjectDomain) => {
-  download(props.bucketName, item.objectName, item.size);
+const onDownloadObject = (item: ObjectDomain) => {
+  download(bucketName.value, item.objectName, item.size);
+};
+
+const onOpenFolder = (item: ObjectDomain) => {
+  openFolder(bucketName.value, item.objectName);
+};
+
+const onPreviousFolder = () => {
+  returnPreviousFolder(bucketName.value);
 };
 
 const onFinishSimpleUpload = () => {
   if (hasNewUploadedFiles.value) {
     onFetchObjects();
   }
-};
-
-const onFinishChunkUpload = () => {
-  onFetchObjects();
 };
 
 watch(
