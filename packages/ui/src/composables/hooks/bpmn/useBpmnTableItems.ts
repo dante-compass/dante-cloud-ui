@@ -40,7 +40,7 @@ export default function useBpmnTableItems<
     toEdit,
     toAuthorize,
     addRoutePushParam,
-  } = useBaseTable<E, Q>(name, 'updateTime', true);
+  } = useBaseTable<Q, E>(name, 'updateTime', true);
 
   conditions.value = queryParams;
 
