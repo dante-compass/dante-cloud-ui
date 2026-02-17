@@ -1,5 +1,20 @@
 import type { Entity, Conditions } from '@herodotus-cloud/core';
 
+interface AbstractObjectETagDomain extends Entity {
+  eTag: string;
+}
+
+interface AbstractObjectDomain extends AbstractObjectETagDomain {
+  objectName: string;
+  lastModified: string;
+  checksumAlgorithm: Array<string>;
+  checksumType: string;
+  size: number;
+  storageClass: string;
+  owner: OwnerDomain;
+  restoreStatus: RestoreStatusDomain;
+}
+
 export interface DeleteDomain extends Entity {
   objectName: string;
   versionId?: string;
@@ -47,20 +62,18 @@ export interface S3ErrorDomain extends DeleteDomain {
 }
 
 export interface RestoreStatusDomain extends Entity {
-  isRestoreInProgress: boolean;
+  restoreInProgress: boolean;
   restoreExpiryDate: Date;
 }
 
-export interface ObjectDomain extends Entity {
-  objectName: string;
-  lastModified: Date;
-  eTag: string;
-  checksumAlgorithm: Array<string>;
-  size: number;
-  storageClass: string;
-  owner: OwnerDomain;
-  restoreStatus: RestoreStatusDomain;
-  isDir: boolean;
+export interface ObjectDomain extends AbstractObjectDomain {
+  dir: boolean;
+}
+
+export interface ObjectVersionDomain extends AbstractObjectDomain {
+  versionId: string;
+  latest: boolean;
+  deleteMarker: boolean;
 }
 
 export interface SseCustomerDomain extends Entity {
