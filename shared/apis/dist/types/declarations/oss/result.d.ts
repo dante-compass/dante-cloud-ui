@@ -15,7 +15,7 @@ interface AbstractBucketNameResult extends AbstractObjectRequestChargedResult {
     bucketName: string;
 }
 interface AbstractObjectListResult extends AbstractBucketNameResult {
-    isTruncated: boolean;
+    truncated: boolean;
     prefix: string;
     delimiter: string;
     maxKeys: number;

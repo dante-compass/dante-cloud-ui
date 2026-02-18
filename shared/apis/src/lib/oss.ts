@@ -111,7 +111,7 @@ class ObjectService extends Service {
     return this.getBaseAddress() + '/display';
   }
 
-  private getUploadAddress(): string {
+  public getUploadAddress(): string {
     return this.getBaseAddress() + '/upload';
   }
 

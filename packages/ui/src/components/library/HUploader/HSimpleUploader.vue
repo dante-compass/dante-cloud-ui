@@ -1,16 +1,8 @@
 <template>
-  <q-uploader
-    ref="uploader"
-    auto-upload
-    :factory="onUpload"
-    class="full-width"
-    @uploaded="onFileUploaded"
-  />
+  <q-uploader ref="uploader" auto-upload :factory="onUpload" class="full-width" @uploaded="onFileUploaded" />
 </template>
 
-<script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, computed, ref } from 'vue';
+<script setup lang="ts">
 import { QUploader } from 'quasar';
 
 import type { QUploaderFactoryObject, QUploaderInfo } from '@/composables/declarations';
@@ -19,55 +11,42 @@ import { isEmpty } from 'lodash-es';
 import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
 import { API } from '@/configurations';
 
-export default defineComponent({
-  name: 'HSimpleUploader',
+defineOptions({ name: 'HSimpleUploader' });
 
-  props: {
-    modelValue: { type: Boolean, required: true },
-    open: { type: Boolean },
-    loading: { type: Boolean, default: false },
-    bucketName: { type: String, required: true },
-  },
+interface Props {
+  open?: boolean;
+  loading?: boolean;
+  bucketName: string;
+}
 
-  emits: ['update:modelValue', 'update:open', 'close'],
+const props = defineProps<Props>();
 
-  setup(props, { emit }) {
-    const executedUpload = computed({
-      get: () => props.modelValue,
-      set: (newValue) => {
-        emit('update:modelValue', newValue);
-      },
-    });
-    const authStore = useAuthenticationStore();
-
-    const uploader = ref(null) as Ref<QUploader | null>;
-
-    const onUpload = (files: readonly File[]): Promise<QUploaderFactoryObject> => {
-      return new Promise((resolve, reject) => {
-        const token: string = authStore.token;
-        resolve({
-          url: API.oss.object().getUploadAddress(),
-          method: 'POST',
-          fieldName: 'file',
-          headers: [{ name: 'Authorization', value: `Bearer ${token}` }],
-          formFields: [{ name: 'bucketName', value: props.bucketName }],
-        });
-      });
-    };
-
-    const onFileUploaded = (info: QUploaderInfo) => {
-      if (!isEmpty(info.files)) {
-        executedUpload.value = true;
-      } else {
-        executedUpload.value = false;
-      }
-    };
-
-    return {
-      uploader,
-      onFileUploaded,
-      onUpload,
-    };
-  },
+const executedUpload = defineModel<boolean>({
+  required: true,
 });
+
+const authStore = useAuthenticationStore();
+
+const uploader = ref();
+
+const onUpload = (files: readonly File[]): Promise<QUploaderFactoryObject> => {
+  return new Promise((resolve, reject) => {
+    const token: string = authStore.token;
+    resolve({
+      url: API.core.ossObject().getUploadAddress(),
+      method: 'POST',
+      fieldName: 'file',
+      headers: [{ name: 'Authorization', value: `Bearer ${token}` }],
+      formFields: [{ name: 'bucketName', value: props.bucketName }],
+    });
+  });
+};
+
+const onFileUploaded = (info: QUploaderInfo) => {
+  if (!isEmpty(info.files)) {
+    executedUpload.value = true;
+  } else {
+    executedUpload.value = false;
+  }
+};
 </script>

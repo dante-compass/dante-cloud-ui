@@ -21,7 +21,7 @@ declare class ObjectService extends Service {
     private getMultiDeleteAddress;
     private getDownloadAddress;
     private getDisplayAddress;
-    private getUploadAddress;
+    getUploadAddress(): string;
     private getAttributesAddress;
     private getLegalHoldAddress;
     private getRetentionAddress;

@@ -39,7 +39,7 @@
     "bpmn-js": "^18.12.0",
     "bpmn-js-bpmnlint": "^0.24.0",
     "bpmn-js-connectors-extension": "^0.4.6",
-    "bpmn-js-properties-panel": "^5.50.1",
+    "bpmn-js-properties-panel": "^6.0.1",
     "bpmn-js-token-simulation": "^0.39.1",
     "bpmn-moddle": "^10.0.0",
     "bpmnlint": "^11.12.0",

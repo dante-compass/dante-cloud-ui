@@ -314,8 +314,8 @@ importers:
         specifier: ^0.4.6
         version: 0.4.6(bpmn-js@18.12.0)(diagram-js@15.9.1)
       bpmn-js-properties-panel:
-        specifier: ^5.50.1
-        version: 5.50.1(@bpmn-io/properties-panel@3.39.0)(bpmn-js@18.12.0)(camunda-bpmn-js-behaviors@1.9.1(bpmn-js@18.12.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.9.0))(diagram-js@15.9.1)
+        specifier: ^6.0.1
+        version: 6.0.1(@bpmn-io/properties-panel@3.39.0)(bpmn-js@18.12.0)(camunda-bpmn-js-behaviors@1.9.1(bpmn-js@18.12.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.9.0))(diagram-js@15.9.1)
       bpmn-js-token-simulation:
         specifier: ^0.39.1
         version: 0.39.1
@@ -473,12 +473,6 @@ importers:
       vue-router:
         specifier: ^5.0.2
         version: 5.0.2(@vue/compiler-sfc@3.5.28)(pinia@3.0.4(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
-
-  shared/oss-apis:
-    dependencies:
-      '@herodotus-cloud/core':
-        specifier: workspace:^
-        version: link:../core
 
 packages:
 
@@ -650,8 +644,8 @@ packages:
       bpmn-js: '>= 11'
       diagram-js: '>= 15.3.0'
 
-  '@bpmn-io/extract-process-variables@2.0.0':
-    resolution: {integrity: sha512-Hm94q/qvrYZw4EnHIuS81NOkvxL240pvBCvBV0fgonZKkhXhvkgJuzS/tFCnMWxjrZrKEMVnOPGI8bvPBtuwnw==}
+  '@bpmn-io/extract-process-variables@2.1.0':
+    resolution: {integrity: sha512-Z5iwYHvo58GnEC2QAg53dymOb4o1r6x5Q4PvWk7du74z/HeS3x5VUDnozc4CDIugYMCe2j+RJV7CUBMbn48HJg==}
 
   '@bpmn-io/feel-editor@2.5.0':
     resolution: {integrity: sha512-3u7hUHpuZg+F2w88/DIYnrAjb/pCQOrcdBo0de8A0FXz1e3+voNoe2fehNo7o0F7wNC3bR92xb1W4f5xuwzO8A==}
@@ -2436,8 +2430,8 @@ packages:
   axios@1.13.5:
     resolution: {integrity: sha512-cz4ur7Vb0xS4/KUN0tPWe44eqxrIu31me+fbang3ijiNscE129POzipJJA6zniq2C/Z6sJCjMimjS8Lc/GAs8Q==}
 
-  b4a@1.7.4:
-    resolution: {integrity: sha512-u20zJLDaSWpxaZ+zaAkEIB2dZZ1o+DF4T/MRbmsvGp9nletHOyiai19OzX1fF8xUBYsO1bPXxODvcd0978pnug==}
+  b4a@1.7.5:
+    resolution: {integrity: sha512-iEsKNwDh1wiWTps1/hdkNdmBgDlDVZP5U57ZVOlt+dNFqpc/lpPouCIxZw+DYBgc4P9NDfIZMPNR4CHNhzwLIA==}
     peerDependencies:
       react-native-b4a: '*'
     peerDependenciesMeta:
@@ -2509,10 +2503,10 @@ packages:
       bpmn-js: '>= 8.7'
       diagram-js: '>= 7.8'
 
-  bpmn-js-properties-panel@5.50.1:
-    resolution: {integrity: sha512-XrorbMXf2SQuGIIPQDMTCQU6a5G64ryStU5SFomYdkYWKUvz9Kw+5A2skF5duNjfs48VerLlW9Avq7jOsjJZgg==}
+  bpmn-js-properties-panel@6.0.1:
+    resolution: {integrity: sha512-+cz2nWsAqaMWmM61u/UVL0nteOeUoJVVJEECiV19ReW9KXu6NQy7QVS696Yq4I+7oBepIace/gbmgkbWsNWi8A==}
     peerDependencies:
-      '@bpmn-io/properties-panel': '>= 3.7'
+      '@bpmn-io/properties-panel': '>= 3.36'
       bpmn-js: '>= 11.5'
       camunda-bpmn-js-behaviors: '>= 0.4'
       diagram-js: '>= 11.9'
@@ -6082,7 +6076,7 @@ snapshots:
       bpmn-js: 18.12.0
       diagram-js: 15.9.1
 
-  '@bpmn-io/extract-process-variables@2.0.0':
+  '@bpmn-io/extract-process-variables@2.1.0':
     dependencies:
       min-dash: 5.0.0
 
@@ -7972,7 +7966,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  b4a@1.7.4: {}
+  b4a@1.7.5: {}
 
   balanced-match@1.0.2: {}
 
@@ -8040,9 +8034,9 @@ snapshots:
       min-dom: 4.2.1
       tiny-svg: 3.1.3
 
-  bpmn-js-properties-panel@5.50.1(@bpmn-io/properties-panel@3.39.0)(bpmn-js@18.12.0)(camunda-bpmn-js-behaviors@1.9.1(bpmn-js@18.12.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.9.0))(diagram-js@15.9.1):
+  bpmn-js-properties-panel@6.0.1(@bpmn-io/properties-panel@3.39.0)(bpmn-js@18.12.0)(camunda-bpmn-js-behaviors@1.9.1(bpmn-js@18.12.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.9.0))(diagram-js@15.9.1):
     dependencies:
-      '@bpmn-io/extract-process-variables': 2.0.0
+      '@bpmn-io/extract-process-variables': 2.1.0
       '@bpmn-io/properties-panel': 3.39.0
       array-move: 4.0.0
       bpmn-js: 18.12.0
@@ -10992,7 +10986,7 @@ snapshots:
 
   tar-stream@3.1.7:
     dependencies:
-      b4a: 1.7.4
+      b4a: 1.7.5
       fast-fifo: 1.3.2
       streamx: 2.23.0
     transitivePeerDependencies:
@@ -11010,7 +11004,7 @@ snapshots:
 
   text-decoder@1.2.7:
     dependencies:
-      b4a: 1.7.4
+      b4a: 1.7.5
     transitivePeerDependencies:
       - react-native-b4a
 

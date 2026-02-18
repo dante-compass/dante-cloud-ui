@@ -7,9 +7,9 @@
       selection="multiple"
       v-model:selected="selected"
       :loading="loading"
-      :show-all="true"
       status
       reserved
+      :rows-per-page-options="[0]"
     >
       <template #top-left>
         <h-button
@@ -69,6 +69,20 @@
           <h-delete-button tooltip="删除" @click="onDeleteObject(props.row)"></h-delete-button>
         </q-td>
       </template>
+
+      <template v-slot:pagination="scope">
+        <h-button
+          :disable="nextEnabled"
+          icon="chevron_right"
+          unelevated
+          color="primary"
+          round
+          dense
+          tooltip="下一页"
+          class="q-mr-md"
+          @click="onFetchNextPageObjects"
+        />
+      </template>
     </h-table>
     <h-dialog v-model="openSimpleUploadDialog" title="文件上传" hide-confirm hide-cancel @close="onFinishSimpleUpload">
       <h-simple-uploader v-model="hasNewUploadedFiles" :bucket-name="bucketName"></h-simple-uploader>
@@ -77,12 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  ObjectDomain,
-  ObjectDomainProps,
-  ObjectDomainConditions,
-  DeletedObjectDomain,
-} from '@herodotus-cloud/apis';
+import type { ObjectDomain, ObjectDomainProps, ObjectDomainConditions, DeletedObjectDomain } from '@herodotus-cloud/apis';
 import type { QTableColumnProps } from '@/composables/declarations';
 
 import { format } from 'quasar';
@@ -139,8 +148,6 @@ const { toEdit } = useBaseTable<ObjectDomainConditions, ObjectDomain>(
 const { defaultFormat } = useDateTime();
 const { humanObjectSize, displayedObjectName, download } = useOss();
 
-const pageNumber = shallowRef(1);
-const pageSize = shallowRef(10);
 const selected = ref([]) as Ref<Array<ObjectDomain>>;
 const openSimpleUploadDialog = shallowRef(false);
 const hasNewUploadedFiles = shallowRef(false);
@@ -148,16 +155,36 @@ const hasNewUploadedFiles = shallowRef(false);
 const loading = shallowRef(false);
 const tableRows = ref([]) as Ref<Array<ObjectDomain>>;
 const currentFolder = shallowRef('');
+const continuationToken = shallowRef();
+const isTruncated = shallowRef(false);
+
+const nextEnabled = computed(() => {
+  return !isTruncated.value && continuationToken.value;
+});
 
 const fetchObjects = (bucketName: string, folderName = '') => {
   loading.value = true;
+
+  const argument = isTruncated.value
+    ? {
+        bucketName: bucketName,
+        prefix: folderName,
+        maxKeys: 10,
+        continuationToken: continuationToken.value,
+      }
+    : { bucketName: bucketName, prefix: folderName, maxKeys: 10 };
   API.core
     .ossObject()
-    .listObjectsV2({ bucketName: bucketName, prefix: folderName })
+    .listObjectsV2(argument)
     .then((result) => {
       const data = result.data.contents;
       tableRows.value = data ? data : [];
       loading.value = false;
+
+      isTruncated.value = result.data.truncated;
+      if (isTruncated.value) {
+        continuationToken.value = result.data.nextContinuationToken;
+      }
     })
     .catch(() => {
       loading.value = false;
@@ -293,6 +320,9 @@ const onOpenFolder = (item: ObjectDomain) => {
 };
 
 const onPreviousFolder = () => {
+  // 返回上级目录之前，需要清除“分页”标识信息，否则会出错
+  isTruncated.value = false;
+  continuationToken.value = null;
   returnPreviousFolder(bucketName.value);
 };
 
@@ -302,9 +332,16 @@ const onFinishSimpleUpload = () => {
   }
 };
 
+const onFetchNextPageObjects = () => {
+  fetchObjects(bucketName.value, currentFolder.value);
+};
+
 watch(
   () => props.version,
   () => {
+    // 该 Watch 表示存储桶变换了，那么在刷新数据时，需要清除“分页”标识信息，否则会出错
+    isTruncated.value = false;
+    continuationToken.value = null;
     onFetchObjects();
   },
 );
