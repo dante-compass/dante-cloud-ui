@@ -1,12 +1,12 @@
 import { useRoute as J } from "vue-router";
 import { defineStore as b } from "pinia";
-import { Swal as S, AuthorizationTokenEnum as M, Base64 as q, ContentTypeEnum as O, AuthorizationGrantTypeEnum as D, BuildInScopeEnum as Q, SM2Utils as U, SM4Utils as w, moment as x } from "@herodotus-cloud/core";
+import { Swal as S, AuthorizationTokenEnum as M, Base64 as q, ContentTypeEnum as O, AuthorizationGrantTypeEnum as v, BuildInScopeEnum as Q, SM2Utils as U, SM4Utils as w, moment as x } from "@herodotus-cloud/core";
 import { jwtDecode as j } from "jwt-decode";
 import { isEmpty as C, split as $, dropRight as Z, join as tt, merge as z, has as et, remove as k, findIndex as G, intersection as st } from "lodash-es";
 import { nextTick as Y, shallowRef as it, watch as W, computed as nt } from "vue";
 import "pinia-plugin-persistedstate";
 var H = /* @__PURE__ */ ((t) => (t.DEFAULT = "defaults", t.CLASSIC = "classic", t.TRANSVERSE = "transverse", t.COLUMNS = "transverse", t))(H || {}), y = /* @__PURE__ */ ((t) => (t.DARK = "dark", t.LIGHT = "light", t.SYSTEM = "system", t))(y || {}), B = /* @__PURE__ */ ((t) => (t.JIGSAW = "JIGSAW", t.WORD_CLICK = "WORD_CLICK", t.ARITHMETIC = "ARITHMETIC", t.CHINESE = "CHINESE", t.CHINESE_GIF = "CHINESE_GIF", t.SPEC_GIF = "SPEC_GIF", t.SPEC = "SPEC", t.HUTOOL_LINE = "HUTOOL_LINE", t.HUTOOL_CIRCLE = "HUTOOL_CIRCLE", t.HUTOOL_SHEAR = "HUTOOL_SHEAR", t.HUTOOL_GIF = "HUTOOL_GIF", t))(B || {}), V = /* @__PURE__ */ ((t) => (t.INSTITUTION = "INSTITUTION", t.SMS = "SMS", t.WXAPP = "WXAPP", t.QQ = "QQ", t.WEIBO = "WEIBO", t.BAIDU = "BAIDU", t.WECHAT_OPEN = "WECHAT_OPEN", t.WECHAT_MP = "WECHAT_MP", t.WECHAT_ENTERPRISE = "WECHAT_ENTERPRISE", t.WECHAT_ENTERPRISE_WEB = "WECHAT_ENTERPRISE_WEB", t.DINGTALK = "DINGTALK", t.DINGTALK_ACCOUNT = "DINGTALK_ACCOUNT", t.ALIYUN = "ALIYUN", t.TAOBAO = "TAOBAO", t.ALIPAY = "ALIPAY", t.TEAMBITION = "TEAMBITION", t.HUAWEI_V2 = "HUAWEI_V2", t.FEISHU = "FEISHU", t.JD = "JD", t.DOUYIN = "DOUYIN", t.TOUTIAO = "TOUTIAO", t.MI = "MI", t.RENREN = "RENREN", t.MEITUAN = "MEITUAN", t.ELEME = "ELEME", t.KUJIALE = "KUJIALE", t.XMLY = "XMLY", t.GITEE = "GITEE", t.OSCHINA = "OSCHINA", t.CSDN = "CSDN", t.GITHUB = "GITHUB", t.GITLAB = "GITLAB", t.STACK_OVERFLOW = "STACK_OVERFLOW", t.CODING = "CODING", t.GOOGLE = "GOOGLE", t.MICROSOFT = "MICROSOFT", t.FACEBOOK = "FACEBOOK", t.LINKEDIN = "LINKEDIN", t.TWITTER = "TWITTER", t.AMAZON = "AMAZON", t.SLACK = "SLACK", t.LINE = "LINE", t.OKTA = "OKTA", t.PINTEREST = "PINTEREST", t))(V || {}), X = /* @__PURE__ */ ((t) => (t.APP = "APP", t.PERSONAL = "PERSONAL", t))(X || {});
-const pt = b("Application", {
+const gt = b("Application", {
   state: () => ({
     // 左侧菜单面板显示控制
     leftDrawer: !0,
@@ -340,7 +340,7 @@ class F {
     return this.config.getHttp().post(
       this.getOAuth2TokenAddress(),
       this.createOAuth2Data(
-        D.REFRESH_TOKEN,
+        v.REFRESH_TOKEN,
         { refresh_token: e },
         s
       ),
@@ -358,7 +358,7 @@ class F {
     return this.config.getHttp().post(
       this.getOAuth2TokenAddress(),
       this.createOAuth2Data(
-        D.PASSWORD,
+        v.PASSWORD,
         { username: e, password: s },
         i
       ),
@@ -395,7 +395,7 @@ class F {
     return this.config.getHttp().post(
       this.getOAuth2TokenAddress(),
       this.createOAuth2Data(
-        D.AUTHORIZATION_CODE,
+        v.AUTHORIZATION_CODE,
         { code: e, state: i, redirect_uri: s },
         n
       ),
@@ -429,7 +429,7 @@ class F {
   clientCredentialsFlow(e = "", s = "", i = "") {
     return this.config.getHttp().post(
       this.getOAuth2TokenAddress(),
-      this.createOAuth2Data(D.CLIENT_CREDENTIALS, {
+      this.createOAuth2Data(v.CLIENT_CREDENTIALS, {
         ...this.createClientData(e, s, i)
       }),
       {
@@ -452,7 +452,7 @@ class F {
   deviceCodeFlow(e, s = "", i = "", n = "") {
     return this.config.getHttp().post(
       this.getOAuth2TokenAddress(),
-      this.createOAuth2Data(D.DEVICE_CODE, {
+      this.createOAuth2Data(v.DEVICE_CODE, {
         device_code: e,
         ...this.createClientData(s, i, n)
       }),
@@ -485,7 +485,7 @@ class F {
     return this.config.getHttp().post(
       this.getOAuth2TokenAddress(),
       this.createOAuth2Data(
-        D.SOCIAL_CREDENTIALS,
+        v.SOCIAL_CREDENTIALS,
         { mobile: e, code: s, source: V.SMS },
         i
       ),
@@ -503,7 +503,7 @@ class F {
     return this.config.getHttp().post(
       this.getOAuth2TokenAddress(),
       this.createOAuth2Data(
-        D.SOCIAL_CREDENTIALS,
+        v.SOCIAL_CREDENTIALS,
         { ...s, source: e },
         i
       ),
@@ -655,8 +655,8 @@ const N = b("Crypto", {
             this.state = n.state;
             const _ = U.createKeyPair(), d = U.encrypt(_.publicKey, A);
             l.getInstance().open().exchange(r, d).then((u) => {
-              const o = u.data, v = U.decrypt(o, _.privateKey);
-              this.setSessionId(r), this.setKey(v), e(v);
+              const o = u.data, D = U.decrypt(o, _.privateKey);
+              this.setSessionId(r), this.setKey(D), e(D);
             });
           }
         }).catch((i) => {
@@ -819,7 +819,7 @@ const N = b("Crypto", {
   const t = P(), e = N(), s = t.access_token, i = e.sessionId, n = {};
   s && (n.Authorization = M.BEARER + s), i && (n["X-Herodotus-Session-Id"] = i);
   const r = h.getTenantId();
-  return r && (n["X-Herodotus-Tenant-Id"] = r), n;
+  return r && (n["X-Herodotus-Tenant-Id"] = r), n["X-Herodotus-Api-Version"] = "v1", n;
 }, L = b("Router", {
   state: () => ({
     appMenus: [],
@@ -1061,8 +1061,8 @@ function It() {
         return !0;
       if (C(u))
         return !1;
-      const v = st(u, o);
-      return !C(v);
+      const D = st(u, o);
+      return !C(D);
     },
     getItemTitle: e,
     getItemIcon: s,
@@ -1071,9 +1071,9 @@ function It() {
   };
 }
 function At(t, e, s, i) {
-  const n = (a) => a.meta?.isDetailContent, r = (a) => a.meta?.scenario, A = (a, g) => {
+  const n = (a) => a.meta?.isDetailContent, r = (a) => a.meta?.scenario, A = (a, p) => {
     const c = {};
-    return c.path = a.name, c.component = g[s(a.componentPath)], a.componentName && (c.name = a.componentName), a.redirect && (c.redirect = a.redirect), c.meta = {
+    return c.path = a.name, c.component = p[s(a.componentPath)], a.componentName && (c.name = a.componentName), a.redirect && (c.redirect = a.redirect), c.meta = {
       scenario: a.scenario,
       icon: a.meta.icon,
       title: a.meta.title,
@@ -1084,35 +1084,35 @@ function At(t, e, s, i) {
       ...a.meta.isDetailContent && { isDetailContent: a.meta.isDetailContent },
       ...a.meta.isIgnoreAuth && { isIgnoreAuth: a.meta.isIgnoreAuth }
     }, c;
-  }, _ = (a, g) => {
+  }, _ = (a, p) => {
     const c = L();
-    return a.map((p) => {
-      const f = A(p, g);
-      return n(f) && c.addDetailRoute(f), p.children && p.children.length > 0 && (f.children = _(p.children, g)), f;
+    return a.map((g) => {
+      const f = A(g, p);
+      return n(f) && c.addDetailRoute(f), g.children && g.children.length > 0 && (f.children = _(g.children, p)), f;
     });
   }, d = () => {
-    const a = [], g = t;
-    return Object.keys(g).forEach((c) => {
-      const f = g[c].default || {}, T = Array.isArray(f) ? [...f] : [f];
+    const a = [], p = t;
+    return Object.keys(p).forEach((c) => {
+      const f = p[c].default || {}, T = Array.isArray(f) ? [...f] : [f];
       a.push(...T);
     }), a;
-  }, u = (a, g) => {
-    const c = a.meta?.sort || 0, p = g.meta?.sort || 0;
-    return c - p;
-  }, o = (a, g) => {
+  }, u = (a, p) => {
+    const c = a.meta?.sort || 0, g = p.meta?.sort || 0;
+    return c - g;
+  }, o = (a, p) => {
     const c = L();
-    if (console.log("[Herodotus] |- Begin add dynamic routes"), C(g))
+    if (console.log("[Herodotus] |- Begin add dynamic routes"), C(p))
       console.warn("[Herodotus] |- Dynamic routes is empty, skip!");
     else {
-      const p = [], f = [];
-      g.forEach((T) => {
-        a.addRoute(T), r(T) === X.APP ? p.push(T) : f.push(T);
-      }), c.addMenus(p, f), console.log("[Herodotus] |- Dynamic routes add success!");
+      const g = [], f = [];
+      p.forEach((T) => {
+        a.addRoute(T), r(T) === X.APP ? g.push(T) : f.push(T);
+      }), c.addMenus(g, f), console.log("[Herodotus] |- Dynamic routes add success!");
     }
   };
   return {
-    initBackEndRoutes: async (a, g) => {
-      const p = (await i(g)).data.menus, T = _(p, e);
+    initBackEndRoutes: async (a, p) => {
+      const g = (await i(p)).data.menus, T = _(g, e);
       console.log("---routes---", T), o(a, T);
     },
     initFrontEndRoutes: async (a) => {
@@ -1143,8 +1143,8 @@ function Et() {
     m.classList.add("app-copy");
     const a = o.getBoundingClientRect();
     m.style.top = a.top + "px", m.style.left = a.left + "px", m.style.width = a.width + "px", m.style.height = a.height + "px";
-    const c = document.activeElement.getBoundingClientRect(), p = c.left + c.width / 2 + window.scrollX, f = c.top + c.height / 2 + window.scrollY;
-    o.style.setProperty("--clip-pos", `${p}px ${f}px`), o.style.removeProperty("--clip-size"), Y(() => {
+    const c = document.activeElement.getBoundingClientRect(), g = c.left + c.width / 2 + window.scrollX, f = c.top + c.height / 2 + window.scrollY;
+    o.style.setProperty("--clip-pos", `${g}px ${f}px`), o.style.removeProperty("--clip-size"), Y(() => {
       o.classList.add("app-transition"), requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           o.style.setProperty(
@@ -1190,7 +1190,7 @@ export {
   y as ThemeModeEnum,
   ft as getSystemHeaders,
   Ct as initializer,
-  pt as useApplicationStore,
+  gt as useApplicationStore,
   P as useAuthenticationStore,
   N as useCryptoStore,
   Tt as useEditFinish,
