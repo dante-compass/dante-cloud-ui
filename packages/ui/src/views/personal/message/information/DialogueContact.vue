@@ -29,8 +29,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted } from 'vue';
-
 import type { DialogueContactEntity, DialogueContactConditions } from '@herodotus-cloud/apis';
 
 import { useTable } from '@/composables/hooks';
@@ -41,30 +39,21 @@ import { API } from '@/configurations';
 import { HUserAvatar } from '@/components';
 
 export default defineComponent({
-  name: 'MessageDialogueContact',
+  name: 'HMessageTable',
 
   components: {
     HUserAvatar,
   },
 
   setup(props) {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      findItems,
-      deleteItemById,
-      conditions,
-    } = useTable<DialogueContactConditions, DialogueContactEntity>(
-      API.core.dialogueContact(),
-      'MessageDialogue',
-      false,
-      { direction: 'ASC', properties: ['createTime'] },
-      false,
-    );
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
+      useTable<DialogueContactConditions, DialogueContactEntity>(
+        API.core.dialogueContact(),
+        'MessageInformation',
+        false,
+        { direction: 'ASC', properties: ['createTime'] },
+        false,
+      );
     const store = useAuthenticationStore();
 
     onMounted(() => {
@@ -87,7 +76,6 @@ export default defineComponent({
           createTime: new Date(),
           updateTime: new Date(),
         },
-        ranking: 1,
       },
     ];
 

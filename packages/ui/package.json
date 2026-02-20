@@ -1,6 +1,6 @@
 {
   "name": "@herodotus/ui",
-  "version": "4.0.2.0",
+  "version": "4.0.3.0",
   "description": "",
   "keywords": [],
   "author": "",
@@ -45,11 +45,11 @@
     "vue": "^3.5.28",
     "vue-cookies": "^1.8.6",
     "vue-i18n": "^11.2.8",
-    "vue-router": "^5.0.2",
+    "vue-router": "^5.0.3",
     "vue-simple-uploader": "^1.0.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "25.2.3"
+    "@types/node": "25.3.0"
   }
 }

@@ -9,7 +9,8 @@
       dense
       active-color="red"
       align="left"
-      :class="[$q.dark.isActive ? 'bg-dark text-white q-pt-xs' : 'bg-white text-grey-8 q-pt-xs']">
+      :class="[$q.dark.isActive ? 'bg-dark text-white q-pt-xs' : 'bg-white text-grey-8 q-pt-xs']"
+    >
       <q-tab name="baseinfo" label="基本信息" />
     </q-tabs>
 
@@ -24,15 +25,8 @@
   </q-card>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+defineOptions({ name: 'FoundationProfile' });
 
-export default defineComponent({
-  name: 'FoundationProfile',
-
-  setup(props) {
-    const tab = ref('baseinfo');
-    return { tab };
-  }
-});
+const tab = shallowRef('baseinfo');
 </script>

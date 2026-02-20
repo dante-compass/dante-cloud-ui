@@ -9,7 +9,8 @@
       dense
       active-color="red"
       align="left"
-      :class="[$q.dark.isActive ? 'bg-dark text-white q-pt-xs' : 'bg-white text-grey-8 q-pt-xs']">
+      :class="[$q.dark.isActive ? 'bg-dark text-white q-pt-xs' : 'bg-white text-grey-8 q-pt-xs']"
+    >
       <q-tab name="configuration" label="通知设置" />
     </q-tabs>
 
@@ -24,15 +25,8 @@
   </q-card>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+defineOptions({ name: 'MessageSetting' });
 
-export default defineComponent({
-  name: 'MessageSetting',
-
-  setup(props) {
-    const tab = ref('configuration');
-    return { tab };
-  }
-});
+const tab = shallowRef('configuration');
 </script>
