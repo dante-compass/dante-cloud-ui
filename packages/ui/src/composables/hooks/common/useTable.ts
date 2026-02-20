@@ -1,12 +1,8 @@
 import type { Page, Domain, Conditions, HttpResult, AbstractService } from '@herodotus-cloud/core';
 
-import type {
-  Sort,
-  QTableOnRequestProps,
-  QTableOnRequestParameter,
-} from '@/composables/declarations';
+import type { Sort, QTableOnRequestProps, QTableOnRequestParameter } from '@/composables/declarations';
 
-import { toast, standardDeleteNotify } from '@herodotus-cloud/core';
+import { toast, notify } from '@herodotus-cloud/core';
 import { isEmpty, pickBy } from 'lodash-es';
 import useBaseTable from './useBaseTable';
 
@@ -96,7 +92,7 @@ export default function useTable<C extends Conditions, I extends Domain, O exten
   };
 
   const deleteItemById = (id: string) => {
-    standardDeleteNotify(() => {
+    notify.standardDeleteNotify(() => {
       service
         .delete(id)
         .then((response) => {
@@ -124,8 +120,7 @@ export default function useTable<C extends Conditions, I extends Domain, O exten
   };
 
   onMounted(() => {
-    if (loadOnMount)
-      findItems({ pagination: pagination.value, getCellValue: (col: any, row: any) => {} });
+    if (loadOnMount) findItems({ pagination: pagination.value, getCellValue: (col: any, row: any) => {} });
   });
 
   watch(

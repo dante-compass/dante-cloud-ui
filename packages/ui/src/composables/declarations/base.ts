@@ -102,22 +102,6 @@ export type {
 } from '@herodotus-cloud/apis';
 
 export type {
-  BucketDomain,
-  BucketDomainProps,
-  BucketDomainConditions,
-  ObjectDomain,
-  ObjectDomainProps,
-  ObjectDomainConditions,
-  BucketSettingBusiness,
-  CreateMultipartUploadBusiness,
-  ObjectSettingBusiness,
-  ObjectLockConfigurationDomain,
-  DeletedObjectDomain,
-  CreateBucketResult,
-  DeleteBucketResult,
-} from '@herodotus-cloud/oss-apis';
-
-export type {
   Element,
   FormModeler,
   Sheet,

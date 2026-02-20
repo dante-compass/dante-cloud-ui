@@ -72,25 +72,16 @@ export default defineComponent({
   },
 
   setup() {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-    } = useTable<SysAttributeConditions, SysAttributeEntity>(
-      API.core.sysAttribute(),
-      CONSTANTS.ComponentName.SYS_ATTRIBUTE,
-      false,
-      {
-        direction: 'ASC',
-        properties: ['url'],
-      },
-    );
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+      useTable<SysAttributeConditions, SysAttributeEntity>(
+        API.core.sysAttribute(),
+        CONSTANTS.ComponentName.SYS_ATTRIBUTE,
+        false,
+        {
+          direction: 'ASC',
+          properties: ['url'],
+        },
+      );
 
     const rowKey: SysAttributeProps = 'attributeId';
 
@@ -100,6 +91,7 @@ export default defineComponent({
     const columns: QTableColumnProps = [
       { name: 'requestMethod', field: 'requestMethod', align: 'center', label: '权限接口' },
       { name: 'attributeCode', field: 'attributeCode', align: 'center', label: '默认权限代码' },
+      { name: 'version', field: 'version', align: 'center', label: '版本控制' },
       { name: 'webExpression', field: 'webExpression', align: 'center', label: '特定表达式' },
       { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
       { name: 'status', field: 'status', align: 'center', label: '状态' },

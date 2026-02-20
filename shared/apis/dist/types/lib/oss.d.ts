@@ -1,4 +1,4 @@
-import { CreateMultipartUploadArgument, CreateMultipartUploadBusiness, CompleteMultipartUploadArgument, CompleteMultipartUploadResult, CreateBucketArgument, DeleteBucketArgument, DeleteObjectArgument, DeleteObjectsArgument, ListObjectsV2Argument, GetObjectAttributesArgument, GetObjectArgument, PutBucketPolicyArgument, PutObjectLegalHoldArgument, PutObjectRetentionArgument, CreateBucketResult, DeleteBucketResult, DeleteObjectResult, DeleteObjectsResult, ListObjectsV2Result, ListBucketDetailsResult, PutObjectResult, GetObjectAttributesResult, PutBucketPolicyResult, PutObjectLegalHoldResult, PutObjectRetentionResult } from '../declarations';
+import { CreateMultipartUploadArgument, CreateMultipartUploadBusiness, CompleteMultipartUploadArgument, CompleteMultipartUploadResult, CreateBucketArgument, DeleteBucketArgument, DeleteObjectArgument, DeleteObjectsArgument, ListObjectsV2Argument, ListObjectVersionsArgument, GetObjectAttributesArgument, GetObjectArgument, PutBucketPolicyArgument, PutObjectLegalHoldArgument, PutObjectRetentionArgument, CreateBucketResult, DeleteBucketResult, DeleteObjectResult, DeleteObjectsResult, ListObjectsV2Result, ListObjectVersionsResult, ListBucketDetailsResult, PutObjectResult, GetObjectAttributesResult, PutBucketPolicyResult, PutObjectLegalHoldResult, PutObjectRetentionResult } from '../declarations';
 import { AxiosHttpResult, AxiosProgressEvent, Service, HttpConfig } from '@herodotus-cloud/core';
 declare class BucketService extends Service {
     private static instance;
@@ -21,10 +21,11 @@ declare class ObjectService extends Service {
     private getMultiDeleteAddress;
     private getDownloadAddress;
     private getDisplayAddress;
-    private getUploadAddress;
+    getUploadAddress(): string;
     private getAttributesAddress;
     private getLegalHoldAddress;
     private getRetentionAddress;
+    private getListVersionsAddress;
     listObjectsV2(request: ListObjectsV2Argument): Promise<AxiosHttpResult<ListObjectsV2Result>>;
     delete(request: DeleteObjectArgument): Promise<AxiosHttpResult<DeleteObjectResult>>;
     upload(bucketName: string, file: File, onProgress?: (progressEvent: AxiosProgressEvent) => void): Promise<AxiosHttpResult<PutObjectResult>>;
@@ -34,6 +35,7 @@ declare class ObjectService extends Service {
     fetchObjectAttributes(request: GetObjectAttributesArgument): Promise<AxiosHttpResult<GetObjectAttributesResult>>;
     setObjectLegalHold(request: PutObjectLegalHoldArgument): Promise<AxiosHttpResult<PutObjectLegalHoldResult>>;
     setObjectRetention(request: PutObjectRetentionArgument): Promise<AxiosHttpResult<PutObjectRetentionResult>>;
+    listObjectVersions(request: ListObjectVersionsArgument): Promise<AxiosHttpResult<ListObjectVersionsResult>>;
 }
 declare class MultipartUploadService extends Service {
     private static instance;

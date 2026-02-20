@@ -62,23 +62,14 @@ export default defineComponent({
     const { onFinish } = useEditFinish();
     const { editedItem } = useTableItem(API.core.dialogueContact());
 
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      findItems,
-      deleteItemById,
-      conditions,
-    } = useTable<DialogueDetailConditions, DialogueDetailEntity>(
-      API.core.dialogueDetail(),
-      'MessageDialogueDetail',
-      false,
-      { direction: 'ASC', properties: ['createTime'] },
-      false,
-    );
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
+      useTable<DialogueDetailConditions, DialogueDetailEntity>(
+        API.core.dialogueDetail(),
+        'MessageDialogueDetail',
+        false,
+        { direction: 'ASC', properties: ['createTime'] },
+        false,
+      );
 
     const receiverId = ref('');
     const receiverName = ref('');

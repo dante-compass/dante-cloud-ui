@@ -1,14 +1,14 @@
-import { ref } from 'vue';
-import { useQuasar } from 'quasar';
+import type { AxiosProgressEvent } from '@herodotus-cloud/core';
 
-import type { AxiosProgressEvent, QNotifyPosition } from '@/composables/declarations';
+import { filesize } from 'filesize';
+import { endsWith, trimEnd, split } from 'lodash-es';
 
 import { toast } from '@herodotus-cloud/core';
 import { API } from '@/configurations';
 
-export default function useOssDownload() {
-  const $q = useQuasar();
-  const loadProgress = ref<number>(0);
+export default function useOss() {
+  const loadProgress = shallowRef(0);
+  const showProgress = shallowRef(false);
 
   const process = (response: Blob, objectName: string) => {
     const data = response as Blob;
@@ -34,16 +34,13 @@ export default function useOssDownload() {
    * @param objectName 对象名称
    */
   const download = (bucketName: string, objectName: string, size?: number) => {
-    if (size) {
-      showDownLoadProgress('下载');
+    if (size && size !== 0) {
+      showDownLoadProgress();
       API.core
         .ossObject()
-        .download(
-          { bucketName: bucketName, objectName: objectName },
-          (progressEvent: AxiosProgressEvent) => {
-            loadProgress.value = (progressEvent.loaded / size) * 100;
-          },
-        )
+        .download({ bucketName: bucketName, objectName: objectName }, (progressEvent: AxiosProgressEvent) => {
+          loadProgress.value = (progressEvent.loaded / size) * 100;
+        })
         .then((response) => {
           const data = response as Blob;
           process(data, objectName);
@@ -65,38 +62,49 @@ export default function useOssDownload() {
     }
   };
 
-  const showDownLoadProgress = (label: string, position: QNotifyPosition = 'center') => {
+  const showDownLoadProgress = () => {
+    showProgress.value = true;
     loadProgress.value = 0;
-    const notify = $q.notify({
-      group: false,
-      timeout: 0,
-      spinner: true,
-      position: position,
-      message: `文件${label}中...`,
-      caption: '0%',
-    });
-
     const interval = setInterval(() => {
-      // we update the dialog
-      notify({
-        caption: `${loadProgress.value}%`,
-      });
-
       if (loadProgress.value === 100) {
-        notify({
-          type: 'positive',
-          icon: 'done',
-          spinner: false,
-          message: `${label}完成!`,
-          timeout: 2000,
-        });
         clearInterval(interval);
-        loadProgress.value = 0;
       }
     }, 500);
   };
 
+  const humanObjectSize = (size: number) => {
+    if (size) {
+      return filesize(size);
+    } else {
+      return '';
+    }
+  };
+
+  /**
+   * 对象存储对象名称显示处理。
+   *
+   * 将显示为层级目录的对象名称处理为更合理的显示名称。包括目录类型对象名称的处理。
+   * @param objectName 对象名称
+   * @returns
+   */
+  const displayedObjectName = (objectName: string) => {
+    if (endsWith(objectName, '/')) {
+      return trimEnd(objectName, '/');
+    } else {
+      if (objectName.indexOf('/') !== -1) {
+        const names = split(objectName, '/');
+        return names[names.length - 1];
+      } else {
+        return objectName;
+      }
+    }
+  };
+
   return {
+    loadProgress,
+    showProgress,
     download,
+    humanObjectSize,
+    displayedObjectName,
   };
 }

@@ -8,6 +8,7 @@ import type {
   DeleteObjectArgument,
   DeleteObjectsArgument,
   ListObjectsV2Argument,
+  ListObjectVersionsArgument,
   GetObjectAttributesArgument,
   GetObjectArgument,
   PutBucketPolicyArgument,
@@ -18,6 +19,7 @@ import type {
   DeleteObjectResult,
   DeleteObjectsResult,
   ListObjectsV2Result,
+  ListObjectVersionsResult,
   ListBucketDetailsResult,
   PutObjectResult,
   GetObjectAttributesResult,
@@ -109,7 +111,7 @@ class ObjectService extends Service {
     return this.getBaseAddress() + '/display';
   }
 
-  private getUploadAddress(): string {
+  public getUploadAddress(): string {
     return this.getBaseAddress() + '/upload';
   }
 
@@ -123,6 +125,10 @@ class ObjectService extends Service {
 
   private getRetentionAddress(): string {
     return this.getBaseAddress() + '/retention';
+  }
+
+  private getListVersionsAddress(): string {
+    return this.getBaseAddress() + '/versions';
   }
 
   public listObjectsV2(request: ListObjectsV2Argument): Promise<AxiosHttpResult<ListObjectsV2Result>> {
@@ -201,6 +207,12 @@ class ObjectService extends Service {
     return this.getConfig()
       .getHttp()
       .put<PutObjectRetentionResult, PutObjectRetentionArgument>(this.getRetentionAddress(), request);
+  }
+
+  public listObjectVersions(request: ListObjectVersionsArgument): Promise<AxiosHttpResult<ListObjectVersionsResult>> {
+    return this.getConfig()
+      .getHttp()
+      .get<ListObjectVersionsResult, ListObjectVersionsArgument>(this.getListVersionsAddress(), request);
   }
 }
 

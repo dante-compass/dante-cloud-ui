@@ -5,11 +5,7 @@
         <h-oss-bucket-list v-model="bucketName" v-model:version="version"></h-oss-bucket-list>
       </h-column>
       <h-column lg="10" md="10" sm="6" xs="12">
-        <h-oss-object-list
-          v-if="bucketName"
-          :bucket-name="bucketName"
-          :version="version"
-        ></h-oss-object-list>
+        <h-oss-object-list v-model="bucketName" :version="version"></h-oss-object-list>
       </h-column>
     </h-row>
   </q-card>
@@ -18,7 +14,7 @@
 <script setup lang="ts">
 import { CONSTANTS } from '@/configurations';
 
-import { HOssBucketList, HOssObjectList } from '../components';
+import { HOssBucketList, HOssObjectList } from './components';
 
 defineOptions({
   name: CONSTANTS.ComponentName.OSS_OBJECT,

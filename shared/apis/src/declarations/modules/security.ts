@@ -32,6 +32,7 @@ export interface SysAttributeEntity extends AbstractSysEntity {
   className: string;
   methodName: string;
   url: string;
+  version: string;
   webExpression: string;
   permissions: Array<SysPermissionEntity>;
 }

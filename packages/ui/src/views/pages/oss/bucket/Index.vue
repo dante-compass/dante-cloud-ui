@@ -5,7 +5,6 @@
       :columns="columns"
       :row-key="rowKey"
       selection="single"
-      v-model:selected="selected"
       :loading="loading"
       show-all
       status
@@ -50,11 +49,6 @@
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
-          <!-- <h-dense-icon-button
-          color="black"
-          icon="mdi-cog-outline"
-          tooltip="设置"
-          @click="toAuthorize(props.row)"></h-dense-icon-button> -->
           <h-delete-button v-if="!props.row.reserved" @click="onDeleteBucket(props.row[rowKey])"></h-delete-button>
         </q-td>
       </template>
@@ -66,9 +60,9 @@
 <script setup lang="ts">
 import type { HttpResult } from '@herodotus-cloud/core';
 import type {
+  BucketDomain,
   BucketDetailsDomain,
   BucketDetailsDomainProps,
-  BucketDetailsDomainConditions,
   PutBucketPolicyResult,
   DeleteBucketResult,
 } from '@herodotus-cloud/apis';
@@ -76,20 +70,11 @@ import type { QTableColumnProps } from '@/composables/declarations';
 
 import { moment, toast, notify } from '@herodotus-cloud/core';
 import { CONSTANTS, API } from '@/configurations';
-import { useBaseTable, useOssBucket, useDictionary } from '@/composables/hooks';
+import { useDictionary } from '@/composables/hooks';
 
 import { HCreateBucketDialog } from './components';
 
 defineOptions({ name: CONSTANTS.ComponentName.OSS_BUCKET, components: { HCreateBucketDialog } });
-
-const { toCreate } = useBaseTable<BucketDetailsDomainConditions, BucketDetailsDomainProps>(
-  CONSTANTS.ComponentName.OSS_BUCKET,
-  '',
-  false,
-  true,
-);
-
-const rowKey: BucketDetailsDomainProps = 'bucketName';
 
 const columns: QTableColumnProps = [
   { name: 'bucketName', field: 'bucketName', align: 'center', label: 'Bucket名称' },
@@ -106,11 +91,30 @@ const columns: QTableColumnProps = [
   { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
-const { loading, tableRows, fetchAllBuckets } = useOssBucket();
+const rowKey: BucketDetailsDomainProps = 'bucketName';
+
 const { getDictionaryItemDisplay } = useDictionary('BucketVersioning');
 
-const selected = ref([]);
+const pageNumber = shallowRef(1);
+const pageSize = shallowRef(10);
 const openDialog = shallowRef(false);
+
+const loading = shallowRef(false);
+const tableRows = ref([]) as Ref<Array<BucketDomain>>;
+
+const fetchAllBuckets = () => {
+  API.core
+    .ossBucket()
+    .listBuckets()
+    .then((result) => {
+      const data = result.data.buckets as Array<BucketDomain>;
+      tableRows.value = data;
+      loading.value = false;
+    })
+    .catch(() => {
+      loading.value = false;
+    });
+};
 
 const onRefresh = () => {
   fetchAllBuckets();

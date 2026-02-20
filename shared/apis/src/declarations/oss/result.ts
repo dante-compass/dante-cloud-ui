@@ -5,6 +5,7 @@ import type {
   DeletedObjectDomain,
   S3ErrorDomain,
   ObjectDomain,
+  ObjectVersionDomain,
   SsekmsDomain,
   ChecksumDomain,
   BucketDetailsDomain,
@@ -19,24 +20,36 @@ interface AbstractResult extends Entity {
   successful: boolean;
 }
 
-interface AbstractObjectResult extends AbstractResult {
-  deleteMarker: boolean;
-  versionId: string;
+interface AbstractObjectRequestChargedResult extends AbstractResult {
   requestCharged: string;
 }
 
-interface AbstractRequestChargedResult extends AbstractResult {
-  requestCharged: string;
-  bucketKeyEnabled: boolean;
-}
-
-interface AbstractBucketKeyResult extends AbstractRequestChargedResult {
-  bucketKeyEnabled: boolean;
-}
-
-interface AbstractUploadResult extends AbstractBucketKeyResult {
+interface AbstractBucketNameResult extends AbstractObjectRequestChargedResult {
   bucketName: string;
+}
+
+interface AbstractObjectListResult extends AbstractBucketNameResult {
+  truncated: boolean;
+  prefix: string;
+  delimiter: string;
+  maxKeys: number;
+  encodingType: string;
+}
+
+interface AbstractObjectNameResult extends AbstractBucketNameResult {
   objectName: string;
+}
+
+interface AbstractObjectETagResult extends AbstractObjectRequestChargedResult {
+  eTag: string;
+}
+
+interface AbstractObjectVersionIdResult extends AbstractObjectETagResult {
+  versionId: string;
+}
+
+interface AbstractObjectDeleteMarkerResult extends AbstractObjectVersionIdResult {
+  deleteMarker: boolean;
 }
 
 interface AbstractListBucketsResult extends AbstractResult {
@@ -61,66 +74,63 @@ export interface ListBucketDetailsResult extends AbstractListBucketsResult {
 
 export interface PutBucketPolicyResult extends AbstractResult {}
 
-export interface DeleteObjectResult extends AbstractObjectResult {}
+export interface DeleteObjectResult extends AbstractObjectRequestChargedResult {
+  deleteMarker: boolean;
+  versionId: string;
+}
 
-export interface DeleteObjectsResult extends AbstractResult {
+export interface DeleteObjectsResult extends AbstractObjectRequestChargedResult {
   deleted: Array<DeletedObjectDomain>;
-  requestCharged: string;
   errors: Array<S3ErrorDomain>;
 }
 
-export interface ListObjectsV2Result extends AbstractResult {
-  isTruncated: boolean;
+export interface ListObjectsV2Result extends AbstractObjectListResult {
   contents: Array<ObjectDomain>;
-  bucketName: string;
-  prefix: string;
-  delimiter: string;
-  maxKeys: number;
-  encodingType: string;
   keyCount: number;
   continuationToken: string;
   nextContinuationToken: string;
   startAfter: string;
-  requestCharged: string;
 }
 
-export interface GetObjectAttributesResult extends AbstractResult {
+export interface ListObjectVersionsResult extends AbstractObjectListResult {
+  versions: Array<ObjectVersionDomain>;
+  keyMarker: string;
+  versionIdMarker: string;
+  nextKeyMarker: string;
+  nextVersionIdMarker: string;
+}
+
+export interface GetObjectAttributesResult extends AbstractObjectVersionIdResult {
   bucketName: string;
   objectName: string;
   lockEnabled: boolean;
   lockLegalHold: boolean;
-  retainUntilDate: Date;
+  retainUntilDate: string;
   retentionMode: string;
   deleteMarker: boolean;
-  lastModified: Date;
-  versionId: string;
-  eTag: string;
+  lastModified: string;
   size: number;
 }
 
-export interface PutObjectLegalHoldResult extends AbstractObjectResult {}
+export interface PutObjectLegalHoldResult extends AbstractObjectRequestChargedResult {}
 
-export interface PutObjectRetentionResult extends AbstractObjectResult {}
+export interface PutObjectRetentionResult extends AbstractObjectRequestChargedResult {}
 
-export interface UploadPartResult extends AbstractRequestChargedResult {
+export interface UploadPartResult extends AbstractObjectVersionIdResult {
   serverSideEncryption: string;
-  eTag: string;
   checksum: ChecksumDomain;
   ssekms: SsekmsDomain;
 }
 
 export interface PutObjectResult extends UploadPartResult {
   expiration: string;
-  versionId: string;
 }
 
-export interface CompleteMultipartUploadResult extends AbstractUploadResult {
+export interface CompleteMultipartUploadResult extends AbstractObjectVersionIdResult {
   location: string;
   expiration: string;
-  eTag: string;
   checksum: ChecksumDomain;
   serverSideEncryption: string;
-  versionId: string;
 }
 
 // ------------------------------ Business ------------------------------

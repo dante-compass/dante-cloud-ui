@@ -24,5 +24,7 @@ export const getSystemHeaders = () => {
     headers['X-Herodotus-Tenant-Id'] = tenantId;
   }
 
+  headers['X-Herodotus-Api-Version'] = 'v1';
+
   return headers;
 };
