@@ -15,7 +15,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "3.40.2",
+    "@bpmn-io/properties-panel": "3.40.3",
     "@herodotus-cloud/apis": "workspace:^",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/bpmn-designer": "workspace:^",
@@ -34,22 +34,22 @@
     "@vueuse/core": "^14.2.1",
     "animate.css": "^4.1.1",
     "axios": "^1.13.6",
-    "bpmn-js": "^18.12.0",
-    "bpmn-js-token-simulation": "^0.39.2",
+    "bpmn-js": "^18.13.1",
+    "bpmn-js-token-simulation": "^0.39.3",
     "colord": "^2.9.3",
     "echarts": "^6.0.0",
     "element-resize-detector": "^1.2.4",
     "rsocket-core": "1.0.0-alpha.3",
     "rsocket-websocket-client": "1.0.0-alpha.3",
     "simple-uploader.js": "^0.6.0",
-    "vue": "^3.5.29",
+    "vue": "^3.5.30",
     "vue-cookies": "^1.8.6",
-    "vue-i18n": "^11.2.8",
+    "vue-i18n": "^11.3.0",
     "vue-router": "^5.0.3",
     "vue-simple-uploader": "^1.0.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "25.3.3"
+    "@types/node": "25.4.0"
   }
 }

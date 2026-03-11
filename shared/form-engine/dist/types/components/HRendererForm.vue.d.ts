@@ -11,7 +11,7 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
         required: true;
     };
 }>, {
-    getDefaultModel: (item: Element) => import('@herodotus-cloud/form-apis').VModel | undefined;
+    getDefaultModel: (item: Element) => import('@herodotus-cloud/form-apis').VModel;
     modelObject: import('vue').WritableComputedRef<Record<string, any>, Record<string, any>>;
     state: Record<string, any>;
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
