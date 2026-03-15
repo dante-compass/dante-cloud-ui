@@ -1,1 +1,607 @@
-import{Service as e,moment as t,ContentTypeEnum as s,HttpConfig as r}from"@herodotus-cloud/core";import{Axios as n,ContentTypeEnum as i,HttpConfig as a,Service as c,Swal as o,moment as g,toast as d}from"@herodotus-cloud/core";import{endsWith as u,trimEnd as h,isEmpty as p}from"lodash-es";class PathParamBuilder{address;action="";constructor(e){this.address=e}getWellFormedAddress(){let e=this.address;return u(e,"/")?h(e,"/"):e}addAction(e){this.action=e}appendAction(e){return this.action?e+"/"+this.action:e}}class UnionPathParamBuilder extends PathParamBuilder{id="";key="";tenantId="";constructor(e){super(e)}setAction(e){return this.addAction(e),this}withParam(e){return this.id=e.id,this.key=e.key,this.tenantId=e.tenantId,this}build(){let e=this.getWellFormedAddress();return this.id?e+="/"+this.id:(this.key&&(e+="/key/"+this.key),this.tenantId&&(e+="/tenant-id/"+this.tenantId)),this.appendAction(e)}}class RelationPathParamBuilder extends PathParamBuilder{id="";relationId="";constructor(e){super(e)}withParam(e){return this.id=e.id,this.relationId=e.relationId,this.addAction(e.action),this}build(){let e=this.getWellFormedAddress();return e+="/"+this.id,e=this.appendAction(e),e+="/"+this.relationId,e}}class BpmnService extends e{getCountAddress(){return this.getBaseAddress()+"/count"}createAddressByParam(e,t=""){let s=new UnionPathParamBuilder(this.getBaseAddress());return t?s.withParam(e).setAction(t).build():s.withParam(e).build()}createAddressByRelation(e,t,s){return new RelationPathParamBuilder(this.getBaseAddress()).withParam({id:e,relationId:t,action:s}).build()}createAddressById(e,t=""){return this.createAddressByParam({id:e},t)}delete(e,t={}){return p(t)?this.getConfig().getHttp().delete(this.createAddressById(e)):this.getConfig().getHttp().deleteWithParams(this.createAddressById(e),t)}}class BpmnQueryByGetService extends BpmnService{getCount(e={}){return new Promise((t,s)=>{this.getConfig().getHttp().get(this.getCountAddress(),e).then(e=>{if(e){t(e.count)}}).catch(e=>{s(e)})})}getList(e,t,s={}){const r=Object.assign({sortBy:e.sortBy,sortOrder:e.sortOrder,firstResult:e.pageNumber*e.pageSize,maxResults:e.pageSize},s);return new Promise((s,n)=>{this.getConfig().getHttp().get(this.getBaseAddress(),r).then(r=>{const n={content:r,totalPages:t?(t+e.pageSize-1)/e.pageSize:t,totalElements:String(t)};s(n)}).catch(e=>{n(e)})})}getByPage(e,t={}){return new Promise((s,r)=>{this.getCount(t).then(r=>{this.getList(e,r,t).then(e=>{s(e)})}).catch(e=>{r(e)})})}getAll(e,t={}){return new Promise((s,r)=>{this.getCount(t).then(r=>{const n=Object.assign(t,{sortBy:e.sortBy,sortOrder:e.sortOrder,firstResult:0,maxResults:r});this.getConfig().getHttp().get(this.getBaseAddress(),n).then(e=>{s(e)})}).catch(e=>{r(e)})})}}class BpmnQueryService extends BpmnQueryByGetService{get(e){return this.getConfig().getHttp().get(this.createAddressById(e))}}class BpmnQueryByPostService extends BpmnQueryService{getPostCount(e={}){return new Promise((t,s)=>{this.getConfig().getHttp().get(this.getCountAddress(),e).then(e=>{if(e){t(e.count)}}).catch(e=>{s(e)})})}getPostList(e,t,s=[],r={}){const n={firstResult:(e.pageNumber-1)*e.pageSize,maxResults:e.pageSize};let i={};return p(s)||(i=Object.assign(r,{sorting:s})),new Promise((s,r)=>{this.getConfig().getHttp().postWithParams(this.getBaseAddress(),n,i).then(r=>{const n={content:r,totalPages:t?(t+e.pageSize-1)/e.pageSize:t,totalElements:String(t)};s(n)}).catch(e=>{r(e)})})}getPostByPage(e,t=[],s={}){return new Promise((r,n)=>{this.getPostCount(s).then(n=>{this.getPostList(e,n,t,s).then(e=>{r(e)})}).catch(e=>{n(e)})})}}class BaseBpmnService extends BpmnQueryByPostService{}class DeploymentService extends BpmnQueryService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new DeploymentService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/deployment"}getCreateAddress(){return this.getBaseAddress()+"/create"}getDuplicateFiltering(e){return e.deployChangedOnly?"true":e.enableDuplicateFiltering?String(e.enableDuplicateFiltering):"false"}create(e){let r=new FormData;r.append("deployment-name",e.deploymentName),r.append("deploy-changed-only",e.deployChangedOnly?"true":"false"),r.append("enable-duplicate-filtering",this.getDuplicateFiltering(e)),r.append("deployment-source",e.deploymentSource?e.deploymentSource:"Dante Cloud UI");const n=e.deploymentActivationTime?e.deploymentActivationTime:/* @__PURE__ */new Date;r.append("deployment-activation-time",t(n).utc().format()),e.tenantId&&r.append("tenant-id",e.tenantId);let i=new Blob([e.resource],{type:"application/octet-stream"});return r.append("data",i,/* @__PURE__ */(new Date).getTime()+".bpmn"),this.getConfig().getHttp().post(this.getCreateAddress(),r,{contentType:s.MULTI_PART})}redeploy(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"redeploy"),t)}getResources(e){return this.getConfig().getHttp().get(this.createAddressById(e,"resources"))}getResource(e,t){return this.getConfig().getHttp().get(this.createAddressByRelation(e,t,"resources"))}getBinaryResource(e,t){const s=this.createAddressByRelation(e,t,"resources")+"/data";return this.getConfig().getHttp().get(s)}getRegisteredDeployments(){const e=this.getBaseAddress()+"/registered";return this.getConfig().getHttp().get(e)}}class ProcessDefinitionService extends BpmnQueryService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new ProcessDefinitionService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/process-definition"}getActivityInstanceStatistics(e,t){return this.getConfig().getHttp().get(this.createAddressByParam(e,"statistics"),t)}getStaticCalledProcessDefinitions(e){return this.getConfig().getHttp().get(this.createAddressById(e,"static-called-process-definitions"))}getDiagram(e){return this.getConfig().getHttp().get(this.createAddressByParam(e,"diagram"))}getStartFormVariables(e,t){return this.getConfig().getHttp().get(this.createAddressByParam(e,"form-variables"),t)}getRenderedFormStartForm(e){return this.getConfig().getHttp().get(this.createAddressByParam(e,"rendered-form"))}getStartFormKey(e){return this.getConfig().getHttp().get(this.createAddressByParam(e,"startForm"))}getProcessInstanceStatistics(e){const t=this.getBaseAddress()+"/statistics";return this.getConfig().getHttp().get(t,e)}getXml(e){return this.getConfig().getHttp().get(this.createAddressByParam(e,"xml"))}getByPathParams(e){return this.getConfig().getHttp().get(this.createAddressByParam(e))}start(e,t){return this.getConfig().getHttp().post(this.createAddressByParam(e,"start"),t)}submitStartForm(e,t){return this.getConfig().getHttp().post(this.createAddressByParam(e,"submit-form"),t)}activateOrSuspendById(e,t){return this.getConfig().getHttp().put(this.createAddressByParam(e,"suspended"),t)}activateOrSuspendByKey(e){const t=this.getBaseAddress()+"/suspended";return this.getConfig().getHttp().put(t,e)}updateHistoryTimeToLive(e,t){return this.getConfig().getHttp().put(this.createAddressByParam(e,"history-time-to-live"),t)}deleteByKey(e,t="",s){return this.getConfig().getHttp().deleteWithParams(this.createAddressByParam({key:e,tenantId:t},"delete"),s)}getDeployedStartForm(e){return this.getConfig().getHttp().get(this.createAddressByParam(e,"deployed-start-form"))}restartProcessInstance(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"restart"),t)}restartAsync(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"restart-async"),t)}}class ProcessInstanceService extends BaseBpmnService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new ProcessInstanceService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/process-instance"}getActivityInstance(e){return this.getConfig().getHttp().get(this.createAddressById(e,"activity-instances"))}modify(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"modification"),t)}modifyAsync(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"modification-async"),t)}deleteAsync(e){const t=this.getBaseAddress()+"/delete";return this.getConfig().getHttp().post(t,e)}deleteAsyncHistoricQueryBased(e){const t=this.getBaseAddress()+"/delete-historic-query-based";return this.getConfig().getHttp().post(t,e)}setJobRetriesAsync(e){const t=this.getBaseAddress()+"/job-retries";return this.getConfig().getHttp().post(t,e)}setJobRetriesAsyncHistoricQueryBased(e){const t=this.getBaseAddress()+"/job-retries-historic-query-based";return this.getConfig().getHttp().post(t,e)}setVariablesAsync(e){const t=this.getBaseAddress()+"variables-async";return this.getConfig().getHttp().post(t,e)}correlateMessageAsync(e){const t=this.getBaseAddress()+"message-async";return this.getConfig().getHttp().post(t,e)}activateOrSuspendById(e,t){return this.getConfig().getHttp().put(this.createAddressById(e,"suspended"),t)}activateOrSuspendByProcessDefinitionId(e){const t=this.getBaseAddress()+"/suspended";return this.getConfig().getHttp().put(t,e)}activateOrSuspendByProcessDefinitionKey(e){const t=this.getBaseAddress()+"/suspended";return this.getConfig().getHttp().put(t,e)}activateOrSuspendInGroup(e){const t=this.getBaseAddress()+"suspended-async";return this.getConfig().getHttp().post(t,e)}activateOrSuspendInBatch(e){const t=this.getBaseAddress()+"suspended-async";return this.getConfig().getHttp().post(t,e)}}class TaskService extends BaseBpmnService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new TaskService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/task"}getCreateAddress(){return this.getBaseAddress()+"/create"}getFormKey(e){return this.getConfig().getHttp().get(this.createAddressById(e,"form"))}claim(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"claim"),t)}unclaim(e){return this.getConfig().getHttp().post(this.createAddressById(e,"unclaim"),{})}complete(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"complete"),t)}submitForm(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"submit-form"),t)}resolve(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"resolve"),t)}setAssignee(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"assignee"),t)}delegate(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"delegate"),t)}getDeployedForm(e){return this.getConfig().getHttp().get(this.createAddressById(e,"deployed-form"))}getRenderedForm(e){return this.getConfig().getHttp().get(this.createAddressById(e,"rendered-form"))}getTaskFormVariables(e,t){return this.getConfig().getHttp().get(this.createAddressById(e,"form-variables"),t)}create(e){return this.getConfig().getHttp().post(this.getCreateAddress(),e)}update(e,t){return this.getConfig().getHttp().put(this.createAddressById(e),t)}handleBpmnError(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"bpmnError"),t)}handleBpmnEscalation(e,t){return this.getConfig().getHttp().post(this.createAddressById(e,"bpmnEscalation"),t)}}class HistoryActivityInstanceService extends BpmnQueryByPostService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new HistoryActivityInstanceService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/history/activity-instance"}}class HistoryProcessInstanceService extends BpmnQueryByPostService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new HistoryProcessInstanceService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/history/process-instance"}}class HistoryTaskService extends BpmnQueryByPostService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new HistoryTaskService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/history/task"}}class GroupService extends BaseBpmnService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new GroupService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/group"}getCreateAddress(){return this.getBaseAddress()+"/create"}create(e){return this.getConfig().getHttp().post(this.getCreateAddress(),e)}update(e,t){return this.getConfig().getHttp().put(this.createAddressById(e),t)}}class GroupMemberService extends BpmnService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new GroupMemberService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/group"}getRelationAddress(e,t=""){return this.createAddressByRelation(e,t,"members")}create(e,t){return this.getConfig().getHttp().put(this.getRelationAddress(e,t),"")}deleteByRelation(e,t){return this.getConfig().getHttp().delete(this.getRelationAddress(e,t))}}class TenantService extends BpmnQueryService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new TenantService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/tenant"}getCreateAddress(){return this.getBaseAddress()+"/create"}createTenant(e){return this.getConfig().getHttp().post(this.getCreateAddress(),e)}update(e,t){return this.getConfig().getHttp().put(this.createAddressById(e),t)}}class TenantUserService extends BpmnService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new TenantUserService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/tenant"}getRelationAddress(e,t=""){return this.createAddressByRelation(e,t,"user-members")}create(e,t){return this.getConfig().getHttp().put(this.getRelationAddress(e,t),"")}deleteByRelation(e,t){return this.getConfig().getHttp().delete(this.getRelationAddress(e,t))}}class TenantGroupService extends BpmnService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new TenantGroupService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/tenant"}getRelationAddress(e,t=""){return this.createAddressByRelation(e,t,"group-members")}create(e,t){return this.getConfig().getHttp().put(this.getRelationAddress(e,t),"")}deleteByRelation(e,t){return this.getConfig().getHttp().delete(this.getRelationAddress(e,t))}}class UserService extends BpmnQueryByGetService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new UserService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn()+"/user"}getCreateAddress(){return this.getBaseAddress()+"/create"}}class BpmnApiResources{static instance;config={};constructor(e){this.config=e}static getInstance(e){return null==this.instance&&(this.instance=new BpmnApiResources(e)),this.instance}getConfig(){return this.config}deployment(){return DeploymentService.getInstance(this.config)}processDefinition(){return ProcessDefinitionService.getInstance(this.config)}processInstance(){return ProcessInstanceService.getInstance(this.config)}task(){return TaskService.getInstance(this.config)}historyActivityInstance(){return HistoryActivityInstanceService.getInstance(this.config)}historyProcessInstance(){return HistoryProcessInstanceService.getInstance(this.config)}historyTask(){return HistoryTaskService.getInstance(this.config)}group(){return GroupService.getInstance(this.config)}groupMember(){return GroupMemberService.getInstance(this.config)}tenant(){return TenantService.getInstance(this.config)}tenantUser(){return TenantUserService.getInstance(this.config)}tenantGroup(){return TenantGroupService.getInstance(this.config)}user(){return UserService.getInstance(this.config)}}const l=(e,t)=>{const s=new r(e,t);return BpmnApiResources.getInstance(s)};export{n as Axios,BaseBpmnService,BpmnApiResources,BpmnQueryByGetService,BpmnQueryByPostService,BpmnQueryService,BpmnService,i as ContentTypeEnum,DeploymentService,GroupMemberService,GroupService,HistoryActivityInstanceService,HistoryProcessInstanceService,HistoryTaskService,a as HttpConfig,ProcessDefinitionService,ProcessInstanceService,RelationPathParamBuilder,c as Service,o as Swal,TaskService,TenantGroupService,TenantService,TenantUserService,UnionPathParamBuilder,UserService,l as createBpmnApi,g as moment,d as toast};
+import { Axios as e, ContentTypeEnum as t, HttpConfig as n, Service as r, Service as i, Swal as a, moment as o, toast as s } from "@herodotus-cloud/core";
+import { endsWith as c, isEmpty as l, trimEnd as u } from "lodash-es";
+//#region src/lib/base/path.ts
+var d = class {
+	address;
+	action = "";
+	constructor(e) {
+		this.address = e;
+	}
+	getWellFormedAddress() {
+		let e = this.address;
+		return c(e, "/") ? u(e, "/") : e;
+	}
+	addAction(e) {
+		this.action = e;
+	}
+	appendAction(e) {
+		return this.action ? e + "/" + this.action : e;
+	}
+}, f = class extends d {
+	id = "";
+	key = "";
+	tenantId = "";
+	constructor(e) {
+		super(e);
+	}
+	setAction(e) {
+		return this.addAction(e), this;
+	}
+	withParam(e) {
+		return this.id = e.id, this.key = e.key, this.tenantId = e.tenantId, this;
+	}
+	build() {
+		let e = this.getWellFormedAddress();
+		return this.id ? e += "/" + this.id : (this.key && (e += "/key/" + this.key), this.tenantId && (e += "/tenant-id/" + this.tenantId)), this.appendAction(e);
+	}
+}, p = class extends d {
+	id = "";
+	relationId = "";
+	constructor(e) {
+		super(e);
+	}
+	withParam(e) {
+		return this.id = e.id, this.relationId = e.relationId, this.addAction(e.action), this;
+	}
+	build() {
+		let e = this.getWellFormedAddress();
+		return e += "/" + this.id, e = this.appendAction(e), e += "/" + this.relationId, e;
+	}
+}, m = class extends i {
+	getCountAddress() {
+		return this.getBaseAddress() + "/count";
+	}
+	createAddressByParam(e, t = "") {
+		let n = new f(this.getBaseAddress());
+		return t ? n.withParam(e).setAction(t).build() : n.withParam(e).build();
+	}
+	createAddressByRelation(e, t, n) {
+		return new p(this.getBaseAddress()).withParam({
+			id: e,
+			relationId: t,
+			action: n
+		}).build();
+	}
+	createAddressById(e, t = "") {
+		return this.createAddressByParam({ id: e }, t);
+	}
+	delete(e, t = {}) {
+		return l(t) ? this.getConfig().getHttp().delete(this.createAddressById(e)) : this.getConfig().getHttp().deleteWithParams(this.createAddressById(e), t);
+	}
+}, h = class extends m {
+	getCount(e = {}) {
+		return new Promise((t, n) => {
+			this.getConfig().getHttp().get(this.getCountAddress(), e).then((e) => {
+				e && t(e.count);
+			}).catch((e) => {
+				n(e);
+			});
+		});
+	}
+	getList(e, t, n = {}) {
+		let r = Object.assign({
+			sortBy: e.sortBy,
+			sortOrder: e.sortOrder,
+			firstResult: e.pageNumber * e.pageSize,
+			maxResults: e.pageSize
+		}, n);
+		return new Promise((n, i) => {
+			this.getConfig().getHttp().get(this.getBaseAddress(), r).then((r) => {
+				n({
+					content: r,
+					totalPages: t && (t + e.pageSize - 1) / e.pageSize,
+					totalElements: String(t)
+				});
+			}).catch((e) => {
+				i(e);
+			});
+		});
+	}
+	getByPage(e, t = {}) {
+		return new Promise((n, r) => {
+			this.getCount(t).then((r) => {
+				this.getList(e, r, t).then((e) => {
+					n(e);
+				});
+			}).catch((e) => {
+				r(e);
+			});
+		});
+	}
+	getAll(e, t = {}) {
+		return new Promise((n, r) => {
+			this.getCount(t).then((r) => {
+				let i = Object.assign(t, {
+					sortBy: e.sortBy,
+					sortOrder: e.sortOrder,
+					firstResult: 0,
+					maxResults: r
+				});
+				this.getConfig().getHttp().get(this.getBaseAddress(), i).then((e) => {
+					n(e);
+				});
+			}).catch((e) => {
+				r(e);
+			});
+		});
+	}
+}, g = class extends h {
+	get(e) {
+		return this.getConfig().getHttp().get(this.createAddressById(e));
+	}
+}, _ = class extends g {
+	getPostCount(e = {}) {
+		return new Promise((t, n) => {
+			this.getConfig().getHttp().get(this.getCountAddress(), e).then((e) => {
+				e && t(e.count);
+			}).catch((e) => {
+				n(e);
+			});
+		});
+	}
+	getPostList(e, t, n = [], r = {}) {
+		let i = {
+			firstResult: (e.pageNumber - 1) * e.pageSize,
+			maxResults: e.pageSize
+		}, a = {};
+		return l(n) || (a = Object.assign(r, { sorting: n })), new Promise((n, r) => {
+			this.getConfig().getHttp().postWithParams(this.getBaseAddress(), i, a).then((r) => {
+				n({
+					content: r,
+					totalPages: t && (t + e.pageSize - 1) / e.pageSize,
+					totalElements: String(t)
+				});
+			}).catch((e) => {
+				r(e);
+			});
+		});
+	}
+	getPostByPage(e, t = [], n = {}) {
+		return new Promise((r, i) => {
+			this.getPostCount(n).then((i) => {
+				this.getPostList(e, i, t, n).then((e) => {
+					r(e);
+				});
+			}).catch((e) => {
+				i(e);
+			});
+		});
+	}
+}, v = class extends _ {}, y = class e extends g {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/deployment";
+	}
+	getCreateAddress() {
+		return this.getBaseAddress() + "/create";
+	}
+	getDuplicateFiltering(e) {
+		return e.deployChangedOnly ? "true" : e.enableDuplicateFiltering ? String(e.enableDuplicateFiltering) : "false";
+	}
+	create(e) {
+		let n = new FormData();
+		n.append("deployment-name", e.deploymentName), n.append("deploy-changed-only", e.deployChangedOnly ? "true" : "false"), n.append("enable-duplicate-filtering", this.getDuplicateFiltering(e)), n.append("deployment-source", e.deploymentSource ? e.deploymentSource : "Dante Cloud UI");
+		let r = e.deploymentActivationTime ? e.deploymentActivationTime : /* @__PURE__ */ new Date();
+		n.append("deployment-activation-time", o(r).utc().format()), e.tenantId && n.append("tenant-id", e.tenantId);
+		let i = new Blob([e.resource], { type: "application/octet-stream" });
+		return n.append("data", i, (/* @__PURE__ */ new Date()).getTime() + ".bpmn"), this.getConfig().getHttp().post(this.getCreateAddress(), n, { contentType: t.MULTI_PART });
+	}
+	redeploy(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "redeploy"), t);
+	}
+	getResources(e) {
+		return this.getConfig().getHttp().get(this.createAddressById(e, "resources"));
+	}
+	getResource(e, t) {
+		return this.getConfig().getHttp().get(this.createAddressByRelation(e, t, "resources"));
+	}
+	getBinaryResource(e, t) {
+		let n = this.createAddressByRelation(e, t, "resources") + "/data";
+		return this.getConfig().getHttp().get(n);
+	}
+	getRegisteredDeployments() {
+		let e = this.getBaseAddress() + "/registered";
+		return this.getConfig().getHttp().get(e);
+	}
+}, b = class e extends g {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/process-definition";
+	}
+	getActivityInstanceStatistics(e, t) {
+		return this.getConfig().getHttp().get(this.createAddressByParam(e, "statistics"), t);
+	}
+	getStaticCalledProcessDefinitions(e) {
+		return this.getConfig().getHttp().get(this.createAddressById(e, "static-called-process-definitions"));
+	}
+	getDiagram(e) {
+		return this.getConfig().getHttp().get(this.createAddressByParam(e, "diagram"));
+	}
+	getStartFormVariables(e, t) {
+		return this.getConfig().getHttp().get(this.createAddressByParam(e, "form-variables"), t);
+	}
+	getRenderedFormStartForm(e) {
+		return this.getConfig().getHttp().get(this.createAddressByParam(e, "rendered-form"));
+	}
+	getStartFormKey(e) {
+		return this.getConfig().getHttp().get(this.createAddressByParam(e, "startForm"));
+	}
+	getProcessInstanceStatistics(e) {
+		let t = this.getBaseAddress() + "/statistics";
+		return this.getConfig().getHttp().get(t, e);
+	}
+	getXml(e) {
+		return this.getConfig().getHttp().get(this.createAddressByParam(e, "xml"));
+	}
+	getByPathParams(e) {
+		return this.getConfig().getHttp().get(this.createAddressByParam(e));
+	}
+	start(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressByParam(e, "start"), t);
+	}
+	submitStartForm(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressByParam(e, "submit-form"), t);
+	}
+	activateOrSuspendById(e, t) {
+		return this.getConfig().getHttp().put(this.createAddressByParam(e, "suspended"), t);
+	}
+	activateOrSuspendByKey(e) {
+		let t = this.getBaseAddress() + "/suspended";
+		return this.getConfig().getHttp().put(t, e);
+	}
+	updateHistoryTimeToLive(e, t) {
+		return this.getConfig().getHttp().put(this.createAddressByParam(e, "history-time-to-live"), t);
+	}
+	deleteByKey(e, t = "", n) {
+		return this.getConfig().getHttp().deleteWithParams(this.createAddressByParam({
+			key: e,
+			tenantId: t
+		}, "delete"), n);
+	}
+	getDeployedStartForm(e) {
+		return this.getConfig().getHttp().get(this.createAddressByParam(e, "deployed-start-form"));
+	}
+	restartProcessInstance(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "restart"), t);
+	}
+	restartAsync(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "restart-async"), t);
+	}
+}, x = class e extends v {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/process-instance";
+	}
+	getActivityInstance(e) {
+		return this.getConfig().getHttp().get(this.createAddressById(e, "activity-instances"));
+	}
+	modify(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "modification"), t);
+	}
+	modifyAsync(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "modification-async"), t);
+	}
+	deleteAsync(e) {
+		let t = this.getBaseAddress() + "/delete";
+		return this.getConfig().getHttp().post(t, e);
+	}
+	deleteAsyncHistoricQueryBased(e) {
+		let t = this.getBaseAddress() + "/delete-historic-query-based";
+		return this.getConfig().getHttp().post(t, e);
+	}
+	setJobRetriesAsync(e) {
+		let t = this.getBaseAddress() + "/job-retries";
+		return this.getConfig().getHttp().post(t, e);
+	}
+	setJobRetriesAsyncHistoricQueryBased(e) {
+		let t = this.getBaseAddress() + "/job-retries-historic-query-based";
+		return this.getConfig().getHttp().post(t, e);
+	}
+	setVariablesAsync(e) {
+		let t = this.getBaseAddress() + "variables-async";
+		return this.getConfig().getHttp().post(t, e);
+	}
+	correlateMessageAsync(e) {
+		let t = this.getBaseAddress() + "message-async";
+		return this.getConfig().getHttp().post(t, e);
+	}
+	activateOrSuspendById(e, t) {
+		return this.getConfig().getHttp().put(this.createAddressById(e, "suspended"), t);
+	}
+	activateOrSuspendByProcessDefinitionId(e) {
+		let t = this.getBaseAddress() + "/suspended";
+		return this.getConfig().getHttp().put(t, e);
+	}
+	activateOrSuspendByProcessDefinitionKey(e) {
+		let t = this.getBaseAddress() + "/suspended";
+		return this.getConfig().getHttp().put(t, e);
+	}
+	activateOrSuspendInGroup(e) {
+		let t = this.getBaseAddress() + "suspended-async";
+		return this.getConfig().getHttp().post(t, e);
+	}
+	activateOrSuspendInBatch(e) {
+		let t = this.getBaseAddress() + "suspended-async";
+		return this.getConfig().getHttp().post(t, e);
+	}
+}, S = class e extends v {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/task";
+	}
+	getCreateAddress() {
+		return this.getBaseAddress() + "/create";
+	}
+	getFormKey(e) {
+		return this.getConfig().getHttp().get(this.createAddressById(e, "form"));
+	}
+	claim(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "claim"), t);
+	}
+	unclaim(e) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "unclaim"), {});
+	}
+	complete(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "complete"), t);
+	}
+	submitForm(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "submit-form"), t);
+	}
+	resolve(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "resolve"), t);
+	}
+	setAssignee(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "assignee"), t);
+	}
+	delegate(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "delegate"), t);
+	}
+	getDeployedForm(e) {
+		return this.getConfig().getHttp().get(this.createAddressById(e, "deployed-form"));
+	}
+	getRenderedForm(e) {
+		return this.getConfig().getHttp().get(this.createAddressById(e, "rendered-form"));
+	}
+	getTaskFormVariables(e, t) {
+		return this.getConfig().getHttp().get(this.createAddressById(e, "form-variables"), t);
+	}
+	create(e) {
+		return this.getConfig().getHttp().post(this.getCreateAddress(), e);
+	}
+	update(e, t) {
+		return this.getConfig().getHttp().put(this.createAddressById(e), t);
+	}
+	handleBpmnError(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "bpmnError"), t);
+	}
+	handleBpmnEscalation(e, t) {
+		return this.getConfig().getHttp().post(this.createAddressById(e, "bpmnEscalation"), t);
+	}
+}, C = class e extends _ {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/history/activity-instance";
+	}
+}, w = class e extends _ {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/history/process-instance";
+	}
+}, T = class e extends _ {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/history/task";
+	}
+}, E = class e extends v {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/group";
+	}
+	getCreateAddress() {
+		return this.getBaseAddress() + "/create";
+	}
+	create(e) {
+		return this.getConfig().getHttp().post(this.getCreateAddress(), e);
+	}
+	update(e, t) {
+		return this.getConfig().getHttp().put(this.createAddressById(e), t);
+	}
+}, D = class e extends m {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/group";
+	}
+	getRelationAddress(e, t = "") {
+		return this.createAddressByRelation(e, t, "members");
+	}
+	create(e, t) {
+		return this.getConfig().getHttp().put(this.getRelationAddress(e, t), "");
+	}
+	deleteByRelation(e, t) {
+		return this.getConfig().getHttp().delete(this.getRelationAddress(e, t));
+	}
+}, O = class e extends g {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/tenant";
+	}
+	getCreateAddress() {
+		return this.getBaseAddress() + "/create";
+	}
+	createTenant(e) {
+		return this.getConfig().getHttp().post(this.getCreateAddress(), e);
+	}
+	update(e, t) {
+		return this.getConfig().getHttp().put(this.createAddressById(e), t);
+	}
+}, k = class e extends m {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/tenant";
+	}
+	getRelationAddress(e, t = "") {
+		return this.createAddressByRelation(e, t, "user-members");
+	}
+	create(e, t) {
+		return this.getConfig().getHttp().put(this.getRelationAddress(e, t), "");
+	}
+	deleteByRelation(e, t) {
+		return this.getConfig().getHttp().delete(this.getRelationAddress(e, t));
+	}
+}, A = class e extends m {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/tenant";
+	}
+	getRelationAddress(e, t = "") {
+		return this.createAddressByRelation(e, t, "group-members");
+	}
+	create(e, t) {
+		return this.getConfig().getHttp().put(this.getRelationAddress(e, t), "");
+	}
+	deleteByRelation(e, t) {
+		return this.getConfig().getHttp().delete(this.getRelationAddress(e, t));
+	}
+}, j = class e extends h {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn() + "/user";
+	}
+	getCreateAddress() {
+		return this.getBaseAddress() + "/create";
+	}
+}, M = class e {
+	static instance;
+	config = {};
+	constructor(e) {
+		this.config = e;
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getConfig() {
+		return this.config;
+	}
+	deployment() {
+		return y.getInstance(this.config);
+	}
+	processDefinition() {
+		return b.getInstance(this.config);
+	}
+	processInstance() {
+		return x.getInstance(this.config);
+	}
+	task() {
+		return S.getInstance(this.config);
+	}
+	historyActivityInstance() {
+		return C.getInstance(this.config);
+	}
+	historyProcessInstance() {
+		return w.getInstance(this.config);
+	}
+	historyTask() {
+		return T.getInstance(this.config);
+	}
+	group() {
+		return E.getInstance(this.config);
+	}
+	groupMember() {
+		return D.getInstance(this.config);
+	}
+	tenant() {
+		return O.getInstance(this.config);
+	}
+	tenantUser() {
+		return k.getInstance(this.config);
+	}
+	tenantGroup() {
+		return A.getInstance(this.config);
+	}
+	user() {
+		return j.getInstance(this.config);
+	}
+}, N = (e, t) => {
+	let r = new n(e, t);
+	return M.getInstance(r);
+};
+//#endregion
+export { e as Axios, v as BaseBpmnService, M as BpmnApiResources, h as BpmnQueryByGetService, _ as BpmnQueryByPostService, g as BpmnQueryService, m as BpmnService, t as ContentTypeEnum, y as DeploymentService, D as GroupMemberService, E as GroupService, C as HistoryActivityInstanceService, w as HistoryProcessInstanceService, T as HistoryTaskService, n as HttpConfig, b as ProcessDefinitionService, x as ProcessInstanceService, p as RelationPathParamBuilder, r as Service, a as Swal, S as TaskService, A as TenantGroupService, O as TenantService, k as TenantUserService, f as UnionPathParamBuilder, j as UserService, N as createBpmnApi, s as toast };

@@ -10,9 +10,11 @@
   "scripts": {
     "dev": "cross-env vite --force --host --mode development",
     "prod": "cross-env vite build --mode production",
-    "build": "vue-tsc --noEmit && vite build",
-    "report": "vite build",
-    "preview": "vite preview"
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build --force",
+    "lint": "eslint . --fix"
   },
   "dependencies": {
     "@bpmn-io/properties-panel": "3.40.3",
@@ -50,6 +52,6 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "25.4.0"
+    "@types/node": "25.5.0"
   }
 }

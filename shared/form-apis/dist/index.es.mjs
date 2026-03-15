@@ -1,1 +1,89 @@
-import{Service as e,HttpConfig as t}from"@herodotus-cloud/core";import{Axios as s,Base64 as n,HttpConfig as i,Service as r,moment as c}from"@herodotus-cloud/core";import{isEmpty as o}from"lodash-es";class BaseMongoService extends e{getConditionAddress(){return this.getBaseAddress()+"/condition"}getListAddress(){return this.getBaseAddress()+"/list"}fetchByPage(e,t={}){if(o(t))return this.getConfig().getHttp().get(this.getBaseAddress(),e);{const s=Object.assign(e,t);return this.getConfig().getHttp().get(this.getConditionAddress(),s)}}fetchAll(e={}){return this.getConfig().getHttp().get(this.getListAddress(),e)}fetchById(e){return this.getConfig().getHttp().get(this.getIdPath(e))}saveOrUpdate(e){return this.getConfig().getHttp().post(this.getBaseAddress(),e)}delete(e){return this.getConfig().getHttp().delete(this.getIdPath(e))}}class DynamicFormService extends BaseMongoService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new DynamicFormService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn(!0,!0)+"/dynamic-form"}}class ProcessCommentsService extends BaseMongoService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new ProcessCommentsService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn(!0,!0)+"/process-comments"}}class ProcessSpecificsService extends BaseMongoService{static instance;constructor(e){super(e)}static getInstance(e){return null==this.instance&&(this.instance=new ProcessSpecificsService(e)),this.instance}getBaseAddress(){return this.getConfig().getBpmn(!0,!0)+"/process-specifics"}}class FormApiResources{static instance;config={};constructor(e){this.config=e}static getInstance(e){return null==this.instance&&(this.instance=new FormApiResources(e)),this.instance}getConfig(){return this.config}dynamicForm(){return DynamicFormService.getInstance(this.config)}processComments(){return ProcessCommentsService.getInstance(this.config)}processSpecifics(){return ProcessSpecificsService.getInstance(this.config)}}const g=(e,s)=>{const n=new t(e,s);return FormApiResources.getInstance(n)};export{s as Axios,n as Base64,BaseMongoService,DynamicFormService,FormApiResources,i as HttpConfig,ProcessCommentsService,ProcessSpecificsService,r as Service,g as createFormApi,c as moment};
+import { Axios as e, Base64 as t, HttpConfig as n, Service as r, Service as i, moment as a } from "@herodotus-cloud/core";
+import { isEmpty as o } from "lodash-es";
+//#region src/lib/base/service.ts
+var s = class extends i {
+	getConditionAddress() {
+		return this.getBaseAddress() + "/condition";
+	}
+	getListAddress() {
+		return this.getBaseAddress() + "/list";
+	}
+	fetchByPage(e, t = {}) {
+		if (o(t)) return this.getConfig().getHttp().get(this.getBaseAddress(), e);
+		{
+			let n = Object.assign(e, t);
+			return this.getConfig().getHttp().get(this.getConditionAddress(), n);
+		}
+	}
+	fetchAll(e = {}) {
+		return this.getConfig().getHttp().get(this.getListAddress(), e);
+	}
+	fetchById(e) {
+		return this.getConfig().getHttp().get(this.getIdPath(e));
+	}
+	saveOrUpdate(e) {
+		return this.getConfig().getHttp().post(this.getBaseAddress(), e);
+	}
+	delete(e) {
+		return this.getConfig().getHttp().delete(this.getIdPath(e));
+	}
+}, c = class e extends s {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn(!0, !0) + "/dynamic-form";
+	}
+}, l = class e extends s {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn(!0, !0) + "/process-comments";
+	}
+}, u = class e extends s {
+	static instance;
+	constructor(e) {
+		super(e);
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getBaseAddress() {
+		return this.getConfig().getBpmn(!0, !0) + "/process-specifics";
+	}
+}, d = class e {
+	static instance;
+	config = {};
+	constructor(e) {
+		this.config = e;
+	}
+	static getInstance(t) {
+		return this.instance ??= new e(t), this.instance;
+	}
+	getConfig() {
+		return this.config;
+	}
+	dynamicForm() {
+		return c.getInstance(this.config);
+	}
+	processComments() {
+		return l.getInstance(this.config);
+	}
+	processSpecifics() {
+		return u.getInstance(this.config);
+	}
+}, f = (e, t) => {
+	let r = new n(e, t);
+	return d.getInstance(r);
+};
+//#endregion
+export { e as Axios, t as Base64, s as BaseMongoService, c as DynamicFormService, d as FormApiResources, n as HttpConfig, l as ProcessCommentsService, u as ProcessSpecificsService, r as Service, f as createFormApi, a as moment };

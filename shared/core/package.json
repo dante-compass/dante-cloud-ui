@@ -9,9 +9,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build --force",
+    "lint": "eslint . --fix"
   },
   "main": "dist/index.umd.js",
   "module": "dist/index.es.mjs",

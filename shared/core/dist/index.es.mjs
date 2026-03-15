@@ -1,1 +1,4949 @@
-import t from"axios";import e from"qs";import{useAxios as i}from"@vueuse/integrations/useAxios";import{Md5 as n}from"ts-md5";import{isFunction as r,isEmpty as s,merge as a,toUpper as o,replace as c,assignIn as u}from"lodash-es";import l from"moment";import{default as h}from"moment";import"moment/dist/locale/zh-cn";import{generateFromString as d}from"generate-avatar";import{sm2 as m,sm4 as f}from"sm-crypto-v2";import{Base64 as g}from"js-base64";import{Base64 as p}from"js-base64";import w from"sweetalert2";import{default as y}from"sweetalert2";import{lib as C,SHA256 as _,enc as I}from"crypto-js";var U=/* @__PURE__ */(t=>(t.DARK="dark",t.LIGHT="light",t.SYSTEM="system",t))(U||{}),T=/* @__PURE__ */(t=>(t[t.URL_ENCODED=0]="URL_ENCODED",t[t.MULTI_PART=1]="MULTI_PART",t[t.TEXT=2]="TEXT",t[t.JSON=3]="JSON",t))(T||{}),B=/* @__PURE__ */(t=>(t.GET="GET",t.POST="POST",t.PUT="PUT",t.DELETE="DELETE",t))(B||{}),E=/* @__PURE__ */(t=>(t[t.FORBIDDEN=0]="FORBIDDEN",t[t.ENABLE=1]="ENABLE",t[t.LOCKING=2]="LOCKING",t[t.EXPIRED=3]="EXPIRED",t))(E||{}),v=/* @__PURE__ */(t=>(t.BASIC="Basic ",t.BEARER="Bearer ",t))(v||{}),A=/* @__PURE__ */(t=>(t.AUTHORIZATION_CODE="authorization_code",t.REFRESH_TOKEN="refresh_token",t.CLIENT_CREDENTIALS="client_credentials",t.PASSWORD="password",t.SOCIAL_CREDENTIALS="social_credentials",t.WEBAUTHN_CREDENTIALS="webauthn_credentials",t.DEVICE_CODE="urn:ietf:params:oauth:grant-type:device_code",t.JWT_BEARER="urn:ietf:params:oauth:grant-type:jwt-bearer",t.TOKEN_EXCHANGE="urn:ietf:params:oauth:grant-type:token-exchange",t))(A||{}),S=/* @__PURE__ */(t=>(t.CLIENT_SECRET_BASIC="client_secret_basic",t.CLIENT_SECRET_POST="client_secret_post",t.CLIENT_SECRET_JWT="client_secret_jwt",t.PRIVATE_KEY_JWT="private_key_jwt",t.NONE="none",t.TLS_CLIENT_AUTH="tls_client_auth",t.SELF_SIGNED_TLS_CLIENT_AUTH="self_signed_tls_client_auth",t))(S||{}),x=/* @__PURE__ */(t=>(t.OPENID="openid",t.EMAIL="email",t.PROFILE="profile",t.PHONE="phone",t.ADDRESS="address",t.ROLES="roles",t.CLIENT_CREATE="client.create",t.CLIENT_READ="client.read",t))(x||{}),M=/* @__PURE__ */(t=>(t.CREATE="create",t.EDIT="edit",t.AUTHORIZE="authorize",t.INFO="info",t.ALLOCATABLE="allocatable",t.SETUP="setup",t.INVOKE="invoke",t))(M||{}),P=/* @__PURE__ */(t=>(t.DARK="dark",t.LIGHT="light",t.SYSTEM="system",t))(P||{}),N=/* @__PURE__ */(t=>(t[t.URL_ENCODED=0]="URL_ENCODED",t[t.MULTI_PART=1]="MULTI_PART",t[t.TEXT=2]="TEXT",t[t.JSON=3]="JSON",t))(N||{}),R=/* @__PURE__ */(t=>(t.GET="GET",t.POST="POST",t.PUT="PUT",t.DELETE="DELETE",t))(R||{}),z=/* @__PURE__ */(t=>(t.BASIC="Basic ",t.BEARER="Bearer ",t))(z||{}),L=/* @__PURE__ */(t=>(t.DARK="dark",t.LIGHT="light",t.SYSTEM="system",t))(L||{}),V=/* @__PURE__ */(t=>(t.DARK="dark",t.LIGHT="light",t.SYSTEM="system",t))(V||{}),O=/* @__PURE__ */(t=>(t.DARK="dark",t.LIGHT="light",t.SYSTEM="system",t))(O||{}),D=/* @__PURE__ */(t=>(t.DARK="dark",t.LIGHT="light",t.SYSTEM="system",t))(D||{}),q=/* @__PURE__ */(t=>(t.DARK="dark",t.LIGHT="light",t.SYSTEM="system",t))(q||{}),b=/* @__PURE__ */(t=>(t.DARK="dark",t.LIGHT="light",t.SYSTEM="system",t))(b||{});l.locale("zh-cn"),class AvatarUtilities{static instance=new AvatarUtilities;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}.getInstance();let k=class SM2Utilities{static instance=new SM2Utilities;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}},H=class SM4Utilities{static instance=new SM4Utilities;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}};k.getInstance(),H.getInstance();const K=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});(class Notify{static instance=new Notify;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}).getInstance(),class Toast{static instance=new Toast;constructor(){}static getInstance(){return this.instance}information(t,e){return K.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}.getInstance(),class PkceUtilities{static instance=new PkceUtilities;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}.getInstance(),l.locale("zh-cn");class AvatarUtilities2{static instance=new AvatarUtilities2;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities2.getInstance();class SM2Utilities2{static instance=new SM2Utilities2;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities2{static instance=new SM4Utilities2;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities2.getInstance(),SM4Utilities2.getInstance();const G=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify2{static instance=new Notify2;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify2.getInstance();class Toast2{static instance=new Toast2;constructor(){}static getInstance(){return this.instance}information(t,e){return G.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast2.getInstance();class PkceUtilities2{static instance=new PkceUtilities2;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities2.getInstance(),l.locale("zh-cn");class AvatarUtilities3{static instance=new AvatarUtilities3;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities3.getInstance();class SM2Utilities3{static instance=new SM2Utilities3;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities3{static instance=new SM4Utilities3;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities3.getInstance(),SM4Utilities3.getInstance();const W=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify3{static instance=new Notify3;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify3.getInstance();class Toast3{static instance=new Toast3;constructor(){}static getInstance(){return this.instance}information(t,e){return W.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast3.getInstance();class PkceUtilities3{static instance=new PkceUtilities3;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities3.getInstance(),l.locale("zh-cn");class AvatarUtilities4{static instance=new AvatarUtilities4;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities4.getInstance();class SM2Utilities4{static instance=new SM2Utilities4;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities4{static instance=new SM4Utilities4;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities4.getInstance(),SM4Utilities4.getInstance();const $=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify4{static instance=new Notify4;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify4.getInstance();class Toast4{static instance=new Toast4;constructor(){}static getInstance(){return this.instance}information(t,e){return $.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast4.getInstance();class PkceUtilities4{static instance=new PkceUtilities4;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities4.getInstance(),l.locale("zh-cn");class AvatarUtilities5{static instance=new AvatarUtilities5;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities5.getInstance();class SM2Utilities5{static instance=new SM2Utilities5;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities5{static instance=new SM4Utilities5;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities5.getInstance(),SM4Utilities5.getInstance();const J=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify5{static instance=new Notify5;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify5.getInstance();class Toast5{static instance=new Toast5;constructor(){}static getInstance(){return this.instance}information(t,e){return J.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast5.getInstance();class PkceUtilities5{static instance=new PkceUtilities5;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities5.getInstance(),l.locale("zh-cn");class AvatarUtilities6{static instance=new AvatarUtilities6;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities6.getInstance();class SM2Utilities6{static instance=new SM2Utilities6;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities6{static instance=new SM4Utilities6;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities6.getInstance(),SM4Utilities6.getInstance();const j=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify6{static instance=new Notify6;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify6.getInstance();class Toast6{static instance=new Toast6;constructor(){}static getInstance(){return this.instance}information(t,e){return j.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast6.getInstance();class PkceUtilities6{static instance=new PkceUtilities6;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities6.getInstance(),l.locale("zh-cn");class AvatarUtilities7{static instance=new AvatarUtilities7;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities7.getInstance();class SM2Utilities7{static instance=new SM2Utilities7;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities7{static instance=new SM4Utilities7;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities7.getInstance(),SM4Utilities7.getInstance();const Y=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify7{static instance=new Notify7;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify7.getInstance();class Toast7{static instance=new Toast7;constructor(){}static getInstance(){return this.instance}information(t,e){return Y.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast7.getInstance();class PkceUtilities7{static instance=new PkceUtilities7;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities7.getInstance(),l.locale("zh-cn");class AvatarUtilities8{static instance=new AvatarUtilities8;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities8.getInstance();class SM2Utilities8{static instance=new SM2Utilities8;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities8{static instance=new SM4Utilities8;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities8.getInstance(),SM4Utilities8.getInstance();const X=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify8{static instance=new Notify8;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify8.getInstance();class Toast8{static instance=new Toast8;constructor(){}static getInstance(){return this.instance}information(t,e){return X.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast8.getInstance();class PkceUtilities8{static instance=new PkceUtilities8;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities8.getInstance(),l.locale("zh-cn");class AvatarUtilities9{static instance=new AvatarUtilities9;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities9.getInstance();class SM2Utilities9{static instance=new SM2Utilities9;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities9{static instance=new SM4Utilities9;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities9.getInstance(),SM4Utilities9.getInstance();const F=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify9{static instance=new Notify9;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify9.getInstance();class Toast9{static instance=new Toast9;constructor(){}static getInstance(){return this.instance}information(t,e){return F.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast9.getInstance();class PkceUtilities9{static instance=new PkceUtilities9;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities9.getInstance(),l.locale("zh-cn");class AvatarUtilities10{static instance=new AvatarUtilities10;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities10.getInstance();class SM2Utilities10{static instance=new SM2Utilities10;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities10{static instance=new SM4Utilities10;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities10.getInstance(),SM4Utilities10.getInstance();const Z=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify10{static instance=new Notify10;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify10.getInstance();class Toast10{static instance=new Toast10;constructor(){}static getInstance(){return this.instance}information(t,e){return Z.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast10.getInstance();class PkceUtilities10{static instance=new PkceUtilities10;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities10.getInstance(),l.locale("zh-cn");class AvatarUtilities11{static instance=new AvatarUtilities11;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities11.getInstance();class SM2Utilities11{static instance=new SM2Utilities11;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities11{static instance=new SM4Utilities11;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities11.getInstance(),SM4Utilities11.getInstance();const Q=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify11{static instance=new Notify11;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify11.getInstance();class Toast11{static instance=new Toast11;constructor(){}static getInstance(){return this.instance}information(t,e){return Q.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast11.getInstance();class PkceUtilities11{static instance=new PkceUtilities11;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities11.getInstance(),l.locale("zh-cn");class AvatarUtilities12{static instance=new AvatarUtilities12;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities12.getInstance();class SM2Utilities12{static instance=new SM2Utilities12;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities12{static instance=new SM4Utilities12;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities12.getInstance(),SM4Utilities12.getInstance();const tt=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify12{static instance=new Notify12;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify12.getInstance();class Toast12{static instance=new Toast12;constructor(){}static getInstance(){return this.instance}information(t,e){return tt.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast12.getInstance();class PkceUtilities12{static instance=new PkceUtilities12;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities12.getInstance(),l.locale("zh-cn");class AvatarUtilities13{static instance=new AvatarUtilities13;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities13.getInstance();class SM2Utilities13{static instance=new SM2Utilities13;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities13{static instance=new SM4Utilities13;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities13.getInstance(),SM4Utilities13.getInstance();const et=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}});class Notify13{static instance=new Notify13;constructor(){}static getInstance(){return this.instance}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}}Notify13.getInstance();class Toast13{static instance=new Toast13;constructor(){}static getInstance(){return this.instance}information(t,e){return et.fire({icon:e,title:t})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast13.getInstance();class PkceUtilities13{static instance=new PkceUtilities13;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities13.getInstance(),l.locale("zh-cn");class AvatarUtilities14{static instance=new AvatarUtilities14;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities14.getInstance();class SM2Utilities14{static instance=new SM2Utilities14;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities14{static instance=new SM4Utilities14;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities14.getInstance(),SM4Utilities14.getInstance();const it=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}}),nt=t=>t===b.SYSTEM?"auto":t;class Notify14{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=nt(t)}static initialize(t){if(Notify14._initialized)throw new Error("RouterUtilities has already been initialized");return Notify14._instance=new Notify14(t),Notify14._initialized=!0,Notify14._instance}static getInstance(){if(!Notify14._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Notify14._instance}setTheme(t){this.theme=nt(t)}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,theme:this.theme,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}getConfirmButtonColor(){return"light"===this.theme?"#6750A4":"#2563eb"}standardDeleteNotify(t,e){w.fire({title:"确定删除?",text:"您将无法恢复此操作！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的, 删除!",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}signOutNotify(t,e){w.fire({title:"要走了么?",text:"您确定要退出系统！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}tokenExpiresNotify(t,e,i,n){w.fire({title:t,text:e,icon:i,theme:this.theme,showClass:{popup:"animate__animated animate__fadeInDown"},hideClass:{popup:"animate__animated animate__fadeOutUp"},confirmButtonText:"已阅!",willClose:()=>{n()}})}}Notify14.initialize(b.LIGHT);class Toast14{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=nt(t)}static initialize(t){if(Toast14._initialized)throw new Error("RouterUtilities has already been initialized");return Toast14._instance=new Toast14(t),Toast14._initialized=!0,Toast14._instance}static getInstance(){if(!Toast14._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Toast14._instance}setTheme(t){this.theme=nt(t)}information(t,e){return it.fire({icon:e,title:t,theme:this.theme})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast14.initialize(b.LIGHT);class PkceUtilities14{static instance=new PkceUtilities14;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities14.getInstance(),l.locale("zh-cn");class AvatarUtilities15{static instance=new AvatarUtilities15;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities15.getInstance();class SM2Utilities15{static instance=new SM2Utilities15;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities15{static instance=new SM4Utilities15;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities15.getInstance(),SM4Utilities15.getInstance();const rt=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}}),st=t=>t===q.SYSTEM?"auto":t;class Notify15{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=st(t)}static initialize(t){if(Notify15._initialized)throw new Error("RouterUtilities has already been initialized");return Notify15._instance=new Notify15(t),Notify15._initialized=!0,Notify15._instance}static getInstance(){if(!Notify15._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Notify15._instance}setTheme(t){this.theme=st(t)}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,theme:this.theme,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}getConfirmButtonColor(){return"light"===this.theme?"#6750A4":"#2563eb"}standardDeleteNotify(t,e){w.fire({title:"确定删除?",text:"您将无法恢复此操作！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的, 删除!",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}signOutNotify(t,e){w.fire({title:"要走了么?",text:"您确定要退出系统！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}tokenExpiresNotify(t,e,i,n){w.fire({title:t,text:e,icon:i,theme:this.theme,showClass:{popup:"animate__animated animate__fadeInDown"},hideClass:{popup:"animate__animated animate__fadeOutUp"},confirmButtonText:"已阅!",willClose:()=>{n()}})}}Notify15.initialize(q.LIGHT);class Toast15{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=st(t)}static initialize(t){if(Toast15._initialized)throw new Error("RouterUtilities has already been initialized");return Toast15._instance=new Toast15(t),Toast15._initialized=!0,Toast15._instance}static getInstance(){if(!Toast15._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Toast15._instance}setTheme(t){this.theme=st(t)}information(t,e){return rt.fire({icon:e,title:t,theme:this.theme})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast15.initialize(q.LIGHT);class PkceUtilities15{static instance=new PkceUtilities15;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities15.getInstance(),l.locale("zh-cn");class AvatarUtilities16{static instance=new AvatarUtilities16;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities16.getInstance();class SM2Utilities16{static instance=new SM2Utilities16;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities16{static instance=new SM4Utilities16;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities16.getInstance(),SM4Utilities16.getInstance();const at=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}}),ot=t=>t===D.SYSTEM?"auto":t;class Notify16{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=ot(t)}static initialize(t){if(Notify16._initialized)throw new Error("RouterUtilities has already been initialized");return Notify16._instance=new Notify16(t),Notify16._initialized=!0,Notify16._instance}static getInstance(){if(!Notify16._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Notify16._instance}setTheme(t){this.theme=ot(t)}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,theme:this.theme,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}getConfirmButtonColor(){return"light"===this.theme?"#6750A4":"#2563eb"}standardDeleteNotify(t,e){w.fire({title:"确定删除?",text:"您将无法恢复此操作！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的, 删除!",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}signOutNotify(t,e){w.fire({title:"要走了么?",text:"您确定要退出系统！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}tokenExpiresNotify(t,e,i,n){w.fire({title:t,text:e,icon:i,theme:this.theme,showClass:{popup:"animate__animated animate__fadeInDown"},hideClass:{popup:"animate__animated animate__fadeOutUp"},confirmButtonText:"已阅!",willClose:()=>{n()}})}}Notify16.initialize(D.LIGHT);class Toast16{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=ot(t)}static initialize(t){if(Toast16._initialized)throw new Error("RouterUtilities has already been initialized");return Toast16._instance=new Toast16(t),Toast16._initialized=!0,Toast16._instance}static getInstance(){if(!Toast16._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Toast16._instance}setTheme(t){this.theme=ot(t)}information(t,e){return at.fire({icon:e,title:t,theme:this.theme})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast16.initialize(D.LIGHT);class PkceUtilities16{static instance=new PkceUtilities16;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities16.getInstance(),l.locale("zh-cn");class AvatarUtilities17{static instance=new AvatarUtilities17;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities17.getInstance();class SM2Utilities17{static instance=new SM2Utilities17;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities17{static instance=new SM4Utilities17;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities17.getInstance(),SM4Utilities17.getInstance();const ct=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}}),ut=t=>t===O.SYSTEM?"auto":t;class Notify17{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=ut(t)}static initialize(t){if(Notify17._initialized)throw new Error("RouterUtilities has already been initialized");return Notify17._instance=new Notify17(t),Notify17._initialized=!0,Notify17._instance}static getInstance(){if(!Notify17._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Notify17._instance}setTheme(t){this.theme=ut(t)}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,theme:this.theme,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}getConfirmButtonColor(){return"light"===this.theme?"#6750A4":"#2563eb"}standardDeleteNotify(t,e){w.fire({title:"确定删除?",text:"您将无法恢复此操作！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的, 删除!",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}signOutNotify(t,e){w.fire({title:"要走了么?",text:"您确定要退出系统！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}tokenExpiresNotify(t,e,i,n){w.fire({title:t,text:e,icon:i,theme:this.theme,showClass:{popup:"animate__animated animate__fadeInDown"},hideClass:{popup:"animate__animated animate__fadeOutUp"},confirmButtonText:"已阅!",willClose:()=>{n()}})}}Notify17.initialize(O.LIGHT);class Toast17{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=ut(t)}static initialize(t){if(Toast17._initialized)throw new Error("RouterUtilities has already been initialized");return Toast17._instance=new Toast17(t),Toast17._initialized=!0,Toast17._instance}static getInstance(){if(!Toast17._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Toast17._instance}setTheme(t){this.theme=ut(t)}information(t,e){return ct.fire({icon:e,title:t,theme:this.theme})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast17.initialize(O.LIGHT);class PkceUtilities17{static instance=new PkceUtilities17;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities17.getInstance(),l.locale("zh-cn");class AvatarUtilities18{static instance=new AvatarUtilities18;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities18.getInstance();class SM2Utilities18{static instance=new SM2Utilities18;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities18{static instance=new SM4Utilities18;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities18.getInstance(),SM4Utilities18.getInstance();const lt=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}}),ht=t=>t===V.SYSTEM?"auto":t;class Notify18{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=ht(t)}static initialize(t){if(Notify18._initialized)throw new Error("RouterUtilities has already been initialized");return Notify18._instance=new Notify18(t),Notify18._initialized=!0,Notify18._instance}static getInstance(){if(!Notify18._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Notify18._instance}setTheme(t){this.theme=ht(t)}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,theme:this.theme,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}getConfirmButtonColor(){return"light"===this.theme?"#6750A4":"#2563eb"}standardDeleteNotify(t,e){w.fire({title:"确定删除?",text:"您将无法恢复此操作！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的, 删除!",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}signOutNotify(t,e){w.fire({title:"要走了么?",text:"您确定要退出系统！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}tokenExpiresNotify(t,e,i,n){w.fire({title:t,text:e,icon:i,theme:this.theme,showClass:{popup:"animate__animated animate__fadeInDown"},hideClass:{popup:"animate__animated animate__fadeOutUp"},confirmButtonText:"已阅!",willClose:()=>{n()}})}}Notify18.initialize(V.LIGHT);class Toast18{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=ht(t)}static initialize(t){if(Toast18._initialized)throw new Error("RouterUtilities has already been initialized");return Toast18._instance=new Toast18(t),Toast18._initialized=!0,Toast18._instance}static getInstance(){if(!Toast18._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Toast18._instance}setTheme(t){this.theme=ht(t)}information(t,e){return lt.fire({icon:e,title:t,theme:this.theme})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast18.initialize(V.LIGHT);class PkceUtilities18{static instance=new PkceUtilities18;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities18.getInstance(),l.locale("zh-cn");class AvatarUtilities19{static instance=new AvatarUtilities19;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities19.getInstance();class SM2Utilities19{static instance=new SM2Utilities19;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities19{static instance=new SM4Utilities19;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities19.getInstance(),SM4Utilities19.getInstance();const dt=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}}),mt=t=>t===L.SYSTEM?"auto":t;class Notify19{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=mt(t)}static initialize(t){if(Notify19._initialized)throw new Error("RouterUtilities has already been initialized");return Notify19._instance=new Notify19(t),Notify19._initialized=!0,Notify19._instance}static getInstance(){if(!Notify19._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Notify19._instance}setTheme(t){this.theme=mt(t)}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,theme:this.theme,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}getConfirmButtonColor(){return"light"===this.theme?"#6750A4":"#2563eb"}standardDeleteNotify(t,e){w.fire({title:"确定删除?",text:"您将无法恢复此操作！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的, 删除!",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}signOutNotify(t,e){w.fire({title:"要走了么?",text:"您确定要退出系统！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}tokenExpiresNotify(t,e,i,n){w.fire({title:t,text:e,icon:i,theme:this.theme,showClass:{popup:"animate__animated animate__fadeInDown"},hideClass:{popup:"animate__animated animate__fadeOutUp"},confirmButtonText:"已阅!",willClose:()=>{n()}})}}Notify19.initialize(L.LIGHT);class Toast19{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=mt(t)}static initialize(t){if(Toast19._initialized)throw new Error("RouterUtilities has already been initialized");return Toast19._instance=new Toast19(t),Toast19._initialized=!0,Toast19._instance}static getInstance(){if(!Toast19._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Toast19._instance}setTheme(t){this.theme=mt(t)}information(t,e){return dt.fire({icon:e,title:t,theme:this.theme})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast19.initialize(L.LIGHT);class PkceUtilities19{static instance=new PkceUtilities19;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities19.getInstance(),l.locale("zh-cn");class AvatarUtilities20{static instance=new AvatarUtilities20;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}AvatarUtilities20.getInstance();class SM2Utilities20{static instance=new SM2Utilities20;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities20{static instance=new SM4Utilities20;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}SM2Utilities20.getInstance(),SM4Utilities20.getInstance();const ft=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}}),gt=t=>t===P.SYSTEM?"auto":t;class Notify20{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=gt(t)}static initialize(t){if(Notify20._initialized)throw new Error("RouterUtilities has already been initialized");return Notify20._instance=new Notify20(t),Notify20._initialized=!0,Notify20._instance}static getInstance(){if(!Notify20._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Notify20._instance}setTheme(t){this.theme=gt(t)}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,theme:this.theme,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}getConfirmButtonColor(){return"light"===this.theme?"#6750A4":"#2563eb"}standardDeleteNotify(t,e){w.fire({title:"确定删除?",text:"您将无法恢复此操作！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的, 删除!",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}signOutNotify(t,e){w.fire({title:"要走了么?",text:"您确定要退出系统！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}tokenExpiresNotify(t,e,i,n){w.fire({title:t,text:e,icon:i,theme:this.theme,showClass:{popup:"animate__animated animate__fadeInDown"},hideClass:{popup:"animate__animated animate__fadeOutUp"},confirmButtonText:"已阅!",willClose:()=>{n()}})}}Notify20.initialize(P.LIGHT);class Toast20{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=gt(t)}static initialize(t){if(Toast20._initialized)throw new Error("RouterUtilities has already been initialized");return Toast20._instance=new Toast20(t),Toast20._initialized=!0,Toast20._instance}static getInstance(){if(!Toast20._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Toast20._instance}setTheme(t){this.theme=gt(t)}information(t,e){return ft.fire({icon:e,title:t,theme:this.theme})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}Toast20.initialize(P.LIGHT);class PkceUtilities20{static instance=new PkceUtilities20;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){let e="";const i=this.getRandomValues(t);for(let n=0;n<t;n++){let t=i[n];void 0!==t&&(e+="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[t%66])}return e}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}PkceUtilities20.getInstance();let pt=/* @__PURE__ */new Map;const wt=t=>{if(!s(t.params)){const e=n.hashStr(t.params);return[t.method,t.url,e].join("&")}return[t.method,t.url].join("&")};class AxiosCanceler{addPending(e){this.removePending(e);const i=wt(e);e.cancelToken=e.cancelToken||new t.CancelToken(t=>{pt.has(i)||pt.set(i,t)})}removeAllPending(){pt.forEach(t=>{t&&r(t)&&t()}),pt.clear()}removePending(t){const e=wt(t);if(pt.has(e)){const t=pt.get(e);t&&t(e),pt.delete(e)}}reset(){pt=/* @__PURE__ */new Map}}class Axios{axiosInstance;defaultAxiosRequestConfig;defaultRequestOptions;axiosInstanceHooks;constructor(t,e,i){this.defaultAxiosRequestConfig=t,this.defaultRequestOptions=i,this.axiosInstanceHooks=e,this.axiosInstance=this.createAxiosInstance(t),this.setupInterceptors()}createAxiosInstance(e){return t.create(e)}getDefaultAxiosRequestConfig(){return this.defaultAxiosRequestConfig}getDefaultRequestOptions(){return this.defaultRequestOptions}getAxiosInstanceHooks(){return this.axiosInstanceHooks}getAxiosInstance(){return this.axiosInstance}createHttpHeaderPolicy(t){switch(t){case N.URL_ENCODED:return{headers:{"Content-Type":"application/x-www-form-urlencoded"},dataConvert:t=>e.stringify(t,{arrayFormat:"brackets"})};case N.MULTI_PART:return{headers:{"Content-Type":"multipart/form-data"},dataConvert:t=>t};default:return{headers:{"Content-Type":"application/json"},dataConvert:t=>JSON.stringify(t)}}}setupInterceptors(){const t=this.getAxiosInstanceHooks();if(!t)return;const{requestInterceptors:e,requestInterceptorsError:i,responseInterceptors:n,responseInterceptorsError:r}=t,s=new AxiosCanceler;this.getAxiosInstance().interceptors.request.use(t=>{const{prohibitRepeatRequests:i}=this.getDefaultRequestOptions();return i&&s.addPending(t),e(t)},t=>i(this.getAxiosInstance(),t)),this.getAxiosInstance().interceptors.response.use(t=>(t&&s.removePending(t.config),n(t)),t=>r(this.getAxiosInstance(),t))}mergeHttpRequestOptions(t){const e=this.getDefaultRequestOptions();return s(t)?e:a({},e,t)}mergeAxiosRequestConfigs(t){const i=this.getDefaultAxiosRequestConfig(),n=a({},i,{paramsSerializer:{serialize:t=>e.stringify(t,{arrayFormat:"brackets"})}});return s(t)?n:a({},n,t)}setupRequestStrategy(t,e,i){const{onRequestHook:n}=this.getAxiosInstanceHooks(),o=this.mergeHttpRequestOptions(i);let c=this.mergeAxiosRequestConfigs(e);n&&r(n)&&(c=n(c,o));const u=this.createHttpHeaderPolicy(o.contentType);return c.headers?c.headers=a(c.headers,u.headers):c.headers=u.headers,c.url=t,s(c.data)||(c.data=u.dataConvert(c.data)),{config:c,options:o}}request(t,e){return new Promise((i,n)=>{const{onResponseErrorHook:s,onResponseSuccessHook:a}=this.getAxiosInstanceHooks();this.getAxiosInstance().request(t).then(t=>{if(a&&r(a)){const n=a(t,e);i(n)}else i(t)}).catch(t=>{if(s&&r(s)){const i=s(t,e);n(i)}else n(t)})})}process(t,e,i={}){let n=this.setupRequestStrategy(t,e,i);return this.request(n.config,n.options)}get(t,e={},i={contentType:N.JSON}){return this.process(t,{params:e,method:R.GET},i)}post(t,e,i={contentType:N.JSON},n){return this.process(t,{...n,data:e,method:R.POST},i)}postWithParams(t,e,i={},n={contentType:N.JSON},r){return this.process(t,{...r,params:e,data:i,method:R.POST},n)}put(t,e,i={contentType:N.JSON},n){return this.process(t,{...n,data:e,method:R.PUT},i)}putWithParams(t,e,i={},n={contentType:N.JSON},r){return this.process(t,{...r,params:e,data:i,method:R.PUT},n)}delete(t,e={},i={contentType:N.JSON}){return this.process(t,{data:e,method:R.DELETE},i)}deleteWithParams(t,e,i={},n={contentType:N.JSON}){return this.process(t,{params:e,data:i,method:R.DELETE},n)}}const yt=(t,e)=>{let i={};i="statusText"in t?t.data:t;const n={status:t.status,code:0,detail:""};return n.code=i&&i.code?i.code:0,n.detail=i.error&&i.error.detail?i.error.detail:"",i.message?n.message=i.message:i.error&&i.error.message?n.message=i.error.message:e&&(n.message=e),n},Ct=t=>{Math.round(255*Math.random()),Math.round(255*Math.random()),Math.round(255*Math.random())},_t=t=>!(!t||!("statusText"in t))&&/^(2|3)\d{2}$/.test(String(t.status));class HttpConfig{http={};project="";clientId="";clientSecret="";oidc=!1;uaaAddress="";upmsAddress="";msgAddress="";ossAddress="";bpmnAddress="";cmdbAddress="";iotAddress="";manageAddress="";proxy="";constructor(t,e){this.http=t,this.project=e.project,this.clientId=e.clientId,this.clientSecret=e.clientSecret,this.oidc=!!e.oidc&&e.oidc,this.proxy=e.proxy?e.proxy:"/api",this.switch(e.project)}switch(t){switch(t){case"dante":this.uaaAddress="/dante-cloud-uaa",this.upmsAddress="/dante-cloud-upms",this.msgAddress="/dante-cloud-message",this.ossAddress="/dante-cloud-oss-ability",this.bpmnAddress="/dante-cloud-bpmn-ability/engine-rest",this.cmdbAddress="/dante-cloud-cmdb-ability",this.iotAddress="/dante-cloud-iot-ability",this.manageAddress="/dante-cloud-manage-ability";break;case"herodotus":this.uaaAddress="/herodotus-cloud-uaa",this.upmsAddress="/herodotus-cloud-upms",this.msgAddress="/herodotus-cloud-message",this.ossAddress="/herodotus-cloud-oss-ability",this.bpmnAddress="/herodotus-cloud-bpmn-ability/engine-rest",this.cmdbAddress="/herodotus-cloud-cmdb-ability",this.iotAddress="/herodotus-cloud-iot-ability",this.manageAddress="/herodotus-cloud-manage-ability";break;default:this.uaaAddress="",this.upmsAddress="",this.msgAddress="",this.ossAddress="",this.bpmnAddress="/engine-rest",this.cmdbAddress="",this.iotAddress="",this.manageAddress=""}}getProject(){return this.project}getClientSecret(){return this.clientSecret}getClientId(){return this.clientId}isOidc(){return this.oidc}getProxy(){return this.proxy}getHttp(){return this.http}processProxy(t,e=!0){return e?this.proxy+t:t}getUaa(t=!0){return this.processProxy(this.uaaAddress,t)}getUpms(t=!0){return this.processProxy(this.upmsAddress,t)}getMsg(t=!0){return this.processProxy(this.msgAddress,t)}getOss(t=!0){return this.processProxy(this.ossAddress,t)}getBpmn(t=!0,e=!1){let i=this.processProxy(this.bpmnAddress,t);return e?c(i,"engine-rest","camunda-extended"):i}getCmdb(t=!0){return this.processProxy(this.cmdbAddress,t)}getIot(t=!0){return this.processProxy(this.iotAddress,t)}getManage(t=!0){return this.processProxy(this.manageAddress,t)}}class Service{config;constructor(t){this.config=t}getConfig(){return this.config}getParamPath(t,e){return t+"/"+e}getIdPath(t){return this.getParamPath(this.getBaseAddress(),t)}}class AbstractService extends Service{getConditionAddress(){return this.getBaseAddress()+"/condition"}getListAddress(){return this.getBaseAddress()+"/list"}getTreeAddress(){return this.getBaseAddress()+"/tree"}fetch(t={}){return this.getConfig().getHttp().get(this.getBaseAddress(),t)}fetchByPage(t,e={}){if(s(e))return this.getConfig().getHttp().get(this.getBaseAddress(),t);{const i=Object.assign(t,e);return this.getConfig().getHttp().get(this.getConditionAddress(),i)}}fetchAll(t={}){return this.getConfig().getHttp().get(this.getListAddress(),t)}fetchTree(t={}){return this.getConfig().getHttp().get(this.getTreeAddress(),t)}saveOrUpdate(t){return this.getConfig().getHttp().post(this.getBaseAddress(),t)}delete(t){return this.getConfig().getHttp().delete(this.getIdPath(t))}assign(t){return this.getConfig().getHttp().put(this.getBaseAddress(),t,{contentType:N.URL_ENCODED})}}l.locale("zh-cn");class AvatarUtilities21{static instance=new AvatarUtilities21;constructor(){}static getInstance(){return this.instance}generate(t){return`data:image/svg+xml;utf8,${d(t)}`}}const It=AvatarUtilities21.getInstance();class SM2Utilities21{static instance=new SM2Utilities21;cipherMode=1;constructor(){}static getInstance(){return this.instance}createKeyPair(){return m.generateKeyPairHex()}encrypt(t,e){return"04"+m.doEncrypt(t,e,this.cipherMode)}decrypt(t,e){let i=t.substring(2).toLocaleLowerCase();return m.doDecrypt(i,e,this.cipherMode,{output:"string"})}}class SM4Utilities21{static instance=new SM4Utilities21;constructor(){}static getInstance(){return this.instance}encrypt(t,e){return f.encrypt(t,e,{output:"string"})}decrypt(t,e){return f.decrypt(t,e,{output:"string"})}}const Ut=SM2Utilities21.getInstance(),Tt=SM4Utilities21.getInstance(),Bt=w.mixin({toast:!0,position:"top",showConfirmButton:!1,timer:2e3,timerProgressBar:!1,didOpen:t=>{t.addEventListener("mouseenter",w.stopTimer),t.addEventListener("mouseleave",w.resumeTimer)}}),Et=t=>t===U.SYSTEM?"auto":t;class Notify21{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=Et(t)}static initialize(t){if(Notify21._initialized)throw new Error("RouterUtilities has already been initialized");return Notify21._instance=new Notify21(t),Notify21._initialized=!0,Notify21._instance}static getInstance(){if(!Notify21._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Notify21._instance}setTheme(t){this.theme=Et(t)}information(t,e,i){return w.fire({title:t,text:e,position:"top",icon:i,theme:this.theme,timer:5e3,showConfirmButton:!1,showClass:{popup:"animate__animated animate__fadeIn"},hideClass:{popup:"animate__animated animate__fadeOut"}})}info(t,e=""){return this.information(t,e,"info")}error(t,e=""){return this.information(t,e,"error")}warning(t,e=""){return this.information(t,e,"warning")}success(t,e=""){return this.information(t,e,"success")}question(t,e=""){return this.information(t,e,"question")}getConfirmButtonColor(){return"light"===this.theme?"#6750A4":"#2563eb"}standardDeleteNotify(t,e){w.fire({title:"确定删除?",text:"您将无法恢复此操作！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的, 删除!",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}signOutNotify(t,e){w.fire({title:"要走了么?",text:"您确定要退出系统！",icon:"warning",theme:this.theme,showCancelButton:!0,confirmButtonColor:this.getConfirmButtonColor(),cancelButtonColor:"#d33",confirmButtonText:"是的",cancelButtonText:"取消"}).then(i=>{i.value?t():e&&e()})}tokenExpiresNotify(t,e,i,n){w.fire({title:t,text:e,icon:i,theme:this.theme,showClass:{popup:"animate__animated animate__fadeInDown"},hideClass:{popup:"animate__animated animate__fadeOutUp"},confirmButtonText:"已阅!",willClose:()=>{n()}})}}const vt=Notify21.initialize(U.LIGHT);class Toast21{static _instance=null;static _initialized=!1;theme;constructor(t){this.theme=Et(t)}static initialize(t){if(Toast21._initialized)throw new Error("RouterUtilities has already been initialized");return Toast21._instance=new Toast21(t),Toast21._initialized=!0,Toast21._instance}static getInstance(){if(!Toast21._instance)throw new Error("RouterUtilities not initialized. Call initialize() first.");return Toast21._instance}setTheme(t){this.theme=Et(t)}information(t,e){return Bt.fire({icon:e,title:t,theme:this.theme})}info(t){return this.information(t,"info")}error(t){return this.information(t,"error")}warning(t){return this.information(t,"warning")}success(t){return this.information(t,"success")}question(t){return this.information(t,"question")}}const At=Toast21.initialize(U.LIGHT),St=t=>{vt.setTheme(t),At.setTheme(t)};class PkceUtilities21{static instance=new PkceUtilities21;constructor(){}static getInstance(){return this.instance}toBytesInt32(t){const e=new ArrayBuffer(4);return new DataView(e).setUint32(0,t,!1),e}getRandomValues(t){const e=C.WordArray.random(t),i=[];return e.words.forEach(t=>{const e=this.toBytesInt32(t),n=new Uint8Array(e);for(let r=0;r<4;r++){let t=n[r];void 0!==t&&i.push(t)}}),i}random(t){const e="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~";let i="";const n=this.getRandomValues(t);for(let r=0;r<t;r++){let t=n[r];if(void 0!==t){i+=e[t%66]}}return i}generateVerifier(t){return this.random(t)}generateChallenge(t){return _(t).toString(I.Base64url)}generateCodePair(t=43){if(t<43||t>128)throw`Expected a length between 43 and 128. Received ${t}.`;const e=this.generateVerifier(t);return{codeVerifier:e,codeChallenge:this.generateChallenge(e)}}verifyChallenge(t,e){return this.generateChallenge(t)===e}}const xt=PkceUtilities21.getInstance();function Mt(n){const r={timeout:12e3,paramsSerializer:t=>e.stringify(t,{arrayFormat:"brackets"})},s=(t,e)=>{const i=(t=>{switch(t){case N.URL_ENCODED:return{"Content-Type":"application/x-www-form-urlencoded"};case N.MULTI_PART:return{"Content-Type":"multipart/form-data"};default:return{"Content-Type":"application/json"}}})(t);return e?u({},i,e):i},a=t.create(n?u(r,n):r),o=(t,e={},n={},r=R.GET,o=N.JSON,c)=>{const{execute:u}=i(t,{headers:s(o,c),method:r},a,{immediate:!1}),l={};return e&&(l.data=e),n&&(l.params=n),new Promise((t,e)=>{u(l).then(e=>{const i=e.response.value;t(i)}).catch(t=>{e(t)})})};return{doGet:(t,e={},i)=>o(t,"",e,R.GET,N.JSON,i),doPost:(t,e={},i=N.JSON,n={},r)=>o(t,e,n,R.POST,i,r),doPut:(t,e={},i=N.JSON,n={})=>o(t,e,n,R.PUT,i),doDelete:(t,e={},i=N.JSON,n={})=>o(t,e,n,R.DELETE,i),createHeaderWithBearer:(t,e,i)=>{const n={Authorization:z.BEARER+t};return e&&(n["X-Herodotus-Session-Id"]=e),i&&(n["X-Herodotus-Tenant-Id"]=i),n},createHeaderWithBasic:(t,e,i,n)=>{const r={Authorization:z.BASIC+g.encode(t+":"+e)};return i&&(r["X-Herodotus-Session-Id"]=i),n&&(r["X-Herodotus-Tenant-Id"]=n),r}}}export{AbstractService,A as AuthorizationGrantTypeEnum,v as AuthorizationTokenEnum,It as AvatarUtils,Axios,p as Base64,x as BuildInScopeEnum,S as ClientAuthenticationMethodEnum,T as ContentTypeEnum,HttpConfig,B as HttpMethodEnum,M as OperationEnum,xt as PKCE,Ut as SM2Utils,Tt as SM4Utils,Service,E as StatusEnum,y as Swal,U as ThemeModeEnum,St as changeSwalTheme,_t as isSuccess,Ct as logResponse,h as moment,vt as notify,yt as parseResponseStatus,At as toast,Mt as useHttp};
+import e from "axios";
+import t from "qs";
+import { useAxios as n } from "@vueuse/integrations/useAxios";
+import { Md5 as r } from "ts-md5";
+import { assignIn as i, isEmpty as a, isFunction as o, merge as s, replace as c, toUpper as l } from "lodash-es";
+import u, { default as d, default as f } from "moment";
+import "moment/dist/locale/zh-cn";
+import { generateFromString as p } from "generate-avatar";
+import { sm2 as m, sm4 as h } from "sm-crypto-v2";
+import { Base64 as g } from "js-base64";
+import _, { default as v, default as y } from "sweetalert2";
+import { SHA256 as b, enc as x, lib as S } from "crypto-js";
+//#region src/enums/index.ts
+var C = /* @__PURE__ */ function(e) {
+	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
+}({}), ee = /* @__PURE__ */ function(e) {
+	return e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e;
+}({}), te = /* @__PURE__ */ function(e) {
+	return e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e;
+}({}), ne = /* @__PURE__ */ function(e) {
+	return e[e.FORBIDDEN = 0] = "FORBIDDEN", e[e.ENABLE = 1] = "ENABLE", e[e.LOCKING = 2] = "LOCKING", e[e.EXPIRED = 3] = "EXPIRED", e;
+}({}), re = /* @__PURE__ */ function(e) {
+	return e.BASIC = "Basic ", e.BEARER = "Bearer ", e;
+}({}), ie = /* @__PURE__ */ function(e) {
+	return e.AUTHORIZATION_CODE = "authorization_code", e.REFRESH_TOKEN = "refresh_token", e.CLIENT_CREDENTIALS = "client_credentials", e.PASSWORD = "password", e.SOCIAL_CREDENTIALS = "social_credentials", e.WEBAUTHN_CREDENTIALS = "webauthn_credentials", e.DEVICE_CODE = "urn:ietf:params:oauth:grant-type:device_code", e.JWT_BEARER = "urn:ietf:params:oauth:grant-type:jwt-bearer", e.TOKEN_EXCHANGE = "urn:ietf:params:oauth:grant-type:token-exchange", e;
+}({}), ae = /* @__PURE__ */ function(e) {
+	return e.CLIENT_SECRET_BASIC = "client_secret_basic", e.CLIENT_SECRET_POST = "client_secret_post", e.CLIENT_SECRET_JWT = "client_secret_jwt", e.PRIVATE_KEY_JWT = "private_key_jwt", e.NONE = "none", e.TLS_CLIENT_AUTH = "tls_client_auth", e.SELF_SIGNED_TLS_CLIENT_AUTH = "self_signed_tls_client_auth", e;
+}({}), oe = /* @__PURE__ */ function(e) {
+	return e.OPENID = "openid", e.EMAIL = "email", e.PROFILE = "profile", e.PHONE = "phone", e.ADDRESS = "address", e.ROLES = "roles", e.CLIENT_CREATE = "client.create", e.CLIENT_READ = "client.read", e;
+}({}), se = /* @__PURE__ */ function(e) {
+	return e.CREATE = "create", e.EDIT = "edit", e.AUTHORIZE = "authorize", e.INFO = "info", e.ALLOCATABLE = "allocatable", e.SETUP = "setup", e.INVOKE = "invoke", e;
+}({}), w = /* @__PURE__ */ function(e) {
+	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
+}({}), T = /* @__PURE__ */ function(e) {
+	return e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e;
+}({}), E = /* @__PURE__ */ function(e) {
+	return e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e;
+}({}), D = /* @__PURE__ */ function(e) {
+	return e.BASIC = "Basic ", e.BEARER = "Bearer ", e;
+}({}), O = /* @__PURE__ */ function(e) {
+	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
+}({}), k = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(k || {}), ce = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(ce || {}), le = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(le || {}), ue = /* @__PURE__ */ ((e) => (e[e.FORBIDDEN = 0] = "FORBIDDEN", e[e.ENABLE = 1] = "ENABLE", e[e.LOCKING = 2] = "LOCKING", e[e.EXPIRED = 3] = "EXPIRED", e))(ue || {}), de = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(de || {}), fe = /* @__PURE__ */ ((e) => (e.AUTHORIZATION_CODE = "authorization_code", e.REFRESH_TOKEN = "refresh_token", e.CLIENT_CREDENTIALS = "client_credentials", e.PASSWORD = "password", e.SOCIAL_CREDENTIALS = "social_credentials", e.WEBAUTHN_CREDENTIALS = "webauthn_credentials", e.DEVICE_CODE = "urn:ietf:params:oauth:grant-type:device_code", e.JWT_BEARER = "urn:ietf:params:oauth:grant-type:jwt-bearer", e.TOKEN_EXCHANGE = "urn:ietf:params:oauth:grant-type:token-exchange", e))(fe || {}), pe = /* @__PURE__ */ ((e) => (e.CLIENT_SECRET_BASIC = "client_secret_basic", e.CLIENT_SECRET_POST = "client_secret_post", e.CLIENT_SECRET_JWT = "client_secret_jwt", e.PRIVATE_KEY_JWT = "private_key_jwt", e.NONE = "none", e.TLS_CLIENT_AUTH = "tls_client_auth", e.SELF_SIGNED_TLS_CLIENT_AUTH = "self_signed_tls_client_auth", e))(pe || {}), me = /* @__PURE__ */ ((e) => (e.OPENID = "openid", e.EMAIL = "email", e.PROFILE = "profile", e.PHONE = "phone", e.ADDRESS = "address", e.ROLES = "roles", e.CLIENT_CREATE = "client.create", e.CLIENT_READ = "client.read", e))(me || {}), he = /* @__PURE__ */ ((e) => (e.CREATE = "create", e.EDIT = "edit", e.AUTHORIZE = "authorize", e.INFO = "info", e.ALLOCATABLE = "allocatable", e.SETUP = "setup", e.INVOKE = "invoke", e))(he || {}), A = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(A || {}), ge = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(ge || {}), _e = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(_e || {}), ve = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(ve || {}), j = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(j || {}), M = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(M || {}), N = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(N || {}), P = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(P || {}), F = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(F || {}), I = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(I || {});
+f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var ye = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, be = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+ye.getInstance(), be.getInstance();
+var xe = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return xe.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Se = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Ce = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Se.getInstance(), Ce.getInstance();
+var we = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return we.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Te = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Ee = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Te.getInstance(), Ee.getInstance();
+var De = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return De.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Oe = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, ke = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Oe.getInstance(), ke.getInstance();
+var Ae = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return Ae.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var je = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Me = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+je.getInstance(), Me.getInstance();
+var Ne = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return Ne.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Pe = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Fe = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Pe.getInstance(), Fe.getInstance();
+var Ie = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return Ie.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Le = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Re = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Le.getInstance(), Re.getInstance();
+var ze = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return ze.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Be = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Ve = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Be.getInstance(), Ve.getInstance();
+var He = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return He.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Ue = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, We = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Ue.getInstance(), We.getInstance();
+var Ge = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return Ge.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Ke = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, qe = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Ke.getInstance(), qe.getInstance();
+var Je = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return Je.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Ye = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Xe = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Ye.getInstance(), Xe.getInstance();
+var Ze = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return Ze.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Qe = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, $e = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Qe.getInstance(), $e.getInstance();
+var et = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return et.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var tt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, nt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+tt.getInstance(), nt.getInstance();
+var rt = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+});
+(class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+}).getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	information(e, t) {
+		return rt.fire({
+			icon: t,
+			title: e
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.getInstance(), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var it = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, at = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+it.getInstance(), at.getInstance();
+var ot = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), L = (e) => e === I.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = L(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = L(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(I.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = L(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = L(e);
+	}
+	information(e, t) {
+		return ot.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(I.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var st = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, ct = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+st.getInstance(), ct.getInstance();
+var lt = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), R = (e) => e === F.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = R(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = R(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(F.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = R(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = R(e);
+	}
+	information(e, t) {
+		return lt.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(F.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var ut = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, dt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+ut.getInstance(), dt.getInstance();
+var ft = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), z = (e) => e === P.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = z(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = z(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(P.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = z(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = z(e);
+	}
+	information(e, t) {
+		return ft.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(P.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var pt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, mt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+pt.getInstance(), mt.getInstance();
+var ht = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), B = (e) => e === N.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = B(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = B(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(N.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = B(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = B(e);
+	}
+	information(e, t) {
+		return ht.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(N.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var gt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, _t = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+gt.getInstance(), _t.getInstance();
+var vt = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), V = (e) => e === M.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = V(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = V(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(M.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = V(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = V(e);
+	}
+	information(e, t) {
+		return vt.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(M.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var yt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, bt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+yt.getInstance(), bt.getInstance();
+var xt = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), H = (e) => e === j.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = H(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = H(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(j.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = H(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = H(e);
+	}
+	information(e, t) {
+		return xt.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(j.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var St = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Ct = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+St.getInstance(), Ct.getInstance();
+var wt = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), U = (e) => e === A.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = U(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = U(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(A.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = U(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = U(e);
+	}
+	information(e, t) {
+		return wt.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(A.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Tt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Et = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Tt.getInstance(), Et.getInstance();
+var Dt = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), W = (e) => e === k.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = W(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = W(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(k.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = W(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = W(e);
+	}
+	information(e, t) {
+		return Dt.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(k.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var Ot = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, kt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+Ot.getInstance(), kt.getInstance();
+var At = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), G = (e) => e === O.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = G(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = G(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(O.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = G(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = G(e);
+	}
+	information(e, t) {
+		return At.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(O.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			if (e !== void 0) {
+				let n = e % 66;
+				t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[n];
+			}
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), u.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var jt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Mt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+jt.getInstance(), Mt.getInstance();
+var Nt = v.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
+	}
+}), K = (e) => e === w.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = K(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = K(e);
+	}
+	information(e, t, n) {
+		return v.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		v.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		v.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		v.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(w.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = K(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = K(e);
+	}
+	information(e, t) {
+		return Nt.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(w.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			if (e !== void 0) {
+				let n = e % 66;
+				t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[n];
+			}
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance();
+//#endregion
+//#region src/lib/definitions/axios/canceler.ts
+var q = /* @__PURE__ */ new Map(), J = (e) => {
+	if (!a(e.params)) {
+		let t = r.hashStr(e.params);
+		return [
+			e.method,
+			e.url,
+			t
+		].join("&");
+	}
+	return [e.method, e.url].join("&");
+}, Pt = class {
+	addPending(t) {
+		this.removePending(t);
+		let n = J(t);
+		t.cancelToken = t.cancelToken || new e.CancelToken((e) => {
+			q.has(n) || q.set(n, e);
+		});
+	}
+	removeAllPending() {
+		q.forEach((e) => {
+			e && o(e) && e();
+		}), q.clear();
+	}
+	removePending(e) {
+		let t = J(e);
+		if (q.has(t)) {
+			let e = q.get(t);
+			e && e(t), q.delete(t);
+		}
+	}
+	reset() {
+		q = /* @__PURE__ */ new Map();
+	}
+}, Ft = class {
+	axiosInstance;
+	defaultAxiosRequestConfig;
+	defaultRequestOptions;
+	axiosInstanceHooks;
+	constructor(e, t, n) {
+		this.defaultAxiosRequestConfig = e, this.defaultRequestOptions = n, this.axiosInstanceHooks = t, this.axiosInstance = this.createAxiosInstance(e), this.setupInterceptors();
+	}
+	createAxiosInstance(t) {
+		return e.create(t);
+	}
+	getDefaultAxiosRequestConfig() {
+		return this.defaultAxiosRequestConfig;
+	}
+	getDefaultRequestOptions() {
+		return this.defaultRequestOptions;
+	}
+	getAxiosInstanceHooks() {
+		return this.axiosInstanceHooks;
+	}
+	getAxiosInstance() {
+		return this.axiosInstance;
+	}
+	createHttpHeaderPolicy(e) {
+		switch (e) {
+			case T.URL_ENCODED: return {
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				dataConvert: (e) => t.stringify(e, { arrayFormat: "brackets" })
+			};
+			case T.MULTI_PART: return {
+				headers: { "Content-Type": "multipart/form-data" },
+				dataConvert: (e) => e
+			};
+			default: return {
+				headers: { "Content-Type": "application/json" },
+				dataConvert: (e) => JSON.stringify(e)
+			};
+		}
+	}
+	setupInterceptors() {
+		let e = this.getAxiosInstanceHooks();
+		if (!e) return;
+		let { requestInterceptors: t, requestInterceptorsError: n, responseInterceptors: r, responseInterceptorsError: i } = e, a = new Pt();
+		this.getAxiosInstance().interceptors.request.use((e) => {
+			let { prohibitRepeatRequests: n } = this.getDefaultRequestOptions();
+			return n && a.addPending(e), t(e);
+		}, (e) => n(this.getAxiosInstance(), e)), this.getAxiosInstance().interceptors.response.use((e) => (e && a.removePending(e.config), r(e)), (e) => i(this.getAxiosInstance(), e));
+	}
+	mergeHttpRequestOptions(e) {
+		let t = this.getDefaultRequestOptions();
+		return a(e) ? t : s({}, t, e);
+	}
+	mergeAxiosRequestConfigs(e) {
+		let n = s({}, this.getDefaultAxiosRequestConfig(), { paramsSerializer: { serialize(e) {
+			return t.stringify(e, { arrayFormat: "brackets" });
+		} } });
+		return a(e) ? n : s({}, n, e);
+	}
+	setupRequestStrategy(e, t, n) {
+		let { onRequestHook: r } = this.getAxiosInstanceHooks(), i = this.mergeHttpRequestOptions(n), c = this.mergeAxiosRequestConfigs(t);
+		r && o(r) && (c = r(c, i));
+		let l = this.createHttpHeaderPolicy(i.contentType);
+		return c.headers ? c.headers = s(c.headers, l.headers) : c.headers = l.headers, c.url = e, a(c.data) || (c.data = l.dataConvert(c.data)), {
+			config: c,
+			options: i
+		};
+	}
+	request(e, t) {
+		return new Promise((n, r) => {
+			let { onResponseErrorHook: i, onResponseSuccessHook: a } = this.getAxiosInstanceHooks();
+			this.getAxiosInstance().request(e).then((e) => {
+				a && o(a) ? n(a(e, t)) : n(e);
+			}).catch((e) => {
+				i && o(i) ? r(i(e, t)) : r(e);
+			});
+		});
+	}
+	process(e, t, n = {}) {
+		let r = this.setupRequestStrategy(e, t, n);
+		return this.request(r.config, r.options);
+	}
+	get(e, t = {}, n = { contentType: T.JSON }) {
+		return this.process(e, {
+			params: t,
+			method: E.GET
+		}, n);
+	}
+	post(e, t, n = { contentType: T.JSON }, r) {
+		return this.process(e, {
+			...r,
+			data: t,
+			method: E.POST
+		}, n);
+	}
+	postWithParams(e, t, n = {}, r = { contentType: T.JSON }, i) {
+		return this.process(e, {
+			...i,
+			params: t,
+			data: n,
+			method: E.POST
+		}, r);
+	}
+	put(e, t, n = { contentType: T.JSON }, r) {
+		return this.process(e, {
+			...r,
+			data: t,
+			method: E.PUT
+		}, n);
+	}
+	putWithParams(e, t, n = {}, r = { contentType: T.JSON }, i) {
+		return this.process(e, {
+			...i,
+			params: t,
+			data: n,
+			method: E.PUT
+		}, r);
+	}
+	delete(e, t = {}, n = { contentType: T.JSON }) {
+		return this.process(e, {
+			data: t,
+			method: E.DELETE
+		}, n);
+	}
+	deleteWithParams(e, t, n = {}, r = { contentType: T.JSON }) {
+		return this.process(e, {
+			params: t,
+			data: n,
+			method: E.DELETE
+		}, r);
+	}
+}, It = (e, t) => {
+	let n = {};
+	n = "statusText" in e ? e.data : e;
+	let r = {
+		status: e.status,
+		code: 0,
+		detail: ""
+	};
+	return r.code = n && n.code ? n.code : 0, r.detail = n.error && n.error.detail ? n.error.detail : "", n.message ? r.message = n.message : n.error && n.error.message ? r.message = n.error.message : t && (r.message = t), r;
+}, Lt = (e) => {
+	let n = `rgba(${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)})`;
+	console.log("%c┍------------------------------------------------------------------------------------------┑", `color:${n};`), "config" in e ? (console.log("| 请求地址：", e.config.url), console.log("| 请求类型：", l(e.config.method)), console.log("| 请求参数：", t.parse(e.config.params)), console.log("| 响应数据：", e.data)) : "status" in e ? console.log("| 响应数据：", e.data) : console.log("| 响应数据：", e), console.log("%c┕------------------------------------------------------------------------------------------┙", `color:${n};`);
+}, Y = (e) => e && "statusText" in e ? /^(2|3)\d{2}$/.test(String(e.status)) : !1, Rt = class {
+	http = {};
+	project = "";
+	clientId = "";
+	clientSecret = "";
+	oidc = !1;
+	uaaAddress = "";
+	upmsAddress = "";
+	msgAddress = "";
+	ossAddress = "";
+	bpmnAddress = "";
+	cmdbAddress = "";
+	iotAddress = "";
+	manageAddress = "";
+	proxy = "";
+	constructor(e, t) {
+		this.http = e, this.project = t.project, this.clientId = t.clientId, this.clientSecret = t.clientSecret, this.oidc = t.oidc ? t.oidc : !1, this.proxy = t.proxy ? t.proxy : "/api", this.switch(t.project);
+	}
+	switch(e) {
+		switch (e) {
+			case "dante":
+				this.uaaAddress = "/dante-cloud-uaa", this.upmsAddress = "/dante-cloud-upms", this.msgAddress = "/dante-cloud-message", this.ossAddress = "/dante-cloud-oss-ability", this.bpmnAddress = "/dante-cloud-bpmn-ability/engine-rest", this.cmdbAddress = "/dante-cloud-cmdb-ability", this.iotAddress = "/dante-cloud-iot-ability", this.manageAddress = "/dante-cloud-manage-ability";
+				break;
+			case "herodotus":
+				this.uaaAddress = "/herodotus-cloud-uaa", this.upmsAddress = "/herodotus-cloud-upms", this.msgAddress = "/herodotus-cloud-message", this.ossAddress = "/herodotus-cloud-oss-ability", this.bpmnAddress = "/herodotus-cloud-bpmn-ability/engine-rest", this.cmdbAddress = "/herodotus-cloud-cmdb-ability", this.iotAddress = "/herodotus-cloud-iot-ability", this.manageAddress = "/herodotus-cloud-manage-ability";
+				break;
+			default: this.uaaAddress = "", this.upmsAddress = "", this.msgAddress = "", this.ossAddress = "", this.bpmnAddress = "/engine-rest", this.cmdbAddress = "", this.iotAddress = "", this.manageAddress = "";
+		}
+	}
+	getProject() {
+		return this.project;
+	}
+	getClientSecret() {
+		return this.clientSecret;
+	}
+	getClientId() {
+		return this.clientId;
+	}
+	isOidc() {
+		return this.oidc;
+	}
+	getProxy() {
+		return this.proxy;
+	}
+	getHttp() {
+		return this.http;
+	}
+	processProxy(e, t = !0) {
+		return t ? this.proxy + e : e;
+	}
+	getUaa(e = !0) {
+		return this.processProxy(this.uaaAddress, e);
+	}
+	getUpms(e = !0) {
+		return this.processProxy(this.upmsAddress, e);
+	}
+	getMsg(e = !0) {
+		return this.processProxy(this.msgAddress, e);
+	}
+	getOss(e = !0) {
+		return this.processProxy(this.ossAddress, e);
+	}
+	getBpmn(e = !0, t = !1) {
+		let n = this.processProxy(this.bpmnAddress, e);
+		return t ? c(n, "engine-rest", "camunda-extended") : n;
+	}
+	getCmdb(e = !0) {
+		return this.processProxy(this.cmdbAddress, e);
+	}
+	getIot(e = !0) {
+		return this.processProxy(this.iotAddress, e);
+	}
+	getManage(e = !0) {
+		return this.processProxy(this.manageAddress, e);
+	}
+}, X = class {
+	config;
+	constructor(e) {
+		this.config = e;
+	}
+	getConfig() {
+		return this.config;
+	}
+	getParamPath(e, t) {
+		return e + "/" + t;
+	}
+	getIdPath(e) {
+		return this.getParamPath(this.getBaseAddress(), e);
+	}
+}, zt = class extends X {
+	getConditionAddress() {
+		return this.getBaseAddress() + "/condition";
+	}
+	getListAddress() {
+		return this.getBaseAddress() + "/list";
+	}
+	getTreeAddress() {
+		return this.getBaseAddress() + "/tree";
+	}
+	fetch(e = {}) {
+		return this.getConfig().getHttp().get(this.getBaseAddress(), e);
+	}
+	fetchByPage(e, t = {}) {
+		if (a(t)) return this.getConfig().getHttp().get(this.getBaseAddress(), e);
+		{
+			let n = Object.assign(e, t);
+			return this.getConfig().getHttp().get(this.getConditionAddress(), n);
+		}
+	}
+	fetchAll(e = {}) {
+		return this.getConfig().getHttp().get(this.getListAddress(), e);
+	}
+	fetchTree(e = {}) {
+		return this.getConfig().getHttp().get(this.getTreeAddress(), e);
+	}
+	saveOrUpdate(e) {
+		return this.getConfig().getHttp().post(this.getBaseAddress(), e);
+	}
+	delete(e) {
+		return this.getConfig().getHttp().delete(this.getIdPath(e));
+	}
+	assign(e) {
+		return this.getConfig().getHttp().put(this.getBaseAddress(), e, { contentType: T.URL_ENCODED });
+	}
+};
+//#endregion
+//#region src/lib/utils/moment.ts
+d.locale("zh-cn");
+var Bt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance(), Vt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Ht = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+}, Ut = Vt.getInstance(), Wt = Ht.getInstance(), Gt = _.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", _.stopTimer), e.addEventListener("mouseleave", _.resumeTimer);
+	}
+}), Z = (e) => e === C.SYSTEM ? "auto" : e, Q = class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = Z(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = Z(e);
+	}
+	information(e, t, n) {
+		return _.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		_.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		_.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		_.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}.initialize(C.LIGHT), $ = class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = Z(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = Z(e);
+	}
+	information(e, t) {
+		return Gt.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(C.LIGHT), Kt = (e) => {
+	Q.setTheme(e), $.setTheme(e);
+}, qt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			if (e !== void 0) {
+				let n = e % 66;
+				t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[n];
+			}
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance();
+//#endregion
+//#region src/hooks/useHttp.ts
+function Jt(r) {
+	let a = {
+		timeout: 1e3 * 12,
+		paramsSerializer: (e) => t.stringify(e, { arrayFormat: "brackets" })
+	}, o = () => r ? i(a, r) : a, s = (e) => {
+		switch (e) {
+			case T.URL_ENCODED: return { "Content-Type": "application/x-www-form-urlencoded" };
+			case T.MULTI_PART: return { "Content-Type": "multipart/form-data" };
+			default: return { "Content-Type": "application/json" };
+		}
+	}, c = (e, t, n) => {
+		let r = { Authorization: D.BEARER + e };
+		return t && (r["X-Herodotus-Session-Id"] = t), n && (r["X-Herodotus-Tenant-Id"] = n), r;
+	}, l = (e, t, n, r) => {
+		let i = { Authorization: D.BASIC + g.encode(e + ":" + t) };
+		return n && (i["X-Herodotus-Session-Id"] = n), r && (i["X-Herodotus-Tenant-Id"] = r), i;
+	}, u = (e, t) => {
+		let n = s(e);
+		return t ? i({}, n, t) : n;
+	}, d = e.create(o()), f = (e, t = {}, r = {}, i = E.GET, a = T.JSON, o) => {
+		let { execute: s } = n(e, {
+			headers: u(a, o),
+			method: i
+		}, d, { immediate: !1 }), c = {};
+		return t && (c.data = t), r && (c.params = r), new Promise((e, t) => {
+			s(c).then((t) => {
+				let n = t.response.value;
+				e(n);
+			}).catch((e) => {
+				t(e);
+			});
+		});
+	};
+	return {
+		doGet: (e, t = {}, n) => f(e, "", t, E.GET, T.JSON, n),
+		doPost: (e, t = {}, n = T.JSON, r = {}, i) => f(e, t, r, E.POST, n, i),
+		doPut: (e, t = {}, n = T.JSON, r = {}) => f(e, t, r, E.PUT, n),
+		doDelete: (e, t = {}, n = T.JSON, r = {}) => f(e, t, r, E.DELETE, n),
+		createHeaderWithBearer: c,
+		createHeaderWithBasic: l
+	};
+}
+//#endregion
+export { zt as AbstractService, ie as AuthorizationGrantTypeEnum, re as AuthorizationTokenEnum, Bt as AvatarUtils, Ft as Axios, g as Base64, oe as BuildInScopeEnum, ae as ClientAuthenticationMethodEnum, ee as ContentTypeEnum, Rt as HttpConfig, te as HttpMethodEnum, se as OperationEnum, qt as PKCE, Ut as SM2Utils, Wt as SM4Utils, X as Service, ne as StatusEnum, _ as Swal, C as ThemeModeEnum, Kt as changeSwalTheme, Y as isSuccess, Lt as logResponse, d as moment, Q as notify, It as parseResponseStatus, $ as toast, Jt as useHttp };

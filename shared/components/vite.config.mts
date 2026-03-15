@@ -28,19 +28,10 @@ export default defineConfig({
         resolver: fileURLToPath(new URL('./src/resolver.ts', import.meta.url)),
       },
       name: '@herodotus-cloud/components',
-      fileName: (format, entry) =>
-        format === 'es' ? `${entry}.${format}.mjs` : `${entry}.${format}.js`,
+      fileName: (format, entry) => (format === 'es' ? `${entry}.${format}.mjs` : `${entry}.${format}.js`),
+      formats: ['es', 'cjs'],
     },
-    minify: 'terser',
-    terserOptions: {
-      // 生产环境下移除console
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-      keep_classnames: true,
-    },
-    rollupOptions: {
+    rolldownOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
       external: [
         'lodash-es',

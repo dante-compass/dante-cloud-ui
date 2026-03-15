@@ -18,23 +18,13 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: [
-        fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-        fileURLToPath(new URL('./src/static/styles/index.scss', import.meta.url)),
-      ],
+      entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
       name: '@herodotus-cloud/framework-kernel',
       fileName: (format) => (format === 'es' ? `index.${format}.mjs` : `index.${format}.js`),
+      formats: ['es', 'cjs'],
     },
-    // minify: 'terser',
-    // terserOptions: {
-    //   // 生产环境下移除console
-    //   compress: {
-    //     drop_console: true,
-    //     drop_debugger: true,
-    //   },
-    //   keep_classnames: true,
-    // },
-    rollupOptions: {
+    cssCodeSplit: false, // 设置为 false 可以将所有样式合并到一个 CSS 文件
+    rolldownOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
       external: [
         'crypto',
