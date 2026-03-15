@@ -15,7 +15,7 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --fix"
   },
-  "main": "dist/index.umd.js",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.es.mjs",
   "types": "dist/types/index.d.ts",
   "files": [
@@ -25,7 +25,7 @@
     ".": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/index.es.mjs",
-      "require": "./dist/index.umd.js"
+      "require": "./dist/index.cjs.js"
     },
     "./style.css": "./dist/assets/css/form-engine.css",
     "./package.json": "./package.json"

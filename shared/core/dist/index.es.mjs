@@ -39,7 +39,9 @@ var C = /* @__PURE__ */ function(e) {
 	return e.BASIC = "Basic ", e.BEARER = "Bearer ", e;
 }({}), O = /* @__PURE__ */ function(e) {
 	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
-}({}), k = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(k || {}), ce = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(ce || {}), le = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(le || {}), ue = /* @__PURE__ */ ((e) => (e[e.FORBIDDEN = 0] = "FORBIDDEN", e[e.ENABLE = 1] = "ENABLE", e[e.LOCKING = 2] = "LOCKING", e[e.EXPIRED = 3] = "EXPIRED", e))(ue || {}), de = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(de || {}), fe = /* @__PURE__ */ ((e) => (e.AUTHORIZATION_CODE = "authorization_code", e.REFRESH_TOKEN = "refresh_token", e.CLIENT_CREDENTIALS = "client_credentials", e.PASSWORD = "password", e.SOCIAL_CREDENTIALS = "social_credentials", e.WEBAUTHN_CREDENTIALS = "webauthn_credentials", e.DEVICE_CODE = "urn:ietf:params:oauth:grant-type:device_code", e.JWT_BEARER = "urn:ietf:params:oauth:grant-type:jwt-bearer", e.TOKEN_EXCHANGE = "urn:ietf:params:oauth:grant-type:token-exchange", e))(fe || {}), pe = /* @__PURE__ */ ((e) => (e.CLIENT_SECRET_BASIC = "client_secret_basic", e.CLIENT_SECRET_POST = "client_secret_post", e.CLIENT_SECRET_JWT = "client_secret_jwt", e.PRIVATE_KEY_JWT = "private_key_jwt", e.NONE = "none", e.TLS_CLIENT_AUTH = "tls_client_auth", e.SELF_SIGNED_TLS_CLIENT_AUTH = "self_signed_tls_client_auth", e))(pe || {}), me = /* @__PURE__ */ ((e) => (e.OPENID = "openid", e.EMAIL = "email", e.PROFILE = "profile", e.PHONE = "phone", e.ADDRESS = "address", e.ROLES = "roles", e.CLIENT_CREATE = "client.create", e.CLIENT_READ = "client.read", e))(me || {}), he = /* @__PURE__ */ ((e) => (e.CREATE = "create", e.EDIT = "edit", e.AUTHORIZE = "authorize", e.INFO = "info", e.ALLOCATABLE = "allocatable", e.SETUP = "setup", e.INVOKE = "invoke", e))(he || {}), A = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(A || {}), ge = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(ge || {}), _e = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(_e || {}), ve = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(ve || {}), j = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(j || {}), M = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(M || {}), N = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(N || {}), P = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(P || {}), F = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(F || {}), I = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(I || {});
+}({}), k = /* @__PURE__ */ function(e) {
+	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
+}({}), A = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(A || {}), ce = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(ce || {}), le = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(le || {}), ue = /* @__PURE__ */ ((e) => (e[e.FORBIDDEN = 0] = "FORBIDDEN", e[e.ENABLE = 1] = "ENABLE", e[e.LOCKING = 2] = "LOCKING", e[e.EXPIRED = 3] = "EXPIRED", e))(ue || {}), de = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(de || {}), fe = /* @__PURE__ */ ((e) => (e.AUTHORIZATION_CODE = "authorization_code", e.REFRESH_TOKEN = "refresh_token", e.CLIENT_CREDENTIALS = "client_credentials", e.PASSWORD = "password", e.SOCIAL_CREDENTIALS = "social_credentials", e.WEBAUTHN_CREDENTIALS = "webauthn_credentials", e.DEVICE_CODE = "urn:ietf:params:oauth:grant-type:device_code", e.JWT_BEARER = "urn:ietf:params:oauth:grant-type:jwt-bearer", e.TOKEN_EXCHANGE = "urn:ietf:params:oauth:grant-type:token-exchange", e))(fe || {}), pe = /* @__PURE__ */ ((e) => (e.CLIENT_SECRET_BASIC = "client_secret_basic", e.CLIENT_SECRET_POST = "client_secret_post", e.CLIENT_SECRET_JWT = "client_secret_jwt", e.PRIVATE_KEY_JWT = "private_key_jwt", e.NONE = "none", e.TLS_CLIENT_AUTH = "tls_client_auth", e.SELF_SIGNED_TLS_CLIENT_AUTH = "self_signed_tls_client_auth", e))(pe || {}), me = /* @__PURE__ */ ((e) => (e.OPENID = "openid", e.EMAIL = "email", e.PROFILE = "profile", e.PHONE = "phone", e.ADDRESS = "address", e.ROLES = "roles", e.CLIENT_CREATE = "client.create", e.CLIENT_READ = "client.read", e))(me || {}), he = /* @__PURE__ */ ((e) => (e.CREATE = "create", e.EDIT = "edit", e.AUTHORIZE = "authorize", e.INFO = "info", e.ALLOCATABLE = "allocatable", e.SETUP = "setup", e.INVOKE = "invoke", e))(he || {}), j = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(j || {}), ge = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(ge || {}), _e = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(_e || {}), ve = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(ve || {}), M = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(M || {}), N = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(N || {}), P = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(P || {}), F = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(F || {}), I = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(I || {}), L = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(L || {});
 f.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
@@ -2118,13 +2120,13 @@ var ot = y.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
 	}
-}), L = (e) => e === I.SYSTEM ? "auto" : e;
+}), R = (e) => e === L.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = L(e);
+		this.theme = R(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2135,7 +2137,7 @@ var ot = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = L(e);
+		this.theme = R(e);
 	}
 	information(e, t, n) {
 		return y.fire({
@@ -2212,12 +2214,12 @@ var ot = y.mixin({
 			}
 		});
 	}
-}).initialize(I.LIGHT), class e {
+}).initialize(L.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = L(e);
+		this.theme = R(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2228,7 +2230,7 @@ var ot = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = L(e);
+		this.theme = R(e);
 	}
 	information(e, t) {
 		return ot.fire({
@@ -2252,7 +2254,7 @@ var ot = y.mixin({
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(I.LIGHT), class e {
+}.initialize(L.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -2347,13 +2349,13 @@ var lt = y.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
 	}
-}), R = (e) => e === F.SYSTEM ? "auto" : e;
+}), z = (e) => e === I.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = R(e);
+		this.theme = z(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2364,7 +2366,7 @@ var lt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = R(e);
+		this.theme = z(e);
 	}
 	information(e, t, n) {
 		return y.fire({
@@ -2441,12 +2443,12 @@ var lt = y.mixin({
 			}
 		});
 	}
-}).initialize(F.LIGHT), class e {
+}).initialize(I.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = R(e);
+		this.theme = z(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2457,7 +2459,7 @@ var lt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = R(e);
+		this.theme = z(e);
 	}
 	information(e, t) {
 		return lt.fire({
@@ -2481,7 +2483,7 @@ var lt = y.mixin({
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(F.LIGHT), class e {
+}.initialize(I.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -2576,13 +2578,13 @@ var ft = y.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
 	}
-}), z = (e) => e === P.SYSTEM ? "auto" : e;
+}), B = (e) => e === F.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = z(e);
+		this.theme = B(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2593,7 +2595,7 @@ var ft = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = z(e);
+		this.theme = B(e);
 	}
 	information(e, t, n) {
 		return y.fire({
@@ -2670,12 +2672,12 @@ var ft = y.mixin({
 			}
 		});
 	}
-}).initialize(P.LIGHT), class e {
+}).initialize(F.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = z(e);
+		this.theme = B(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2686,7 +2688,7 @@ var ft = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = z(e);
+		this.theme = B(e);
 	}
 	information(e, t) {
 		return ft.fire({
@@ -2710,7 +2712,7 @@ var ft = y.mixin({
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(P.LIGHT), class e {
+}.initialize(F.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -2805,13 +2807,13 @@ var ht = y.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
 	}
-}), B = (e) => e === N.SYSTEM ? "auto" : e;
+}), V = (e) => e === P.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = B(e);
+		this.theme = V(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2822,7 +2824,7 @@ var ht = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = B(e);
+		this.theme = V(e);
 	}
 	information(e, t, n) {
 		return y.fire({
@@ -2899,12 +2901,12 @@ var ht = y.mixin({
 			}
 		});
 	}
-}).initialize(N.LIGHT), class e {
+}).initialize(P.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = B(e);
+		this.theme = V(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2915,7 +2917,7 @@ var ht = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = B(e);
+		this.theme = V(e);
 	}
 	information(e, t) {
 		return ht.fire({
@@ -2939,7 +2941,7 @@ var ht = y.mixin({
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(N.LIGHT), class e {
+}.initialize(P.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -3034,13 +3036,13 @@ var vt = y.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
 	}
-}), V = (e) => e === M.SYSTEM ? "auto" : e;
+}), H = (e) => e === N.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = V(e);
+		this.theme = H(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3051,7 +3053,7 @@ var vt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = V(e);
+		this.theme = H(e);
 	}
 	information(e, t, n) {
 		return y.fire({
@@ -3128,12 +3130,12 @@ var vt = y.mixin({
 			}
 		});
 	}
-}).initialize(M.LIGHT), class e {
+}).initialize(N.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = V(e);
+		this.theme = H(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3144,7 +3146,7 @@ var vt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = V(e);
+		this.theme = H(e);
 	}
 	information(e, t) {
 		return vt.fire({
@@ -3168,7 +3170,7 @@ var vt = y.mixin({
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(M.LIGHT), class e {
+}.initialize(N.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -3263,13 +3265,13 @@ var xt = y.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
 	}
-}), H = (e) => e === j.SYSTEM ? "auto" : e;
+}), U = (e) => e === M.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = H(e);
+		this.theme = U(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3280,7 +3282,7 @@ var xt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = H(e);
+		this.theme = U(e);
 	}
 	information(e, t, n) {
 		return y.fire({
@@ -3357,12 +3359,12 @@ var xt = y.mixin({
 			}
 		});
 	}
-}).initialize(j.LIGHT), class e {
+}).initialize(M.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = H(e);
+		this.theme = U(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3373,7 +3375,7 @@ var xt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = H(e);
+		this.theme = U(e);
 	}
 	information(e, t) {
 		return xt.fire({
@@ -3397,7 +3399,7 @@ var xt = y.mixin({
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(j.LIGHT), class e {
+}.initialize(M.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -3492,13 +3494,13 @@ var wt = y.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
 	}
-}), U = (e) => e === A.SYSTEM ? "auto" : e;
+}), W = (e) => e === j.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = U(e);
+		this.theme = W(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3509,7 +3511,7 @@ var wt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = U(e);
+		this.theme = W(e);
 	}
 	information(e, t, n) {
 		return y.fire({
@@ -3586,12 +3588,12 @@ var wt = y.mixin({
 			}
 		});
 	}
-}).initialize(A.LIGHT), class e {
+}).initialize(j.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = U(e);
+		this.theme = W(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3602,7 +3604,7 @@ var wt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = U(e);
+		this.theme = W(e);
 	}
 	information(e, t) {
 		return wt.fire({
@@ -3626,7 +3628,7 @@ var wt = y.mixin({
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(A.LIGHT), class e {
+}.initialize(j.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -3721,13 +3723,13 @@ var Dt = y.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
 	}
-}), W = (e) => e === k.SYSTEM ? "auto" : e;
+}), G = (e) => e === A.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = W(e);
+		this.theme = G(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3738,7 +3740,7 @@ var Dt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = W(e);
+		this.theme = G(e);
 	}
 	information(e, t, n) {
 		return y.fire({
@@ -3815,12 +3817,12 @@ var Dt = y.mixin({
 			}
 		});
 	}
-}).initialize(k.LIGHT), class e {
+}).initialize(A.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = W(e);
+		this.theme = G(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3831,7 +3833,7 @@ var Dt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = W(e);
+		this.theme = G(e);
 	}
 	information(e, t) {
 		return Dt.fire({
@@ -3855,7 +3857,7 @@ var Dt = y.mixin({
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(k.LIGHT), class e {
+}.initialize(A.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -3950,13 +3952,13 @@ var At = y.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
 	}
-}), G = (e) => e === O.SYSTEM ? "auto" : e;
+}), K = (e) => e === k.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = G(e);
+		this.theme = K(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3967,7 +3969,239 @@ var At = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = G(e);
+		this.theme = K(e);
+	}
+	information(e, t, n) {
+		return y.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		y.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		y.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		y.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(k.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = K(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = K(e);
+	}
+	information(e, t) {
+		return At.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(k.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = S.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			if (e !== void 0) {
+				let n = e % 66;
+				t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[n];
+			}
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return b(e).toString(x.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), f.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${p(e)}`;
+	}
+}.getInstance();
+var jt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return m.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + m.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Mt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return h.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return h.decrypt(e, t, { output: "string" });
+	}
+};
+jt.getInstance(), Mt.getInstance();
+var Nt = y.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+	}
+}), q = (e) => e === O.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = q(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = q(e);
 	}
 	information(e, t, n) {
 		return y.fire({
@@ -4049,7 +4283,7 @@ var At = y.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = G(e);
+		this.theme = q(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -4060,10 +4294,10 @@ var At = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = G(e);
+		this.theme = q(e);
 	}
 	information(e, t) {
-		return At.fire({
+		return Nt.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -4142,7 +4376,7 @@ var At = y.mixin({
 		return `data:image/svg+xml;utf8,${p(e)}`;
 	}
 }.getInstance();
-var jt = class e {
+var Pt = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -4159,7 +4393,7 @@ var jt = class e {
 		let n = e.substring(2).toLocaleLowerCase();
 		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Mt = class e {
+}, Ft = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -4172,8 +4406,8 @@ var jt = class e {
 		return h.decrypt(e, t, { output: "string" });
 	}
 };
-jt.getInstance(), Mt.getInstance();
-var Nt = v.mixin({
+Pt.getInstance(), Ft.getInstance();
+var It = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
@@ -4182,13 +4416,13 @@ var Nt = v.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), K = (e) => e === w.SYSTEM ? "auto" : e;
+}), J = (e) => e === w.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = K(e);
+		this.theme = J(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -4199,7 +4433,7 @@ var Nt = v.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = K(e);
+		this.theme = J(e);
 	}
 	information(e, t, n) {
 		return v.fire({
@@ -4281,7 +4515,7 @@ var Nt = v.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = K(e);
+		this.theme = J(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -4292,10 +4526,10 @@ var Nt = v.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = K(e);
+		this.theme = J(e);
 	}
 	information(e, t) {
-		return Nt.fire({
+		return It.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -4367,7 +4601,7 @@ var Nt = v.mixin({
 }.getInstance();
 //#endregion
 //#region src/lib/definitions/axios/canceler.ts
-var q = /* @__PURE__ */ new Map(), J = (e) => {
+var Y = /* @__PURE__ */ new Map(), X = (e) => {
 	if (!a(e.params)) {
 		let t = r.hashStr(e.params);
 		return [
@@ -4377,30 +4611,30 @@ var q = /* @__PURE__ */ new Map(), J = (e) => {
 		].join("&");
 	}
 	return [e.method, e.url].join("&");
-}, Pt = class {
+}, Lt = class {
 	addPending(t) {
 		this.removePending(t);
-		let n = J(t);
+		let n = X(t);
 		t.cancelToken = t.cancelToken || new e.CancelToken((e) => {
-			q.has(n) || q.set(n, e);
+			Y.has(n) || Y.set(n, e);
 		});
 	}
 	removeAllPending() {
-		q.forEach((e) => {
+		Y.forEach((e) => {
 			e && o(e) && e();
-		}), q.clear();
+		}), Y.clear();
 	}
 	removePending(e) {
-		let t = J(e);
-		if (q.has(t)) {
-			let e = q.get(t);
-			e && e(t), q.delete(t);
+		let t = X(e);
+		if (Y.has(t)) {
+			let e = Y.get(t);
+			e && e(t), Y.delete(t);
 		}
 	}
 	reset() {
-		q = /* @__PURE__ */ new Map();
+		Y = /* @__PURE__ */ new Map();
 	}
-}, Ft = class {
+}, Rt = class {
 	axiosInstance;
 	defaultAxiosRequestConfig;
 	defaultRequestOptions;
@@ -4442,7 +4676,7 @@ var q = /* @__PURE__ */ new Map(), J = (e) => {
 	setupInterceptors() {
 		let e = this.getAxiosInstanceHooks();
 		if (!e) return;
-		let { requestInterceptors: t, requestInterceptorsError: n, responseInterceptors: r, responseInterceptorsError: i } = e, a = new Pt();
+		let { requestInterceptors: t, requestInterceptorsError: n, responseInterceptors: r, responseInterceptorsError: i } = e, a = new Lt();
 		this.getAxiosInstance().interceptors.request.use((e) => {
 			let { prohibitRepeatRequests: n } = this.getDefaultRequestOptions();
 			return n && a.addPending(e), t(e);
@@ -4530,7 +4764,7 @@ var q = /* @__PURE__ */ new Map(), J = (e) => {
 			method: E.DELETE
 		}, r);
 	}
-}, It = (e, t) => {
+}, zt = (e, t) => {
 	let n = {};
 	n = "statusText" in e ? e.data : e;
 	let r = {
@@ -4539,10 +4773,10 @@ var q = /* @__PURE__ */ new Map(), J = (e) => {
 		detail: ""
 	};
 	return r.code = n && n.code ? n.code : 0, r.detail = n.error && n.error.detail ? n.error.detail : "", n.message ? r.message = n.message : n.error && n.error.message ? r.message = n.error.message : t && (r.message = t), r;
-}, Lt = (e) => {
+}, Bt = (e) => {
 	let n = `rgba(${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)})`;
 	console.log("%c┍------------------------------------------------------------------------------------------┑", `color:${n};`), "config" in e ? (console.log("| 请求地址：", e.config.url), console.log("| 请求类型：", l(e.config.method)), console.log("| 请求参数：", t.parse(e.config.params)), console.log("| 响应数据：", e.data)) : "status" in e ? console.log("| 响应数据：", e.data) : console.log("| 响应数据：", e), console.log("%c┕------------------------------------------------------------------------------------------┙", `color:${n};`);
-}, Y = (e) => e && "statusText" in e ? /^(2|3)\d{2}$/.test(String(e.status)) : !1, Rt = class {
+}, Vt = (e) => e && "statusText" in e ? /^(2|3)\d{2}$/.test(String(e.status)) : !1, Ht = class {
 	http = {};
 	project = "";
 	clientId = "";
@@ -4617,7 +4851,7 @@ var q = /* @__PURE__ */ new Map(), J = (e) => {
 	getManage(e = !0) {
 		return this.processProxy(this.manageAddress, e);
 	}
-}, X = class {
+}, Z = class {
 	config;
 	constructor(e) {
 		this.config = e;
@@ -4631,7 +4865,7 @@ var q = /* @__PURE__ */ new Map(), J = (e) => {
 	getIdPath(e) {
 		return this.getParamPath(this.getBaseAddress(), e);
 	}
-}, zt = class extends X {
+}, Ut = class extends Z {
 	getConditionAddress() {
 		return this.getBaseAddress() + "/condition";
 	}
@@ -4670,7 +4904,7 @@ var q = /* @__PURE__ */ new Map(), J = (e) => {
 //#endregion
 //#region src/lib/utils/moment.ts
 d.locale("zh-cn");
-var Bt = class e {
+var Wt = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -4679,7 +4913,7 @@ var Bt = class e {
 	generate(e) {
 		return `data:image/svg+xml;utf8,${p(e)}`;
 	}
-}.getInstance(), Vt = class e {
+}.getInstance(), Gt = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -4696,7 +4930,7 @@ var Bt = class e {
 		let n = e.substring(2).toLocaleLowerCase();
 		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Ht = class e {
+}, Kt = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -4708,7 +4942,7 @@ var Bt = class e {
 	decrypt(e, t) {
 		return h.decrypt(e, t, { output: "string" });
 	}
-}, Ut = Vt.getInstance(), Wt = Ht.getInstance(), Gt = _.mixin({
+}, qt = Gt.getInstance(), Jt = Kt.getInstance(), Yt = _.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
@@ -4717,12 +4951,12 @@ var Bt = class e {
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", _.stopTimer), e.addEventListener("mouseleave", _.resumeTimer);
 	}
-}), Z = (e) => e === C.SYSTEM ? "auto" : e, Q = class e {
+}), Q = (e) => e === C.SYSTEM ? "auto" : e, Xt = class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = Z(e);
+		this.theme = Q(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -4733,7 +4967,7 @@ var Bt = class e {
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = Z(e);
+		this.theme = Q(e);
 	}
 	information(e, t, n) {
 		return _.fire({
@@ -4815,7 +5049,7 @@ var Bt = class e {
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = Z(e);
+		this.theme = Q(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -4826,10 +5060,10 @@ var Bt = class e {
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = Z(e);
+		this.theme = Q(e);
 	}
 	information(e, t) {
-		return Gt.fire({
+		return Yt.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -4850,9 +5084,9 @@ var Bt = class e {
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(C.LIGHT), Kt = (e) => {
-	Q.setTheme(e), $.setTheme(e);
-}, qt = class e {
+}.initialize(C.LIGHT), Zt = (e) => {
+	Xt.setTheme(e), $.setTheme(e);
+}, Qt = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -4903,7 +5137,7 @@ var Bt = class e {
 }.getInstance();
 //#endregion
 //#region src/hooks/useHttp.ts
-function Jt(r) {
+function $t(r) {
 	let a = {
 		timeout: 1e3 * 12,
 		paramsSerializer: (e) => t.stringify(e, { arrayFormat: "brackets" })
@@ -4946,4 +5180,4 @@ function Jt(r) {
 	};
 }
 //#endregion
-export { zt as AbstractService, ie as AuthorizationGrantTypeEnum, re as AuthorizationTokenEnum, Bt as AvatarUtils, Ft as Axios, g as Base64, oe as BuildInScopeEnum, ae as ClientAuthenticationMethodEnum, ee as ContentTypeEnum, Rt as HttpConfig, te as HttpMethodEnum, se as OperationEnum, qt as PKCE, Ut as SM2Utils, Wt as SM4Utils, X as Service, ne as StatusEnum, _ as Swal, C as ThemeModeEnum, Kt as changeSwalTheme, Y as isSuccess, Lt as logResponse, d as moment, Q as notify, It as parseResponseStatus, $ as toast, Jt as useHttp };
+export { Ut as AbstractService, ie as AuthorizationGrantTypeEnum, re as AuthorizationTokenEnum, Wt as AvatarUtils, Rt as Axios, g as Base64, oe as BuildInScopeEnum, ae as ClientAuthenticationMethodEnum, ee as ContentTypeEnum, Ht as HttpConfig, te as HttpMethodEnum, se as OperationEnum, Qt as PKCE, qt as SM2Utils, Jt as SM4Utils, Z as Service, ne as StatusEnum, _ as Swal, C as ThemeModeEnum, Zt as changeSwalTheme, Vt as isSuccess, Bt as logResponse, d as moment, Xt as notify, zt as parseResponseStatus, $ as toast, $t as useHttp };
