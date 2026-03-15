@@ -76,6 +76,7 @@
     "unocss": "66.6.6",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-icons": "^23.0.1",
+    "unplugin-oxc": "^0.6.0",
     "unplugin-vue-components": "^31.0.0",
     "vconsole": "^3.15.1",
     "vite": "^8.0.0",
