@@ -5,9 +5,8 @@
 <script setup lang="ts">
 import { watch, nextTick, provide, onMounted, onUnmounted, shallowRef } from 'vue';
 import { useQuasar } from 'quasar';
-import { echarts } from '@/plugins';
 import { VARIABLES } from '@/configurations';
-import { refreshTabInjectionKey, echartsInjectionKey } from '@/composables/symbols';
+import { refreshTabInjectionKey } from '@/composables/symbols';
 import { useWebSocketMessage } from '@/composables/hooks';
 import { useAuthenticationStore, useSettingsStore } from '@herodotus-cloud/framework-kernel';
 
@@ -31,7 +30,6 @@ const refreshTab = () => {
   });
 };
 provide(refreshTabInjectionKey, refreshTab);
-provide(echartsInjectionKey, echarts);
 
 watch(
   () => settings.isDark,
@@ -40,11 +38,11 @@ watch(
   },
 );
 
-const beforeUnloadHandler = (e: any) => {
+const beforeUnloadHandler = (e: BeforeUnloadEvent) => {
   beforeUnloadTime.value = new Date().getTime();
 };
 
-const unloadHandler = (e: any) => {
+const pageTransitionHandler = (e: PageTransitionEvent) => {
   gapTime.value = new Date().getTime() - beforeUnloadTime.value;
   // 刷新时onbeforeunload与onunload的时间差一般都远大于5
   // 浏览器关闭
@@ -67,7 +65,7 @@ onMounted(() => {
   if (!VARIABLES.getAutoRefreshToken()) {
     // 监听浏览器关闭
     window.addEventListener('beforeunload', (e) => beforeUnloadHandler(e));
-    window.addEventListener('unload', (e) => unloadHandler(e));
+    window.addEventListener('pagehide', (e) => pageTransitionHandler(e));
   }
 });
 
@@ -77,16 +75,12 @@ onUnmounted(() => {
   }
   if (!VARIABLES.getAutoRefreshToken()) {
     window.removeEventListener('beforeunload', (e) => beforeUnloadHandler(e));
-    window.removeEventListener('unload', (e) => unloadHandler(e));
+    window.addEventListener('pagehide', (e) => pageTransitionHandler(e));
   }
 });
 </script>
 
 <style lang="scss">
-h2 {
-  line-height: unset !important;
-}
-
 .swal2-container {
   z-index: 10000 !important;
 }
