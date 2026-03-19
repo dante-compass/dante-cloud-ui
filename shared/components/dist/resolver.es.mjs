@@ -1,1 +1,48 @@
-const t=["HButton","HCardTitle","HCenterLabel","HChartCard","HColumn","HContainer","HDateTime","HDivider","HDialog","HDuration","HIconButton","HIconSelect","HFieldLabel","HTreeField","HLabel","HListItem","HLoading","HPagination","HParticles","HRow","HSelect","HSignInBackground","HSwitch","HTextField","HVisibilityButton"];function e(){return{type:"component",resolve:e=>{if(e.startsWith("H")&&function(e){return t.includes(e)}(e)){const t=["@herodotus-cloud/components/style.css"];return{name:e,from:"@herodotus-cloud/components",sideEffects:t.length>0?t:void 0}}}}}export{e as HerodotusResolver,e as default};
+//#region src/resolver.ts
+var e = [
+	"HButton",
+	"HCardTitle",
+	"HCenterLabel",
+	"HChartCard",
+	"HColumn",
+	"HContainer",
+	"HDateTime",
+	"HDivider",
+	"HDialog",
+	"HDuration",
+	"HIconButton",
+	"HIconSelect",
+	"HFieldLabel",
+	"HTreeField",
+	"HLabel",
+	"HListItem",
+	"HLoading",
+	"HPagination",
+	"HParticles",
+	"HRow",
+	"HSelect",
+	"HSignInBackground",
+	"HSwitch",
+	"HTextField",
+	"HVisibilityButton"
+];
+function t(t) {
+	return e.includes(t);
+}
+function n() {
+	return {
+		type: "component",
+		resolve: (e) => {
+			if (e.startsWith("H") && t(e)) {
+				let t = e, n = ["@herodotus-cloud/components/style.css"];
+				return {
+					name: t,
+					from: "@herodotus-cloud/components",
+					sideEffects: n.length > 0 ? n : void 0
+				};
+			}
+		}
+	};
+}
+//#endregion
+export { n as HerodotusResolver, n as default };

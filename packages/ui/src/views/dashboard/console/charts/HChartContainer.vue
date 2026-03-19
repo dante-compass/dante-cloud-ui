@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import * as echarts from 'echarts';
-import 'echarts/theme/macarons';
 
 import type { PropType, Ref } from 'vue';
 import { defineComponent, ref, onMounted, watch } from 'vue';

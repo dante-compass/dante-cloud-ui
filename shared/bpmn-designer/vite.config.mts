@@ -31,17 +31,9 @@ export default defineConfig({
       entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
       name: '@herodotus-cloud/bpmn-designer',
       fileName: (format) => (format === 'es' ? `index.${format}.mjs` : `index.${format}.js`),
+      formats: ['es', 'cjs'],
     },
-    minify: 'terser',
-    terserOptions: {
-      // 生产环境下移除console
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-      keep_classnames: true,
-    },
-    rollupOptions: {
+    rolldownOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
       external: [
         'lodash-es',
@@ -98,7 +90,7 @@ export default defineConfig({
         assetFileNames: `assets/[ext]/[name][extname]`,
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
-                    'lodash-es': 'LodashEs',
+          'lodash-es': 'LodashEs',
           '@bpmn-io/element-template-chooser': 'BpmnIoElementTemplateChooser',
           '@herodotus-cloud/bpmn-apis': 'HerodotusBpmnApis',
           '@herodotus-cloud/components': 'HerodotusComponents',
@@ -107,8 +99,7 @@ export default defineConfig({
           bpmnlint: 'Bpmnlint',
           'bpmnlint/rules/conditional-flows': 'BpmnlintRulesConditionalFlows',
           'bpmnlint/rules/end-event-required': 'BpmnlintRulesEndEventRequired',
-          'bpmnlint/rules/event-sub-process-typed-start-event':
-            'BpmnlintRulesEventSubProcessTypedStartEvent',
+          'bpmnlint/rules/event-sub-process-typed-start-event': 'BpmnlintRulesEventSubProcessTypedStartEvent',
           'bpmnlint/rules/fake-join': 'BpmnlintRulesFakeJoin',
           'bpmnlint/rules/label-required': 'BpmnlintRulesLabelRequired',
           'bpmnlint/rules/no-bpmndi': 'BpmnlintRulesNoBpmndi',
