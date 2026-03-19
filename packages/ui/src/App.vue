@@ -81,6 +81,10 @@ onUnmounted(() => {
 </script>
 
 <style lang="scss">
+h2 {
+  line-height: unset !important;
+}
+
 .swal2-container {
   z-index: 10000 !important;
 }

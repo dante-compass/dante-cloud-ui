@@ -1,7 +1,7 @@
 {
   "name": "dante-cloud-ui",
   "private": false,
-  "version": "4.0.3.0",
+  "version": "4.0.4.0",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -40,15 +40,15 @@
     "lodash-es": "^4.17.23",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "4.7.1",
-    "quasar": "^2.18.6",
+    "quasar": "^2.18.7",
     "vue": "^3.5.30",
     "vue-i18n": "^11.3.0"
   },
   "devDependencies": {
     "@changesets/cli": "^2.30.0",
     "@eslint/js": "^10.0.1",
-    "@quasar/app-vite": "^2.4.1",
-    "@quasar/vite-plugin": "^1.10.0",
+    "@quasar/app-vite": "^2.5.1",
+    "@quasar/vite-plugin": "^1.11.0",
     "@rolldown/plugin-node-polyfills": "^1.0.3",
     "@tsconfig/node22": "^22.0.5",
     "@types/lodash-es": "^4.17.12",
@@ -74,17 +74,17 @@
     "rollup-plugin-visualizer": "^7.0.1",
     "sass-embedded": "^1.98.0",
     "typescript": "^5.9.3",
-    "unocss": "66.6.6",
+    "unocss": "66.6.7",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-icons": "^23.0.1",
     "unplugin-vue-components": "^31.0.0",
     "vconsole": "^3.15.1",
-    "vite": "^8.0.0",
-    "vite-plugin-compression2": "^2.5.1",
+    "vite": "^8.0.1",
+    "vite-plugin-compression2": "^2.5.2",
     "vite-plugin-dts": "4.5.4",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-vconsole": "^2.1.1",
     "vite-plugin-vue-devtools": "^8.1.0",
-    "vue-tsc": "^3.2.5"
+    "vue-tsc": "^3.2.6"
   }
 }

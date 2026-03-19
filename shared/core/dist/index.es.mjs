@@ -3,56 +3,60 @@ import t from "qs";
 import { useAxios as n } from "@vueuse/integrations/useAxios";
 import { Md5 as r } from "ts-md5";
 import { assignIn as i, isEmpty as a, isFunction as o, merge as s, replace as c, toUpper as l } from "lodash-es";
-import u, { default as d, default as f } from "moment";
+import ee, { default as u, default as d } from "moment";
 import "moment/dist/locale/zh-cn";
-import { generateFromString as p } from "generate-avatar";
-import { sm2 as m, sm4 as h } from "sm-crypto-v2";
-import { Base64 as g } from "js-base64";
-import _, { default as v, default as y } from "sweetalert2";
-import { SHA256 as b, enc as x, lib as S } from "crypto-js";
+import { generateFromString as f } from "generate-avatar";
+import { sm2 as p, sm4 as m } from "sm-crypto-v2";
+import { Base64 as h } from "js-base64";
+import g, { default as _, default as v } from "sweetalert2";
+import { SHA256 as y, enc as b, lib as x } from "crypto-js";
 //#region src/enums/index.ts
-var C = /* @__PURE__ */ function(e) {
+var S = /* @__PURE__ */ function(e) {
 	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
-}({}), ee = /* @__PURE__ */ function(e) {
-	return e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e;
 }({}), te = /* @__PURE__ */ function(e) {
-	return e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e;
-}({}), ne = /* @__PURE__ */ function(e) {
-	return e[e.FORBIDDEN = 0] = "FORBIDDEN", e[e.ENABLE = 1] = "ENABLE", e[e.LOCKING = 2] = "LOCKING", e[e.EXPIRED = 3] = "EXPIRED", e;
-}({}), re = /* @__PURE__ */ function(e) {
-	return e.BASIC = "Basic ", e.BEARER = "Bearer ", e;
-}({}), ie = /* @__PURE__ */ function(e) {
-	return e.AUTHORIZATION_CODE = "authorization_code", e.REFRESH_TOKEN = "refresh_token", e.CLIENT_CREDENTIALS = "client_credentials", e.PASSWORD = "password", e.SOCIAL_CREDENTIALS = "social_credentials", e.WEBAUTHN_CREDENTIALS = "webauthn_credentials", e.DEVICE_CODE = "urn:ietf:params:oauth:grant-type:device_code", e.JWT_BEARER = "urn:ietf:params:oauth:grant-type:jwt-bearer", e.TOKEN_EXCHANGE = "urn:ietf:params:oauth:grant-type:token-exchange", e;
-}({}), ae = /* @__PURE__ */ function(e) {
-	return e.CLIENT_SECRET_BASIC = "client_secret_basic", e.CLIENT_SECRET_POST = "client_secret_post", e.CLIENT_SECRET_JWT = "client_secret_jwt", e.PRIVATE_KEY_JWT = "private_key_jwt", e.NONE = "none", e.TLS_CLIENT_AUTH = "tls_client_auth", e.SELF_SIGNED_TLS_CLIENT_AUTH = "self_signed_tls_client_auth", e;
-}({}), oe = /* @__PURE__ */ function(e) {
-	return e.OPENID = "openid", e.EMAIL = "email", e.PROFILE = "profile", e.PHONE = "phone", e.ADDRESS = "address", e.ROLES = "roles", e.CLIENT_CREATE = "client.create", e.CLIENT_READ = "client.read", e;
-}({}), se = /* @__PURE__ */ function(e) {
-	return e.CREATE = "create", e.EDIT = "edit", e.AUTHORIZE = "authorize", e.INFO = "info", e.ALLOCATABLE = "allocatable", e.SETUP = "setup", e.INVOKE = "invoke", e;
-}({}), w = /* @__PURE__ */ function(e) {
-	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
-}({}), T = /* @__PURE__ */ function(e) {
 	return e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e;
-}({}), E = /* @__PURE__ */ function(e) {
+}({}), ne = /* @__PURE__ */ function(e) {
 	return e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e;
-}({}), D = /* @__PURE__ */ function(e) {
+}({}), re = /* @__PURE__ */ function(e) {
+	return e[e.FORBIDDEN = 0] = "FORBIDDEN", e[e.ENABLE = 1] = "ENABLE", e[e.LOCKING = 2] = "LOCKING", e[e.EXPIRED = 3] = "EXPIRED", e;
+}({}), ie = /* @__PURE__ */ function(e) {
 	return e.BASIC = "Basic ", e.BEARER = "Bearer ", e;
+}({}), ae = /* @__PURE__ */ function(e) {
+	return e.AUTHORIZATION_CODE = "authorization_code", e.REFRESH_TOKEN = "refresh_token", e.CLIENT_CREDENTIALS = "client_credentials", e.PASSWORD = "password", e.SOCIAL_CREDENTIALS = "social_credentials", e.WEBAUTHN_CREDENTIALS = "webauthn_credentials", e.DEVICE_CODE = "urn:ietf:params:oauth:grant-type:device_code", e.JWT_BEARER = "urn:ietf:params:oauth:grant-type:jwt-bearer", e.TOKEN_EXCHANGE = "urn:ietf:params:oauth:grant-type:token-exchange", e;
+}({}), oe = /* @__PURE__ */ function(e) {
+	return e.CLIENT_SECRET_BASIC = "client_secret_basic", e.CLIENT_SECRET_POST = "client_secret_post", e.CLIENT_SECRET_JWT = "client_secret_jwt", e.PRIVATE_KEY_JWT = "private_key_jwt", e.NONE = "none", e.TLS_CLIENT_AUTH = "tls_client_auth", e.SELF_SIGNED_TLS_CLIENT_AUTH = "self_signed_tls_client_auth", e;
+}({}), se = /* @__PURE__ */ function(e) {
+	return e.OPENID = "openid", e.EMAIL = "email", e.PROFILE = "profile", e.PHONE = "phone", e.ADDRESS = "address", e.ROLES = "roles", e.CLIENT_CREATE = "client.create", e.CLIENT_READ = "client.read", e;
+}({}), ce = /* @__PURE__ */ function(e) {
+	return e.CREATE = "create", e.EDIT = "edit", e.AUTHORIZE = "authorize", e.INFO = "info", e.ALLOCATABLE = "allocatable", e.SETUP = "setup", e.INVOKE = "invoke", e;
+}({}), C = /* @__PURE__ */ function(e) {
+	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
+}({}), w = /* @__PURE__ */ function(e) {
+	return e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e;
+}({}), T = /* @__PURE__ */ function(e) {
+	return e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e;
+}({}), E = /* @__PURE__ */ function(e) {
+	return e.BASIC = "Basic ", e.BEARER = "Bearer ", e;
+}({}), D = /* @__PURE__ */ function(e) {
+	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
 }({}), O = /* @__PURE__ */ function(e) {
 	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
 }({}), k = /* @__PURE__ */ function(e) {
 	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
-}({}), A = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(A || {}), ce = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(ce || {}), le = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(le || {}), ue = /* @__PURE__ */ ((e) => (e[e.FORBIDDEN = 0] = "FORBIDDEN", e[e.ENABLE = 1] = "ENABLE", e[e.LOCKING = 2] = "LOCKING", e[e.EXPIRED = 3] = "EXPIRED", e))(ue || {}), de = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(de || {}), fe = /* @__PURE__ */ ((e) => (e.AUTHORIZATION_CODE = "authorization_code", e.REFRESH_TOKEN = "refresh_token", e.CLIENT_CREDENTIALS = "client_credentials", e.PASSWORD = "password", e.SOCIAL_CREDENTIALS = "social_credentials", e.WEBAUTHN_CREDENTIALS = "webauthn_credentials", e.DEVICE_CODE = "urn:ietf:params:oauth:grant-type:device_code", e.JWT_BEARER = "urn:ietf:params:oauth:grant-type:jwt-bearer", e.TOKEN_EXCHANGE = "urn:ietf:params:oauth:grant-type:token-exchange", e))(fe || {}), pe = /* @__PURE__ */ ((e) => (e.CLIENT_SECRET_BASIC = "client_secret_basic", e.CLIENT_SECRET_POST = "client_secret_post", e.CLIENT_SECRET_JWT = "client_secret_jwt", e.PRIVATE_KEY_JWT = "private_key_jwt", e.NONE = "none", e.TLS_CLIENT_AUTH = "tls_client_auth", e.SELF_SIGNED_TLS_CLIENT_AUTH = "self_signed_tls_client_auth", e))(pe || {}), me = /* @__PURE__ */ ((e) => (e.OPENID = "openid", e.EMAIL = "email", e.PROFILE = "profile", e.PHONE = "phone", e.ADDRESS = "address", e.ROLES = "roles", e.CLIENT_CREATE = "client.create", e.CLIENT_READ = "client.read", e))(me || {}), he = /* @__PURE__ */ ((e) => (e.CREATE = "create", e.EDIT = "edit", e.AUTHORIZE = "authorize", e.INFO = "info", e.ALLOCATABLE = "allocatable", e.SETUP = "setup", e.INVOKE = "invoke", e))(he || {}), j = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(j || {}), ge = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(ge || {}), _e = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(_e || {}), ve = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(ve || {}), M = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(M || {}), N = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(N || {}), P = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(P || {}), F = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(F || {}), I = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(I || {}), L = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(L || {});
-f.locale("zh-cn"), class e {
+}({}), A = /* @__PURE__ */ function(e) {
+	return e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e;
+}({}), j = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(j || {}), le = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(le || {}), ue = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(ue || {}), de = /* @__PURE__ */ ((e) => (e[e.FORBIDDEN = 0] = "FORBIDDEN", e[e.ENABLE = 1] = "ENABLE", e[e.LOCKING = 2] = "LOCKING", e[e.EXPIRED = 3] = "EXPIRED", e))(de || {}), fe = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(fe || {}), pe = /* @__PURE__ */ ((e) => (e.AUTHORIZATION_CODE = "authorization_code", e.REFRESH_TOKEN = "refresh_token", e.CLIENT_CREDENTIALS = "client_credentials", e.PASSWORD = "password", e.SOCIAL_CREDENTIALS = "social_credentials", e.WEBAUTHN_CREDENTIALS = "webauthn_credentials", e.DEVICE_CODE = "urn:ietf:params:oauth:grant-type:device_code", e.JWT_BEARER = "urn:ietf:params:oauth:grant-type:jwt-bearer", e.TOKEN_EXCHANGE = "urn:ietf:params:oauth:grant-type:token-exchange", e))(pe || {}), me = /* @__PURE__ */ ((e) => (e.CLIENT_SECRET_BASIC = "client_secret_basic", e.CLIENT_SECRET_POST = "client_secret_post", e.CLIENT_SECRET_JWT = "client_secret_jwt", e.PRIVATE_KEY_JWT = "private_key_jwt", e.NONE = "none", e.TLS_CLIENT_AUTH = "tls_client_auth", e.SELF_SIGNED_TLS_CLIENT_AUTH = "self_signed_tls_client_auth", e))(me || {}), he = /* @__PURE__ */ ((e) => (e.OPENID = "openid", e.EMAIL = "email", e.PROFILE = "profile", e.PHONE = "phone", e.ADDRESS = "address", e.ROLES = "roles", e.CLIENT_CREATE = "client.create", e.CLIENT_READ = "client.read", e))(he || {}), ge = /* @__PURE__ */ ((e) => (e.CREATE = "create", e.EDIT = "edit", e.AUTHORIZE = "authorize", e.INFO = "info", e.ALLOCATABLE = "allocatable", e.SETUP = "setup", e.INVOKE = "invoke", e))(ge || {}), M = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(M || {}), _e = /* @__PURE__ */ ((e) => (e[e.URL_ENCODED = 0] = "URL_ENCODED", e[e.MULTI_PART = 1] = "MULTI_PART", e[e.TEXT = 2] = "TEXT", e[e.JSON = 3] = "JSON", e))(_e || {}), ve = /* @__PURE__ */ ((e) => (e.GET = "GET", e.POST = "POST", e.PUT = "PUT", e.DELETE = "DELETE", e))(ve || {}), ye = /* @__PURE__ */ ((e) => (e.BASIC = "Basic ", e.BEARER = "Bearer ", e))(ye || {}), N = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(N || {}), P = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(P || {}), F = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(F || {}), I = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(I || {}), L = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(L || {}), R = /* @__PURE__ */ ((e) => (e.DARK = "dark", e.LIGHT = "light", e.SYSTEM = "system", e))(R || {});
+d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var ye = class e {
+var be = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -60,37 +64,37 @@ var ye = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, be = class e {
+}, xe = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-ye.getInstance(), be.getInstance();
-var xe = y.mixin({
+be.getInstance(), xe.getInstance();
+var Se = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -100,7 +104,7 @@ var xe = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -133,7 +137,7 @@ var xe = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return xe.fire({
+		return Se.fire({
 			icon: t,
 			title: e
 		});
@@ -164,7 +168,7 @@ var xe = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -185,7 +189,7 @@ var xe = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -198,17 +202,17 @@ var xe = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Se = class e {
+var Ce = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -216,37 +220,37 @@ var Se = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Ce = class e {
+}, we = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Se.getInstance(), Ce.getInstance();
-var we = y.mixin({
+Ce.getInstance(), we.getInstance();
+var Te = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -256,7 +260,7 @@ var we = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -289,7 +293,7 @@ var we = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return we.fire({
+		return Te.fire({
 			icon: t,
 			title: e
 		});
@@ -320,7 +324,7 @@ var we = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -341,7 +345,7 @@ var we = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -354,17 +358,17 @@ var we = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Te = class e {
+var Ee = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -372,37 +376,37 @@ var Te = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Ee = class e {
+}, De = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Te.getInstance(), Ee.getInstance();
-var De = y.mixin({
+Ee.getInstance(), De.getInstance();
+var Oe = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -412,7 +416,7 @@ var De = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -445,7 +449,7 @@ var De = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return De.fire({
+		return Oe.fire({
 			icon: t,
 			title: e
 		});
@@ -476,7 +480,7 @@ var De = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -497,7 +501,7 @@ var De = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -510,17 +514,17 @@ var De = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Oe = class e {
+var ke = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -528,37 +532,37 @@ var Oe = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, ke = class e {
+}, Ae = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Oe.getInstance(), ke.getInstance();
-var Ae = y.mixin({
+ke.getInstance(), Ae.getInstance();
+var je = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -568,7 +572,7 @@ var Ae = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -601,7 +605,7 @@ var Ae = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return Ae.fire({
+		return je.fire({
 			icon: t,
 			title: e
 		});
@@ -632,7 +636,7 @@ var Ae = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -653,7 +657,7 @@ var Ae = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -666,17 +670,17 @@ var Ae = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var je = class e {
+var Me = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -684,37 +688,37 @@ var je = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Me = class e {
+}, Ne = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-je.getInstance(), Me.getInstance();
-var Ne = y.mixin({
+Me.getInstance(), Ne.getInstance();
+var Pe = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -724,7 +728,7 @@ var Ne = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -757,7 +761,7 @@ var Ne = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return Ne.fire({
+		return Pe.fire({
 			icon: t,
 			title: e
 		});
@@ -788,7 +792,7 @@ var Ne = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -809,7 +813,7 @@ var Ne = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -822,17 +826,17 @@ var Ne = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Pe = class e {
+var Fe = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -840,37 +844,37 @@ var Pe = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Fe = class e {
+}, Ie = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Pe.getInstance(), Fe.getInstance();
-var Ie = y.mixin({
+Fe.getInstance(), Ie.getInstance();
+var Le = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -880,7 +884,7 @@ var Ie = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -913,7 +917,7 @@ var Ie = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return Ie.fire({
+		return Le.fire({
 			icon: t,
 			title: e
 		});
@@ -944,7 +948,7 @@ var Ie = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -965,7 +969,7 @@ var Ie = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -978,17 +982,17 @@ var Ie = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Le = class e {
+var Re = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -996,37 +1000,37 @@ var Le = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Re = class e {
+}, ze = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Le.getInstance(), Re.getInstance();
-var ze = y.mixin({
+Re.getInstance(), ze.getInstance();
+var Be = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -1036,7 +1040,7 @@ var ze = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -1069,7 +1073,7 @@ var ze = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return ze.fire({
+		return Be.fire({
 			icon: t,
 			title: e
 		});
@@ -1100,7 +1104,7 @@ var ze = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -1121,7 +1125,7 @@ var ze = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -1134,17 +1138,17 @@ var ze = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Be = class e {
+var Ve = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -1152,37 +1156,37 @@ var Be = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Ve = class e {
+}, He = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Be.getInstance(), Ve.getInstance();
-var He = y.mixin({
+Ve.getInstance(), He.getInstance();
+var Ue = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -1192,7 +1196,7 @@ var He = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -1225,7 +1229,7 @@ var He = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return He.fire({
+		return Ue.fire({
 			icon: t,
 			title: e
 		});
@@ -1256,7 +1260,7 @@ var He = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -1277,7 +1281,7 @@ var He = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -1290,17 +1294,17 @@ var He = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Ue = class e {
+var We = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -1308,37 +1312,37 @@ var Ue = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, We = class e {
+}, Ge = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Ue.getInstance(), We.getInstance();
-var Ge = y.mixin({
+We.getInstance(), Ge.getInstance();
+var Ke = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -1348,7 +1352,7 @@ var Ge = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -1381,7 +1385,7 @@ var Ge = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return Ge.fire({
+		return Ke.fire({
 			icon: t,
 			title: e
 		});
@@ -1412,7 +1416,7 @@ var Ge = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -1433,7 +1437,7 @@ var Ge = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -1446,17 +1450,17 @@ var Ge = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Ke = class e {
+var qe = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -1464,37 +1468,37 @@ var Ke = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, qe = class e {
+}, Je = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Ke.getInstance(), qe.getInstance();
-var Je = y.mixin({
+qe.getInstance(), Je.getInstance();
+var Ye = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -1504,7 +1508,7 @@ var Je = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -1537,7 +1541,7 @@ var Je = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return Je.fire({
+		return Ye.fire({
 			icon: t,
 			title: e
 		});
@@ -1568,7 +1572,7 @@ var Je = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -1589,7 +1593,7 @@ var Je = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -1602,17 +1606,17 @@ var Je = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Ye = class e {
+var Xe = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -1620,37 +1624,37 @@ var Ye = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Xe = class e {
+}, Ze = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Ye.getInstance(), Xe.getInstance();
-var Ze = y.mixin({
+Xe.getInstance(), Ze.getInstance();
+var Qe = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -1660,7 +1664,7 @@ var Ze = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -1693,7 +1697,7 @@ var Ze = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return Ze.fire({
+		return Qe.fire({
 			icon: t,
 			title: e
 		});
@@ -1724,7 +1728,7 @@ var Ze = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -1745,7 +1749,7 @@ var Ze = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -1758,17 +1762,17 @@ var Ze = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Qe = class e {
+var $e = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -1776,37 +1780,37 @@ var Qe = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, $e = class e {
+}, et = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Qe.getInstance(), $e.getInstance();
-var et = y.mixin({
+$e.getInstance(), et.getInstance();
+var tt = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -1816,7 +1820,7 @@ var et = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -1849,7 +1853,7 @@ var et = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return et.fire({
+		return tt.fire({
 			icon: t,
 			title: e
 		});
@@ -1880,7 +1884,7 @@ var et = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -1901,7 +1905,7 @@ var et = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -1914,17 +1918,17 @@ var et = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var tt = class e {
+var nt = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -1932,37 +1936,37 @@ var tt = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, nt = class e {
+}, rt = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-tt.getInstance(), nt.getInstance();
-var rt = y.mixin({
+nt.getInstance(), rt.getInstance();
+var it = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
 });
 (class e {
@@ -1972,7 +1976,7 @@ var rt = y.mixin({
 		return this.instance;
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -2005,7 +2009,7 @@ var rt = y.mixin({
 		return this.instance;
 	}
 	information(e, t) {
-		return rt.fire({
+		return it.fire({
 			icon: t,
 			title: e
 		});
@@ -2036,7 +2040,7 @@ var rt = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -2057,7 +2061,7 @@ var rt = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -2070,17 +2074,17 @@ var rt = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var it = class e {
+var at = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -2088,45 +2092,45 @@ var it = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, at = class e {
+}, ot = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-it.getInstance(), at.getInstance();
-var ot = y.mixin({
+at.getInstance(), ot.getInstance();
+var st = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), R = (e) => e === L.SYSTEM ? "auto" : e;
+}), z = (e) => e === R.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = R(e);
+		this.theme = z(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2137,10 +2141,10 @@ var ot = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = R(e);
+		this.theme = z(e);
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -2171,7 +2175,7 @@ var ot = y.mixin({
 		return this.theme === "light" ? "#6750A4" : "#2563eb";
 	}
 	standardDeleteNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "确定删除?",
 			text: "您将无法恢复此操作！",
 			icon: "warning",
@@ -2186,7 +2190,7 @@ var ot = y.mixin({
 		});
 	}
 	signOutNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "要走了么?",
 			text: "您确定要退出系统！",
 			icon: "warning",
@@ -2201,7 +2205,236 @@ var ot = y.mixin({
 		});
 	}
 	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
+		v.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(R.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = z(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = z(e);
+	}
+	information(e, t) {
+		return st.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(R.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = x.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return y(e).toString(b.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), d.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${f(e)}`;
+	}
+}.getInstance();
+var ct = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return p.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, lt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return m.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return m.decrypt(e, t, { output: "string" });
+	}
+};
+ct.getInstance(), lt.getInstance();
+var ut = v.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
+	}
+}), B = (e) => e === L.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = B(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = B(e);
+	}
+	information(e, t, n) {
+		return v.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		v.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		v.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		v.fire({
 			title: e,
 			text: t,
 			icon: n,
@@ -2219,7 +2452,7 @@ var ot = y.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = R(e);
+		this.theme = B(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2230,10 +2463,10 @@ var ot = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = R(e);
+		this.theme = B(e);
 	}
 	information(e, t) {
-		return ot.fire({
+		return ut.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -2265,7 +2498,7 @@ var ot = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -2286,7 +2519,7 @@ var ot = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -2299,17 +2532,17 @@ var ot = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var st = class e {
+var dt = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -2317,45 +2550,45 @@ var st = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, ct = class e {
+}, ft = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-st.getInstance(), ct.getInstance();
-var lt = y.mixin({
+dt.getInstance(), ft.getInstance();
+var pt = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), z = (e) => e === I.SYSTEM ? "auto" : e;
+}), V = (e) => e === I.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = z(e);
+		this.theme = V(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2366,10 +2599,10 @@ var lt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = z(e);
+		this.theme = V(e);
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -2400,7 +2633,7 @@ var lt = y.mixin({
 		return this.theme === "light" ? "#6750A4" : "#2563eb";
 	}
 	standardDeleteNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "确定删除?",
 			text: "您将无法恢复此操作！",
 			icon: "warning",
@@ -2415,7 +2648,7 @@ var lt = y.mixin({
 		});
 	}
 	signOutNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "要走了么?",
 			text: "您确定要退出系统！",
 			icon: "warning",
@@ -2430,7 +2663,7 @@ var lt = y.mixin({
 		});
 	}
 	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
+		v.fire({
 			title: e,
 			text: t,
 			icon: n,
@@ -2448,7 +2681,7 @@ var lt = y.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = z(e);
+		this.theme = V(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2459,10 +2692,10 @@ var lt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = z(e);
+		this.theme = V(e);
 	}
 	information(e, t) {
-		return lt.fire({
+		return pt.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -2494,7 +2727,7 @@ var lt = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -2515,7 +2748,7 @@ var lt = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -2528,17 +2761,17 @@ var lt = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var ut = class e {
+var mt = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -2546,45 +2779,45 @@ var ut = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, dt = class e {
+}, ht = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-ut.getInstance(), dt.getInstance();
-var ft = y.mixin({
+mt.getInstance(), ht.getInstance();
+var gt = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), B = (e) => e === F.SYSTEM ? "auto" : e;
+}), H = (e) => e === F.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = B(e);
+		this.theme = H(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2595,10 +2828,10 @@ var ft = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = B(e);
+		this.theme = H(e);
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -2629,7 +2862,7 @@ var ft = y.mixin({
 		return this.theme === "light" ? "#6750A4" : "#2563eb";
 	}
 	standardDeleteNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "确定删除?",
 			text: "您将无法恢复此操作！",
 			icon: "warning",
@@ -2644,7 +2877,7 @@ var ft = y.mixin({
 		});
 	}
 	signOutNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "要走了么?",
 			text: "您确定要退出系统！",
 			icon: "warning",
@@ -2659,7 +2892,7 @@ var ft = y.mixin({
 		});
 	}
 	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
+		v.fire({
 			title: e,
 			text: t,
 			icon: n,
@@ -2677,7 +2910,7 @@ var ft = y.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = B(e);
+		this.theme = H(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2688,10 +2921,10 @@ var ft = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = B(e);
+		this.theme = H(e);
 	}
 	information(e, t) {
-		return ft.fire({
+		return gt.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -2723,7 +2956,7 @@ var ft = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -2744,7 +2977,7 @@ var ft = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -2757,17 +2990,17 @@ var ft = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var pt = class e {
+var _t = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -2775,45 +3008,45 @@ var pt = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, mt = class e {
+}, vt = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-pt.getInstance(), mt.getInstance();
-var ht = y.mixin({
+_t.getInstance(), vt.getInstance();
+var yt = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), V = (e) => e === P.SYSTEM ? "auto" : e;
+}), U = (e) => e === P.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = V(e);
+		this.theme = U(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2824,10 +3057,10 @@ var ht = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = V(e);
+		this.theme = U(e);
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -2858,7 +3091,7 @@ var ht = y.mixin({
 		return this.theme === "light" ? "#6750A4" : "#2563eb";
 	}
 	standardDeleteNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "确定删除?",
 			text: "您将无法恢复此操作！",
 			icon: "warning",
@@ -2873,7 +3106,7 @@ var ht = y.mixin({
 		});
 	}
 	signOutNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "要走了么?",
 			text: "您确定要退出系统！",
 			icon: "warning",
@@ -2888,7 +3121,7 @@ var ht = y.mixin({
 		});
 	}
 	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
+		v.fire({
 			title: e,
 			text: t,
 			icon: n,
@@ -2906,7 +3139,7 @@ var ht = y.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = V(e);
+		this.theme = U(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -2917,10 +3150,10 @@ var ht = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = V(e);
+		this.theme = U(e);
 	}
 	information(e, t) {
-		return ht.fire({
+		return yt.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -2952,7 +3185,7 @@ var ht = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -2973,7 +3206,7 @@ var ht = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -2986,17 +3219,17 @@ var ht = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var gt = class e {
+var bt = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -3004,45 +3237,45 @@ var gt = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, _t = class e {
+}, xt = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-gt.getInstance(), _t.getInstance();
-var vt = y.mixin({
+bt.getInstance(), xt.getInstance();
+var St = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), H = (e) => e === N.SYSTEM ? "auto" : e;
+}), W = (e) => e === N.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = H(e);
+		this.theme = W(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3053,10 +3286,10 @@ var vt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = H(e);
+		this.theme = W(e);
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -3087,7 +3320,7 @@ var vt = y.mixin({
 		return this.theme === "light" ? "#6750A4" : "#2563eb";
 	}
 	standardDeleteNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "确定删除?",
 			text: "您将无法恢复此操作！",
 			icon: "warning",
@@ -3102,7 +3335,7 @@ var vt = y.mixin({
 		});
 	}
 	signOutNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "要走了么?",
 			text: "您确定要退出系统！",
 			icon: "warning",
@@ -3117,7 +3350,7 @@ var vt = y.mixin({
 		});
 	}
 	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
+		v.fire({
 			title: e,
 			text: t,
 			icon: n,
@@ -3135,7 +3368,7 @@ var vt = y.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = H(e);
+		this.theme = W(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3146,10 +3379,10 @@ var vt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = H(e);
+		this.theme = W(e);
 	}
 	information(e, t) {
-		return vt.fire({
+		return St.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -3181,7 +3414,7 @@ var vt = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -3202,7 +3435,7 @@ var vt = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -3215,17 +3448,17 @@ var vt = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var yt = class e {
+var Ct = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -3233,45 +3466,45 @@ var yt = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, bt = class e {
+}, wt = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-yt.getInstance(), bt.getInstance();
-var xt = y.mixin({
+Ct.getInstance(), wt.getInstance();
+var Tt = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), U = (e) => e === M.SYSTEM ? "auto" : e;
+}), G = (e) => e === M.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = U(e);
+		this.theme = G(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3282,10 +3515,10 @@ var xt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = U(e);
+		this.theme = G(e);
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -3316,7 +3549,7 @@ var xt = y.mixin({
 		return this.theme === "light" ? "#6750A4" : "#2563eb";
 	}
 	standardDeleteNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "确定删除?",
 			text: "您将无法恢复此操作！",
 			icon: "warning",
@@ -3331,7 +3564,7 @@ var xt = y.mixin({
 		});
 	}
 	signOutNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "要走了么?",
 			text: "您确定要退出系统！",
 			icon: "warning",
@@ -3346,7 +3579,7 @@ var xt = y.mixin({
 		});
 	}
 	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
+		v.fire({
 			title: e,
 			text: t,
 			icon: n,
@@ -3364,7 +3597,7 @@ var xt = y.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = U(e);
+		this.theme = G(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3375,10 +3608,10 @@ var xt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = U(e);
+		this.theme = G(e);
 	}
 	information(e, t) {
-		return xt.fire({
+		return Tt.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -3410,7 +3643,7 @@ var xt = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -3431,7 +3664,7 @@ var xt = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -3444,17 +3677,17 @@ var xt = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var St = class e {
+var Et = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -3462,45 +3695,45 @@ var St = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Ct = class e {
+}, Dt = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-St.getInstance(), Ct.getInstance();
-var wt = y.mixin({
+Et.getInstance(), Dt.getInstance();
+var Ot = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), W = (e) => e === j.SYSTEM ? "auto" : e;
+}), K = (e) => e === j.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = W(e);
+		this.theme = K(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3511,10 +3744,10 @@ var wt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = W(e);
+		this.theme = K(e);
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -3545,7 +3778,7 @@ var wt = y.mixin({
 		return this.theme === "light" ? "#6750A4" : "#2563eb";
 	}
 	standardDeleteNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "确定删除?",
 			text: "您将无法恢复此操作！",
 			icon: "warning",
@@ -3560,7 +3793,7 @@ var wt = y.mixin({
 		});
 	}
 	signOutNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "要走了么?",
 			text: "您确定要退出系统！",
 			icon: "warning",
@@ -3575,7 +3808,7 @@ var wt = y.mixin({
 		});
 	}
 	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
+		v.fire({
 			title: e,
 			text: t,
 			icon: n,
@@ -3593,7 +3826,7 @@ var wt = y.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = W(e);
+		this.theme = K(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3604,10 +3837,10 @@ var wt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = W(e);
+		this.theme = K(e);
 	}
 	information(e, t) {
-		return wt.fire({
+		return Ot.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -3639,7 +3872,7 @@ var wt = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -3660,7 +3893,7 @@ var wt = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -3673,17 +3906,17 @@ var wt = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var Tt = class e {
+var kt = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -3691,45 +3924,45 @@ var Tt = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Et = class e {
+}, At = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-Tt.getInstance(), Et.getInstance();
-var Dt = y.mixin({
+kt.getInstance(), At.getInstance();
+var jt = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), G = (e) => e === A.SYSTEM ? "auto" : e;
+}), q = (e) => e === A.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = G(e);
+		this.theme = q(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3740,10 +3973,10 @@ var Dt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = G(e);
+		this.theme = q(e);
 	}
 	information(e, t, n) {
-		return y.fire({
+		return v.fire({
 			title: e,
 			text: t,
 			position: "top",
@@ -3774,7 +4007,7 @@ var Dt = y.mixin({
 		return this.theme === "light" ? "#6750A4" : "#2563eb";
 	}
 	standardDeleteNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "确定删除?",
 			text: "您将无法恢复此操作！",
 			icon: "warning",
@@ -3789,7 +4022,7 @@ var Dt = y.mixin({
 		});
 	}
 	signOutNotify(e, t) {
-		y.fire({
+		v.fire({
 			title: "要走了么?",
 			text: "您确定要退出系统！",
 			icon: "warning",
@@ -3804,7 +4037,7 @@ var Dt = y.mixin({
 		});
 	}
 	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
+		v.fire({
 			title: e,
 			text: t,
 			icon: n,
@@ -3822,7 +4055,7 @@ var Dt = y.mixin({
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = G(e);
+		this.theme = q(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -3833,10 +4066,10 @@ var Dt = y.mixin({
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = G(e);
+		this.theme = q(e);
 	}
 	information(e, t) {
-		return Dt.fire({
+		return jt.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -3868,236 +4101,7 @@ var Dt = y.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
-		return t.words.forEach((e) => {
-			let t = this.toBytesInt32(e), r = new Uint8Array(t);
-			for (let e = 0; e < 4; e++) {
-				let t = r[e];
-				t !== void 0 && n.push(t);
-			}
-		}), n;
-	}
-	random(e) {
-		let t = "", n = this.getRandomValues(e);
-		for (let r = 0; r < e; r++) {
-			let e = n[r];
-			e !== void 0 && (t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[e % 66]);
-		}
-		return t;
-	}
-	generateVerifier(e) {
-		return this.random(e);
-	}
-	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
-	}
-	generateCodePair(e = 43) {
-		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
-		let t = this.generateVerifier(e);
-		return {
-			codeVerifier: t,
-			codeChallenge: this.generateChallenge(t)
-		};
-	}
-	verifyChallenge(e, t) {
-		return this.generateChallenge(e) === t;
-	}
-}.getInstance(), f.locale("zh-cn"), class e {
-	static instance = new e();
-	constructor() {}
-	static getInstance() {
-		return this.instance;
-	}
-	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
-	}
-}.getInstance();
-var Ot = class e {
-	static instance = new e();
-	cipherMode = 1;
-	constructor() {}
-	static getInstance() {
-		return this.instance;
-	}
-	createKeyPair() {
-		return m.generateKeyPairHex();
-	}
-	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
-	}
-	decrypt(e, t) {
-		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
-	}
-}, kt = class e {
-	static instance = new e();
-	constructor() {}
-	static getInstance() {
-		return this.instance;
-	}
-	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
-	}
-	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
-	}
-};
-Ot.getInstance(), kt.getInstance();
-var At = y.mixin({
-	toast: !0,
-	position: "top",
-	showConfirmButton: !1,
-	timer: 2e3,
-	timerProgressBar: !1,
-	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
-	}
-}), K = (e) => e === k.SYSTEM ? "auto" : e;
-(class e {
-	static _instance = null;
-	static _initialized = !1;
-	theme;
-	constructor(e) {
-		this.theme = K(e);
-	}
-	static initialize(t) {
-		if (e._initialized) throw Error("RouterUtilities has already been initialized");
-		return e._instance = new e(t), e._initialized = !0, e._instance;
-	}
-	static getInstance() {
-		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
-		return e._instance;
-	}
-	setTheme(e) {
-		this.theme = K(e);
-	}
-	information(e, t, n) {
-		return y.fire({
-			title: e,
-			text: t,
-			position: "top",
-			icon: n,
-			theme: this.theme,
-			timer: 5e3,
-			showConfirmButton: !1,
-			showClass: { popup: "animate__animated animate__fadeIn" },
-			hideClass: { popup: "animate__animated animate__fadeOut" }
-		});
-	}
-	info(e, t = "") {
-		return this.information(e, t, "info");
-	}
-	error(e, t = "") {
-		return this.information(e, t, "error");
-	}
-	warning(e, t = "") {
-		return this.information(e, t, "warning");
-	}
-	success(e, t = "") {
-		return this.information(e, t, "success");
-	}
-	question(e, t = "") {
-		return this.information(e, t, "question");
-	}
-	getConfirmButtonColor() {
-		return this.theme === "light" ? "#6750A4" : "#2563eb";
-	}
-	standardDeleteNotify(e, t) {
-		y.fire({
-			title: "确定删除?",
-			text: "您将无法恢复此操作！",
-			icon: "warning",
-			theme: this.theme,
-			showCancelButton: !0,
-			confirmButtonColor: this.getConfirmButtonColor(),
-			cancelButtonColor: "#d33",
-			confirmButtonText: "是的, 删除!",
-			cancelButtonText: "取消"
-		}).then((n) => {
-			n.value ? e() : t && t();
-		});
-	}
-	signOutNotify(e, t) {
-		y.fire({
-			title: "要走了么?",
-			text: "您确定要退出系统！",
-			icon: "warning",
-			theme: this.theme,
-			showCancelButton: !0,
-			confirmButtonColor: this.getConfirmButtonColor(),
-			cancelButtonColor: "#d33",
-			confirmButtonText: "是的",
-			cancelButtonText: "取消"
-		}).then((n) => {
-			n.value ? e() : t && t();
-		});
-	}
-	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
-			title: e,
-			text: t,
-			icon: n,
-			theme: this.theme,
-			showClass: { popup: "animate__animated animate__fadeInDown" },
-			hideClass: { popup: "animate__animated animate__fadeOutUp" },
-			confirmButtonText: "已阅!",
-			willClose: () => {
-				r();
-			}
-		});
-	}
-}).initialize(k.LIGHT), class e {
-	static _instance = null;
-	static _initialized = !1;
-	theme;
-	constructor(e) {
-		this.theme = K(e);
-	}
-	static initialize(t) {
-		if (e._initialized) throw Error("RouterUtilities has already been initialized");
-		return e._instance = new e(t), e._initialized = !0, e._instance;
-	}
-	static getInstance() {
-		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
-		return e._instance;
-	}
-	setTheme(e) {
-		this.theme = K(e);
-	}
-	information(e, t) {
-		return At.fire({
-			icon: t,
-			title: e,
-			theme: this.theme
-		});
-	}
-	info(e) {
-		return this.information(e, "info");
-	}
-	error(e) {
-		return this.information(e, "error");
-	}
-	warning(e) {
-		return this.information(e, "warning");
-	}
-	success(e) {
-		return this.information(e, "success");
-	}
-	question(e) {
-		return this.information(e, "question");
-	}
-}.initialize(k.LIGHT), class e {
-	static instance = new e();
-	constructor() {}
-	static getInstance() {
-		return this.instance;
-	}
-	toBytesInt32(e) {
-		let t = /* @__PURE__ */ new ArrayBuffer(4);
-		return new DataView(t).setUint32(0, e, !1), t;
-	}
-	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -4121,7 +4125,7 @@ var At = y.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -4134,17 +4138,17 @@ var At = y.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance(), f.locale("zh-cn"), class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
 }.getInstance();
-var jt = class e {
+var Mt = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -4152,262 +4156,30 @@ var jt = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Mt = class e {
+}, Nt = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
 };
-jt.getInstance(), Mt.getInstance();
-var Nt = y.mixin({
-	toast: !0,
-	position: "top",
-	showConfirmButton: !1,
-	timer: 2e3,
-	timerProgressBar: !1,
-	didOpen: (e) => {
-		e.addEventListener("mouseenter", y.stopTimer), e.addEventListener("mouseleave", y.resumeTimer);
-	}
-}), q = (e) => e === O.SYSTEM ? "auto" : e;
-(class e {
-	static _instance = null;
-	static _initialized = !1;
-	theme;
-	constructor(e) {
-		this.theme = q(e);
-	}
-	static initialize(t) {
-		if (e._initialized) throw Error("RouterUtilities has already been initialized");
-		return e._instance = new e(t), e._initialized = !0, e._instance;
-	}
-	static getInstance() {
-		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
-		return e._instance;
-	}
-	setTheme(e) {
-		this.theme = q(e);
-	}
-	information(e, t, n) {
-		return y.fire({
-			title: e,
-			text: t,
-			position: "top",
-			icon: n,
-			theme: this.theme,
-			timer: 5e3,
-			showConfirmButton: !1,
-			showClass: { popup: "animate__animated animate__fadeIn" },
-			hideClass: { popup: "animate__animated animate__fadeOut" }
-		});
-	}
-	info(e, t = "") {
-		return this.information(e, t, "info");
-	}
-	error(e, t = "") {
-		return this.information(e, t, "error");
-	}
-	warning(e, t = "") {
-		return this.information(e, t, "warning");
-	}
-	success(e, t = "") {
-		return this.information(e, t, "success");
-	}
-	question(e, t = "") {
-		return this.information(e, t, "question");
-	}
-	getConfirmButtonColor() {
-		return this.theme === "light" ? "#6750A4" : "#2563eb";
-	}
-	standardDeleteNotify(e, t) {
-		y.fire({
-			title: "确定删除?",
-			text: "您将无法恢复此操作！",
-			icon: "warning",
-			theme: this.theme,
-			showCancelButton: !0,
-			confirmButtonColor: this.getConfirmButtonColor(),
-			cancelButtonColor: "#d33",
-			confirmButtonText: "是的, 删除!",
-			cancelButtonText: "取消"
-		}).then((n) => {
-			n.value ? e() : t && t();
-		});
-	}
-	signOutNotify(e, t) {
-		y.fire({
-			title: "要走了么?",
-			text: "您确定要退出系统！",
-			icon: "warning",
-			theme: this.theme,
-			showCancelButton: !0,
-			confirmButtonColor: this.getConfirmButtonColor(),
-			cancelButtonColor: "#d33",
-			confirmButtonText: "是的",
-			cancelButtonText: "取消"
-		}).then((n) => {
-			n.value ? e() : t && t();
-		});
-	}
-	tokenExpiresNotify(e, t, n, r) {
-		y.fire({
-			title: e,
-			text: t,
-			icon: n,
-			theme: this.theme,
-			showClass: { popup: "animate__animated animate__fadeInDown" },
-			hideClass: { popup: "animate__animated animate__fadeOutUp" },
-			confirmButtonText: "已阅!",
-			willClose: () => {
-				r();
-			}
-		});
-	}
-}).initialize(O.LIGHT), class e {
-	static _instance = null;
-	static _initialized = !1;
-	theme;
-	constructor(e) {
-		this.theme = q(e);
-	}
-	static initialize(t) {
-		if (e._initialized) throw Error("RouterUtilities has already been initialized");
-		return e._instance = new e(t), e._initialized = !0, e._instance;
-	}
-	static getInstance() {
-		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
-		return e._instance;
-	}
-	setTheme(e) {
-		this.theme = q(e);
-	}
-	information(e, t) {
-		return Nt.fire({
-			icon: t,
-			title: e,
-			theme: this.theme
-		});
-	}
-	info(e) {
-		return this.information(e, "info");
-	}
-	error(e) {
-		return this.information(e, "error");
-	}
-	warning(e) {
-		return this.information(e, "warning");
-	}
-	success(e) {
-		return this.information(e, "success");
-	}
-	question(e) {
-		return this.information(e, "question");
-	}
-}.initialize(O.LIGHT), class e {
-	static instance = new e();
-	constructor() {}
-	static getInstance() {
-		return this.instance;
-	}
-	toBytesInt32(e) {
-		let t = /* @__PURE__ */ new ArrayBuffer(4);
-		return new DataView(t).setUint32(0, e, !1), t;
-	}
-	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
-		return t.words.forEach((e) => {
-			let t = this.toBytesInt32(e), r = new Uint8Array(t);
-			for (let e = 0; e < 4; e++) {
-				let t = r[e];
-				t !== void 0 && n.push(t);
-			}
-		}), n;
-	}
-	random(e) {
-		let t = "", n = this.getRandomValues(e);
-		for (let r = 0; r < e; r++) {
-			let e = n[r];
-			if (e !== void 0) {
-				let n = e % 66;
-				t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[n];
-			}
-		}
-		return t;
-	}
-	generateVerifier(e) {
-		return this.random(e);
-	}
-	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
-	}
-	generateCodePair(e = 43) {
-		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
-		let t = this.generateVerifier(e);
-		return {
-			codeVerifier: t,
-			codeChallenge: this.generateChallenge(t)
-		};
-	}
-	verifyChallenge(e, t) {
-		return this.generateChallenge(e) === t;
-	}
-}.getInstance(), u.locale("zh-cn"), class e {
-	static instance = new e();
-	constructor() {}
-	static getInstance() {
-		return this.instance;
-	}
-	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
-	}
-}.getInstance();
-var Pt = class e {
-	static instance = new e();
-	cipherMode = 1;
-	constructor() {}
-	static getInstance() {
-		return this.instance;
-	}
-	createKeyPair() {
-		return m.generateKeyPairHex();
-	}
-	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
-	}
-	decrypt(e, t) {
-		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
-	}
-}, Ft = class e {
-	static instance = new e();
-	constructor() {}
-	static getInstance() {
-		return this.instance;
-	}
-	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
-	}
-	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
-	}
-};
-Pt.getInstance(), Ft.getInstance();
-var It = v.mixin({
+Mt.getInstance(), Nt.getInstance();
+var Pt = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
@@ -4416,7 +4188,7 @@ var It = v.mixin({
 	didOpen: (e) => {
 		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), J = (e) => e === w.SYSTEM ? "auto" : e;
+}), J = (e) => e === k.SYSTEM ? "auto" : e;
 (class e {
 	static _instance = null;
 	static _initialized = !1;
@@ -4510,7 +4282,7 @@ var It = v.mixin({
 			}
 		});
 	}
-}).initialize(w.LIGHT), class e {
+}).initialize(k.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
@@ -4529,7 +4301,7 @@ var It = v.mixin({
 		this.theme = J(e);
 	}
 	information(e, t) {
-		return It.fire({
+		return Pt.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -4550,7 +4322,7 @@ var It = v.mixin({
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(w.LIGHT), class e {
+}.initialize(k.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -4561,7 +4333,7 @@ var It = v.mixin({
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -4585,7 +4357,7 @@ var It = v.mixin({
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -4598,322 +4370,17 @@ var It = v.mixin({
 	verifyChallenge(e, t) {
 		return this.generateChallenge(e) === t;
 	}
-}.getInstance();
-//#endregion
-//#region src/lib/definitions/axios/canceler.ts
-var Y = /* @__PURE__ */ new Map(), X = (e) => {
-	if (!a(e.params)) {
-		let t = r.hashStr(e.params);
-		return [
-			e.method,
-			e.url,
-			t
-		].join("&");
-	}
-	return [e.method, e.url].join("&");
-}, Lt = class {
-	addPending(t) {
-		this.removePending(t);
-		let n = X(t);
-		t.cancelToken = t.cancelToken || new e.CancelToken((e) => {
-			Y.has(n) || Y.set(n, e);
-		});
-	}
-	removeAllPending() {
-		Y.forEach((e) => {
-			e && o(e) && e();
-		}), Y.clear();
-	}
-	removePending(e) {
-		let t = X(e);
-		if (Y.has(t)) {
-			let e = Y.get(t);
-			e && e(t), Y.delete(t);
-		}
-	}
-	reset() {
-		Y = /* @__PURE__ */ new Map();
-	}
-}, Rt = class {
-	axiosInstance;
-	defaultAxiosRequestConfig;
-	defaultRequestOptions;
-	axiosInstanceHooks;
-	constructor(e, t, n) {
-		this.defaultAxiosRequestConfig = e, this.defaultRequestOptions = n, this.axiosInstanceHooks = t, this.axiosInstance = this.createAxiosInstance(e), this.setupInterceptors();
-	}
-	createAxiosInstance(t) {
-		return e.create(t);
-	}
-	getDefaultAxiosRequestConfig() {
-		return this.defaultAxiosRequestConfig;
-	}
-	getDefaultRequestOptions() {
-		return this.defaultRequestOptions;
-	}
-	getAxiosInstanceHooks() {
-		return this.axiosInstanceHooks;
-	}
-	getAxiosInstance() {
-		return this.axiosInstance;
-	}
-	createHttpHeaderPolicy(e) {
-		switch (e) {
-			case T.URL_ENCODED: return {
-				headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				dataConvert: (e) => t.stringify(e, { arrayFormat: "brackets" })
-			};
-			case T.MULTI_PART: return {
-				headers: { "Content-Type": "multipart/form-data" },
-				dataConvert: (e) => e
-			};
-			default: return {
-				headers: { "Content-Type": "application/json" },
-				dataConvert: (e) => JSON.stringify(e)
-			};
-		}
-	}
-	setupInterceptors() {
-		let e = this.getAxiosInstanceHooks();
-		if (!e) return;
-		let { requestInterceptors: t, requestInterceptorsError: n, responseInterceptors: r, responseInterceptorsError: i } = e, a = new Lt();
-		this.getAxiosInstance().interceptors.request.use((e) => {
-			let { prohibitRepeatRequests: n } = this.getDefaultRequestOptions();
-			return n && a.addPending(e), t(e);
-		}, (e) => n(this.getAxiosInstance(), e)), this.getAxiosInstance().interceptors.response.use((e) => (e && a.removePending(e.config), r(e)), (e) => i(this.getAxiosInstance(), e));
-	}
-	mergeHttpRequestOptions(e) {
-		let t = this.getDefaultRequestOptions();
-		return a(e) ? t : s({}, t, e);
-	}
-	mergeAxiosRequestConfigs(e) {
-		let n = s({}, this.getDefaultAxiosRequestConfig(), { paramsSerializer: { serialize(e) {
-			return t.stringify(e, { arrayFormat: "brackets" });
-		} } });
-		return a(e) ? n : s({}, n, e);
-	}
-	setupRequestStrategy(e, t, n) {
-		let { onRequestHook: r } = this.getAxiosInstanceHooks(), i = this.mergeHttpRequestOptions(n), c = this.mergeAxiosRequestConfigs(t);
-		r && o(r) && (c = r(c, i));
-		let l = this.createHttpHeaderPolicy(i.contentType);
-		return c.headers ? c.headers = s(c.headers, l.headers) : c.headers = l.headers, c.url = e, a(c.data) || (c.data = l.dataConvert(c.data)), {
-			config: c,
-			options: i
-		};
-	}
-	request(e, t) {
-		return new Promise((n, r) => {
-			let { onResponseErrorHook: i, onResponseSuccessHook: a } = this.getAxiosInstanceHooks();
-			this.getAxiosInstance().request(e).then((e) => {
-				a && o(a) ? n(a(e, t)) : n(e);
-			}).catch((e) => {
-				i && o(i) ? r(i(e, t)) : r(e);
-			});
-		});
-	}
-	process(e, t, n = {}) {
-		let r = this.setupRequestStrategy(e, t, n);
-		return this.request(r.config, r.options);
-	}
-	get(e, t = {}, n = { contentType: T.JSON }) {
-		return this.process(e, {
-			params: t,
-			method: E.GET
-		}, n);
-	}
-	post(e, t, n = { contentType: T.JSON }, r) {
-		return this.process(e, {
-			...r,
-			data: t,
-			method: E.POST
-		}, n);
-	}
-	postWithParams(e, t, n = {}, r = { contentType: T.JSON }, i) {
-		return this.process(e, {
-			...i,
-			params: t,
-			data: n,
-			method: E.POST
-		}, r);
-	}
-	put(e, t, n = { contentType: T.JSON }, r) {
-		return this.process(e, {
-			...r,
-			data: t,
-			method: E.PUT
-		}, n);
-	}
-	putWithParams(e, t, n = {}, r = { contentType: T.JSON }, i) {
-		return this.process(e, {
-			...i,
-			params: t,
-			data: n,
-			method: E.PUT
-		}, r);
-	}
-	delete(e, t = {}, n = { contentType: T.JSON }) {
-		return this.process(e, {
-			data: t,
-			method: E.DELETE
-		}, n);
-	}
-	deleteWithParams(e, t, n = {}, r = { contentType: T.JSON }) {
-		return this.process(e, {
-			params: t,
-			data: n,
-			method: E.DELETE
-		}, r);
-	}
-}, zt = (e, t) => {
-	let n = {};
-	n = "statusText" in e ? e.data : e;
-	let r = {
-		status: e.status,
-		code: 0,
-		detail: ""
-	};
-	return r.code = n && n.code ? n.code : 0, r.detail = n.error && n.error.detail ? n.error.detail : "", n.message ? r.message = n.message : n.error && n.error.message ? r.message = n.error.message : t && (r.message = t), r;
-}, Bt = (e) => {
-	let n = `rgba(${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)})`;
-	console.log("%c┍------------------------------------------------------------------------------------------┑", `color:${n};`), "config" in e ? (console.log("| 请求地址：", e.config.url), console.log("| 请求类型：", l(e.config.method)), console.log("| 请求参数：", t.parse(e.config.params)), console.log("| 响应数据：", e.data)) : "status" in e ? console.log("| 响应数据：", e.data) : console.log("| 响应数据：", e), console.log("%c┕------------------------------------------------------------------------------------------┙", `color:${n};`);
-}, Vt = (e) => e && "statusText" in e ? /^(2|3)\d{2}$/.test(String(e.status)) : !1, Ht = class {
-	http = {};
-	project = "";
-	clientId = "";
-	clientSecret = "";
-	oidc = !1;
-	uaaAddress = "";
-	upmsAddress = "";
-	msgAddress = "";
-	ossAddress = "";
-	bpmnAddress = "";
-	cmdbAddress = "";
-	iotAddress = "";
-	manageAddress = "";
-	proxy = "";
-	constructor(e, t) {
-		this.http = e, this.project = t.project, this.clientId = t.clientId, this.clientSecret = t.clientSecret, this.oidc = t.oidc ? t.oidc : !1, this.proxy = t.proxy ? t.proxy : "/api", this.switch(t.project);
-	}
-	switch(e) {
-		switch (e) {
-			case "dante":
-				this.uaaAddress = "/dante-cloud-uaa", this.upmsAddress = "/dante-cloud-upms", this.msgAddress = "/dante-cloud-message", this.ossAddress = "/dante-cloud-oss-ability", this.bpmnAddress = "/dante-cloud-bpmn-ability/engine-rest", this.cmdbAddress = "/dante-cloud-cmdb-ability", this.iotAddress = "/dante-cloud-iot-ability", this.manageAddress = "/dante-cloud-manage-ability";
-				break;
-			case "herodotus":
-				this.uaaAddress = "/herodotus-cloud-uaa", this.upmsAddress = "/herodotus-cloud-upms", this.msgAddress = "/herodotus-cloud-message", this.ossAddress = "/herodotus-cloud-oss-ability", this.bpmnAddress = "/herodotus-cloud-bpmn-ability/engine-rest", this.cmdbAddress = "/herodotus-cloud-cmdb-ability", this.iotAddress = "/herodotus-cloud-iot-ability", this.manageAddress = "/herodotus-cloud-manage-ability";
-				break;
-			default: this.uaaAddress = "", this.upmsAddress = "", this.msgAddress = "", this.ossAddress = "", this.bpmnAddress = "/engine-rest", this.cmdbAddress = "", this.iotAddress = "", this.manageAddress = "";
-		}
-	}
-	getProject() {
-		return this.project;
-	}
-	getClientSecret() {
-		return this.clientSecret;
-	}
-	getClientId() {
-		return this.clientId;
-	}
-	isOidc() {
-		return this.oidc;
-	}
-	getProxy() {
-		return this.proxy;
-	}
-	getHttp() {
-		return this.http;
-	}
-	processProxy(e, t = !0) {
-		return t ? this.proxy + e : e;
-	}
-	getUaa(e = !0) {
-		return this.processProxy(this.uaaAddress, e);
-	}
-	getUpms(e = !0) {
-		return this.processProxy(this.upmsAddress, e);
-	}
-	getMsg(e = !0) {
-		return this.processProxy(this.msgAddress, e);
-	}
-	getOss(e = !0) {
-		return this.processProxy(this.ossAddress, e);
-	}
-	getBpmn(e = !0, t = !1) {
-		let n = this.processProxy(this.bpmnAddress, e);
-		return t ? c(n, "engine-rest", "camunda-extended") : n;
-	}
-	getCmdb(e = !0) {
-		return this.processProxy(this.cmdbAddress, e);
-	}
-	getIot(e = !0) {
-		return this.processProxy(this.iotAddress, e);
-	}
-	getManage(e = !0) {
-		return this.processProxy(this.manageAddress, e);
-	}
-}, Z = class {
-	config;
-	constructor(e) {
-		this.config = e;
-	}
-	getConfig() {
-		return this.config;
-	}
-	getParamPath(e, t) {
-		return e + "/" + t;
-	}
-	getIdPath(e) {
-		return this.getParamPath(this.getBaseAddress(), e);
-	}
-}, Ut = class extends Z {
-	getConditionAddress() {
-		return this.getBaseAddress() + "/condition";
-	}
-	getListAddress() {
-		return this.getBaseAddress() + "/list";
-	}
-	getTreeAddress() {
-		return this.getBaseAddress() + "/tree";
-	}
-	fetch(e = {}) {
-		return this.getConfig().getHttp().get(this.getBaseAddress(), e);
-	}
-	fetchByPage(e, t = {}) {
-		if (a(t)) return this.getConfig().getHttp().get(this.getBaseAddress(), e);
-		{
-			let n = Object.assign(e, t);
-			return this.getConfig().getHttp().get(this.getConditionAddress(), n);
-		}
-	}
-	fetchAll(e = {}) {
-		return this.getConfig().getHttp().get(this.getListAddress(), e);
-	}
-	fetchTree(e = {}) {
-		return this.getConfig().getHttp().get(this.getTreeAddress(), e);
-	}
-	saveOrUpdate(e) {
-		return this.getConfig().getHttp().post(this.getBaseAddress(), e);
-	}
-	delete(e) {
-		return this.getConfig().getHttp().delete(this.getIdPath(e));
-	}
-	assign(e) {
-		return this.getConfig().getHttp().put(this.getBaseAddress(), e, { contentType: T.URL_ENCODED });
-	}
-};
-//#endregion
-//#region src/lib/utils/moment.ts
-d.locale("zh-cn");
-var Wt = class e {
+}.getInstance(), d.locale("zh-cn"), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	generate(e) {
-		return `data:image/svg+xml;utf8,${p(e)}`;
+		return `data:image/svg+xml;utf8,${f(e)}`;
 	}
-}.getInstance(), Gt = class e {
+}.getInstance();
+var Ft = class e {
 	static instance = new e();
 	cipherMode = 1;
 	constructor() {}
@@ -4921,42 +4388,45 @@ var Wt = class e {
 		return this.instance;
 	}
 	createKeyPair() {
-		return m.generateKeyPairHex();
+		return p.generateKeyPairHex();
 	}
 	encrypt(e, t) {
-		return "04" + m.doEncrypt(e, t, this.cipherMode);
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
 	}
 	decrypt(e, t) {
 		let n = e.substring(2).toLocaleLowerCase();
-		return m.doDecrypt(n, t, this.cipherMode, { output: "string" });
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
 	}
-}, Kt = class e {
+}, It = class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
 		return this.instance;
 	}
 	encrypt(e, t) {
-		return h.encrypt(e, t, { output: "string" });
+		return m.encrypt(e, t, { output: "string" });
 	}
 	decrypt(e, t) {
-		return h.decrypt(e, t, { output: "string" });
+		return m.decrypt(e, t, { output: "string" });
 	}
-}, qt = Gt.getInstance(), Jt = Kt.getInstance(), Yt = _.mixin({
+};
+Ft.getInstance(), It.getInstance();
+var Lt = v.mixin({
 	toast: !0,
 	position: "top",
 	showConfirmButton: !1,
 	timer: 2e3,
 	timerProgressBar: !1,
 	didOpen: (e) => {
-		e.addEventListener("mouseenter", _.stopTimer), e.addEventListener("mouseleave", _.resumeTimer);
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
 	}
-}), Q = (e) => e === C.SYSTEM ? "auto" : e, Xt = class e {
+}), Y = (e) => e === O.SYSTEM ? "auto" : e;
+(class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = Q(e);
+		this.theme = Y(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -4967,7 +4437,471 @@ var Wt = class e {
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = Q(e);
+		this.theme = Y(e);
+	}
+	information(e, t, n) {
+		return v.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		v.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		v.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		v.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(O.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = Y(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = Y(e);
+	}
+	information(e, t) {
+		return Lt.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(O.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = x.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			if (e !== void 0) {
+				let n = e % 66;
+				t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[n];
+			}
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return y(e).toString(b.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), d.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${f(e)}`;
+	}
+}.getInstance();
+var Rt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return p.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, zt = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return m.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return m.decrypt(e, t, { output: "string" });
+	}
+};
+Rt.getInstance(), zt.getInstance();
+var Bt = v.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", v.stopTimer), e.addEventListener("mouseleave", v.resumeTimer);
+	}
+}), X = (e) => e === D.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = X(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = X(e);
+	}
+	information(e, t, n) {
+		return v.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		v.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		v.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		v.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}).initialize(D.LIGHT), class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = X(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = X(e);
+	}
+	information(e, t) {
+		return Bt.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(D.LIGHT), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = x.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			if (e !== void 0) {
+				let n = e % 66;
+				t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[n];
+			}
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return y(e).toString(b.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance(), ee.locale("zh-cn"), class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${f(e)}`;
+	}
+}.getInstance();
+var Vt = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return p.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, Ht = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return m.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return m.decrypt(e, t, { output: "string" });
+	}
+};
+Vt.getInstance(), Ht.getInstance();
+var Ut = _.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", _.stopTimer), e.addEventListener("mouseleave", _.resumeTimer);
+	}
+}), Z = (e) => e === C.SYSTEM ? "auto" : e;
+(class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = Z(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = Z(e);
 	}
 	information(e, t, n) {
 		return _.fire({
@@ -5044,12 +4978,12 @@ var Wt = class e {
 			}
 		});
 	}
-}.initialize(C.LIGHT), $ = class e {
+}).initialize(C.LIGHT), class e {
 	static _instance = null;
 	static _initialized = !1;
 	theme;
 	constructor(e) {
-		this.theme = Q(e);
+		this.theme = Z(e);
 	}
 	static initialize(t) {
 		if (e._initialized) throw Error("RouterUtilities has already been initialized");
@@ -5060,10 +4994,10 @@ var Wt = class e {
 		return e._instance;
 	}
 	setTheme(e) {
-		this.theme = Q(e);
+		this.theme = Z(e);
 	}
 	information(e, t) {
-		return Yt.fire({
+		return Ut.fire({
 			icon: t,
 			title: e,
 			theme: this.theme
@@ -5084,9 +5018,7 @@ var Wt = class e {
 	question(e) {
 		return this.information(e, "question");
 	}
-}.initialize(C.LIGHT), Zt = (e) => {
-	Xt.setTheme(e), $.setTheme(e);
-}, Qt = class e {
+}.initialize(C.LIGHT), class e {
 	static instance = new e();
 	constructor() {}
 	static getInstance() {
@@ -5097,7 +5029,7 @@ var Wt = class e {
 		return new DataView(t).setUint32(0, e, !1), t;
 	}
 	getRandomValues(e) {
-		let t = S.WordArray.random(e), n = [];
+		let t = x.WordArray.random(e), n = [];
 		return t.words.forEach((e) => {
 			let t = this.toBytesInt32(e), r = new Uint8Array(t);
 			for (let e = 0; e < 4; e++) {
@@ -5121,7 +5053,543 @@ var Wt = class e {
 		return this.random(e);
 	}
 	generateChallenge(e) {
-		return b(e).toString(x.Base64url);
+		return y(e).toString(b.Base64url);
+	}
+	generateCodePair(e = 43) {
+		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
+		let t = this.generateVerifier(e);
+		return {
+			codeVerifier: t,
+			codeChallenge: this.generateChallenge(t)
+		};
+	}
+	verifyChallenge(e, t) {
+		return this.generateChallenge(e) === t;
+	}
+}.getInstance();
+//#endregion
+//#region src/lib/definitions/axios/canceler.ts
+var Q = /* @__PURE__ */ new Map(), Wt = (e) => {
+	if (!a(e.params)) {
+		let t = r.hashStr(e.params);
+		return [
+			e.method,
+			e.url,
+			t
+		].join("&");
+	}
+	return [e.method, e.url].join("&");
+}, Gt = class {
+	addPending(t) {
+		this.removePending(t);
+		let n = Wt(t);
+		t.cancelToken = t.cancelToken || new e.CancelToken((e) => {
+			Q.has(n) || Q.set(n, e);
+		});
+	}
+	removeAllPending() {
+		Q.forEach((e) => {
+			e && o(e) && e();
+		}), Q.clear();
+	}
+	removePending(e) {
+		let t = Wt(e);
+		if (Q.has(t)) {
+			let e = Q.get(t);
+			e && e(t), Q.delete(t);
+		}
+	}
+	reset() {
+		Q = /* @__PURE__ */ new Map();
+	}
+}, Kt = class {
+	axiosInstance;
+	defaultAxiosRequestConfig;
+	defaultRequestOptions;
+	axiosInstanceHooks;
+	constructor(e, t, n) {
+		this.defaultAxiosRequestConfig = e, this.defaultRequestOptions = n, this.axiosInstanceHooks = t, this.axiosInstance = this.createAxiosInstance(e), this.setupInterceptors();
+	}
+	createAxiosInstance(t) {
+		return e.create(t);
+	}
+	getDefaultAxiosRequestConfig() {
+		return this.defaultAxiosRequestConfig;
+	}
+	getDefaultRequestOptions() {
+		return this.defaultRequestOptions;
+	}
+	getAxiosInstanceHooks() {
+		return this.axiosInstanceHooks;
+	}
+	getAxiosInstance() {
+		return this.axiosInstance;
+	}
+	createHttpHeaderPolicy(e) {
+		switch (e) {
+			case w.URL_ENCODED: return {
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				dataConvert: (e) => t.stringify(e, { arrayFormat: "brackets" })
+			};
+			case w.MULTI_PART: return {
+				headers: { "Content-Type": "multipart/form-data" },
+				dataConvert: (e) => e
+			};
+			default: return {
+				headers: { "Content-Type": "application/json" },
+				dataConvert: (e) => JSON.stringify(e)
+			};
+		}
+	}
+	setupInterceptors() {
+		let e = this.getAxiosInstanceHooks();
+		if (!e) return;
+		let { requestInterceptors: t, requestInterceptorsError: n, responseInterceptors: r, responseInterceptorsError: i } = e, a = new Gt();
+		this.getAxiosInstance().interceptors.request.use((e) => {
+			let { prohibitRepeatRequests: n } = this.getDefaultRequestOptions();
+			return n && a.addPending(e), t(e);
+		}, (e) => n(this.getAxiosInstance(), e)), this.getAxiosInstance().interceptors.response.use((e) => (e && a.removePending(e.config), r(e)), (e) => i(this.getAxiosInstance(), e));
+	}
+	mergeHttpRequestOptions(e) {
+		let t = this.getDefaultRequestOptions();
+		return a(e) ? t : s({}, t, e);
+	}
+	mergeAxiosRequestConfigs(e) {
+		let n = s({}, this.getDefaultAxiosRequestConfig(), { paramsSerializer: { serialize(e) {
+			return t.stringify(e, { arrayFormat: "brackets" });
+		} } });
+		return a(e) ? n : s({}, n, e);
+	}
+	setupRequestStrategy(e, t, n) {
+		let { onRequestHook: r } = this.getAxiosInstanceHooks(), i = this.mergeHttpRequestOptions(n), c = this.mergeAxiosRequestConfigs(t);
+		r && o(r) && (c = r(c, i));
+		let l = this.createHttpHeaderPolicy(i.contentType);
+		return c.headers ? c.headers = s(c.headers, l.headers) : c.headers = l.headers, c.url = e, a(c.data) || (c.data = l.dataConvert(c.data)), {
+			config: c,
+			options: i
+		};
+	}
+	request(e, t) {
+		return new Promise((n, r) => {
+			let { onResponseErrorHook: i, onResponseSuccessHook: a } = this.getAxiosInstanceHooks();
+			this.getAxiosInstance().request(e).then((e) => {
+				a && o(a) ? n(a(e, t)) : n(e);
+			}).catch((e) => {
+				i && o(i) ? r(i(e, t)) : r(e);
+			});
+		});
+	}
+	process(e, t, n = {}) {
+		let r = this.setupRequestStrategy(e, t, n);
+		return this.request(r.config, r.options);
+	}
+	get(e, t = {}, n = { contentType: w.JSON }) {
+		return this.process(e, {
+			params: t,
+			method: T.GET
+		}, n);
+	}
+	post(e, t, n = { contentType: w.JSON }, r) {
+		return this.process(e, {
+			...r,
+			data: t,
+			method: T.POST
+		}, n);
+	}
+	postWithParams(e, t, n = {}, r = { contentType: w.JSON }, i) {
+		return this.process(e, {
+			...i,
+			params: t,
+			data: n,
+			method: T.POST
+		}, r);
+	}
+	put(e, t, n = { contentType: w.JSON }, r) {
+		return this.process(e, {
+			...r,
+			data: t,
+			method: T.PUT
+		}, n);
+	}
+	putWithParams(e, t, n = {}, r = { contentType: w.JSON }, i) {
+		return this.process(e, {
+			...i,
+			params: t,
+			data: n,
+			method: T.PUT
+		}, r);
+	}
+	delete(e, t = {}, n = { contentType: w.JSON }) {
+		return this.process(e, {
+			data: t,
+			method: T.DELETE
+		}, n);
+	}
+	deleteWithParams(e, t, n = {}, r = { contentType: w.JSON }) {
+		return this.process(e, {
+			params: t,
+			data: n,
+			method: T.DELETE
+		}, r);
+	}
+}, qt = (e, t) => {
+	let n = {};
+	n = "statusText" in e ? e.data : e;
+	let r = {
+		status: e.status,
+		code: 0,
+		detail: ""
+	};
+	return r.code = n && n.code ? n.code : 0, r.detail = n.error && n.error.detail ? n.error.detail : "", n.message ? r.message = n.message : n.error && n.error.message ? r.message = n.error.message : t && (r.message = t), r;
+}, Jt = (e) => {
+	let n = `rgba(${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)},${Math.round(Math.random() * 255)})`;
+	console.log("%c┍------------------------------------------------------------------------------------------┑", `color:${n};`), "config" in e ? (console.log("| 请求地址：", e.config.url), console.log("| 请求类型：", l(e.config.method)), console.log("| 请求参数：", t.parse(e.config.params)), console.log("| 响应数据：", e.data)) : "status" in e ? console.log("| 响应数据：", e.data) : console.log("| 响应数据：", e), console.log("%c┕------------------------------------------------------------------------------------------┙", `color:${n};`);
+}, Yt = (e) => e && "statusText" in e ? /^(2|3)\d{2}$/.test(String(e.status)) : !1, Xt = class {
+	http = {};
+	project = "";
+	clientId = "";
+	clientSecret = "";
+	oidc = !1;
+	uaaAddress = "";
+	upmsAddress = "";
+	msgAddress = "";
+	ossAddress = "";
+	bpmnAddress = "";
+	cmdbAddress = "";
+	iotAddress = "";
+	manageAddress = "";
+	proxy = "";
+	constructor(e, t) {
+		this.http = e, this.project = t.project, this.clientId = t.clientId, this.clientSecret = t.clientSecret, this.oidc = t.oidc ? t.oidc : !1, this.proxy = t.proxy ? t.proxy : "/api", this.switch(t.project);
+	}
+	switch(e) {
+		switch (e) {
+			case "dante":
+				this.uaaAddress = "/dante-cloud-uaa", this.upmsAddress = "/dante-cloud-upms", this.msgAddress = "/dante-cloud-message", this.ossAddress = "/dante-cloud-oss-ability", this.bpmnAddress = "/dante-cloud-bpmn-ability/engine-rest", this.cmdbAddress = "/dante-cloud-cmdb-ability", this.iotAddress = "/dante-cloud-iot-ability", this.manageAddress = "/dante-cloud-manage-ability";
+				break;
+			case "herodotus":
+				this.uaaAddress = "/herodotus-cloud-uaa", this.upmsAddress = "/herodotus-cloud-upms", this.msgAddress = "/herodotus-cloud-message", this.ossAddress = "/herodotus-cloud-oss-ability", this.bpmnAddress = "/herodotus-cloud-bpmn-ability/engine-rest", this.cmdbAddress = "/herodotus-cloud-cmdb-ability", this.iotAddress = "/herodotus-cloud-iot-ability", this.manageAddress = "/herodotus-cloud-manage-ability";
+				break;
+			default: this.uaaAddress = "", this.upmsAddress = "", this.msgAddress = "", this.ossAddress = "", this.bpmnAddress = "/engine-rest", this.cmdbAddress = "", this.iotAddress = "", this.manageAddress = "";
+		}
+	}
+	getProject() {
+		return this.project;
+	}
+	getClientSecret() {
+		return this.clientSecret;
+	}
+	getClientId() {
+		return this.clientId;
+	}
+	isOidc() {
+		return this.oidc;
+	}
+	getProxy() {
+		return this.proxy;
+	}
+	getHttp() {
+		return this.http;
+	}
+	processProxy(e, t = !0) {
+		return t ? this.proxy + e : e;
+	}
+	getUaa(e = !0) {
+		return this.processProxy(this.uaaAddress, e);
+	}
+	getUpms(e = !0) {
+		return this.processProxy(this.upmsAddress, e);
+	}
+	getMsg(e = !0) {
+		return this.processProxy(this.msgAddress, e);
+	}
+	getOss(e = !0) {
+		return this.processProxy(this.ossAddress, e);
+	}
+	getBpmn(e = !0, t = !1) {
+		let n = this.processProxy(this.bpmnAddress, e);
+		return t ? c(n, "engine-rest", "camunda-extended") : n;
+	}
+	getCmdb(e = !0) {
+		return this.processProxy(this.cmdbAddress, e);
+	}
+	getIot(e = !0) {
+		return this.processProxy(this.iotAddress, e);
+	}
+	getManage(e = !0) {
+		return this.processProxy(this.manageAddress, e);
+	}
+}, Zt = class {
+	config;
+	constructor(e) {
+		this.config = e;
+	}
+	getConfig() {
+		return this.config;
+	}
+	getParamPath(e, t) {
+		return e + "/" + t;
+	}
+	getIdPath(e) {
+		return this.getParamPath(this.getBaseAddress(), e);
+	}
+}, Qt = class extends Zt {
+	getConditionAddress() {
+		return this.getBaseAddress() + "/condition";
+	}
+	getListAddress() {
+		return this.getBaseAddress() + "/list";
+	}
+	getTreeAddress() {
+		return this.getBaseAddress() + "/tree";
+	}
+	fetch(e = {}) {
+		return this.getConfig().getHttp().get(this.getBaseAddress(), e);
+	}
+	fetchByPage(e, t = {}) {
+		if (a(t)) return this.getConfig().getHttp().get(this.getBaseAddress(), e);
+		{
+			let n = Object.assign(e, t);
+			return this.getConfig().getHttp().get(this.getConditionAddress(), n);
+		}
+	}
+	fetchAll(e = {}) {
+		return this.getConfig().getHttp().get(this.getListAddress(), e);
+	}
+	fetchTree(e = {}) {
+		return this.getConfig().getHttp().get(this.getTreeAddress(), e);
+	}
+	saveOrUpdate(e) {
+		return this.getConfig().getHttp().post(this.getBaseAddress(), e);
+	}
+	delete(e) {
+		return this.getConfig().getHttp().delete(this.getIdPath(e));
+	}
+	assign(e) {
+		return this.getConfig().getHttp().put(this.getBaseAddress(), e, { contentType: w.URL_ENCODED });
+	}
+};
+//#endregion
+//#region src/lib/utils/moment.ts
+u.locale("zh-cn");
+var $t = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	generate(e) {
+		return `data:image/svg+xml;utf8,${f(e)}`;
+	}
+}.getInstance(), en = class e {
+	static instance = new e();
+	cipherMode = 1;
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	createKeyPair() {
+		return p.generateKeyPairHex();
+	}
+	encrypt(e, t) {
+		return "04" + p.doEncrypt(e, t, this.cipherMode);
+	}
+	decrypt(e, t) {
+		let n = e.substring(2).toLocaleLowerCase();
+		return p.doDecrypt(n, t, this.cipherMode, { output: "string" });
+	}
+}, tn = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	encrypt(e, t) {
+		return m.encrypt(e, t, { output: "string" });
+	}
+	decrypt(e, t) {
+		return m.decrypt(e, t, { output: "string" });
+	}
+}, nn = en.getInstance(), rn = tn.getInstance(), an = g.mixin({
+	toast: !0,
+	position: "top",
+	showConfirmButton: !1,
+	timer: 2e3,
+	timerProgressBar: !1,
+	didOpen: (e) => {
+		e.addEventListener("mouseenter", g.stopTimer), e.addEventListener("mouseleave", g.resumeTimer);
+	}
+}), $ = (e) => e === S.SYSTEM ? "auto" : e, on = class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = $(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = $(e);
+	}
+	information(e, t, n) {
+		return g.fire({
+			title: e,
+			text: t,
+			position: "top",
+			icon: n,
+			theme: this.theme,
+			timer: 5e3,
+			showConfirmButton: !1,
+			showClass: { popup: "animate__animated animate__fadeIn" },
+			hideClass: { popup: "animate__animated animate__fadeOut" }
+		});
+	}
+	info(e, t = "") {
+		return this.information(e, t, "info");
+	}
+	error(e, t = "") {
+		return this.information(e, t, "error");
+	}
+	warning(e, t = "") {
+		return this.information(e, t, "warning");
+	}
+	success(e, t = "") {
+		return this.information(e, t, "success");
+	}
+	question(e, t = "") {
+		return this.information(e, t, "question");
+	}
+	getConfirmButtonColor() {
+		return this.theme === "light" ? "#6750A4" : "#2563eb";
+	}
+	standardDeleteNotify(e, t) {
+		g.fire({
+			title: "确定删除?",
+			text: "您将无法恢复此操作！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的, 删除!",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	signOutNotify(e, t) {
+		g.fire({
+			title: "要走了么?",
+			text: "您确定要退出系统！",
+			icon: "warning",
+			theme: this.theme,
+			showCancelButton: !0,
+			confirmButtonColor: this.getConfirmButtonColor(),
+			cancelButtonColor: "#d33",
+			confirmButtonText: "是的",
+			cancelButtonText: "取消"
+		}).then((n) => {
+			n.value ? e() : t && t();
+		});
+	}
+	tokenExpiresNotify(e, t, n, r) {
+		g.fire({
+			title: e,
+			text: t,
+			icon: n,
+			theme: this.theme,
+			showClass: { popup: "animate__animated animate__fadeInDown" },
+			hideClass: { popup: "animate__animated animate__fadeOutUp" },
+			confirmButtonText: "已阅!",
+			willClose: () => {
+				r();
+			}
+		});
+	}
+}.initialize(S.LIGHT), sn = class e {
+	static _instance = null;
+	static _initialized = !1;
+	theme;
+	constructor(e) {
+		this.theme = $(e);
+	}
+	static initialize(t) {
+		if (e._initialized) throw Error("RouterUtilities has already been initialized");
+		return e._instance = new e(t), e._initialized = !0, e._instance;
+	}
+	static getInstance() {
+		if (!e._instance) throw Error("RouterUtilities not initialized. Call initialize() first.");
+		return e._instance;
+	}
+	setTheme(e) {
+		this.theme = $(e);
+	}
+	information(e, t) {
+		return an.fire({
+			icon: t,
+			title: e,
+			theme: this.theme
+		});
+	}
+	info(e) {
+		return this.information(e, "info");
+	}
+	error(e) {
+		return this.information(e, "error");
+	}
+	warning(e) {
+		return this.information(e, "warning");
+	}
+	success(e) {
+		return this.information(e, "success");
+	}
+	question(e) {
+		return this.information(e, "question");
+	}
+}.initialize(S.LIGHT), cn = (e) => {
+	on.setTheme(e), sn.setTheme(e);
+}, ln = class e {
+	static instance = new e();
+	constructor() {}
+	static getInstance() {
+		return this.instance;
+	}
+	toBytesInt32(e) {
+		let t = /* @__PURE__ */ new ArrayBuffer(4);
+		return new DataView(t).setUint32(0, e, !1), t;
+	}
+	getRandomValues(e) {
+		let t = x.WordArray.random(e), n = [];
+		return t.words.forEach((e) => {
+			let t = this.toBytesInt32(e), r = new Uint8Array(t);
+			for (let e = 0; e < 4; e++) {
+				let t = r[e];
+				t !== void 0 && n.push(t);
+			}
+		}), n;
+	}
+	random(e) {
+		let t = "", n = this.getRandomValues(e);
+		for (let r = 0; r < e; r++) {
+			let e = n[r];
+			if (e !== void 0) {
+				let n = e % 66;
+				t += "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~"[n];
+			}
+		}
+		return t;
+	}
+	generateVerifier(e) {
+		return this.random(e);
+	}
+	generateChallenge(e) {
+		return y(e).toString(b.Base64url);
 	}
 	generateCodePair(e = 43) {
 		if (e < 43 || e > 128) throw `Expected a length between 43 and 128. Received ${e}.`;
@@ -5137,30 +5605,30 @@ var Wt = class e {
 }.getInstance();
 //#endregion
 //#region src/hooks/useHttp.ts
-function $t(r) {
+function un(r) {
 	let a = {
 		timeout: 1e3 * 12,
 		paramsSerializer: (e) => t.stringify(e, { arrayFormat: "brackets" })
 	}, o = () => r ? i(a, r) : a, s = (e) => {
 		switch (e) {
-			case T.URL_ENCODED: return { "Content-Type": "application/x-www-form-urlencoded" };
-			case T.MULTI_PART: return { "Content-Type": "multipart/form-data" };
+			case w.URL_ENCODED: return { "Content-Type": "application/x-www-form-urlencoded" };
+			case w.MULTI_PART: return { "Content-Type": "multipart/form-data" };
 			default: return { "Content-Type": "application/json" };
 		}
 	}, c = (e, t, n) => {
-		let r = { Authorization: D.BEARER + e };
+		let r = { Authorization: E.BEARER + e };
 		return t && (r["X-Herodotus-Session-Id"] = t), n && (r["X-Herodotus-Tenant-Id"] = n), r;
 	}, l = (e, t, n, r) => {
-		let i = { Authorization: D.BASIC + g.encode(e + ":" + t) };
+		let i = { Authorization: E.BASIC + h.encode(e + ":" + t) };
 		return n && (i["X-Herodotus-Session-Id"] = n), r && (i["X-Herodotus-Tenant-Id"] = r), i;
-	}, u = (e, t) => {
+	}, ee = (e, t) => {
 		let n = s(e);
 		return t ? i({}, n, t) : n;
-	}, d = e.create(o()), f = (e, t = {}, r = {}, i = E.GET, a = T.JSON, o) => {
+	}, u = e.create(o()), d = (e, t = {}, r = {}, i = T.GET, a = w.JSON, o) => {
 		let { execute: s } = n(e, {
-			headers: u(a, o),
+			headers: ee(a, o),
 			method: i
-		}, d, { immediate: !1 }), c = {};
+		}, u, { immediate: !1 }), c = {};
 		return t && (c.data = t), r && (c.params = r), new Promise((e, t) => {
 			s(c).then((t) => {
 				let n = t.response.value;
@@ -5171,13 +5639,13 @@ function $t(r) {
 		});
 	};
 	return {
-		doGet: (e, t = {}, n) => f(e, "", t, E.GET, T.JSON, n),
-		doPost: (e, t = {}, n = T.JSON, r = {}, i) => f(e, t, r, E.POST, n, i),
-		doPut: (e, t = {}, n = T.JSON, r = {}) => f(e, t, r, E.PUT, n),
-		doDelete: (e, t = {}, n = T.JSON, r = {}) => f(e, t, r, E.DELETE, n),
+		doGet: (e, t = {}, n) => d(e, "", t, T.GET, w.JSON, n),
+		doPost: (e, t = {}, n = w.JSON, r = {}, i) => d(e, t, r, T.POST, n, i),
+		doPut: (e, t = {}, n = w.JSON, r = {}) => d(e, t, r, T.PUT, n),
+		doDelete: (e, t = {}, n = w.JSON, r = {}) => d(e, t, r, T.DELETE, n),
 		createHeaderWithBearer: c,
 		createHeaderWithBasic: l
 	};
 }
 //#endregion
-export { Ut as AbstractService, ie as AuthorizationGrantTypeEnum, re as AuthorizationTokenEnum, Wt as AvatarUtils, Rt as Axios, g as Base64, oe as BuildInScopeEnum, ae as ClientAuthenticationMethodEnum, ee as ContentTypeEnum, Ht as HttpConfig, te as HttpMethodEnum, se as OperationEnum, Qt as PKCE, qt as SM2Utils, Jt as SM4Utils, Z as Service, ne as StatusEnum, _ as Swal, C as ThemeModeEnum, Zt as changeSwalTheme, Vt as isSuccess, Bt as logResponse, d as moment, Xt as notify, zt as parseResponseStatus, $ as toast, $t as useHttp };
+export { Qt as AbstractService, ae as AuthorizationGrantTypeEnum, ie as AuthorizationTokenEnum, $t as AvatarUtils, Kt as Axios, h as Base64, se as BuildInScopeEnum, oe as ClientAuthenticationMethodEnum, te as ContentTypeEnum, Xt as HttpConfig, ne as HttpMethodEnum, ce as OperationEnum, ln as PKCE, nn as SM2Utils, rn as SM4Utils, Zt as Service, re as StatusEnum, g as Swal, S as ThemeModeEnum, cn as changeSwalTheme, Yt as isSuccess, Jt as logResponse, u as moment, on as notify, qt as parseResponseStatus, sn as toast, un as useHttp };
