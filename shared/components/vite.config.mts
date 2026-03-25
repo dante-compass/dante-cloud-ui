@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import Vue from '@vitejs/plugin-vue';
-import dts from 'vite-plugin-dts';
+import dts from 'unplugin-dts/vite';
 import { transformAssetUrls } from '@quasar/vite-plugin';
 
 // https://vitejs.dev/config/
@@ -12,7 +12,7 @@ export default defineConfig({
     }),
     dts({
       insertTypesEntry: true,
-      outDir: './dist/types',
+      outDirs: './dist/types',
     }),
   ],
   resolve: {

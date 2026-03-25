@@ -4,7 +4,7 @@ import Vue from '@vitejs/plugin-vue';
 import { QuasarResolver } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
 import { defineConfig } from 'vite';
-import dts from 'vite-plugin-dts';
+import dts from 'unplugin-dts/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,7 +17,7 @@ export default defineConfig({
     }),
     dts({
       insertTypesEntry: true,
-      outDir: './dist/types',
+      outDirs: './dist/types',
     }),
   ],
   resolve: {
