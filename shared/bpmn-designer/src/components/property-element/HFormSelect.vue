@@ -56,7 +56,7 @@ export default defineComponent({
       const result = await resource.dynamicFormService.fetchAll();
       const data = result.data;
       if (!isEmpty(data)) {
-        options.value = data.map((i) => {
+        options.value = data.map((i: any) => {
           return { label: i.name + '-' + i.activityName, value: i.id } as FormSelectItem;
         });
       }

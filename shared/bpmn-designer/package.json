@@ -17,13 +17,13 @@
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.mjs",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/types/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/types/src/index.d.ts",
       "import": "./dist/index.es.mjs",
       "require": "./dist/index.cjs.js"
     },
@@ -38,7 +38,7 @@
     "@herodotus-cloud/core": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
     "@highlightjs/vue-plugin": "^2.1.0",
-    "bpmn-js": "^18.13.1",
+    "bpmn-js": "^18.13.2",
     "bpmn-js-bpmnlint": "^0.24.0",
     "bpmn-js-connectors-extension": "^0.4.6",
     "bpmn-js-properties-panel": "^6.0.1",
@@ -54,6 +54,6 @@
     "ids": "^3.0.2",
     "pinia": "^3.0.4",
     "preact": "^10.29.0",
-    "vue": "^3.5.30"
+    "vue": "^3.5.31"
   }
 }

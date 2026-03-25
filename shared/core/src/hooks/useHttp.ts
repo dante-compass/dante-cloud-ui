@@ -12,7 +12,7 @@ import { useAxios } from '@vueuse/integrations/useAxios';
 
 import { Base64 } from '@/lib';
 import { assignIn } from 'lodash-es';
-import { ContentTypeEnum, HttpMethodEnum, AuthorizationTokenEnum } from '@herodotus-cloud/core';
+import { ContentTypeEnum, HttpMethodEnum, AuthorizationTokenEnum } from '@/enums';
 
 /**
  * Http 请求 Hooks
@@ -48,11 +48,7 @@ export default function useHttp(config?: CreateAxiosDefaults) {
     }
   };
 
-  const createHeaderWithBearer = (
-    token: string,
-    sessionId?: string,
-    tenantId?: string,
-  ): Record<string, string> => {
+  const createHeaderWithBearer = (token: string, sessionId?: string, tenantId?: string): Record<string, string> => {
     const headers = {
       Authorization: AuthorizationTokenEnum.BEARER + token,
     } as Record<string, string>;
@@ -136,11 +132,7 @@ export default function useHttp(config?: CreateAxiosDefaults) {
     });
   };
 
-  const doGet = <T>(
-    url: string,
-    params = {},
-    headers?: Record<string, string>,
-  ): Promise<AxiosHttpResult<T>> => {
+  const doGet = <T>(url: string, params = {}, headers?: Record<string, string>): Promise<AxiosHttpResult<T>> => {
     return request<T, string>(url, '', params, HttpMethodEnum.GET, ContentTypeEnum.JSON, headers);
   };
 

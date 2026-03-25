@@ -17,7 +17,6 @@ export default defineConfig({
       resolvers: [QuasarResolver()],
     }),
     dts({
-      insertTypesEntry: true,
       outDir: './dist/types',
     }),
   ],

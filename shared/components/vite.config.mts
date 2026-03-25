@@ -11,7 +11,6 @@ export default defineConfig({
       template: { transformAssetUrls },
     }),
     dts({
-      insertTypesEntry: true,
       outDir: './dist/types',
     }),
   ],
