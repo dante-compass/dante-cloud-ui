@@ -30,7 +30,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   const env = loadEnv(mode, process.cwd());
   return defineConfig({
     // 增加基础路径配置，修复在反向代理指向子路径的配置方式下，出现静态资源 404 问题
-    base: env.VITE_BASE_PATH,
+    base: env.VITE_BASE_URL,
     plugins: [
       nodePolyfills(),
       UnoCSS({

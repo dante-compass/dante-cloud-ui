@@ -17,18 +17,18 @@
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.mjs",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/types/src/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
+      "types": "./dist/types/src/index.d.ts",
       "import": "./dist/index.es.mjs",
       "require": "./dist/index.cjs.js"
     },
     "./resolver": {
-      "types": "./dist/types/resolver.d.ts",
+      "types": "./dist/types/src/resolver.d.ts",
       "import": "./dist/resolver.es.mjs",
       "require": "./dist/resolver.cjs.js"
     },
@@ -41,6 +41,6 @@
     "@tsparticles/basic": "^3.9.1",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/interaction-particles-links": "^3.9.1",
-    "quasar": "^2.18.7"
+    "quasar": "^2.19.1"
   }
 }

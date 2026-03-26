@@ -13,7 +13,7 @@ import type {
   HttpResult,
 } from '@/declarations';
 
-import { ContentTypeEnum, HttpMethodEnum } from '@herodotus-cloud/core';
+import { ContentTypeEnum, HttpMethodEnum } from '@/enums';
 
 import axios from 'axios';
 import qs from 'qs';
@@ -96,12 +96,8 @@ export class Axios {
       return;
     }
 
-    const {
-      requestInterceptors,
-      requestInterceptorsError,
-      responseInterceptors,
-      responseInterceptorsError,
-    } = instanceHooks;
+    const { requestInterceptors, requestInterceptorsError, responseInterceptors, responseInterceptorsError } =
+      instanceHooks;
 
     const axiosCanceler = new AxiosCanceler();
 
@@ -186,8 +182,7 @@ export class Axios {
     const httpRequestOptions = this.mergeHttpRequestOptions(currentHttpRequestOptions);
 
     // 合并 axios request config。把当前请求的 AxiosRequestConfig 与全局 AxiosRequestConfig 整合获得一个完整的 AxiosRequestConfig
-    let axiosRequestConfig: AxiosRequestConfig<D> =
-      this.mergeAxiosRequestConfigs(currentAxiosRequestConfig);
+    let axiosRequestConfig: AxiosRequestConfig<D> = this.mergeAxiosRequestConfigs(currentAxiosRequestConfig);
     if (onRequestHook && isFunction(onRequestHook)) {
       // 允许在 onRequestHook 中，对 AxiosRequestConfig 进行一些额外的设置
       axiosRequestConfig = onRequestHook(axiosRequestConfig, httpRequestOptions);

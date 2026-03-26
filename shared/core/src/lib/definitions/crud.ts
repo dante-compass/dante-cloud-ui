@@ -1,5 +1,5 @@
 import type { AxiosHttpResult, Conditions, Domain, Page, Pageable, Tree } from '@/declarations';
-import { ContentTypeEnum } from '@herodotus-cloud/core';
+import { ContentTypeEnum } from '@/enums';
 import { HttpConfig } from './config';
 import { isEmpty } from 'lodash-es';
 
@@ -47,9 +47,7 @@ export abstract class AbstractService<I extends Domain, O extends Domain = I> ex
       return this.getConfig().getHttp().get<Page<O>, Pageable>(this.getBaseAddress(), params);
     } else {
       const fullParams = Object.assign(params, others);
-      return this.getConfig()
-        .getHttp()
-        .get<Page<O>, Pageable>(this.getConditionAddress(), fullParams);
+      return this.getConfig().getHttp().get<Page<O>, Pageable>(this.getConditionAddress(), fullParams);
     }
   }
 

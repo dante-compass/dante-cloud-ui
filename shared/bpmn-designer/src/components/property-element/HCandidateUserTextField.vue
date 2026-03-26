@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h-text-field v-model="assignee" dense :label="label">
+    <q-input v-model="assignee" dense :label="label">
       <template v-slot:append>
         <q-btn
           round
@@ -12,7 +12,7 @@
           @click="onOpen()"
         />
       </template>
-    </h-text-field>
+    </q-input>
     <h-dialog v-model="isOpen" @confirm="onSave()" :title="title">
       <h-user-select-table v-model="selected" :selection="selection"></h-user-select-table>
     </h-dialog>
