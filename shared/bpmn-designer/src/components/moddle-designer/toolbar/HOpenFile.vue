@@ -12,12 +12,7 @@
       <q-icon name="mdi-folder-open" color="primary" @click.stop.prevent />
     </template>
     <template v-slot:append>
-      <q-icon
-        v-if="diagramFile !== null"
-        name="close"
-        @click.stop.prevent="clear"
-        class="cursor-pointer"
-      />
+      <q-icon v-if="diagramFile !== null" name="close" @click.stop.prevent="clear" class="cursor-pointer" />
     </template>
   </q-file>
 </template>

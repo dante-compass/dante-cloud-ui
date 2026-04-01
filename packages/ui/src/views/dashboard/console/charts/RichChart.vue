@@ -23,18 +23,7 @@ const options = ref<EChartsCoreOption>({
   legend: {
     orient: 'vertical',
     x: 'left',
-    data: [
-      'Web',
-      'Java客户端',
-      'Node客户端',
-      'Python',
-      'IOS',
-      'Android',
-      'Kafka',
-      'Mqtt',
-      'Redis',
-      '其他',
-    ],
+    data: ['Web', 'Java客户端', 'Node客户端', 'Python', 'IOS', 'Android', 'Kafka', 'Mqtt', 'Redis', '其他'],
   },
   series: [
     {

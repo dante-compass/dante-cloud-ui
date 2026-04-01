@@ -9,5 +9,5 @@ export default {
   ParallelGateway: '并行网关',
   InclusiveGateway: '相容网关',
   ComplexGateway: '复杂网关',
-  EventBasedGateway: '事件网关'
-}
+  EventBasedGateway: '事件网关',
+};

@@ -27,12 +27,7 @@ export const useStompWebSocketStore = defineStore('StompWebSocket', {
 
     getWebSocketAddress(): string {
       const store = useAuthenticationStore();
-      return (
-        `ws://${location.host}/socket` +
-        API.core.getConfig().getMsg(false) +
-        '/stomp/ws?openid=' +
-        store.userId
-      );
+      return `ws://${location.host}/socket` + API.core.getConfig().getMsg(false) + '/stomp/ws?openid=' + store.userId;
       // return `ws://${location.host}/socket` + API.getConfig().getMsg(false) + '/stomp/ws';
     },
 

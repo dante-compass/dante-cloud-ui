@@ -42,7 +42,7 @@ const components = [
 ];
 
 const install = (app: App) => {
-  components.map(component => component.install(app));
+  components.map((component) => component.install(app));
 };
 
 export {

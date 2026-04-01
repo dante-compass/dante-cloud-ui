@@ -1,1 +1,0 @@
-import{Bt as e,vt as t,wt as n}from"./npm-@herodotus-framework-C9XUtMd6.js";var r=n({name:`OssObjectAuthorize`,__name:`Authorize`,setup(n){return(n,r)=>(e(),t(`div`,null,`ApplicationAuthorize`))}});export{r as t};

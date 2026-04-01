@@ -6,4 +6,4 @@ import { default as HDownloadDropdown } from './HDownloadDropdown.vue';
 import { default as HPreviewDropdown } from './HPreviewDropdown.vue';
 import { default as HOpenFile } from './HOpenFile.vue';
 import { default as HUploadDialog } from './HUploadDialog.vue';
-export { HAlignGroup, HCommandGroup, HToolGroup, HZoomGroup, HDownloadDropdown, HPreviewDropdown, HOpenFile, HUploadDialog };
+export { HAlignGroup, HCommandGroup, HToolGroup, HZoomGroup, HDownloadDropdown, HPreviewDropdown, HOpenFile, HUploadDialog, };

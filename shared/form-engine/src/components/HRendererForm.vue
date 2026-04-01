@@ -1,9 +1,6 @@
 <template>
   <div v-for="item in elements" :key="item.id">
-    <h-renderer-engine
-      v-model="state[getDefaultModel(item)!.name]"
-      :schemas="[item.schema]"
-    ></h-renderer-engine>
+    <h-renderer-engine v-model="state[getDefaultModel(item)!.name]" :schemas="[item.schema]"></h-renderer-engine>
   </div>
 </template>
 

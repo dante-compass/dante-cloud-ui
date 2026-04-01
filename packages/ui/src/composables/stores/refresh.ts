@@ -31,11 +31,7 @@ export const useRefreshStore = defineStore('Refresh', {
           })
           .catch((res) => {
             console.error('refreshtoken error =>', res);
-            SignOutUtilities.getInstance().tokenExpires(
-              '认证失效!',
-              '登录认证已过期，请重新登录！',
-              'warning',
-            );
+            SignOutUtilities.getInstance().tokenExpires('认证失效!', '登录认证已过期，请重新登录！', 'warning');
           })
           .finally(() => {
             this.refreshing = false;

@@ -14,7 +14,7 @@ export const setupQuasar = (app: App<Element>) => {
     plugins: {
       Loading,
       AppFullscreen,
-      Notify
+      Notify,
     },
     lang: quasarLang,
     iconSet: quasarIconSet,
@@ -23,7 +23,7 @@ export const setupQuasar = (app: App<Element>) => {
         spinnerColor: 'primary',
         spinnerSize: 100,
         message: '正在处理中. 请稍后...',
-      }
-    }
+      },
+    },
   });
 };

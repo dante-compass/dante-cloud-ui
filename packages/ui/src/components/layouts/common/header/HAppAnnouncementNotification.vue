@@ -24,9 +24,7 @@ export default defineComponent({
   name: 'HAppAnnouncementNotification',
 
   setup() {
-    const { items, hasAnnouncement, convertDate } = useNotifications(
-      NotificationCategoryEnum.ANNOUNCEMENT,
-    );
+    const { items, hasAnnouncement, convertDate } = useNotifications(NotificationCategoryEnum.ANNOUNCEMENT);
 
     return {
       items,

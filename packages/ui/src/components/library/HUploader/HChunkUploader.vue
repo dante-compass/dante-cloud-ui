@@ -120,11 +120,7 @@ export default defineComponent({
     });
 
     // 单个文件上传成功
-    const onFileSuccess = (
-      rootFile: SimpleUploaderFile,
-      file: SimpleUploaderFile,
-      message: string,
-    ) => {
+    const onFileSuccess = (rootFile: SimpleUploaderFile, file: SimpleUploaderFile, message: string) => {
       // 调用后台合并文件
       const fileName = file.name; // 文件名
       API.oss

@@ -12,7 +12,7 @@
   font-weight: bolder;
 }
 
-@keyframes loading__scale-to-up{
+@keyframes loading__scale-to-up {
   from {
     transform: scale(1, 0.2);
   }
@@ -21,7 +21,7 @@
   }
 }
 
-.first-loading-wrp .loading-wrp i{
+.first-loading-wrp .loading-wrp i {
   background-color: #409eff;
   display: inline-block;
   width: 5px;

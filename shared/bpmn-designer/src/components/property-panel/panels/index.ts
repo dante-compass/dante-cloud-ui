@@ -67,5 +67,5 @@ export {
   HTaskListenerPanel,
   HTasklistPanel,
   HTimerPanel,
-  HUserAssignmentPanel
+  HUserAssignmentPanel,
 };

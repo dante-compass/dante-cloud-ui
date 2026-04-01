@@ -39,5 +39,5 @@ export type {
   ToggleMode,
   Group,
   Element,
-  CanvasViewbox
+  CanvasViewbox,
 };

@@ -85,16 +85,8 @@ export default defineComponent({
       clickWordCount: 0,
     });
 
-    const {
-      getImage,
-      message,
-      canOperate,
-      isLoading,
-      isSuccess,
-      isShowMessage,
-      verifyCaptcha,
-      reset,
-    } = useBehaviorCaptcha();
+    const { getImage, message, canOperate, isLoading, isSuccess, isShowMessage, verifyCaptcha, reset } =
+      useBehaviorCaptcha();
 
     watch(
       () => props.schema,

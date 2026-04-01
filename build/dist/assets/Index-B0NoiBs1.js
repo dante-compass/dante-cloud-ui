@@ -1,1 +1,0 @@
-import{t as e}from"./js/views-pages-authorize-compliance-Index.vue-DFO66l-U.js";export{e as default};

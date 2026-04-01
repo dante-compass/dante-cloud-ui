@@ -54,20 +54,8 @@ export default defineComponent({
     const rowKey = 'taskId' as keyof ExtendedTaskEntity;
     const selected = ref([]);
 
-    const {
-      loading,
-      tableRows,
-      totalPages,
-      pagination,
-      setPagination,
-      setPageData,
-      showLoading,
-      hideLoading,
-    } = useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>(
-      'HToDoTaskTable',
-      'updateTime',
-      true,
-    );
+    const { loading, tableRows, totalPages, pagination, setPagination, setPageData, showLoading, hideLoading } =
+      useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>('HToDoTaskTable', 'updateTime', true);
     const { editedItem, fetchProcessSpecifics } = useBpmnProcess();
     const { toEdit } = useBaseTable<ProcessSpecificsConditions, ProcessSpecificsEntity>(
       CONSTANTS.ComponentName.WORKFLOW_PROCESS_APPROVE,

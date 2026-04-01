@@ -17,10 +17,7 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-delete-button
-          v-if="!props.row.reserved"
-          @click="onDeleteItemById(props.row[rowKey])"
-        ></h-delete-button>
+        <h-delete-button v-if="!props.row.reserved" @click="onDeleteItemById(props.row[rowKey])"></h-delete-button>
       </q-td>
     </template>
   </h-table>
@@ -45,25 +42,14 @@ export default defineComponent({
   name: 'WorkflowDeployment',
 
   setup() {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      findItems,
-      onDeleteItemById,
-      conditions,
-    } = useBpmnTableItems<
-      DeploymentEntity,
-      DeploymentQueryParams,
-      DeploymentSortBy,
-      DeploymentDeleteQueryParams
-    >(API.bpmn.deployment(), {
-      sortBy: 'id',
-      sortOrder: 'desc',
-    });
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
+      useBpmnTableItems<DeploymentEntity, DeploymentQueryParams, DeploymentSortBy, DeploymentDeleteQueryParams>(
+        API.bpmn.deployment(),
+        {
+          sortBy: 'id',
+          sortOrder: 'desc',
+        },
+      );
 
     const selected = ref([]);
     const rowKey = 'id' as keyof DeploymentEntity;

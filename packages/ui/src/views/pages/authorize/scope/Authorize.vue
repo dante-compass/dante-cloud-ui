@@ -58,13 +58,12 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { editedItem, title, assign, overlay } = useTableItem<OAuth2ScopeEntity>(
-      API.core.oauth2Scope(),
+    const { editedItem, title, assign, overlay } = useTableItem<OAuth2ScopeEntity>(API.core.oauth2Scope());
+    const { tableRows, pagination, loading } = useTable<SysPermissionConditions, SysPermissionEntity>(
+      API.core.sysPermission(),
+      CONSTANTS.ComponentName.SYS_PERMISSION,
+      true,
     );
-    const { tableRows, pagination, loading } = useTable<
-      SysPermissionConditions,
-      SysPermissionEntity
-    >(API.core.sysPermission(), CONSTANTS.ComponentName.SYS_PERMISSION, true);
 
     const selectedItems = ref([]) as Ref<Array<SysPermissionEntity>>;
     const rowKey: SysPermissionProps = 'permissionId';

@@ -1,14 +1,5 @@
-import type {
-  FormDesignerResources,
-  DynamicFormService,
-  FormApiResources,
-} from '@herodotus-cloud/form-apis';
-import type {
-  DeploymentService,
-  GroupService,
-  UserService,
-  BpmnApiResources,
-} from '@herodotus-cloud/bpmn-apis';
+import type { FormDesignerResources, DynamicFormService, FormApiResources } from '@herodotus-cloud/form-apis';
+import type { DeploymentService, GroupService, UserService, BpmnApiResources } from '@herodotus-cloud/bpmn-apis';
 import type { BpmnDesignerResources } from '@herodotus-cloud/bpmn-designer';
 
 class BpmnDesignerStorage implements BpmnDesignerResources {
@@ -21,10 +12,7 @@ class BpmnDesignerStorage implements BpmnDesignerResources {
     this.formApi = formApi;
   }
 
-  public static getInstance(
-    bpmnApi: BpmnApiResources,
-    formApi: FormApiResources,
-  ): BpmnDesignerStorage {
+  public static getInstance(bpmnApi: BpmnApiResources, formApi: FormApiResources): BpmnDesignerStorage {
     if (this.instance == null) {
       this.instance = new BpmnDesignerStorage(bpmnApi, formApi);
     }

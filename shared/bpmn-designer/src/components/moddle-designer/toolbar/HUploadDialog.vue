@@ -1,11 +1,7 @@
 <template>
   <div>
     <h-button-group>
-      <h-button
-        icon="mdi-cloud-upload"
-        tooltip="上传云端"
-        @click="openUploadDialog = true"
-      ></h-button>
+      <h-button icon="mdi-cloud-upload" tooltip="上传云端" @click="openUploadDialog = true"></h-button>
     </h-button-group>
 
     <q-dialog v-model="openUploadDialog" persistent transition-show="scale" transition-hide="scale">

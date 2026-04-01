@@ -2,12 +2,7 @@
   <h-expansion-item icon="mdi-shuffle-variant" label="异步属性">
     <q-checkbox v-model="before" label="之前" @update:model-value="updateBefore"></q-checkbox>
     <q-checkbox v-model="after" label="之后" @update:model-value="updateAfter"></q-checkbox>
-    <q-checkbox
-      v-if="isExclusive"
-      v-model="exclusive"
-      label="排除"
-      @update:model-value="updateExclusive"
-    ></q-checkbox>
+    <q-checkbox v-if="isExclusive" v-model="exclusive" label="排除" @update:model-value="updateExclusive"></q-checkbox>
   </h-expansion-item>
 </template>
 
@@ -29,14 +24,8 @@ export default defineComponent({
   setup() {
     const designer = useDesignerStore();
 
-    const {
-      getBeforeValue,
-      setBeforeValue,
-      getAfterValue,
-      setAfterValue,
-      getExclusiveValue,
-      setExclusiveValue,
-    } = useAsynchronousContinuationsProperties();
+    const { getBeforeValue, setBeforeValue, getAfterValue, setAfterValue, getExclusiveValue, setExclusiveValue } =
+      useAsynchronousContinuationsProperties();
 
     const before = ref<boolean>(false);
     const after = ref<boolean>(false);

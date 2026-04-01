@@ -11,14 +11,7 @@
         </q-card-section>
       </q-card>
 
-      <q-btn
-        rounded
-        unelevated
-        outline
-        class="full-width"
-        label="返回"
-        @click="application.switchToAccountPanel()"
-      />
+      <q-btn rounded unelevated outline class="full-width" label="返回" @click="application.switchToAccountPanel()" />
     </q-card-section>
   </q-card>
 </template>

@@ -71,10 +71,7 @@
         @click="onShowCaptcha()"
         @keyup.enter="onShowCaptcha()"
       />
-      <h-behavior-captcha
-        v-model="isShowCaptcha"
-        @verify="onCaptchaVerify($event)"
-      ></h-behavior-captcha>
+      <h-behavior-captcha v-model="isShowCaptcha" @verify="onCaptchaVerify($event)"></h-behavior-captcha>
       <h-divider label="or" class="q-mb-md"></h-divider>
       <q-btn
         tabindex="4"
@@ -97,12 +94,7 @@
 					<q-btn outline class="full-width" @click="application.switchToScanPanel()" label="扫码登录" />
 				</template>
 			</h-container> -->
-      <q-btn
-        outline
-        class="full-width q-mb-md"
-        @click="application.switchToMobilePanel()"
-        label="手机验证码登录"
-      />
+      <q-btn outline class="full-width q-mb-md" @click="application.switchToMobilePanel()" label="手机验证码登录" />
 
       <h-divider label="其它登录方式" class="q-mb-md"></h-divider>
 
@@ -119,12 +111,7 @@ import { required, helpers } from '@vuelidate/validators';
 
 import { CONSTANTS } from '@/configurations';
 import { toast } from '@herodotus/core';
-import {
-  useCryptoStore,
-  useAuthenticationStore,
-  usePasskey,
-  useApplicationStore,
-} from '@herodotus/framework';
+import { useCryptoStore, useAuthenticationStore, usePasskey, useApplicationStore } from '@herodotus/framework';
 import SocialSignInList from './SocialSignInList.vue';
 
 export default defineComponent({

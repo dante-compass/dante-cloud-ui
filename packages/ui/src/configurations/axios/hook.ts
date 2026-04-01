@@ -23,10 +23,7 @@ export const axiosInstanceHooks: AxiosInstanceHooks = {
   /**
    * @description: 请求成功处理
    */
-  onResponseSuccessHook<T = unknown>(
-    response: AxiosHttpResult<T>,
-    options?: HttpRequestOptions,
-  ): AxiosHttpResult<T> {
+  onResponseSuccessHook<T = unknown>(response: AxiosHttpResult<T>, options?: HttpRequestOptions): AxiosHttpResult<T> {
     if (isSuccess(response)) {
       if (options) {
         const { isTransformResponse } = options;

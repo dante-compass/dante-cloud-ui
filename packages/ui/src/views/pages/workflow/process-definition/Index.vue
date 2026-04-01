@@ -72,25 +72,16 @@ export default defineComponent({
   },
 
   setup() {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      findItems,
-      onDeleteItemById,
-      conditions,
-    } = useBpmnTableItems<
-      ProcessDefinitionEntity,
-      ProcessDefinitionQueryParams,
-      ProcessDefinitionSortBy,
-      ProcessDefinitionDeleteQueryParams
-    >(API.bpmn.processDefinition(), {
-      sortBy: 'id',
-      sortOrder: 'desc',
-    });
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
+      useBpmnTableItems<
+        ProcessDefinitionEntity,
+        ProcessDefinitionQueryParams,
+        ProcessDefinitionSortBy,
+        ProcessDefinitionDeleteQueryParams
+      >(API.bpmn.processDefinition(), {
+        sortBy: 'id',
+        sortOrder: 'desc',
+      });
 
     const selected = ref([]);
     const rowKey = 'id' as keyof ProcessDefinitionEntity;

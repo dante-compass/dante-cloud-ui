@@ -13,7 +13,7 @@ export default defineComponent({
   name: 'HSheetPanel',
 
   components: {
-    HConditionVariable
-  }
+    HConditionVariable,
+  },
 });
 </script>

@@ -4,13 +4,10 @@ import { isEmpty, map, pick, pullAllBy, without } from 'lodash-es';
 import usePropertyElement from './usePropertyElements';
 
 export default function useExtensionProperties() {
-  const { getModeling, createModdleElement, getRelevantBusinessObject, processEngine } =
-    usePropertyElement();
+  const { getModeling, createModdleElement, getRelevantBusinessObject, processEngine } = usePropertyElement();
 
   const getExtensionElements = (businessObject: ModdleElement): ModdleElement => {
-    return !isEmpty(businessObject.extensionElements)
-      ? businessObject.extensionElements
-      : ({} as ModdleElement);
+    return !isEmpty(businessObject.extensionElements) ? businessObject.extensionElements : ({} as ModdleElement);
   };
 
   const getExtensionElementsValues = (extensionElements: ModdleElement): Array<ModdleElement> => {
@@ -60,22 +57,14 @@ export default function useExtensionProperties() {
 
     // 判断 extensionElements
     if (isEmpty(extensionElements)) {
-      extensionElements = createModdleElement(
-        'bpmn:ExtensionElements',
-        { values: [] },
-        businessObject,
-      );
+      extensionElements = createModdleElement('bpmn:ExtensionElements', { values: [] }, businessObject);
       getModeling().updateModdleProperties(element, businessObject, { extensionElements });
     }
 
     // 判断 extensionElements 是否有 properties
     let properties = getProperties(extensionElements);
     if (isEmpty(properties)) {
-      properties = createModdleElement(
-        `${processEngine}:Properties`,
-        { values: [] },
-        extensionElements,
-      );
+      properties = createModdleElement(`${processEngine}:Properties`, { values: [] }, extensionElements);
       getModeling().updateModdleProperties(element, extensionElements, {
         values: [...extensionElements.get('values'), properties],
       });
@@ -85,11 +74,7 @@ export default function useExtensionProperties() {
     createProperties(element, items, properties);
   };
 
-  const createProperties = (
-    element: Element,
-    items: Array<ExtensionProperty>,
-    parent: ModdleElement,
-  ) => {
+  const createProperties = (element: Element, items: Array<ExtensionProperty>, parent: ModdleElement) => {
     if (!isEmpty(items)) {
       const newElements = map(items, (item) => {
         return createModdleElement(`${processEngine}:Property`, item, parent);

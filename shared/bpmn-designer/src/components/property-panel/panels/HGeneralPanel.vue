@@ -1,14 +1,7 @@
 <template>
   <h-expansion-item icon="mdi-information-outline" label="常规信息" default-opened>
     <q-input v-model="elementName" dense outlined label="名称" @update:model-value="updateName" />
-    <q-input
-      v-model="elementId"
-      dense
-      outlined
-      label="编号"
-      @update:model-value="updateId"
-      class="q-mt-md"
-    />
+    <q-input v-model="elementId" dense outlined label="编号" @update:model-value="updateId" class="q-mt-md" />
     <template v-if="isProcessElement">
       <q-input
         v-model="versionTag"

@@ -5,12 +5,7 @@
     icon="mdi-delete-forever"
     tooltip="不允许删除的数据"
   ></h-dense-icon-button>
-  <h-dense-icon-button
-    v-else
-    color="positive"
-    icon="mdi-delete-empty"
-    tooltip="允许删除的数据"
-  ></h-dense-icon-button>
+  <h-dense-icon-button v-else color="positive" icon="mdi-delete-empty" tooltip="允许删除的数据"></h-dense-icon-button>
 </template>
 
 <script lang="ts">

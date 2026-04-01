@@ -38,9 +38,7 @@
           placeholder="请先输入正确的图形验证"
           dense
           :error="v.verificationCode.$error"
-          :error-message="
-            v.verificationCode.$errors[0] ? v.verificationCode.$errors[0].$message : ''
-          "
+          :error-message="v.verificationCode.$errors[0] ? v.verificationCode.$errors[0].$message : ''"
           @blur="v.verificationCode.$touch()"
         >
           <template #before>
@@ -73,10 +71,7 @@
         </template>
       </h-container>
 
-      <h-behavior-captcha
-        v-model="isShowCaptcha"
-        @verify="onCaptchaVerfiy($event)"
-      ></h-behavior-captcha>
+      <h-behavior-captcha v-model="isShowCaptcha" @verify="onCaptchaVerfiy($event)"></h-behavior-captcha>
 
       <q-btn
         rounded
@@ -112,11 +107,7 @@ import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { required, helpers } from '@vuelidate/validators';
 import useVuelidate from '@vuelidate/core';
-import {
-  useAuthenticationStore,
-  SecurityApiResources,
-  useApplicationStore,
-} from '@herodotus/framework';
+import { useAuthenticationStore, SecurityApiResources, useApplicationStore } from '@herodotus/framework';
 import { CONSTANTS, API } from '@/configurations';
 import { toast } from '@herodotus/core';
 
@@ -146,9 +137,7 @@ export default defineComponent({
         format: helpers.withMessage(
           '手机号格式不正确',
           // 中国手机号(严谨), 根据工信部2019年最新公布的手机号段
-          helpers.regex(
-            /^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d{8}$/,
-          ),
+          helpers.regex(/^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d{8}$/),
         ),
       },
       verificationCode: {

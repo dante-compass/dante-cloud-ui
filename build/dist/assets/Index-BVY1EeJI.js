@@ -1,1 +1,0 @@
-import{t as e}from"./js/views-pages-authorize-token-Index.vue-D_8C4Qxu.js";export{e as default};

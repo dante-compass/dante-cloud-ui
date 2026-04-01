@@ -16,6 +16,6 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'HErrorLayout'
+  name: 'HErrorLayout',
 });
 </script>

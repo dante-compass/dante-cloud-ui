@@ -3,7 +3,7 @@ export enum BreakPointEnum {
   sm = 'sm',
   md = 'md',
   lg = 'lg',
-  xl = 'xl'
+  xl = 'xl',
 }
 
 export enum SpinnerEnum {
@@ -29,5 +29,5 @@ export enum SpinnerEnum {
   PUFF = 'puff',
   RADIO = 'radio',
   RINGS = 'rings',
-  TAIL = 'tail'
+  TAIL = 'tail',
 }

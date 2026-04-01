@@ -40,17 +40,11 @@
             @click="toAuthorize(props.row)"
           ></h-dense-icon-button>
           <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-          <h-delete-button
-            v-if="!props.row.reserved"
-            @click="deleteItemById(props.row[rowKey])"
-          ></h-delete-button>
+          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
         </q-td>
       </template>
     </h-table>
-    <h-change-password
-      v-model="showChangePasswordDialog"
-      :user-id="currentUserId"
-    ></h-change-password>
+    <h-change-password v-model="showChangePasswordDialog" :user-id="currentUserId"></h-change-password>
     <h-send-message-to-user
       v-model="showSendMessageToUserDialog"
       :id="currentUserId"
@@ -63,12 +57,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-import type {
-  SysUserEntity,
-  SysUserConditions,
-  SysUserProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import type { SysUserEntity, SysUserConditions, SysUserProps, QTableColumnProps } from '@/composables/declarations';
 
 import { CONSTANTS, API } from '@/configurations';
 
@@ -91,20 +80,8 @@ export default defineComponent({
   },
 
   setup() {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-    } = useTable<SysUserConditions, SysUserEntity>(
-      API.core.sysUser(),
-      CONSTANTS.ComponentName.SYS_USER,
-    );
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+      useTable<SysUserConditions, SysUserEntity>(API.core.sysUser(), CONSTANTS.ComponentName.SYS_USER);
 
     const selected = ref([]);
     const rowKey: SysUserProps = 'userId';

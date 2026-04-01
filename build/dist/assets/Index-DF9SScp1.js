@@ -1,1 +1,0 @@
-import{t as e}from"./js/views-pages-security-tenant-Index.vue-B7HDDwWe.js";export{e as default};

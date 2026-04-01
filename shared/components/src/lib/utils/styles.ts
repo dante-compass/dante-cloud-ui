@@ -1,15 +1,15 @@
 export const Symbol = {
-  DASH: '-'
+  DASH: '-',
 };
 
 export const Content = {
   text: 'text',
-  bg: 'bg'
+  bg: 'bg',
 };
 
 export const Grid = {
   auto: 'auto',
-  col: 'col'
+  col: 'col',
 };
 
 export const createClass = (base: string, ...params: string[]) => {

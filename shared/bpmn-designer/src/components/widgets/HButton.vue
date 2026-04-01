@@ -13,7 +13,7 @@ export default defineComponent({
   name: 'HButton',
 
   props: {
-    tooltip: { type: String, default: '' }
-  }
+    tooltip: { type: String, default: '' },
+  },
 });
 </script>

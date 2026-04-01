@@ -1,15 +1,6 @@
 import { defineStore } from 'pinia';
 
-import type {
-  Element,
-  ModelerState,
-  Modeler,
-  ElementRegistry,
-  Modeling,
-  Canvas,
-  Moddle,
-  Group,
-} from '@/declarations';
+import type { Element, ModelerState, Modeler, ElementRegistry, Modeling, Canvas, Moddle, Group } from '@/declarations';
 
 export const useDesignerStore = defineStore('BpmnDesignerModeler', {
   state: (): ModelerState => ({

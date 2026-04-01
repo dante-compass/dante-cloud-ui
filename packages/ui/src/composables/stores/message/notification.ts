@@ -1,10 +1,5 @@
 import { defineStore } from 'pinia';
-import type {
-  Sort,
-  Page,
-  NotificationEntity,
-  NotificationConditions,
-} from '@/composables/declarations';
+import type { Sort, Page, NotificationEntity, NotificationConditions } from '@/composables/declarations';
 
 import { NotificationCategoryEnum } from '@herodotus/api';
 import { API } from '@/configurations';

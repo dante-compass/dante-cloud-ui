@@ -459,13 +459,13 @@ function Le(e, t, n, r, i, a) {
 			_: 2
 		}, [e.isEmptyCanvas ? {
 			name: "footer",
-			fn: P(() => [t[0] ||= C("div", { class: "row text-center canvas-container" }, [C("div", { class: "col-12 self-center text-h6 text-weight-medium text-grey-5" }, " 从左侧拖拽或点击来添加字段 ")], -1)]),
+			fn: P(() => [t[0] ||= C("div", { class: "row text-center canvas-container" }, [C("div", { class: "col-12 self-center text-h6 text-weight-medium text-grey-5" }, "从左侧拖拽或点击来添加字段")], -1)]),
 			key: "0"
 		} : void 0]), 1032, ["list"])]),
 		_: 1
 	});
 }
-var Z = /* @__PURE__ */ W(Ie, [["render", Le], ["__scopeId", "data-v-3e653093"]]), Q = {
+var Z = /* @__PURE__ */ W(Ie, [["render", Le], ["__scopeId", "data-v-768a54ef"]]), Q = {
 	HideBottomSpace: "hide-bottom-space",
 	ItemAligned: "item-aligned"
 }, Re = { class: "q-gutter-y-sm column" }, ze = { class: "q-gutter-y-sm column" }, Be = /* @__PURE__ */ E({

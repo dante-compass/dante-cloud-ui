@@ -1,1 +1,0 @@
-import{t as e}from"./js/views-pages-hr-department-Index.vue-B-mNTRtm.js";export{e as default};

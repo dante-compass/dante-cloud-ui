@@ -13,23 +13,9 @@
       </q-chip>
     </div>
 
-    <q-chip
-      clickable
-      outline
-      color="primary"
-      text-color="white"
-      icon="mdi-plus"
-      @click="open = true"
-      >添加标签</q-chip
-    >
+    <q-chip clickable outline color="primary" text-color="white" icon="mdi-plus" @click="open = true">添加标签</q-chip>
     <h-dialog v-model="open" v-model:loading="loading" title="添加标签" @confirm="onSave">
-      <h-label
-        :text="subtitle"
-        size="subtitle-1"
-        weight="bolder"
-        align="left"
-        class="q-mb-md"
-      ></h-label>
+      <h-label :text="subtitle" size="subtitle-1" weight="bolder" align="left" class="q-mb-md"></h-label>
       <h-text-field
         v-model="tagKey"
         label="标签 Key"
@@ -85,12 +71,7 @@ export default defineComponent({
       return props.objectName ? '对象：' + props.objectName : '存储桶：' + props.bucketName;
     });
 
-    const addOrDeleteTags = (
-      bucketName: string,
-      objectName = '',
-      tags: Record<string, string>,
-      isAdd = true,
-    ) => {
+    const addOrDeleteTags = (bucketName: string, objectName = '', tags: Record<string, string>, isAdd = true) => {
       if (!props.objectName) {
         API.oss
           .minioBucketTags()

@@ -1,13 +1,7 @@
 <template>
   <h-container mode="two" gutter="xs" gutter-col horizontal>
     <template #left>
-      <h-text-field
-        v-model.number="amount"
-        label="数值"
-        placeholder="请输入数值"
-        type="number"
-        hide-hint
-      />
+      <h-text-field v-model.number="amount" label="数值" placeholder="请输入数值" type="number" hide-hint />
     </template>
 
     <template #right>

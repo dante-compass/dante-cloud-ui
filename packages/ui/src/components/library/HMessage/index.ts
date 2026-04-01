@@ -1,3 +1,3 @@
-import HSendMessageField from "./HSendMessageField.vue";
+import HSendMessageField from './HSendMessageField.vue';
 
-export {HSendMessageField}
+export { HSendMessageField };

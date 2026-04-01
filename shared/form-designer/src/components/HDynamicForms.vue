@@ -1,10 +1,5 @@
 <template>
-  <q-layout
-    view="lHr LpR lfr"
-    :container="container"
-    class="bg-grey-2"
-    :style="`height: ${height}`"
-  >
+  <q-layout view="lHr LpR lfr" :container="container" class="bg-grey-2" :style="`height: ${height}`">
     <q-header bordered class="text-primary bg-white">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="leftDrawerOpen = !leftDrawerOpen" />

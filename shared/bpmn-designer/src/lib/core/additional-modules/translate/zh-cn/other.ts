@@ -145,8 +145,7 @@ export default {
   Condition: '条件名称',
   'Variable Name': '变量名称',
   'Variable Event': '变量事件',
-  'Specify more than one variable change event as a comma separated list.':
-    '多个变量事件以逗号隔开',
+  'Specify more than one variable change event as a comma separated list.': '多个变量事件以逗号隔开',
   'Wait for Completion': '等待完成',
   'Activity Ref': '活动参考',
   'Version Tag': '版本标签',
@@ -183,5 +182,5 @@ export default {
   'Tasklist Configuration': 'Tasklist配置',
   Startable: '启动',
   'Specify more than one group as a comma separated list.': '指定多个组作为逗号分隔的列表。',
-  'Execution listeners': '执行监听器'
-}
+  'Execution listeners': '执行监听器',
+};

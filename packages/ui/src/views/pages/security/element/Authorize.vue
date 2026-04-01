@@ -52,9 +52,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { editedItem, title, assign, overlay } = useTableItem<SysElementEntity>(
-      API.core.sysElement(),
-    );
+    const { editedItem, title, assign, overlay } = useTableItem<SysElementEntity>(API.core.sysElement());
     const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEntity>(
       API.core.sysRole(),
       CONSTANTS.ComponentName.SYS_ROLE,

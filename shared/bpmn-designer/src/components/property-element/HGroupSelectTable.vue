@@ -12,13 +12,7 @@
     @request="findItems"
   >
     <template v-slot:top>
-      <h-text-field
-        v-model="fieldValue"
-        debounce="1000"
-        label="名称"
-        dense
-        @clear="onClear()"
-      ></h-text-field>
+      <h-text-field v-model="fieldValue" debounce="1000" label="名称" dense @clear="onClear()"></h-text-field>
     </template>
   </q-table>
 </template>

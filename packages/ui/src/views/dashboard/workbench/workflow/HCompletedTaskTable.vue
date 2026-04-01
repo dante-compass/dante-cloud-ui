@@ -56,11 +56,7 @@ export default defineComponent({
       setPageData,
       showLoading,
       hideLoading,
-    } = useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>(
-      'HToDoTaskTable',
-      'updateTime',
-      true,
-    );
+    } = useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>('HToDoTaskTable', 'updateTime', true);
 
     const columns: QTableColumnProps = [
       { name: 'businessKey', field: 'businessKey', align: 'center', label: '业务ID' },

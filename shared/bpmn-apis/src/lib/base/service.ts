@@ -17,9 +17,7 @@ import { isEmpty } from 'lodash-es';
 
 import { UnionPathParamBuilder, RelationPathParamBuilder } from './path';
 
-export abstract class BpmnService<
-  D extends BpmnDeleteQueryParams = BpmnDeleteQueryParams,
-> extends Service {
+export abstract class BpmnService<D extends BpmnDeleteQueryParams = BpmnDeleteQueryParams> extends Service {
   protected getCountAddress(): string {
     return this.getBaseAddress() + '/count';
   }
@@ -47,9 +45,7 @@ export abstract class BpmnService<
     if (isEmpty(deleteParams)) {
       return this.getConfig().getHttp().delete<string, string>(this.createAddressById(id));
     } else {
-      return this.getConfig()
-        .getHttp()
-        .deleteWithParams<string, string>(this.createAddressById(id), deleteParams);
+      return this.getConfig().getHttp().deleteWithParams<string, string>(this.createAddressById(id), deleteParams);
     }
   }
 }
@@ -77,11 +73,7 @@ export abstract class BpmnQueryByGetService<
     });
   }
 
-  public getList(
-    pagination: BpmnPagination<S>,
-    count: number,
-    params: Q = {} as Q,
-  ): Promise<Page<E>> {
+  public getList(pagination: BpmnPagination<S>, count: number, params: Q = {} as Q): Promise<Page<E>> {
     const full: BpmnGetListParams<Q, S> = Object.assign(
       {
         sortBy: pagination.sortBy,

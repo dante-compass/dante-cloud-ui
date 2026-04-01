@@ -21,11 +21,7 @@
 
       <template #body-cell-icon="props">
         <q-td key="icon" :props="props">
-          <h-dense-icon-button
-            color="primary"
-            :icon="props.row.icon"
-            :tooltip="props.row.icon"
-          ></h-dense-icon-button>
+          <h-dense-icon-button color="primary" :icon="props.row.icon" :tooltip="props.row.icon"></h-dense-icon-button>
         </q-td>
       </template>
 
@@ -68,10 +64,7 @@
             @click="toAuthorize(props.row)"
           ></h-dense-icon-button>
           <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-          <h-delete-button
-            v-if="!props.row.reserved"
-            @click="deleteItemById(props.row[rowKey])"
-          ></h-delete-button>
+          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
         </q-td>
       </template>
     </h-table>

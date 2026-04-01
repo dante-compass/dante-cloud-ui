@@ -11,7 +11,7 @@ export default defineComponent({
   name: 'HExecutionListenerPanel',
 
   components: {
-    HExpansionItem
+    HExpansionItem,
   },
 
   setup() {
@@ -22,8 +22,8 @@ export default defineComponent({
     });
 
     return {
-      count
+      count,
     };
-  }
+  },
 });
 </script>

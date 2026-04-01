@@ -1,15 +1,7 @@
 <template>
   <q-card>
     <q-toolbar>
-      <h-button
-        flat
-        round
-        dense
-        color="red"
-        icon="mdi-arrow-left-box"
-        tooltip="返回"
-        @click="onFinish()"
-      ></h-button>
+      <h-button flat round dense color="red" icon="mdi-arrow-left-box" tooltip="返回" @click="onFinish()"></h-button>
       <q-toolbar-title>
         {{ title }}
       </q-toolbar-title>

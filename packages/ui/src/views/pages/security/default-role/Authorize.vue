@@ -50,9 +50,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { editedItem, title, assign, overlay } = useTableItem<SysDefaultRoleEntity>(
-      API.core.sysDefaultRole(),
-    );
+    const { editedItem, title, assign, overlay } = useTableItem<SysDefaultRoleEntity>(API.core.sysDefaultRole());
     const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEntity>(
       API.core.sysRole(),
       CONSTANTS.ComponentName.SYS_ROLE,

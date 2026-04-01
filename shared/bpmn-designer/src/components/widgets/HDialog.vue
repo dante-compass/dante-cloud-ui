@@ -31,7 +31,7 @@ export default defineComponent({
     cancelLabel: { type: String, default: '取消' },
     confirmLabel: { type: String, default: '保存' },
     confirmDisable: { type: Boolean, default: false },
-    width: { type: String, default: '30vw' }
+    width: { type: String, default: '30vw' },
   },
 
   emits: ['update:modelValue', 'save'],
@@ -39,9 +39,9 @@ export default defineComponent({
   setup(props, { emit }) {
     const isOpen = computed({
       get: () => props.modelValue,
-      set: newValue => {
+      set: (newValue) => {
         emit('update:modelValue', newValue);
-      }
+      },
     });
 
     const onClose = () => {
@@ -55,8 +55,8 @@ export default defineComponent({
     return {
       isOpen,
       onClose,
-      onSave
+      onSave,
     };
-  }
+  },
 });
 </script>

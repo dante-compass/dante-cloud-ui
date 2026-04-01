@@ -1,7 +1,7 @@
 name: 咨询探讨
 description: 对本项目功能设计和功能实现的咨询或探讨
-title: "[咨询探讨]: "
-labels: ["question"]
+title: '[咨询探讨]: '
+labels: ['question']
 body:
   - type: markdown
     attributes:

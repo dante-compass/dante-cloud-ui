@@ -11,7 +11,7 @@ export default defineComponent({
   name: 'HTableItemDeleteButton',
 
   components: {
-    HTableActionButton
-  }
+    HTableActionButton,
+  },
 });
 </script>

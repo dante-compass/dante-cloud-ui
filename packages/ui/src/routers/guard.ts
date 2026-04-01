@@ -55,8 +55,7 @@ export const createRouterGuard = (router: Router) => {
           router.addRoute(PageNotFoundRoute);
           const redirectPath = (from.query.redirect || to.path) as string;
           const redirectURI = decodeURIComponent(redirectPath);
-          const nextPath =
-            to.path === redirectURI ? { ...to, replace: true } : { path: redirectURI };
+          const nextPath = to.path === redirectURI ? { ...to, replace: true } : { path: redirectURI };
           next(nextPath);
           return;
         } else {

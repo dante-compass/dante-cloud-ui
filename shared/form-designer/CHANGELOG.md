@@ -1,5 +1,15 @@
 # @herodotus-cloud/form-designer
 
+## 4.3.2
+
+### Patch Changes
+
+- 版本发布
+- Updated dependencies
+  - @herodotus-cloud/form-engine@4.3.2
+  - @herodotus-cloud/components@4.3.2
+  - @herodotus-cloud/form-apis@4.3.2
+
 ## 4.3.1
 
 ### Patch Changes

@@ -17,10 +17,7 @@
         <h-switch v-model="properties.outlined" label="Outlined"></h-switch>
         <h-switch v-model="properties.borderless" label="Borderless"></h-switch>
         <h-switch v-model="properties.standout" label="Standout"></h-switch>
-        <h-switch
-          v-model="properties[ATTRIBUTES.HideBottomSpace]"
-          label="Hide Bottom Space"
-        ></h-switch>
+        <h-switch v-model="properties[ATTRIBUTES.HideBottomSpace]" label="Hide Bottom Space"></h-switch>
         <h-switch v-model="properties.rounded" label="Rounded"></h-switch>
         <h-switch v-model="properties.square" label="Square"></h-switch>
         <h-switch v-model="properties.dense" label="Dense"></h-switch>

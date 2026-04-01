@@ -8,9 +8,7 @@
   >
     使用中
   </q-chip>
-  <q-chip v-else icon="mdi-checkbox-multiple-blank-circle" :dense="settings.display.table.dense"
-    >未使用</q-chip
-  >
+  <q-chip v-else icon="mdi-checkbox-multiple-blank-circle" :dense="settings.display.table.dense">未使用</q-chip>
 </template>
 
 <script lang="ts">

@@ -42,7 +42,7 @@ declare module 'bpmn-js-bpmnlint' {
       elementRegistry: ElementRegistry,
       eventBus: EventBus,
       overlays: Overlays,
-      translate: Translate
+      translate: Translate,
     );
     protected _bpmnjs: Modeler;
     protected _canvas: Canvas;

@@ -6,12 +6,4 @@ import useTable from './useTable';
 import useTableItem from './useTableItem';
 import useTreeItems from './useTreeItems';
 
-export {
-  useBaseTable,
-  useBaseTableItem,
-  useDisplayElement,
-  useTable,
-  useTableItem,
-  useTreeItems,
-  useDictionary,
-};
+export { useBaseTable, useBaseTableItem, useDisplayElement, useTable, useTableItem, useTreeItems, useDictionary };

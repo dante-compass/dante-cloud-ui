@@ -4042,7 +4042,7 @@ function es(e, t, n, r, i, a) {
 		_: 1
 	}, 8, ["modelValue"]);
 }
-var ts = /* @__PURE__ */ q($o, [["render", es], ["__scopeId", "data-v-19306adb"]]), ns = k({
+var ts = /* @__PURE__ */ q($o, [["render", es], ["__scopeId", "data-v-9e03a008"]]), ns = k({
 	name: "HBpmnDesignerToolbar",
 	components: {
 		HAlignGroup: Uo,

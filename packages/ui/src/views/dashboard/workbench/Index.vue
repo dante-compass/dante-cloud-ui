@@ -17,11 +17,11 @@ export default defineComponent({
   name: 'HWorkbench',
 
   components: {
-    HWorkbenchWorkflow
+    HWorkbenchWorkflow,
   },
 
   setup(props) {
     return {};
-  }
+  },
 });
 </script>

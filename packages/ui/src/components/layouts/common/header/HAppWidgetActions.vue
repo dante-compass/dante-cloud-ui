@@ -4,14 +4,7 @@
     <q-menu anchor="bottom left" self="top middle">
       <div class="q-pa-md" style="width: 200px">
         <div class="q-gutter-md">
-          <q-btn
-            round
-            color="primary"
-            :icon="item.icon"
-            :to="item.path"
-            v-for="item in widgets"
-            :key="item.path"
-          >
+          <q-btn round color="primary" :icon="item.icon" :to="item.path" v-for="item in widgets" :key="item.path">
             <q-tooltip>{{ item.tooltip }}</q-tooltip>
           </q-btn>
         </div>

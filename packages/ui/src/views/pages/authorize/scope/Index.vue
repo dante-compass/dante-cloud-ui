@@ -26,10 +26,7 @@
           @click="toAuthorize(props.row)"
         ></h-dense-icon-button>
         <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-        <h-delete-button
-          v-if="!props.row.reserved"
-          @click="deleteItemById(props.row[rowKey])"
-        ></h-delete-button>
+        <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
       </q-td>
     </template>
   </h-table>
@@ -61,20 +58,11 @@ export default defineComponent({
   },
 
   setup() {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-    } = useTable<OAuth2ApplicationConditions, OAuth2ScopeEntity>(
-      API.core.oauth2Scope(),
-      CONSTANTS.ComponentName.OAUTH2_SCOPE,
-    );
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+      useTable<OAuth2ApplicationConditions, OAuth2ScopeEntity>(
+        API.core.oauth2Scope(),
+        CONSTANTS.ComponentName.OAUTH2_SCOPE,
+      );
 
     const selected = ref([]);
     const rowKey: OAuth2ScopeProps = 'scopeId';

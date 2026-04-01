@@ -44,5 +44,5 @@ export default {
   'Cancel Boundary Event': '取消边界事件',
   'Signal Boundary Event': '信号边界事件',
   'Signal Boundary Event (non-interrupting)': '信号边界事件（非中断）',
-  'Compensation Boundary Event': '补偿边界事件'
-}
+  'Compensation Boundary Event': '补偿边界事件',
+};

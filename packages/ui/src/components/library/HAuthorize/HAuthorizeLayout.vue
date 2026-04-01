@@ -18,7 +18,7 @@ export default defineComponent({
 
   props: {
     overlay: { type: Boolean, default: false },
-    title: { type: String, default: '' }
-  }
+    title: { type: String, default: '' },
+  },
 });
 </script>

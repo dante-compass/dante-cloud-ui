@@ -10,13 +10,7 @@
         :icon="tab.meta.icon as string"
         :to="tab.path"
       >
-        <q-icon
-          v-if="isNotLastTab(i)"
-          size="xs"
-          name="mdi-close-circle"
-          class="q-ml-md"
-          @click="onCloseTab(tab)"
-        />
+        <q-icon v-if="isNotLastTab(i)" size="xs" name="mdi-close-circle" class="q-ml-md" @click="onCloseTab(tab)" />
         <q-icon v-else size="xs" name="mdi-lock-outline" class="q-ml-md" />
       </q-route-tab>
     </q-tabs>
@@ -82,8 +76,7 @@ export default defineComponent({
       disableCloseLeftTabs,
       disableRefreshCurrentTab,
     } = storeToRefs(store);
-    const { closeTab, smartTab, closeCurrentTab, closeOtherTabs, closeLeftTabs, closeRightTabs } =
-      store;
+    const { closeTab, smartTab, closeCurrentTab, closeOtherTabs, closeLeftTabs, closeRightTabs } = store;
 
     const refreshTab = inject<Function>(refreshTabInjectionKey);
 
