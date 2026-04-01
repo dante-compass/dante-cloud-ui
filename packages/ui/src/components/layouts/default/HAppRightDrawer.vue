@@ -36,11 +36,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import {
-  ThemeModeEnum,
-  useSettingsStore,
-  useApplicationStore,
-} from '@herodotus-cloud/framework-kernel';
+import { useSettingsStore, useApplicationStore } from '@herodotus/framework';
+import { ThemeModeEnum } from '@herodotus/core';
 
 import { HSettingSwitch } from '../settings';
 

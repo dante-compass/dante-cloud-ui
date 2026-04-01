@@ -131,11 +131,11 @@
 </template>
 
 <script setup lang="ts">
-import type { ObjectDomain, GetObjectAttributesResult } from '@herodotus-cloud/apis';
+import type { ObjectDomain, GetObjectAttributesResult } from '@herodotus/api';
 
 import { isEmpty } from 'lodash-es';
-import { notify, toast } from '@herodotus-cloud/core';
-import { useEditFinish } from '@herodotus-cloud/framework-kernel';
+import { notify, toast } from '@herodotus/core';
+import { useEditFinish } from '@herodotus/framework';
 import { useBaseTableItem, useDateTime, useDictionary, useOss } from '@/composables/hooks';
 import { API } from '@/configurations';
 

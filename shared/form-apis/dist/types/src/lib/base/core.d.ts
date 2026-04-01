@@ -1,1 +1,1 @@
-export { Base64, moment, HttpConfig, Service, Axios } from '@herodotus-cloud/core';
+export { moment, HttpConfig, Service, Axios } from '@herodotus/core';

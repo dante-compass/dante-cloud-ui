@@ -39,10 +39,10 @@
 </template>
 
 <script setup lang="ts">
-import type { HttpResult } from '@herodotus-cloud/core';
-import type { CreateBucketArgument, CreateBucketResult } from '@herodotus-cloud/apis';
+import type { HttpResult } from '@herodotus/core';
+import type { CreateBucketArgument, CreateBucketResult } from '@herodotus/api';
 
-import { toast } from '@herodotus-cloud/core';
+import { toast } from '@herodotus/core';
 
 import { API } from '@/configurations';
 

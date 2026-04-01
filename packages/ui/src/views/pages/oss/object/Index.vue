@@ -16,11 +16,8 @@ import { CONSTANTS } from '@/configurations';
 
 import { HOssBucketList, HOssObjectList } from './components';
 
-defineOptions({
-  name: CONSTANTS.ComponentName.OSS_OBJECT,
-  components: { HOssBucketList, HOssObjectList },
-});
+defineOptions({ name: CONSTANTS.ComponentName.OSS_OBJECT, components: { HOssBucketList, HOssObjectList } });
 
-const bucketName = ref<string>('');
-const version = ref<number>(0);
+const bucketName = shallowRef<string>('');
+const version = shallowRef<number>(0);
 </script>

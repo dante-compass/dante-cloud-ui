@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-input v-model="assignee" dense :label="label">
-      <template v-slot:append>
+      <template #append>
         <q-btn
           round
           dense

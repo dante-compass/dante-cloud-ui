@@ -1,0 +1,90 @@
+<template>
+  <h-chart-container :options="options"></h-chart-container>
+</template>
+
+<script setup lang="ts">
+import type { EChartsOption } from 'echarts';
+
+import ChartContainer from './ChartContainer.vue';
+
+defineOptions({
+  name: 'SunburstChart',
+
+  components: {
+    ChartContainer,
+  },
+});
+
+const options = ref<EChartsOption>({
+  series: {
+    type: 'sunburst',
+    data: [
+      {
+        name: 'Grandpa',
+        children: [
+          {
+            name: 'Uncle Leo',
+            value: 15,
+            children: [
+              {
+                name: 'Cousin Jack',
+                value: 2,
+              },
+              {
+                name: 'Cousin Mary',
+                value: 5,
+                children: [
+                  {
+                    name: 'Jackson',
+                    value: 2,
+                  },
+                ],
+              },
+              {
+                name: 'Cousin Ben',
+                value: 4,
+              },
+            ],
+          },
+          {
+            name: 'Father',
+            value: 10,
+            children: [
+              {
+                name: 'Me',
+                value: 5,
+              },
+              {
+                name: 'Brother Peter',
+                value: 1,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'Nancy',
+        children: [
+          {
+            name: 'Uncle Nike',
+            children: [
+              {
+                name: 'Cousin Betty',
+                value: 1,
+              },
+              {
+                name: 'Cousin Jenny',
+                value: 2,
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    radius: [0, '90%'],
+    label: {
+      rotate: 'radial',
+    },
+  },
+}) as Ref<EChartsOption>;
+</script>

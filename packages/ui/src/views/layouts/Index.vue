@@ -19,7 +19,7 @@ import { useQuasar } from 'quasar';
 
 import { HAppHeader, HAppLeftDrawer, HAppRightDrawer, HAppContainer } from '@/components';
 
-import { useSettingsStore } from '@herodotus-cloud/framework-kernel';
+import { useSettingsStore } from '@herodotus/framework';
 
 defineOptions({
   name: 'HDefaultLayout',

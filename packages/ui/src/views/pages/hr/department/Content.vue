@@ -1,22 +1,12 @@
 <template>
-  <h-center-form-layout
-    :entity="editedItem"
-    :title="title"
-    :overlay="overlay"
-    :operation="operation"
-    @save="onSave()"
-  >
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
     <h-text-field
       v-model="editedItem.departmentName"
       name="departmentName"
       label="部门名称 * "
       placeholder="请输入部门名称"
       :error="v.editedItem.departmentName.$error"
-      :error-message="
-        v.editedItem.departmentName.$errors[0]
-          ? v.editedItem.departmentName.$errors[0].$message
-          : ''
-      "
+      :error-message="v.editedItem.departmentName.$errors[0] ? v.editedItem.departmentName.$errors[0].$message : ''"
       @blur="v.editedItem.departmentName.$validate()"
     ></h-text-field>
 
@@ -25,11 +15,7 @@
       label="部门分区码"
       placeholder="请输入部门分区码名称"
     ></h-text-field>
-    <h-text-field
-      v-model="editedItem.shortName"
-      label="部门简称"
-      placeholder="请输入部门简称"
-    ></h-text-field>
+    <h-text-field v-model="editedItem.shortName" label="部门简称" placeholder="请输入部门简称"></h-text-field>
     <h-department-select
       v-model="editedItem.parentId"
       :organizationId="editedItem.organizationId"
@@ -39,60 +25,42 @@
   </h-center-form-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import type { SysDepartmentEntity } from '@herodotus/api';
+
 import useVuelidate from '@vuelidate/core';
 import { required, helpers } from '@vuelidate/validators';
 
-import type { SysDepartmentEntity } from '@/composables/declarations';
 import { API } from '@/configurations';
 import { useTableItem } from '@/composables/hooks';
-import { HCenterFormLayout } from '@/components';
+
 import { HOrganizationSelect, HDepartmentSelect } from '../components';
 
-export default defineComponent({
-  name: 'SysDepartmentContent',
+defineOptions({ name: 'SysDepartmentContent', components: { HOrganizationSelect, HDepartmentSelect } });
 
-  components: {
-    HCenterFormLayout,
-    HOrganizationSelect,
-    HDepartmentSelect,
+const { editedItem, operation, title, overlay, additional, saveOrUpdate } = useTableItem<SysDepartmentEntity>(
+  API.core.sysDepartment(),
+);
+
+const rules = {
+  editedItem: {
+    departmentName: {
+      required: helpers.withMessage('单位不能为空', required),
+    },
   },
+};
 
-  setup(props) {
-    const { editedItem, operation, title, overlay, additional, saveOrUpdate } =
-      useTableItem<SysDepartmentEntity>(API.core.sysDepartment());
+const v = useVuelidate(rules, { editedItem }, { $lazy: true });
 
-    const rules = {
-      editedItem: {
-        departmentName: {
-          required: helpers.withMessage('单位不能为空', required),
-        },
-      },
-    };
+const onSave = () => {
+  v.value.$validate().then((result) => {
+    if (result) {
+      saveOrUpdate();
+    }
+  });
+};
 
-    const v = useVuelidate(rules, { editedItem }, { $lazy: true });
-
-    const onSave = () => {
-      v.value.$validate().then((result) => {
-        if (result) {
-          saveOrUpdate();
-        }
-      });
-    };
-
-    onMounted(() => {
-      editedItem.value.organizationId = additional.value.organizationId as string;
-    });
-
-    return {
-      editedItem,
-      operation,
-      title,
-      overlay,
-      v,
-      onSave,
-    };
-  },
+onMounted(() => {
+  editedItem.value.organizationId = additional.value.organizationId as string;
 });
 </script>

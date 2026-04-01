@@ -24,11 +24,11 @@
 </template>
 
 <script setup lang="ts">
-import type { HttpResult } from '@herodotus-cloud/core';
-import type { GetObjectAttributesResult, PutObjectLegalHoldArgument, PutBucketPolicyResult } from '@herodotus-cloud/apis';
+import type { HttpResult } from '@herodotus/core';
+import type { GetObjectAttributesResult, PutObjectLegalHoldArgument, PutBucketPolicyResult } from '@herodotus/api';
 
 import { isEmpty } from 'lodash-es';
-import { toast } from '@herodotus-cloud/core';
+import { toast } from '@herodotus/core';
 
 import { API } from '@/configurations';
 

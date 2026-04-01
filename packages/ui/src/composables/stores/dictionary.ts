@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 import type { Dictionary, SysDictionaryEntity } from '@/composables/declarations';
 
-import { find, concat, difference, orderBy, assign, isEmpty } from 'lodash-es';
+import { concat, find, difference, orderBy, assign, isEmpty } from 'lodash-es';
 import { API } from '@/configurations';
 
 export const useDictionaryStore = defineStore('Dictionary', {

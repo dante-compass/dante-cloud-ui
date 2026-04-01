@@ -11,7 +11,7 @@ import type {
 } from '@/declarations';
 import { moment } from '../utils';
 import { HttpConfig, BpmnQueryService } from '../base';
-import { ContentTypeEnum } from '@/enums';
+import { ContentTypeEnum } from '@herodotus/core';
 
 class DeploymentService extends BpmnQueryService<
   DeploymentEntity,

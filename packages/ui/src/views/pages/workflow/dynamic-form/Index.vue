@@ -14,7 +14,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <q-btn color="primary" label="新建表单" @click="toCreate()" />
+      <q-btn color="primary" label="新建表单" @click="toCreate(false)" />
     </template>
 
     <template #body-cell-actions="props">
@@ -40,7 +40,7 @@ import type {
 } from '@/composables/declarations';
 
 import { CONSTANTS, API } from '@/configurations';
-import { toast, notify } from '@herodotus-cloud/core';
+import { toast, notify } from '@herodotus/core';
 import { useBaseTable } from '@/composables/hooks';
 
 export default defineComponent({
@@ -61,7 +61,7 @@ export default defineComponent({
       setPageData,
       showLoading,
       hideLoading,
-    } = useBaseTable<DynamicFormEntity, DynamicFormConditions>(
+    } = useBaseTable<DynamicFormConditions, DynamicFormEntity>(
       CONSTANTS.ComponentName.WIDGETS_DYNAMIC_FORM,
       'updateTime',
       true,

@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/form-designer",
-  "version": "2.7.0",
+  "version": "4.3.1",
   "description": "",
   "keywords": [],
   "author": "",
@@ -30,12 +30,14 @@
     "./style.css": "./dist/assets/css/form-designer.css",
     "./package.json": "./package.json"
   },
+  "publishConfig": {
+    "registry": "https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/"
+  },
   "dependencies": {
     "@herodotus-cloud/components": "workspace:^",
-    "@herodotus-cloud/core": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
-    "quasar": "^2.19.1",
+    "quasar": "^2.19.2",
     "vue": "^3.5.31",
     "vuedraggable": "4.1.0"
   }

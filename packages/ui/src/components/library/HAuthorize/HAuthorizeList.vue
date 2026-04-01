@@ -6,9 +6,7 @@
 
       <q-item-section>
         <q-item-label>{{ getTitle(item) }}</q-item-label>
-        <q-item-label v-if="prependSubtitle" caption lines="1">{{
-          getSubtitle(item)
-        }}</q-item-label>
+        <q-item-label v-if="prependSubtitle" caption lines="1">{{ getSubtitle(item) }}</q-item-label>
       </q-item-section>
 
       <q-item-section side>
@@ -19,9 +17,7 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent, computed } from 'vue';
-import type { AbstractSysEntity, HttpMethod } from '@/composables/declarations';
+import type { AbstractSysEntity, HttpMethod } from '@herodotus/core';
 
 import { findIndex, remove } from 'lodash-es';
 

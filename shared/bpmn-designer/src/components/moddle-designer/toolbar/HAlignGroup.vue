@@ -36,7 +36,7 @@ import { defineComponent, nextTick } from 'vue';
 import type { BpmnAlign, Selection, AlignElements, Modeling } from '@/declarations';
 
 import { useDesignerStore } from '@/stores';
-import { toast } from '@herodotus-cloud/core';
+import { toast } from '@herodotus/core';
 import { isEmpty } from 'lodash-es';
 
 import { HButton, HButtonGroup, HSeparator } from '../../widgets';

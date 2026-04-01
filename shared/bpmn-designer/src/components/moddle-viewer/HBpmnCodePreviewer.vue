@@ -31,7 +31,7 @@ import type { PropType } from 'vue';
 import { defineComponent, computed } from 'vue';
 import { copyToClipboard } from 'quasar';
 
-import { toast } from '@/lib/utils';
+import { toast } from '@herodotus/core';
 
 import 'highlight.js/styles/stackoverflow-dark.css';
 import hljs from 'highlight.js/lib/core';

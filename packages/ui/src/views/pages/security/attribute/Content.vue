@@ -1,11 +1,5 @@
 <template>
-  <h-center-form-layout
-    :entity="editedItem"
-    :title="title"
-    :overlay="overlay"
-    :operation="operation"
-    @save="onSave()"
-  >
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
     <h-dictionary-select
       v-model="editedItem.webExpression"
       dictionary="PermissionExpression"
@@ -18,13 +12,7 @@
       placeholder="请输入服务ID"
       disable
     ></h-text-field>
-    <h-text-field
-      v-model="editedItem.url"
-      name="url"
-      label="URL * "
-      placeholder="请输URL"
-      disable
-    ></h-text-field>
+    <h-text-field v-model="editedItem.url" name="url" label="URL * " placeholder="请输URL" disable></h-text-field>
     <h-text-field
       v-model="editedItem.requestMethod"
       name="requestMethod"
@@ -42,37 +30,20 @@
   </h-center-form-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import type { SysAttributeEntity } from '@herodotus/api';
 
-import type { SysAttributeEntity } from '@/composables/declarations';
 import { API } from '@/configurations';
 import { useTableItem } from '@/composables/hooks';
 import { HCenterFormLayout, HDictionarySelect } from '@/components';
 
-export default defineComponent({
-  name: 'SysAttributeContent',
+defineOptions({ name: 'SysAttributeContent' });
 
-  components: {
-    HCenterFormLayout,
-    HDictionarySelect,
-  },
+const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysAttributeEntity>(
+  API.core.sysAttribute(),
+);
 
-  setup(props) {
-    const { editedItem, operation, title, overlay, saveOrUpdate } =
-      useTableItem<SysAttributeEntity>(API.core.sysAttribute());
-
-    const onSave = () => {
-      saveOrUpdate();
-    };
-
-    return {
-      editedItem,
-      operation,
-      title,
-      overlay,
-      onSave,
-    };
-  },
-});
+const onSave = () => {
+  saveOrUpdate();
+};
 </script>

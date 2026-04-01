@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/bpmn-apis",
-  "version": "2.7.0",
+  "version": "4.3.1",
   "description": "",
   "keywords": [],
   "author": "",
@@ -30,7 +30,7 @@
     "./style.css": "./dist/assets/css/bpmn-apis.css",
     "./package.json": "./package.json"
   },
-  "dependencies": {
-    "@herodotus-cloud/core": "workspace:^"
+  "publishConfig": {
+    "registry": "https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/"
   }
 }

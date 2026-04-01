@@ -42,9 +42,8 @@ import type {
 
 import { CONSTANTS, API } from '@/configurations';
 
-import { useBaseTable } from '@/composables/hooks';
-import { useBpmnProcess } from '@/composables/hooks';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useBaseTable, useBpmnProcess } from '@/composables/hooks';
+import { useAuthenticationStore } from '@herodotus/framework';
 
 export default defineComponent({
   name: 'HToDoTaskTable',
@@ -64,13 +63,13 @@ export default defineComponent({
       setPageData,
       showLoading,
       hideLoading,
-    } = useBaseTable<ExtendedTaskEntity, ExtendedTaskConditions>(
+    } = useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>(
       'HToDoTaskTable',
       'updateTime',
       true,
     );
     const { editedItem, fetchProcessSpecifics } = useBpmnProcess();
-    const { toEdit } = useBaseTable<ProcessSpecificsEntity, ProcessSpecificsConditions>(
+    const { toEdit } = useBaseTable<ProcessSpecificsConditions, ProcessSpecificsEntity>(
       CONSTANTS.ComponentName.WORKFLOW_PROCESS_APPROVE,
       'updateTime',
     );

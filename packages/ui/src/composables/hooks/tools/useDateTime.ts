@@ -1,4 +1,4 @@
-import { moment } from '@herodotus-cloud/core';
+import { moment } from '@herodotus/core';
 
 export default function useDateTime() {
   const humanize = (date: string): string => {

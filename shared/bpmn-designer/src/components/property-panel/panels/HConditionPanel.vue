@@ -106,19 +106,19 @@ const isExternalResource = computed(() => {
   return scriptType.value === 'EXTERNAL_RESOURCE';
 });
 
-const updateConditionExpression = (value: string | number) => {
+const updateConditionExpression = (value: string | number | null | undefined) => {
   setConditionExpressionValue(designer.activeElement, value);
 };
 
-const updateFormat = (value: string | number) => {
+const updateFormat = (value: string | number | null | undefined) => {
   setFormatValue(designer.activeElement, value);
 };
 
-const updateResource = (value: string | number) => {
+const updateResource = (value: string | number | null | undefined) => {
   setResourceValue(designer.activeElement, value);
 };
 
-const updateScript = (value: string | number) => {
+const updateScript = (value: string | number | null | undefined) => {
   setScriptValue(designer.activeElement, value);
 };
 

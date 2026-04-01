@@ -1,7 +1,6 @@
 import type { Element, Documentation } from '@/declarations';
 
 import { getBusinessObject } from '@/lib/utils';
-
 import { isEmpty, without } from 'lodash-es';
 
 import usePropertyElement from './usePropertyElements';

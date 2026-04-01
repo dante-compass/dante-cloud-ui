@@ -5,7 +5,6 @@ import type EventBus from 'diagram-js/lib/core/EventBus';
 
 import { parseElementType, getRawType, getBpmnIcon } from '../../panel-icon';
 import { Logger } from '@/lib/utils';
-
 import { isEmpty, upperCase } from 'lodash-es';
 
 const LOW_PRIORITY = 500;

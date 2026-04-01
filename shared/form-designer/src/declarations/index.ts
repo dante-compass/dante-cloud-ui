@@ -1,6 +1,6 @@
-export type { SweetAlertResult } from 'sweetalert2';
-
-export type { QBaseDataItem, QTableColumnProps } from '@herodotus-cloud/core';
+export type { SweetAlertResult } from '@herodotus/core';
+export type { QBaseDataItem } from '@herodotus-cloud/form-apis';
+export type { QTableColumnProps } from '@herodotus-cloud/components';
 
 export type {
   FormDesignerResources,
@@ -11,5 +11,5 @@ export type {
   ConditionVariable,
   Sheet,
   FormModeler,
-  DynamicFormEntity
+  DynamicFormEntity,
 } from '@herodotus-cloud/form-apis';

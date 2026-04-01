@@ -3,14 +3,13 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent, computed } from 'vue';
+import type { Dictionary } from '@herodotus/core';
 
 import { CONSTANTS } from '@/configurations';
 
 import HDenseIconButton from './HDenseIconButton.vue';
+
 import { isEmpty } from 'lodash-es';
-import type { Dictionary } from '@/composables/declarations';
 
 export default defineComponent({
   name: 'HStatusColumn',

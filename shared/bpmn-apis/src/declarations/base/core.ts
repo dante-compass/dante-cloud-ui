@@ -1,4 +1,4 @@
-import type { Entity, Conditions, Pagination } from '@herodotus-cloud/core';
+import type { Entity, Conditions, Pagination } from '@herodotus/core';
 
 export interface BpmnParams extends Conditions {}
 

@@ -5,10 +5,7 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent } from 'vue';
-
-import type { HttpMethod } from '@/composables/declarations';
+import type { HttpMethod } from '@herodotus/core';
 
 import { useDisplayElement } from '@/composables/hooks';
 import { CONSTANTS } from '@/configurations';

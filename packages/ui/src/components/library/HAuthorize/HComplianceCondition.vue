@@ -34,12 +34,7 @@
             <h-column :cols="2"></h-column>
             <h-column :cols="2"></h-column>
             <h-column auto>
-              <h-button
-                color="red"
-                icon="mdi-broom"
-                tooltip="清空"
-                @click.stop="onClear()"
-              ></h-button>
+              <h-button color="red" icon="mdi-broom" tooltip="清空" @click.stop="onClear()"></h-button>
             </h-column>
           </h-row>
         </q-card-section>
@@ -49,10 +44,8 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent, computed } from 'vue';
+import type { OAuth2UserLoggingConditions } from '@herodotus/api';
 
-import type { OAuth2UserLoggingConditions } from '@/composables/declarations';
 export default defineComponent({
   name: 'HComplianceCondition',
 

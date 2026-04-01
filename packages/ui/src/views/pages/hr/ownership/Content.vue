@@ -1,5 +1,5 @@
 <template>
-  <h-full-width-layout title="配置人员归属" :overlay="overlay">
+  <h-full-width-form-layout title="配置人员归属" :overlay="overlay">
     <div class="q-gutter-y-md">
       <h-employee-condition v-model:conditions="conditions"></h-employee-condition>
 
@@ -34,13 +34,10 @@
     <template #button>
       <q-btn color="primary" class="q-ml-sm" @click="onSave()">保存</q-btn>
     </template>
-  </h-full-width-layout>
+  </h-full-width-form-layout>
 </template>
 
-<script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, ref } from 'vue';
-
+<script setup lang="ts">
 import type {
   SysEmployeeEntity,
   SysEmployeeConditions,
@@ -50,90 +47,62 @@ import type {
 } from '@/composables/declarations';
 
 import { CONSTANTS, API } from '@/configurations';
-import { toast } from '@herodotus-cloud/core';
+import { toast } from '@herodotus/core';
 import { isEmpty } from 'lodash-es';
-import { useTable, useTableItem } from '@/composables/hooks';
-import { useEditFinish } from '@herodotus-cloud/framework-kernel';
+import { useEditFinish } from '@herodotus/framework';
+import { useTable, useTableItem, useDictionary } from '@/composables/hooks';
 
-import { HFullWidthLayout, HTable } from '@/components';
+import { HFullWidthFormLayout, HTable } from '@/components';
 import { HEmployeeCondition } from '../components';
-import { useDictionary } from '@/composables/hooks';
 
-export default defineComponent({
-  name: 'SysOwnershipContent',
+defineOptions({ name: 'SysOwnershipContent', components: { HEmployeeCondition, HFullWidthFormLayout, HTable } });
 
-  components: {
-    HEmployeeCondition,
-    HFullWidthLayout,
-    HTable,
-  },
+const { onFinish } = useEditFinish();
+const { getDictionaryItemDisplay } = useDictionary('Gender', 'identity');
+const { editedItem, title, overlay } = useTableItem<SysEmployeeAllocatable>(API.core.sysEmployeeAllocatable());
+const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
+  SysEmployeeConditions,
+  SysEmployeeEntity
+>(API.core.sysEmployee(), CONSTANTS.ComponentName.SYS_EMPLOYEE);
 
-  setup(props) {
-    const { onFinish } = useEditFinish();
-    const { getDictionaryItemDisplay } = useDictionary('Gender', 'identity');
-    const { editedItem, title, overlay } = useTableItem<SysEmployeeAllocatable>(
-      API.core.sysEmployeeAllocatable(),
-    );
-    const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
-      SysEmployeeConditions,
-      SysEmployeeEntity
-    >(API.core.sysEmployee(), CONSTANTS.ComponentName.SYS_EMPLOYEE);
+const selectedItems = ref([]) as Ref<Array<SysEmployeeEntity>>;
 
-    const selectedItems = ref([]) as Ref<Array<SysEmployeeEntity>>;
+const columns: QTableColumnProps = [
+  { name: 'employeeName', field: 'employeeName', align: 'center', label: '人员姓名' },
+  { name: 'gender', field: 'gender', align: 'center', label: '性别' },
+  { name: 'identity', field: 'identity', align: 'center', label: '身份' },
+  { name: 'description', field: 'description', align: 'center', label: '备注' },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+];
 
-    const columns: QTableColumnProps = [
-      { name: 'employeeName', field: 'employeeName', align: 'center', label: '人员姓名' },
-      { name: 'gender', field: 'gender', align: 'center', label: '性别' },
-      { name: 'identity', field: 'identity', align: 'center', label: '身份' },
-      { name: 'description', field: 'description', align: 'center', label: '备注' },
-      { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-      { name: 'status', field: 'status', align: 'center', label: '状态' },
-    ];
-
-    const onSave = () => {
-      if (isEmpty(selectedItems.value)) {
-        toast.warning('您还没有选择任何人员！');
-      } else {
-        overlay.value = true;
-        API.core
-          .sysEmployee()
-          .saveAllocatable({
-            organizationId: editedItem.value.organizationId,
-            departmentId: editedItem.value.departmentId,
-            employees: selectedItems.value,
-          })
-          .then((response) => {
-            const result = response as HttpResult<string>;
-            overlay.value = false;
-            onFinish();
-            if (result.message) {
-              toast.success(result.message);
-            } else {
-              toast.success('保存成功');
-            }
-          })
-          .catch(() => {
-            overlay.value = false;
-            onFinish();
-            toast.error('保存失败');
-          });
-      }
-    };
-
-    return {
-      conditions,
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      columns,
-      selectedItems,
-      getDictionaryItemDisplay,
-      findItems,
-      onSave,
-      title,
-      overlay,
-    };
-  },
-});
+const onSave = () => {
+  if (isEmpty(selectedItems.value)) {
+    toast.warning('您还没有选择任何人员！');
+  } else {
+    overlay.value = true;
+    API.core
+      .sysEmployee()
+      .saveAllocatable({
+        organizationId: editedItem.value.organizationId,
+        departmentId: editedItem.value.departmentId,
+        employees: selectedItems.value,
+      })
+      .then((response) => {
+        const result = response as HttpResult<string>;
+        overlay.value = false;
+        onFinish();
+        if (result.message) {
+          toast.success(result.message);
+        } else {
+          toast.success('保存成功');
+        }
+      })
+      .catch(() => {
+        overlay.value = false;
+        onFinish();
+        toast.error('保存失败');
+      });
+  }
+};
 </script>

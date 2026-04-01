@@ -9,8 +9,8 @@ import { defineComponent, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import type { RouteLocationNormalizedLoaded } from 'vue-router';
 
-import type { SocialSource, AccessPrincipal } from '@herodotus-cloud/framework-kernel';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import type { SocialSource, AccessPrincipal } from '@herodotus/framework';
+import { useAuthenticationStore } from '@herodotus/framework';
 import { isEmpty } from 'lodash-es';
 
 export default defineComponent({

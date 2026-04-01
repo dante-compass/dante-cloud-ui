@@ -45,7 +45,7 @@ import type {
 } from '@/composables/declarations';
 
 import { CONSTANTS, API } from '@/configurations';
-import { moment } from '@herodotus-cloud/core';
+import { moment } from '@herodotus/core';
 import { useTable, useXlsx } from '@/composables/hooks';
 
 import { HTable, HBooleanColumn } from '@/components';

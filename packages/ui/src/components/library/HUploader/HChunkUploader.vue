@@ -13,8 +13,6 @@
 </template>
 
 <script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, ref, onMounted, nextTick, computed } from 'vue';
 import type {
   CreateMultipartUploadBusiness,
   SimpleUploader,
@@ -22,7 +20,7 @@ import type {
   SimpleUploaderChunk,
 } from '@/composables/declarations';
 import { API } from '@/configurations';
-import { getSystemHeaders } from '@herodotus-cloud/framework-kernel';
+import { getSystemHeaders } from '@herodotus/framework';
 
 export default defineComponent({
   name: 'HChunkUploader',

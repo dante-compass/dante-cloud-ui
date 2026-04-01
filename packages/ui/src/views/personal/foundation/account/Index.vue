@@ -9,9 +9,7 @@
       dense
       active-color="red"
       align="left"
-      :class="[
-        quasar.dark.isActive ? 'bg-dark text-white q-pt-xs' : 'bg-white text-grey-8 q-pt-xs',
-      ]"
+      :class="[quasar.dark.isActive ? 'bg-dark text-white q-pt-xs' : 'bg-white text-grey-8 q-pt-xs']"
     >
       <q-tab name="account" label="账号信息" />
       <q-tab name="realname" label="实名认证" />
@@ -21,8 +19,8 @@
 
     <q-tab-panels v-model="tab" animated>
       <q-tab-panel name="account">
-        <div class="text-h6">实名认证</div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        <h-binding-list></h-binding-list>
+        <h-passkey-list></h-passkey-list>
       </q-tab-panel>
 
       <q-tab-panel name="realname">
@@ -33,19 +31,13 @@
   </q-card>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
 import { useQuasar } from 'quasar';
 
+import { HBindingList, HPasskeyList } from './components';
 
-export default defineComponent({
-  name: 'FoundationAccount',
+defineOptions({ name: 'FoundationAccount', components: { HBindingList, HPasskeyList } });
 
-  setup() {
-    const tab = ref('account');
-    const quasar = useQuasar();
-
-    return { tab, quasar };
-  },
-});
+const tab = shallowRef('account');
+const quasar = useQuasar();
 </script>

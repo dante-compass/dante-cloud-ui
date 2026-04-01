@@ -31,7 +31,7 @@ import { defineComponent } from 'vue';
 import { HAppContainer, HUserAvatar } from '../common';
 import HSettingMenu from './HSettingMenu.vue';
 
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 
 export default defineComponent({
   name: 'HSettingContainer',

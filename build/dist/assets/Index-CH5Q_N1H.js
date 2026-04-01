@@ -1,0 +1,1 @@
+import{t as e}from"./js/views-personal-message-setting-Index.vue-BGLi1JKK.js";export{e as default};

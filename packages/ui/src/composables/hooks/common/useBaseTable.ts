@@ -1,11 +1,16 @@
-import type { Conditions, Domain, Page } from '@herodotus-cloud/core';
-
-import type { QTablePaginationProps, QTableOnRequestParameter } from '@/composables/declarations';
-
 import { useRouter } from 'vue-router';
 
-import { useRouterStore } from '@herodotus-cloud/framework-kernel';
-import { OperationEnum } from '@herodotus-cloud/core';
+import type {
+  Conditions,
+  Entity,
+  Page,
+  QTablePaginationProps,
+  QTableOnRequestParameter,
+} from '@/composables/declarations';
+
+import { capitalize } from 'lodash-es';
+import { useElementStore } from '@herodotus/framework';
+import { OperationEnum } from '@herodotus/core';
 
 /**
  * 数据表格基础定义。
@@ -20,13 +25,14 @@ import { OperationEnum } from '@herodotus-cloud/core';
  * @param <O> 输出值类型，数据表格显示接口返回内容数据类型。通常为输入和输出为相同的实体类型，也可为非实体的 Dto 类型。
  * @returns
  */
-export default function useBaseTableItems<
-  C extends Conditions,
-  I extends Domain,
-  O extends Domain = I,
->(name: string, sortBy: string, descending = false, isFetchAll = false) {
-  const loading = ref<boolean>(false);
-  const totalPages = ref<number>(0);
+export default function useBaseTable<C extends Conditions, I extends Entity, O extends Entity = I>(
+  name: string,
+  sortBy: string,
+  descending = false,
+  isFetchAll = false,
+) {
+  const loading = shallowRef<boolean>(false);
+  const totalPages = shallowRef<number>(0);
   const tableRows = ref([]) as Ref<Array<O>>;
   const conditions = ref({}) as Ref<C>;
   const pagination = ref<QTablePaginationProps>({
@@ -37,7 +43,7 @@ export default function useBaseTableItems<
     rowsNumber: 0,
   });
 
-  const store = useRouterStore();
+  const store = useElementStore();
   const router = useRouter();
 
   /**
@@ -94,6 +100,15 @@ export default function useBaseTableItems<
     addRoutePushParam(componentName, OperationEnum.INVOKE, item, additional);
   };
 
+  const toFile = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
+    const componentName = appendSuffix(name, capitalize(OperationEnum.FILE), withSuffix);
+    addRoutePushParam(componentName, OperationEnum.FILE, item, additional);
+  };
+  const toRevocation = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
+    const componentName = appendSuffix(name, capitalize(OperationEnum.REVOCATION), withSuffix);
+    addRoutePushParam(componentName, OperationEnum.REVOCATION, item, additional);
+  };
+
   /**
    * 设置分页信息
    * @param request Quasar Table onRequest 传递的参数 {@link QTableRequestProps}
@@ -147,5 +162,7 @@ export default function useBaseTableItems<
     toInfo,
     toSetup,
     toInvoke,
+    toFile,
+    toRevocation,
   };
 }

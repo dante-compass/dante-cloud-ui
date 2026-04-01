@@ -1,5 +1,3 @@
-import { computed } from 'vue';
-
 import type { DisplayElement, DisplayElementGroup } from '@/composables/declarations';
 
 export default function useDisplayElement(group: DisplayElementGroup) {

@@ -22,6 +22,7 @@
           :class="['range-btn', { isDown: isMouseDown }]"
           :style="`width:${sliderSize}px`"
           @mousedown="onRangeMouseDown($event)"
+          @touchstart.passive="onRangeMouseDown($event)"
         >
           <div></div>
           <div></div>
@@ -34,18 +35,9 @@
 
 <script lang="ts">
 import type { PropType } from 'vue';
-import {
-  defineComponent,
-  reactive,
-  ref,
-  toRefs,
-  onMounted,
-  onBeforeMount,
-  watch,
-  computed,
-} from 'vue';
+import { defineComponent, reactive, ref, toRefs, onMounted, onBeforeMount, watch, computed } from 'vue';
 
-import type { JigsawCaptcha } from '@herodotus-cloud/framework-kernel';
+import type { JigsawCaptcha } from '@herodotus/framework';
 import { useBehaviorCaptcha } from '@/composables/hooks';
 
 import HBehaviorCaptchaBackground from './HBehaviorCaptchaBackground.vue';
@@ -87,17 +79,8 @@ export default defineComponent({
       isCloseDown: false,
     });
 
-    const {
-      getImage,
-      timeoutClear,
-      message,
-      canOperate,
-      isSuccess,
-      isLoading,
-      isShowMessage,
-      verifyCaptcha,
-      reset,
-    } = useBehaviorCaptcha();
+    const { getImage, timeoutClear, message, canOperate, isSuccess, isLoading, isShowMessage, verifyCaptcha, reset } =
+      useBehaviorCaptcha();
 
     onMounted(() => {
       addEventListener();
@@ -149,11 +132,7 @@ export default defineComponent({
      */
     const styleWidth = computed(() => {
       const w = state.startWidth + state.newX - state.startX;
-      return w < props.sliderSize
-        ? props.sliderSize
-        : w > props.canvasWidth
-          ? props.canvasWidth
-          : w;
+      return w < props.sliderSize ? props.sliderSize : w > props.canvasWidth ? props.canvasWidth : w;
     });
 
     const backgroundImage = computed(() => {
@@ -169,7 +148,7 @@ export default defineComponent({
     });
 
     // 鼠标按下准备拖动
-    const onRangeMouseDown = (e: MouseEvent) => {
+    const onRangeMouseDown = (e: any) => {
       if (canOperate) {
         state.isMouseDown = true;
         const slider = RangeSlider.value as HTMLDivElement;

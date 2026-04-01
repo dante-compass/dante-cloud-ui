@@ -35,7 +35,7 @@ import { defineComponent, ref, computed, watch } from 'vue';
 
 import { useDesignerStore } from '@/stores';
 import { useGeneralProperties } from '@/hooks';
-import { toast } from '@/lib/utils';
+import { toast } from '@herodotus/core';
 import { isEmpty } from 'lodash-es';
 
 import { HExpansionItem } from '../../widgets';

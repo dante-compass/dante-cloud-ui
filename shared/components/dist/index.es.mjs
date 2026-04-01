@@ -1,6 +1,6 @@
 import { computed as e, createBlock as t, createCommentVNode as n, createElementBlock as r, createElementVNode as i, createSlots as a, createTextVNode as o, createVNode as s, defineComponent as c, guardReactiveProps as l, mergeModels as u, mergeProps as d, nextTick as ee, normalizeClass as f, normalizeProps as p, normalizeStyle as te, onMounted as ne, onUnmounted as re, openBlock as m, reactive as ie, ref as h, renderSlot as g, resolveDirective as ae, resolveDynamicComponent as oe, shallowRef as _, toDisplayString as v, unref as y, useModel as b, watch as x, withCtx as S, withDirectives as se } from "vue";
 import { ClosePopup as ce, QBtn as C, QCard as w, QCardActions as le, QCardSection as T, QDate as ue, QDialog as de, QIcon as E, QInnerLoading as fe, QInput as D, QItem as O, QItemLabel as pe, QItemSection as k, QPagination as me, QPopupProxy as A, QSelect as he, QSeparator as j, QSpace as ge, QSpinner as _e, QSpinnerAudio as ve, QSpinnerBall as ye, QSpinnerBars as be, QSpinnerBox as xe, QSpinnerClock as Se, QSpinnerComment as Ce, QSpinnerCube as we, QSpinnerDots as Te, QSpinnerFacebook as Ee, QSpinnerGears as De, QSpinnerGrid as Oe, QSpinnerHearts as ke, QSpinnerHourglass as Ae, QSpinnerInfinity as je, QSpinnerIos as Me, QSpinnerOrbit as Ne, QSpinnerOval as Pe, QSpinnerPie as Fe, QSpinnerPuff as Ie, QSpinnerRadio as Le, QSpinnerRings as Re, QSpinnerTail as ze, QTime as Be, QToggle as Ve, QTooltip as He, QTree as Ue, Ripple as We } from "quasar";
-import { moment as Ge, moment as Ke } from "@herodotus-cloud/core";
+import { moment as Ge, moment as Ke } from "@herodotus/core";
 import * as qe from "@mdi/js";
 import { find as Je, isEmpty as Ye, kebabCase as Xe } from "lodash-es";
 import { tsParticles as Ze } from "@tsparticles/engine";
@@ -363,7 +363,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 				String,
 				Number
 			],
-			default: !1
+			default: !0
 		},
 		falseValue: {
 			type: [
@@ -371,7 +371,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 				String,
 				Number
 			],
-			default: !0
+			default: !1
 		},
 		color: { default: "primary" }
 	}, {
@@ -445,7 +445,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 	components: { QInput: D },
 	__name: "HTextField",
 	props: {
-		modelValue: {},
+		modelValue: { required: !0 },
 		modelModifiers: {}
 	},
 	emits: ["update:modelValue"],
@@ -457,23 +457,18 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 			outlined: "",
 			clearable: "",
 			"bottom-slots": ""
-		}, e.$attrs), a({ _: 2 }, [
-			e.$slots.append ? {
-				name: "append",
-				fn: S(() => [g(e.$slots, "append")]),
-				key: "0"
-			} : void 0,
-			e.$slots.before ? {
-				name: "before",
-				fn: S(() => [g(e.$slots, "before")]),
-				key: "1"
-			} : void 0,
-			e.$slots.after ? {
-				name: "after",
-				fn: S(() => [g(e.$slots, "after")]),
-				key: "2"
-			} : void 0
-		]), 1040, ["modelValue"]));
+		}, e.$attrs), a({
+			append: S(() => [g(e.$slots, "append")]),
+			_: 2
+		}, [e.$slots.before ? {
+			name: "before",
+			fn: S(() => [g(e.$slots, "before")]),
+			key: "0"
+		} : void 0, e.$slots.after ? {
+			name: "after",
+			fn: S(() => [g(e.$slots, "after")]),
+			key: "1"
+		} : void 0]), 1040, ["modelValue"]));
 	}
 }), G = /* @__PURE__ */ c({
 	name: "HTreeField",

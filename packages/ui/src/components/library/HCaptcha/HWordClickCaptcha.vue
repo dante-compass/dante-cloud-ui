@@ -47,7 +47,7 @@
 import type { PropType } from 'vue';
 import { defineComponent, reactive, watch, computed, toRefs } from 'vue';
 
-import type { WordClickCaptcha, Coordinate } from '@herodotus-cloud/framework-kernel';
+import type { WordClickCaptcha, Coordinate } from '@herodotus/framework';
 
 import { useBehaviorCaptcha } from '@/composables/hooks';
 

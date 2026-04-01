@@ -1,6 +1,6 @@
 <template>
   <q-input v-model="text" outlined clearable bottom-slots v-bind="$attrs">
-    <template v-if="$slots.append" #append>
+    <template #append>
       <slot name="append"></slot>
     </template>
 
@@ -19,5 +19,7 @@ import { QInput } from 'quasar';
 
 defineOptions({ name: 'HTextField', components: { QInput } });
 
-const text = defineModel<string | number>();
+const text = defineModel<string | number | null | undefined>({
+  required: true,
+});
 </script>

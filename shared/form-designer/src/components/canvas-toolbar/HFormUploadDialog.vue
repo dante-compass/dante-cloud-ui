@@ -25,7 +25,7 @@ import { defineComponent, computed, ref } from 'vue';
 
 import type { SweetAlertResult } from '@/declarations';
 
-import { toast, Swal } from '@/lib/utils';
+import { toast, Swal } from '@herodotus/core';
 import { useFormResourceStore, useFormCanvasStore } from '@/stores';
 
 import HFormInformation from './HFormInformation.vue';

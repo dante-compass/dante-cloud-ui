@@ -1,0 +1,1 @@
+import{Bt as e,Wt as t,gt as n,wt as r}from"./npm-@herodotus-framework-C9XUtMd6.js";import{A as i}from"./components-error-403.vue-D_hMp9uD.js";var a=r({name:`WorkflowDeploymentContent`});function o(r,i,a,o,s,c){let l=t(`h-bpmn-designer`);return e(),n(l)}var s=i(a,[[`render`,o]]);export{s as t};

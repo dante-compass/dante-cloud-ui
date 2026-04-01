@@ -35,7 +35,7 @@ import type {
 
 import { API } from '@/configurations';
 import { useBaseTable } from '@/composables/hooks';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 
 export default defineComponent({
   name: 'HCompletedTaskTable',
@@ -56,7 +56,7 @@ export default defineComponent({
       setPageData,
       showLoading,
       hideLoading,
-    } = useBaseTable<ExtendedTaskEntity, ExtendedTaskConditions>(
+    } = useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>(
       'HToDoTaskTable',
       'updateTime',
       true,

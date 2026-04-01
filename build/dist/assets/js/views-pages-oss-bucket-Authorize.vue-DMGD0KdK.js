@@ -1,0 +1,1 @@
+import{Bt as e,vt as t,wt as n}from"./npm-@herodotus-framework-C9XUtMd6.js";var r=n({name:`OssBucketAuthorize`,__name:`Authorize`,setup(n){return(n,r)=>(e(),t(`div`,null,`OssBucketAuthorize`))}});export{r as t};

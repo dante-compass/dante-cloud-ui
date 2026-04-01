@@ -9,13 +9,7 @@
       <div class="col-5">
         <div class="column items-start">
           <div class="col">
-            <q-btn
-              flat
-              :label="url"
-              :dense="dense"
-              :size="size"
-              class="text-weight-bold text-lowercase"
-            />
+            <q-btn flat :label="url" :dense="dense" :size="size" class="text-weight-bold text-lowercase" />
           </div>
         </div>
       </div>
@@ -29,13 +23,10 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent, computed } from 'vue';
-
-import type { HttpMethod } from '@/composables/declarations';
+import type { HttpMethod } from '@herodotus/core';
 
 import { useDisplayElement } from '@/composables/hooks';
-import { useSettingsStore } from '@herodotus-cloud/framework-kernel';
+import { useSettingsStore } from '@herodotus/framework';
 
 import { CONSTANTS } from '@/configurations';
 

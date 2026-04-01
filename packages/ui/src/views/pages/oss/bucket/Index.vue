@@ -58,17 +58,17 @@
 </template>
 
 <script setup lang="ts">
-import type { HttpResult } from '@herodotus-cloud/core';
+import type { HttpResult } from '@herodotus/core';
 import type {
   BucketDomain,
   BucketDetailsDomain,
   BucketDetailsDomainProps,
   PutBucketPolicyResult,
   DeleteBucketResult,
-} from '@herodotus-cloud/apis';
+} from '@herodotus/api';
 import type { QTableColumnProps } from '@/composables/declarations';
 
-import { moment, toast, notify } from '@herodotus-cloud/core';
+import { moment, toast, notify } from '@herodotus/core';
 import { CONSTANTS, API } from '@/configurations';
 import { useDictionary } from '@/composables/hooks';
 

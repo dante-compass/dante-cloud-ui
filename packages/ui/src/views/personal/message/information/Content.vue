@@ -39,18 +39,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import type { DialogueDetailEntity, DialogueDetailConditions } from '@herodotus/api';
 
-import type { DialogueDetailEntity, DialogueDetailConditions } from '@/composables/declarations';
-
-import { HDetailContainer, HUserAvatar, HSendMessageField } from '@/components';
-import { moment } from '@herodotus-cloud/core';
+import { HDetailContainer, HUserAvatar } from '@/components';
+import { HSendMessageField } from '@/components';
+import { moment } from '@herodotus/core';
 import { API } from '@/configurations';
+import { useEditFinish } from '@herodotus/framework';
 import { useTableItem, useTable } from '@/composables/hooks';
-import { useEditFinish } from '@herodotus-cloud/framework-kernel';
 
 export default defineComponent({
-  name: 'MessageSetting',
+  name: 'MessageInformationContent',
 
   components: {
     HDetailContainer,

@@ -72,9 +72,9 @@ import { defineComponent, ref, computed, watch } from 'vue';
 import type { QTableProps } from 'quasar';
 import type { ExtensionProperty } from '@/declarations';
 
-import { isEmpty } from 'lodash-es';
 import { useExtensionProperties } from '@/hooks';
 import { useDesignerStore } from '@/stores';
+import { isEmpty } from 'lodash-es';
 
 import { HExpansionItem, HTableItemDeleteButton } from '../../widgets';
 import { HExtensionPropertyDialog } from '../../property-element';

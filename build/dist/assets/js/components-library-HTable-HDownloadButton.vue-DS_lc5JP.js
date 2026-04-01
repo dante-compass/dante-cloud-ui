@@ -1,0 +1,1 @@
+import{At as e,Bt as t,gt as n,wt as r}from"./npm-@herodotus-framework-C9XUtMd6.js";import{u as i}from"./components-error-403.vue-D_hMp9uD.js";var a=r({name:`HDeleteButton`,components:{HDenseIconButton:i},__name:`HDownloadButton`,setup(r){return(r,a)=>(t(),n(i,e({color:`secondary`,icon:`mdi-file-download`,tooltip:`下载文件`},r.$attrs),null,16))}});export{a as t};

@@ -28,7 +28,7 @@ export default defineComponent({
 
     const initiator = ref<string>('');
 
-    const updateInitiator = (value: string | number | null) => {
+    const updateInitiator = (value: string | number | null | undefined) => {
       setInitiatorValue(designer.activeElement, value as string);
     };
 

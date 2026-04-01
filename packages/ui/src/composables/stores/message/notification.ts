@@ -6,9 +6,9 @@ import type {
   NotificationConditions,
 } from '@/composables/declarations';
 
-import { NotificationCategoryEnum } from '@herodotus-cloud/apis';
+import { NotificationCategoryEnum } from '@herodotus/api';
 import { API } from '@/configurations';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 
 export const useNotificationStore = defineStore('Notification', {
   state: () => ({

@@ -91,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ObjectDomain, ObjectDomainProps, ObjectDomainConditions, DeletedObjectDomain } from '@herodotus-cloud/apis';
+import type { ObjectDomain, ObjectDomainProps, ObjectDomainConditions, DeletedObjectDomain } from '@herodotus/api';
 import type { QTableColumnProps } from '@/composables/declarations';
 
 import { format } from 'quasar';
@@ -99,7 +99,7 @@ import { format } from 'quasar';
 import { HDeleteButton, HDenseIconButton, HTable, HChunkUploader, HSimpleUploader } from '@/components';
 import { useBaseTable, useDateTime, useOss } from '@/composables/hooks';
 import { API, CONSTANTS } from '@/configurations';
-import { toast, notify } from '@herodotus-cloud/core';
+import { toast, notify } from '@herodotus/core';
 import { isEmpty, split, dropRight, join, initial } from 'lodash-es';
 
 defineOptions({

@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { NotificationCategoryEnum } from '@herodotus-cloud/apis';
+import { NotificationCategoryEnum } from '@herodotus/api';
 import { defineComponent } from 'vue';
 
 import { useNotifications } from '@/composables/hooks';
