@@ -22,11 +22,7 @@ const createBinding = (name: string, props: Record<string, unknown>, context: Se
   return { ...vModel };
 };
 
-const createModels = (
-  models: Record<string, VModel>,
-  props: Record<string, unknown>,
-  context: SetupContext,
-) => {
+const createModels = (models: Record<string, VModel>, props: Record<string, unknown>, context: SetupContext) => {
   let result: Record<string, any> = {};
   Object.keys(models).forEach((key) => {
     const model = createBinding(key, props, context);
@@ -35,11 +31,7 @@ const createModels = (
   return result;
 };
 
-export const renderSchema = (
-  schemas: Array<Schema>,
-  props: Record<string, unknown>,
-  context: SetupContext,
-): any => {
+export const renderSchema = (schemas: Array<Schema>, props: Record<string, unknown>, context: SetupContext): any => {
   return schemas.map((schema) => {
     const children = schema.children ? schema.children : [];
     const models = schema.models ? schema.models : {};

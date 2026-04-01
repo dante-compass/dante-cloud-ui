@@ -24,16 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  QBtn,
-  QCard,
-  QCardActions,
-  QCardSection,
-  QDialog,
-  QInnerLoading,
-  QSpace,
-  QSpinnerDots,
-} from 'quasar';
+import { QBtn, QCard, QCardActions, QCardSection, QDialog, QInnerLoading, QSpace, QSpinnerDots } from 'quasar';
 
 defineOptions({
   name: 'HDialog',

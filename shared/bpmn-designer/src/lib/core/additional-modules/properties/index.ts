@@ -2,5 +2,5 @@ import HerodotusPropertiesProvider from './HerodotusPropertiesProvider';
 
 export default {
   __init__: ['herodotusPropertiesProvider'],
-  herodotusPropertiesProvider: ['type', HerodotusPropertiesProvider]
+  herodotusPropertiesProvider: ['type', HerodotusPropertiesProvider],
 };

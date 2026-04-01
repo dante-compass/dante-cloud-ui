@@ -9,11 +9,5 @@
       "shared/**/node_modules/@types"
     ]
   },
-  "exclude": [
-    "build/dist",
-    "node_modules",
-    "packages/**/node_modules",
-    "shared/**/dist",
-    "shared/**/node_modules"
-  ]
+  "exclude": ["build/dist", "node_modules", "packages/**/node_modules", "shared/**/dist", "shared/**/node_modules"]
 }

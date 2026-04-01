@@ -42,10 +42,7 @@ export default defineComponent({
     const initActivityNodes = async (processInstanceId: string) => {
       const result = await API.bpmn
         .historyActivityInstance()
-        .getAll(
-          { sortBy: 'startTime', sortOrder: 'desc' },
-          { processInstanceId: processInstanceId },
-        );
+        .getAll({ sortBy: 'startTime', sortOrder: 'desc' }, { processInstanceId: processInstanceId });
       if (!isEmpty(result)) {
         const nodes = map(result, 'activityId');
         activityNodes.value.push(...nodes);

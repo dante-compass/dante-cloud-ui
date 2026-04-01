@@ -54,10 +54,9 @@ export default defineComponent({
   emits: ['update:selected'],
 
   setup(props, { emit }) {
-    const { treeItems, conditions } = useTreeItems<
-      SysOrganizationConditions,
-      SysOrganizationEntity
-    >(API.core.sysOrganization());
+    const { treeItems, conditions } = useTreeItems<SysOrganizationConditions, SysOrganizationEntity>(
+      API.core.sysOrganization(),
+    );
 
     const selectedValue = computed({
       get: () => props.selected,

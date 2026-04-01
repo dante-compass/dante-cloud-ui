@@ -1,4 +1,4 @@
 export const Attributes = {
   HideBottomSpace: 'hide-bottom-space',
-  ItemAligned: 'item-aligned'
+  ItemAligned: 'item-aligned',
 };

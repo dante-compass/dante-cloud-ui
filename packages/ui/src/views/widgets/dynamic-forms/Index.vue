@@ -1,11 +1,5 @@
 <template>
-  <h-dynamic-forms
-    container
-    title="Dynamic Forms"
-    :instance="instance"
-    :item="editedItem"
-    @close="onFinish"
-  />
+  <h-dynamic-forms container title="Dynamic Forms" :instance="instance" :item="editedItem" @close="onFinish" />
 </template>
 
 <script setup lang="ts">

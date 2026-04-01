@@ -17,7 +17,7 @@ export default defineComponent({
   name: 'HFormSkeleton',
 
   props: {
-    number: { type: Number, default: 5 }
-  }
+    number: { type: Number, default: 5 },
+  },
 });
 </script>

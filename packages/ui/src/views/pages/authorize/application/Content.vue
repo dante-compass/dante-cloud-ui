@@ -7,11 +7,7 @@
         label="应用名称 * "
         placeholder="请输入应用名称"
         :error="v.editedItem.applicationName.$error"
-        :error-message="
-          v.editedItem.applicationName.$errors[0]
-            ? v.editedItem.applicationName.$errors[0].$message
-            : ''
-        "
+        :error-message="v.editedItem.applicationName.$errors[0] ? v.editedItem.applicationName.$errors[0].$message : ''"
         @blur="v.editedItem.applicationName.$validate()"
       ></h-text-field>
       <h-text-field
@@ -19,16 +15,8 @@
         label="应用简称(可选)"
         placeholder="请输入应用简称"
       ></h-text-field>
-      <h-text-field
-        v-model="editedItem.logo"
-        label="应用图标(可选)"
-        placeholder="请输入应用图标"
-      ></h-text-field>
-      <h-text-field
-        v-model="editedItem.homepage"
-        label="应用主页(可选)"
-        placeholder="请输入应用主页"
-      ></h-text-field>
+      <h-text-field v-model="editedItem.logo" label="应用图标(可选)" placeholder="请输入应用图标"></h-text-field>
+      <h-text-field v-model="editedItem.homepage" label="应用主页(可选)" placeholder="请输入应用主页"></h-text-field>
       <h-dictionary-select
         v-model="editedItem.applicationType"
         dictionary="ApplicationType"
@@ -62,10 +50,7 @@
         "
         @blur="v.editedItem.clientAuthenticationMethods.$validate()"
       ></h-dictionary-select>
-      <h-date-time
-        v-model="editedItem.clientSecretExpiresAt"
-        label="客户端密钥过期时间"
-      ></h-date-time>
+      <h-date-time v-model="editedItem.clientSecretExpiresAt" label="客户端密钥过期时间"></h-date-time>
       <h-text-field
         v-model.lazy="v.editedItem.redirectUris.$model"
         name="redirectUris"
@@ -73,9 +58,7 @@
         placeholder="请输入回调地址"
         debounce="5000"
         :error="v.editedItem.redirectUris.$error"
-        :error-message="
-          v.editedItem.redirectUris.$errors[0] ? v.editedItem.redirectUris.$errors[0].$message : ''
-        "
+        :error-message="v.editedItem.redirectUris.$errors[0] ? v.editedItem.redirectUris.$errors[0].$message : ''"
         @blur="v.editedItem.redirectUris.$validate()"
       ></h-text-field>
       <h-text-field
@@ -86,10 +69,7 @@
       <h-divider label="客户端设置(Client Settings)"></h-divider>
       <div class="column q-mb-sm">
         <h-switch v-model="editedItem.requireProofKey" label="是否需要 Proof Key"></h-switch>
-        <h-switch
-          v-model="editedItem.requireAuthorizationConsent"
-          label="是否需要认证确认"
-        ></h-switch>
+        <h-switch v-model="editedItem.requireAuthorizationConsent" label="是否需要认证确认"></h-switch>
       </div>
       <h-text-field
         v-model="editedItem.jwkSetUrl"
@@ -116,10 +96,7 @@
       <h-label text="刷新令牌有效期" size="subtitle-1" weight="bolder" align="left"></h-label>
       <h-duration v-model="editedItem.refreshTokenTimeToLive" label="刷新令牌有效期"></h-duration>
       <h-label text="授权码有效期" size="subtitle-1" weight="bolder" align="left"></h-label>
-      <h-duration
-        v-model="editedItem.authorizationCodeTimeToLive"
-        label="授权码有效期"
-      ></h-duration>
+      <h-duration v-model="editedItem.authorizationCodeTimeToLive" label="授权码有效期"></h-duration>
       <h-label text="设备激活码有效期" size="subtitle-1" weight="bolder" align="left"></h-label>
       <h-duration v-model="editedItem.deviceCodeTimeToLive" label="设备激活码有效期"></h-duration>
       <div class="column q-mb-sm">
@@ -141,12 +118,7 @@
         placeholder="请输入备注"
         class="q-mt-md"
       ></h-text-field>
-      <h-text-field
-        v-model.number="editedItem.ranking"
-        label="排序值"
-        placeholder="请输入排序值"
-        type="number"
-      />
+      <h-text-field v-model.number="editedItem.ranking" label="排序值" placeholder="请输入排序值" type="number" />
       <h-dictionary-select
         v-model="editedItem.status"
         dictionary="DataItemStatus"
@@ -162,13 +134,7 @@
     </h-container>
 
     <template #right>
-      <h-text-field
-        v-if="isEdit"
-        v-model="editedItem.clientId"
-        label="Client Id"
-        disable
-        readonly
-      ></h-text-field>
+      <h-text-field v-if="isEdit" v-model="editedItem.clientId" label="Client Id" disable readonly></h-text-field>
       <h-text-field
         v-if="isEdit"
         v-model="editedItem.clientSecret"
@@ -236,11 +202,7 @@ const isRedirectUrisRequired = () => {
   let authorizationGrantTypes = editedItem.value.authorizationGrantTypes;
   let redirectUris = editedItem.value.redirectUris;
 
-  if (
-    authorizationGrantTypes &&
-    authorizationGrantTypes.includes('authorization_code') &&
-    !redirectUris
-  ) {
+  if (authorizationGrantTypes && authorizationGrantTypes.includes('authorization_code') && !redirectUris) {
     return false;
   } else {
     return true;
@@ -259,10 +221,7 @@ const rules = {
       required: helpers.withMessage('客户端验证模式不能为空', required),
     },
     redirectUris: {
-      isRedirectUrisRequired: helpers.withMessage(
-        '授权码模式下 Redirect URI 不能为空',
-        isRedirectUrisRequired,
-      ),
+      isRedirectUrisRequired: helpers.withMessage('授权码模式下 Redirect URI 不能为空', isRedirectUrisRequired),
     },
   },
 };

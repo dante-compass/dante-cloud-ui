@@ -56,9 +56,6 @@ export interface BpmnPostGet<Q extends BpmnOrQueries, B> extends Conditions {
   sorting?: Array<BpmnSortable<B>>;
 }
 
-export type BpmnGetListParams<P extends BpmnListQueryParams, B> = P &
-  BpmnSortable<B> &
-  BpmnPageable;
+export type BpmnGetListParams<P extends BpmnListQueryParams, B> = P & BpmnSortable<B> & BpmnPageable;
 
-export type BpmnPostListParams<P extends BpmnListQueryParams, Q extends BpmnOrQueries, B> = P &
-  BpmnPostGet<Q, B>;
+export type BpmnPostListParams<P extends BpmnListQueryParams, Q extends BpmnOrQueries, B> = P & BpmnPostGet<Q, B>;

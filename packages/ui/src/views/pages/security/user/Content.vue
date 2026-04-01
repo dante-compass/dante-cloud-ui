@@ -1,11 +1,5 @@
 <template>
-  <h-center-form-layout
-    :entity="editedItem"
-    :title="title"
-    :overlay="overlay"
-    :operation="operation"
-    @save="onSave()"
-  >
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
     <h-text-field
       v-model.lazy="v.editedItem.username.$model"
       name="username"
@@ -13,15 +7,9 @@
       placeholder="请输入用户名"
       debounce="5000"
       :error="v.editedItem.username.$error"
-      :error-message="
-        v.editedItem.username.$errors[0] ? v.editedItem.username.$errors[0].$message : ''
-      "
+      :error-message="v.editedItem.username.$errors[0] ? v.editedItem.username.$errors[0].$message : ''"
     ></h-text-field>
-    <h-text-field
-      v-model="editedItem.nickname"
-      label="昵称"
-      placeholder="请输入用户昵称"
-    ></h-text-field>
+    <h-text-field v-model="editedItem.nickname" label="昵称" placeholder="请输入用户昵称"></h-text-field>
   </h-center-form-layout>
 </template>
 
@@ -44,9 +32,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysUserEntity>(
-      API.core.sysUser(),
-    );
+    const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysUserEntity>(API.core.sysUser());
 
     const isUnique = () => {
       let username = editedItem.value.username;
@@ -74,14 +60,8 @@ export default defineComponent({
       editedItem: {
         username: {
           required: helpers.withMessage('用户名不能为空', required),
-          regex: helpers.withMessage(
-            '用户名只能包含字母，数字，下划线，减号',
-            helpers.regex(/^[a-zA-Z0-9_-]{4,16}$/),
-          ),
-          isUnique: helpers.withMessage(
-            '用户名已存在，请使用其它名称',
-            helpers.withAsync(isUnique),
-          ),
+          regex: helpers.withMessage('用户名只能包含字母，数字，下划线，减号', helpers.regex(/^[a-zA-Z0-9_-]{4,16}$/)),
+          isUnique: helpers.withMessage('用户名已存在，请使用其它名称', helpers.withAsync(isUnique)),
         },
       },
     };

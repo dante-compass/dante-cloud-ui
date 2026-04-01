@@ -15,4 +15,4 @@ import { default as Linting } from 'bpmn-js-bpmnlint';
 import { default as ToggleMode } from 'bpmn-js-token-simulation/lib/features/toggle-mode/modeler/ToggleMode';
 import { Group } from 'bpmn-js-properties-panel/lib/PropertiesActivator';
 import { Element } from 'bpmn-js/lib/model/Types';
-export type { Connection, Label, Shape, Translate, Moddle, Documentation, ModdleElement, Modeler, Modeling, Canvas, BpmnFactory, ElementRegistry, Viewer, Selection, AlignElements, CommandStack, Minimap, Linting, ToggleMode, Group, Element, CanvasViewbox };
+export type { Connection, Label, Shape, Translate, Moddle, Documentation, ModdleElement, Modeler, Modeling, Canvas, BpmnFactory, ElementRegistry, Viewer, Selection, AlignElements, CommandStack, Minimap, Linting, ToggleMode, Group, Element, CanvasViewbox, };

@@ -40,8 +40,7 @@ defineProps<Props>();
 
 const thisRoute = useRoute();
 
-const isActive = (item: MenuItem) =>
-  thisRoute.matched.some((matchedItem) => matchedItem.path === item.to);
+const isActive = (item: MenuItem) => thisRoute.matched.some((matchedItem) => matchedItem.path === item.to);
 
 const hasChildren = (item: MenuItem) => {
   return !isEmpty(item.children);

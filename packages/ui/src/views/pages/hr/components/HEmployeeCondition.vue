@@ -50,12 +50,7 @@
               ></h-dictionary-select>
             </h-column>
             <h-column auto>
-              <h-button
-                color="red"
-                icon="mdi-broom"
-                tooltip="清空"
-                @click.stop="onClear()"
-              ></h-button>
+              <h-button color="red" icon="mdi-broom" tooltip="清空" @click.stop="onClear()"></h-button>
             </h-column>
           </h-row>
         </q-card-section>

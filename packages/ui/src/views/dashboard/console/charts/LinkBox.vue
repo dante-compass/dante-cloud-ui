@@ -4,9 +4,7 @@
       <q-card-section class="q-pa-sm">
         <q-item class="q-pb-none q-pt-xs" :href="link" target="_blank">
           <q-item-section>
-            <q-item-label class="text-h6" style="font-weight: 500; letter-spacing: 3px">{{
-              description
-            }}</q-item-label>
+            <q-item-label class="text-h6" style="font-weight: 500; letter-spacing: 3px">{{ description }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-icon :name="icon" :color="color" size="30px"></q-icon>

@@ -1,1 +1,0 @@
-import{t as e}from"./js/views-pages-authorize-application-Index.vue-CMsESWV4.js";export{e as default};

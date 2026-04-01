@@ -17,5 +17,5 @@ export {
   useFormsProperties,
   useGeneralProperties,
   useStartInitiatorProperties,
-  useUserAssignmentProperties
+  useUserAssignmentProperties,
 };

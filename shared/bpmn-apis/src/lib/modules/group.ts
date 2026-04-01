@@ -38,9 +38,7 @@ class GroupService extends BaseBpmnService<GroupEntity, GroupQueryParams, GroupS
    * @returns This method returns no content
    */
   public create(data: GroupCreateRequestBody): Promise<AxiosHttpResult<string>> {
-    return this.getConfig()
-      .getHttp()
-      .post<string, GroupCreateRequestBody>(this.getCreateAddress(), data);
+    return this.getConfig().getHttp().post<string, GroupCreateRequestBody>(this.getCreateAddress(), data);
   }
 
   /**
@@ -50,9 +48,7 @@ class GroupService extends BaseBpmnService<GroupEntity, GroupQueryParams, GroupS
    * @returns This method returns no content
    */
   public update(id: string, data: GroupUpdateRequestBody): Promise<AxiosHttpResult<string>> {
-    return this.getConfig()
-      .getHttp()
-      .put<string, GroupUpdateRequestBody>(this.createAddressById(id), data);
+    return this.getConfig().getHttp().put<string, GroupUpdateRequestBody>(this.createAddressById(id), data);
   }
 }
 
@@ -86,9 +82,7 @@ class GroupMemberService extends BpmnService {
    * @returns This method returns no content
    */
   public create(groupId: string, userId: string): Promise<AxiosHttpResult<string>> {
-    return this.getConfig()
-      .getHttp()
-      .put<string, string>(this.getRelationAddress(groupId, userId), '');
+    return this.getConfig().getHttp().put<string, string>(this.getRelationAddress(groupId, userId), '');
   }
 
   /**
@@ -99,9 +93,7 @@ class GroupMemberService extends BpmnService {
    * @returns This method returns no content
    */
   public deleteByRelation(groupId: string, userId: string): Promise<AxiosHttpResult<string>> {
-    return this.getConfig()
-      .getHttp()
-      .delete<string, string>(this.getRelationAddress(groupId, userId));
+    return this.getConfig().getHttp().delete<string, string>(this.getRelationAddress(groupId, userId));
   }
 }
 

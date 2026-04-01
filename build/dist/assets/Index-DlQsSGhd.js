@@ -1,1 +1,0 @@
-import{t as e}from"./js/views-pages-security-attribute-Index.vue-BS3LWzJf.js";export{e as default};

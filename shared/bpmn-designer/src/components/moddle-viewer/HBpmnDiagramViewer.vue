@@ -10,12 +10,7 @@
       <q-separator />
 
       <q-card-section class="q-pt-none q-pa-none">
-        <h-bpmn-viewer
-          v-if="isShow"
-          :diagram="diagram"
-          :nodes="nodes"
-          :height="height"
-        ></h-bpmn-viewer>
+        <h-bpmn-viewer v-if="isShow" :diagram="diagram" :nodes="nodes" :height="height"></h-bpmn-viewer>
       </q-card-section>
     </q-card>
   </q-dialog>

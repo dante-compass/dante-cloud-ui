@@ -20,11 +20,7 @@
       </template>
       <template #body-cell-name="props">
         <q-td key="names" :props="props">
-          <q-chip
-            :color="getColor(props.row)"
-            text-color="white"
-            :dense="settings.display.table.dense"
-          >
+          <q-chip :color="getColor(props.row)" text-color="white" :dense="settings.display.table.dense">
             {{ props.row.name }}
           </q-chip>
         </q-td>
@@ -33,10 +29,7 @@
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
           <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-          <h-delete-button
-            v-if="!props.row.reserved"
-            @click="deleteItemById(props.row[rowKey])"
-          ></h-delete-button>
+          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
         </q-td>
       </template>
     </h-table>

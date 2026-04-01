@@ -20,10 +20,7 @@
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
         <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-        <h-delete-button
-          v-if="!props.row.reserved"
-          @click="deleteItemById(props.row[rowKey])"
-        ></h-delete-button>
+        <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
       </q-td>
     </template>
   </h-table>
@@ -51,20 +48,11 @@ export default defineComponent({
   components: { HDeleteButton, HEditButton, HDenseIconButton, HTable },
 
   setup() {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-    } = useTable<SysTenantDataSourceConditions, SysTenantDataSourceEntity>(
-      API.core.sysTenantDataSource(),
-      CONSTANTS.ComponentName.SYS_TENANT_DATA_SOURCE,
-    );
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+      useTable<SysTenantDataSourceConditions, SysTenantDataSourceEntity>(
+        API.core.sysTenantDataSource(),
+        CONSTANTS.ComponentName.SYS_TENANT_DATA_SOURCE,
+      );
 
     const selected = ref([]);
     const rowKey: SysTenantDataSourceProps = 'datasourceId';

@@ -1,12 +1,4 @@
-import type {
-  Moddle,
-  ModdleElement,
-  Modeler,
-  Modeling,
-  Canvas,
-  Element,
-  BpmnFactory,
-} from '@/declarations';
+import type { Moddle, ModdleElement, Modeler, Modeling, Canvas, Element, BpmnFactory } from '@/declarations';
 
 import { getBusinessObject, is } from '@/lib/utils';
 
@@ -72,11 +64,7 @@ export default function usePropertyElements() {
     const businessObject = getBusinessObject(element);
     let extensionElements = businessObject.extensionElements;
     if (isEmpty(extensionElements)) {
-      extensionElements = createModdleElement(
-        'bpmn:ExtensionElements',
-        { values: [] },
-        businessObject,
-      );
+      extensionElements = createModdleElement('bpmn:ExtensionElements', { values: [] }, businessObject);
       getModeling().updateModdleProperties(element, businessObject, { extensionElements });
     }
     return extensionElements;
@@ -101,10 +89,7 @@ export default function usePropertyElements() {
     });
   };
 
-  const resetExtensionElementsValues = (
-    element: Element,
-    extensionElements: ModdleElement,
-  ): ModdleElement => {
+  const resetExtensionElementsValues = (element: Element, extensionElements: ModdleElement): ModdleElement => {
     getModeling().updateModdleProperties(element, extensionElements, {
       values: [],
     });

@@ -7,7 +7,7 @@ import type {
   ValueInfo,
   BpmnRequestBody,
   BpmnSkip,
-  BpmnDeleteQueryParams
+  BpmnDeleteQueryParams,
 } from '../base';
 import type { HistoryProcessInstanceQueryParams } from './history';
 

@@ -17,10 +17,7 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-delete-button
-          v-if="!props.row.reserved"
-          @click="onDeleteItemById(props.row[rowKey])"
-        ></h-delete-button>
+        <h-delete-button v-if="!props.row.reserved" @click="onDeleteItemById(props.row[rowKey])"></h-delete-button>
       </q-td>
     </template>
   </h-table>
@@ -29,12 +26,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-import type {
-  TaskEntity,
-  TaskQueryParams,
-  TaskSortBy,
-  QTableProps,
-} from '@/composables/declarations';
+import type { TaskEntity, TaskQueryParams, TaskSortBy, QTableProps } from '@/composables/declarations';
 
 import { moment } from '@herodotus/core';
 import { API } from '@/configurations';
@@ -47,24 +39,15 @@ export default defineComponent({
   setup() {
     const store = useAuthenticationStore();
 
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      findItems,
-      onDeleteItemById,
-      conditions,
-    } = useBpmnTableItems<TaskEntity, TaskQueryParams, TaskSortBy>(
-      API.bpmn.task(),
-      {
-        sortBy: 'id',
-        sortOrder: 'desc',
-      },
-      { candidateUser: store.employeeId },
-    );
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
+      useBpmnTableItems<TaskEntity, TaskQueryParams, TaskSortBy>(
+        API.bpmn.task(),
+        {
+          sortBy: 'id',
+          sortOrder: 'desc',
+        },
+        { candidateUser: store.employeeId },
+      );
 
     const selected = ref([]);
     const rowKey = 'id' as keyof TaskEntity;

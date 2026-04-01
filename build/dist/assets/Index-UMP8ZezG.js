@@ -1,1 +1,0 @@
-import{t as e}from"./js/views-pages-hr-ownership-Index.vue-L4cykzCl.js";export{e as default};

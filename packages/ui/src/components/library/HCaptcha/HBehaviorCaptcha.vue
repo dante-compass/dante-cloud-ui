@@ -73,10 +73,7 @@ export default defineComponent({
      * 处理一下sliderSize，弄成整数，以免计算有偏差
      */
     const sliderDisplaySize = computed(() => {
-      return Math.max(
-        Math.min(Math.round(props.sliderSize), Math.round(props.canvasWidth * 0.5)),
-        10,
-      );
+      return Math.max(Math.min(Math.round(props.sliderSize), Math.round(props.canvasWidth * 0.5)), 10);
     });
 
     const init = () => {

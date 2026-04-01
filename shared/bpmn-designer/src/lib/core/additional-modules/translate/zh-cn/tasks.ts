@@ -23,5 +23,5 @@ export default {
   ServiceTask: '服务任务',
   ScriptTask: '脚本任务',
   CallActivity: '调用活动',
-  SubProcess: '子流程'
-}
+  SubProcess: '子流程',
+};

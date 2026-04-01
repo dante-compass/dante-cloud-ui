@@ -2,11 +2,7 @@
   <h-detail-container :title="title" :overlay="overlay">
     <h-container :offset="4">
       <h-form-skeleton v-if="skeleton" :number="5"></h-form-skeleton>
-      <h-renderer-form
-        v-else
-        v-model="editedItem.state"
-        :elements="formModeler.elements"
-      ></h-renderer-form>
+      <h-renderer-form v-else v-model="editedItem.state" :elements="formModeler.elements"></h-renderer-form>
       <div class="q-mt-md">
         <q-btn color="red" @click="onCancel">取消</q-btn>
         <q-btn color="primary" class="q-ml-sm" @click="onSave">发送</q-btn>

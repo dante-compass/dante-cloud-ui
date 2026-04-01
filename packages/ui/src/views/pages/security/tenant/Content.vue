@@ -1,11 +1,5 @@
 <template>
-  <h-center-form-layout
-    :entity="editedItem"
-    :title="title"
-    :overlay="overlay"
-    :operation="operation"
-    @save="onSave()"
-  >
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
     <h-text-field
       v-model.lazy="v.editedItem.tenantId.$model"
       name="tenantId"
@@ -13,38 +7,28 @@
       placeholder="请输入租户标识ID"
       debounce="5000"
       :error="v.editedItem.tenantId.$error"
-      :error-message="
-        v.editedItem.tenantId.$errors[0] ? v.editedItem.tenantId.$errors[0].$message : ''
-      "
+      :error-message="v.editedItem.tenantId.$errors[0] ? v.editedItem.tenantId.$errors[0].$message : ''"
     ></h-text-field>
     <h-text-field
       v-model.lazy="v.editedItem.username.$model"
       label="数据库用户名 *"
       placeholder="请输入数据库用户名"
       :error="v.editedItem.username.$error"
-      :error-message="
-        v.editedItem.username.$errors[0] ? v.editedItem.username.$errors[0].$message : ''
-      "
+      :error-message="v.editedItem.username.$errors[0] ? v.editedItem.username.$errors[0].$message : ''"
     ></h-text-field>
     <h-text-field
       v-model.lazy="v.editedItem.password.$model"
       label="数据库密码 *"
       placeholder="请输入数据库密码"
       :error="v.editedItem.password.$error"
-      :error-message="
-        v.editedItem.password.$errors[0] ? v.editedItem.password.$errors[0].$message : ''
-      "
+      :error-message="v.editedItem.password.$errors[0] ? v.editedItem.password.$errors[0].$message : ''"
     ></h-text-field>
     <h-text-field
       v-model.lazy="v.editedItem.driverClassName.$model"
       label="数据库驱动 *"
       placeholder="请输入数据库驱动"
       :error="v.editedItem.driverClassName.$error"
-      :error-message="
-        v.editedItem.driverClassName.$errors[0]
-          ? v.editedItem.driverClassName.$errors[0].$message
-          : ''
-      "
+      :error-message="v.editedItem.driverClassName.$errors[0] ? v.editedItem.driverClassName.$errors[0].$message : ''"
     ></h-text-field>
     <h-text-field
       v-model.lazy="v.editedItem.url.$model"
@@ -76,8 +60,9 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { editedItem, operation, title, overlay, saveOrUpdate } =
-      useTableItem<SysTenantDataSourceEntity>(API.core.sysTenantDataSource());
+    const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysTenantDataSourceEntity>(
+      API.core.sysTenantDataSource(),
+    );
 
     const isUnique = () => {
       let tenantId = editedItem.value.tenantId;
@@ -105,10 +90,7 @@ export default defineComponent({
       editedItem: {
         tenantId: {
           required: helpers.withMessage('租户标识ID不能为空', required),
-          isUnique: helpers.withMessage(
-            '租户标识ID已存在，请使用其它标识ID',
-            helpers.withAsync(isUnique),
-          ),
+          isUnique: helpers.withMessage('租户标识ID已存在，请使用其它标识ID', helpers.withAsync(isUnique)),
         },
         username: {
           required: helpers.withMessage('数据库用户名不能为空', required),

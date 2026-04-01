@@ -1,8 +1,4 @@
-import type {
-  DynamicFormEntity,
-  ProcessCommentsEntity,
-  ProcessSpecificsEntity,
-} from '@/declarations';
+import type { DynamicFormEntity, ProcessCommentsEntity, ProcessSpecificsEntity } from '@/declarations';
 
 import { HttpConfig, BaseMongoService } from '../base';
 

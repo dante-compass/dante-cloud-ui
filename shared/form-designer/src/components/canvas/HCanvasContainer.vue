@@ -1,12 +1,6 @@
 <template>
   <h-canvas-layout>
-    <draggable
-      item-key="id"
-      :list="canvasElements"
-      :animation="300"
-      group="widgetGroup"
-      class="canvas-container"
-    >
+    <draggable item-key="id" :list="canvasElements" :animation="300" group="widgetGroup" class="canvas-container">
       <template #item="{ element }">
         <h-canvas-element
           :element="element"
@@ -17,9 +11,7 @@
       </template>
       <template v-if="isEmptyCanvas" #footer>
         <div class="row text-center canvas-container">
-          <div class="col-12 self-center text-h6 text-weight-medium text-grey-5">
-            从左侧拖拽或点击来添加字段
-          </div>
+          <div class="col-12 self-center text-h6 text-weight-medium text-grey-5">从左侧拖拽或点击来添加字段</div>
         </div>
       </template>
     </draggable>

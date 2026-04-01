@@ -23,10 +23,7 @@ export default defineComponent({
     const source = ref() as Ref<SocialSource>;
     const accessPrincipal = ref({}) as Ref<AccessPrincipal>;
 
-    const getAccessPrincipal = (
-      source: SocialSource,
-      route: RouteLocationNormalizedLoaded,
-    ): AccessPrincipal => {
+    const getAccessPrincipal = (source: SocialSource, route: RouteLocationNormalizedLoaded): AccessPrincipal => {
       if (route && !isEmpty(route.query)) {
         switch (source) {
           case 'WXAPP':

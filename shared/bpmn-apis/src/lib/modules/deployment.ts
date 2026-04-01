@@ -58,20 +58,13 @@ class DeploymentService extends BpmnQueryService<
    * @param data {@link DeploymentCreateRequestBody}
    * @returns A JSON object corresponding to the DeploymentWithDefinitions interface in the engine
    */
-  public create(
-    data: DeploymentCreateRequestBody,
-  ): Promise<AxiosHttpResult<DeploymentWithDefinitionsEntity>> {
+  public create(data: DeploymentCreateRequestBody): Promise<AxiosHttpResult<DeploymentWithDefinitionsEntity>> {
     let formData = new FormData();
     formData.append('deployment-name', data.deploymentName);
     formData.append('deploy-changed-only', data.deployChangedOnly ? 'true' : 'false');
     formData.append('enable-duplicate-filtering', this.getDuplicateFiltering(data));
-    formData.append(
-      'deployment-source',
-      data.deploymentSource ? data.deploymentSource : 'Dante Cloud UI',
-    );
-    const activationTime = data.deploymentActivationTime
-      ? data.deploymentActivationTime
-      : new Date();
+    formData.append('deployment-source', data.deploymentSource ? data.deploymentSource : 'Dante Cloud UI');
+    const activationTime = data.deploymentActivationTime ? data.deploymentActivationTime : new Date();
     formData.append('deployment-activation-time', moment(activationTime).utc().format());
     if (data.tenantId) {
       formData.append('tenant-id', data.tenantId);
@@ -103,10 +96,10 @@ class DeploymentService extends BpmnQueryService<
   ): Promise<AxiosHttpResult<DeploymentWithDefinitionsEntity>> {
     return this.getConfig()
       .getHttp()
-      .post<
-        DeploymentWithDefinitionsEntity,
-        DeploymentRedeployRequestBody
-      >(this.createAddressById(id, 'redeploy'), data);
+      .post<DeploymentWithDefinitionsEntity, DeploymentRedeployRequestBody>(
+        this.createAddressById(id, 'redeploy'),
+        data,
+      );
   }
 
   /**
@@ -116,9 +109,7 @@ class DeploymentService extends BpmnQueryService<
    * @returns A JSON array containing all deployment resources of the given deployment
    */
   public getResources(id: string): Promise<AxiosHttpResult<Array<ResourceEntity>>> {
-    return this.getConfig()
-      .getHttp()
-      .get<Array<ResourceEntity>, string>(this.createAddressById(id, 'resources'));
+    return this.getConfig().getHttp().get<Array<ResourceEntity>, string>(this.createAddressById(id, 'resources'));
   }
 
   /**

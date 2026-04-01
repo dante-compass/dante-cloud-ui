@@ -25,8 +25,8 @@ export default defineComponent({
 
     return {
       onSave,
-      onClear
+      onClear,
     };
-  }
+  },
 });
 </script>

@@ -1,21 +1,9 @@
 <template>
   <h-expansion-item icon="mdi-call-split" label="条件">
-    <h-select
-      v-model="conditionType"
-      dense
-      :options="conditionOptions"
-      label="类型"
-      hide-hint
-    ></h-select>
+    <h-select v-model="conditionType" dense :options="conditionOptions" label="类型" hide-hint></h-select>
     <template v-if="isScript">
       <h-text-field v-model="format" dense label="格式" @update:model-value="updateFormat" />
-      <h-select
-        v-model="scriptType"
-        dense
-        :options="scriptOptions"
-        label="脚本类型"
-        hide-hint
-      ></h-select>
+      <h-select v-model="scriptType" dense :options="scriptOptions" label="脚本类型" hide-hint></h-select>
       <h-text-field
         v-if="isExternalResource"
         v-model="resource"

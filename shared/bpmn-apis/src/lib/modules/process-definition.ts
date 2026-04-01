@@ -59,10 +59,7 @@ class ProcessDefinitionService extends BpmnQueryService<
    * @param query
    * @returns
    */
-  public getActivityInstanceStatistics(
-    path: BpmnUnionPathParams,
-    params: ActivityInstanceStatisticsQueryParams,
-  ) {
+  public getActivityInstanceStatistics(path: BpmnUnionPathParams, params: ActivityInstanceStatisticsQueryParams) {
     return this.getConfig()
       .getHttp()
       .get<ActivityInstanceStatisticsEntity>(this.createAddressByParam(path, 'statistics'), params);
@@ -81,9 +78,7 @@ class ProcessDefinitionService extends BpmnQueryService<
   public getStaticCalledProcessDefinitions(id: string) {
     return this.getConfig()
       .getHttp()
-      .get<CalledProcessDefinitionEntity>(
-        this.createAddressById(id, 'static-called-process-definitions'),
-      );
+      .get<CalledProcessDefinitionEntity>(this.createAddressById(id, 'static-called-process-definitions'));
   }
 
   /**
@@ -133,9 +128,7 @@ class ProcessDefinitionService extends BpmnQueryService<
    * @returns A JSON object containing the form key.
    */
   public getStartFormKey(path: BpmnUnionPathParams) {
-    return this.getConfig()
-      .getHttp()
-      .get<FormKeyEntity>(this.createAddressByParam(path, 'startForm'));
+    return this.getConfig().getHttp().get<FormKeyEntity>(this.createAddressByParam(path, 'startForm'));
   }
 
   /**
@@ -169,9 +162,7 @@ class ProcessDefinitionService extends BpmnQueryService<
    * @param path {@link BpmnUnionPathParams}
    * @returns A JSON object corresponding to the ProcessDefinition interface in the engine
    */
-  public getByPathParams(
-    path: BpmnUnionPathParams,
-  ): Promise<AxiosHttpResult<ProcessDefinitionEntity>> {
+  public getByPathParams(path: BpmnUnionPathParams): Promise<AxiosHttpResult<ProcessDefinitionEntity>> {
     return this.getConfig().getHttp().get<ProcessDefinitionEntity>(this.createAddressByParam(path));
   }
 
@@ -188,10 +179,7 @@ class ProcessDefinitionService extends BpmnQueryService<
   ): Promise<AxiosHttpResult<ProcessInstanceEntity>> {
     return this.getConfig()
       .getHttp()
-      .post<
-        ProcessInstanceEntity,
-        StartInstanceRequestBody
-      >(this.createAddressByParam(path, 'start'), data);
+      .post<ProcessInstanceEntity, StartInstanceRequestBody>(this.createAddressByParam(path, 'start'), data);
   }
 
   /**
@@ -209,10 +197,7 @@ class ProcessDefinitionService extends BpmnQueryService<
   ): Promise<AxiosHttpResult<ProcessInstanceEntity>> {
     return this.getConfig()
       .getHttp()
-      .post<
-        ProcessInstanceEntity,
-        SubmitStartFormRequestBody
-      >(this.createAddressByParam(path, 'submit-form'), data);
+      .post<ProcessInstanceEntity, SubmitStartFormRequestBody>(this.createAddressByParam(path, 'submit-form'), data);
   }
 
   /**
@@ -228,10 +213,7 @@ class ProcessDefinitionService extends BpmnQueryService<
   ): Promise<AxiosHttpResult<string>> {
     return this.getConfig()
       .getHttp()
-      .put<
-        string,
-        ActivateOrSuspendedByIdRequestBody
-      >(this.createAddressByParam(path, 'suspended'), data);
+      .put<string, ActivateOrSuspendedByIdRequestBody>(this.createAddressByParam(path, 'suspended'), data);
   }
 
   /**
@@ -240,13 +222,9 @@ class ProcessDefinitionService extends BpmnQueryService<
    * @param data {@link ActivateOrSuspendedByKeyRequestBody}
    * @returns This method returns no content.
    */
-  public activateOrSuspendByKey(
-    data: ActivateOrSuspendedByKeyRequestBody,
-  ): Promise<AxiosHttpResult<string>> {
+  public activateOrSuspendByKey(data: ActivateOrSuspendedByKeyRequestBody): Promise<AxiosHttpResult<string>> {
     const address = this.getBaseAddress() + '/suspended';
-    return this.getConfig()
-      .getHttp()
-      .put<string, ActivateOrSuspendedByKeyRequestBody>(address, data);
+    return this.getConfig().getHttp().put<string, ActivateOrSuspendedByKeyRequestBody>(address, data);
   }
 
   /**
@@ -262,10 +240,7 @@ class ProcessDefinitionService extends BpmnQueryService<
   ): Promise<AxiosHttpResult<string>> {
     return this.getConfig()
       .getHttp()
-      .put<
-        string,
-        UpdateHistoryTimeToLiveRequestBody
-      >(this.createAddressByParam(path, 'history-time-to-live'), data);
+      .put<string, UpdateHistoryTimeToLiveRequestBody>(this.createAddressByParam(path, 'history-time-to-live'), data);
   }
 
   /**
@@ -283,10 +258,7 @@ class ProcessDefinitionService extends BpmnQueryService<
   ): Promise<AxiosHttpResult<string>> {
     return this.getConfig()
       .getHttp()
-      .deleteWithParams<string, string>(
-        this.createAddressByParam({ key: key, tenantId: tenantId }, 'delete'),
-        params,
-      );
+      .deleteWithParams<string, string>(this.createAddressByParam({ key: key, tenantId: tenantId }, 'delete'), params);
   }
 
   /**
@@ -296,9 +268,7 @@ class ProcessDefinitionService extends BpmnQueryService<
    * @returns An object with the deployed start form content.
    */
   public getDeployedStartForm(path: BpmnUnionPathParams): Promise<AxiosHttpResult<any>> {
-    return this.getConfig()
-      .getHttp()
-      .get<any>(this.createAddressByParam(path, 'deployed-start-form'));
+    return this.getConfig().getHttp().get<any>(this.createAddressByParam(path, 'deployed-start-form'));
   }
 
   /**
@@ -310,10 +280,7 @@ class ProcessDefinitionService extends BpmnQueryService<
    * @param data {@link RestartProcessInstanceRequestBody}
    * @returns This method returns no content.
    */
-  public restartProcessInstance(
-    id: string,
-    data: RestartProcessInstanceRequestBody,
-  ): Promise<AxiosHttpResult<string>> {
+  public restartProcessInstance(id: string, data: RestartProcessInstanceRequestBody): Promise<AxiosHttpResult<string>> {
     return this.getConfig()
       .getHttp()
       .post<string, RestartProcessInstanceRequestBody>(this.createAddressById(id, 'restart'), data);
@@ -328,16 +295,10 @@ class ProcessDefinitionService extends BpmnQueryService<
    * @param data {@link RestartProcessInstanceRequestBody}
    * @returns A JSON object corresponding to the Batch interface in the engine.
    */
-  public restartAsync(
-    id: string,
-    data: RestartProcessInstanceRequestBody,
-  ): Promise<AxiosHttpResult<BatchEntity>> {
+  public restartAsync(id: string, data: RestartProcessInstanceRequestBody): Promise<AxiosHttpResult<BatchEntity>> {
     return this.getConfig()
       .getHttp()
-      .post<
-        BatchEntity,
-        RestartProcessInstanceRequestBody
-      >(this.createAddressById(id, 'restart-async'), data);
+      .post<BatchEntity, RestartProcessInstanceRequestBody>(this.createAddressById(id, 'restart-async'), data);
   }
 }
 

@@ -1,1 +1,0 @@
-import{t as e}from"./js/views-pages-security-attribute-Authorize.vue-BT8c9XsR.js";export{e as default};

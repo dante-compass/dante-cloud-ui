@@ -7,5 +7,5 @@ export type {
   Widget,
   WidgetDefinition,
   ElementConfig,
-  Element
+  Element,
 } from '@herodotus-cloud/form-apis';

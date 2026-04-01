@@ -58,10 +58,7 @@
         </q-tr>
       </template>
     </q-table>
-    <h-extension-property-dialog
-      v-model="openDialog"
-      @save="onCreate"
-    ></h-extension-property-dialog>
+    <h-extension-property-dialog v-model="openDialog" @save="onCreate"></h-extension-property-dialog>
   </h-expansion-item>
 </template>
 
@@ -91,8 +88,7 @@ export default defineComponent({
   setup() {
     const designer = useDesignerStore();
 
-    const { getExtensionProperties, modifyExtensionProperty, deleteExtensionProperty } =
-      useExtensionProperties();
+    const { getExtensionProperties, modifyExtensionProperty, deleteExtensionProperty } = useExtensionProperties();
 
     const openDialog = ref<boolean>(false);
 

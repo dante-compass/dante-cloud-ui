@@ -67,16 +67,16 @@ const rules = {
   'single-event-definition': 'error',
   'start-event-required': 'error',
   'sub-process-blank-start-event': 'error',
-  'superfluous-gateway': 'warning'
+  'superfluous-gateway': 'warning',
 };
 
 const config = {
-  rules: rules
+  rules: rules,
 };
 
 const bundle = {
   resolver: resolver,
-  config: config
+  config: config,
 };
 
 cache['bpmnlint/conditional-flows'] = rule_0;

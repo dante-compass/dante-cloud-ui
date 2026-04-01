@@ -1,13 +1,6 @@
 <template>
   <h-expansion-item icon="mdi-file-document-outline" label="附加文档">
-    <q-input
-      v-model="document"
-      dense
-      outlined
-      type="textarea"
-      label="元素文档"
-      @update:model-value="updateDocument"
-    />
+    <q-input v-model="document" dense outlined type="textarea" label="元素文档" @update:model-value="updateDocument" />
   </h-expansion-item>
 </template>
 

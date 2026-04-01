@@ -6,7 +6,7 @@ import type {
   Variables,
   Link,
   BpmnRequestBody,
-  BpmnSkip
+  BpmnSkip,
 } from '../base';
 
 import type { HistoryProcessInstanceQueryParams } from './history/process-instance';

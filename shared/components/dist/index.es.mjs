@@ -1290,7 +1290,7 @@ var kt = {
 			"end-color": e.startColor
 		}, null, 8, ["start-color", "end-color"])])]));
 	}
-}), [["__scopeId", "data-v-957924ed"]]);
+}), [["__scopeId", "data-v-0558c2f2"]]);
 //#endregion
 //#region src/HBackground/index.ts
 $.install = (e) => {

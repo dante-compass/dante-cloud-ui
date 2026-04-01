@@ -2,7 +2,8 @@
   <q-header
     :class="[$q.dark.isActive ? 'bg-dark text-white q-pt-xs' : 'bg-white text-grey-8 q-pt-xs']"
     height-hint="58"
-    style="z-index: 10">
+    style="z-index: 10"
+  >
     <q-toolbar>
       <h-app-back-home-control v-if="backHome"></h-app-back-home-control>
       <h-app-left-drawer-control v-else></h-app-left-drawer-control>
@@ -36,14 +37,14 @@ export default defineComponent({
     HAppLeftDrawerControl,
     HAppBackHomeControl,
     HAppTabsView,
-    HAppToolbarActions
+    HAppToolbarActions,
   },
 
   props: {
     tabView: { type: Boolean, default: true },
     breadcrumbs: { type: Boolean, default: true },
     backHome: { type: Boolean, default: false },
-    message: { type: Boolean, default: false }
-  }
+    message: { type: Boolean, default: false },
+  },
 });
 </script>

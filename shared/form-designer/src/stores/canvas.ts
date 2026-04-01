@@ -1,14 +1,7 @@
 import { defineStore } from 'pinia';
 import { isEmpty, remove } from 'lodash-es';
 
-import type {
-  Element,
-  Schema,
-  ElementConfig,
-  DynamicFormEntity,
-  Sheet,
-  ConditionVariable,
-} from '@/declarations';
+import type { Element, Schema, ElementConfig, DynamicFormEntity, Sheet, ConditionVariable } from '@/declarations';
 
 export const useFormCanvasStore = defineStore('FormDesignerCanvas', {
   state: () => {

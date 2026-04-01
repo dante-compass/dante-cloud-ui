@@ -6,11 +6,7 @@
     <h-separator />
     <h-button icon="mdi-magnify-plus" tooltip="放大视图" @click="onZoomPlus()"></h-button>
     <h-separator />
-    <h-button
-      icon="mdi-magnify-scan"
-      tooltip="重置视图并居中"
-      @click="onZoomReset('fit-viewport')"
-    ></h-button>
+    <h-button icon="mdi-magnify-scan" tooltip="重置视图并居中" @click="onZoomReset('fit-viewport')"></h-button>
   </h-button-group>
 </template>
 

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useWebFluxWebSocketStore = defineStore('WebFluxWebSocket', {
   state: () => ({
-    webSocket: {} as WebSocket
+    webSocket: {} as WebSocket,
   }),
 
   actions: {
@@ -43,6 +43,6 @@ export const useWebFluxWebSocketStore = defineStore('WebFluxWebSocket', {
 
     send(text: string): void {
       this.webSocket.send(text);
-    }
-  }
+    },
+  },
 });

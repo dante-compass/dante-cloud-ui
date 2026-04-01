@@ -34,10 +34,7 @@
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
           <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-          <h-delete-button
-            v-if="!props.row.reserved"
-            @click="deleteItemById(props.row[rowKey])"
-          ></h-delete-button>
+          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
         </q-td>
       </template>
     </h-table>
@@ -71,20 +68,8 @@ export default defineComponent({
   },
 
   setup() {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      conditions,
-      findItems,
-      deleteItemById,
-    } = useTable<SysEmployeeConditions, SysEmployeeEntity>(
-      API.core.sysEmployee(),
-      CONSTANTS.ComponentName.SYS_EMPLOYEE,
-    );
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, conditions, findItems, deleteItemById } =
+      useTable<SysEmployeeConditions, SysEmployeeEntity>(API.core.sysEmployee(), CONSTANTS.ComponentName.SYS_EMPLOYEE);
 
     const { getDictionaryItemDisplay } = useDictionary('Gender', 'Identity');
 

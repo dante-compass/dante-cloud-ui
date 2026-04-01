@@ -180,5 +180,4 @@ export interface HistoryActivityInstanceQueryParams extends BpmnListQueryParams 
   withoutTenantId?: boolean;
 }
 
-
 // ------------------------------ Above is Get List & Count  ------------------------------

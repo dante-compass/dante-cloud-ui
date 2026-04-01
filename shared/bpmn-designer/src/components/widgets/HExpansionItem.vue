@@ -3,7 +3,8 @@
     expand-separator
     :default-opened="defaultOpend"
     header-class="text-primary"
-    expand-icon-class="text-primary">
+    expand-icon-class="text-primary"
+  >
     <template v-slot:header>
       <q-item-section avatar>
         <q-icon :name="icon" />
@@ -35,7 +36,7 @@ export default defineComponent({
     badge: { type: Boolean, default: false },
     badgeColor: { type: String, default: 'red' },
     count: { type: Number, default: 0 },
-    defaultOpend: { type: Boolean, default: false }
-  }
+    defaultOpend: { type: Boolean, default: false },
+  },
 });
 </script>

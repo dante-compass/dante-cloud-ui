@@ -1,8 +1,6 @@
 <template>
   <q-btn v-if="isEnabled" round dense flat color="grey-8" icon="notifications">
-    <q-badge v-if="totalCount !== 0" color="red" text-color="white" floating>{{
-      totalCount
-    }}</q-badge>
+    <q-badge v-if="totalCount !== 0" color="red" text-color="white" floating>{{ totalCount }}</q-badge>
     <q-tooltip>Notifications</q-tooltip>
     <q-menu anchor="bottom left">
       <q-card style="width: 450px">
@@ -11,9 +9,7 @@
             <q-badge v-if="dialogueCount !== 0" color="red" floating>{{ dialogueCount }}</q-badge>
           </q-tab>
           <q-tab label="公告" name="announcement">
-            <q-badge v-if="announcementCount !== 0" color="red" floating>{{
-              announcementCount
-            }}</q-badge>
+            <q-badge v-if="announcementCount !== 0" color="red" floating>{{ announcementCount }}</q-badge>
           </q-tab>
         </q-tabs>
 

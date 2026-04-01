@@ -15,5 +15,5 @@ export {
   HDownloadDropdown,
   HPreviewDropdown,
   HOpenFile,
-  HUploadDialog
+  HUploadDialog,
 };

@@ -18,7 +18,7 @@ export default defineComponent({
 
   props: {
     label: { type: String },
-    icon: { type: String }
-  }
+    icon: { type: String },
+  },
 });
 </script>

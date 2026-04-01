@@ -4,10 +4,7 @@
       <h-sign-in-corner-top :start-color="startColor" :end-color="endColor"></h-sign-in-corner-top>
     </div>
     <div class="corner-bottom">
-      <h-sign-in-corner-bottom
-        :start-color="endColor"
-        :end-color="startColor"
-      ></h-sign-in-corner-bottom>
+      <h-sign-in-corner-bottom :start-color="endColor" :end-color="startColor"></h-sign-in-corner-bottom>
     </div>
   </div>
 </template>

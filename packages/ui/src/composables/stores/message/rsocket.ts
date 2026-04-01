@@ -56,11 +56,7 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
       console.log('[RSocket] onNext isComplete ', isComplete);
     },
 
-    onExtension(
-      extendedType: number,
-      content: Buffer | null | undefined,
-      canBeIgnored: boolean,
-    ): void {
+    onExtension(extendedType: number, content: Buffer | null | undefined, canBeIgnored: boolean): void {
       console.log('[RSocket] onExtension extendedType ', extendedType);
       console.log('[RSocket] onExtension content ', content);
       console.log('[RSocket] onExtension canBeIgnored ', canBeIgnored);
@@ -76,8 +72,7 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
 
     // 客户端配置方法
     getRSocketWebSocketAddress(): string {
-      const address =
-        `ws://${location.host}/reactive` + API.core.getConfig().getMsg(false) + '/websocket';
+      const address = `ws://${location.host}/reactive` + API.core.getConfig().getMsg(false) + '/websocket';
       // const address = 'ws://192.168.101.10:8847/herodotus-cloud-message/websocket';
       // const address = 'ws://localhost:9997/websocket';
       return address;
@@ -147,10 +142,7 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
             initialRequestN: number,
             responderStream: OnTerminalSubscriber & OnNextSubscriber & OnExtensionSubscriber,
           ) => {
-            console.log(
-              '[RSocket] requestStream responder data',
-              this.decodeData(payload.data as Buffer),
-            );
+            console.log('[RSocket] requestStream responder data', this.decodeData(payload.data as Buffer));
             console.log('[RSocket] requestStream responder initialRequestN', initialRequestN);
             console.log('[RSocket] requestStream responder responderStream', responderStream);
             return {
@@ -172,10 +164,7 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
               Requestable &
               Cancellable,
           ) => {
-            console.log(
-              '[RSocket] requestResponse responder data',
-              this.decodeData(payload.data as Buffer),
-            );
+            console.log('[RSocket] requestResponse responder data', this.decodeData(payload.data as Buffer));
             console.log('[RSocket] requestResponse responder initialRequestN', initialRequestN);
             console.log('[RSocket] requestResponse responder isCompleted', isCompleted);
             console.log('[RSocket] requestResponse responder responderStream', responderStream);
@@ -259,25 +248,15 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
       });
     },
 
-    requestChannel(
-      data: string,
-      destination: string,
-      initialRequestN = 100,
-      isCompleted = false,
-    ): void {
-      this.rsocket.requestChannel(
-        this.createPayload(data, destination),
-        initialRequestN,
-        isCompleted,
-        {
-          onError: this.onError,
-          onComplete: this.onComplete,
-          onNext: this.onNext,
-          onExtension: this.onExtension,
-          request: this.onRequest,
-          cancel: this.onCancel,
-        },
-      );
+    requestChannel(data: string, destination: string, initialRequestN = 100, isCompleted = false): void {
+      this.rsocket.requestChannel(this.createPayload(data, destination), initialRequestN, isCompleted, {
+        onError: this.onError,
+        onComplete: this.onComplete,
+        onNext: this.onNext,
+        onExtension: this.onExtension,
+        request: this.onRequest,
+        cancel: this.onCancel,
+      });
     },
 
     sendNotice(content: string): void {},

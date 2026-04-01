@@ -1,5 +1,5 @@
 <template>
-	<h-dense-icon-button color="red" icon="mdi-delete" :tooltip="tooltip"></h-dense-icon-button>
+  <h-dense-icon-button color="red" icon="mdi-delete" :tooltip="tooltip"></h-dense-icon-button>
 </template>
 
 <script lang="ts">
@@ -8,14 +8,14 @@ import { defineComponent } from 'vue';
 import HDenseIconButton from './HDenseIconButton.vue';
 
 export default defineComponent({
-	name: 'HDeleteButton',
+  name: 'HDeleteButton',
 
-	components: {
-		HDenseIconButton,
-	},
+  components: {
+    HDenseIconButton,
+  },
 
-	props: {
-		tooltip: { type: String, default: '删除' },
-	},
+  props: {
+    tooltip: { type: String, default: '删除' },
+  },
 });
 </script>

@@ -23,10 +23,7 @@
           tooltip="当前进度"
           @click="viewProgress = true"
         ></h-dense-icon-button>
-        <h-delete-button
-          v-if="!props.row.reserved"
-          @click="onDeleteItemById(props.row[rowKey])"
-        ></h-delete-button>
+        <h-delete-button v-if="!props.row.reserved" @click="onDeleteItemById(props.row[rowKey])"></h-delete-button>
         <h-bpmn-view-diagram-dialog
           v-model="viewProgress"
           :definition-id="props.row['definitionId']"
@@ -63,25 +60,16 @@ export default defineComponent({
   },
 
   setup() {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      findItems,
-      onDeleteItemById,
-      conditions,
-    } = useBpmnTableItems<
-      ProcessInstanceEntity,
-      ProcessInstanceQueryParams,
-      ProcessInstanceSortBy,
-      ProcessInstanceDeleteQueryParams
-    >(API.bpmn.processInstance(), {
-      sortBy: 'businessKey',
-      sortOrder: 'desc',
-    });
+    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
+      useBpmnTableItems<
+        ProcessInstanceEntity,
+        ProcessInstanceQueryParams,
+        ProcessInstanceSortBy,
+        ProcessInstanceDeleteQueryParams
+      >(API.bpmn.processInstance(), {
+        sortBy: 'businessKey',
+        sortOrder: 'desc',
+      });
 
     const selected = ref([]);
     const rowKey = 'id' as keyof ProcessInstanceEntity;

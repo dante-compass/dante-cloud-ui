@@ -25,10 +25,7 @@
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
         <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-        <h-delete-button
-          v-if="!props.row.reserved"
-          @click="deleteItemById(props.row[rowKey])"
-        ></h-delete-button>
+        <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
       </q-td>
     </template>
   </h-table>
@@ -53,20 +50,11 @@ defineOptions({
   components: { HDeleteButton, HEditButton, HGrantTypeColumn, HTable },
 });
 
-const {
-  tableRows,
-  totalPages,
-  pagination,
-  loading,
-  toEdit,
-  toCreate,
-  toAuthorize,
-  findItems,
-  deleteItemById,
-} = useTable<OAuth2ApplicationConditions, OAuth2ApplicationEntity>(
-  API.core.oauth2Application(),
-  CONSTANTS.ComponentName.OAUTH2_APPLICATION,
-);
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+  useTable<OAuth2ApplicationConditions, OAuth2ApplicationEntity>(
+    API.core.oauth2Application(),
+    CONSTANTS.ComponentName.OAUTH2_APPLICATION,
+  );
 
 const rowKey: OAuth2ApplicationProps = 'applicationId';
 

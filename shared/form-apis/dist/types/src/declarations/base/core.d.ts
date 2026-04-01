@@ -1,4 +1,4 @@
-export type { Entity, Conditions, HttpClientOptions, AxiosHttpResult, Page, Pageable, } from '@herodotus/core';
+export type { Entity, Conditions, HttpClientOptions, AxiosHttpResult, Page, Pageable } from '@herodotus/core';
 export interface BaseMongoEntity {
     id?: string;
     createTime?: Date;

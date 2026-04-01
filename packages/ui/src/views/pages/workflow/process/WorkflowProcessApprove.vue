@@ -9,13 +9,7 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <q-option-group
-            v-if="hasCondition"
-            v-model="approved"
-            :options="conditionOptions"
-            color="primary"
-            inline
-          />
+          <q-option-group v-if="hasCondition" v-model="approved" :options="conditionOptions" color="primary" inline />
           <q-input v-model="comments" outlined type="textarea" />
         </q-card-section>
       </q-card>

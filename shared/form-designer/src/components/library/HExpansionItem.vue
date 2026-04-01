@@ -13,7 +13,7 @@ export default defineComponent({
   name: 'HExpansionItem',
 
   props: {
-    headerClass: { type: String, default: 'text-primary' }
-  }
+    headerClass: { type: String, default: 'text-primary' },
+  },
 });
 </script>

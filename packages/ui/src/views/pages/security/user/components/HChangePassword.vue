@@ -109,9 +109,7 @@ export default defineComponent({
       v.value.$validate().then((result) => {
         if (result) {
           loading.value = true;
-          const password = VARIABLES.isUseCrypto()
-            ? crypto.encrypt(confirmPassword.value)
-            : confirmPassword.value;
+          const password = VARIABLES.isUseCrypto() ? crypto.encrypt(confirmPassword.value) : confirmPassword.value;
           API.core
             .sysUser()
             .changePassword(props.userId, password)
