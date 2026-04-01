@@ -1,6 +1,3 @@
-import type { Ref } from 'vue';
-import { ref } from 'vue';
-
 import type { BpmnUnionPathParams, XmlEntity } from '@/composables/declarations';
 import { isEmpty, map } from 'lodash-es';
 import { API } from '@/configurations';
@@ -31,10 +28,7 @@ export default function useBpmnModeler() {
     } else {
       API.bpmn
         .historyActivityInstance()
-        .getAll(
-          { sortBy: 'startTime', sortOrder: 'desc' },
-          { processInstanceId: processInstanceId },
-        )
+        .getAll({ sortBy: 'startTime', sortOrder: 'desc' }, { processInstanceId: processInstanceId })
         .then((result) => {
           if (!isEmpty(result)) {
             const nodes = map(result, 'activityId');

@@ -11,7 +11,7 @@ import type {
   QTableOnRequestParameter,
 } from '@/composables/declarations';
 
-import { toast, notify } from '@herodotus-cloud/core';
+import { toast, notify } from '@herodotus/core';
 
 import { useBaseTable } from '@/composables/hooks';
 
@@ -40,7 +40,7 @@ export default function useBpmnTableItems<
     toEdit,
     toAuthorize,
     addRoutePushParam,
-  } = useBaseTable<Q, E>(name, 'updateTime', true);
+  } = useBaseTable<Q, E, E>(name, 'updateTime', true);
 
   conditions.value = queryParams;
 
@@ -84,7 +84,7 @@ export default function useBpmnTableItems<
 
   const deleteItemById = (id: string, params = {} as D) => {
     notify.standardDeleteNotify(() => {
-      AbstractService.delete(id, params)
+      AbstractWriteableService.delete(id, params)
         .then((response) => {
           findItemsByPage(pagination.value.page, pagination.value.rowsPerPage);
           toast.success('删除成功');

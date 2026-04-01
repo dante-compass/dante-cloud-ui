@@ -55,9 +55,8 @@ import type {
   QTableColumnProps,
 } from '@/composables/declarations';
 
-import { useDictionary } from '@/composables/hooks';
 import { CONSTANTS, API } from '@/configurations';
-import { useTable } from '@/composables/hooks';
+import { useTable, useDictionary } from '@/composables/hooks';
 import { get } from 'lodash-es';
 
 import { HEditButton, HTable, HSwaggerColumn } from '@/components';

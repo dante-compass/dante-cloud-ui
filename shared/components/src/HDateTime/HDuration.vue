@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { watch, ref, shallowRef } from 'vue';
 
-import { moment } from '@herodotus-cloud/core';
+import { moment } from '@herodotus/core';
 
 import { DURATION_UNITS } from '@/lib/utils';
 

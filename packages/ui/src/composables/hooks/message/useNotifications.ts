@@ -1,17 +1,10 @@
-import type { Ref } from 'vue';
-import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
-import type {
-  NotificationEntity,
-  NotificationConditions,
-  Sort,
-  Page,
-} from '@/composables/declarations';
+import type { NotificationEntity, NotificationConditions, Sort, Page } from '@/composables/declarations';
 
-import { NotificationCategoryEnum } from '@herodotus-cloud/apis';
-import { moment } from '@herodotus-cloud/core';
+import { NotificationCategoryEnum } from '@herodotus/api';
+import { moment } from '@herodotus/core';
 import { API } from '@/configurations';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 import { useNotificationStore } from '@/composables/stores';
 
 export default function useNotifications(category: NotificationCategoryEnum) {
@@ -31,8 +24,7 @@ export default function useNotifications(category: NotificationCategoryEnum) {
   const currentPageNumber = ref(firstPageNumber);
   const notificationStore = useNotificationStore();
 
-  const { hasDialogue, hasAnnouncement, totalCount, dialogueCount, announcementCount } =
-    storeToRefs(notificationStore);
+  const { hasDialogue, hasAnnouncement, totalCount, dialogueCount, announcementCount } = storeToRefs(notificationStore);
   const authenticationStore = useAuthenticationStore();
 
   const findItemsByPage = (number: number) => {

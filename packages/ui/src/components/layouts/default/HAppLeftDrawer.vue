@@ -1,5 +1,5 @@
 <template>
-  <q-drawer v-model="application.leftDrawer" show-if-above bordered :width="240">
+  <q-drawer v-model="application.leftDrawer" show-if-above bordered :width="300">
     <q-scroll-area class="fit"> <h-app-menu></h-app-menu> </q-scroll-area>
   </q-drawer>
 </template>
@@ -7,7 +7,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import { useApplicationStore } from '@herodotus-cloud/framework-kernel';
+import { useApplicationStore } from '@herodotus/framework';
 
 import HAppMenu from './HAppMenu.vue';
 

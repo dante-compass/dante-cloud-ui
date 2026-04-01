@@ -12,10 +12,11 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue';
 import { defineComponent } from 'vue';
 import HDetailContainer from './HDetailContainer.vue';
 
-import { useEditFinish } from '@herodotus-cloud/framework-kernel';
+import { useEditFinish } from '@herodotus/framework';
 
 export default defineComponent({
   name: 'HOssFormLayout',

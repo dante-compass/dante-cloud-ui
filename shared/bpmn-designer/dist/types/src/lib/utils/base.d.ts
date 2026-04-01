@@ -1,2 +1,2 @@
-import { toast, Swal } from '@herodotus-cloud/core';
+import { toast, Swal } from '@herodotus/core';
 export { toast, Swal };

@@ -1,7 +1,7 @@
-import type { Domain, HttpResult, AbstractService } from '@herodotus-cloud/core';
+import type { Domain, HttpResult } from '@herodotus/core';
 
-import { OperationEnum } from '@herodotus-cloud/core';
-import { toast } from '@herodotus-cloud/core';
+import { AbstractService, OperationEnum } from '@herodotus/core';
+import { toast } from '@herodotus/core';
 import useBaseTableItem from './useBaseTableItem';
 
 export default function useTableItem<I extends Domain, O extends Domain = I>(
@@ -58,9 +58,10 @@ export default function useTableItem<I extends Domain, O extends Domain = I>(
   return {
     editedItem,
     operation,
-    title,
     overlay,
+    title,
     additional,
+    onFinish,
     saveOrUpdate,
     assign,
     isEdit,

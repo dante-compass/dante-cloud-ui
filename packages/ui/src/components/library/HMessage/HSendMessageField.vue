@@ -12,13 +12,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
-
-import type { DialogueDetailEntity } from '@/composables/declarations';
+import type { DialogueDetailEntity } from '@herodotus/api';
 
 import { isEmpty } from 'lodash-es';
 import { useWebSocketMessage } from '@/composables/hooks';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 
 export default defineComponent({
   name: 'HSendMessageField',

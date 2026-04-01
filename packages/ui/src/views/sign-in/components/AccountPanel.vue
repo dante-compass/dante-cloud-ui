@@ -76,6 +76,18 @@
         @verify="onCaptchaVerify($event)"
       ></h-behavior-captcha>
       <h-divider label="or" class="q-mb-md"></h-divider>
+      <q-btn
+        tabindex="4"
+        rounded
+        unelevated
+        color="primary"
+        icon="mdi-account-key"
+        class="full-width q-mb-md"
+        :disable="isDisabled"
+        label="Passkey 快速登录"
+        @click="passkeySignIn()"
+        @keyup.enter="passkeySignIn()"
+      />
 
       <!-- <h-container mode="two" gutter="md" gutter-col horizontal class="q-mb-md">
 				<template #left>
@@ -94,7 +106,7 @@
 
       <h-divider label="其它登录方式" class="q-mb-md"></h-divider>
 
-      <h-social-sign-in-list></h-social-sign-in-list>
+      <social-sign-in-list></social-sign-in-list>
     </q-card-section>
   </q-card>
 </template>
@@ -106,19 +118,20 @@ import useVuelidate from '@vuelidate/core';
 import { required, helpers } from '@vuelidate/validators';
 
 import { CONSTANTS } from '@/configurations';
-import { toast } from '@herodotus-cloud/core';
+import { toast } from '@herodotus/core';
 import {
   useCryptoStore,
   useAuthenticationStore,
+  usePasskey,
   useApplicationStore,
-} from '@herodotus-cloud/framework-kernel';
-import HSocialSignInList from './HSocialSignInList.vue';
+} from '@herodotus/framework';
+import SocialSignInList from './SocialSignInList.vue';
 
 export default defineComponent({
   name: 'AccountPanel',
 
   components: {
-    HSocialSignInList,
+    SocialSignInList,
   },
 
   setup() {
@@ -127,6 +140,7 @@ export default defineComponent({
     const crypto = useCryptoStore();
 
     const router = useRouter();
+    const { authenticator } = usePasskey();
 
     const username = ref('');
     const password = ref('');
@@ -173,6 +187,29 @@ export default defineComponent({
     const onResetError = () => {
       errorMessage.value = '';
       hasError.value = false;
+    };
+
+    const passkeySignIn = () => {
+      isSubmitDisabled.value = true;
+
+      authenticator()
+        .then((response) => {
+          if (response) {
+            isSubmitDisabled.value = false;
+            toast.success('欢迎回来！');
+            router.push({
+              path: CONSTANTS.Path.HOME,
+            });
+          }
+        })
+        .catch((error) => {
+          isSubmitDisabled.value = false;
+          console.log('---eee', error);
+          if (error.message) {
+            errorMessage.value = error.message;
+            hasError.value = true;
+          }
+        });
     };
 
     const onShowCaptcha = () => {
@@ -232,6 +269,7 @@ export default defineComponent({
       prompt,
       promptMessage,
       isDisabled,
+      passkeySignIn,
     };
   },
 });

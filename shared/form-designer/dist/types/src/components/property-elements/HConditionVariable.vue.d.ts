@@ -36,11 +36,11 @@ declare const _default: import('vue').DefineComponent<{}, {
     }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
     HTextField: {
         new (...args: any[]): import('vue').CreateComponentPublicInstanceWithMixins<Readonly<{
-            modelValue?: string | number;
+            modelValue: string | number | null | undefined;
         }> & Readonly<{
-            "onUpdate:modelValue"?: ((value: string | number) => any) | undefined;
+            "onUpdate:modelValue"?: ((value: string | number | null | undefined) => any) | undefined;
         }>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
-            "update:modelValue": (value: string | number) => any;
+            "update:modelValue": (value: string | number | null | undefined) => any;
         }, import('vue').PublicProps, {}, false, {}, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, {}, any, import('vue').ComponentProvideOptions, {
             P: {};
             B: {};
@@ -49,19 +49,19 @@ declare const _default: import('vue').DefineComponent<{}, {
             M: {};
             Defaults: {};
         }, Readonly<{
-            modelValue?: string | number;
+            modelValue: string | number | null | undefined;
         }> & Readonly<{
-            "onUpdate:modelValue"?: ((value: string | number) => any) | undefined;
+            "onUpdate:modelValue"?: ((value: string | number | null | undefined) => any) | undefined;
         }>, {}, {}, {}, {}, {}>;
         __isFragment?: never;
         __isTeleport?: never;
         __isSuspense?: never;
     } & import('vue').ComponentOptionsBase<Readonly<{
-        modelValue?: string | number;
+        modelValue: string | number | null | undefined;
     }> & Readonly<{
-        "onUpdate:modelValue"?: ((value: string | number) => any) | undefined;
+        "onUpdate:modelValue"?: ((value: string | number | null | undefined) => any) | undefined;
     }>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
-        "update:modelValue": (value: string | number) => any;
+        "update:modelValue": (value: string | number | null | undefined) => any;
     }, string, {}, {}, string, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, import('vue').ComponentProvideOptions> & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps & (new () => {
         $slots: {
             append?(_: {}): any;

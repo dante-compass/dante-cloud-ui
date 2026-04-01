@@ -26,7 +26,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 
-import { useApplicationStore } from '@herodotus-cloud/framework-kernel';
+import { useApplicationStore } from '@herodotus/framework';
 
 export default defineComponent({
   name: 'ScanPanel',

@@ -1,11 +1,11 @@
-import type { SweetAlertResult } from 'sweetalert2';
+import type { SweetAlertResult } from '@herodotus/core';
 
 import type {
   QTableOnRequestParameter,
   QTablePaginationProps,
   QTableOnRequestProps,
-  QTableColumnProps
-} from '@herodotus-cloud/core';
+  QTableColumnProps,
+} from '@herodotus-cloud/components';
 
 import type {
   UserEntity,
@@ -23,7 +23,7 @@ import type {
   BpmnListEntity,
   BpmnListQueryParams,
   BpmnDeleteQueryParams,
-  Page
+  Page,
 } from '@herodotus-cloud/bpmn-apis';
 
 import type { DynamicFormService } from '@herodotus-cloud/form-apis';
@@ -64,5 +64,5 @@ export type {
   BpmnDeleteQueryParams,
   Page,
   SweetAlertResult,
-  DynamicFormService
+  DynamicFormService,
 };

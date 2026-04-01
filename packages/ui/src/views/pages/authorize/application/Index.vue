@@ -43,7 +43,7 @@ import type {
 } from '@/composables/declarations';
 
 import { CONSTANTS, API } from '@/configurations';
-import { moment } from '@herodotus-cloud/core';
+import { moment } from '@herodotus/core';
 import { useTable } from '@/composables/hooks';
 
 import { HDeleteButton, HEditButton, HTable, HGrantTypeColumn } from '@/components';

@@ -8,7 +8,7 @@ import { QUploader } from 'quasar';
 import type { QUploaderFactoryObject, QUploaderInfo } from '@/composables/declarations';
 
 import { isEmpty } from 'lodash-es';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 import { API } from '@/configurations';
 
 defineOptions({ name: 'HSimpleUploader' });

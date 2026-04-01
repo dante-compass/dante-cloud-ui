@@ -1,7 +1,7 @@
 import type { Router } from 'vue-router';
-import type { KernelOptions } from '@herodotus-cloud/framework-kernel';
+import type { KernelOptions } from '@herodotus/framework';
 
-import { initializer, RouterUtilities } from '@herodotus-cloud/framework-kernel';
+import { initializer, RouterUtilities } from '@herodotus/framework';
 import { Path } from './constants';
 import { VARIABLES } from './variables';
 import { config } from './http';
@@ -25,7 +25,7 @@ const setupKernel = (currentRouter: Router) => {
     variables: {
       securityKey: VARIABLES.getSecretKey(),
       tenantId: VARIABLES.getCurrentTenantId(),
-      isAutoRefreshToken: VARIABLES.getAutoRefreshToken(),
+      isAutoRefreshToken: VARIABLES.isAutoRefreshToken(),
       isUseCrypto: VARIABLES.isUseCrypto(),
       redirectUri: VARIABLES.getRedirectUri(),
     },

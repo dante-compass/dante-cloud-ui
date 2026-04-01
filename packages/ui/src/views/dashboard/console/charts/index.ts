@@ -1,23 +1,23 @@
-import HBarChart from './HBarChart.vue';
-import HCategoryChart from './HCategoryChart.vue';
-import HFunnelChart from './HFunnelChart.vue';
-import HPieChart from './HPieChart.vue';
-import HRadarChart from './HRadarChart.vue';
-import HRichChart from './HRichChart.vue';
-import HSankeyChart from './HSankeyChart.vue';
-import HScatterChart from './HScatterChart.vue';
-import HSummaryBox from './HSummaryBox.vue';
-import HLinkBox from './HLinkBox.vue';
+import BarChart from './BarChart.vue';
+import CategoryChart from './CategoryChart.vue';
+import FunnelChart from './FunnelChart.vue';
+import PieChart from './PieChart.vue';
+import RadarChart from './RadarChart.vue';
+import RichChart from './RichChart.vue';
+import SankeyChart from './SankeyChart.vue';
+import ScatterChart from './ScatterChart.vue';
+import SummaryBox from './SummaryBox.vue';
+import LinkBox from './LinkBox.vue';
 
 export {
-  HBarChart,
-  HCategoryChart,
-  HPieChart,
-  HFunnelChart,
-  HRadarChart,
-  HRichChart,
-  HScatterChart,
-  HSankeyChart,
-  HSummaryBox,
-  HLinkBox
+  BarChart,
+  CategoryChart,
+  PieChart,
+  FunnelChart,
+  RadarChart,
+  RichChart,
+  ScatterChart,
+  SankeyChart,
+  SummaryBox,
+  LinkBox,
 };

@@ -27,7 +27,7 @@ import type { Ref } from 'vue';
 import { defineComponent, ref, watch } from 'vue';
 
 import { useModelerCreator } from '@/hooks';
-import { toast } from '@/lib/utils';
+import { toast } from '@herodotus/core';
 
 export default defineComponent({
   name: 'HOpenFile',

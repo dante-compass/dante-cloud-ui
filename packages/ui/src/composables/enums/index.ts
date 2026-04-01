@@ -10,5 +10,5 @@ export enum MessageChannelEnum {
   /**
    * 基于 Spring RSocket 实现的 WebSocket
    */
-  RSOCKET = 'rsocket'
+  RSOCKET = 'rsocket',
 }

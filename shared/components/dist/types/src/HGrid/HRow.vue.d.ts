@@ -87,11 +87,11 @@ declare const __VLS_component: import('vue').DefineComponent<import('vue').Extra
         default: boolean;
     };
 }>> & Readonly<{}>, {
-    align: "center" | "none" | "start" | "end";
+    align: "none" | "center" | "start" | "end";
     self: boolean;
     horizontal: boolean;
     vertical: boolean;
-    justify: "center" | "none" | "end" | "around" | "between" | "evenly";
+    justify: "none" | "center" | "end" | "around" | "between" | "evenly";
     column: boolean;
     gutter: "xs" | "sm" | "md" | "lg" | "xl" | "none";
     gutterCol: boolean;

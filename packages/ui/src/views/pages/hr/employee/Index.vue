@@ -55,11 +55,10 @@ import type {
 } from '@/composables/declarations';
 
 import { CONSTANTS, API } from '@/configurations';
-import { useTable } from '@/composables/hooks';
+import { useTable, useDictionary } from '@/composables/hooks';
 
 import { HDeleteButton, HEditButton, HTable } from '@/components';
 import { HEmployeeCondition } from '../components';
-import { useDictionary } from '@/composables/hooks';
 
 export default defineComponent({
   name: CONSTANTS.ComponentName.SYS_EMPLOYEE,
@@ -87,7 +86,7 @@ export default defineComponent({
       CONSTANTS.ComponentName.SYS_EMPLOYEE,
     );
 
-    const { getDictionaryItemDisplay } = useDictionary('Gender', 'identity');
+    const { getDictionaryItemDisplay } = useDictionary('Gender', 'Identity');
 
     const selected = ref([]);
     const rowKey: SysEmployeeProps = 'employeeId';

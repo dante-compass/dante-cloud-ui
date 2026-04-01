@@ -26,7 +26,7 @@ import { computed, shallowRef } from 'vue';
 
 import { getColorPalette, mixColor } from './color';
 import { VARIABLES } from '@/configurations';
-import { useSettingsStore } from '@herodotus-cloud/framework-kernel';
+import { useSettingsStore } from '@herodotus/framework';
 
 defineOptions({
   name: 'HSignInLayout',
@@ -35,13 +35,13 @@ defineOptions({
 const settings = useSettingsStore();
 
 const backgroundThemeColor = computed(() => {
-  return settings.isLight ? settings.theme.primary : getColorPalette(settings.theme.primary, 7);
+  return settings.isDarkenMode ? settings.theme.dark.primary : settings.theme.light.primary;
 });
 
 const backgroundColor = computed(() => {
   const COLOR_WHITE = '#ffffff';
-  const ratio = settings.isDark ? 0.5 : 0.2;
-  return mixColor(COLOR_WHITE, settings.theme.primary, ratio);
+  const ratio = settings.isDarkenMode ? 0.5 : 0.2;
+  return mixColor(COLOR_WHITE, backgroundThemeColor.value, ratio);
 });
 
 const lightColor = computed(() => {

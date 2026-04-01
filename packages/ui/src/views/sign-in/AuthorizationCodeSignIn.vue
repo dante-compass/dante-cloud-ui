@@ -6,7 +6,7 @@
 import { defineComponent, onMounted } from 'vue';
 
 import { useRoute, useRouter } from 'vue-router';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 import { isEmpty } from 'lodash-es';
 
 export default defineComponent({

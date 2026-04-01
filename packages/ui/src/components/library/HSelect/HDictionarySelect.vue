@@ -16,53 +16,31 @@
   ></q-select>
 </template>
 
-<script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent, computed } from 'vue';
+<script setup lang="ts">
+import type { Dictionary } from '@herodotus/core';
 
-import type { Dictionary } from '@/composables/declarations';
-
-import { isEmpty } from 'lodash-es';
 import { useDictionary } from '@/composables/hooks';
 
-export default defineComponent({
-  name: 'HDictionarySelect',
+defineOptions({ name: 'HDictionarySelect' });
 
-  props: {
-    modelValue: { type: [Number, String, Array, Object] },
-    dictionary: { type: String, required: true },
-    /**
-     * 禁用 Item 的值列表
-     */
-    disableItems: { type: Array as PropType<Array<string>>, default: () => [] },
-  },
+interface Props {
+  dictionary: string;
+  disableItems?: string[];
+}
 
-  emits: ['update:modelValue'],
-
-  setup(props, { emit }) {
-    const selectedValue = computed({
-      // 子组件v-model绑定 计算属性, 一旦发生变化, 就会给父组件传递值
-      get: () => props.modelValue,
-      set: (newValue) => {
-        emit('update:modelValue', newValue);
-      },
-    });
-
-    const { options } = useDictionary(props.dictionary);
-
-    const disableOption = (option: Dictionary) => {
-      if (!isEmpty(props.disableItems) && props.disableItems.includes(option.label)) {
-        return true;
-      } else {
-        return false;
-      }
-    };
-
-    return {
-      selectedValue,
-      options,
-      disableOption,
-    };
-  },
+const props = withDefaults(defineProps<Props>(), {
+  disableItems: undefined,
 });
+
+const selectedValue = defineModel();
+
+const { options } = useDictionary(props.dictionary);
+
+const disableOption = (option: Dictionary) => {
+  if (props.disableItems && props.disableItems.includes(option.label)) {
+    return true;
+  } else {
+    return false;
+  }
+};
 </script>

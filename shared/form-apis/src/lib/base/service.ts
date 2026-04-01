@@ -1,6 +1,6 @@
 import type { AxiosHttpResult, BaseMongoEntity, Pageable, Page, Conditions } from '@/declarations';
 
-import { Service } from '@herodotus-cloud/core';
+import { Service } from './core';
 import { isEmpty } from 'lodash-es';
 
 export abstract class BaseMongoService<E extends BaseMongoEntity> extends Service {

@@ -28,7 +28,6 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { storeToRefs } from 'pinia';
 import Draggable from 'vuedraggable';
 
 import type { Element } from '@/declarations';

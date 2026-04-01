@@ -5,11 +5,18 @@ export type {
   AxiosHttpResult,
   Page,
   Pageable,
-  QBaseDataItem,
-} from '@herodotus-cloud/core';
+} from '@herodotus/core';
 
 export interface BaseMongoEntity {
   id?: string;
   createTime?: Date;
   updateTime?: Date;
+}
+
+/**
+ * 很多 Quasar 组件使用到的基本数据类型
+ */
+export interface QBaseDataItem<T> {
+  label: string;
+  value: T;
 }

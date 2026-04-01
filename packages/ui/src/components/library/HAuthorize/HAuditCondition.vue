@@ -50,12 +50,7 @@
               ></h-text-field>
             </h-column>
             <h-column auto>
-              <h-button
-                color="red"
-                icon="mdi-broom"
-                tooltip="清空"
-                @click.stop="onClear()"
-              ></h-button>
+              <h-button color="red" icon="mdi-broom" tooltip="清空" @click.stop="onClear()"></h-button>
             </h-column>
           </h-row>
         </q-card-section>
@@ -65,10 +60,7 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent, computed } from 'vue';
-
-import type { OAuth2InterfaceAuditConditions } from '@/composables/declarations';
+import type { OAuth2InterfaceAuditConditions } from '@herodotus/api';
 
 export default defineComponent({
   name: 'HAuditCondition',

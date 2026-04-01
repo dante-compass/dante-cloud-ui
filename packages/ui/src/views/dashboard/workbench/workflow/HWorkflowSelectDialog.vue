@@ -46,8 +46,7 @@ import type {
 
 import { CONSTANTS, API } from '@/configurations';
 
-import { useBaseTable } from '@/composables/hooks';
-import { useBpmnTableItems, useBpmnProcess } from '@/composables/hooks';
+import { useBaseTable, useBpmnTableItems, useBpmnProcess } from '@/composables/hooks';
 import { isEmpty, isElement } from 'lodash-es';
 
 export default defineComponent({
@@ -77,7 +76,7 @@ export default defineComponent({
       sortOrder: 'desc',
     });
     const { editedItem, createProcessSpecifics } = useBpmnProcess();
-    const { toEdit } = useBaseTable<ProcessSpecificsEntity, ProcessSpecificsConditions>(
+    const { toEdit } = useBaseTable<ProcessSpecificsConditions, ProcessSpecificsEntity>(
       CONSTANTS.ComponentName.WORKFLOW_PROCESS_START,
       'updateTime',
     );
@@ -111,8 +110,8 @@ export default defineComponent({
       isOpen.value = false;
       const params = selected.value;
       if (!isElement(params)) {
-        const item = params[0];
-        await createProcessSpecifics(item!.key, item!.tenantId);
+        const item = params[0]!;
+        await createProcessSpecifics(item.key, item.tenantId);
         toEdit(editedItem.value, {}, false);
       }
     };

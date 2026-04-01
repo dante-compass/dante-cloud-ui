@@ -6,10 +6,8 @@ declare module 'bpmn-js-connectors-extension';
 declare module 'bpmn-js-token-simulation';
 declare module '@bpmn-io/element-template-chooser';
 declare module '@bpmn-io/properties-panel';
-
 declare module 'camunda-bpmn-moddle/resources/camunda';
 declare module 'diagram-js-grid';
-
 declare module 'bpmnlint/rules/conditional-flows';
 declare module 'bpmnlint/rules/end-event-required';
 declare module 'bpmnlint/rules/event-sub-process-typed-start-event';

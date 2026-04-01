@@ -1,72 +1,54 @@
 <template>
   <div v-for="(item, index) in items" :key="index">
-    <template v-if="hasPermission(item)">
-      <q-expansion-item
-        v-if="isDisplayAsItem(item)"
-        :label="getItemTitle(item)"
-        :icon="getItemIcon(item)"
-        :to="item.path"
-        :header-inset-level="level"
-        expand-separator
-        expand-icon="1"
-      ></q-expansion-item>
-      <q-expansion-item
-        v-else
-        :label="getItemTitle(item)"
-        :icon="getItemIcon(item)"
-        :header-inset-level="level"
-        :header-class="isActive(item) ? 'expansion-item--active' : ''"
-        :model-value="isActive(item)"
-        expand-separator
-      >
-        <h-app-menu-items :items="getItemChildren(item)" :level="level + 0.5"></h-app-menu-items>
-      </q-expansion-item>
-    </template>
+    <q-expansion-item
+      v-if="!hasChildren(item)"
+      :label="item.title"
+      :icon="item.prependIcon"
+      :to="item.to"
+      :header-inset-level="level"
+      expand-separator
+      expand-icon="1"
+    ></q-expansion-item>
+    <q-expansion-item
+      v-else
+      :label="item.title"
+      :icon="item.prependIcon"
+      :header-inset-level="level"
+      :header-class="isActive(item) ? 'expansion-item--active' : ''"
+      :model-value="isActive(item)"
+      expand-separator
+    >
+      <h-app-menu-items :items="item.children!" :level="level + 0.5"></h-app-menu-items>
+    </q-expansion-item>
   </div>
 </template>
 
-<script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent, ref } from 'vue';
-
-import type { RouteRecordRaw } from 'vue-router';
+<script setup lang="ts">
+import type { MenuItem } from '@herodotus/framework';
 
 import { useRoute } from 'vue-router';
+import { isEmpty } from 'lodash-es';
 
-import { useSystemMenu } from '@herodotus-cloud/framework-kernel';
+defineOptions({ name: 'HAppMenuItems' });
 
-export default defineComponent({
-  name: 'HAppMenuItems',
+interface Props {
+  items: Array<MenuItem>;
+  level: number;
+}
 
-  props: {
-    items: { type: Array as PropType<Array<RouteRecordRaw>>, required: true },
-    level: { type: Number, required: true },
-  },
+defineProps<Props>();
 
-  setup() {
-    const headerClass = ref('');
+const thisRoute = useRoute();
 
-    const thisRoute = useRoute();
-    const { getItemTitle, getItemIcon, getItemChildren, hasPermission, isDisplayAsItem } =
-      useSystemMenu();
+const isActive = (item: MenuItem) =>
+  thisRoute.matched.some((matchedItem) => matchedItem.path === item.to);
 
-    const isActive = (item: RouteRecordRaw) =>
-      thisRoute.matched.some((matchedItem) => matchedItem.path === item.path);
-
-    return {
-      isDisplayAsItem,
-      getItemIcon,
-      getItemTitle,
-      getItemChildren,
-      headerClass,
-      isActive,
-      hasPermission,
-    };
-  },
-});
+const hasChildren = (item: MenuItem) => {
+  return !isEmpty(item.children);
+};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .q-item__section--avatar {
   color: inherit;
   min-width: 0;

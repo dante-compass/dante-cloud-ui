@@ -1,48 +1,26 @@
 <template>
-  <h-center-form-layout
-    :entity="editedItem"
-    :title="title"
-    :overlay="overlay"
-    :operation="operation"
-    @save="onSave()"
-  >
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
     <h-text-field v-model="editedItem.category" label="分类" disable></h-text-field>
     <h-text-field v-model="editedItem.name" label="字面量"></h-text-field>
     <h-text-field v-model="editedItem.label" label="显示值"></h-text-field>
   </h-center-form-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import type { SysDictionaryEntity } from '@herodotus/api';
 
-import type { SysDictionaryEntity } from '@/composables/declarations';
 import { API } from '@/configurations';
 
 import { useTableItem } from '@/composables/hooks';
 import { HCenterFormLayout } from '@/components';
 
-export default defineComponent({
-  name: 'SysDictionaryContent',
+defineOptions({ name: 'SysDictionaryContent' });
 
-  components: {
-    HCenterFormLayout,
-  },
+const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysDictionaryEntity>(
+  API.core.sysDictionary(),
+);
 
-  setup() {
-    const { editedItem, operation, title, overlay, saveOrUpdate } =
-      useTableItem<SysDictionaryEntity>(API.core.sysDictionary());
-
-    const onSave = () => {
-      saveOrUpdate();
-    };
-
-    return {
-      editedItem,
-      operation,
-      title,
-      overlay,
-      onSave,
-    };
-  },
-});
+const onSave = () => {
+  saveOrUpdate();
+};
 </script>

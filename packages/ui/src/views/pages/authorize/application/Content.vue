@@ -202,13 +202,11 @@ import type {
   QTableColumnProps,
 } from '@/composables/declarations';
 
-import { HDictionarySelect } from '@/components';
-import { useDictionary } from '@/composables/hooks';
+import { useEditFinish } from '@herodotus/framework';
 import { CONSTANTS, API } from '@/configurations';
-import { HAuthorizeLayout } from '@/components';
+import { HAuthorizeLayout, HDictionarySelect } from '@/components';
 import { includes } from 'lodash-es';
-import { useTableItem, useTable } from '@/composables/hooks';
-import { useEditFinish } from '@herodotus-cloud/framework-kernel';
+import { useTableItem, useTable, useDictionary } from '@/composables/hooks';
 
 defineOptions({
   name: 'OAuth2ApplicationContent',

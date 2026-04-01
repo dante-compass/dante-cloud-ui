@@ -52,7 +52,7 @@ async function setupApp() {
   app.mount('#app', true);
 
   if (!CONSTANTS.IS_DEV) {
-    if (VARIABLES.getUseDisableDevtool()) {
+    if (VARIABLES.isUseDisableDevtool()) {
       const url =
         import.meta.env.VITE_BASE_URL === '/'
           ? '/static/forbidden.html'

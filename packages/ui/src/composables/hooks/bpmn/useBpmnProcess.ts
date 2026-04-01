@@ -1,6 +1,3 @@
-import type { Ref } from 'vue';
-import { ref, computed } from 'vue';
-
 import type {
   Sheet,
   FormKeyEntity,
@@ -11,12 +8,12 @@ import type {
   ExtendedTaskEntity,
 } from '@/composables/declarations';
 
+import { useEditFinish } from '@herodotus/framework';
 import { useBaseTableItem } from '@/composables/hooks';
-import { useEditFinish } from '@herodotus-cloud/framework-kernel';
 import { API } from '@/configurations';
-import { toast } from '@herodotus-cloud/core';
+import { toast } from '@herodotus/core';
 import { isEmpty } from 'lodash-es';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 
 export default function useBpmnProcess() {
   const { editedItem, title, overlay } = useBaseTableItem<ProcessSpecificsEntity>();
@@ -38,9 +35,7 @@ export default function useBpmnProcess() {
   });
 
   const conditionOptions = computed(() => {
-    return !isEmpty(condition.value) && !isEmpty(condition.value.options)
-      ? condition.value.options
-      : [];
+    return !isEmpty(condition.value) && !isEmpty(condition.value.options) ? condition.value.options : [];
   });
 
   const fetchFormModeler = async (id: string) => {
@@ -57,9 +52,7 @@ export default function useBpmnProcess() {
 
   const fetchStartForm = async (key: string, tenantId = '') => {
     skeleton.value = true;
-    const result = await API.bpmn
-      .processDefinition()
-      .getStartFormKey({ key: key, tenantId: tenantId });
+    const result = await API.bpmn.processDefinition().getStartFormKey({ key: key, tenantId: tenantId });
     const data = result as FormKeyEntity;
     if (data.key) {
       await fetchFormModeler(data.key);

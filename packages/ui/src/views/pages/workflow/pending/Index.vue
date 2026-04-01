@@ -36,9 +36,9 @@ import type {
   QTableProps,
 } from '@/composables/declarations';
 
-import { moment } from '@herodotus-cloud/core';
+import { moment } from '@herodotus/core';
 import { API } from '@/configurations';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 import { useBpmnTableItems } from '@/composables/hooks';
 
 export default defineComponent({

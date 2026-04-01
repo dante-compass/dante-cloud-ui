@@ -16,7 +16,7 @@ import { HSettingContainer } from '@/components';
 import type { RouteLocationNormalizedLoaded } from 'vue-router';
 import { useRoute } from 'vue-router';
 
-import { useRouterStore, useEditFinish } from '@herodotus-cloud/framework-kernel';
+import { useElementStore, useEditFinish } from '@herodotus/framework';
 
 defineOptions({
   name: 'HSettingsLayout',
@@ -30,7 +30,7 @@ const q = useQuasar();
 const { onFinish } = useEditFinish();
 
 const smartCloseDetail = (route: RouteLocationNormalizedLoaded) => {
-  const store = useRouterStore();
+  const store = useElementStore();
   const isDetailRoute = store.isDetailRoute(route);
 
   if (isDetailRoute) {

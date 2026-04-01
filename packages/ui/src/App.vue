@@ -8,7 +8,7 @@ import { useQuasar } from 'quasar';
 import { VARIABLES } from '@/configurations';
 import { refreshTabInjectionKey } from '@/composables/symbols';
 import { useWebSocketMessage } from '@/composables/hooks';
-import { useAuthenticationStore, useSettingsStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore, useSettingsStore } from '@herodotus/framework';
 
 defineOptions({
   name: 'App',
@@ -62,7 +62,7 @@ onMounted(() => {
   if (authentication.token) {
     connect();
   }
-  if (!VARIABLES.getAutoRefreshToken()) {
+  if (!VARIABLES.isAutoRefreshToken()) {
     // 监听浏览器关闭
     window.addEventListener('beforeunload', (e) => beforeUnloadHandler(e));
     window.addEventListener('pagehide', (e) => pageTransitionHandler(e));
@@ -73,7 +73,7 @@ onUnmounted(() => {
   if (authentication.token) {
     disconnect();
   }
-  if (!VARIABLES.getAutoRefreshToken()) {
+  if (!VARIABLES.isAutoRefreshToken()) {
     window.removeEventListener('beforeunload', (e) => beforeUnloadHandler(e));
     window.addEventListener('pagehide', (e) => pageTransitionHandler(e));
   }

@@ -13,8 +13,8 @@
       <q-list separator>
         <q-item-label header>版本信息：</q-item-label>
         <template v-for="(item, i) in tableRows" :key="i">
-          <q-item :clickable="!item.deleteMarker" v-ripple :disable="item.deleteMarker">
-            <q-item-section>
+          <q-item>
+            <q-item-section :disable="item.deleteMarker">
               <q-item-label>
                 {{ 'v' + (tableRows.length - i) }}
                 <q-chip v-if="item.latest" dense size="md" color="pink" icon="mdi-label"> CURRENT VERSION </q-chip>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ObjectVersionDomain } from '@herodotus-cloud/apis';
+import type { ObjectVersionDomain } from '@herodotus/api';
 
 import { useOss, useDateTime } from '@/composables/hooks';
 import { API } from '@/configurations';

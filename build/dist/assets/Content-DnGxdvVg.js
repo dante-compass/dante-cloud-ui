@@ -1,0 +1,1 @@
+import{t as e}from"./js/views-pages-authorize-application-Content.vue-DziJzJKu.js";export{e as default};

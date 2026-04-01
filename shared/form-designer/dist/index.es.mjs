@@ -1,13 +1,13 @@
 import { QBtn as e, QCard as t, QCardActions as n, QCardSection as r, QDialog as i, QDrawer as a, QExpansionItem as o, QHeader as s, QIcon as c, QInput as l, QLayout as u, QList as d, QPage as f, QPageContainer as p, QPopupEdit as m, QSeparator as h, QSpace as g, QTab as _, QTabPanel as v, QTabPanels as ee, QTable as y, QTabs as te, QTd as ne, QToolbar as re, QToolbarTitle as ie, QTr as ae } from "quasar";
-import { Fragment as oe, computed as b, createBlock as x, createCommentVNode as se, createElementBlock as S, createElementVNode as C, createSlots as ce, createTextVNode as w, createVNode as T, defineComponent as E, mergeProps as le, normalizeClass as ue, normalizeStyle as de, onUnmounted as fe, openBlock as D, ref as O, renderList as pe, renderSlot as k, resolveComponent as A, resolveDynamicComponent as me, shallowRef as he, toDisplayString as j, unref as M, watch as ge, withCtx as N } from "vue";
-import { defineStore as P, storeToRefs as _e } from "pinia";
-import { isEmpty as F, remove as ve } from "lodash-es";
-import { Swal as I, toast as L } from "@herodotus-cloud/core";
-import { ElementUtils as R, HRendererEngine as ye, HRendererForm as be, WIDGET_DEFINITIONS as z } from "@herodotus-cloud/form-engine";
-import { HSwitch as B, HTextField as V } from "@herodotus-cloud/components";
-import H from "vuedraggable";
+import { Fragment as oe, computed as b, createBlock as x, createCommentVNode as se, createElementBlock as S, createElementVNode as C, createSlots as ce, createTextVNode as w, createVNode as T, defineComponent as E, mergeProps as le, normalizeClass as ue, normalizeStyle as de, onUnmounted as fe, openBlock as D, ref as O, renderList as pe, renderSlot as k, resolveComponent as A, resolveDynamicComponent as me, shallowRef as he, toDisplayString as j, unref as M, watch as N, withCtx as P } from "vue";
+import { defineStore as F, storeToRefs as ge } from "pinia";
+import { isEmpty as I, remove as _e } from "lodash-es";
+import { Swal as ve, Swal as ye, toast as be, toast as xe } from "@herodotus/core";
+import { ElementUtils as L, HRendererEngine as Se, HRendererForm as Ce, WIDGET_DEFINITIONS as R } from "@herodotus-cloud/form-engine";
+import { HSwitch as z, HTextField as B } from "@herodotus-cloud/components";
+import V from "vuedraggable";
 //#region src/stores/canvas.ts
-var U = P("FormDesignerCanvas", {
+var H = F("FormDesignerCanvas", {
 	state: () => ({
 		isClosed: !1,
 		canvasElements: [],
@@ -19,24 +19,24 @@ var U = P("FormDesignerCanvas", {
 	}),
 	getters: {
 		isSelected(e) {
-			return (t) => !F(e.selectedElement) && e.selectedElement.id ? e.selectedElement.config.renderKey === t : !1;
+			return (t) => !I(e.selectedElement) && e.selectedElement.id ? e.selectedElement.config.renderKey === t : !1;
 		},
-		isEmptyCanvas: (e) => F(e.canvasElements),
+		isEmptyCanvas: (e) => I(e.canvasElements),
 		getElements: (e) => e.canvasElements,
 		currentSchema() {
-			return !F(this.selectedElement) && !F(this.selectedElement.schema) ? this.selectedElement.schema : {};
+			return !I(this.selectedElement) && !I(this.selectedElement.schema) ? this.selectedElement.schema : {};
 		},
 		currentConfig() {
-			return !F(this.selectedElement) && !F(this.selectedElement.config) ? this.selectedElement.config : {};
+			return !I(this.selectedElement) && !I(this.selectedElement.config) ? this.selectedElement.config : {};
 		},
 		currentPanel() {
-			return !F(this.currentConfig) && !F(this.currentConfig.panel) ? this.currentConfig.panel : "INFORMATION_PANEL";
+			return !I(this.currentConfig) && !I(this.currentConfig.panel) ? this.currentConfig.panel : "INFORMATION_PANEL";
 		},
 		isInformationPanel() {
 			return this.currentPanel === "INFORMATION_PANEL";
 		},
 		condition() {
-			return F(this.sheet.condition) && (this.sheet.condition = {
+			return I(this.sheet.condition) && (this.sheet.condition = {
 				variable: "",
 				options: []
 			}), this.sheet.condition;
@@ -47,10 +47,10 @@ var U = P("FormDesignerCanvas", {
 			this.selectedElement = e;
 		},
 		selectFirstElement() {
-			F(this.canvasElements) || this.selectElement(this.canvasElements[0]);
+			I(this.canvasElements) || this.selectElement(this.canvasElements[0]);
 		},
 		loading(e) {
-			F(e.modeler) || (this.canvasElements = e.modeler.elements, this.sheet = e.modeler.sheet), this.id = e.id, this.name = e.name, this.activityName = e.activityName, this.selectFirstElement();
+			I(e.modeler) || (this.canvasElements = e.modeler.elements, this.sheet = e.modeler.sheet), this.id = e.id, this.name = e.name, this.activityName = e.activityName, this.selectFirstElement();
 		},
 		compose() {
 			return {
@@ -67,19 +67,19 @@ var U = P("FormDesignerCanvas", {
 			this.canvasElements === void 0 && (this.canvasElements = []), this.canvasElements.push(e), this.selectElement(e);
 		},
 		removeElement(e) {
-			!F(this.canvasElements) && e.id && (ve(this.canvasElements, (t) => t.id === e.id), this.selectFirstElement());
+			!I(this.canvasElements) && e.id && (_e(this.canvasElements, (t) => t.id === e.id), this.selectFirstElement());
 		}
 	}
-}), W = P("FormDesignerResources", {
+}), U = F("FormDesignerResources", {
 	state: () => ({ resources: {} }),
 	getters: { dynamicForm: (e) => e.resources.dynamicForm() },
 	actions: { init(e) {
 		this.resources = e;
 	} }
-}), xe = E({
+}), we = E({
 	name: "HFormInformation",
 	setup() {
-		let { id: e, name: t, activityName: n } = U(), r = O(null), i = O(null);
+		let { id: e, name: t, activityName: n } = H(), r = O(null), i = O(null);
 		return {
 			id: e,
 			name: t,
@@ -92,17 +92,17 @@ var U = P("FormDesignerCanvas", {
 			}
 		};
 	}
-}), G = (e, t) => {
+}), W = (e, t) => {
 	let n = e.__vccOpts || e;
 	for (let [e, r] of t) n[e] = r;
 	return n;
 };
 //#endregion
 //#region src/components/canvas-toolbar/HFormInformation.vue
-function Se(e, t, n, r, i, a) {
+function Te(e, t, n, r, i, a) {
 	let o = l, s = d;
 	return D(), x(s, null, {
-		default: N(() => [
+		default: P(() => [
 			T(o, {
 				modelValue: e.id,
 				"onUpdate:modelValue": t[0] ||= (t) => e.id = t,
@@ -132,9 +132,9 @@ function Se(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var K = /* @__PURE__ */ G(xe, [["render", Se]]), Ce = E({
+var G = /* @__PURE__ */ W(we, [["render", Te]]), Ee = E({
 	name: "HFormUploadDialog",
-	components: { HFormInformation: K },
+	components: { HFormInformation: G },
 	props: { modelValue: {
 		type: Boolean,
 		default: !1
@@ -150,8 +150,8 @@ var K = /* @__PURE__ */ G(xe, [["render", Se]]), Ce = E({
 			set: (e) => {
 				t("update:modelValue", e);
 			}
-		}), r = O(null), i = W(), a = U(), o = () => {
-			I.fire({
+		}), r = O(null), i = U(), a = H(), o = () => {
+			ye.fire({
 				title: "保存成功！",
 				text: "您是否需要关闭设计器？",
 				icon: "success",
@@ -174,7 +174,7 @@ var K = /* @__PURE__ */ G(xe, [["render", Se]]), Ce = E({
 					i.dynamicForm.saveOrUpdate(e).then((e) => {
 						n.value = !1, o();
 					}).catch((e) => {
-						n.value = !1, L.error("保存失败！");
+						n.value = !1, xe.error("保存失败！");
 					});
 				}
 			},
@@ -184,8 +184,8 @@ var K = /* @__PURE__ */ G(xe, [["render", Se]]), Ce = E({
 });
 //#endregion
 //#region src/components/canvas-toolbar/HFormUploadDialog.vue
-function we(a, o, s, c, l, u) {
-	let d = g, f = e, p = r, m = K, h = n, _ = t, v = i;
+function De(a, o, s, c, l, u) {
+	let d = g, f = e, p = r, m = G, h = n, _ = t, v = i;
 	return D(), x(v, {
 		modelValue: a.isOpen,
 		"onUpdate:modelValue": o[3] ||= (e) => a.isOpen = e,
@@ -193,10 +193,10 @@ function we(a, o, s, c, l, u) {
 		"transition-show": "scale",
 		"transition-hide": "scale"
 	}, {
-		default: N(() => [T(_, { style: { width: "20vw" } }, {
-			default: N(() => [
+		default: P(() => [T(_, { style: { width: "20vw" } }, {
+			default: P(() => [
 				T(p, { class: "row items-center q-pb-none" }, {
-					default: N(() => [
+					default: P(() => [
 						o[4] ||= C("div", { class: "text-h6" }, "上传表单", -1),
 						T(d),
 						T(f, {
@@ -210,11 +210,11 @@ function we(a, o, s, c, l, u) {
 					_: 1
 				}),
 				T(p, null, {
-					default: N(() => [T(m, { ref: "infoRef" }, null, 512)]),
+					default: P(() => [T(m, { ref: "infoRef" }, null, 512)]),
 					_: 1
 				}),
 				T(h, { align: "right" }, {
-					default: N(() => [T(f, {
+					default: P(() => [T(f, {
 						label: "取消",
 						color: "red",
 						onClick: o[1] ||= (e) => a.isOpen = !1
@@ -231,15 +231,15 @@ function we(a, o, s, c, l, u) {
 		_: 1
 	}, 8, ["modelValue"]);
 }
-var q = /* @__PURE__ */ G(Ce, [["render", we]]), Te = E({ name: "HCanvasLayout" });
+var K = /* @__PURE__ */ W(Ee, [["render", De]]), Oe = E({ name: "HCanvasLayout" });
 //#endregion
 //#region src/components/library/HCanvasLayout.vue
-function Ee(e, n, r, i, a, o) {
+function ke(e, n, r, i, a, o) {
 	let s = t, c = f, l = p;
 	return D(), x(l, null, {
-		default: N(() => [T(c, null, {
-			default: N(() => [T(s, { class: "q-ma-md" }, {
-				default: N(() => [k(e.$slots, "default")]),
+		default: P(() => [T(c, null, {
+			default: P(() => [T(s, { class: "q-ma-md" }, {
+				default: P(() => [k(e.$slots, "default")]),
 				_: 3
 			})]),
 			_: 3
@@ -247,7 +247,7 @@ function Ee(e, n, r, i, a, o) {
 		_: 3
 	});
 }
-var J = /* @__PURE__ */ G(Te, [["render", Ee]]), De = E({
+var q = /* @__PURE__ */ W(Oe, [["render", ke]]), Ae = E({
 	name: "HExpansionItem",
 	props: { headerClass: {
 		type: String,
@@ -256,15 +256,15 @@ var J = /* @__PURE__ */ G(Te, [["render", Ee]]), De = E({
 });
 //#endregion
 //#region src/components/library/HExpansionItem.vue
-function Oe(e, n, i, a, s, c) {
+function je(e, n, i, a, s, c) {
 	let l = r, u = t, d = o;
 	return D(), x(d, le({
 		"expand-separator": "",
 		"header-class": e.headerClass
 	}, e.$attrs), {
-		default: N(() => [T(u, null, {
-			default: N(() => [T(l, null, {
-				default: N(() => [k(e.$slots, "default")]),
+		default: P(() => [T(u, null, {
+			default: P(() => [T(l, null, {
+				default: P(() => [k(e.$slots, "default")]),
 				_: 3
 			})]),
 			_: 3
@@ -272,16 +272,16 @@ function Oe(e, n, i, a, s, c) {
 		_: 3
 	}, 16, ["header-class"]);
 }
-var Y = /* @__PURE__ */ G(De, [["render", Oe]]), ke = E({
+var J = /* @__PURE__ */ W(Ae, [["render", je]]), Me = E({
 	name: "HFormPreviewDialog",
-	components: { HRendererForm: be },
+	components: { HRendererForm: Ce },
 	props: { modelValue: {
 		type: Boolean,
 		default: !1
 	} },
 	emits: ["update:modelValue"],
 	setup(e, { emit: t }) {
-		let { canvasElements: n } = U(), r = b({
+		let { canvasElements: n } = H(), r = b({
 			get: () => e.modelValue,
 			set: (e) => {
 				t("update:modelValue", e);
@@ -299,7 +299,7 @@ var Y = /* @__PURE__ */ G(De, [["render", Oe]]), ke = E({
 });
 //#endregion
 //#region src/components/canvas-toolbar/HFormPreviewDialog.vue
-function Ae(a, o, s, c, l, u) {
+function Ne(a, o, s, c, l, u) {
 	let d = g, f = e, p = r, m = A("h-renderer-form"), h = n, _ = t, v = i;
 	return D(), x(v, {
 		modelValue: a.isOpen,
@@ -308,10 +308,10 @@ function Ae(a, o, s, c, l, u) {
 		"transition-show": "scale",
 		"transition-hide": "scale"
 	}, {
-		default: N(() => [T(_, null, {
-			default: N(() => [
+		default: P(() => [T(_, null, {
+			default: P(() => [
 				T(p, { class: "row items-center q-pb-none" }, {
-					default: N(() => [
+					default: P(() => [
 						o[4] ||= C("div", { class: "text-h6" }, "预览", -1),
 						T(d),
 						T(f, {
@@ -325,7 +325,7 @@ function Ae(a, o, s, c, l, u) {
 					_: 1
 				}),
 				T(p, null, {
-					default: N(() => [T(m, {
+					default: P(() => [T(m, {
 						modelValue: a.state,
 						"onUpdate:modelValue": o[1] ||= (e) => a.state = e,
 						elements: a.canvasElements
@@ -336,7 +336,7 @@ function Ae(a, o, s, c, l, u) {
 					align: "right",
 					class: "bg-white text-red"
 				}, {
-					default: N(() => [T(f, {
+					default: P(() => [T(f, {
 						flat: "",
 						label: "确定",
 						onClick: o[2] ||= (e) => a.onClose()
@@ -349,9 +349,9 @@ function Ae(a, o, s, c, l, u) {
 		_: 1
 	}, 8, ["modelValue"]);
 }
-var X = /* @__PURE__ */ G(ke, [["render", Ae]]), je = E({
+var Y = /* @__PURE__ */ W(Me, [["render", Ne]]), Pe = E({
 	name: "HCanvasElement",
-	components: { HRendererEngine: ye },
+	components: { HRendererEngine: Se },
 	props: {
 		element: {
 			type: Object,
@@ -363,7 +363,7 @@ var X = /* @__PURE__ */ G(ke, [["render", Ae]]), je = E({
 		}
 	},
 	setup(e) {
-		let t = O(!1), n = U();
+		let t = O(!1), n = H();
 		return {
 			isHover: t,
 			schemas: b(() => [e.element.schema]),
@@ -376,18 +376,18 @@ var X = /* @__PURE__ */ G(ke, [["render", Ae]]), je = E({
 });
 //#endregion
 //#region src/components/canvas/HCanvasElement.vue
-function Me(r, i, a, o, s, c) {
+function Fe(r, i, a, o, s, c) {
 	let l = A("h-renderer-engine"), u = e, d = n, f = t;
 	return D(), x(f, {
 		class: ue([r.isSelected && !r.isHover ? "canvas-item-selected" : "canvas-item"]),
 		onMouseover: i[0] ||= (e) => r.isHover = !0,
 		onMouseleave: i[1] ||= (e) => r.isHover = !1
 	}, {
-		default: N(() => [T(l, { schemas: r.schemas }, null, 8, ["schemas"]), r.isHover ? (D(), x(d, {
+		default: P(() => [T(l, { schemas: r.schemas }, null, 8, ["schemas"]), r.isHover ? (D(), x(d, {
 			key: 0,
 			class: "justify-end q-pa-none"
 		}, {
-			default: N(() => [
+			default: P(() => [
 				T(u, {
 					flat: "",
 					round: "",
@@ -416,15 +416,15 @@ function Me(r, i, a, o, s, c) {
 		_: 1
 	}, 8, ["class"]);
 }
-var Z = /* @__PURE__ */ G(je, [["render", Me], ["__scopeId", "data-v-8129af03"]]), Ne = E({
+var X = /* @__PURE__ */ W(Pe, [["render", Fe], ["__scopeId", "data-v-8129af03"]]), Ie = E({
 	name: "HCanvasContainer",
 	components: {
-		Draggable: H,
-		HCanvasElement: Z,
-		HCanvasLayout: J
+		Draggable: V,
+		HCanvasElement: X,
+		HCanvasLayout: q
 	},
 	setup(e) {
-		let t = U(), { canvasElements: n } = t;
+		let t = H(), { canvasElements: n } = t;
 		return {
 			isEmptyCanvas: b(() => t.isEmptyCanvas),
 			canvasElements: n,
@@ -436,17 +436,17 @@ var Z = /* @__PURE__ */ G(je, [["render", Me], ["__scopeId", "data-v-8129af03"]]
 });
 //#endregion
 //#region src/components/canvas/HCanvasContainer.vue
-function Pe(e, t, n, r, i, a) {
-	let o = Z, s = A("draggable"), c = J;
+function Le(e, t, n, r, i, a) {
+	let o = X, s = A("draggable"), c = q;
 	return D(), x(c, null, {
-		default: N(() => [T(s, {
+		default: P(() => [T(s, {
 			"item-key": "id",
 			list: e.canvasElements,
 			animation: 300,
 			group: "widgetGroup",
 			class: "canvas-container"
 		}, ce({
-			item: N(({ element: t }) => [(D(), x(o, {
+			item: P(({ element: t }) => [(D(), x(o, {
 				element: t,
 				key: t.config.renderKey,
 				"selected-id": t.config.renderKey,
@@ -459,21 +459,21 @@ function Pe(e, t, n, r, i, a) {
 			_: 2
 		}, [e.isEmptyCanvas ? {
 			name: "footer",
-			fn: N(() => [t[0] ||= C("div", { class: "row text-center canvas-container" }, [C("div", { class: "col-12 self-center text-h6 text-weight-medium text-grey-5" }, " 从左侧拖拽或点击来添加字段 ")], -1)]),
+			fn: P(() => [t[0] ||= C("div", { class: "row text-center canvas-container" }, [C("div", { class: "col-12 self-center text-h6 text-weight-medium text-grey-5" }, " 从左侧拖拽或点击来添加字段 ")], -1)]),
 			key: "0"
 		} : void 0]), 1032, ["list"])]),
 		_: 1
 	});
 }
-var Fe = /* @__PURE__ */ G(Ne, [["render", Pe], ["__scopeId", "data-v-b8c7d9b0"]]), Q = {
+var Z = /* @__PURE__ */ W(Ie, [["render", Le], ["__scopeId", "data-v-3e653093"]]), Q = {
 	HideBottomSpace: "hide-bottom-space",
 	ItemAligned: "item-aligned"
-}, Ie = { class: "q-gutter-y-sm column" }, Le = { class: "q-gutter-y-sm column" }, Re = /* @__PURE__ */ E({
+}, Re = { class: "q-gutter-y-sm column" }, ze = { class: "q-gutter-y-sm column" }, Be = /* @__PURE__ */ E({
 	name: "HDatePanel",
 	components: {
-		HExpansionItem: Y,
-		HSwitch: B,
-		HTextField: V
+		HExpansionItem: J,
+		HSwitch: z,
+		HTextField: B
 	},
 	__name: "HDatePanel",
 	props: { schema: {} },
@@ -482,18 +482,18 @@ var Fe = /* @__PURE__ */ G(Ne, [["render", Pe], ["__scopeId", "data-v-b8c7d9b0"]
 		return (e, t) => {
 			let a = d;
 			return D(), x(a, { bordered: "" }, {
-				default: N(() => [
-					T(M(Y), {
+				default: P(() => [
+					T(M(J), {
 						icon: "mdi-information",
 						label: "常规",
 						"default-opened": ""
 					}, {
-						default: N(() => [T(M(V), {
+						default: P(() => [T(M(B), {
 							modelValue: i.value.modelValue.name,
 							"onUpdate:modelValue": t[0] ||= (e) => i.value.modelValue.name = e,
 							dense: "",
 							label: "名称"
-						}, null, 8, ["modelValue"]), T(M(V), {
+						}, null, 8, ["modelValue"]), T(M(B), {
 							modelValue: r.value.label,
 							"onUpdate:modelValue": t[1] ||= (e) => r.value.label = e,
 							dense: "",
@@ -501,72 +501,72 @@ var Fe = /* @__PURE__ */ G(Ne, [["render", Pe], ["__scopeId", "data-v-b8c7d9b0"]
 						}, null, 8, ["modelValue"])]),
 						_: 1
 					}),
-					T(M(Y), {
+					T(M(J), {
 						icon: "mdi-eject-circle",
 						label: "状态"
 					}, {
-						default: N(() => [C("div", Ie, [T(M(B), {
+						default: P(() => [C("div", Re, [T(M(z), {
 							modelValue: r.value.disable,
 							"onUpdate:modelValue": t[2] ||= (e) => r.value.disable = e,
 							label: "Disable"
-						}, null, 8, ["modelValue"]), T(M(B), {
+						}, null, 8, ["modelValue"]), T(M(z), {
 							modelValue: r.value.readonly,
 							"onUpdate:modelValue": t[3] ||= (e) => r.value.readonly = e,
 							label: "Readonly"
 						}, null, 8, ["modelValue"])])]),
 						_: 1
 					}),
-					T(M(Y), {
+					T(M(J), {
 						icon: "mdi-image-edit",
 						label: "外观"
 					}, {
-						default: N(() => [C("div", Le, [
-							T(M(B), {
+						default: P(() => [C("div", ze, [
+							T(M(z), {
 								modelValue: r.value.dark,
 								"onUpdate:modelValue": t[4] ||= (e) => r.value.dark = e,
 								label: "Dark"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.filled,
 								"onUpdate:modelValue": t[5] ||= (e) => r.value.filled = e,
 								label: "Filled"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.outlined,
 								"onUpdate:modelValue": t[6] ||= (e) => r.value.outlined = e,
 								label: "Outlined"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.borderless,
 								"onUpdate:modelValue": t[7] ||= (e) => r.value.borderless = e,
 								label: "Borderless"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.standout,
 								"onUpdate:modelValue": t[8] ||= (e) => r.value.standout = e,
 								label: "Standout"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value[M(n).HideBottomSpace],
 								"onUpdate:modelValue": t[9] ||= (e) => r.value[M(n).HideBottomSpace] = e,
 								label: "Hide Bottom Space"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.rounded,
 								"onUpdate:modelValue": t[10] ||= (e) => r.value.rounded = e,
 								label: "Rounded"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.square,
 								"onUpdate:modelValue": t[11] ||= (e) => r.value.square = e,
 								label: "Square"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.dense,
 								"onUpdate:modelValue": t[12] ||= (e) => r.value.dense = e,
 								label: "Dense"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value[M(n).ItemAligned],
 								"onUpdate:modelValue": t[13] ||= (e) => r.value[M(n).ItemAligned] = e,
 								label: "Item Aligned"
@@ -579,12 +579,12 @@ var Fe = /* @__PURE__ */ G(Ne, [["render", Pe], ["__scopeId", "data-v-b8c7d9b0"]
 			});
 		};
 	}
-}), ze = { class: "q-gutter-y-sm column" }, Be = { class: "q-gutter-y-sm column" }, Ve = /* @__PURE__ */ E({
+}), Ve = { class: "q-gutter-y-sm column" }, He = { class: "q-gutter-y-sm column" }, Ue = /* @__PURE__ */ E({
 	name: "HPasswordPanel",
 	components: {
-		HExpansionItem: Y,
-		HSwitch: B,
-		HTextField: V
+		HExpansionItem: J,
+		HSwitch: z,
+		HTextField: B
 	},
 	__name: "HPasswordPanel",
 	props: { schema: {} },
@@ -593,18 +593,18 @@ var Fe = /* @__PURE__ */ G(Ne, [["render", Pe], ["__scopeId", "data-v-b8c7d9b0"]
 		return (e, t) => {
 			let a = d;
 			return D(), x(a, { bordered: "" }, {
-				default: N(() => [
-					T(M(Y), {
+				default: P(() => [
+					T(M(J), {
 						icon: "mdi-information",
 						label: "常规",
 						"default-opened": ""
 					}, {
-						default: N(() => [T(M(V), {
+						default: P(() => [T(M(B), {
 							modelValue: i.value.modelValue.name,
 							"onUpdate:modelValue": t[0] ||= (e) => i.value.modelValue.name = e,
 							dense: "",
 							label: "名称"
-						}, null, 8, ["modelValue"]), T(M(V), {
+						}, null, 8, ["modelValue"]), T(M(B), {
 							modelValue: r.value.label,
 							"onUpdate:modelValue": t[1] ||= (e) => r.value.label = e,
 							dense: "",
@@ -612,72 +612,72 @@ var Fe = /* @__PURE__ */ G(Ne, [["render", Pe], ["__scopeId", "data-v-b8c7d9b0"]
 						}, null, 8, ["modelValue"])]),
 						_: 1
 					}),
-					T(M(Y), {
+					T(M(J), {
 						icon: "mdi-eject-circle",
 						label: "状态"
 					}, {
-						default: N(() => [C("div", ze, [T(M(B), {
+						default: P(() => [C("div", Ve, [T(M(z), {
 							modelValue: r.value.disable,
 							"onUpdate:modelValue": t[2] ||= (e) => r.value.disable = e,
 							label: "Disable"
-						}, null, 8, ["modelValue"]), T(M(B), {
+						}, null, 8, ["modelValue"]), T(M(z), {
 							modelValue: r.value.readonly,
 							"onUpdate:modelValue": t[3] ||= (e) => r.value.readonly = e,
 							label: "Readonly"
 						}, null, 8, ["modelValue"])])]),
 						_: 1
 					}),
-					T(M(Y), {
+					T(M(J), {
 						icon: "mdi-image-edit",
 						label: "外观"
 					}, {
-						default: N(() => [C("div", Be, [
-							T(M(B), {
+						default: P(() => [C("div", He, [
+							T(M(z), {
 								modelValue: r.value.dark,
 								"onUpdate:modelValue": t[4] ||= (e) => r.value.dark = e,
 								label: "Dark"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.filled,
 								"onUpdate:modelValue": t[5] ||= (e) => r.value.filled = e,
 								label: "Filled"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.outlined,
 								"onUpdate:modelValue": t[6] ||= (e) => r.value.outlined = e,
 								label: "Outlined"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.borderless,
 								"onUpdate:modelValue": t[7] ||= (e) => r.value.borderless = e,
 								label: "Borderless"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.standout,
 								"onUpdate:modelValue": t[8] ||= (e) => r.value.standout = e,
 								label: "Standout"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value[M(n).HideBottomSpace],
 								"onUpdate:modelValue": t[9] ||= (e) => r.value[M(n).HideBottomSpace] = e,
 								label: "Hide Bottom Space"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.rounded,
 								"onUpdate:modelValue": t[10] ||= (e) => r.value.rounded = e,
 								label: "Rounded"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.square,
 								"onUpdate:modelValue": t[11] ||= (e) => r.value.square = e,
 								label: "Square"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.dense,
 								"onUpdate:modelValue": t[12] ||= (e) => r.value.dense = e,
 								label: "Dense"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value[M(n).ItemAligned],
 								"onUpdate:modelValue": t[13] ||= (e) => r.value[M(n).ItemAligned] = e,
 								label: "Item Aligned"
@@ -690,14 +690,14 @@ var Fe = /* @__PURE__ */ G(Ne, [["render", Pe], ["__scopeId", "data-v-b8c7d9b0"]
 			});
 		};
 	}
-}), He = E({
+}), We = E({
 	name: "HConditionVariable",
 	components: {
-		HExpansionItem: Y,
-		HTextField: V
+		HExpansionItem: J,
+		HTextField: B
 	},
 	setup(e) {
-		let { condition: t } = U(), n = [{
+		let { condition: t } = H(), n = [{
 			align: "center",
 			name: "label",
 			field: "calories",
@@ -726,13 +726,13 @@ var Fe = /* @__PURE__ */ G(Ne, [["render", Pe], ["__scopeId", "data-v-b8c7d9b0"]
 });
 //#endregion
 //#region src/components/property-elements/HConditionVariable.vue
-function Ue(e, t, n, r, i, a) {
-	let o = A("h-text-field"), s = l, c = m, u = ne, d = ae, f = y, p = Y;
+function Ge(e, t, n, r, i, a) {
+	let o = A("h-text-field"), s = l, c = m, u = ne, d = ae, f = y, p = J;
 	return D(), x(p, {
 		icon: "mdi-variable",
 		label: "流程变量"
 	}, {
-		default: N(() => [T(o, {
+		default: P(() => [T(o, {
 			modelValue: e.condition.variable,
 			"onUpdate:modelValue": t[0] ||= (t) => e.condition.variable = t,
 			dense: "",
@@ -747,12 +747,12 @@ function Ue(e, t, n, r, i, a) {
 			"hide-pagination": "",
 			"card-container-class": "q-ml-2"
 		}, {
-			body: N((t) => [T(d, { props: t }, {
-				default: N(() => [T(u, {
+			body: P((t) => [T(d, { props: t }, {
+				default: P(() => [T(u, {
 					key: "label",
 					props: t
 				}, {
-					default: N(() => [w(j(t.row.label) + " ", 1), T(c, {
+					default: P(() => [w(j(t.row.label) + " ", 1), T(c, {
 						modelValue: t.row.label,
 						"onUpdate:modelValue": [(e) => t.row.label = e, e.onModify],
 						title: "修改标签",
@@ -760,7 +760,7 @@ function Ue(e, t, n, r, i, a) {
 						"label-set": "确定",
 						"label-cancel": "取消"
 					}, {
-						default: N((e) => [T(s, {
+						default: P((e) => [T(s, {
 							modelValue: e.value,
 							"onUpdate:modelValue": (t) => e.value = t,
 							dense: "",
@@ -773,7 +773,7 @@ function Ue(e, t, n, r, i, a) {
 					key: "value",
 					props: t
 				}, {
-					default: N(() => [w(j(t.row.value), 1)]),
+					default: P(() => [w(j(t.row.value), 1)]),
 					_: 2
 				}, 1032, ["props"])]),
 				_: 2
@@ -783,25 +783,25 @@ function Ue(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var We = /* @__PURE__ */ G(He, [["render", Ue]]), Ge = E({
+var Ke = /* @__PURE__ */ W(We, [["render", Ge]]), qe = E({
 	name: "HSheetPanel",
-	components: { HConditionVariable: We }
+	components: { HConditionVariable: Ke }
 });
 //#endregion
 //#region src/components/property-panels/HSheetPanel.vue
-function Ke(e, t, n, r, i, a) {
-	let o = We, s = d;
+function Je(e, t, n, r, i, a) {
+	let o = Ke, s = d;
 	return D(), x(s, { bordered: "" }, {
-		default: N(() => [T(o)]),
+		default: P(() => [T(o)]),
 		_: 1
 	});
 }
-var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm column" }, Ye = { class: "q-gutter-y-sm column" }, Xe = /* @__PURE__ */ E({
+var Ye = /* @__PURE__ */ W(qe, [["render", Je]]), Xe = { class: "q-gutter-y-sm column" }, Ze = { class: "q-gutter-y-sm column" }, Qe = /* @__PURE__ */ E({
 	name: "HTextareaPanel",
 	components: {
-		HExpansionItem: Y,
-		HSwitch: B,
-		HTextField: V
+		HExpansionItem: J,
+		HSwitch: z,
+		HTextField: B
 	},
 	__name: "HTextareaPanel",
 	props: { schema: {} },
@@ -810,18 +810,18 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 		return (e, t) => {
 			let a = d;
 			return D(), x(a, { bordered: "" }, {
-				default: N(() => [
-					T(M(Y), {
+				default: P(() => [
+					T(M(J), {
 						icon: "mdi-information",
 						label: "常规",
 						"default-opened": ""
 					}, {
-						default: N(() => [T(M(V), {
+						default: P(() => [T(M(B), {
 							modelValue: i.value.modelValue.name,
 							"onUpdate:modelValue": t[0] ||= (e) => i.value.modelValue.name = e,
 							dense: "",
 							label: "名称"
-						}, null, 8, ["modelValue"]), T(M(V), {
+						}, null, 8, ["modelValue"]), T(M(B), {
 							modelValue: r.value.label,
 							"onUpdate:modelValue": t[1] ||= (e) => r.value.label = e,
 							dense: "",
@@ -829,72 +829,72 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 						}, null, 8, ["modelValue"])]),
 						_: 1
 					}),
-					T(M(Y), {
+					T(M(J), {
 						icon: "mdi-eject-circle",
 						label: "状态"
 					}, {
-						default: N(() => [C("div", Je, [T(M(B), {
+						default: P(() => [C("div", Xe, [T(M(z), {
 							modelValue: r.value.disable,
 							"onUpdate:modelValue": t[2] ||= (e) => r.value.disable = e,
 							label: "Disable"
-						}, null, 8, ["modelValue"]), T(M(B), {
+						}, null, 8, ["modelValue"]), T(M(z), {
 							modelValue: r.value.readonly,
 							"onUpdate:modelValue": t[3] ||= (e) => r.value.readonly = e,
 							label: "Readonly"
 						}, null, 8, ["modelValue"])])]),
 						_: 1
 					}),
-					T(M(Y), {
+					T(M(J), {
 						icon: "mdi-image-edit",
 						label: "外观"
 					}, {
-						default: N(() => [C("div", Ye, [
-							T(M(B), {
+						default: P(() => [C("div", Ze, [
+							T(M(z), {
 								modelValue: r.value.dark,
 								"onUpdate:modelValue": t[4] ||= (e) => r.value.dark = e,
 								label: "Dark"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.filled,
 								"onUpdate:modelValue": t[5] ||= (e) => r.value.filled = e,
 								label: "Filled"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.outlined,
 								"onUpdate:modelValue": t[6] ||= (e) => r.value.outlined = e,
 								label: "Outlined"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.borderless,
 								"onUpdate:modelValue": t[7] ||= (e) => r.value.borderless = e,
 								label: "Borderless"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.standout,
 								"onUpdate:modelValue": t[8] ||= (e) => r.value.standout = e,
 								label: "Standout"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value[M(n).HideBottomSpace],
 								"onUpdate:modelValue": t[9] ||= (e) => r.value[M(n).HideBottomSpace] = e,
 								label: "Hide Bottom Space"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.rounded,
 								"onUpdate:modelValue": t[10] ||= (e) => r.value.rounded = e,
 								label: "Rounded"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.square,
 								"onUpdate:modelValue": t[11] ||= (e) => r.value.square = e,
 								label: "Square"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.dense,
 								"onUpdate:modelValue": t[12] ||= (e) => r.value.dense = e,
 								label: "Dense"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value[M(n).ItemAligned],
 								"onUpdate:modelValue": t[13] ||= (e) => r.value[M(n).ItemAligned] = e,
 								label: "Item Aligned"
@@ -907,12 +907,12 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 			});
 		};
 	}
-}), Ze = { class: "q-gutter-y-sm column" }, Qe = { class: "q-gutter-y-sm column" }, $e = /* @__PURE__ */ E({
+}), $e = { class: "q-gutter-y-sm column" }, et = { class: "q-gutter-y-sm column" }, tt = /* @__PURE__ */ E({
 	name: "HTextFieldPanel",
 	components: {
-		HExpansionItem: Y,
-		HSwitch: B,
-		HTextField: V
+		HExpansionItem: J,
+		HSwitch: z,
+		HTextField: B
 	},
 	__name: "HTextFieldPanel",
 	props: { schema: {} },
@@ -921,18 +921,18 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 		return (e, t) => {
 			let a = d;
 			return D(), x(a, { bordered: "" }, {
-				default: N(() => [
-					T(M(Y), {
+				default: P(() => [
+					T(M(J), {
 						icon: "mdi-information",
 						label: "常规",
 						"default-opened": ""
 					}, {
-						default: N(() => [T(M(V), {
+						default: P(() => [T(M(B), {
 							modelValue: i.value.modelValue.name,
 							"onUpdate:modelValue": t[0] ||= (e) => i.value.modelValue.name = e,
 							dense: "",
 							label: "名称"
-						}, null, 8, ["modelValue"]), T(M(V), {
+						}, null, 8, ["modelValue"]), T(M(B), {
 							modelValue: r.value.label,
 							"onUpdate:modelValue": t[1] ||= (e) => r.value.label = e,
 							dense: "",
@@ -940,72 +940,72 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 						}, null, 8, ["modelValue"])]),
 						_: 1
 					}),
-					T(M(Y), {
+					T(M(J), {
 						icon: "mdi-eject-circle",
 						label: "状态"
 					}, {
-						default: N(() => [C("div", Ze, [T(M(B), {
+						default: P(() => [C("div", $e, [T(M(z), {
 							modelValue: r.value.disable,
 							"onUpdate:modelValue": t[2] ||= (e) => r.value.disable = e,
 							label: "Disable"
-						}, null, 8, ["modelValue"]), T(M(B), {
+						}, null, 8, ["modelValue"]), T(M(z), {
 							modelValue: r.value.readonly,
 							"onUpdate:modelValue": t[3] ||= (e) => r.value.readonly = e,
 							label: "Readonly"
 						}, null, 8, ["modelValue"])])]),
 						_: 1
 					}),
-					T(M(Y), {
+					T(M(J), {
 						icon: "mdi-image-edit",
 						label: "外观"
 					}, {
-						default: N(() => [C("div", Qe, [
-							T(M(B), {
+						default: P(() => [C("div", et, [
+							T(M(z), {
 								modelValue: r.value.dark,
 								"onUpdate:modelValue": t[4] ||= (e) => r.value.dark = e,
 								label: "Dark"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.filled,
 								"onUpdate:modelValue": t[5] ||= (e) => r.value.filled = e,
 								label: "Filled"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.outlined,
 								"onUpdate:modelValue": t[6] ||= (e) => r.value.outlined = e,
 								label: "Outlined"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.borderless,
 								"onUpdate:modelValue": t[7] ||= (e) => r.value.borderless = e,
 								label: "Borderless"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.standout,
 								"onUpdate:modelValue": t[8] ||= (e) => r.value.standout = e,
 								label: "Standout"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value[M(n).HideBottomSpace],
 								"onUpdate:modelValue": t[9] ||= (e) => r.value[M(n).HideBottomSpace] = e,
 								label: "Hide Bottom Space"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.rounded,
 								"onUpdate:modelValue": t[10] ||= (e) => r.value.rounded = e,
 								label: "Rounded"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.square,
 								"onUpdate:modelValue": t[11] ||= (e) => r.value.square = e,
 								label: "Square"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value.dense,
 								"onUpdate:modelValue": t[12] ||= (e) => r.value.dense = e,
 								label: "Dense"
 							}, null, 8, ["modelValue"]),
-							T(M(B), {
+							T(M(z), {
 								modelValue: r.value[M(n).ItemAligned],
 								"onUpdate:modelValue": t[13] ||= (e) => r.value[M(n).ItemAligned] = e,
 								label: "Item Aligned"
@@ -1018,21 +1018,21 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 			});
 		};
 	}
-}), et = { class: "q-gutter-y-sm column" }, tt = { class: "q-gutter-y-sm column" }, nt = /* @__PURE__ */ E({
+}), nt = { class: "q-gutter-y-sm column" }, rt = { class: "q-gutter-y-sm column" }, it = /* @__PURE__ */ E({
 	name: "HGeneratorLayout",
 	components: {
-		HSheetPanel: qe,
-		HFormInformation: K,
-		DATE_PICKER: Re,
-		PASSWORD: Ve,
-		TEXT_AREA: Xe,
-		TEXT_FIELD: $e,
+		HSheetPanel: Ye,
+		HFormInformation: G,
+		DATE_PICKER: Be,
+		PASSWORD: Ue,
+		TEXT_AREA: Qe,
+		TEXT_FIELD: tt,
 		TIME_PICKER: /* @__PURE__ */ E({
 			name: "HTimePanel",
 			components: {
-				HExpansionItem: Y,
-				HSwitch: B,
-				HTextField: V
+				HExpansionItem: J,
+				HSwitch: z,
+				HTextField: B
 			},
 			__name: "HTimePanel",
 			props: { schema: {} },
@@ -1041,18 +1041,18 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 				return (e, t) => {
 					let a = d;
 					return D(), x(a, { bordered: "" }, {
-						default: N(() => [
-							T(M(Y), {
+						default: P(() => [
+							T(M(J), {
 								icon: "mdi-information",
 								label: "常规",
 								"default-opened": ""
 							}, {
-								default: N(() => [T(M(V), {
+								default: P(() => [T(M(B), {
 									modelValue: i.value.modelValue.name,
 									"onUpdate:modelValue": t[0] ||= (e) => i.value.modelValue.name = e,
 									dense: "",
 									label: "名称"
-								}, null, 8, ["modelValue"]), T(M(V), {
+								}, null, 8, ["modelValue"]), T(M(B), {
 									modelValue: r.value.label,
 									"onUpdate:modelValue": t[1] ||= (e) => r.value.label = e,
 									dense: "",
@@ -1060,72 +1060,72 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 								}, null, 8, ["modelValue"])]),
 								_: 1
 							}),
-							T(M(Y), {
+							T(M(J), {
 								icon: "mdi-eject-circle",
 								label: "状态"
 							}, {
-								default: N(() => [C("div", et, [T(M(B), {
+								default: P(() => [C("div", nt, [T(M(z), {
 									modelValue: r.value.disable,
 									"onUpdate:modelValue": t[2] ||= (e) => r.value.disable = e,
 									label: "Disable"
-								}, null, 8, ["modelValue"]), T(M(B), {
+								}, null, 8, ["modelValue"]), T(M(z), {
 									modelValue: r.value.readonly,
 									"onUpdate:modelValue": t[3] ||= (e) => r.value.readonly = e,
 									label: "Readonly"
 								}, null, 8, ["modelValue"])])]),
 								_: 1
 							}),
-							T(M(Y), {
+							T(M(J), {
 								icon: "mdi-image-edit",
 								label: "外观"
 							}, {
-								default: N(() => [C("div", tt, [
-									T(M(B), {
+								default: P(() => [C("div", rt, [
+									T(M(z), {
 										modelValue: r.value.dark,
 										"onUpdate:modelValue": t[4] ||= (e) => r.value.dark = e,
 										label: "Dark"
 									}, null, 8, ["modelValue"]),
-									T(M(B), {
+									T(M(z), {
 										modelValue: r.value.filled,
 										"onUpdate:modelValue": t[5] ||= (e) => r.value.filled = e,
 										label: "Filled"
 									}, null, 8, ["modelValue"]),
-									T(M(B), {
+									T(M(z), {
 										modelValue: r.value.outlined,
 										"onUpdate:modelValue": t[6] ||= (e) => r.value.outlined = e,
 										label: "Outlined"
 									}, null, 8, ["modelValue"]),
-									T(M(B), {
+									T(M(z), {
 										modelValue: r.value.borderless,
 										"onUpdate:modelValue": t[7] ||= (e) => r.value.borderless = e,
 										label: "Borderless"
 									}, null, 8, ["modelValue"]),
-									T(M(B), {
+									T(M(z), {
 										modelValue: r.value.standout,
 										"onUpdate:modelValue": t[8] ||= (e) => r.value.standout = e,
 										label: "Standout"
 									}, null, 8, ["modelValue"]),
-									T(M(B), {
+									T(M(z), {
 										modelValue: r.value[M(n).HideBottomSpace],
 										"onUpdate:modelValue": t[9] ||= (e) => r.value[M(n).HideBottomSpace] = e,
 										label: "Hide Bottom Space"
 									}, null, 8, ["modelValue"]),
-									T(M(B), {
+									T(M(z), {
 										modelValue: r.value.rounded,
 										"onUpdate:modelValue": t[10] ||= (e) => r.value.rounded = e,
 										label: "Rounded"
 									}, null, 8, ["modelValue"]),
-									T(M(B), {
+									T(M(z), {
 										modelValue: r.value.square,
 										"onUpdate:modelValue": t[11] ||= (e) => r.value.square = e,
 										label: "Square"
 									}, null, 8, ["modelValue"]),
-									T(M(B), {
+									T(M(z), {
 										modelValue: r.value.dense,
 										"onUpdate:modelValue": t[12] ||= (e) => r.value.dense = e,
 										label: "Dense"
 									}, null, 8, ["modelValue"]),
-									T(M(B), {
+									T(M(z), {
 										modelValue: r.value[M(n).ItemAligned],
 										"onUpdate:modelValue": t[13] ||= (e) => r.value[M(n).ItemAligned] = e,
 										label: "Item Aligned"
@@ -1142,11 +1142,11 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 	},
 	__name: "HPropertyPanel",
 	setup(e) {
-		let { isInformationPanel: n, currentSchema: r, currentPanel: i } = _e(U()), a = he("info"), o = he("display");
+		let { isInformationPanel: n, currentSchema: r, currentPanel: i } = ge(H()), a = he("info"), o = he("display");
 		return (e, s) => {
 			let c = _, l = te, u = h, d = v, f = ee, p = t;
 			return M(n) ? (D(), x(p, { key: 0 }, {
-				default: N(() => [
+				default: P(() => [
 					T(l, {
 						modelValue: a.value,
 						"onUpdate:modelValue": s[0] ||= (e) => a.value = e,
@@ -1157,7 +1157,7 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 						align: "justify",
 						"narrow-indicator": ""
 					}, {
-						default: N(() => [T(c, {
+						default: P(() => [T(c, {
 							name: "info",
 							label: "信息"
 						})]),
@@ -1169,8 +1169,8 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 						"onUpdate:modelValue": s[1] ||= (e) => a.value = e,
 						animated: ""
 					}, {
-						default: N(() => [T(d, { name: "info" }, {
-							default: N(() => [T(M(K))]),
+						default: P(() => [T(d, { name: "info" }, {
+							default: P(() => [T(M(G))]),
 							_: 1
 						})]),
 						_: 1
@@ -1178,7 +1178,7 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 				]),
 				_: 1
 			})) : (D(), x(p, { key: 1 }, {
-				default: N(() => [
+				default: P(() => [
 					T(l, {
 						modelValue: o.value,
 						"onUpdate:modelValue": s[2] ||= (e) => o.value = e,
@@ -1189,7 +1189,7 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 						align: "justify",
 						"narrow-indicator": ""
 					}, {
-						default: N(() => [T(c, {
+						default: P(() => [T(c, {
 							name: "display",
 							label: "显示"
 						}), T(c, {
@@ -1204,17 +1204,17 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 						"onUpdate:modelValue": s[3] ||= (e) => o.value = e,
 						animated: ""
 					}, {
-						default: N(() => [T(d, {
+						default: P(() => [T(d, {
 							name: "display",
 							class: "q-pa-none"
 						}, {
-							default: N(() => [(D(), x(me(M(i)), { schema: M(r) }, null, 8, ["schema"]))]),
+							default: P(() => [(D(), x(me(M(i)), { schema: M(r) }, null, 8, ["schema"]))]),
 							_: 1
 						}), T(d, {
 							name: "sheet",
 							class: "q-pa-none"
 						}, {
-							default: N(() => [T(M(qe))]),
+							default: P(() => [T(M(Ye))]),
 							_: 1
 						})]),
 						_: 1
@@ -1224,11 +1224,11 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 			}));
 		};
 	}
-}), rt = E({
+}), at = E({
 	name: "HWidgetPanel",
-	components: { Draggable: H },
+	components: { Draggable: V },
 	setup() {
-		let e = z, t = U(), n = (e) => R.create(e);
+		let e = R, t = H(), n = (e) => L.create(e);
 		return {
 			widgetGroups: e,
 			cloneWidget: n,
@@ -1238,10 +1238,10 @@ var qe = /* @__PURE__ */ G(Ge, [["render", Ke]]), Je = { class: "q-gutter-y-sm c
 			}
 		};
 	}
-}), it = { class: "widget-list" }, at = { class: "widget-title" }, ot = ["onClick"], st = { class: "widget-body" };
-function ct(e, t, n, r, i, a) {
+}), ot = { class: "widget-list" }, st = { class: "widget-title" }, ct = ["onClick"], lt = { class: "widget-body" };
+function ut(e, t, n, r, i, a) {
 	let o = c, s = A("draggable");
-	return D(), S("div", it, [(D(!0), S(oe, null, pe(e.widgetGroups, (t, n) => (D(), S("div", { key: n }, [C("div", at, j(t.title), 1), T(s, {
+	return D(), S("div", ot, [(D(!0), S(oe, null, pe(e.widgetGroups, (t, n) => (D(), S("div", { key: n }, [C("div", st, j(t.title), 1), T(s, {
 		modelValue: t.list,
 		"onUpdate:modelValue": (e) => t.list = e,
 		"item-key": "schemaName",
@@ -1254,10 +1254,10 @@ function ct(e, t, n, r, i, a) {
 		},
 		clone: e.cloneWidget
 	}, {
-		item: N(({ element: t }) => [C("div", {
+		item: P(({ element: t }) => [C("div", {
 			class: "widget-item",
 			onClick: (n) => e.addWidget(t)
-		}, [C("div", st, [T(o, { name: t.icon }, null, 8, ["name"]), w(" " + j(t.title), 1)])], 8, ot)]),
+		}, [C("div", lt, [T(o, { name: t.icon }, null, 8, ["name"]), w(" " + j(t.title), 1)])], 8, ct)]),
 		_: 1
 	}, 8, [
 		"modelValue",
@@ -1265,14 +1265,14 @@ function ct(e, t, n, r, i, a) {
 		"clone"
 	])]))), 128))]);
 }
-var lt = /* @__PURE__ */ G(rt, [["render", ct], ["__scopeId", "data-v-ae3d4bd2"]]), ut = E({
+var dt = /* @__PURE__ */ W(at, [["render", ut], ["__scopeId", "data-v-ae3d4bd2"]]), ft = E({
 	name: "HDynamicForms",
 	components: {
-		HWidgetPanel: lt,
-		HPropertyPanel: nt,
-		HCanvasContainer: Fe,
-		HFormPreviewDialog: X,
-		HFormUploadDialog: q
+		HWidgetPanel: dt,
+		HPropertyPanel: it,
+		HCanvasContainer: Z,
+		HFormPreviewDialog: Y,
+		HFormUploadDialog: K
 	},
 	props: {
 		instance: {
@@ -1298,13 +1298,13 @@ var lt = /* @__PURE__ */ G(rt, [["render", ct], ["__scopeId", "data-v-ae3d4bd2"]
 	},
 	emits: ["close"],
 	setup(e, { emit: t }) {
-		let n = O(!1), r = O(!1), i = O(!1), a = O(!1), o = W(), s = U();
-		return ge(() => e.item, (t) => {
+		let n = O(!1), r = O(!1), i = O(!1), a = O(!1), o = U(), s = H();
+		return N(() => e.item, (t) => {
 			o.init(e.instance), s.loading(t);
 		}, {
 			deep: !0,
 			immediate: !0
-		}), ge(() => s.isClosed, (e) => {
+		}), N(() => s.isClosed, (e) => {
 			e && t("close");
 		}), fe(() => {
 			o.$reset(), s.$reset();
@@ -1324,21 +1324,21 @@ var lt = /* @__PURE__ */ G(rt, [["render", ct], ["__scopeId", "data-v-ae3d4bd2"]
 });
 //#endregion
 //#region src/components/HDynamicForms.vue
-function dt(t, n, r, i, o, c) {
-	let l = e, d = ie, f = re, p = s, m = lt, h = a, g = nt, _ = Fe, v = X, ee = q, y = u;
+function pt(t, n, r, i, o, c) {
+	let l = e, d = ie, f = re, p = s, m = dt, h = a, g = it, _ = Z, v = Y, ee = K, y = u;
 	return D(), x(y, {
 		view: "lHr LpR lfr",
 		container: t.container,
 		class: "bg-grey-2",
 		style: de(`height: ${t.height}`)
 	}, {
-		default: N(() => [
+		default: P(() => [
 			T(p, {
 				bordered: "",
 				class: "text-primary bg-white"
 			}, {
-				default: N(() => [T(f, null, {
-					default: N(() => [
+				default: P(() => [T(f, null, {
+					default: P(() => [
 						T(l, {
 							dense: "",
 							flat: "",
@@ -1347,7 +1347,7 @@ function dt(t, n, r, i, o, c) {
 							onClick: n[0] ||= (e) => t.leftDrawerOpen = !t.leftDrawerOpen
 						}),
 						T(d, null, {
-							default: N(() => [w(j(t.title), 1)]),
+							default: P(() => [w(j(t.title), 1)]),
 							_: 1
 						}),
 						T(l, {
@@ -1378,7 +1378,7 @@ function dt(t, n, r, i, o, c) {
 				behavior: "desktop",
 				bordered: ""
 			}, {
-				default: N(() => [T(m)]),
+				default: P(() => [T(m)]),
 				_: 1
 			}, 8, ["modelValue"]),
 			T(h, {
@@ -1389,7 +1389,7 @@ function dt(t, n, r, i, o, c) {
 				behavior: "desktop",
 				bordered: ""
 			}, {
-				default: N(() => [T(g)]),
+				default: P(() => [T(g)]),
 				_: 1
 			}, 8, ["modelValue"]),
 			T(_),
@@ -1405,7 +1405,7 @@ function dt(t, n, r, i, o, c) {
 		_: 1
 	}, 8, ["container", "style"]);
 }
-var $ = /* @__PURE__ */ G(ut, [["render", dt]]);
+var $ = /* @__PURE__ */ W(ft, [["render", pt]]);
 //#endregion
 //#region src/components/index.ts
 $.install = (e) => {
@@ -1413,8 +1413,8 @@ $.install = (e) => {
 };
 //#endregion
 //#region src/index.ts
-var ft = [$], pt = { install: (e) => {
-	ft.map((t) => e.component(t.name, t));
+var mt = [$], ht = { install: (e) => {
+	mt.map((t) => e.component(t.name, t));
 } };
 //#endregion
-export { Q as Attributes, R as ElementUtils, $ as HDynamicForms, I as Swal, z as WIDGET_DEFINITIONS, pt as default, L as toast };
+export { Q as Attributes, L as ElementUtils, $ as HDynamicForms, ve as Swal, R as WIDGET_DEFINITIONS, ht as default, be as toast };

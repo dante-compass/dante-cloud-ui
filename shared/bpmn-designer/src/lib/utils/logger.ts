@@ -1,4 +1,5 @@
 import { isArray } from 'lodash-es';
+
 class BpmnLog {
   private static instance = new BpmnLog();
   // private static types: string[] = ['primary', 'success', 'warn', 'error', 'info'];

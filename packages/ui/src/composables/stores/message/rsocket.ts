@@ -22,7 +22,7 @@ import {
   encodeCompositeMetadata,
   encodeBearerAuthMetadata,
 } from '@rsocket/composite-metadata';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore } from '@herodotus/framework';
 
 export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
   state: () => ({

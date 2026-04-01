@@ -1,9 +1,9 @@
-import type { HttpClientOptions } from '@herodotus-cloud/core';
+import type { HttpClientOptions } from '@herodotus/core';
 
-import { createApi } from '@herodotus-cloud/apis';
+import { createApi } from '@herodotus/api';
 import { createBpmnApi } from '@herodotus-cloud/bpmn-apis';
 import { createFormApi } from '@herodotus-cloud/form-apis';
-import { Axios, ContentTypeEnum, HttpConfig } from '@herodotus-cloud/core';
+import { Axios, ContentTypeEnum, HttpConfig } from '@herodotus/core';
 
 import { VARIABLES } from '@/configurations';
 import { axiosInstanceHooks } from './axios';

@@ -1,0 +1,1 @@
+import{t as e}from"./js/views-pages-hr-organization-Index.vue-DIIxaUUa.js";export{e as default};

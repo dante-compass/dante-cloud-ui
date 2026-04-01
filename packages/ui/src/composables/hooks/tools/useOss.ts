@@ -1,9 +1,9 @@
-import type { AxiosProgressEvent } from '@herodotus-cloud/core';
+import type { AxiosProgressEvent } from '@herodotus/core';
 
 import { filesize } from 'filesize';
 import { endsWith, trimEnd, split } from 'lodash-es';
 
-import { toast } from '@herodotus-cloud/core';
+import { toast } from '@herodotus/core';
 import { API } from '@/configurations';
 
 export default function useOss() {

@@ -1,12 +1,8 @@
 import type { Ref } from 'vue';
 import { ref } from 'vue';
-import type {
-  BehaviorCaptchaCategory,
-  CaptchaResource,
-  CaptchaData,
-} from '@herodotus-cloud/framework-kernel';
+import type { BehaviorCaptchaCategory, CaptchaResource, CaptchaData } from '@herodotus/framework';
 
-import { useCryptoStore, SecurityApiResources } from '@herodotus-cloud/framework-kernel';
+import { useCryptoStore, SecurityApiResources } from '@herodotus/framework';
 
 export default function useBehaviorCaptcha() {
   const timer = ref<ReturnType<typeof setTimeout> | null>(null);

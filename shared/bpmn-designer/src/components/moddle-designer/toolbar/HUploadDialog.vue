@@ -54,7 +54,7 @@ import { useQuasar, QSpinnerGears } from 'quasar';
 import type { SweetAlertResult, DeploymentCreateRequestBody } from '@/declarations';
 
 import { useDesignerStore, useResourceStore } from '@/stores';
-import { toast, Swal } from '@/lib/utils';
+import { toast, Swal } from '@herodotus/core';
 
 import { HButton, HButtonGroup } from '../../widgets';
 

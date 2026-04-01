@@ -1,11 +1,24 @@
-import type { Page, Domain, Conditions, HttpResult, AbstractService } from '@herodotus-cloud/core';
+import type { Page, Domain, Conditions, HttpResult, AbstractService } from '@herodotus/core';
 
 import type { Sort, QTableOnRequestProps, QTableOnRequestParameter } from '@/composables/declarations';
 
-import { toast, notify } from '@herodotus-cloud/core';
+import { toast, notify } from '@herodotus/core';
 import { isEmpty, pickBy } from 'lodash-es';
 import useBaseTable from './useBaseTable';
 
+/**
+ * 数据表格通用操作定义
+ * @param service 后端 API 对应服务
+ * @param name 表格页面 Index.vue 对应组件名称
+ * @param fetchAll 是否为查询全部数据
+ * @param sorted 排序字段
+ * @param direction 排序方向
+ * @param loadOnMount 是否在 onMount 阶段加载
+ * @param <C> 搜索条件类型
+ * @param <I> 输入值类型。传递给三级路由页面操作数据类型。通常为输入和输出为相同的实体类型，也可为非实体的 Dto 类型。
+ * @param <O> 输出值类型，数据表格显示接口返回内容数据类型。通常为输入和输出为相同的实体类型，也可为非实体的 Dto 类型。
+ * @returns
+ */
 export default function useTable<C extends Conditions, I extends Domain, O extends Domain = I>(
   service: AbstractService<I, O>,
   name: string,
@@ -26,6 +39,8 @@ export default function useTable<C extends Conditions, I extends Domain, O exten
     toEdit,
     toAuthorize,
     toInfo,
+    toFile,
+    toRevocation,
   } = useBaseTable<C, I, O>(name, 'updateTime', isFetchAll);
 
   const findItems: QTableOnRequestProps = (props: QTableOnRequestParameter) => {
@@ -94,7 +109,7 @@ export default function useTable<C extends Conditions, I extends Domain, O exten
   const deleteItemById = (id: string) => {
     notify.standardDeleteNotify(() => {
       service
-        .delete(id)
+        .deleteById(id)
         .then((response) => {
           const result = response as HttpResult<string>;
           if (result.message) {
@@ -158,6 +173,8 @@ export default function useTable<C extends Conditions, I extends Domain, O exten
     toEdit,
     toAuthorize,
     toInfo,
+    toFile,
+    toRevocation,
     findItemsByPage,
     deleteItemById,
     refresh,

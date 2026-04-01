@@ -29,11 +29,11 @@
 </template>
 
 <script lang="ts">
-import type { DialogueContactEntity, DialogueContactConditions } from '@herodotus-cloud/apis';
+import type { DialogueContactEntity, DialogueContactConditions } from '@herodotus/api';
 
 import { useTable } from '@/composables/hooks';
-import { useAuthenticationStore } from '@herodotus-cloud/framework-kernel';
-import { moment } from '@herodotus-cloud/core';
+import { useAuthenticationStore } from '@herodotus/framework';
+import { moment } from '@herodotus/core';
 import { API } from '@/configurations';
 
 import { HUserAvatar } from '@/components';

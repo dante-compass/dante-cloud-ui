@@ -36,42 +36,37 @@
   </h-detail-container>
 </template>
 
-<script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import type { AbstractSysEntity, AbstractSysDto } from '@herodotus/core';
 
-import { useEditFinish } from '@herodotus-cloud/framework-kernel';
-import type { AbstractSysEntity } from '@/composables/declarations';
+import { useEditFinish } from '@herodotus/framework';
+
 import HDetailContainer from './HDetailContainer.vue';
 import { HDictionarySelect } from '@/components';
 
-export default defineComponent({
+defineOptions({
   name: 'HColumnFormLayout',
-
-  components: {
-    HDetailContainer,
-    HDictionarySelect,
-  },
-
-  emits: ['save'],
-
-  props: {
-    entity: { type: Object as PropType<AbstractSysEntity>, required: true },
-    overlay: { type: Boolean, default: false },
-    title: { type: String, default: '' },
-  },
-
-  setup(props, { emit }) {
-    const { onFinish } = useEditFinish();
-
-    const onSave = async () => {
-      emit('save');
-    };
-
-    return {
-      onFinish,
-      onSave,
-    };
-  },
 });
+
+interface Props {
+  entity: AbstractSysEntity | AbstractSysDto;
+  overlay?: boolean;
+  title?: string;
+}
+
+withDefaults(defineProps<Props>(), {
+  entity: () => ({}) as AbstractSysEntity | AbstractSysDto,
+  overlay: false,
+  title: '',
+});
+
+const emit = defineEmits<{
+  save: [];
+}>();
+
+const { onFinish } = useEditFinish();
+
+const onSave = async () => {
+  emit('save');
+};
 </script>

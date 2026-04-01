@@ -1,11 +1,5 @@
 <template>
-  <h-center-form-layout
-    :entity="editedItem"
-    :title="title"
-    :overlay="overlay"
-    :operation="operation"
-    @save="onSave()"
-  >
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
     <h-text-field
       v-model="editedItem.path"
       name="path"
@@ -18,12 +12,7 @@
       label="Vue Component 名称 "
       placeholder="Vue Component 名称"
     ></h-text-field>
-    <h-text-field
-      v-model="editedItem.title"
-      name="title"
-      label="显示标题"
-      placeholder="请输入显示标题"
-    ></h-text-field>
+    <h-text-field v-model="editedItem.title" name="title" label="显示标题" placeholder="请输入显示标题"></h-text-field>
     <h-icon-select v-model="editedItem.icon" label="显示图标"></h-icon-select>
     <h-text-field
       v-model="editedItem.component"
@@ -38,12 +27,7 @@
       placeholder="如果包含子节点，即 children 中元素的 path"
     ></h-text-field>
 
-    <h-tree-field
-      v-model="editedItem.parentId"
-      :items="treeItems"
-      bottom-slots
-      label="上级节点"
-    ></h-tree-field>
+    <h-tree-field v-model="editedItem.parentId" :items="treeItems" bottom-slots label="上级节点"></h-tree-field>
 
     <div class="column q-gutter-y-sm">
       <h-switch v-model="editedItem.isNotKeepAlive" label="该应页面不需要KeepAlive缓存"></h-switch>
@@ -67,55 +51,32 @@
   </h-center-form-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent, watch } from 'vue';
-
-import type { SysElementEntity, SysElementConditions } from '@/composables/declarations';
+<script setup lang="ts">
+import type { SysElementEntity, SysElementConditions } from '@herodotus/api';
 
 import { useTableItem, useTreeItems } from '@/composables/hooks';
 import { API } from '@/configurations';
 
 import { HCenterFormLayout } from '@/components';
 
-export default defineComponent({
-  name: 'SysElementContent',
+defineOptions({ name: 'SysElementContent' });
 
-  components: {
-    HCenterFormLayout,
+const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysElementEntity>(API.core.sysElement());
+const { treeItems } = useTreeItems<SysElementConditions, SysElementEntity>(API.core.sysElement());
+
+const onSave = () => {
+  saveOrUpdate();
+};
+
+watch(
+  () => editedItem.value.redirect,
+  (newValue) => {
+    if (newValue) {
+      editedItem.value.isHaveChild = true;
+    } else {
+      editedItem.value.isHaveChild = false;
+    }
   },
-
-  setup() {
-    const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysElementEntity>(
-      API.core.sysElement(),
-    );
-    const { treeItems } = useTreeItems<SysElementConditions, SysElementEntity>(
-      API.core.sysElement(),
-    );
-
-    const onSave = () => {
-      saveOrUpdate();
-    };
-
-    watch(
-      () => editedItem.value.redirect,
-      (newValue) => {
-        if (newValue) {
-          editedItem.value.isHaveChild = true;
-        } else {
-          editedItem.value.isHaveChild = false;
-        }
-      },
-      { deep: true },
-    );
-
-    return {
-      editedItem,
-      operation,
-      title,
-      onSave,
-      treeItems,
-      overlay,
-    };
-  },
-});
+  { deep: true },
+);
 </script>

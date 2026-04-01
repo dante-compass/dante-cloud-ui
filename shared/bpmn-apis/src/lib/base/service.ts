@@ -12,7 +12,7 @@ import type {
   BpmnUnionPathParams,
 } from '@/declarations';
 
-import { Service } from '@herodotus-cloud/core';
+import { Service } from './core';
 import { isEmpty } from 'lodash-es';
 
 import { UnionPathParamBuilder, RelationPathParamBuilder } from './path';

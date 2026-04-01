@@ -62,9 +62,9 @@ import { defineComponent, watch, inject } from 'vue';
 import { useRoute } from 'vue-router';
 import { storeToRefs } from 'pinia';
 
-import type { Tab } from '@herodotus-cloud/framework-kernel';
+import type { Tab } from '@herodotus/framework';
 
-import { useTabsViewStore } from '@herodotus-cloud/framework-kernel';
+import { useTabsViewStore } from '@herodotus/framework';
 import { refreshTabInjectionKey } from '@/composables/symbols';
 
 export default defineComponent({

@@ -3,13 +3,7 @@
     <h-select v-model="formsType" dense :options="formsOptions" label="类型" hide-hint></h-select>
     <template v-if="isCamundaForms">
       <h-text-field v-model="formRef" dense label="表单引用" @update:model-value="updateFormRef" />
-      <h-select
-        v-model="bindingType"
-        dense
-        :options="bindingOptions"
-        label="绑定"
-        hide-hint
-      ></h-select>
+      <h-select v-model="bindingType" dense :options="bindingOptions" label="绑定" hide-hint></h-select>
       <h-text-field
         v-if="isFormRefVersion"
         v-model="formRefVersion"
@@ -97,16 +91,16 @@ const isFormRefVersion = computed(() => {
   return bindingType.value === BindingTypeEnum.VERSION;
 });
 
-const updateFormKey = (value: string) => {
-  setFormKeyValue(designer.activeElement, value);
+const updateFormKey = (value: string | number | null | undefined) => {
+  setFormKeyValue(designer.activeElement, value as string);
 };
 
-const updateFormRef = (value: string | number) => {
-  setFormRefValue(designer.activeElement, value);
+const updateFormRef = (value: string | number | null | undefined) => {
+  setFormRefValue(designer.activeElement, value as string);
 };
 
-const updateVersion = (value: string | number) => {
-  setFormRefVersionValue(designer.activeElement, value);
+const updateVersion = (value: string | number | null | undefined) => {
+  setFormRefVersionValue(designer.activeElement, value as string);
 };
 
 const initSelectValue = () => {

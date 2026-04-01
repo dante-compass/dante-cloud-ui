@@ -40,9 +40,9 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref, computed } from 'vue';
 
-import type { GraphicCaptcha } from '@herodotus-cloud/framework-kernel';
+import type { GraphicCaptcha } from '@herodotus/framework';
 
-import { useCryptoStore, SecurityApiResources, CaptchaCategoryEnum } from '@herodotus-cloud/framework-kernel';
+import { useCryptoStore, SecurityApiResources, CaptchaCategoryEnum } from '@herodotus/framework';
 import { VARIABLES } from '@/configurations';
 
 export default defineComponent({

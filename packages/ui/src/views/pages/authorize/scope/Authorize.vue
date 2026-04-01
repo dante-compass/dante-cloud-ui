@@ -39,10 +39,11 @@ import type {
   OAuth2PermissionBody,
   QTableColumnProps,
 } from '@/composables/declarations';
+
 import { CONSTANTS, API } from '@/configurations';
-import { toast } from '@herodotus-cloud/core';
+import { toast } from '@herodotus/core';
+import { useEditFinish } from '@herodotus/framework';
 import { useTableItem, useTable } from '@/composables/hooks';
-import { useEditFinish } from '@herodotus-cloud/framework-kernel';
 
 import { HTable } from '@/components';
 import { HAuthorizeList, HAuthorizeLayout } from '@/components';

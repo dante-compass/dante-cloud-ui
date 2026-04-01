@@ -1,0 +1,1 @@
+import{t as e}from"./js/views-pages-workflow-pending-Index.vue-D5iTaDhN.js";export{e as default};

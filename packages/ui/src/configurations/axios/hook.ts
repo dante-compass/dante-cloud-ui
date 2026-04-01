@@ -6,11 +6,11 @@ import type {
   AxiosError,
   InternalAxiosRequestConfig,
   AxiosInstance,
-} from '@herodotus-cloud/core';
+} from '@herodotus/core';
 
-import { logResponse, isSuccess } from '@herodotus-cloud/core';
+import { logResponse, isSuccess } from '@herodotus/core';
 
-import { getSystemHeaders } from '@herodotus-cloud/framework-kernel';
+import { getSystemHeaders } from '@herodotus/framework';
 import { processor } from './status';
 import { IS_DEV } from '../constants';
 

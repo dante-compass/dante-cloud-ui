@@ -82,27 +82,27 @@ export default defineComponent({
     const followUpDate = ref<string>('');
     const priority = ref<string>('');
 
-    const updateAssignee = (value: string | number | null) => {
+    const updateAssignee = (value: string | number | null | undefined) => {
       setAssigneeValue(designer.activeElement, value as string);
     };
 
-    const updateCandidateGroups = (value: string | number | null) => {
+    const updateCandidateGroups = (value: string | number | null | undefined) => {
       setCandidateGroupsValue(designer.activeElement, value as string);
     };
 
-    const updateCandidateUsers = (value: string | number | null) => {
+    const updateCandidateUsers = (value: string | number | null | undefined) => {
       setCandidateUsersValue(designer.activeElement, value as string);
     };
 
-    const updateDueDate = (value: string | number | null) => {
+    const updateDueDate = (value: string | number | null | undefined): void => {
       setDueDateValue(designer.activeElement, value as string);
     };
 
-    const updateFollowUpDate = (value: string | number | null) => {
+    const updateFollowUpDate = (value: string | number | null | undefined) => {
       setFollowUpDateValue(designer.activeElement, value as string);
     };
 
-    const updatePriority = (value: string | number | null) => {
+    const updatePriority = (value: string | number | null | undefined) => {
       setPriorityValue(designer.activeElement, value as string);
     };
 

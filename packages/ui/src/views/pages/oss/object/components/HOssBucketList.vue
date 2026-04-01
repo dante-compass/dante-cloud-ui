@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import type { BucketDomain } from '@herodotus-cloud/apis';
+import type { BucketDomain } from '@herodotus/api';
 
 import { API } from '@/configurations';
 

@@ -1,11 +1,5 @@
 <template>
-  <q-toggle
-    v-model="switchValue"
-    :true-value="trueValue"
-    :false-value="falseValue"
-    :color="color"
-    v-bind="$attrs"
-  />
+  <q-toggle v-model="switchValue" :true-value="trueValue" :false-value="falseValue" :color="color" v-bind="$attrs" />
 </template>
 
 <script setup lang="ts">
@@ -20,8 +14,8 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  trueValue: false,
-  falseValue: true,
+  trueValue: true,
+  falseValue: false,
   color: 'primary',
 });
 

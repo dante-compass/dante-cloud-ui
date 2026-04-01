@@ -1,1 +1,1 @@
-export { ContentTypeEnum } from '@herodotus-cloud/core';
+export { ContentTypeEnum } from '@herodotus/core';

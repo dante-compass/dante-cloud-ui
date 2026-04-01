@@ -36,23 +36,17 @@
 
     <template v-if="status && !$slots['body-cell-status']" #body-cell-status="props">
       <q-td key="status" :props="props">
-        <h-status-column
-          v-if="options"
-          :type="props.row.status"
-          :options="options"
-        ></h-status-column>
+        <h-status-column v-if="options" :type="props.row.status" :options="options"></h-status-column>
       </q-td>
     </template>
   </q-table>
 </template>
 
 <script setup lang="ts">
-import type { PropType, ShallowRef } from 'vue';
-import { computed, shallowRef } from 'vue';
+import type { Entity } from '@herodotus/core';
+import type { QTableSeparatorProps } from '@/composables/declarations';
 
-import type { Entity, QTableSeparatorProps } from '@/composables/declarations';
-
-import { useSettingsStore } from '@herodotus-cloud/framework-kernel';
+import { useSettingsStore } from '@herodotus/framework';
 import { useDictionary } from '@/composables/hooks';
 
 import HTableAction from './HTableAction.vue';

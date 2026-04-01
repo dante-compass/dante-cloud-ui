@@ -43,12 +43,12 @@ import type {
   QTableColumnProps,
   EntityTitle,
 } from '@/composables/declarations';
-
 import { CONSTANTS, API } from '@/configurations';
-import { moment } from '@herodotus-cloud/core';
+import { moment } from '@herodotus/core';
 import { useTable, useXlsx } from '@/composables/hooks';
 
-import { HTable, HBooleanColumn, HAuditCondition } from '@/components';
+import { HTable, HBooleanColumn } from '@/components';
+import { HAuditCondition } from '@/components';
 
 export default defineComponent({
   name: CONSTANTS.ComponentName.OAUTH2_AUDIT,
@@ -84,6 +84,7 @@ export default defineComponent({
       { name: 'principalName', field: 'principalName', align: 'center', label: '用户名' },
       { name: 'clientId', field: 'clientId', align: 'center', label: '客户端ID' },
       { name: 'ip', field: 'ip', align: 'center', label: 'IP地址' },
+      { name: 'action', field: 'action', align: 'center', label: '操作' },
       {
         name: 'requestMethod',
         field: 'requestMethod',

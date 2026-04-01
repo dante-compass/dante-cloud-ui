@@ -1,9 +1,5 @@
 import type { Router, RouteRecordRaw } from 'vue-router';
-import {
-  useAuthenticationStore,
-  useRouterStore,
-  useSystemRoute,
-} from '@herodotus-cloud/framework-kernel';
+import { useAuthenticationStore, useSystemElement, useElementStore } from '@herodotus/framework';
 import { CONSTANTS, API } from '@/configurations';
 
 import { Loading, QSpinnerDots } from 'quasar';
@@ -31,7 +27,7 @@ const getRoutesFromServer = (roles: string[]) => {
   return API.core.sysElement().findResourcesByRoles(roles);
 };
 
-const { initBackEndRoutes } = useSystemRoute(routeModules, vueModules, locate, getRoutesFromServer);
+const { initBackendSecurity } = useSystemElement(vueModules, locate, getRoutesFromServer);
 
 export const createRouterGuard = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
@@ -43,7 +39,7 @@ export const createRouterGuard = (router: Router) => {
     });
 
     const authStore = useAuthenticationStore();
-    const routeStore = useRouterStore();
+    const elementStore = useElementStore();
 
     const token = authStore.token;
 
@@ -51,12 +47,11 @@ export const createRouterGuard = (router: Router) => {
     if (token) {
       if (to.path === CONSTANTS.Path.SIGN_IN) {
         // 目的地址还是登录页面，直接跳转到首页。
-        next(CONSTANTS.Path.HOME);
-        return;
+        return CONSTANTS.Path.HOME;
       } else {
         // 判断动态路由是否已经添加，没有添加则进行添加
-        if (!routeStore.isDynamicRouteAdded) {
-          await initBackEndRoutes(router, authStore.roles);
+        if (!elementStore.isDynamicRouteAdded) {
+          await initBackendSecurity(router, authStore.roles);
           router.addRoute(PageNotFoundRoute);
           const redirectPath = (from.query.redirect || to.path) as string;
           const redirectURI = decodeURIComponent(redirectPath);

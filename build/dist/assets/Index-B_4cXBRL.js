@@ -1,0 +1,1 @@
+import{t as e}from"./js/views-widgets-bpmn-designer-Index.vue-ChPKPx2V.js";export{e as default};

@@ -1,0 +1,1 @@
+import{t as e}from"./js/views-pages-authorize-scope-Authorize.vue-BBRfarmq.js";export{e as default};
