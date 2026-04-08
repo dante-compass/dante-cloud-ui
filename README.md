@@ -12,8 +12,8 @@
     <a href="https://nacos.io/zh-cn/index.html" target="_blank"><img src="https://img.shields.io/badge/Nacos-3.2.0-brightgreen.svg?logo=alibabadotcom" alt="Nacos 3.2.0"></a>
 </p>
 <p align="center">
-    <a href="#" target="_blank"><img src="https://img.shields.io/badge/Version-4.0.5.1-red.svg?logo=spring" alt="Version 4.0.5.1"></a>
-    <a href="https://gitee.com/dromara/dante-cloud/issues/IDKCZD" target="_blank"><img src="https://img.shields.io/badge/Dante%20Engine-4.0.5.1-red.svg?logo=spring" alt="Dante Engine 4.0.5.1"></a>
+    <a href="#" target="_blank"><img src="https://img.shields.io/badge/Version-4.0.5.2-red.svg?logo=spring" alt="Version 4.0.5.2"></a>
+    <a href="https://gitee.com/dromara/dante-cloud/issues/IDKCZD" target="_blank"><img src="https://img.shields.io/badge/Dante%20Engine-4.0.5.2-red.svg?logo=spring" alt="Dante Engine 4.0.5.2"></a>
     <a href="https://bell-sw.com/pages/downloads/#downloads" target="_blank"><img src="https://img.shields.io/badge/JDK-25%2B-green.svg?logo=openjdk" alt="Java 25"></a>
     <a href="./LICENSE"><img src="https://shields.io/badge/License-Apache--2.0-blue.svg?logo=apache" alt="License Apache 2.0"></a>
     <a href="https://blog.csdn.net/Pointer_v" target="_blank"><img src="https://img.shields.io/badge/Author-%E7%A0%81%E5%8C%A0%E5%90%9B-orange" alt="码匠君"></a>
@@ -271,7 +271,7 @@ dante-engine
 | :--------------------: | ---------------------------------------- | ------------- | ------------------ | ---------------------------------------------------------------------------------------------- |
 |         master         | Spring Boot 4.0 和 Spring Cloud 2025.1.X | JDK 25        | 主要发布分支       | 推荐使用代码分支                                                                               |
 |        develop         | Spring Boot 4.0 和 Spring Cloud 2025.1.X | JDK 25        | Development 分支   | 新功能、ISSUE 均以此分支作为开发，发布后会 PR 至 master 分支                                   |
-|         3.5.X          | Spring Boot 3.5 和 Spring Cloud 2025.0.X | JDK 17        | 历史版本           | 基于 Spring Boot 3.5 时代开发的代码分支，稳定可用                                              |
+|         3.5.X          | Spring Boot 3.5 和 Spring Cloud 2025.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.5 时代开发的代码分支，稳定可用，不再维护                                    |
 |         3.4.X          | Spring Boot 3.4 和 Spring Cloud 2024.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.4 时代开发的代码分支，稳定可用，不再维护                                    |
 |      3.2.X-3.3.X       | Spring Boot 3.3 和 Spring Cloud 2023.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.3 时代开发的代码分支，稳定可用，不再维护                                    |
 |         3.1.X          | Spring Boot 3.1 和 Spring Cloud 2022.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.1 时代开发的代码分支，稳定可用，不再维护                                    |
@@ -280,7 +280,7 @@ dante-engine
 
 ## [7]、如何升级
 
-尽量不修改 Dante Cloud 以外的项目源码，如 Dante Engine、Dante OSS。如果修改了，请 Pull Requests 上来，否则代码与官方不同步，可能会将对你的日后升级增加难度。
+尽量不修改 Dante Cloud 以外的项目源码，如 Dante Engine 如果修改了，请 Pull Requests 上来，否则代码与官方不同步，可能会将对你的日后升级增加难度。
 
 每个版本升级，我们都会附带详细更新日志：<https://dante-cloud.dromara.org/others/log/changelog.html> 在这里，你可以看到 Dante Cloud 新增哪些新功能和改进。
 针对有较大变化、差异的版本，我们都会负载详细的升级指南：<https://dante-cloud.dromara.org/guide/get-start/notices.html> 在这里，你可以看到 Dante Cloud 不同版本对应升级方法。
