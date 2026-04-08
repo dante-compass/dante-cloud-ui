@@ -1,5 +1,11 @@
 # @herodotus-cloud/bpmn-apis
 
+## 4.4.0
+
+### Minor Changes
+
+- 版本发布
+
 ## 4.3.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/components",
-  "version": "4.3.2",
+  "version": "4.4.0",
   "description": "",
   "keywords": [],
   "author": "",
@@ -43,6 +43,6 @@
     "@tsparticles/basic": "^3.9.1",
     "@tsparticles/engine": "^3.9.1",
     "@tsparticles/interaction-particles-links": "^3.9.1",
-    "quasar": "^2.19.2"
+    "quasar": "^2.19.3"
   }
 }
