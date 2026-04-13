@@ -1,5 +1,15 @@
 # @herodotus-cloud/bpmn-designer
 
+## 4.4.1
+
+### Patch Changes
+
+- 修复 Axios 漏洞
+- Updated dependencies
+  - @herodotus-cloud/components@4.4.1
+  - @herodotus-cloud/bpmn-apis@4.4.1
+  - @herodotus-cloud/form-apis@4.4.1
+
 ## 4.4.0
 
 ### Minor Changes
