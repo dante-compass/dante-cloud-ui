@@ -1,5 +1,5 @@
 <template>
-  <h-full-width-layout :entity="editedItem" :title="title" :operation="operation">
+  <h-full-width-form-layout :entity="editedItem" :title="title" :operation="operation">
     <q-splitter v-model="splitterModel">
       <template v-slot:before>
         <q-tabs v-model="tabs" vertical active-color="primary">
@@ -14,7 +14,7 @@
         </q-tab-panels>
       </template>
     </q-splitter>
-  </h-full-width-layout>
+  </h-full-width-form-layout>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +23,7 @@ import { shallowRef } from "vue";
 import type { ProductEntity } from "@herodotus/api";
 import { API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
-import { HCenterFormLayout, HFullWidthLayout } from "@/components";
+import { HCenterFormLayout, HFullWidthFormLayout } from "@/components";
 import { HDictionarySelect } from "@/components";
 import { HFunctionTable } from "@/composables/iot";
 
@@ -31,7 +31,7 @@ defineOptions({
   name: "IotProductInfo",
   components: {
     HCenterFormLayout,
-    HFullWidthLayout,
+    HFullWidthFormLayout,
     HDictionarySelect,
     HFunctionTable,
   },

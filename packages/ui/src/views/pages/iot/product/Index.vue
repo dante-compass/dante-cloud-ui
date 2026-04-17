@@ -78,7 +78,7 @@ import { CONSTANTS, API } from "@/configurations";
 import { toast } from "@herodotus/core";
 import { HDeleteButton, HEditButton, HInfoButton, HTable } from "@/components";
 import { useDictionary } from "@/composables/hooks";
-import { HProductCondition } from "@/composables/iot";
+import Search from "./Search.vue";
 
 defineOptions({
   name: CONSTANTS.ComponentName.IOT_PRODUCT,
@@ -87,7 +87,7 @@ defineOptions({
     HEditButton,
     HInfoButton,
     HTable,
-    HProductCondition,
+    Search,
   },
 });
 
@@ -127,8 +127,8 @@ const columns: QTableColumnProps = [
 
 const onRegistrationChange = (item: ProductEntity, event: boolean) => {
   item.registration = event as boolean;
-  API.iot
-    .product()
+  API.core
+    .iotProduct()
     .toggle(item)
     .then((response) => {
       const result = response as HttpResult<ProductEntity>;

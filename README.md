@@ -21,10 +21,10 @@
     <a href="https://github.com/dromara/dante-cloud"><img src="https://img.shields.io/github/forks/dromara/dante-cloud?style=flat&logo=github" alt="Github fork"></a>
     <a href="https://gitee.com/dromara/dante-cloud"><img src="https://gitee.com/dromara/dante-cloud/badge/star.svg?theme=dark" alt="Gitee star"></a>
     <a href="https://gitee.com/dromara/dante-cloud"><img src="https://gitee.com/dromara/dante-cloud/badge/fork.svg?theme=dark" alt="Gitee fork"></a>
-    <a href='https://gitcode.com/dromara/dante-cloud'><img src='https://gitcode.com/dromara/dante-cloud/star/badge.svg' alt='Gitcode star'></a>
+    <a href='https://atomgit.com/dromara/dante-cloud'><img src='https://atomgit.com/dromara/dante-cloud/star/badge.svg' alt='Atomgit star'></a>
 </p>
 <p align="center">
-    <a href="https://gitcode.com/dromara/dante-cloud">GitCode 仓库</a> &nbsp; | &nbsp;
+    <a href="https://atomgit.com/dromara/dante-cloud">Atomgit 仓库</a> &nbsp; | &nbsp;
     <a href="https://github.com/dromara/dante-cloud">Github 仓库</a> &nbsp; | &nbsp;
     <a href="https://gitee.com/dromara/dante-cloud">Gitee 仓库</a> &nbsp; | &nbsp;
     <a href="https://www.herodotus.vip">在线文档</a>
