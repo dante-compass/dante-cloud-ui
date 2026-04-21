@@ -35,6 +35,6 @@
   },
   "dependencies": {
     "@herodotus-cloud/form-apis": "workspace:^",
-    "nanoid": "^5.1.7"
+    "nanoid": "^5.1.9"
   }
 }

@@ -1,25 +1,9 @@
 <template>
-  <q-layout view="lHr LpR lFr" :class="[$q.dark.isActive ? 'bg-black' : 'bg-grey-2']">
-    <h-app-header :tab-view="false" back-home></h-app-header>
-
-    <h-app-right-drawer></h-app-right-drawer>
-
-    <h-app-container></h-app-container>
-  </q-layout>
+  <widgets-default-layout></widgets-default-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
+import { WidgetsDefaultLayout } from "@/components/layouts";
 
-import { HAppHeader, HAppRightDrawer, HAppContainer } from '@/components';
-
-export default defineComponent({
-  name: 'HApplicationLayout',
-
-  components: {
-    HAppHeader,
-    HAppRightDrawer,
-    HAppContainer,
-  },
-});
+defineOptions({ name: "WidgetsLayout", components: { WidgetsDefaultLayout } });
 </script>

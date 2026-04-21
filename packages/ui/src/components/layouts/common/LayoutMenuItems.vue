@@ -18,18 +18,18 @@
       :model-value="isActive(item)"
       expand-separator
     >
-      <h-app-menu-items :items="item.children!" :level="level + 0.5"></h-app-menu-items>
+      <layout-menu-items :items="item.children!" :level="level + 0.5"></layout-menu-items>
     </q-expansion-item>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { MenuItem } from '@herodotus/framework';
+import type { MenuItem } from "@herodotus/framework";
 
-import { useRoute } from 'vue-router';
-import { isEmpty } from 'lodash-es';
+import { useRoute } from "vue-router";
+import { isEmpty } from "lodash-es";
 
-defineOptions({ name: 'HAppMenuItems' });
+defineOptions({ name: "LayoutMenuItems" });
 
 interface Props {
   items: Array<MenuItem>;
