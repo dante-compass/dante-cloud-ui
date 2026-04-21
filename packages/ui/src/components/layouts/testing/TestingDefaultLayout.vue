@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHr LpR lFr" :class="[$q.dark.isActive ? 'bg-black' : 'bg-grey-2']">
-    <h-app-header :tab-view="false" back-home></h-app-header>
+    <h-app-header :tab-view="false"></h-app-header>
 
     <layout-left-drawer :items="menuItems"></layout-left-drawer>
 
