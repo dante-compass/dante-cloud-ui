@@ -1,50 +1,9 @@
 <template>
-  <q-layout view="lHr LpR lFr" :class="[q.dark.isActive ? 'bg-black' : 'bg-grey-2']">
-    <h-app-header :tab-view="false" back-home message></h-app-header>
-
-    <h-app-right-drawer></h-app-right-drawer>
-
-    <h-setting-container></h-setting-container>
-  </q-layout>
+  <personal-default-layout></personal-default-layout>
 </template>
 
-<script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useQuasar } from 'quasar';
+<script lang="ts" setup>
+import { PersonalDefaultLayout } from "@/components/layouts";
 
-import { HSettingContainer } from '@/components';
-import type { RouteLocationNormalizedLoaded } from 'vue-router';
-import { useRoute } from 'vue-router';
-
-import { useElementStore, useEditFinish } from '@herodotus/framework';
-
-defineOptions({
-  name: 'HSettingsLayout',
-  components: {
-    HSettingContainer,
-  },
-});
-
-const route = useRoute();
-const q = useQuasar();
-const { onFinish } = useEditFinish();
-
-const smartCloseDetail = (route: RouteLocationNormalizedLoaded) => {
-  const store = useElementStore();
-  const isDetailRoute = store.isDetailRoute(route);
-
-  if (isDetailRoute) {
-    if (!store.hasParameter(route)) {
-      onFinish();
-    }
-  }
-};
-
-watch(
-  () => route.path,
-  () => {
-    smartCloseDetail(route);
-  },
-  { immediate: true },
-);
+defineOptions({ name: "PersonalLayout", components: { PersonalDefaultLayout } });
 </script>

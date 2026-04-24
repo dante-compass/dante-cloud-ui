@@ -6,14 +6,22 @@
       dense
       flat
       color="grey-8"
-      @click="q.fullscreen.toggle()"
-      :icon="q.fullscreen.isActive ? 'mdi-fullscreen-exit' : 'mdi-fullscreen'"
-      v-if="q.screen.gt.sm"
+      @click="$q.fullscreen.toggle()"
+      :icon="$q.fullscreen.isActive ? 'mdi-fullscreen-exit' : 'mdi-fullscreen'"
+      v-if="$q.screen.gt.sm"
     >
-      <q-tooltip>{{ q.fullscreen.isActive ? '退出全屏' : '全屏显示' }}</q-tooltip>
+      <q-tooltip>{{ $q.fullscreen.isActive ? "退出全屏" : "全屏显示" }}</q-tooltip>
     </q-btn>
     <h-app-message-actions v-if="message"></h-app-message-actions>
-    <h-app-right-drawer-control></h-app-right-drawer-control>
+
+    <q-btn round dense flat color="grey-8" icon="settings" @click="application.rightDrawer = !application.rightDrawer">
+      <q-tooltip>设置</q-tooltip>
+    </q-btn>
+
+    <q-btn v-if="supportTesting" round dense flat color="grey-8" icon="mdi-ab-testing" to="/iot-testing">
+      <q-tooltip>功能测试</q-tooltip>
+    </q-btn>
+
     <q-btn-dropdown stretch flat class="q-mx-none">
       <template v-slot:label>
         <h-user-avatar size="28px" from-store></h-user-avatar>
@@ -31,31 +39,26 @@
 </template>
 
 <script setup lang="ts">
-import { useQuasar } from 'quasar';
+import { SignOutUtilities, useApplicationStore, useElementStore } from "@herodotus/framework";
+import HAppMessageActions from "./HAppMessageActions.vue";
 
-import { SignOutUtilities } from '@herodotus/framework';
-import HAppMessageActions from './HAppMessageActions.vue';
+import HAppWidgetActions from "./HAppWidgetActions.vue";
+import HUserAvatar from "../avatar/HUserAvatar.vue";
 
-import HAppRightDrawerControl from './HAppRightDrawerControl.vue';
-import HAppWidgetActions from './HAppWidgetActions.vue';
-import HUserAvatar from '../avatar/HUserAvatar.vue';
-
-defineOptions({
-  name: 'HAppToolbarActions',
-  components: {
-    HAppRightDrawerControl,
-    HAppWidgetActions,
-    HAppMessageActions,
-    HUserAvatar,
-  },
-});
+defineOptions({ name: "HAppToolbarActions", components: { HAppWidgetActions, HAppMessageActions, HUserAvatar } });
 
 defineProps({
   message: { type: Boolean, default: false },
 });
 
-const q = useQuasar();
+const application = useApplicationStore();
+const element = useElementStore();
+
 const signOut = () => {
   SignOutUtilities.getInstance().signOutWithDialog();
 };
+
+const supportTesting = computed(() => {
+  return element.supportTesting;
+});
 </script>

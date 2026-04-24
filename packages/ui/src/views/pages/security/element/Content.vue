@@ -52,14 +52,15 @@
 </template>
 
 <script setup lang="ts">
-import type { SysElementEntity, SysElementConditions } from '@herodotus/api';
+import type { SysElementEntity, SysElementConditions } from "@herodotus/api";
 
-import { useTableItem, useTreeItems } from '@/composables/hooks';
-import { API } from '@/configurations';
+import { isEmpty } from "lodash-es";
+import { useTableItem, useTreeItems } from "@/composables/hooks";
+import { API } from "@/configurations";
 
-import { HCenterFormLayout } from '@/components';
+import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: 'SysElementContent' });
+defineOptions({ name: "SysElementContent" });
 
 const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysElementEntity>(API.core.sysElement());
 const { treeItems } = useTreeItems<SysElementConditions, SysElementEntity>(API.core.sysElement());
@@ -70,13 +71,16 @@ const onSave = () => {
 
 watch(
   () => editedItem.value.redirect,
-  (newValue) => {
-    if (newValue) {
+  (newValue, oldValue) => {
+    // 表示输入新值。当输入第二个字符时 newValue 和 oldValue 都有值
+    if (!isEmpty(newValue) && !isEmpty(oldValue)) {
       editedItem.value.isHaveChild = true;
-    } else {
+    }
+
+    // 表示删除了已有的值
+    if (isEmpty(newValue) && !isEmpty(oldValue)) {
       editedItem.value.isHaveChild = false;
     }
   },
-  { deep: true },
 );
 </script>

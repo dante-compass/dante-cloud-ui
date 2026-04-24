@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 4.5.0
+
+### Minor Changes
+
+- 版本发布
+
 ## 4.4.1
 
 ### Patch Changes
