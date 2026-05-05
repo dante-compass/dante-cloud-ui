@@ -1,6 +1,8 @@
 import { Ref } from 'vue';
-import { QBaseDataItem } from '../../../declarations';
-declare const _default: import('vue').DefineComponent<{}, {
+import { QBaseDataItem } from '../../declarations';
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<{}, {
     tableColumns: {
         name: string;
         label: string;
@@ -64,10 +66,11 @@ declare const _default: import('vue').DefineComponent<{}, {
         "update:modelValue": (value: string | number | null | undefined) => any;
     }, string, {}, {}, string, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, import('vue').ComponentProvideOptions> & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps & (new () => {
         $slots: {
-            append?(_: {}): any;
-            before?(_: {}): any;
-            after?(_: {}): any;
+            append?: (props: {}) => any;
+        } & {
+            before?: (props: {}) => any;
+        } & {
+            after?: (props: {}) => any;
         };
     });
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

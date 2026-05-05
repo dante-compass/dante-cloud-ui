@@ -1,4 +1,4 @@
-import { Element } from '../../../declarations';
+import { Element } from '../../declarations';
 export default function useUserAssignmentProperties(): {
     getAssigneeValue: (element: Element) => string;
     setAssigneeValue: (element: Element, value: string) => void;

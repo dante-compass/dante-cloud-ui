@@ -1,5 +1,7 @@
 import { PropType } from 'vue';
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     diagram: {
         type: StringConstructor;
         default: string;
@@ -30,4 +32,3 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     diagram: string;
     nodes: string[];
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

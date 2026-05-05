@@ -1,4 +1,6 @@
-declare const _default: import('vue').DefineComponent<{}, {
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<{}, {
     onDownloadXml: () => void;
     onDownloadSvg: () => void;
     onDownloadBpmn: () => void;
@@ -34,4 +36,3 @@ declare const _default: import('vue').DefineComponent<{}, {
         };
     }>> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

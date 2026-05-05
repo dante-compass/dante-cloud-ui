@@ -1,7 +1,9 @@
-import { Widget } from '../../../declarations';
-declare const _default: import('vue').DefineComponent<{}, {
-    widgetGroups: WidgetDefinition[];
-    cloneWidget: (widget: Widget) => Element;
+import { Widget } from '../../declarations';
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<{}, {
+    widgetGroups: import('@herodotus-cloud/form-apis').WidgetDefinition[];
+    cloneWidget: (widget: Widget) => import('@herodotus-cloud/form-apis').Element;
     addWidget: (widget: Widget) => void;
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {
     Draggable: import('vue').DefineComponent<{
@@ -78,4 +80,3 @@ declare const _default: import('vue').DefineComponent<{}, {
         componentData: Record<string, any>;
     }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

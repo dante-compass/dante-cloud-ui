@@ -22,29 +22,31 @@ interface Props {
      */
     offset?: number;
 }
-declare function __VLS_template(): {
-    attrs: Partial<{}>;
-    slots: {
-        default?(_: {}): any;
-        default?(_: {}): any;
-        default?(_: {}): any;
-        left?(_: {}): any;
-        left?(_: {}): any;
-        right?(_: {}): any;
-        right?(_: {}): any;
-    };
-    refs: {};
-    rootEl: any;
+declare var __VLS_14: {}, __VLS_16: {}, __VLS_24: {}, __VLS_26: {}, __VLS_41: {}, __VLS_49: {}, __VLS_57: {};
+type __VLS_Slots = {} & {
+    default?: (props: typeof __VLS_14) => any;
+} & {
+    left?: (props: typeof __VLS_16) => any;
+} & {
+    default?: (props: typeof __VLS_24) => any;
+} & {
+    right?: (props: typeof __VLS_26) => any;
+} & {
+    left?: (props: typeof __VLS_41) => any;
+} & {
+    default?: (props: typeof __VLS_49) => any;
+} & {
+    right?: (props: typeof __VLS_57) => any;
 };
-type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
-declare const __VLS_component: import('vue').DefineComponent<Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<Props> & Readonly<{}>, {
+declare const __VLS_base: import('vue').DefineComponent<Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<Props> & Readonly<{}>, {
     offset: number;
     mode: "two" | "three";
     wider: "default" | "start" | "center" | "end";
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
-declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
+declare const __VLS_export: __VLS_WithSlots<typeof __VLS_base, __VLS_Slots>;
+declare const _default: typeof __VLS_export;
 export default _default;
-type __VLS_WithTemplateSlots<T, S> = T & {
+type __VLS_WithSlots<T, S> = T & {
     new (): {
         $slots: S;
     };

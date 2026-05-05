@@ -1,4 +1,4 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     label: {
         type: StringConstructor;
     };
@@ -26,5 +26,6 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     "onUpdate:modelValue"?: ((value: string) => any) | undefined;
 }>, {
     title: string;
-}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+declare const _default: typeof __VLS_export;
 export default _default;

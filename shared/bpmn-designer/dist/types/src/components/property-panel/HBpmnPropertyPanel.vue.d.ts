@@ -1,4 +1,4 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     title: {
         type: StringConstructor;
         required: true;
@@ -35,4 +35,5 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
 }>> & Readonly<{}>, {
     label: string;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+declare const _default: typeof __VLS_export;
 export default _default;

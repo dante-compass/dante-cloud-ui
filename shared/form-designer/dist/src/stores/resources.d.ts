@@ -1,4 +1,4 @@
-import { FormDesignerResources } from '../../declarations';
+import { FormDesignerResources } from '../declarations';
 export declare const useFormResourceStore: import('pinia').StoreDefinition<"FormDesignerResources", {
     resources: FormDesignerResources;
 }, {

@@ -1,6 +1,8 @@
 import { PropType } from 'vue';
-import { BpmnDesignerResources } from '../../../declarations';
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+import { BpmnDesignerResources } from '../../declarations';
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     instance: {
         type: PropType<BpmnDesignerResources>;
         required: true;
@@ -365,4 +367,3 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
         label: string;
     }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

@@ -1,4 +1,4 @@
-import { HttpClientOptions } from '../../declarations';
+import { HttpClientOptions } from '../declarations';
 import { Axios, HttpConfig } from './base';
 import { DynamicFormService, ProcessCommentsService, ProcessSpecificsService } from './modules';
 export declare class FormApiResources {

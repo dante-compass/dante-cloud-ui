@@ -1,5 +1,5 @@
 import { PropType } from 'vue';
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     selection: {
         type: PropType<"single" | "multiple">;
         default: string;
@@ -39,5 +39,6 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     label: string;
     title: string;
     selection: "single" | "multiple";
-}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+declare const _default: typeof __VLS_export;
 export default _default;

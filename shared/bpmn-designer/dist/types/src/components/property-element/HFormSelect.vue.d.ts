@@ -1,7 +1,9 @@
 import { Ref } from 'vue';
 import { QSelect } from 'quasar';
-import { FormSelectItem } from '../../../declarations';
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+import { FormSelectItem } from '../../declarations';
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     modelValue: {
         type: StringConstructor;
     };
@@ -14,4 +16,3 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
         type: StringConstructor;
     };
 }>> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

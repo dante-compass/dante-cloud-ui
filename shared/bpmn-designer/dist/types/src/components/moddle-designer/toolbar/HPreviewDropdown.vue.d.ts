@@ -1,4 +1,6 @@
-declare const _default: import('vue').DefineComponent<{}, {
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<{}, {
     isOpen: import('vue').Ref<boolean, boolean>;
     data: import('vue').Ref<string, string>;
     language: import('vue').Ref<"xml" | "json", "xml" | "json">;
@@ -129,4 +131,3 @@ declare const _default: import('vue').DefineComponent<{}, {
         }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
     }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

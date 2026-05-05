@@ -15,20 +15,16 @@ interface Props {
 type __VLS_Props = Props;
 declare const showDialog: import('vue').ModelRef<boolean, string, boolean, boolean>;
 declare const showLoading: import('vue').ModelRef<boolean, string, boolean, boolean>;
-type __VLS_PublicProps = {
+type __VLS_ModelProps = {
     modelValue: typeof showDialog['value'];
     'loading'?: typeof showLoading['value'];
-} & __VLS_Props;
-declare function __VLS_template(): {
-    attrs: Partial<{}>;
-    slots: {
-        default?(_: {}): any;
-    };
-    refs: {};
-    rootEl: any;
 };
-type __VLS_TemplateResult = ReturnType<typeof __VLS_template>;
-declare const __VLS_component: import('vue').DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+type __VLS_PublicProps = __VLS_Props & __VLS_ModelProps;
+declare var __VLS_38: {};
+type __VLS_Slots = {} & {
+    default?: (props: typeof __VLS_38) => any;
+};
+declare const __VLS_base: import('vue').DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "update:modelValue": (value: boolean) => any;
     close: () => any;
     cancel: () => any;
@@ -50,9 +46,10 @@ declare const __VLS_component: import('vue').DefineComponent<__VLS_PublicProps, 
     hideClose: boolean;
     externalClose: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
-declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
+declare const __VLS_export: __VLS_WithSlots<typeof __VLS_base, __VLS_Slots>;
+declare const _default: typeof __VLS_export;
 export default _default;
-type __VLS_WithTemplateSlots<T, S> = T & {
+type __VLS_WithSlots<T, S> = T & {
     new (): {
         $slots: S;
     };

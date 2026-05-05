@@ -1,4 +1,6 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     headerClass: {
         type: StringConstructor;
         default: string;
@@ -11,4 +13,3 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
 }>> & Readonly<{}>, {
     headerClass: string;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

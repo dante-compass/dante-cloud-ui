@@ -1,5 +1,7 @@
-import { Element } from '../../../declarations';
-declare const _default: import('vue').DefineComponent<{}, {
+import { Element } from '../../declarations';
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<{}, {
     isEmptyCanvas: import('vue').ComputedRef<boolean>;
     canvasElements: {
         id: string;
@@ -122,9 +124,8 @@ declare const _default: import('vue').DefineComponent<{}, {
         }, () => any, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{
             [x: string]: any;
         }> & Readonly<{}>, {
-            schemas: Schema[];
+            schemas: import('@herodotus-cloud/form-apis').Schema[];
         }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
     }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
     HCanvasLayout: import('vue').DefineComponent<{}, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

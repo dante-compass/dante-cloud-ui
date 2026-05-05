@@ -1,4 +1,6 @@
-declare const _default: import('vue').DefineComponent<{}, {
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<{}, {
     isProcessElement: import('vue').ComputedRef<boolean>;
     elementId: import('vue').Ref<string, string>;
     elementName: import('vue').Ref<string, string>;
@@ -68,4 +70,3 @@ declare const _default: import('vue').DefineComponent<{}, {
         defaultOpend: boolean;
     }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

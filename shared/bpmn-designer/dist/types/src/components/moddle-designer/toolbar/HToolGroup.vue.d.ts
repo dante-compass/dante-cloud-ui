@@ -1,4 +1,6 @@
-declare const _default: import('vue').DefineComponent<{}, {
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<{}, {
     showMiniMap: import('vue').Ref<boolean, boolean>;
     showBpmnLint: import('vue').Ref<boolean, boolean>;
     toggleSimulation: () => void;
@@ -21,4 +23,3 @@ declare const _default: import('vue').DefineComponent<{}, {
     HButtonGroup: import('vue').DefineComponent<{}, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
     HSeparator: import('vue').DefineComponent<{}, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

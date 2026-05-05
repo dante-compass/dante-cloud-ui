@@ -1,5 +1,5 @@
 import { App } from 'vue';
-import { HBpmnDesigner, HBpmnDiagramViewer, HBpmnCodePreviewer } from '../components';
+import { HBpmnDesigner, HBpmnDiagramViewer, HBpmnCodePreviewer } from './components';
 export { HBpmnDesigner, HBpmnDiagramViewer, HBpmnCodePreviewer };
 export * from './declarations';
 export * from './lib/core';
