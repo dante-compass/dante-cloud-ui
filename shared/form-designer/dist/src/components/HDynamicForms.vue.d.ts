@@ -1,6 +1,8 @@
 import { PropType } from 'vue';
-import { FormDesignerResources, DynamicFormEntity } from '../../declarations';
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+import { FormDesignerResources, DynamicFormEntity } from '../declarations';
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     instance: {
         type: PropType<FormDesignerResources>;
         required: true;
@@ -58,8 +60,8 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     height: string;
 }, {}, {
     HWidgetPanel: import('vue').DefineComponent<{}, {
-        widgetGroups: WidgetDefinition[];
-        cloneWidget: (widget: import('@herodotus-cloud/form-apis').Widget) => Element;
+        widgetGroups: import('@herodotus-cloud/form-apis').WidgetDefinition[];
+        cloneWidget: (widget: import('@herodotus-cloud/form-apis').Widget) => import('@herodotus-cloud/form-apis').Element;
         addWidget: (widget: import('@herodotus-cloud/form-apis').Widget) => void;
     }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {
         Draggable: import('vue').DefineComponent<{
@@ -260,7 +262,7 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
             }, () => any, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{
                 [x: string]: any;
             }> & Readonly<{}>, {
-                schemas: Schema[];
+                schemas: import('@herodotus-cloud/form-apis').Schema[];
             }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
         }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
         HCanvasLayout: import('vue').DefineComponent<{}, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
@@ -308,11 +310,11 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
                 required: true;
             };
             elements: {
-                type: PropType<Array<Element>>;
+                type: PropType<Array<import('@herodotus-cloud/form-apis').Element>>;
                 required: true;
             };
         }>, {
-            getDefaultModel: (item: Element) => import('@herodotus-cloud/form-apis').VModel;
+            getDefaultModel: (item: import('@herodotus-cloud/form-apis').Element) => import('@herodotus-cloud/form-apis').VModel;
             modelObject: import('vue').WritableComputedRef<Record<string, any>, Record<string, any>>;
             state: Record<string, any>;
         }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
@@ -322,7 +324,7 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
                 required: true;
             };
             elements: {
-                type: PropType<Array<Element>>;
+                type: PropType<Array<import('@herodotus-cloud/form-apis').Element>>;
                 required: true;
             };
         }>> & Readonly<{
@@ -376,4 +378,3 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
         }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
     }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

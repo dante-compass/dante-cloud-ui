@@ -1,11 +1,11 @@
-import { fileURLToPath, URL } from 'node:url';
-import { defineConfig } from 'vite';
-import Vue from '@vitejs/plugin-vue';
-import dts from 'vite-plugin-dts';
-import { transformAssetUrls } from '@quasar/vite-plugin';
+import { fileURLToPath, URL } from "node:url";
+import { defineConfig } from "vite";
+import Vue from "@vitejs/plugin-vue";
+import dts from "vite-plugin-dts";
+import { transformAssetUrls } from "@quasar/vite-plugin";
 
-import Components from 'unplugin-vue-components/vite';
-import { QuasarResolver } from 'unplugin-vue-components/resolvers';
+import Components from "unplugin-vue-components/vite";
+import { QuasarResolver } from "unplugin-vue-components/resolvers";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,35 +17,35 @@ export default defineConfig({
       resolvers: [QuasarResolver()],
     }),
     dts({
-      outDir: './dist/types',
+      outDirs: "./dist/types",
     }),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('src', import.meta.url)),
+      "@": fileURLToPath(new URL("src", import.meta.url)),
     },
-    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
+    extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },
   build: {
     lib: {
-      entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
-      name: '@herodotus-cloud/form-engine',
-      fileName: (format) => (format === 'es' ? `index.${format}.mjs` : `index.${format}.js`),
-      formats: ['es', 'cjs'],
+      entry: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+      name: "@herodotus-cloud/form-engine",
+      fileName: (format) => (format === "es" ? `index.${format}.mjs` : `index.${format}.js`),
+      formats: ["es", "cjs"],
     },
     rolldownOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
-      external: ['lodash-es', 'vue', 'quasar', 'nanoid', '@herodotus-cloud/form-apis'],
+      external: ["lodash-es", "vue", "quasar", "nanoid", "@herodotus-cloud/form-apis"],
       output: {
-        exports: 'named',
+        exports: "named",
         assetFileNames: `assets/[ext]/[name][extname]`,
         // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
         globals: {
-          'lodash-es': 'LodashEs',
-          vue: 'vue',
-          quasar: 'quasar',
-          nanoid: 'nanoid',
-          '@herodotus-cloud/form-apis': 'HerodotusFormApis',
+          "lodash-es": "LodashEs",
+          vue: "vue",
+          quasar: "quasar",
+          nanoid: "nanoid",
+          "@herodotus-cloud/form-apis": "HerodotusFormApis",
         },
       },
     },

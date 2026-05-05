@@ -1,4 +1,6 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     icon: {
         type: StringConstructor;
         default: string;
@@ -56,4 +58,3 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
     count: number;
     defaultOpend: boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

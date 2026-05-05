@@ -1,5 +1,7 @@
 import { Ref } from 'vue';
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     modelValue: {
         type: BooleanConstructor;
         default: boolean;
@@ -42,11 +44,11 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
             required: true;
         };
         elements: {
-            type: import('vue').PropType<Array<Element>>;
+            type: import('vue').PropType<Array<import('@herodotus-cloud/form-apis').Element>>;
             required: true;
         };
     }>, {
-        getDefaultModel: (item: Element) => import('@herodotus-cloud/form-apis').VModel;
+        getDefaultModel: (item: import('@herodotus-cloud/form-apis').Element) => import('@herodotus-cloud/form-apis').VModel;
         modelObject: import('vue').WritableComputedRef<Record<string, any>, Record<string, any>>;
         state: Record<string, any>;
     }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
@@ -56,7 +58,7 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
             required: true;
         };
         elements: {
-            type: import('vue').PropType<Array<Element>>;
+            type: import('vue').PropType<Array<import('@herodotus-cloud/form-apis').Element>>;
             required: true;
         };
     }>> & Readonly<{
@@ -65,4 +67,3 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
         modelValue: Record<string, any>;
     }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

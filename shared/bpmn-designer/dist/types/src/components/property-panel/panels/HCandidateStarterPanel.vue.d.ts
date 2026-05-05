@@ -1,4 +1,6 @@
-declare const _default: import('vue').DefineComponent<{}, {
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<{}, {
     candidateStarterGroups: import('vue').Ref<string, string>;
     candidateStarterUsers: import('vue').Ref<string, string>;
     updateCandidateStarterGroups: (value: string | number | null) => void;
@@ -32,7 +34,7 @@ declare const _default: import('vue').DefineComponent<{}, {
         "onUpdate:modelValue"?: ((value: string) => any) | undefined;
     }>, {
         title: string;
-    }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
+    }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
     HCandidateUserTextField: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
         selection: {
             type: import('vue').PropType<"single" | "multiple">;
@@ -73,7 +75,7 @@ declare const _default: import('vue').DefineComponent<{}, {
         label: string;
         title: string;
         selection: "single" | "multiple";
-    }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
+    }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
     HExpansionItem: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
         icon: {
             type: StringConstructor;
@@ -133,4 +135,3 @@ declare const _default: import('vue').DefineComponent<{}, {
         defaultOpend: boolean;
     }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

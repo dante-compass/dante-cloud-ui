@@ -1,4 +1,4 @@
-import { Schema, Element, Widget } from '../../../declarations';
+import { Schema, Element, Widget } from '../../declarations';
 declare class ElementUtilities {
     private static instance;
     private constructor();

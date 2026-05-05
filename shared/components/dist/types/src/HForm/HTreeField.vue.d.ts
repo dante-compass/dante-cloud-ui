@@ -1,19 +1,18 @@
-import { Tree } from '../../lib/declarations';
-import { QTree } from 'quasar';
+import { Tree } from '../lib/declarations';
 interface Props {
     items: Tree[];
     label?: string;
     value?: string;
 }
 type __VLS_Props = Props;
-type __VLS_PublicProps = {
+type __VLS_ModelProps = {
     modelValue: string;
-} & __VLS_Props;
-declare const _default: import('vue').DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
+};
+type __VLS_PublicProps = __VLS_Props & __VLS_ModelProps;
+declare const __VLS_export: import('vue').DefineComponent<__VLS_PublicProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "update:modelValue": (value: string) => any;
 }, string, import('vue').PublicProps, Readonly<__VLS_PublicProps> & Readonly<{
     "onUpdate:modelValue"?: ((value: string) => any) | undefined;
-}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {
-    treeRef: QTree | null;
-}, any>;
+}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
+declare const _default: typeof __VLS_export;
 export default _default;

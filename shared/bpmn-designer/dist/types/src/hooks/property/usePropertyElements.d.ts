@@ -1,4 +1,4 @@
-import { ModdleElement, Modeler, Modeling, Canvas, Element, BpmnFactory } from '../../../declarations';
+import { ModdleElement, Modeler, Modeling, Canvas, Element, BpmnFactory } from '../../declarations';
 export default function usePropertyElements(): {
     processEngine: "flowable" | "activiti" | "camunda";
     getModeler: () => Modeler;

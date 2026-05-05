@@ -1,6 +1,8 @@
 import { Ref } from 'vue';
-import { ExtensionProperty } from '../../../../declarations';
-declare const _default: import('vue').DefineComponent<{}, {
+import { ExtensionProperty } from '../../../declarations';
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<{}, {
     tableRows: Ref<ExtensionProperty[], ExtensionProperty[]>;
     tableColumns: {
         name: string;
@@ -120,4 +122,3 @@ declare const _default: import('vue').DefineComponent<{}, {
         modelValue: boolean;
     }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;

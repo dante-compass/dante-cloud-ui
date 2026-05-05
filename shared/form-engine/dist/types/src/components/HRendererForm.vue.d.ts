@@ -1,6 +1,8 @@
 import { PropType } from 'vue';
-import { Element } from '../../declarations';
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+import { Element } from '../declarations';
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     modelValue: {
         type: PropType<Record<string, any>>;
         default: () => {};
@@ -29,4 +31,3 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
 }>, {
     modelValue: Record<string, any>;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;
