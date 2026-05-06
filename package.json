@@ -34,15 +34,15 @@
     ]
   },
   "dependencies": {
-    "@herodotus/core": "^1.5.1",
-    "@quasar/extras": "^1.17.0",
+    "@herodotus/core": "^1.6.0",
+    "@quasar/extras": "^1.18.0",
     "disable-devtool": "^0.3.9",
     "filesize": "^11.0.17",
     "lodash-es": "^4.18.1",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "4.7.1",
     "quasar": "^2.19.3",
-    "vue": "^3.5.33",
+    "vue": "^3.5.34",
     "vue-i18n": "^11.4.0"
   },
   "devDependencies": {
@@ -67,8 +67,8 @@
     "eslint-plugin-vue": "^10.9.1",
     "globals": "^17.6.0",
     "husky": "^9.1.7",
-    "jiti": "^2.6.1",
-    "lint-staged": "^16.4.0",
+    "jiti": "^2.7.0",
+    "lint-staged": "^17.0.2",
     "npm-run-all2": "^8.0.4",
     "oxfmt": "^0.48.0",
     "rollup": "4.60.3",

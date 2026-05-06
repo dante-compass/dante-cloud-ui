@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 4.6.0
+
+### Minor Changes
+
+- 升级 Vue 版本
+
 ## 4.5.1
 
 ### Patch Changes

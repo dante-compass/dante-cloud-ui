@@ -1,5 +1,18 @@
 # @herodotus-cloud/form-designer
 
+## 4.6.0
+
+### Minor Changes
+
+- 升级 Vue 版本
+
+### Patch Changes
+
+- Updated dependencies
+  - @herodotus-cloud/form-engine@4.6.0
+  - @herodotus-cloud/components@4.6.0
+  - @herodotus-cloud/form-apis@4.6.0
+
 ## 4.5.1
 
 ### Patch Changes
