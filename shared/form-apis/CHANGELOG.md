@@ -1,5 +1,11 @@
 # @herodotus-cloud/form-apis
 
+## 4.6.1
+
+### Patch Changes
+
+- 升级 Vite 版本
+
 ## 4.6.0
 
 ### Minor Changes

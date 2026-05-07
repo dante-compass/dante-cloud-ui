@@ -1,5 +1,15 @@
 # @herodotus-cloud/form-designer
 
+## 4.6.1
+
+### Patch Changes
+
+- 升级 Vite 版本
+- Updated dependencies
+  - @herodotus-cloud/form-engine@4.6.1
+  - @herodotus-cloud/components@4.6.1
+  - @herodotus-cloud/form-apis@4.6.1
+
 ## 4.6.0
 
 ### Minor Changes
