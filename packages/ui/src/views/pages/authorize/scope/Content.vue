@@ -1,7 +1,7 @@
 <template>
   <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
     <h-text-field
-      v-model.lazy="v.editedItem.scopeCode.$model as string"
+      v-model.lazy="v.editedItem.scopeCode.$model"
       name="scopeCode"
       label="范围代码 * "
       placeholder="请使用小写英文单词编写的范围代码，例如：all、read_user等"
@@ -14,16 +14,16 @@
 </template>
 
 <script setup lang="ts">
-import type { OAuth2ScopeEntity } from '@/composables/declarations';
+import type { OAuth2ScopeEntity } from "@herodotus/api";
 
-import useVuelidate from '@vuelidate/core';
-import { required, helpers } from '@vuelidate/validators';
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 
-import { API } from '@/configurations';
-import { useTableItem } from '@/composables/hooks';
-import { HCenterFormLayout } from '@/components';
+import { API } from "@/configurations";
+import { useTableItem } from "@/composables/hooks";
+import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: 'OAuth2ScopeContent' });
+defineOptions({ name: "OAuth2ScopeContent" });
 
 const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<OAuth2ScopeEntity>(API.core.oauth2Scope());
 
@@ -51,16 +51,19 @@ const isUnique = () => {
   });
 };
 
+// 修复使用 Vuelidate 进行内容校验 v-model.lazy 会提示类型判断错误问题
+const state = computed(() => ({ editedItem: editedItem.value }));
+
 const rules = {
   editedItem: {
     scopeCode: {
-      required: helpers.withMessage('范围代码不能为空', required),
-      isUnique: helpers.withMessage('范围代码已存在，请使用其它代码', helpers.withAsync(isUnique)),
+      required: helpers.withMessage("范围代码不能为空", required),
+      isUnique: helpers.withMessage("范围代码已存在，请使用其它代码", helpers.withAsync(isUnique)),
     },
   },
 };
 
-const v = useVuelidate(rules, { editedItem }, { $lazy: true });
+const v = useVuelidate(rules, state, { $lazy: true });
 
 const onSave = () => {
   v.value.$validate().then((result) => {

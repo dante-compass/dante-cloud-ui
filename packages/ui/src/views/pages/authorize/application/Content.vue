@@ -157,25 +157,20 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import useVuelidate from '@vuelidate/core';
-import { required, helpers } from '@vuelidate/validators';
+import type { OAuth2ApplicationEntity, OAuth2ScopeEntity, OAuth2ScopeConditions } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type {
-  OAuth2ApplicationEntity,
-  OAuth2ScopeEntity,
-  OAuth2ScopeConditions,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 
-import { useEditFinish } from '@herodotus/framework';
-import { CONSTANTS, API } from '@/configurations';
-import { HAuthorizeLayout, HDictionarySelect } from '@/components';
-import { includes } from 'lodash-es';
-import { useTableItem, useTable, useDictionary } from '@/composables/hooks';
+import { useEditFinish } from "@herodotus/framework";
+import { CONSTANTS, API } from "@/configurations";
+import { HAuthorizeLayout, HDictionarySelect } from "@/components";
+import { includes } from "lodash-es";
+import { useTableItem, useTable, useDictionary } from "@/composables/hooks";
 
 defineOptions({
-  name: 'OAuth2ApplicationContent',
+  name: "OAuth2ApplicationContent",
   components: { HAuthorizeLayout, HDictionarySelect },
 });
 
@@ -188,12 +183,12 @@ const { tableRows, pagination, loading } = useTable<OAuth2ScopeConditions, OAuth
   true,
 );
 
-const { options } = useDictionary('AllJwsAlgorithm');
+const { options } = useDictionary("AllJwsAlgorithm");
 
 const columns: QTableColumnProps = [
-  { name: 'scopeCode', field: 'scopeCode', align: 'center', label: '范围代码' },
-  { name: 'scopeName', field: 'scopeName', align: 'center', label: '范围名称' },
-  { name: 'description', field: 'description', align: 'center', label: '说明' },
+  { name: "scopeCode", field: "scopeCode", align: "center", label: "范围代码" },
+  { name: "scopeName", field: "scopeName", align: "center", label: "范围名称" },
+  { name: "description", field: "description", align: "center", label: "说明" },
 ];
 
 const { onFinish } = useEditFinish();
@@ -202,31 +197,34 @@ const isRedirectUrisRequired = () => {
   let authorizationGrantTypes = editedItem.value.authorizationGrantTypes;
   let redirectUris = editedItem.value.redirectUris;
 
-  if (authorizationGrantTypes && authorizationGrantTypes.includes('authorization_code') && !redirectUris) {
+  if (authorizationGrantTypes && authorizationGrantTypes.includes("authorization_code") && !redirectUris) {
     return false;
   } else {
     return true;
   }
 };
 
+// 修复使用 Vuelidate 进行内容校验 v-model.lazy 会提示类型判断错误问题
+const state = computed(() => ({ editedItem: editedItem.value }));
+
 const rules = {
   editedItem: {
     applicationName: {
-      required: helpers.withMessage('应用名称不能为空', required),
+      required: helpers.withMessage("应用名称不能为空", required),
     },
     authorizationGrantTypes: {
-      required: helpers.withMessage('认证模式不能为空', required),
+      required: helpers.withMessage("认证模式不能为空", required),
     },
     clientAuthenticationMethods: {
-      required: helpers.withMessage('客户端验证模式不能为空', required),
+      required: helpers.withMessage("客户端验证模式不能为空", required),
     },
     redirectUris: {
-      isRedirectUrisRequired: helpers.withMessage('授权码模式下 Redirect URI 不能为空', isRedirectUrisRequired),
+      isRedirectUrisRequired: helpers.withMessage("授权码模式下 Redirect URI 不能为空", isRedirectUrisRequired),
     },
   },
 };
 
-const v = useVuelidate(rules, { editedItem }, { $lazy: true });
+const v = useVuelidate(rules, state, { $lazy: true });
 
 const onSave = () => {
   v.value.$validate().then((result) => {
@@ -237,11 +235,11 @@ const onSave = () => {
 };
 
 const includePrivateKeyJwt = () => {
-  return includes(editedItem.value.clientAuthenticationMethods, 'private_key_jwt');
+  return includes(editedItem.value.clientAuthenticationMethods, "private_key_jwt");
 };
 
 const includeClientSecretJwt = () => {
-  return includes(editedItem.value.clientAuthenticationMethods, 'client_secret_jwt');
+  return includes(editedItem.value.clientAuthenticationMethods, "client_secret_jwt");
 };
 
 const onlyHasPrivateKeyJwt = () => {

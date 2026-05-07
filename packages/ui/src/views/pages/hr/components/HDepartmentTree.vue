@@ -22,22 +22,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, computed } from 'vue';
+import type { SysDepartmentEntity, SysDepartmentConditions } from "@herodotus/api";
 
-import type { SysDepartmentEntity, SysDepartmentConditions } from '@/composables/declarations';
-import { API } from '@/configurations';
-import { useTreeItems } from '@/composables/hooks';
-import { isEmpty } from 'lodash-es';
+import { API } from "@/configurations";
+import { useTreeItems } from "@/composables/hooks";
+import { isEmpty } from "lodash-es";
 
 export default defineComponent({
-  name: 'HDepartmentTree',
+  name: "HDepartmentTree",
 
   props: {
     selected: { type: String },
-    organizationId: { type: String, default: '' },
+    organizationId: { type: String, default: "" },
   },
 
-  emits: ['update:selected'],
+  emits: ["update:selected"],
 
   setup(props, { emit }) {
     const { treeItems, conditions } = useTreeItems<SysDepartmentConditions, SysDepartmentEntity>(
@@ -48,7 +47,7 @@ export default defineComponent({
     const selectedValue = computed({
       get: () => props.selected,
       set: (newValue) => {
-        emit('update:selected', newValue);
+        emit("update:selected", newValue);
       },
     });
 
@@ -61,7 +60,7 @@ export default defineComponent({
       (newValue: string) => {
         if (newValue) {
           conditions.value.organizationId = newValue;
-          selectedValue.value = '';
+          selectedValue.value = "";
         }
       },
     );

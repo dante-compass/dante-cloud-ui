@@ -32,16 +32,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import type { SysOrganizationEntity, SysOrganizationConditions } from "@herodotus/api";
+import { API } from "@/configurations";
+import { useTreeItems } from "@/composables/hooks";
 
-import type { SysOrganizationEntity, SysOrganizationConditions } from '@/composables/declarations';
-import { API } from '@/configurations';
-import { useTreeItems } from '@/composables/hooks';
-
-import { HDictionarySelect } from '@/components';
+import { HDictionarySelect } from "@/components";
 
 export default defineComponent({
-  name: 'HOrganizationTree',
+  name: "HOrganizationTree",
 
   components: {
     HDictionarySelect,
@@ -51,7 +49,7 @@ export default defineComponent({
     selected: { type: String },
   },
 
-  emits: ['update:selected'],
+  emits: ["update:selected"],
 
   setup(props, { emit }) {
     const { treeItems, conditions } = useTreeItems<SysOrganizationConditions, SysOrganizationEntity>(
@@ -61,7 +59,7 @@ export default defineComponent({
     const selectedValue = computed({
       get: () => props.selected,
       set: (newValue) => {
-        emit('update:selected', newValue);
+        emit("update:selected", newValue);
       },
     });
 

@@ -32,18 +32,14 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  OAuth2ApplicationEntity,
-  OAuth2ApplicationConditions,
-  OAuth2ApplicationProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import type { OAuth2ApplicationEntity, OAuth2ApplicationConditions, OAuth2ApplicationProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from '@/configurations';
-import { moment } from '@herodotus/core';
-import { useTable } from '@/composables/hooks';
+import { CONSTANTS, API } from "@/configurations";
+import { moment } from "@herodotus/core";
+import { useTable } from "@/composables/hooks";
 
-import { HDeleteButton, HEditButton, HTable, HGrantTypeColumn } from '@/components';
+import { HDeleteButton, HEditButton, HTable, HGrantTypeColumn } from "@/components";
 
 defineOptions({
   name: CONSTANTS.ComponentName.OAUTH2_APPLICATION,
@@ -56,51 +52,51 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthoriz
     CONSTANTS.ComponentName.OAUTH2_APPLICATION,
   );
 
-const rowKey: OAuth2ApplicationProps = 'applicationId';
+const rowKey: OAuth2ApplicationProps = "applicationId";
 
 const columns: QTableColumnProps = [
-  { name: 'applicationName', field: 'applicationName', align: 'center', label: '应用名称' },
-  { name: 'abbreviation', field: 'abbreviation', align: 'center', label: '应用简称' },
+  { name: "applicationName", field: "applicationName", align: "center", label: "应用名称" },
+  { name: "abbreviation", field: "abbreviation", align: "center", label: "应用简称" },
   {
-    name: 'authorizationGrantTypes',
-    field: 'authorizationGrantTypes',
-    align: 'center',
-    label: '认证模式',
+    name: "authorizationGrantTypes",
+    field: "authorizationGrantTypes",
+    align: "center",
+    label: "认证模式",
   },
   {
-    name: 'accessTokenTimeToLive',
-    field: 'accessTokenTimeToLive',
-    align: 'center',
-    label: '令牌有效期',
+    name: "accessTokenTimeToLive",
+    field: "accessTokenTimeToLive",
+    align: "center",
+    label: "令牌有效期",
     format: (value) => formatDuration(value),
   },
   {
-    name: 'refreshTokenTimeToLive',
-    field: 'refreshTokenTimeToLive',
-    align: 'center',
-    label: '刷新令牌有效期',
+    name: "refreshTokenTimeToLive",
+    field: "refreshTokenTimeToLive",
+    align: "center",
+    label: "刷新令牌有效期",
     format: (value) => formatDuration(value),
   },
   {
-    name: 'authorizationCodeTimeToLive',
-    field: 'authorizationCodeTimeToLive',
-    align: 'center',
-    label: '授权码有效期',
+    name: "authorizationCodeTimeToLive",
+    field: "authorizationCodeTimeToLive",
+    align: "center",
+    label: "授权码有效期",
     format: (value) => formatDuration(value),
   },
   {
-    name: 'deviceCodeTimeToLive',
-    field: 'deviceCodeTimeToLive',
-    align: 'center',
-    label: '激活码有效期',
+    name: "deviceCodeTimeToLive",
+    field: "deviceCodeTimeToLive",
+    align: "center",
+    label: "激活码有效期",
     format: (value) => formatDuration(value),
   },
-  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-  { name: 'status', field: 'status', align: 'center', label: '状态' },
-  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+  { name: "status", field: "status", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
 ];
 
 const formatDuration = (date: string): string => {
-  return moment.duration(date, 'seconds').humanize();
+  return moment.duration(date, "seconds").humanize();
 };
 </script>

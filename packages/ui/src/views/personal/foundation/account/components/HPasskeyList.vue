@@ -21,27 +21,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, onMounted, computed, ref } from 'vue';
+import { defineComponent, watch, onMounted, computed, ref } from "vue";
 
 import type {
   OAuth2CredentialRecordEntity,
   OAuth2CredentialRecordConditions,
   OAuth2CredentialRecordProps,
-  QTableColumnProps,
-  HttpResult,
-} from '@/composables/declarations';
+} from "@herodotus/api";
+import type { QTableColumnProps, HttpResult } from "@/composables/declarations";
 
-import { CONSTANTS, API } from '@/configurations';
-import { moment, toast, notify } from '@herodotus/core';
-import { useTable } from '@/composables/hooks';
-import { useAuthenticationStore, SecurityApiResources, usePasskey } from '@herodotus/framework';
+import { CONSTANTS, API } from "@/configurations";
+import { moment, toast, notify } from "@herodotus/core";
+import { useTable } from "@/composables/hooks";
+import { useAuthenticationStore, SecurityApiResources, usePasskey } from "@herodotus/framework";
 
-import { HDeleteButton } from '@/components';
+import { HDeleteButton } from "@/components";
 
-import HPasskeyRegisterDialog from './HPasskeyRegisterDialog.vue';
+import HPasskeyRegisterDialog from "./HPasskeyRegisterDialog.vue";
 
 export default defineComponent({
-  name: 'HPasskeyList',
+  name: "HPasskeyList",
 
   components: {
     HDeleteButton,
@@ -57,31 +56,31 @@ export default defineComponent({
     >(API.core.oauth2CredentialRecord(), CONSTANTS.ComponentName.OAUTH2_CREDENTIAL_RECORD, true);
     const { isSupported } = usePasskey();
 
-    const rowKey: OAuth2CredentialRecordProps = 'credentialId';
+    const rowKey: OAuth2CredentialRecordProps = "credentialId";
 
     const columns: QTableColumnProps = [
       {
-        name: 'index',
-        label: '序号',
-        field: 'index',
+        name: "index",
+        label: "序号",
+        field: "index",
       },
-      { name: 'label', field: 'label', align: 'center', label: '标签' },
+      { name: "label", field: "label", align: "center", label: "标签" },
       {
-        name: 'created',
-        field: 'created',
-        align: 'center',
-        label: '创建时间',
-        format: (value) => (value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : ''),
+        name: "created",
+        field: "created",
+        align: "center",
+        label: "创建时间",
+        format: (value) => (value ? moment(value).format("YYYY-MM-DD HH:mm:ss") : ""),
       },
       {
-        name: 'lastUsed',
-        field: 'lastUsed',
-        align: 'center',
-        label: '更新时间',
-        format: (value) => (value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : ''),
+        name: "lastUsed",
+        field: "lastUsed",
+        align: "center",
+        label: "更新时间",
+        format: (value) => (value ? moment(value).format("YYYY-MM-DD HH:mm:ss") : ""),
       },
-      { name: 'signatureCount', field: 'signatureCount', align: 'center', label: '签名数量' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+      { name: "signatureCount", field: "signatureCount", align: "center", label: "签名数量" },
+      { name: "actions", field: "actions", align: "center", label: "操作" },
     ];
 
     const openDialog = ref(false);
@@ -101,7 +100,7 @@ export default defineComponent({
             if (result.message) {
               toast.success(result.message);
             } else {
-              toast.success('删除成功');
+              toast.success("删除成功");
               fetchItems();
             }
           })
@@ -109,7 +108,7 @@ export default defineComponent({
             if (error.message) {
               toast.error(error.message);
             } else {
-              toast.error('删除失败');
+              toast.error("删除失败");
             }
           });
       });

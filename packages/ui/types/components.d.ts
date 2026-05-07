@@ -62,6 +62,7 @@ declare module 'vue' {
     HDuration: typeof import('@herodotus-cloud/components')['HDuration']
     HEditButton: typeof import('./../src/components/library/HTable/HEditButton.vue')['default']
     HErrorLayout: typeof import('./../src/components/layouts/forms/HErrorLayout.vue')['default']
+    HFieldLabel: typeof import('@herodotus-cloud/components')['HFieldLabel']
     HFormSkeleton: typeof import('./../src/components/library/HSkeleton/HFormSkeleton.vue')['default']
     HFullWidthFormLayout: typeof import('./../src/components/layouts/forms/HFullWidthFormLayout.vue')['default']
     HGrantTypeColumn: typeof import('./../src/components/library/HTable/HGrantTypeColumn.vue')['default']

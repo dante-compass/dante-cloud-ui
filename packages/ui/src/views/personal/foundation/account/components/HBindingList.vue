@@ -31,24 +31,20 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  AccessSourceEntity,
-  AccessSourceConditions,
-  AccessSourceProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import type { AccessSourceEntity, AccessSourceConditions, AccessSourceProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from '@/configurations';
-import { useTable, useImage } from '@/composables/hooks';
-import { useAuthenticationStore } from '@herodotus/framework';
-import { moment } from '@herodotus/core';
+import { CONSTANTS, API } from "@/configurations";
+import { useTable, useImage } from "@/composables/hooks";
+import { useAuthenticationStore } from "@herodotus/framework";
+import { moment } from "@herodotus/core";
 
-import HBindingButton from './HBindingButton.vue';
-import HBindingDetailColumn from './HBindingDetailColumn.vue';
-import HBindingStatusColumn from './HBindingStatusColumn.vue';
+import HBindingButton from "./HBindingButton.vue";
+import HBindingDetailColumn from "./HBindingDetailColumn.vue";
+import HBindingStatusColumn from "./HBindingStatusColumn.vue";
 
 defineOptions({
-  name: 'HBindingList',
+  name: "HBindingList",
   components: {
     HBindingButton,
     HBindingDetailColumn,
@@ -65,26 +61,26 @@ const { tableRows, pagination, loading, findItems, conditions } = useTable<Acces
 );
 const { getSocialLogo } = useImage();
 
-const rowKey: AccessSourceProps = 'id';
+const rowKey: AccessSourceProps = "id";
 
 const columns: QTableColumnProps = [
   {
-    name: 'index',
-    label: '序号',
-    field: 'index',
+    name: "index",
+    label: "序号",
+    field: "index",
   },
-  { name: 'source', field: 'source', align: 'center', label: 'Logo' },
-  { name: 'description', field: 'description', align: 'center', label: '绑定账号' },
-  { name: 'detail', field: 'detail', align: 'center', label: '详情' },
+  { name: "source", field: "source", align: "center", label: "Logo" },
+  { name: "description", field: "description", align: "center", label: "绑定账号" },
+  { name: "detail", field: "detail", align: "center", label: "详情" },
   {
-    name: 'bindingTime',
-    field: 'bindingTime',
-    align: 'center',
-    label: '绑定时间',
-    format: (value) => (value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : ''),
+    name: "bindingTime",
+    field: "bindingTime",
+    align: "center",
+    label: "绑定时间",
+    format: (value) => (value ? moment(value).format("YYYY-MM-DD HH:mm:ss") : ""),
   },
-  { name: 'bound', field: 'bound', align: 'center', label: '状态' },
-  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+  { name: "bound", field: "bound", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
 ];
 
 onMounted(() => {

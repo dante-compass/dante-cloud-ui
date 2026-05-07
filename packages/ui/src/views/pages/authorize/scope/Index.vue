@@ -32,22 +32,16 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import type { OAuth2ApplicationConditions, OAuth2ScopeEntity, OAuth2ScopeProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type {
-  OAuth2ApplicationConditions,
-  OAuth2ScopeEntity,
-  OAuth2ScopeProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import { CONSTANTS, API } from "@/configurations";
+import { useTable } from "@/composables/hooks";
 
-import { CONSTANTS, API } from '@/configurations';
-import { useTable } from '@/composables/hooks';
+import { HDenseIconButton, HDeleteButton, HEditButton, HTable } from "@/components";
 
-import { HDenseIconButton, HDeleteButton, HEditButton, HTable } from '@/components';
-
-export default defineComponent({
+defineOptions({
   name: CONSTANTS.ComponentName.OAUTH2_SCOPE,
 
   components: {
@@ -56,40 +50,23 @@ export default defineComponent({
     HEditButton,
     HTable,
   },
-
-  setup() {
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-      useTable<OAuth2ApplicationConditions, OAuth2ScopeEntity>(
-        API.core.oauth2Scope(),
-        CONSTANTS.ComponentName.OAUTH2_SCOPE,
-      );
-
-    const selected = ref([]);
-    const rowKey: OAuth2ScopeProps = 'scopeId';
-
-    const columns: QTableColumnProps = [
-      { name: 'scopeCode', field: 'scopeCode', align: 'center', label: '范围代码' },
-      { name: 'scopeName', field: 'scopeName', align: 'center', label: '范围名称' },
-      { name: 'description', field: 'description', align: 'center', label: '说明' },
-      { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-      { name: 'status', field: 'status', align: 'center', label: '状态' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    return {
-      rowKey,
-      selected,
-      pagination,
-      columns,
-      tableRows,
-      totalPages,
-      loading,
-      toCreate,
-      toEdit,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-    };
-  },
 });
+
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+  useTable<OAuth2ApplicationConditions, OAuth2ScopeEntity>(
+    API.core.oauth2Scope(),
+    CONSTANTS.ComponentName.OAUTH2_SCOPE,
+  );
+
+const selected = ref([]);
+const rowKey: OAuth2ScopeProps = "scopeId";
+
+const columns: QTableColumnProps = [
+  { name: "scopeCode", field: "scopeCode", align: "center", label: "范围代码" },
+  { name: "scopeName", field: "scopeName", align: "center", label: "范围名称" },
+  { name: "description", field: "description", align: "center", label: "说明" },
+  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+  { name: "status", field: "status", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 </script>

@@ -19,21 +19,20 @@
 </template>
 
 <script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, computed, watch, ref, onMounted } from 'vue';
-import type { SysDepartmentEntity } from '@/composables/declarations';
-import { API } from '@/configurations';
+import type { SysDepartmentEntity } from "@herodotus/api";
+
+import { API } from "@/configurations";
 
 export default defineComponent({
-  name: 'HOrganizationSelect',
+  name: "HOrganizationSelect",
 
   props: {
     modelValue: { type: [Number, String] },
-    organizationId: { type: String, default: '' },
+    organizationId: { type: String, default: "" },
     errorMessage: { type: String },
   },
 
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
 
   setup(props, { emit }) {
     const departments = ref([]) as Ref<Array<SysDepartmentEntity>>;
@@ -41,7 +40,7 @@ export default defineComponent({
     const selectedValue = computed({
       get: () => props.modelValue,
       set: (newValue) => {
-        emit('update:modelValue', newValue);
+        emit("update:modelValue", newValue);
       },
     });
 

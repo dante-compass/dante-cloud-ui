@@ -13,35 +13,31 @@
 </template>
 
 <script lang="ts">
-import type {
-  CreateMultipartUploadBusiness,
-  SimpleUploader,
-  SimpleUploaderFile,
-  SimpleUploaderChunk,
-} from '@/composables/declarations';
-import { API } from '@/configurations';
-import { getSystemHeaders } from '@herodotus/framework';
+import type { CreateMultipartUploadBusiness } from "@herodotus/api";
+import type { SimpleUploader, SimpleUploaderFile, SimpleUploaderChunk } from "@/composables/declarations";
+import { API } from "@/configurations";
+import { getSystemHeaders } from "@herodotus/framework";
 
 export default defineComponent({
-  name: 'HChunkUploader',
+  name: "HChunkUploader",
 
   props: {
     modelValue: { type: String, required: true },
     open: { type: Boolean },
   },
 
-  emits: ['update:modelValue', 'update:open'],
+  emits: ["update:modelValue", "update:open"],
 
   setup(props, { emit }) {
     const bucketName = computed({
       get: () => props.modelValue,
       set: (newValue) => {
-        emit('update:modelValue', newValue);
+        emit("update:modelValue", newValue);
       },
     });
 
     const uploaderRef = ref(null) as Ref<SimpleUploader>;
-    const uploadId = ref('');
+    const uploadId = ref("");
     const uploadIds = new Map();
 
     const options = {
@@ -49,10 +45,10 @@ export default defineComponent({
       // 当前块 Uploader.Chunk 以及是否是测试模式，默认值为 '/'
       target: (file: SimpleUploaderFile, chunk: SimpleUploaderChunk, mode: any) => {
         // 分块上传前每次都会进入到该方法
-        console.log('进入到target');
-        console.log('文件名：' + file.name);
-        console.log('当前分块序号' + chunk.offset);
-        console.log('获取到分块上传URL：');
+        console.log("进入到target");
+        console.log("文件名：" + file.name);
+        console.log("当前分块序号" + chunk.offset);
+        console.log("获取到分块上传URL：");
         // 键值 用于获取分块链接URL
         const key = chunk.offset;
         return file.chunkUrlData[key];
@@ -71,10 +67,10 @@ export default defineComponent({
         const data = { partNumber: chunk.offset + 1 };
         return data;
       },
-      uploadMethod: 'PUT',
+      uploadMethod: "PUT",
       // 当上传的时候所使用的是方式，可选 multipart、octet，默认 multipart，参考 multipart vs octet。
       // MiniO 的分片不能使用表单
-      method: 'octet',
+      method: "octet",
       //  处理请求参数，默认 function (params) {return params}，一般用于修改参数名字或者删除参数。0.5.2版本后，
       processParams: (params: any) => {
         return {};
@@ -82,19 +78,19 @@ export default defineComponent({
       headers: { ...getSystemHeaders() },
     };
     const attrs = {
-      accept: 'image/*',
+      accept: "image/*",
     };
     const statusText = {
-      success: '成功',
-      error: '出错',
-      uploading: '上传中',
-      paused: '暂停',
-      waiting: '等待',
+      success: "成功",
+      error: "出错",
+      uploading: "上传中",
+      paused: "暂停",
+      waiting: "等待",
     };
 
     const getChunkUploadUrl = async (file: SimpleUploaderFile) => {
-      console.log('---current-file---', file);
-      console.log('获取分块上传链接');
+      console.log("---current-file---", file);
+      console.log("获取分块上传链接");
       // 文件名
       const fileName = file.name;
       // 分片数
@@ -109,7 +105,7 @@ export default defineComponent({
 
       const data = result.data as CreateMultipartUploadBusiness;
       file.chunkUrlData = data.uploadUrls;
-      console.log('---', data);
+      console.log("---", data);
       uploadId.value = data.uploadId;
     };
 
@@ -137,25 +133,25 @@ export default defineComponent({
         .catch(function (error) {
           console.log(error);
         });
-      console.log('合并完成');
+      console.log("合并完成");
     };
 
     const onFileAdded = (file: SimpleUploaderFile) => {
-      console.log('文件被添加：' + file.name);
+      console.log("文件被添加：" + file.name);
       // 计算MD5
       // this.computeMD5(file, this.options.chunkSize);
       getChunkUploadUrl(file);
-      console.log('文件被添加查看是否获取到分块URL');
+      console.log("文件被添加查看是否获取到分块URL");
     };
 
     // 上传完毕
     const complete = () => {
-      console.log('complete');
+      console.log("complete");
     };
 
     // 根下的单个文件（文件夹）上传完成
     const fileComplete = (rootFile: SimpleUploaderFile) => {
-      console.log('根下的单个文件（文件夹）上传完成');
+      console.log("根下的单个文件（文件夹）上传完成");
     };
 
     return {

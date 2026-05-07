@@ -48,22 +48,16 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import type { SysOrganizationEntity, SysOrganizationConditions, SysOrganizationProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type {
-  SysOrganizationEntity,
-  SysOrganizationConditions,
-  SysOrganizationProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import { CONSTANTS, API } from "@/configurations";
+import { useTable } from "@/composables/hooks";
 
-import { CONSTANTS, API } from '@/configurations';
-import { useTable } from '@/composables/hooks';
+import { HDeleteButton, HEditButton, HTable, HDictionarySelect } from "@/components";
 
-import { HDeleteButton, HEditButton, HTable, HDictionarySelect } from '@/components';
-
-export default defineComponent({
+defineOptions({
   name: CONSTANTS.ComponentName.SYS_ORGANIZATION,
 
   components: {
@@ -72,43 +66,25 @@ export default defineComponent({
     HEditButton,
     HTable,
   },
-
-  setup() {
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
-      useTable<SysOrganizationConditions, SysOrganizationEntity>(
-        API.core.sysOrganization(),
-        CONSTANTS.ComponentName.SYS_ORGANIZATION,
-      );
-
-    const selected = ref([]);
-    const rowKey: SysOrganizationProps = 'organizationId';
-    const categroy = ref('');
-
-    const columns: QTableColumnProps = [
-      { name: 'organizationName', field: 'organizationName', align: 'center', label: '单位名称' },
-      { name: 'shortName', field: 'shortName', align: 'center', label: '单位简称' },
-      { name: 'partitionCode', field: 'partitionCode', align: 'center', label: '分区代码' },
-      { name: 'description', field: 'description', align: 'center', label: '备注' },
-      { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-      { name: 'status', field: 'status', align: 'center', label: '状态' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    return {
-      rowKey,
-      selected,
-      pagination,
-      columns,
-      tableRows,
-      totalPages,
-      loading,
-      toCreate,
-      toEdit,
-      findItems,
-      deleteItemById,
-      categroy,
-      conditions,
-    };
-  },
 });
+
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
+  useTable<SysOrganizationConditions, SysOrganizationEntity>(
+    API.core.sysOrganization(),
+    CONSTANTS.ComponentName.SYS_ORGANIZATION,
+  );
+
+const selected = ref([]);
+const rowKey: SysOrganizationProps = "organizationId";
+const categroy = ref("");
+
+const columns: QTableColumnProps = [
+  { name: "organizationName", field: "organizationName", align: "center", label: "单位名称" },
+  { name: "shortName", field: "shortName", align: "center", label: "单位简称" },
+  { name: "partitionCode", field: "partitionCode", align: "center", label: "分区代码" },
+  { name: "description", field: "description", align: "center", label: "备注" },
+  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+  { name: "status", field: "status", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 </script>

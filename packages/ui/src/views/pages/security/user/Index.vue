@@ -54,20 +54,19 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import type { SysUserEntity, SysUserConditions, SysUserProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type { SysUserEntity, SysUserConditions, SysUserProps, QTableColumnProps } from '@/composables/declarations';
+import { CONSTANTS, API } from "@/configurations";
 
-import { CONSTANTS, API } from '@/configurations';
+import { useAuthenticationStore } from "@herodotus/framework";
+import { useTable } from "@/composables/hooks";
 
-import { useAuthenticationStore } from '@herodotus/framework';
-import { useTable } from '@/composables/hooks';
+import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/components";
+import { HChangePassword, HSendMessageToUser } from "./components";
 
-import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from '@/components';
-import { HChangePassword, HSendMessageToUser } from './components';
-
-export default defineComponent({
+defineOptions({
   name: CONSTANTS.ComponentName.SYS_USER,
 
   components: {
@@ -78,67 +77,42 @@ export default defineComponent({
     HTable,
     HSendMessageToUser,
   },
-
-  setup() {
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-      useTable<SysUserConditions, SysUserEntity>(API.core.sysUser(), CONSTANTS.ComponentName.SYS_USER);
-
-    const selected = ref([]);
-    const rowKey: SysUserProps = 'userId';
-    const showChangePasswordDialog = ref(false);
-    const showSendMessageToUserDialog = ref(false);
-    const currentUserId = ref('');
-    const currentUsername = ref('');
-    const currentUserAvatar = ref('');
-    const store = useAuthenticationStore();
-
-    const columns: QTableColumnProps = [
-      { name: 'username', field: 'username', align: 'center', label: '用户名' },
-      { name: 'nickname', field: 'nickname', align: 'center', label: '昵称' },
-      { name: 'description', field: 'description', align: 'center', label: '备注' },
-      { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-      { name: 'status', field: 'status', align: 'center', label: '状态' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    const onChangePassword = (item: SysUserEntity) => {
-      showChangePasswordDialog.value = true;
-      currentUserId.value = item.userId;
-    };
-
-    const onSendMessageToUser = (item: SysUserEntity) => {
-      showSendMessageToUserDialog.value = true;
-      currentUserId.value = item.userId;
-      currentUsername.value = item.username;
-      currentUserAvatar.value = item.avatar as string;
-    };
-
-    const showMessageAction = (item: SysUserEntity) => {
-      return item.userId !== store.userId;
-    };
-
-    return {
-      rowKey,
-      selected,
-      pagination,
-      columns,
-      tableRows,
-      totalPages,
-      loading,
-      toCreate,
-      toEdit,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-      showChangePasswordDialog,
-      showSendMessageToUserDialog,
-      showMessageAction,
-      currentUserId,
-      currentUsername,
-      currentUserAvatar,
-      onChangePassword,
-      onSendMessageToUser,
-    };
-  },
 });
+
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+  useTable<SysUserConditions, SysUserEntity>(API.core.sysUser(), CONSTANTS.ComponentName.SYS_USER);
+
+const selected = ref([]);
+const rowKey: SysUserProps = "userId";
+const showChangePasswordDialog = ref(false);
+const showSendMessageToUserDialog = ref(false);
+const currentUserId = ref("");
+const currentUsername = ref("");
+const currentUserAvatar = ref("");
+const store = useAuthenticationStore();
+
+const columns: QTableColumnProps = [
+  { name: "username", field: "username", align: "center", label: "用户名" },
+  { name: "nickname", field: "nickname", align: "center", label: "昵称" },
+  { name: "description", field: "description", align: "center", label: "备注" },
+  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+  { name: "status", field: "status", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
+
+const onChangePassword = (item: SysUserEntity) => {
+  showChangePasswordDialog.value = true;
+  currentUserId.value = item.userId;
+};
+
+const onSendMessageToUser = (item: SysUserEntity) => {
+  showSendMessageToUserDialog.value = true;
+  currentUserId.value = item.userId;
+  currentUsername.value = item.username;
+  currentUserAvatar.value = item.avatar as string;
+};
+
+const showMessageAction = (item: SysUserEntity) => {
+  return item.userId !== store.userId;
+};
 </script>

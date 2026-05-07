@@ -44,25 +44,22 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent, computed } from 'vue';
-
-import type { SysDictionaryConditions } from '@/composables/declarations';
+import type { SysDictionaryConditions } from "@herodotus/api";
 
 export default defineComponent({
-  name: 'HElementCondition',
+  name: "HElementCondition",
 
   props: {
     conditions: { type: Object as PropType<SysDictionaryConditions>, required: true },
   },
 
-  emits: ['update:conditions'],
+  emits: ["update:conditions"],
 
   setup(props, { emit }) {
     const conditionsModelValue = computed({
       get: () => props.conditions,
       set: (newValue) => {
-        emit('update:conditions', newValue);
+        emit("update:conditions", newValue);
       },
     });
 
