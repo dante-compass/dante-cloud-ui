@@ -1,5 +1,32 @@
 # @herodotus-cloud/form-engine
 
+## 4.6.2
+
+### Patch Changes
+
+- 版本发布
+- Updated dependencies
+  - @herodotus-cloud/form-apis@4.6.2
+
+## 4.6.1
+
+### Patch Changes
+
+- 升级 Vite 版本
+- Updated dependencies
+  - @herodotus-cloud/form-apis@4.6.1
+
+## 4.6.0
+
+### Minor Changes
+
+- 升级 Vue 版本
+
+### Patch Changes
+
+- Updated dependencies
+  - @herodotus-cloud/form-apis@4.6.0
+
 ## 4.5.1
 
 ### Patch Changes

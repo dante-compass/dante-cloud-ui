@@ -71,23 +71,17 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import type { SysElementEntity, SysElementConditions, SysElementProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type {
-  SysElementEntity,
-  SysElementConditions,
-  SysElementProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import { useTable } from "@/composables/hooks";
+import { CONSTANTS, API } from "@/configurations";
 
-import { useTable } from '@/composables/hooks';
-import { CONSTANTS, API } from '@/configurations';
+import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } from "@/components";
+import HElementCondition from "./Search.vue";
 
-import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } from '@/components';
-import HElementCondition from './Search.vue';
-
-export default defineComponent({
+defineOptions({
   name: CONSTANTS.ComponentName.SYS_ELEMENT,
 
   components: {
@@ -98,62 +92,44 @@ export default defineComponent({
     HEditButton,
     HTable,
   },
-
-  setup() {
-    const {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      toEdit,
-      toCreate,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-      conditions,
-    } = useTable<SysElementConditions, SysElementEntity>(
-      API.core.sysElement(),
-      CONSTANTS.ComponentName.SYS_ELEMENT,
-      false,
-      {
-        direction: 'ASC',
-        properties: ['path'],
-      },
-    );
-
-    const selected = ref([]);
-    const rowKey: SysElementProps = 'elementId';
-
-    const columns: QTableColumnProps = [
-      { name: 'title', field: 'title', align: 'center', label: '标题' },
-      { name: 'name', field: 'name', align: 'center', label: '组件名称' },
-      { name: 'path', field: 'path', align: 'center', label: '请求路径' },
-      { name: 'icon', field: 'icon', align: 'center', label: '图标' },
-      { name: 'isHaveChild', field: 'isHaveChild', align: 'center', label: '有子节点' },
-      { name: 'isHideAllChild', field: 'isHideAllChild', align: 'center', label: '隐藏下级节点' },
-      { name: 'isDetailContent', field: 'isDetailContent', align: 'center', label: '三级路由' },
-      { name: 'isNotKeepAlive', field: 'isNotKeepAlive', align: 'center', label: '不缓存' },
-      { name: 'isIgnoreAuth', field: 'isIgnoreAuth', align: 'center', label: '忽略认证' },
-      { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-      { name: 'status', field: 'status', align: 'center', label: '状态' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    return {
-      rowKey,
-      selected,
-      pagination,
-      columns,
-      tableRows,
-      totalPages,
-      loading,
-      toCreate,
-      toEdit,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-      conditions,
-    };
-  },
 });
+
+const {
+  tableRows,
+  totalPages,
+  pagination,
+  loading,
+  toEdit,
+  toCreate,
+  toAuthorize,
+  findItems,
+  deleteItemById,
+  conditions,
+} = useTable<SysElementConditions, SysElementEntity>(
+  API.core.sysElement(),
+  CONSTANTS.ComponentName.SYS_ELEMENT,
+  false,
+  {
+    direction: "ASC",
+    properties: ["path"],
+  },
+);
+
+const selected = ref([]);
+const rowKey: SysElementProps = "elementId";
+
+const columns: QTableColumnProps = [
+  { name: "title", field: "title", align: "center", label: "标题" },
+  { name: "name", field: "name", align: "center", label: "组件名称" },
+  { name: "path", field: "path", align: "center", label: "请求路径" },
+  { name: "icon", field: "icon", align: "center", label: "图标" },
+  { name: "isHaveChild", field: "isHaveChild", align: "center", label: "有子节点" },
+  { name: "isHideAllChild", field: "isHideAllChild", align: "center", label: "隐藏下级节点" },
+  { name: "isDetailContent", field: "isDetailContent", align: "center", label: "三级路由" },
+  { name: "isNotKeepAlive", field: "isNotKeepAlive", align: "center", label: "不缓存" },
+  { name: "isIgnoreAuth", field: "isIgnoreAuth", align: "center", label: "忽略认证" },
+  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+  { name: "status", field: "status", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 </script>

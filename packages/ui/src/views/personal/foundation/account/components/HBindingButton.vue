@@ -23,15 +23,15 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent } from 'vue';
+import type { PropType } from "vue";
+import { defineComponent } from "vue";
 
-import { useSettingsStore } from '@herodotus/framework';
+import { useSettingsStore } from "@herodotus/framework";
 
-import type { AccessSourceEntity } from '@/composables/declarations';
+import type { AccessSourceEntity } from "@herodotus/api";
 
 export default defineComponent({
-  name: 'HBindingStatusColumn',
+  name: "HBindingStatusColumn",
 
   props: {
     item: { type: Object as PropType<AccessSourceEntity>, required: true },

@@ -25,69 +25,46 @@
   </h-authorize-layout>
 </template>
 
-<script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, ref, onMounted } from 'vue';
+<script setup lang="ts">
+import type { SysRoleEntity, SysElementEntity, SysRoleConditions, SysRoleProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type {
-  SysRoleEntity,
-  SysElementEntity,
-  SysRoleConditions,
-  SysRoleProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import { CONSTANTS, API } from "@/configurations";
+import { useTableItem, useTable } from "@/composables/hooks";
 
-import { CONSTANTS, API } from '@/configurations';
+import { HAuthorizeList, HAuthorizeLayout } from "@/components";
 
-import { useTableItem, useTable } from '@/composables/hooks';
-
-import { HAuthorizeList, HAuthorizeLayout } from '@/components';
-
-export default defineComponent({
-  name: 'SysElementAuthorize',
+defineOptions({
+  name: "SysElementAuthorize",
 
   components: {
     HAuthorizeList,
     HAuthorizeLayout,
   },
-
-  setup(props) {
-    const { editedItem, title, assign, overlay } = useTableItem<SysElementEntity>(API.core.sysElement());
-    const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEntity>(
-      API.core.sysRole(),
-      CONSTANTS.ComponentName.SYS_ROLE,
-      true,
-    );
-
-    const selectedItems = ref([]) as Ref<Array<SysRoleEntity>>;
-    const rowKey: SysRoleProps = 'roleId';
-
-    const columns: QTableColumnProps = [
-      { name: 'roleName', field: 'roleName', align: 'center', label: '角色名称' },
-      { name: 'roleCode', field: 'roleCode', align: 'center', label: '角色代码' },
-    ];
-
-    onMounted(() => {
-      selectedItems.value = editedItem.value.roles;
-    });
-
-    const onSave = () => {
-      let elementId = editedItem.value.elementId;
-      let roles = selectedItems.value.map((item) => item[rowKey]);
-      assign({ elementId: elementId, roles: roles });
-    };
-
-    return {
-      title,
-      overlay,
-      tableRows,
-      columns,
-      rowKey,
-      selectedItems,
-      pagination,
-      loading,
-      onSave,
-    };
-  },
 });
+
+const { editedItem, title, assign, overlay } = useTableItem<SysElementEntity>(API.core.sysElement());
+const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEntity>(
+  API.core.sysRole(),
+  CONSTANTS.ComponentName.SYS_ROLE,
+  true,
+);
+
+const selectedItems = ref([]) as Ref<Array<SysRoleEntity>>;
+const rowKey: SysRoleProps = "roleId";
+
+const columns: QTableColumnProps = [
+  { name: "roleName", field: "roleName", align: "center", label: "角色名称" },
+  { name: "roleCode", field: "roleCode", align: "center", label: "角色代码" },
+];
+
+onMounted(() => {
+  selectedItems.value = editedItem.value.roles;
+});
+
+const onSave = () => {
+  let elementId = editedItem.value.elementId;
+  let roles = selectedItems.value.map((item) => item[rowKey]);
+  assign({ elementId: elementId, roles: roles });
+};
 </script>

@@ -1,3 +1,11 @@
 packages:
   - 'packages/**'
   - 'shared/**'
+
+allowBuilds:
+  '@carbon/icons': false
+  '@parcel/watcher': false
+  '@tsparticles/engine': false
+  core-js: false
+  esbuild: false
+  vue-demi: false

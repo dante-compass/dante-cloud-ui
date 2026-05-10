@@ -25,7 +25,7 @@ import { API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout, HFullWidthFormLayout } from "@/components";
 import { HDictionarySelect } from "@/components";
-import { HFunctionTable } from "@/composables/iot";
+import { HFunctionTable } from "../components";
 
 defineOptions({
   name: "IotProductInfo",
@@ -40,5 +40,5 @@ defineOptions({
 const splitterModel = shallowRef(5);
 const tabs = shallowRef();
 
-const { editedItem, operation, title } = useTableItem<ProductEntity>(API.iot.product());
+const { editedItem, operation, title } = useTableItem<ProductEntity>(API.core.iotProduct());
 </script>

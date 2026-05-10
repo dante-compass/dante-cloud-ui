@@ -19,16 +19,16 @@
 </template>
 
 <script setup lang="ts">
-import type { SysPermissionEntity } from '@herodotus/api';
+import type { SysPermissionEntity } from "@herodotus/api";
 
-import { required, helpers } from '@vuelidate/validators';
-import useVuelidate from '@vuelidate/core';
+import { required, helpers } from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
 
-import { API } from '@/configurations';
-import { useTableItem } from '@/composables/hooks';
-import { HCenterFormLayout } from '@/components';
+import { API } from "@/configurations";
+import { useTableItem } from "@/composables/hooks";
+import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: 'SysPermissionContent' });
+defineOptions({ name: "SysPermissionContent" });
 
 const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysPermissionEntity>(
   API.core.sysPermission(),
@@ -37,7 +37,7 @@ const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<Sys
 const rules = {
   editedItem: {
     permissionName: {
-      required: helpers.withMessage('权限名称不能为空', required),
+      required: helpers.withMessage("权限名称不能为空", required),
     },
   },
 };

@@ -13,81 +13,67 @@
   </h-center-form-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import useVuelidate from '@vuelidate/core';
-import { required, helpers } from '@vuelidate/validators';
+<script setup lang="ts">
+import type { SysUserEntity } from "@herodotus/api";
 
-import type { SysUserEntity } from '@/composables/declarations';
-import { API } from '@/configurations';
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 
-import { useTableItem } from '@/composables/hooks';
-import { HCenterFormLayout } from '@/components';
+import { API } from "@/configurations";
 
-export default defineComponent({
-  name: 'SysUserContent',
+import { useTableItem } from "@/composables/hooks";
+import { HCenterFormLayout } from "@/components";
 
-  components: {
-    HCenterFormLayout,
-  },
+defineOptions({ name: "SysUserContent", components: { HCenterFormLayout } });
 
-  setup(props) {
-    const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysUserEntity>(API.core.sysUser());
+const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysUserEntity>(API.core.sysUser());
 
-    const isUnique = () => {
-      let username = editedItem.value.username;
+const isUnique = () => {
+  let username = editedItem.value.username;
 
-      return new Promise((resolve, reject) => {
-        if (username) {
-          API.core
-            .sysUser()
-            .fetchByUsername(username)
-            .then((result) => {
-              let user = result.data as SysUserEntity;
-              // 如果能够查询到username
-              // 如果该username 对应的 userId 与当前 editedItem中的userId相同
-              // 则认为是编辑状态，而且username 没有变化，那么就校验通过。
-              // 目前能想到的解决新建空值、编辑是原值等校验问题的最优解
-              resolve(!(user && user.userId !== editedItem.value.userId));
-            });
-        } else {
-          reject(false);
-        }
-      });
-    };
-
-    const rules = {
-      editedItem: {
-        username: {
-          required: helpers.withMessage('用户名不能为空', required),
-          regex: helpers.withMessage('用户名只能包含字母，数字，下划线，减号', helpers.regex(/^[a-zA-Z0-9_-]{4,16}$/)),
-          isUnique: helpers.withMessage('用户名已存在，请使用其它名称', helpers.withAsync(isUnique)),
-        },
-      },
-    };
-
-    const v = useVuelidate(rules, { editedItem }, { $lazy: true });
-
-    const onSave = () => {
-      if (!v.value.$anyDirty) {
-        saveOrUpdate();
-      } else {
-        v.value.$validate().then((result) => {
-          if (result) {
-            saveOrUpdate();
-          }
+  return new Promise((resolve, reject) => {
+    if (username) {
+      API.core
+        .sysUser()
+        .fetchByUsername(username)
+        .then((result) => {
+          let user = result.data as SysUserEntity;
+          // 如果能够查询到username
+          // 如果该username 对应的 userId 与当前 editedItem中的userId相同
+          // 则认为是编辑状态，而且username 没有变化，那么就校验通过。
+          // 目前能想到的解决新建空值、编辑是原值等校验问题的最优解
+          resolve(!(user && user.userId !== editedItem.value.userId));
         });
-      }
-    };
+    } else {
+      reject(false);
+    }
+  });
+};
 
-    return {
-      editedItem,
-      operation,
-      title,
-      overlay,
-      v,
-      onSave,
-    };
+// 修复使用 Vuelidate 进行内容校验 v-model.lazy 会提示类型判断错误问题
+const state = computed(() => ({ editedItem: editedItem.value }));
+
+const rules = {
+  editedItem: {
+    username: {
+      required: helpers.withMessage("用户名不能为空", required),
+      regex: helpers.withMessage("用户名只能包含字母，数字，下划线，减号", helpers.regex(/^[a-zA-Z0-9_-]{4,16}$/)),
+      isUnique: helpers.withMessage("用户名已存在，请使用其它名称", helpers.withAsync(isUnique)),
+    },
   },
-});
+};
+
+const v = useVuelidate(rules, state, { $lazy: true });
+
+const onSave = () => {
+  if (!v.value.$anyDirty) {
+    saveOrUpdate();
+  } else {
+    v.value.$validate().then((result) => {
+      if (result) {
+        saveOrUpdate();
+      }
+    });
+  }
+};
 </script>

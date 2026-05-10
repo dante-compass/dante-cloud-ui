@@ -19,108 +19,80 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+<script setup lang="ts">
+import type { OAuth2AuthorizationEntity, OAuth2AuthorizationConditions } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type {
-  OAuth2AuthorizationEntity,
-  OAuth2AuthorizationConditions,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import { CONSTANTS, API } from "@/configurations";
+import { useTable } from "@/composables/hooks";
+import { moment } from "@herodotus/core";
 
-import { CONSTANTS, API } from '@/configurations';
-import { useTable } from '@/composables/hooks';
-import { moment } from '@herodotus/core';
+import { HDeleteButton, HTable } from "@/components";
 
-import { HDeleteButton, HTable } from '@/components';
-
-export default defineComponent({
+defineOptions({
   name: CONSTANTS.ComponentName.OAUTH2_TOKEN,
 
   components: {
     HDeleteButton,
     HTable,
   },
+});
 
-  setup() {
-    const { tableRows, totalPages, pagination, loading, findItems, deleteItemById } = useTable<
-      OAuth2AuthorizationConditions,
-      OAuth2AuthorizationEntity
-    >(API.core.oauth2Authorization(), CONSTANTS.ComponentName.OAUTH2_TOKEN, false, {
-      direction: 'DESC',
-      properties: ['accessTokenIssuedAt'],
-    });
+const { tableRows, totalPages, pagination, loading, findItems, deleteItemById } = useTable<
+  OAuth2AuthorizationConditions,
+  OAuth2AuthorizationEntity
+>(API.core.oauth2Authorization(), CONSTANTS.ComponentName.OAUTH2_TOKEN, false, {
+  direction: "DESC",
+  properties: ["accessTokenIssuedAt"],
+});
 
-    const selected = ref([]);
-    const rowKey = 'id' as keyof OAuth2AuthorizationEntity;
+const selected = ref([]);
+const rowKey = "id" as keyof OAuth2AuthorizationEntity;
 
-    const dateFormat = (date: string) => {
-      if (date) {
-        return moment(date).format('YYYY-MM-DD HH:mm:ss');
-      } else {
-        return '';
-      }
-    };
+const dateFormat = (date: string) => {
+  if (date) {
+    return moment(date).format("YYYY-MM-DD HH:mm:ss");
+  } else {
+    return "";
+  }
+};
 
-    const columns: QTableColumnProps = [
-      {
-        name: 'registeredClientId',
-        field: 'registeredClientId',
-        align: 'center',
-        label: '客户端ID',
-      },
-      { name: 'principalName', field: 'principalName', align: 'center', label: '用户名' },
-      {
-        name: 'authorizationGrantType',
-        field: 'authorizationGrantType',
-        align: 'center',
-        label: '认证模式',
-      },
-      {
-        name: 'accessTokenIssuedAt',
-        field: 'accessTokenIssuedAt',
-        align: 'center',
-        label: '访问Token颁发时间',
-        format: (value) => dateFormat(value),
-      },
-      {
-        name: 'accessTokenExpiresAt',
-        field: 'accessTokenExpiresAt',
-        align: 'center',
-        label: '访问Token过期时间',
-        format: (value) => dateFormat(value),
-      },
-      {
-        name: 'refreshTokenIssuedAt',
-        field: 'refreshTokenIssuedAt',
-        align: 'center',
-        label: '刷新Token颁发时间',
-        format: (value) => dateFormat(value),
-      },
-      {
-        name: 'refreshTokenExpiresAt',
-        field: 'refreshTokenExpiresAt',
-        align: 'center',
-        label: '刷新Token过期时间',
-        format: (value) => dateFormat(value),
-      },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-    onMounted(() => {
-      pagination.value.sortBy = 'accessTokenIssuedAt';
-    });
-
-    return {
-      rowKey,
-      selected,
-      pagination,
-      columns,
-      tableRows,
-      totalPages,
-      loading,
-      findItems,
-      deleteItemById,
-    };
+const columns: QTableColumnProps = [
+  { name: "registeredClientId", field: "registeredClientId", align: "center", label: "客户端ID" },
+  { name: "principalName", field: "principalName", align: "center", label: "用户名" },
+  { name: "authorizationGrantType", field: "authorizationGrantType", align: "center", label: "认证模式" },
+  {
+    name: "accessTokenIssuedAt",
+    field: "accessTokenIssuedAt",
+    align: "center",
+    label: "访问Token颁发时间",
+    format: (value) => dateFormat(value),
   },
+  {
+    name: "accessTokenExpiresAt",
+    field: "accessTokenExpiresAt",
+    align: "center",
+    label: "访问Token过期时间",
+    format: (value) => dateFormat(value),
+  },
+  {
+    name: "refreshTokenIssuedAt",
+    field: "refreshTokenIssuedAt",
+    align: "center",
+    label: "刷新Token颁发时间",
+    format: (value) => dateFormat(value),
+  },
+  {
+    name: "refreshTokenExpiresAt",
+    field: "refreshTokenExpiresAt",
+    align: "center",
+    label: "刷新Token过期时间",
+    format: (value) => dateFormat(value),
+  },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
+
+onMounted(() => {
+  pagination.value.sortBy = "accessTokenIssuedAt";
 });
 </script>

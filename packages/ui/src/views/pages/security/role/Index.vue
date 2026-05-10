@@ -33,15 +33,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import type { SysRoleEntity, SysRoleConditions, SysRoleProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type { SysRoleEntity, SysRoleConditions, SysRoleProps, QTableColumnProps } from '@/composables/declarations';
-
-import { CONSTANTS, API } from '@/configurations';
-
-import { useTable } from '@/composables/hooks';
-
-import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from '@/components';
+import { CONSTANTS, API } from "@/configurations";
+import { useTable } from "@/composables/hooks";
+import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/components";
 
 export default defineComponent({
   name: CONSTANTS.ComponentName.SYS_ROLE,
@@ -53,15 +50,15 @@ export default defineComponent({
       useTable<SysRoleConditions, SysRoleEntity>(API.core.sysRole(), CONSTANTS.ComponentName.SYS_ROLE);
 
     const selected = ref([]);
-    const rowKey: SysRoleProps = 'roleId';
+    const rowKey: SysRoleProps = "roleId";
 
     const columns: QTableColumnProps = [
-      { name: 'roleName', field: 'roleName', align: 'center', label: '角色名称' },
-      { name: 'roleCode', field: 'roleCode', align: 'center', label: '角色代码' },
-      { name: 'description', field: 'description', align: 'center', label: '备注' },
-      { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-      { name: 'status', field: 'status', align: 'center', label: '状态' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+      { name: "roleName", field: "roleName", align: "center", label: "角色名称" },
+      { name: "roleCode", field: "roleCode", align: "center", label: "角色代码" },
+      { name: "description", field: "description", align: "center", label: "备注" },
+      { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+      { name: "status", field: "status", align: "center", label: "状态" },
+      { name: "actions", field: "actions", align: "center", label: "操作" },
     ];
 
     return {

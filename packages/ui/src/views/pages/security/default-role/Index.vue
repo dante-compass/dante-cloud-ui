@@ -22,23 +22,17 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import type { SysDefaultRoleEntity, SysDefaultRoleConditions, SysDefaultRoleProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type {
-  SysDefaultRoleEntity,
-  SysDefaultRoleConditions,
-  SysDefaultRoleProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import { useTable } from "@/composables/hooks";
 
-import { useTable } from '@/composables/hooks';
+import { CONSTANTS, API } from "@/configurations";
 
-import { CONSTANTS, API } from '@/configurations';
+import { HDeleteButton, HEditButton, HTable } from "@/components";
 
-import { HDeleteButton, HEditButton, HTable } from '@/components';
-
-export default defineComponent({
+defineOptions({
   name: CONSTANTS.ComponentName.SYS_DEFAULT_ROLE,
 
   components: {
@@ -46,46 +40,29 @@ export default defineComponent({
     HEditButton,
     HTable,
   },
-
-  setup() {
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-      useTable<SysDefaultRoleConditions, SysDefaultRoleEntity>(
-        API.core.sysDefaultRole(),
-        CONSTANTS.ComponentName.SYS_DEFAULT_ROLE,
-      );
-
-    const selected = ref([]);
-    const rowKey: SysDefaultRoleProps = 'defaultId';
-
-    const columns: QTableColumnProps = [
-      { name: 'description', field: 'description', align: 'center', label: '名称' },
-      { name: 'scene', field: 'scene', align: 'center', label: '代码' },
-      {
-        name: 'role',
-        field: 'role',
-        align: 'center',
-        label: '角色代码',
-        format: (value) => `${value.roleCode}`,
-      },
-      { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-      { name: 'status', field: 'status', align: 'center', label: '状态' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    return {
-      rowKey,
-      selected,
-      pagination,
-      columns,
-      tableRows,
-      totalPages,
-      loading,
-      toCreate,
-      toEdit,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-    };
-  },
 });
+
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+  useTable<SysDefaultRoleConditions, SysDefaultRoleEntity>(
+    API.core.sysDefaultRole(),
+    CONSTANTS.ComponentName.SYS_DEFAULT_ROLE,
+  );
+
+const selected = ref([]);
+const rowKey: SysDefaultRoleProps = "defaultId";
+
+const columns: QTableColumnProps = [
+  { name: "description", field: "description", align: "center", label: "名称" },
+  { name: "scene", field: "scene", align: "center", label: "代码" },
+  {
+    name: "role",
+    field: "role",
+    align: "center",
+    label: "角色代码",
+    format: (value) => `${value.roleCode}`,
+  },
+  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+  { name: "status", field: "status", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 </script>

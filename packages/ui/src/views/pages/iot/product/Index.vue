@@ -92,7 +92,7 @@ defineOptions({
 });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toInfo, findItems, deleteItemById, conditions } =
-  useTable<ProductEntity, ProductConditions>(API.core.iotProduct(), CONSTANTS.ComponentName.IOT_PRODUCT);
+  useTable<ProductConditions, ProductEntity>(API.core.iotProduct(), CONSTANTS.ComponentName.IOT_PRODUCT);
 
 const selected = ref([]);
 const rowKey: ProductProps = "id";

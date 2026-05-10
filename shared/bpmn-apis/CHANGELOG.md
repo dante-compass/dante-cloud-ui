@@ -1,5 +1,23 @@
 # @herodotus-cloud/bpmn-apis
 
+## 4.6.2
+
+### Patch Changes
+
+- 版本发布
+
+## 4.6.1
+
+### Patch Changes
+
+- 升级 Vite 版本
+
+## 4.6.0
+
+### Minor Changes
+
+- 升级 Vue 版本
+
 ## 4.5.1
 
 ### Patch Changes

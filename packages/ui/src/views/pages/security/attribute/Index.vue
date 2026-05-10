@@ -43,25 +43,18 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, ref, onMounted } from 'vue';
+<script setup lang="ts">
+import type { Dictionary } from "@herodotus/core";
+import type { SysAttributeEntity, SysAttributeConditions, SysAttributeProps } from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import type {
-  Dictionary,
-  SysAttributeEntity,
-  SysAttributeConditions,
-  SysAttributeProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+import { CONSTANTS, API } from "@/configurations";
+import { useTable, useDictionary } from "@/composables/hooks";
+import { get } from "lodash-es";
 
-import { CONSTANTS, API } from '@/configurations';
-import { useTable, useDictionary } from '@/composables/hooks';
-import { get } from 'lodash-es';
+import { HEditButton, HTable, HSwaggerColumn } from "@/components";
 
-import { HEditButton, HTable, HSwaggerColumn } from '@/components';
-
-export default defineComponent({
+defineOptions({
   name: CONSTANTS.ComponentName.SYS_ATTRIBUTE,
 
   components: {
@@ -69,64 +62,46 @@ export default defineComponent({
     HTable,
     HSwaggerColumn,
   },
-
-  setup() {
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-      useTable<SysAttributeConditions, SysAttributeEntity>(
-        API.core.sysAttribute(),
-        CONSTANTS.ComponentName.SYS_ATTRIBUTE,
-        false,
-        {
-          direction: 'ASC',
-          properties: ['url'],
-        },
-      );
-
-    const rowKey: SysAttributeProps = 'attributeId';
-
-    const selected = ref([]);
-    const index = ref({}) as Ref<Record<string, Dictionary>>;
-
-    const columns: QTableColumnProps = [
-      { name: 'requestMethod', field: 'requestMethod', align: 'center', label: '权限接口' },
-      { name: 'attributeCode', field: 'attributeCode', align: 'center', label: '默认权限代码' },
-      { name: 'version', field: 'version', align: 'center', label: '版本控制' },
-      { name: 'webExpression', field: 'webExpression', align: 'center', label: '特定表达式' },
-      { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-      { name: 'status', field: 'status', align: 'center', label: '状态' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    const { options } = useDictionary('PermissionExpression');
-
-    onMounted(() => {
-      if (options.value) {
-        options.value.forEach((element) => {
-          index.value[element.ordinal] = element;
-        });
-      }
-    });
-
-    const getText = (key: string) => {
-      let object = index.value[key];
-      return get(object, 'text');
-    };
-
-    return {
-      rowKey,
-      selected,
-      pagination,
-      columns,
-      tableRows,
-      totalPages,
-      loading,
-      toCreate,
-      toEdit,
-      toAuthorize,
-      deleteItemById,
-      findItems,
-      getText,
-    };
-  },
 });
+
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+  useTable<SysAttributeConditions, SysAttributeEntity>(
+    API.core.sysAttribute(),
+    CONSTANTS.ComponentName.SYS_ATTRIBUTE,
+    false,
+    {
+      direction: "ASC",
+      properties: ["url"],
+    },
+  );
+
+const rowKey: SysAttributeProps = "attributeId";
+
+const selected = ref([]);
+const index = ref({}) as Ref<Record<string, Dictionary>>;
+
+const columns: QTableColumnProps = [
+  { name: "requestMethod", field: "requestMethod", align: "center", label: "权限接口" },
+  { name: "attributeCode", field: "attributeCode", align: "center", label: "默认权限代码" },
+  { name: "version", field: "version", align: "center", label: "版本控制" },
+  { name: "webExpression", field: "webExpression", align: "center", label: "特定表达式" },
+  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+  { name: "status", field: "status", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
+
+const { options } = useDictionary("PermissionExpression");
+
+onMounted(() => {
+  if (options.value) {
+    options.value.forEach((element) => {
+      index.value[element.ordinal] = element;
+    });
+  }
+});
+
+const getText = (key: string) => {
+  let object = index.value[key];
+  return get(object, "text");
+};
 </script>

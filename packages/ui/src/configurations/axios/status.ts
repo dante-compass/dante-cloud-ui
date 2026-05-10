@@ -1,12 +1,13 @@
-import type { AxiosResponse, AxiosInstance, AxiosError } from '@herodotus/core';
+import type { AxiosResponse, AxiosInstance, AxiosError } from "@herodotus/core";
 
-import { notify, parseResponseStatus } from '@herodotus/core';
-import { SignOutUtilities } from '@herodotus/framework';
+import { notify, parseResponseStatus } from "@herodotus/core";
+import { SignOutUtilities } from "@herodotus/framework";
 
-const excludedRequest = ['/open/captcha', '/oauth2/token'];
+const excludedRequest = ["/open/captcha", "/oauth2/token"];
 
 const isIncluded = (response: AxiosResponse<any>) => {
   const request = response.config.url;
+  console.log("-------", request);
   return !(request && excludedRequest.includes(request));
 };
 
@@ -32,7 +33,7 @@ const statusCode = (axiosInstance: AxiosInstance, response?: AxiosResponse<any>,
           // } else {
           //   ActionUtils.tokenExpires('认证失效!', '登录认证已过期，请重新登录！', 'warning');
           // }
-          SignOutUtilities.getInstance().tokenExpires('认证失效!', '登录认证已过期，请重新登录！', 'warning');
+          SignOutUtilities.getInstance().tokenExpires("认证失效!", "登录认证已过期，请重新登录！", "warning");
         } else if ([40103, 40106, 40105, 40111, 40112].includes(code)) {
         } else {
           notify.error(content, detail);
@@ -43,7 +44,7 @@ const statusCode = (axiosInstance: AxiosInstance, response?: AxiosResponse<any>,
         break;
       // 404请求不存在
       case 404:
-        notify.warning('请求的资源不存在，可能服务未启动！');
+        notify.warning("请求的资源不存在，可能服务未启动！");
         break;
       case 405:
         break;
@@ -63,17 +64,17 @@ const statusCode = (axiosInstance: AxiosInstance, response?: AxiosResponse<any>,
         break;
       case 500:
         if (content) {
-          if (content === 'Request failed with status code 500') {
-            SignOutUtilities.getInstance().tokenExpires('网络错误!', '后端服务无法访问或者尚未启动！', 'error');
+          if (content === "Request failed with status code 500") {
+            SignOutUtilities.getInstance().tokenExpires("网络错误!", "后端服务无法访问或者尚未启动！", "error");
           } else {
             notify.error(content, detail);
           }
         } else {
-          notify.error('系统错误，请稍后再试！或者联系管理员');
+          notify.error("系统错误，请稍后再试！或者联系管理员");
         }
         break;
       case 503:
-        notify.warning('网络抖动，请稍后再试！');
+        notify.warning("网络抖动，请稍后再试！");
         break;
       case 504:
         notify.error(content, detail);
@@ -94,16 +95,16 @@ export const processor = (axiosInstance: AxiosInstance, error: AxiosError) => {
   console.log(code);
 
   switch (code) {
-    case 'ECONNABORTED':
-      SignOutUtilities.getInstance().tokenExpires('网络错误!', '响应超时，请稍后再试！', 'error');
+    case "ECONNABORTED":
+      SignOutUtilities.getInstance().tokenExpires("网络错误!", "响应超时，请稍后再试！", "error");
       break;
-    case 'ERR_NETWORK':
-      SignOutUtilities.getInstance().tokenExpires('网络错误!', '系统响应超时，请稍后再试！', 'error', true);
+    case "ERR_NETWORK":
+      SignOutUtilities.getInstance().tokenExpires("网络错误!", "系统响应超时，请稍后再试！", "error", true);
       break;
     // case 'ERR_BAD_RESPONSE':
     //   ActionUtils.tokenExpires('网络错误!', '响应超时，请稍后再试！', 'error');
     //   break;
-    case 'ECONNRESET':
+    case "ECONNRESET":
       break;
     default:
       // const statusPromise = statusCode(axiosInstance, response, message);

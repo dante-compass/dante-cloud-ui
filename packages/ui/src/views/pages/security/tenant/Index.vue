@@ -26,63 +26,44 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-
+<script setup lang="ts">
 import type {
   SysTenantDataSourceEntity,
   SysTenantDataSourceConditions,
   SysTenantDataSourceProps,
-  QTableColumnProps,
-} from '@/composables/declarations';
+} from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from '@/configurations';
+import { CONSTANTS, API } from "@/configurations";
 
-import { useTable } from '@/composables/hooks';
+import { useTable } from "@/composables/hooks";
 
-import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from '@/components';
+import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/components";
 
-export default defineComponent({
+defineOptions({
   name: CONSTANTS.ComponentName.SYS_TENANT_DATA_SOURCE,
 
   components: { HDeleteButton, HEditButton, HDenseIconButton, HTable },
-
-  setup() {
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-      useTable<SysTenantDataSourceConditions, SysTenantDataSourceEntity>(
-        API.core.sysTenantDataSource(),
-        CONSTANTS.ComponentName.SYS_TENANT_DATA_SOURCE,
-      );
-
-    const selected = ref([]);
-    const rowKey: SysTenantDataSourceProps = 'datasourceId';
-
-    const columns: QTableColumnProps = [
-      { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户标识ID' },
-      { name: 'username', field: 'username', align: 'center', label: '数据库用户名' },
-      { name: 'password', field: 'password', align: 'center', label: '数据库密码' },
-      { name: 'driverClassName', field: 'driverClassName', align: 'center', label: '驱动' },
-      { name: 'url', field: 'url', align: 'center', label: 'url' },
-      { name: 'description', field: 'description', align: 'center', label: '备注' },
-      { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-      { name: 'status', field: 'status', align: 'center', label: '状态' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    return {
-      rowKey,
-      selected,
-      pagination,
-      columns,
-      tableRows,
-      totalPages,
-      loading,
-      toCreate,
-      toEdit,
-      toAuthorize,
-      findItems,
-      deleteItemById,
-    };
-  },
 });
+
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+  useTable<SysTenantDataSourceConditions, SysTenantDataSourceEntity>(
+    API.core.sysTenantDataSource(),
+    CONSTANTS.ComponentName.SYS_TENANT_DATA_SOURCE,
+  );
+
+const selected = ref([]);
+const rowKey: SysTenantDataSourceProps = "datasourceId";
+
+const columns: QTableColumnProps = [
+  { name: "tenantId", field: "tenantId", align: "center", label: "租户标识ID" },
+  { name: "username", field: "username", align: "center", label: "数据库用户名" },
+  { name: "password", field: "password", align: "center", label: "数据库密码" },
+  { name: "driverClassName", field: "driverClassName", align: "center", label: "驱动" },
+  { name: "url", field: "url", align: "center", label: "url" },
+  { name: "description", field: "description", align: "center", label: "备注" },
+  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+  { name: "status", field: "status", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 </script>

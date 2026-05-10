@@ -33,158 +33,82 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-
+<script setup lang="ts">
 import type {
   OAuth2InterfaceAuditEntity,
   OAuth2InterfaceAuditConditions,
   OAuth2InterfaceAuditProps,
-  QTableColumnProps,
-  EntityTitle,
-} from '@/composables/declarations';
-import { CONSTANTS, API } from '@/configurations';
-import { moment } from '@herodotus/core';
-import { useTable, useXlsx } from '@/composables/hooks';
+} from "@herodotus/api";
+import type { QTableColumnProps, EntityTitle } from "@/composables/declarations";
 
-import { HTable, HBooleanColumn } from '@/components';
-import { HAuditCondition } from '@/components';
+import { CONSTANTS, API } from "@/configurations";
+import { moment } from "@herodotus/core";
+import { useTable, useXlsx } from "@/composables/hooks";
 
-export default defineComponent({
-  name: CONSTANTS.ComponentName.OAUTH2_AUDIT,
+import { HTable, HBooleanColumn } from "@/components";
+import { HAuditCondition } from "@/components";
 
-  components: {
-    HAuditCondition,
-    HTable,
-    HBooleanColumn,
-  },
+defineOptions({ name: CONSTANTS.ComponentName.OAUTH2_AUDIT, components: { HAuditCondition, HTable, HBooleanColumn } });
 
-  setup() {
-    const { postExport } = useXlsx<OAuth2InterfaceAuditEntity>();
-    const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
-      OAuth2InterfaceAuditConditions,
-      OAuth2InterfaceAuditEntity
-    >(API.core.oauth2InterfaceAudit(), CONSTANTS.ComponentName.OAUTH2_AUDIT, false, {
-      direction: 'DESC',
-      properties: ['createTime'],
-    });
-
-    const selected = ref([]);
-    const rowKey: OAuth2InterfaceAuditProps = 'auditId';
-
-    const dateFormat = (date: string) => {
-      if (date) {
-        return moment(date).format('YYYY-MM-DD HH:mm:ss');
-      } else {
-        return '';
-      }
-    };
-
-    const columns: QTableColumnProps = [
-      { name: 'principalName', field: 'principalName', align: 'center', label: '用户名' },
-      { name: 'clientId', field: 'clientId', align: 'center', label: '客户端ID' },
-      { name: 'ip', field: 'ip', align: 'center', label: 'IP地址' },
-      { name: 'action', field: 'action', align: 'center', label: '操作' },
-      {
-        name: 'requestMethod',
-        field: 'requestMethod',
-        align: 'center',
-        label: '请求方法',
-      },
-      {
-        name: 'url',
-        field: 'url',
-        align: 'center',
-        label: '请求路径',
-      },
-      {
-        name: 'serviceId',
-        field: 'serviceId',
-        align: 'center',
-        label: '服务',
-      },
-      {
-        name: 'mobile',
-        field: 'mobile',
-        align: 'center',
-        label: '移动端？',
-      },
-      {
-        name: 'mobileBrowser',
-        field: 'mobileBrowser',
-        align: 'center',
-        label: '是移动端浏览器',
-      },
-      {
-        name: 'platformName',
-        field: 'platformName',
-        align: 'center',
-        label: '平台',
-      },
-      {
-        name: 'osName',
-        field: 'osName',
-        align: 'center',
-        label: '操作系统',
-      },
-      {
-        name: 'browserName',
-        field: 'browserName',
-        align: 'center',
-        label: '浏览器',
-      },
-      {
-        name: 'browserEngineName',
-        field: 'browserEngineName',
-        align: 'center',
-        label: '浏览器引擎',
-      },
-      {
-        name: 'createTime',
-        field: 'createTime',
-        align: 'center',
-        label: '时间',
-        format: (value) => dateFormat(value),
-      },
-    ];
-
-    const title: EntityTitle<OAuth2InterfaceAuditEntity> = {
-      createTime: '创建时间',
-      updateTime: '更新时间',
-      auditId: 'ID',
-      principalName: '用户名',
-      clientId: 'OAuth2 客户端ID',
-      ip: 'IP地址',
-      mobile: '是移动端 ?',
-      browserName: '浏览器',
-      mobileBrowser: '是移动端浏览器 ?',
-      browserVersion: '浏览器版本',
-      platformName: '平台',
-      osName: '操作系统',
-      osVersion: '操作系统版本',
-      browserEngineName: '浏览器引擎',
-      browserEngineVersion: '浏览器引擎版本',
-      requestMethod: '请求方法',
-      url: '请求路径',
-      serviceId: '服务',
-    };
-
-    const onExportExcel = () => {
-      postExport(tableRows.value, title, '接口审计');
-    };
-
-    return {
-      rowKey,
-      selected,
-      pagination,
-      columns,
-      conditions,
-      tableRows,
-      totalPages,
-      loading,
-      findItems,
-      onExportExcel,
-    };
-  },
+const { postExport } = useXlsx<OAuth2InterfaceAuditEntity>();
+const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
+  OAuth2InterfaceAuditConditions,
+  OAuth2InterfaceAuditEntity
+>(API.core.oauth2InterfaceAudit(), CONSTANTS.ComponentName.OAUTH2_AUDIT, false, {
+  direction: "DESC",
+  properties: ["createTime"],
 });
+
+const selected = ref([]);
+const rowKey: OAuth2InterfaceAuditProps = "auditId";
+
+const dateFormat = (date: string) => {
+  if (date) {
+    return moment(date).format("YYYY-MM-DD HH:mm:ss");
+  } else {
+    return "";
+  }
+};
+
+const columns: QTableColumnProps = [
+  { name: "principalName", field: "principalName", align: "center", label: "用户名" },
+  { name: "clientId", field: "clientId", align: "center", label: "客户端ID" },
+  { name: "ip", field: "ip", align: "center", label: "IP地址" },
+  { name: "action", field: "action", align: "center", label: "操作" },
+  { name: "requestMethod", field: "requestMethod", align: "center", label: "请求方法" },
+  { name: "url", field: "url", align: "center", label: "请求路径" },
+  { name: "serviceId", field: "serviceId", align: "center", label: "服务" },
+  { name: "mobile", field: "mobile", align: "center", label: "移动端？" },
+  { name: "mobileBrowser", field: "mobileBrowser", align: "center", label: "是移动端浏览器" },
+  { name: "platformName", field: "platformName", align: "center", label: "平台" },
+  { name: "osName", field: "osName", align: "center", label: "操作系统" },
+  { name: "browserName", field: "browserName", align: "center", label: "浏览器" },
+  { name: "browserEngineName", field: "browserEngineName", align: "center", label: "浏览器引擎" },
+  { name: "createTime", field: "createTime", align: "center", label: "时间", format: (value) => dateFormat(value) },
+];
+
+const title: EntityTitle<OAuth2InterfaceAuditEntity> = {
+  createTime: "创建时间",
+  updateTime: "更新时间",
+  auditId: "ID",
+  principalName: "用户名",
+  clientId: "OAuth2 客户端ID",
+  ip: "IP地址",
+  mobile: "是移动端 ?",
+  browserName: "浏览器",
+  mobileBrowser: "是移动端浏览器 ?",
+  browserVersion: "浏览器版本",
+  platformName: "平台",
+  osName: "操作系统",
+  osVersion: "操作系统版本",
+  browserEngineName: "浏览器引擎",
+  browserEngineVersion: "浏览器引擎版本",
+  requestMethod: "请求方法",
+  url: "请求路径",
+  serviceId: "服务",
+};
+
+const onExportExcel = () => {
+  postExport(tableRows.value, title, "接口审计");
+};
 </script>

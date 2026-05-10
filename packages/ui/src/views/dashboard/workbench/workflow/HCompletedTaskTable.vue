@@ -22,28 +22,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { defineComponent, onMounted, ref, watch } from "vue";
 
-import type {
-  Page,
-  QTableColumnProps,
-  QTableOnRequestProps,
-  QTableOnRequestParameter,
-  ExtendedTaskEntity,
-  ExtendedTaskConditions,
-} from '@/composables/declarations';
+import type { Page } from "@herodotus/core";
+import type { ExtendedTaskEntity, ExtendedTaskConditions } from "@herodotus/api";
+import type { QTableColumnProps, QTableOnRequestProps, QTableOnRequestParameter } from "@/composables/declarations";
 
-import { API } from '@/configurations';
-import { useBaseTable } from '@/composables/hooks';
-import { useAuthenticationStore } from '@herodotus/framework';
+import { API } from "@/configurations";
+import { useBaseTable } from "@/composables/hooks";
+import { useAuthenticationStore } from "@herodotus/framework";
 
 export default defineComponent({
-  name: 'HCompletedTaskTable',
+  name: "HCompletedTaskTable",
 
   setup(props) {
     const authentication = useAuthenticationStore();
 
-    const rowKey = 'taskId' as keyof ExtendedTaskEntity;
+    const rowKey = "taskId" as keyof ExtendedTaskEntity;
     const selected = ref([]);
 
     const {
@@ -56,13 +51,13 @@ export default defineComponent({
       setPageData,
       showLoading,
       hideLoading,
-    } = useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>('HToDoTaskTable', 'updateTime', true);
+    } = useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>("HToDoTaskTable", "updateTime", true);
 
     const columns: QTableColumnProps = [
-      { name: 'businessKey', field: 'businessKey', align: 'center', label: '业务ID' },
-      { name: 'startUsername', field: 'startUsername', align: 'center', label: '发起人' },
-      { name: 'startTime', field: 'startTime', align: 'center', label: '申请时间' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+      { name: "businessKey", field: "businessKey", align: "center", label: "业务ID" },
+      { name: "startUsername", field: "startUsername", align: "center", label: "发起人" },
+      { name: "startTime", field: "startTime", align: "center", label: "申请时间" },
+      { name: "actions", field: "actions", align: "center", label: "操作" },
     ];
 
     const fetchCompletedTasksByPage = (pageNumber = 1) => {

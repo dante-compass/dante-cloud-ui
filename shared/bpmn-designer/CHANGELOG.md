@@ -1,5 +1,38 @@
 # @herodotus-cloud/bpmn-designer
 
+## 4.6.2
+
+### Patch Changes
+
+- 版本发布
+- Updated dependencies
+  - @herodotus-cloud/components@4.6.2
+  - @herodotus-cloud/bpmn-apis@4.6.2
+  - @herodotus-cloud/form-apis@4.6.2
+
+## 4.6.1
+
+### Patch Changes
+
+- 升级 Vite 版本
+- Updated dependencies
+  - @herodotus-cloud/components@4.6.1
+  - @herodotus-cloud/bpmn-apis@4.6.1
+  - @herodotus-cloud/form-apis@4.6.1
+
+## 4.6.0
+
+### Minor Changes
+
+- 升级 Vue 版本
+
+### Patch Changes
+
+- Updated dependencies
+  - @herodotus-cloud/components@4.6.0
+  - @herodotus-cloud/bpmn-apis@4.6.0
+  - @herodotus-cloud/form-apis@4.6.0
+
 ## 4.5.1
 
 ### Patch Changes

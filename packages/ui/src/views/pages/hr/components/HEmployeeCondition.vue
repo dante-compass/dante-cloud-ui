@@ -60,15 +60,12 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent, computed } from 'vue';
+import type { SysEmployeeConditions } from "@herodotus/api";
 
-import type { SysEmployeeConditions } from '@/composables/declarations';
-
-import { HDictionarySelect } from '@/components';
+import { HDictionarySelect } from "@/components";
 
 export default defineComponent({
-  name: 'HEmployeeCondition',
+  name: "HEmployeeCondition",
 
   components: {
     HDictionarySelect,
@@ -78,13 +75,13 @@ export default defineComponent({
     conditions: { type: Object as PropType<SysEmployeeConditions>, required: true },
   },
 
-  emits: ['update:conditions'],
+  emits: ["update:conditions"],
 
   setup(props, { emit }) {
     const conditionsModelValue = computed({
       get: () => props.conditions,
       set: (newValue) => {
-        emit('update:conditions', newValue);
+        emit("update:conditions", newValue);
       },
     });
 
