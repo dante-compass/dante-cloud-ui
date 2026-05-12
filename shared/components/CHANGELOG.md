@@ -1,5 +1,17 @@
 # @herodotus-cloud/components
 
+## 4.6.4
+
+### Patch Changes
+
+- 重新编译组件库
+
+## 4.6.3
+
+### Patch Changes
+
+- 修复组件命名错误
+
 ## 4.6.2
 
 ### Patch Changes

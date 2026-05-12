@@ -31,7 +31,7 @@ defineOptions({
 });
 
 const props = defineProps({
-  modelValue: { type: Object as PropType<TslFunctionEntity>, default: () => {} },
+  modelValue: { type: Object as PropType<TslFunctionEntity>, default: () => ({}) },
   items: {
     type: Array as PropType<Array<TslFunctionEntity>>,
     default: () => [],
