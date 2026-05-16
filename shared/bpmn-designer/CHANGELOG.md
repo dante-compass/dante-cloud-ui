@@ -1,5 +1,15 @@
 # @herodotus-cloud/bpmn-designer
 
+## 4.6.5
+
+### Patch Changes
+
+- [新增] 可通过前端界面配置更改 OAuth2 Token 格式，无需再通过配置文件方式更改 Token 格式
+- Updated dependencies
+  - @herodotus-cloud/components@4.6.5
+  - @herodotus-cloud/bpmn-apis@4.6.5
+  - @herodotus-cloud/form-apis@4.6.5
+
 ## 4.6.4
 
 ### Patch Changes
