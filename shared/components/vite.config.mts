@@ -32,16 +32,7 @@ export default defineConfig({
     },
     rolldownOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
-      external: [
-        "lodash-es",
-        "quasar",
-        "vue",
-        "@herodotus/core",
-        "@mdi/js",
-        "@tsparticles/basic",
-        "@tsparticles/engine",
-        "@tsparticles/interaction-particles-links",
-      ],
+      external: ["lodash-es", "quasar", "vue", "@herodotus/core", "@mdi/js"],
       output: {
         exports: "named",
         assetFileNames: `assets/[ext]/[name][extname]`,
@@ -52,9 +43,6 @@ export default defineConfig({
           vue: "vue",
           "@herodotus/core": "HerodotusCore",
           "@mdi/js": "MdiJs",
-          "@tsparticles/basic": "TsparticlesBasic",
-          "@tsparticles/engine": "TsparticlesEngine",
-          "@tsparticles/interaction-particles-links": "TsparticlesInteractionParticlesLinkss",
         },
       },
     },

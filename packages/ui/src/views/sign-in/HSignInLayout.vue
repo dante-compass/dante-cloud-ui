@@ -1,6 +1,5 @@
 <template>
   <q-parallax class="window-height" :style="{ backgroundColor: backgroundColor }">
-    <h-particles />
     <h-container class="window-width" style="z-index: 2" wider="center" :offset="2">
       <h-row class="justify-center">
         <h-column xl="6" lg="8" md="10" sm="12" xs="12">
@@ -22,14 +21,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, shallowRef } from 'vue';
+import { computed, shallowRef } from "vue";
 
-import { getColorPalette, mixColor } from './color';
-import { VARIABLES } from '@/configurations';
-import { useSettingsStore } from '@herodotus/framework';
+import { getColorPalette, mixColor } from "./color";
+import { VARIABLES } from "@/configurations";
+import { useSettingsStore } from "@herodotus/framework";
 
 defineOptions({
-  name: 'HSignInLayout',
+  name: "HSignInLayout",
 });
 
 const settings = useSettingsStore();
@@ -39,7 +38,7 @@ const backgroundThemeColor = computed(() => {
 });
 
 const backgroundColor = computed(() => {
-  const COLOR_WHITE = '#ffffff';
+  const COLOR_WHITE = "#ffffff";
   const ratio = settings.isDarkenMode ? 0.5 : 0.2;
   return mixColor(COLOR_WHITE, backgroundThemeColor.value, ratio);
 });
