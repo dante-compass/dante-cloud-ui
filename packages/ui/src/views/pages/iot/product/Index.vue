@@ -1,6 +1,6 @@
 <template>
   <div class="q-gutter-y-md">
-    <h-product-condition v-model="conditions"></h-product-condition>
+    <search v-model="conditions"></search>
     <h-table
       :rows="tableRows"
       :columns="columns"

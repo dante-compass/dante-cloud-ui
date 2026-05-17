@@ -1,5 +1,45 @@
 # @herodotus-cloud/form-designer
 
+## 4.6.6
+
+### Patch Changes
+
+- 版本发布
+- Updated dependencies
+  - @herodotus-cloud/form-engine@4.6.6
+  - @herodotus-cloud/components@4.6.6
+  - @herodotus-cloud/form-apis@4.6.6
+
+## 4.6.5
+
+### Patch Changes
+
+- [新增] 可通过前端界面配置更改 OAuth2 Token 格式，无需再通过配置文件方式更改 Token 格式
+- Updated dependencies
+  - @herodotus-cloud/form-engine@4.6.5
+  - @herodotus-cloud/components@4.6.5
+  - @herodotus-cloud/form-apis@4.6.5
+
+## 4.6.4
+
+### Patch Changes
+
+- 重新编译组件库
+- Updated dependencies
+  - @herodotus-cloud/form-engine@4.6.4
+  - @herodotus-cloud/components@4.6.4
+  - @herodotus-cloud/form-apis@4.6.4
+
+## 4.6.3
+
+### Patch Changes
+
+- 修复组件命名错误
+- Updated dependencies
+  - @herodotus-cloud/form-engine@4.6.3
+  - @herodotus-cloud/components@4.6.3
+  - @herodotus-cloud/form-apis@4.6.3
+
 ## 4.6.2
 
 ### Patch Changes

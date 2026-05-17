@@ -1170,8 +1170,11 @@ var Et = { particles: {
 	name: "HParticles",
 	__name: "HParticles",
 	setup(e) {
-		let t = h("HParticles"), n, i = async (e, t = !0) => {
-			await Qe(e, !1), await $e(e, !1), await e.addPreset("triangles", Et, t);
+		let t = h("HParticles"), n, i = async (e) => {
+			await Qe(e), await $e(e), await e.load({
+				id: "triangles",
+				options: Et
+			});
 		};
 		return ne(() => {
 			ee(async () => {

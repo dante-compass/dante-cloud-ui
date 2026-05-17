@@ -1,5 +1,29 @@
 # @herodotus-cloud/bpmn-apis
 
+## 4.6.6
+
+### Patch Changes
+
+- 版本发布
+
+## 4.6.5
+
+### Patch Changes
+
+- [新增] 可通过前端界面配置更改 OAuth2 Token 格式，无需再通过配置文件方式更改 Token 格式
+
+## 4.6.4
+
+### Patch Changes
+
+- 重新编译组件库
+
+## 4.6.3
+
+### Patch Changes
+
+- 修复组件命名错误
+
 ## 4.6.2
 
 ### Patch Changes

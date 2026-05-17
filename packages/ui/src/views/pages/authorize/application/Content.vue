@@ -91,6 +91,12 @@
         bottom-slots
       ></q-select>
       <h-divider label="令牌设置(Token Settings)" class="q-mb-md"></h-divider>
+      <h-label text="令牌格式" size="subtitle-1" weight="bolder" align="left"></h-label>
+      <h-dictionary-option
+        v-model="editedItem.tokenFormat"
+        dictionary="TokenFormat"
+        default-value="reference"
+      ></h-dictionary-option>
       <h-label text="令牌有效期" size="subtitle-1" weight="bolder" align="left"></h-label>
       <h-duration v-model="editedItem.accessTokenTimeToLive" label="令牌有效期"></h-duration>
       <h-label text="刷新令牌有效期" size="subtitle-1" weight="bolder" align="left"></h-label>

@@ -5,26 +5,26 @@
 </template>
 
 <script setup lang="ts">
-import type { Container, Engine } from '@/lib/declarations';
+import type { Container, Engine } from "@/lib/declarations";
 
-import { nextTick, ref, onMounted, onUnmounted } from 'vue';
-import { tsParticles } from '@tsparticles/engine';
-import { loadBasic } from '@tsparticles/basic';
-import { loadParticlesLinksInteraction } from '@tsparticles/interaction-particles-links';
+import { nextTick, ref, onMounted, onUnmounted } from "vue";
+import { tsParticles } from "@tsparticles/engine";
+import { loadBasic } from "@tsparticles/basic";
+import { loadParticlesLinksInteraction } from "@tsparticles/interaction-particles-links";
 
-import { options } from './particles';
+import { options } from "./particles";
 
-defineOptions({ name: 'HParticles' });
+defineOptions({ name: "HParticles" });
 
-const id = ref('HParticles');
+const id = ref("HParticles");
 
 let container: Container | undefined;
 
-const loadTrianglesPreset = async (engine: Engine, refresh = true): Promise<void> => {
-  await loadBasic(engine, false);
-  await loadParticlesLinksInteraction(engine, false);
+const loadTrianglesPreset = async (engine: Engine): Promise<void> => {
+  await loadBasic(engine);
+  await loadParticlesLinksInteraction(engine);
 
-  await engine.addPreset('triangles', options, refresh);
+  await engine.load({ id: "triangles", options });
 };
 
 onMounted(() => {
@@ -39,7 +39,7 @@ onMounted(() => {
         fullScreen: {
           zIndex: 1,
         },
-        preset: 'triangles',
+        preset: "triangles",
       },
     });
   });

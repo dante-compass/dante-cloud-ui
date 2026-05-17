@@ -1,6 +1,6 @@
 {
   "name": "@herodotus/ui",
-  "version": "4.0.6.2",
+  "version": "4.0.6.3",
   "description": "",
   "keywords": [],
   "author": "",
@@ -17,16 +17,16 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "3.41.3",
+    "@bpmn-io/properties-panel": "3.42.0",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/bpmn-designer": "workspace:^",
     "@herodotus-cloud/components": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
     "@herodotus-cloud/form-designer": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
-    "@herodotus/api": "^1.6.1",
-    "@herodotus/core": "^1.6.1",
-    "@herodotus/framework": "^1.6.1",
+    "@herodotus/api": "^1.6.4",
+    "@herodotus/core": "^1.6.4",
+    "@herodotus/framework": "^1.6.4",
     "@mdi/js": "^7.4.47",
     "@quasar/extras": "^1.18.0",
     "@rsocket/composite-metadata": "1.0.0-alpha.3",
@@ -35,7 +35,7 @@
     "@vuelidate/validators": "^2.0.4",
     "@vueuse/core": "^14.3.0",
     "animate.css": "^4.1.1",
-    "axios": "^1.16.0",
+    "axios": "^1.16.1",
     "bpmn-js": "^18.16.1",
     "bpmn-js-token-simulation": "^0.39.3",
     "colord": "^2.9.3",
@@ -48,11 +48,11 @@
     "vue": "^3.5.34",
     "vue-cookies": "^1.8.6",
     "vue-i18n": "^11.4.2",
-    "vue-router": "^5.0.6",
+    "vue-router": "^5.0.7",
     "vue-simple-uploader": "^1.0.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "25.6.2"
+    "@types/node": "25.8.0"
   }
 }
