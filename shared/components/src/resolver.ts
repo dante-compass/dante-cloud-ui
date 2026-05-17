@@ -19,6 +19,7 @@ const components = [
   "HListItem",
   "HLoading",
   "HPagination",
+  "HParticles",
   "HRow",
   "HSelect",
   "HSignInBackground",

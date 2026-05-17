@@ -10,6 +10,7 @@ import { HColumn, HContainer, HRow } from "./HGrid";
 import { HListItem } from "./HList";
 import { HLoading } from "./HLoading";
 import { HPagination } from "./HPagination";
+import { HParticles } from "./HParticles";
 import { HSignInBackground } from "./HBackground";
 
 const components = [
@@ -31,6 +32,7 @@ const components = [
   HListItem,
   HLoading,
   HPagination,
+  HParticles,
   HRow,
   HSelect,
   HSignInBackground,
@@ -62,6 +64,7 @@ export {
   HListItem,
   HLoading,
   HPagination,
+  HParticles,
   HRow,
   HSelect,
   HSignInBackground,

@@ -1,5 +1,6 @@
 <template>
   <q-parallax class="window-height" :style="{ backgroundColor: backgroundColor }">
+    <h-particles />
     <h-container class="window-width" style="z-index: 2" wider="center" :offset="2">
       <h-row class="justify-center">
         <h-column xl="6" lg="8" md="10" sm="12" xs="12">
