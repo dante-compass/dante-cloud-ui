@@ -1,5 +1,15 @@
 # @herodotus-cloud/form-designer
 
+## 4.6.7
+
+### Patch Changes
+
+- [修复] 前端修复 tsparticles 组件升级至 v4.0 之后不显示、控制台报错问题
+- Updated dependencies
+  - @herodotus-cloud/form-engine@4.6.7
+  - @herodotus-cloud/components@4.6.7
+  - @herodotus-cloud/form-apis@4.6.7
+
 ## 4.6.6
 
 ### Patch Changes
