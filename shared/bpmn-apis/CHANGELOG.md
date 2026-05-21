@@ -1,5 +1,17 @@
 # @herodotus-cloud/bpmn-apis
 
+## 4.6.8
+
+### Patch Changes
+
+- 版本发布
+
+## 4.6.7
+
+### Patch Changes
+
+- [修复] 前端修复 tsparticles 组件升级至 v4.0 之后不显示、控制台报错问题
+
 ## 4.6.6
 
 ### Patch Changes

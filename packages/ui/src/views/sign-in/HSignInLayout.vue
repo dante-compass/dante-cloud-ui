@@ -22,14 +22,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, shallowRef } from 'vue';
+import { computed, shallowRef } from "vue";
 
-import { getColorPalette, mixColor } from './color';
-import { VARIABLES } from '@/configurations';
-import { useSettingsStore } from '@herodotus/framework';
+import { getColorPalette, mixColor } from "./color";
+import { VARIABLES } from "@/configurations";
+import { useSettingsStore } from "@herodotus/framework";
 
 defineOptions({
-  name: 'HSignInLayout',
+  name: "HSignInLayout",
 });
 
 const settings = useSettingsStore();
@@ -39,7 +39,7 @@ const backgroundThemeColor = computed(() => {
 });
 
 const backgroundColor = computed(() => {
-  const COLOR_WHITE = '#ffffff';
+  const COLOR_WHITE = "#ffffff";
   const ratio = settings.isDarkenMode ? 0.5 : 0.2;
   return mixColor(COLOR_WHITE, backgroundThemeColor.value, ratio);
 });

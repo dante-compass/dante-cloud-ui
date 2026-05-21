@@ -1,4 +1,4 @@
-import type { ISourceOptions } from '@/lib/declarations';
+import type { ISourceOptions } from "@tsparticles/engine";
 
 export const options: ISourceOptions = {
   particles: {
@@ -26,7 +26,7 @@ export const options: ISourceOptions = {
       value: 1,
     },
     shape: {
-      type: 'circle',
+      type: "circle",
     },
   },
 };

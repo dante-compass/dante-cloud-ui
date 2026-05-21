@@ -1,18 +1,17 @@
 import { computed as e, createBlock as t, createCommentVNode as n, createElementBlock as r, createElementVNode as i, createSlots as a, createTextVNode as o, createVNode as s, defineComponent as c, guardReactiveProps as l, mergeModels as u, mergeProps as d, nextTick as ee, normalizeClass as f, normalizeProps as p, normalizeStyle as te, onMounted as ne, onUnmounted as re, openBlock as m, reactive as ie, ref as h, renderSlot as g, resolveDirective as ae, resolveDynamicComponent as oe, shallowRef as _, toDisplayString as v, unref as y, useModel as b, watch as x, withCtx as S, withDirectives as se } from "vue";
-import { ClosePopup as ce, QBtn as C, QCard as w, QCardActions as le, QCardSection as T, QDate as ue, QDialog as de, QIcon as E, QInnerLoading as fe, QInput as D, QItem as O, QItemLabel as pe, QItemSection as k, QPagination as me, QPopupProxy as A, QSelect as he, QSeparator as j, QSpace as ge, QSpinner as _e, QSpinnerAudio as ve, QSpinnerBall as ye, QSpinnerBars as be, QSpinnerBox as xe, QSpinnerClock as Se, QSpinnerComment as Ce, QSpinnerCube as we, QSpinnerDots as Te, QSpinnerFacebook as Ee, QSpinnerGears as De, QSpinnerGrid as Oe, QSpinnerHearts as ke, QSpinnerHourglass as Ae, QSpinnerInfinity as je, QSpinnerIos as Me, QSpinnerOrbit as Ne, QSpinnerOval as Pe, QSpinnerPie as Fe, QSpinnerPuff as Ie, QSpinnerRadio as Le, QSpinnerRings as Re, QSpinnerTail as ze, QTime as Be, QToggle as Ve, QTooltip as He, QTree as Ue, Ripple as We } from "quasar";
-import { moment as Ge, moment as Ke } from "@herodotus/core";
-import * as qe from "@mdi/js";
-import { find as Je, isEmpty as Ye, kebabCase as Xe } from "lodash-es";
-import { tsParticles as Ze } from "@tsparticles/engine";
-import { loadBasic as Qe } from "@tsparticles/basic";
-import { loadParticlesLinksInteraction as $e } from "@tsparticles/interaction-particles-links";
+import { ClosePopup as ce, QBtn as C, QCard as w, QCardActions as le, QCardSection as T, QDate as ue, QDialog as de, QIcon as E, QInnerLoading as fe, QInput as D, QItem as pe, QItemLabel as me, QItemSection as O, QPagination as he, QPopupProxy as k, QSelect as ge, QSeparator as A, QSpace as _e, QSpinner as ve, QSpinnerAudio as ye, QSpinnerBall as be, QSpinnerBars as xe, QSpinnerBox as Se, QSpinnerClock as Ce, QSpinnerComment as we, QSpinnerCube as Te, QSpinnerDots as Ee, QSpinnerFacebook as De, QSpinnerGears as Oe, QSpinnerGrid as ke, QSpinnerHearts as Ae, QSpinnerHourglass as je, QSpinnerInfinity as Me, QSpinnerIos as Ne, QSpinnerOrbit as Pe, QSpinnerOval as Fe, QSpinnerPie as Ie, QSpinnerPuff as Le, QSpinnerRadio as Re, QSpinnerRings as ze, QSpinnerTail as Be, QTime as Ve, QToggle as He, QTooltip as Ue, QTree as We, Ripple as Ge } from "quasar";
+import { moment as Ke, moment as qe } from "@herodotus/core";
+import * as Je from "@mdi/js";
+import { find as Ye, isEmpty as Xe, kebabCase as Ze } from "lodash-es";
+import { tsParticles as Qe } from "@tsparticles/engine";
+import { loadTrianglesPreset as $e } from "@tsparticles/preset-triangles";
 //#endregion
 //#region src/HButton/HButton.vue
-var M = /* @__PURE__ */ c({
+var j = /* @__PURE__ */ c({
 	name: "HButton",
 	components: {
 		QBtn: C,
-		QTooltip: He
+		QTooltip: Ue
 	},
 	__name: "HButton",
 	props: { tooltip: { default: "" } },
@@ -22,16 +21,16 @@ var M = /* @__PURE__ */ c({
 			_: 2
 		}, [e.tooltip ? {
 			name: "default",
-			fn: S(() => [s(y(He), null, {
+			fn: S(() => [s(y(Ue), null, {
 				default: S(() => [o(v(e.tooltip), 1)]),
 				_: 1
 			})]),
 			key: "0"
 		} : void 0]), 1040));
 	}
-}), N = /* @__PURE__ */ c({
+}), M = /* @__PURE__ */ c({
 	name: "HIconButton",
-	components: { HButton: M },
+	components: { HButton: j },
 	__name: "HIconButton",
 	props: {
 		color: { default: "" },
@@ -42,7 +41,7 @@ var M = /* @__PURE__ */ c({
 		}
 	},
 	setup(e) {
-		return (n, r) => (m(), t(M, d({
+		return (n, r) => (m(), t(j, d({
 			flat: "",
 			round: "",
 			color: e.color,
@@ -54,7 +53,7 @@ var M = /* @__PURE__ */ c({
 			"size"
 		]));
 	}
-}), P = /* @__PURE__ */ c({
+}), N = /* @__PURE__ */ c({
 	name: "HVisibilityButton",
 	components: { QIcon: E },
 	__name: "HVisibilityButton",
@@ -72,12 +71,12 @@ var M = /* @__PURE__ */ c({
 		}, null, 8, ["name"]));
 	}
 });
-M.install = (e) => {
+j.install = (e) => {
+	e.component(j.name, j);
+}, M.install = (e) => {
 	e.component(M.name, M);
 }, N.install = (e) => {
 	e.component(N.name, N);
-}, P.install = (e) => {
-	e.component(P.name, P);
 };
 //#endregion
 //#region src/HCard/HCardTitle.vue?vue&type=script&setup=true&lang.ts
@@ -92,15 +91,15 @@ var et = { class: "title-toolbar row items-center q-pr-sm" }, tt = { class: "car
 	let n = e.__vccOpts || e;
 	for (let [e, r] of t) n[e] = r;
 	return n;
-}, F = /* @__PURE__ */ rt(nt, [["__scopeId", "data-v-9c5433ec"]]), it = { class: "text-h6" }, at = {
+}, P = /* @__PURE__ */ rt(nt, [["__scopeId", "data-v-9c5433ec"]]), it = { class: "text-h6" }, at = {
 	key: 0,
 	class: "text-subtitle2"
-}, I = /* @__PURE__ */ c({
+}, F = /* @__PURE__ */ c({
 	name: "HChartCard",
 	components: {
 		QCard: w,
 		QCardSection: T,
-		QSeparator: j
+		QSeparator: A
 	},
 	__name: "HChartCard",
 	props: {
@@ -114,7 +113,7 @@ var et = { class: "title-toolbar row items-center q-pr-sm" }, tt = { class: "car
 					default: S(() => [i("div", it, v(e.title), 1), e.subtitle ? (m(), r("div", at, v(e.subtitle), 1)) : n("", !0)]),
 					_: 1
 				}),
-				s(y(j), { inset: "" }),
+				s(y(A), { inset: "" }),
 				s(y(T), null, {
 					default: S(() => [g(a.$slots, "default")]),
 					_: 3
@@ -124,20 +123,20 @@ var et = { class: "title-toolbar row items-center q-pr-sm" }, tt = { class: "car
 		}));
 	}
 });
-F.install = (e) => {
+P.install = (e) => {
+	e.component(P.name, P);
+}, F.install = (e) => {
 	e.component(F.name, F);
-}, I.install = (e) => {
-	e.component(I.name, I);
 };
 //#endregion
 //#region src/HDateTime/HDateTime.vue?vue&type=script&setup=true&lang.ts
-var ot = { class: "row items-center justify-end" }, st = { class: "row items-center justify-end" }, L = /* @__PURE__ */ c({
+var ot = { class: "row items-center justify-end" }, st = { class: "row items-center justify-end" }, I = /* @__PURE__ */ c({
 	name: "HDateTime",
 	components: {
 		QInput: D,
 		QIcon: E,
-		QPopupProxy: A,
-		QTime: Be,
+		QPopupProxy: k,
+		QTime: Ve,
 		QBtn: C,
 		QDate: ue
 	},
@@ -165,7 +164,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 					name: "event",
 					class: "cursor-pointer"
 				}, {
-					default: S(() => [s(y(A), {
+					default: S(() => [s(y(k), {
 						cover: "",
 						"transition-show": "scale",
 						"transition-hide": "scale"
@@ -189,12 +188,12 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 					name: "access_time",
 					class: "cursor-pointer"
 				}, {
-					default: S(() => [s(y(A), {
+					default: S(() => [s(y(k), {
 						cover: "",
 						"transition-show": "scale",
 						"transition-hide": "scale"
 					}, {
-						default: S(() => [s(y(Be), {
+						default: S(() => [s(y(Ve), {
 							modelValue: n.value,
 							"onUpdate:modelValue": r[1] ||= (e) => n.value = e,
 							mask: "YYYY-MM-DD HH:mm:ss",
@@ -235,17 +234,17 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 ], lt = { DASH: "-" }, ut = {
 	text: "text",
 	bg: "bg"
-}, R = {
+}, L = {
 	auto: "auto",
 	col: "col"
-}, z = (e, ...t) => e + lt.DASH + t.join(lt.DASH), dt = (e) => z(ut.text, e), ft = (e) => z(ut.bg, e), B = (e = "", t = "") => e && t ? z(R.col, e, t) : e ? z(R.col, e) : t ? z(R.col, t) : R.col, pt = /* @__PURE__ */ c({
+}, R = (e, ...t) => e + lt.DASH + t.join(lt.DASH), dt = (e) => R(ut.text, e), ft = (e) => R(ut.bg, e), z = (e = "", t = "") => e && t ? R(L.col, e, t) : e ? R(L.col, e) : t ? R(L.col, t) : L.col, B = /* @__PURE__ */ c({
 	name: "HIconSelect",
 	components: {
-		QSelect: he,
+		QSelect: ge,
 		QIcon: E,
-		QItem: O,
-		QItemSection: k,
-		QItemLabel: pe
+		QItem: pe,
+		QItemSection: O,
+		QItemLabel: me
 	},
 	__name: "HIconSelect",
 	props: {
@@ -256,7 +255,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 	setup(e) {
 		let n = b(e, "modelValue"), r = [], i = h(r);
 		ne(() => {
-			r = Object.keys(qe).map((e) => Xe(e));
+			r = Object.keys(Je).map((e) => Ze(e));
 		});
 		let c = (e, t, n) => {
 			if (e.length < 3) {
@@ -268,7 +267,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 				i.value = r.filter((e) => e.toLowerCase().match(t));
 			});
 		};
-		return (e, r) => (m(), t(y(he), d({
+		return (e, r) => (m(), t(y(ge), d({
 			ref: "selectRef",
 			modelValue: n.value,
 			"onUpdate:modelValue": r[0] ||= (e) => n.value = e,
@@ -284,12 +283,12 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 			"transition-hide": "scale",
 			onFilter: c
 		}, e.$attrs), a({
-			option: S((e) => [s(y(O), p(l(e.itemProps)), {
-				default: S(() => [s(y(k), { avatar: "" }, {
+			option: S((e) => [s(y(pe), p(l(e.itemProps)), {
+				default: S(() => [s(y(O), { avatar: "" }, {
 					default: S(() => [s(y(E), { name: e.opt }, null, 8, ["name"])]),
 					_: 2
-				}, 1024), s(y(k), null, {
-					default: S(() => [s(y(pe), null, {
+				}, 1024), s(y(O), null, {
+					default: S(() => [s(y(me), null, {
 						default: S(() => [o(v(e.opt), 1)]),
 						_: 2
 					}, 1024)]),
@@ -297,8 +296,8 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 				}, 1024)]),
 				_: 2
 			}, 1040)]),
-			"no-option": S(() => [s(y(O), null, {
-				default: S(() => [s(y(k), { class: "text-grey" }, {
+			"no-option": S(() => [s(y(pe), null, {
+				default: S(() => [s(y(O), { class: "text-grey" }, {
 					default: S(() => [...r[1] ||= [o("没有数据", -1)]]),
 					_: 1
 				})]),
@@ -316,7 +315,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 	}
 }), V = /* @__PURE__ */ c({
 	name: "HSelect",
-	components: { QSelect: he },
+	components: { QSelect: ge },
 	__name: "HSelect",
 	props: /* @__PURE__ */ u({
 		optionLabel: { default: "text" },
@@ -329,7 +328,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 	emits: ["update:modelValue"],
 	setup(n) {
 		let r = n, i = b(n, "modelValue"), a = e(() => !!r.errorMessage);
-		return (e, r) => (m(), t(y(he), d({
+		return (e, r) => (m(), t(y(ge), d({
 			modelValue: i.value,
 			"onUpdate:modelValue": r[0] ||= (e) => i.value = e,
 			"option-label": n.optionLabel,
@@ -354,7 +353,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 	}
 }), H = /* @__PURE__ */ c({
 	name: "HSwitch",
-	components: { QToggle: Ve },
+	components: { QToggle: He },
 	__name: "HSwitch",
 	props: /* @__PURE__ */ u({
 		trueValue: {
@@ -388,7 +387,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 	emits: ["update:modelValue"],
 	setup(e) {
 		let n = b(e, "modelValue");
-		return (r, i) => (m(), t(y(Ve), d({
+		return (r, i) => (m(), t(y(He), d({
 			modelValue: n.value,
 			"onUpdate:modelValue": i[0] ||= (e) => n.value = e,
 			"true-value": e.trueValue,
@@ -401,11 +400,11 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 			"color"
 		]));
 	}
-}), mt = { class: "q-gutter-xs row q-mb-xs" }, ht = { class: "ext-body2" }, U = /* @__PURE__ */ c({
+}), pt = { class: "q-gutter-xs row q-mb-xs" }, mt = { class: "ext-body2" }, U = /* @__PURE__ */ c({
 	name: "HFieldLabel",
 	components: {
 		QIcon: E,
-		QTooltip: He
+		QTooltip: Ue
 	},
 	__name: "HFieldLabel",
 	props: {
@@ -417,7 +416,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 		tooltip: {}
 	},
 	setup(e) {
-		return (a, c) => (m(), r("div", mt, [
+		return (a, c) => (m(), r("div", pt, [
 			e.required ? (m(), t(y(E), {
 				key: 0,
 				name: "mdi-star",
@@ -425,14 +424,14 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 				class: "q-pt-xs",
 				size: "10px"
 			})) : n("", !0),
-			i("div", ht, v(e.text), 1),
+			i("div", mt, v(e.text), 1),
 			e.tooltip ? (m(), t(y(E), {
 				key: 1,
 				name: "mdi-information-variant-circle",
 				color: "grey",
 				size: "xs"
 			}, {
-				default: S(() => [s(y(He), null, {
+				default: S(() => [s(y(Ue), null, {
 					default: S(() => [o(v(e.tooltip), 1)]),
 					_: 1
 				})]),
@@ -474,10 +473,10 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 	name: "HTreeField",
 	components: {
 		QInput: D,
-		QPopupProxy: A,
+		QPopupProxy: k,
 		QCard: w,
 		QCardSection: T,
-		QTree: Ue
+		QTree: We
 	},
 	__name: "HTreeField",
 	props: /* @__PURE__ */ u({
@@ -498,10 +497,10 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 			}
 			return t;
 		}, u = (e) => {
-			!Ye(e) && Ye(i.value) && (i.value = l(e), o.value = Je(i.value, (e) => e.id == r.value)?.name);
+			!Xe(e) && Xe(i.value) && (i.value = l(e), o.value = Ye(i.value, (e) => e.id == r.value)?.name);
 		};
 		return x(() => n.items, (e) => {
-			Ye(e) || u(e);
+			Xe(e) || u(e);
 		}, { immediate: !0 }), x(r, (e) => {
 			if (e) {
 				let t = a.value?.getNodeByKey(e);
@@ -514,13 +513,13 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 			outlined: "",
 			clearable: ""
 		}, n.$attrs), {
-			default: S(() => [s(y(A), {
+			default: S(() => [s(y(k), {
 				modelValue: c.value,
 				"onUpdate:modelValue": i[1] ||= (e) => c.value = e
 			}, {
 				default: S(() => [s(y(w), null, {
 					default: S(() => [s(y(T), null, {
-						default: S(() => [s(y(Ue), {
+						default: S(() => [s(y(We), {
 							ref_key: "treeRef",
 							ref: a,
 							nodes: e.items,
@@ -555,7 +554,7 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 		});
 		return (e, n) => (m(), r("div", { class: f(c.value) }, v(t.text), 3));
 	}
-}), gt = { class: "col-12 self-center" }, q = /* @__PURE__ */ c({
+}), ht = { class: "col-12 self-center" }, q = /* @__PURE__ */ c({
 	name: "HCenterLabel",
 	__name: "HCenterLabel",
 	props: {
@@ -566,11 +565,11 @@ var ot = { class: "row items-center justify-end" }, st = { class: "row items-cen
 		return (t, n) => (m(), r("div", {
 			class: "row text-center",
 			style: te(`height: ${e.height}`)
-		}, [i("div", gt, v(e.text), 1)], 4));
+		}, [i("div", ht, v(e.text), 1)], 4));
 	}
 });
-pt.install = (e) => {
-	e.component(pt.name, pt);
+B.install = (e) => {
+	e.component(B.name, B);
 }, V.install = (e) => {
 	e.component(V.name, V);
 }, H.install = (e) => {
@@ -590,7 +589,7 @@ pt.install = (e) => {
 //#region src/lib/enums/index.ts
 var J = /* @__PURE__ */ function(e) {
 	return e.xs = "xs", e.sm = "sm", e.md = "md", e.lg = "lg", e.xl = "xl", e;
-}({}), _t = /* @__PURE__ */ function(e) {
+}({}), gt = /* @__PURE__ */ function(e) {
 	return e.DEFAULT = "default", e.AUDIO = "audio", e.BALL = "ball", e.BARS = "bars", e.BOX = "box", e.CLOCK = "clock", e.COMMENT = "comment", e.CUBE = "cube", e.DOTS = "dots", e.FACEBOOK = "facebook", e.GEARS = "gears", e.GRID = "grid", e.HEARTS = "hearts", e.HOURGLASS = "hourglass", e.INFINITY = "infinity", e.IOS = "ios", e.ORBIT = "orbit", e.OVAL = "oval", e.PIE = "pie", e.PUFF = "puff", e.RADIO = "radio", e.RINGS = "rings", e.TAIL = "tail", e;
 }({}), Y = /* @__PURE__ */ c({
 	name: "HColumn",
@@ -611,7 +610,7 @@ var J = /* @__PURE__ */ function(e) {
 	setup(t) {
 		let n = t, i = e(() => {
 			let e = [];
-			return n.auto ? e.push(B(R.auto)) : n.cols ? e.push(B("", n.cols)) : (e.push(B()), n.xs && e.push(B(J.xs, n.xs)), n.sm && e.push(B(J.sm, n.sm)), n.md && e.push(B(J.md, n.md)), n.lg && e.push(B(J.lg, n.lg)), n.xl && e.push(B(J.xl, n.xl))), n.color && e.push(dt(n.color)), e;
+			return n.auto ? e.push(z(L.auto)) : n.cols ? e.push(z("", n.cols)) : (e.push(z()), n.xs && e.push(z(J.xs, n.xs)), n.sm && e.push(z(J.sm, n.sm)), n.md && e.push(z(J.md, n.md)), n.lg && e.push(z(J.lg, n.lg)), n.xl && e.push(z(J.xl, n.xl))), n.color && e.push(dt(n.color)), e;
 		});
 		return (e, t) => (m(), r("div", { class: f(i.value) }, [g(e.$slots, "default")], 2));
 	}
@@ -678,7 +677,7 @@ var J = /* @__PURE__ */ function(e) {
 			p();
 		}), (e, t) => (m(), r("div", { class: f(ee()) }, [g(e.$slots, "default")], 2));
 	}
-}), vt = 6, Z = 4, Q = /* @__PURE__ */ c({
+}), _t = 6, vt = 4, Z = /* @__PURE__ */ c({
 	name: "HContainer",
 	components: {
 		HRow: X,
@@ -691,25 +690,25 @@ var J = /* @__PURE__ */ function(e) {
 		offset: { default: 0 }
 	},
 	setup(n) {
-		let r = n, i = _(4), a = _(4), o = _(4), c = e(() => r.mode === "two"), l = (e) => e + r.offset, u = (e) => e - r.offset, ee = (e) => Math.abs(e % 2) === 0, f = () => Z + r.offset, te = () => 12 - f(), ne = () => Math.floor(te() / 2), re = (e) => {
+		let r = n, i = _(4), a = _(4), o = _(4), c = e(() => r.mode === "two"), l = (e) => e + r.offset, u = (e) => e - r.offset, ee = (e) => Math.abs(e % 2) === 0, f = () => vt + r.offset, te = () => 12 - f(), ne = () => Math.floor(te() / 2), re = (e) => {
 			i.value = l(e), o.value = u(e);
 		}, ie = (e) => {
 			i.value = u(e), o.value = l(e);
 		}, h = (e, t = 0) => {
 			i.value = e, o.value = e + t;
 		}, ae = () => {
-			h(vt);
+			h(_t);
 		}, oe = () => {
-			a.value = Z;
+			a.value = vt;
 		}, v = () => {
-			oe(), h(Z);
+			oe(), h(vt);
 		}, y = e(() => i.value > o.value), b = e(() => i.value < o.value), se = () => {
 			if (c.value) switch (r.wider) {
 				case "start":
-					re(vt);
+					re(_t);
 					break;
 				case "end":
-					ie(vt);
+					ie(_t);
 					break;
 				default:
 					ae();
@@ -722,10 +721,10 @@ var J = /* @__PURE__ */ function(e) {
 					ee(te()) ? h(e) : h(e, 1);
 					break;
 				case "start":
-					oe(), re(Z);
+					oe(), re(vt);
 					break;
 				case "end":
-					oe(), ie(Z);
+					oe(), ie(vt);
 					break;
 				default:
 					v();
@@ -764,8 +763,8 @@ var J = /* @__PURE__ */ function(e) {
 });
 Y.install = (e) => {
 	e.component(Y.name, Y);
-}, Q.install = (e) => {
-	e.component(Q.name, Q);
+}, Z.install = (e) => {
+	e.component(Z.name, Z);
 }, X.install = (e) => {
 	e.component(X.name, X);
 };
@@ -776,7 +775,7 @@ var yt = /* @__PURE__ */ c({
 	components: {
 		HSelect: V,
 		HTextField: W,
-		HContainer: Q
+		HContainer: Z
 	},
 	__name: "HDuration",
 	props: {
@@ -787,7 +786,7 @@ var yt = /* @__PURE__ */ c({
 	setup(e) {
 		let n = b(e, "modelValue"), r = _(0), i = _(""), a = h(ct), o = (e) => {
 			if (e) {
-				let t = Ke.duration(e, "second");
+				let t = qe.duration(e, "second");
 				if (t) {
 					let e = t._data;
 					for (let t in e) {
@@ -799,7 +798,7 @@ var yt = /* @__PURE__ */ c({
 		}, c = (e, t) => {
 			if (e && t) {
 				let r = t;
-				n.value = Ke.duration(e, r).toISOString();
+				n.value = qe.duration(e, r).toISOString();
 			}
 		};
 		return x(n, (e) => {
@@ -808,7 +807,7 @@ var yt = /* @__PURE__ */ c({
 			e && c(r.value, e);
 		}), x(r, (e) => {
 			e && c(e, i.value);
-		}), (e, n) => (m(), t(y(Q), {
+		}), (e, n) => (m(), t(y(Z), {
 			mode: "two",
 			gutter: "xs",
 			"gutter-col": "",
@@ -834,19 +833,19 @@ var yt = /* @__PURE__ */ c({
 		}));
 	}
 });
-L.install = (e) => {
-	e.component(L.name, L);
+I.install = (e) => {
+	e.component(I.name, I);
 }, yt.install = (e) => {
 	e.component(yt.name, yt);
 };
 //#endregion
 //#region src/HDivider/HDivider.vue
-var bt = /* @__PURE__ */ c({
+var Q = /* @__PURE__ */ c({
 	name: "HDivider",
 	components: {
-		HContainer: Q,
+		HContainer: Z,
 		HLabel: K,
-		QSeparator: j
+		QSeparator: A
 	},
 	__name: "HDivider",
 	props: {
@@ -856,14 +855,14 @@ var bt = /* @__PURE__ */ c({
 		label: { default: "" }
 	},
 	setup(e) {
-		return (n, r) => (m(), t(y(Q), {
+		return (n, r) => (m(), t(y(Z), {
 			mode: "three",
 			offset: e.offset,
 			wider: e.wider,
 			align: "center"
 		}, {
-			left: S(() => [s(y(j))]),
-			right: S(() => [s(y(j))]),
+			left: S(() => [s(y(A))]),
+			right: S(() => [s(y(A))]),
 			default: S(() => [s(y(K), {
 				text: e.label,
 				weight: e.weight
@@ -874,22 +873,22 @@ var bt = /* @__PURE__ */ c({
 });
 //#endregion
 //#region src/HDivider/index.ts
-bt.install = (e) => {
-	e.component(bt.name, bt);
+Q.install = (e) => {
+	e.component(Q.name, Q);
 };
 //#endregion
 //#region src/HDialog/HDialog.vue?vue&type=script&setup=true&lang.ts
-var xt = { class: "text-h6" }, St = /* @__PURE__ */ c({
+var bt = { class: "text-h6" }, xt = /* @__PURE__ */ c({
 	name: "HDialog",
 	components: {
 		QDialog: de,
 		QCard: w,
 		QCardSection: T,
-		QSpace: ge,
+		QSpace: _e,
 		QBtn: C,
 		QCardActions: le,
 		QInnerLoading: fe,
-		QSpinnerDots: Te
+		QSpinnerDots: Ee
 	},
 	__name: "HDialog",
 	props: /* @__PURE__ */ u({
@@ -951,8 +950,8 @@ var xt = { class: "text-h6" }, St = /* @__PURE__ */ c({
 				default: S(() => [
 					s(y(T), { class: "row items-center" }, {
 						default: S(() => [
-							i("div", xt, v(e.title), 1),
-							s(y(ge)),
+							i("div", bt, v(e.title), 1),
+							s(y(_e)),
 							e.hideClose ? n("", !0) : (m(), t(y(C), {
 								key: 0,
 								icon: "close",
@@ -986,7 +985,7 @@ var xt = { class: "text-h6" }, St = /* @__PURE__ */ c({
 						_: 1
 					}),
 					s(y(fe), { showing: c.value }, {
-						default: S(() => [s(y(Te), {
+						default: S(() => [s(y(Ee), {
 							size: e.spinnerSize,
 							color: "primary"
 						}, null, 8, ["size"])]),
@@ -1001,21 +1000,21 @@ var xt = { class: "text-h6" }, St = /* @__PURE__ */ c({
 });
 //#endregion
 //#region src/HDialog/index.ts
-St.install = (e) => {
-	e.component(St.name, St);
+xt.install = (e) => {
+	e.component(xt.name, xt);
 };
 //#endregion
 //#region src/HList/HListItem.vue
-var Ct = /* @__PURE__ */ c({
+var St = /* @__PURE__ */ c({
 	name: "HListItem",
 	components: {
-		QItem: O,
-		QItemSection: k,
+		QItem: pe,
+		QItemSection: O,
 		QIcon: E
 	},
 	directives: {
 		ClosePopup: ce,
-		Ripple: We
+		Ripple: Ge
 	},
 	__name: "HListItem",
 	props: {
@@ -1025,11 +1024,11 @@ var Ct = /* @__PURE__ */ c({
 	setup(e) {
 		return (n, r) => {
 			let i = ae("close-popup"), a = ae("ripple");
-			return se((m(), t(y(O), { clickable: "" }, {
-				default: S(() => [s(y(k), { avatar: "" }, {
+			return se((m(), t(y(pe), { clickable: "" }, {
+				default: S(() => [s(y(O), { avatar: "" }, {
 					default: S(() => [s(y(E), { name: e.icon }, null, 8, ["name"])]),
 					_: 1
-				}), s(y(k), null, {
+				}), s(y(O), null, {
 					default: S(() => [o(v(e.label), 1)]),
 					_: 1
 				})]),
@@ -1040,37 +1039,37 @@ var Ct = /* @__PURE__ */ c({
 });
 //#endregion
 //#region src/HList/index.ts
-Ct.install = (e) => {
-	e.component(Ct.name, Ct);
+St.install = (e) => {
+	e.component(St.name, St);
 };
 //#endregion
 //#region src/HLoading/HLoading.vue
-var wt = /* @__PURE__ */ c({
+var Ct = /* @__PURE__ */ c({
 	name: "HLoading",
 	components: {
-		DEFAULT: _e,
-		AUDIO: ve,
-		BALL: ye,
-		BARS: be,
-		BOX: xe,
-		CLOCK: Se,
-		COMMENT: Ce,
-		CUBE: we,
-		DOTS: Te,
-		FACEBOOK: Ee,
-		GEARS: De,
-		GRID: Oe,
-		HEARTS: ke,
-		HOURGLASS: Ae,
-		INFINITY: je,
-		IOS: Me,
-		ORBIT: Ne,
-		OVAL: Pe,
-		PIE: Fe,
-		PUFF: Ie,
-		RADIO: Le,
-		RINGS: Re,
-		TAIL: ze,
+		DEFAULT: ve,
+		AUDIO: ye,
+		BALL: be,
+		BARS: xe,
+		BOX: Se,
+		CLOCK: Ce,
+		COMMENT: we,
+		CUBE: Te,
+		DOTS: Ee,
+		FACEBOOK: De,
+		GEARS: Oe,
+		GRID: ke,
+		HEARTS: Ae,
+		HOURGLASS: je,
+		INFINITY: Me,
+		IOS: Ne,
+		ORBIT: Pe,
+		OVAL: Fe,
+		PIE: Ie,
+		PUFF: Le,
+		RADIO: Re,
+		RINGS: ze,
+		TAIL: Be,
 		QInnerLoading: fe
 	},
 	__name: "HLoading",
@@ -1095,14 +1094,14 @@ var wt = /* @__PURE__ */ c({
 });
 //#endregion
 //#region src/HLoading/index.ts
-wt.install = (e) => {
-	e.component(wt.name, wt);
+Ct.install = (e) => {
+	e.component(Ct.name, Ct);
 };
 //#endregion
 //#region src/HPagination/HPagination.vue
-var Tt = /* @__PURE__ */ c({
+var wt = /* @__PURE__ */ c({
 	name: "HPagination",
-	components: { QPagination: me },
+	components: { QPagination: he },
 	__name: "HPagination",
 	props: /* @__PURE__ */ u({
 		max: { default: 0 },
@@ -1117,7 +1116,7 @@ var Tt = /* @__PURE__ */ c({
 	emits: ["update:modelValue"],
 	setup(e) {
 		let n = b(e, "modelValue");
-		return (r, i) => (m(), t(y(me), d({
+		return (r, i) => (m(), t(y(he), d({
 			modelValue: n.value,
 			"onUpdate:modelValue": i[0] ||= (e) => n.value = e,
 			max: e.max,
@@ -1138,12 +1137,12 @@ var Tt = /* @__PURE__ */ c({
 });
 //#endregion
 //#region src/HPagination/index.ts
-Tt.install = (e) => {
-	e.component(Tt.name, Tt);
+wt.install = (e) => {
+	e.component(wt.name, wt);
 };
 //#endregion
 //#region src/HParticles/particles.ts
-var Et = { particles: {
+var Tt = { particles: {
 	number: {
 		density: {
 			enable: !0,
@@ -1166,51 +1165,43 @@ var Et = { particles: {
 	},
 	size: { value: 1 },
 	shape: { type: "circle" }
-} }, Dt = ["id"], Ot = /* @__PURE__ */ c({
+} }, Et = ["id"], Dt = /* @__PURE__ */ c({
 	name: "HParticles",
 	__name: "HParticles",
 	setup(e) {
-		let t = h("HParticles"), n, i = async (e) => {
-			await Qe(e), await $e(e), await e.load({
-				id: "triangles",
-				options: Et
-			});
-		};
+		let t = _("HParticles"), n;
 		return ne(() => {
 			ee(async () => {
-				Ze.init(), await i(Ze), n = await Ze.load({
+				await $e(Qe), n = await Qe.load({
 					id: t.value,
-					options: {
-						fullScreen: { zIndex: 1 },
-						preset: "triangles"
-					}
+					options: Tt
 				});
 			});
 		}), re(() => {
 			n &&= (n.destroy(), void 0);
-		}), (e, n) => (m(), r("div", { id: t.value }, [g(e.$slots, "default")], 8, Dt));
+		}), (e, n) => (m(), r("div", { id: t.value }, [g(e.$slots, "default")], 8, Et));
 	}
 });
 //#endregion
 //#region src/HParticles/index.ts
-Ot.install = (e) => {
-	e.component(Ot.name, Ot);
+Dt.install = (e) => {
+	e.component(Dt.name, Dt);
 };
 //#endregion
 //#region src/HBackground/HSignInCornerBottom.vue?vue&type=script&setup=true&lang.ts
-var kt = {
+var Ot = {
 	version: "1.1",
 	xmlns: "http://www.w3.org/2000/svg",
 	"xmlns:xlink": "http://www.w3.org/1999/xlink",
 	height: "896",
 	width: "967.8852157128662"
-}, At = {
+}, kt = {
 	id: "linearGradient-3",
 	x1: "0.5",
 	y1: "0",
 	x2: "0.5",
 	y2: "1"
-}, jt = ["stop-color"], Mt = ["stop-color"], Nt = /* @__PURE__ */ c({
+}, At = ["stop-color"], jt = ["stop-color"], Mt = /* @__PURE__ */ c({
 	name: "HSignInCornerBottom",
 	__name: "HSignInCornerBottom",
 	props: {
@@ -1218,35 +1209,35 @@ var kt = {
 		endColor: { default: "#120fc4" }
 	},
 	setup(e) {
-		return (t, n) => (m(), r("svg", kt, [i("defs", null, [n[0] ||= i("path", {
+		return (t, n) => (m(), r("svg", Ot, [i("defs", null, [n[0] ||= i("path", {
 			id: "path-2",
 			opacity: "1",
 			"fill-rule": "evenodd",
 			d: "M896,448 C1142.6325445712241,465.5747656464056 695.2579309733121,896 448,896\n			C200.74206902668806,896 5.684341886080802e-14,695.2579309733121 0,448.0000000000001 C0,200.74206902668806\n			200.74206902668791,5.684341886080802e-14 447.99999999999994,0 C695.2579309733121,0 475,418 896,448Z"
-		}, null, -1), i("linearGradient", At, [i("stop", {
+		}, null, -1), i("linearGradient", kt, [i("stop", {
 			offset: "0",
 			"stop-color": e.startColor,
 			"stop-opacity": "1"
-		}, null, 8, jt), i("stop", {
+		}, null, 8, At), i("stop", {
 			offset: "1",
 			"stop-color": e.endColor,
 			"stop-opacity": "1"
-		}, null, 8, Mt)])]), n[1] ||= i("g", { opacity: "1" }, [i("use", {
+		}, null, 8, jt)])]), n[1] ||= i("g", { opacity: "1" }, [i("use", {
 			"xlink:href": "#path-2",
 			fill: "url(#linearGradient-3)",
 			"fill-opacity": "1"
 		})], -1)]));
 	}
-}), Pt = {
+}), Nt = {
 	height: "1337",
 	width: "1337"
-}, Ft = {
+}, Pt = {
 	id: "linearGradient-2",
 	x1: "0.79",
 	y1: "0.62",
 	x2: "0.21",
 	y2: "0.86"
-}, It = ["stop-color"], Lt = ["stop-color"], Rt = /* @__PURE__ */ c({
+}, Ft = ["stop-color"], It = ["stop-color"], Lt = /* @__PURE__ */ c({
 	name: "HSignInCornerTop",
 	__name: "HSignInCornerTop",
 	props: {
@@ -1254,30 +1245,30 @@ var kt = {
 		endColor: { default: "#120fc4" }
 	},
 	setup(e) {
-		return (t, n) => (m(), r("svg", Pt, [i("defs", null, [n[0] ||= i("path", {
+		return (t, n) => (m(), r("svg", Nt, [i("defs", null, [n[0] ||= i("path", {
 			id: "path-1",
 			opacity: "1",
 			"fill-rule": "evenodd",
 			d: "M1337,668.5 C1337,1037.455193874239 1037.455193874239,1337 668.5,1337 C523.6725684305388,1337 337,1236 370.50000000000006,1094 C434.03835568300906,824.6732385973953 6.906089672974592e-14,892.6277623047779 0,668.5000000000001 C0,299.5448061257611 299.5448061257609,1.1368683772161603e-13 668.4999999999999,0 C1037.455193874239,0 1337,299.544806125761 1337,668.5Z"
-		}, null, -1), i("linearGradient", Ft, [i("stop", {
+		}, null, -1), i("linearGradient", Pt, [i("stop", {
 			offset: "0",
 			"stop-color": e.startColor,
 			"stop-opacity": "1"
-		}, null, 8, It), i("stop", {
+		}, null, 8, Ft), i("stop", {
 			offset: "1",
 			"stop-color": e.endColor,
 			"stop-opacity": "1"
-		}, null, 8, Lt)])]), n[1] ||= i("g", { opacity: "1" }, [i("use", {
+		}, null, 8, It)])]), n[1] ||= i("g", { opacity: "1" }, [i("use", {
 			"xlink:href": "#path-1",
 			fill: "url(#linearGradient-2)",
 			"fill-opacity": "1"
 		})], -1)]));
 	}
-}), zt = { class: "corner-top" }, Bt = { class: "corner-bottom" }, $ = /* @__PURE__ */ rt(/* @__PURE__ */ c({
+}), Rt = { class: "corner-top" }, zt = { class: "corner-bottom" }, $ = /* @__PURE__ */ rt(/* @__PURE__ */ c({
 	name: "HSignInBackground",
 	components: {
-		HSignInCornerBottom: Nt,
-		HSignInCornerTop: Rt
+		HSignInCornerBottom: Mt,
+		HSignInCornerTop: Lt
 	},
 	__name: "HSignInBackground",
 	props: {
@@ -1285,10 +1276,10 @@ var kt = {
 		endColor: {}
 	},
 	setup(e) {
-		return (t, n) => (m(), r("div", null, [i("div", zt, [s(Rt, {
+		return (t, n) => (m(), r("div", null, [i("div", Rt, [s(Lt, {
 			"start-color": e.startColor,
 			"end-color": e.endColor
-		}, null, 8, ["start-color", "end-color"])]), i("div", Bt, [s(Nt, {
+		}, null, 8, ["start-color", "end-color"])]), i("div", zt, [s(Mt, {
 			"start-color": e.endColor,
 			"end-color": e.startColor
 		}, null, 8, ["start-color", "end-color"])])]));
@@ -1301,34 +1292,34 @@ $.install = (e) => {
 };
 //#endregion
 //#region src/index.ts
-var Vt = [
-	M,
-	F,
+var Bt = [
+	j,
+	P,
 	q,
-	I,
+	F,
 	Y,
+	Z,
+	I,
 	Q,
-	L,
-	bt,
-	St,
+	xt,
 	yt,
-	N,
-	pt,
+	M,
+	B,
 	U,
 	G,
 	K,
+	St,
 	Ct,
 	wt,
-	Tt,
-	Ot,
+	Dt,
 	X,
 	V,
 	$,
 	H,
 	W,
-	P
-], Ht = { install: (e) => {
-	Vt.map((t) => t.install(e));
+	N
+], Vt = { install: (e) => {
+	Bt.map((t) => t.install(e));
 } };
 //#endregion
-export { J as BreakPointEnum, ut as Content, ct as DURATION_UNITS, R as Grid, M as HButton, F as HCardTitle, q as HCenterLabel, I as HChartCard, Y as HColumn, Q as HContainer, L as HDateTime, St as HDialog, bt as HDivider, yt as HDuration, U as HFieldLabel, N as HIconButton, pt as HIconSelect, K as HLabel, Ct as HListItem, wt as HLoading, Tt as HPagination, Ot as HParticles, X as HRow, V as HSelect, $ as HSignInBackground, H as HSwitch, W as HTextField, G as HTreeField, P as HVisibilityButton, _t as SpinnerEnum, lt as Symbol, ft as createBackgroundColor, z as createClass, B as createColClass, dt as createTextColor, Ht as default, Ge as moment };
+export { J as BreakPointEnum, ut as Content, ct as DURATION_UNITS, L as Grid, j as HButton, P as HCardTitle, q as HCenterLabel, F as HChartCard, Y as HColumn, Z as HContainer, I as HDateTime, xt as HDialog, Q as HDivider, yt as HDuration, U as HFieldLabel, M as HIconButton, B as HIconSelect, K as HLabel, St as HListItem, Ct as HLoading, wt as HPagination, Dt as HParticles, X as HRow, V as HSelect, $ as HSignInBackground, H as HSwitch, W as HTextField, G as HTreeField, N as HVisibilityButton, gt as SpinnerEnum, lt as Symbol, ft as createBackgroundColor, R as createClass, z as createColClass, dt as createTextColor, Vt as default, Ke as moment };

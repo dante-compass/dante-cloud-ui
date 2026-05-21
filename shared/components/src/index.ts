@@ -1,17 +1,17 @@
-import type { App } from 'vue';
+import type { App } from "vue";
 
-import { HButton, HIconButton, HVisibilityButton } from './HButton';
-import { HCardTitle, HChartCard } from './HCard';
-import { HDateTime, HDuration } from './HDateTime';
-import { HDivider } from './HDivider';
-import { HDialog } from './HDialog';
-import { HSwitch, HTextField, HSelect, HIconSelect, HFieldLabel, HTreeField, HLabel, HCenterLabel } from './HForm';
-import { HColumn, HContainer, HRow } from './HGrid';
-import { HListItem } from './HList';
-import { HLoading } from './HLoading';
-import { HPagination } from './HPagination';
-import { HParticles } from './HParticles';
-import { HSignInBackground } from './HBackground';
+import { HButton, HIconButton, HVisibilityButton } from "./HButton";
+import { HCardTitle, HChartCard } from "./HCard";
+import { HDateTime, HDuration } from "./HDateTime";
+import { HDivider } from "./HDivider";
+import { HDialog } from "./HDialog";
+import { HSwitch, HTextField, HSelect, HIconSelect, HFieldLabel, HTreeField, HLabel, HCenterLabel } from "./HForm";
+import { HColumn, HContainer, HRow } from "./HGrid";
+import { HListItem } from "./HList";
+import { HLoading } from "./HLoading";
+import { HPagination } from "./HPagination";
+import { HParticles } from "./HParticles";
+import { HSignInBackground } from "./HBackground";
 
 const components = [
   HButton,
@@ -73,7 +73,7 @@ export {
   HVisibilityButton,
 };
 
-export * from './lib';
+export * from "./lib";
 
 export default {
   install,

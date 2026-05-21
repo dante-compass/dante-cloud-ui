@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/components",
-  "version": "4.6.6",
+  "version": "4.6.8",
   "description": "",
   "keywords": [],
   "author": "",
@@ -40,9 +40,8 @@
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",
-    "@tsparticles/basic": "^4.0.1",
-    "@tsparticles/engine": "^4.0.1",
-    "@tsparticles/interaction-particles-links": "^4.0.1",
+    "@tsparticles/engine": "^4.0.5",
+    "@tsparticles/preset-triangles": "^4.0.5",
     "quasar": "^2.19.3"
   }
 }

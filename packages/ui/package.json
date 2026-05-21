@@ -1,6 +1,6 @@
 {
   "name": "@herodotus/ui",
-  "version": "4.0.6.3",
+  "version": "4.0.6.4",
   "description": "",
   "keywords": [],
   "author": "",
@@ -24,9 +24,9 @@
     "@herodotus-cloud/form-apis": "workspace:^",
     "@herodotus-cloud/form-designer": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
-    "@herodotus/api": "^1.6.4",
-    "@herodotus/core": "^1.6.4",
-    "@herodotus/framework": "^1.6.4",
+    "@herodotus/api": "^1.6.8",
+    "@herodotus/core": "^1.6.8",
+    "@herodotus/framework": "^1.6.8",
     "@mdi/js": "^7.4.47",
     "@quasar/extras": "^1.18.0",
     "@rsocket/composite-metadata": "1.0.0-alpha.3",
@@ -39,7 +39,7 @@
     "bpmn-js": "^18.16.1",
     "bpmn-js-token-simulation": "^0.39.3",
     "colord": "^2.9.3",
-    "echarts": "^6.0.0",
+    "echarts": "^6.1.0",
     "element-resize-detector": "^1.2.4",
     "js-base64": "^3.7.8",
     "rsocket-core": "1.0.0-alpha.3",
@@ -47,12 +47,12 @@
     "simple-uploader.js": "^0.6.0",
     "vue": "^3.5.34",
     "vue-cookies": "^1.8.6",
-    "vue-i18n": "^11.4.2",
+    "vue-i18n": "^11.4.4",
     "vue-router": "^5.0.7",
     "vue-simple-uploader": "^1.0.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "25.8.0"
+    "@types/node": "25.9.1"
   }
 }
