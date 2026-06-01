@@ -582,7 +582,7 @@ var qt = "data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%
 	TextAnnotation: "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3e%3cpath%20d='M22.0872067,0%20L22.0872067,0.894012542%20L22.0872067,15.823025%20L22.0872067,30.7525922%20L22.0872067,31.6466029%20L22.9812174,31.6466029%20L31.1065405,31.6466029%20L32,31.6466029%20L32,29.8591326%20L31.1065405,29.8591326%20L23.8746769,29.8591326%20L23.8746769,15.823025%20L23.8746769,1.78802508%20L31.1065405,1.78802508%20L32,1.78802508%20L32,0%20L31.1065405,0%20L22.9812174,0%20L22.0872067,0%20L22.0872067,0%20Z%20M19.163109,13.9989956%20L16.4256802,16.1664498%20L18.5931353,18.9038786%20L21.3305623,16.7369783%20L19.163109,13.9989956%20Z%20M13.6876976,18.3339049%20L10.9502689,20.5013582%20L13.1177231,23.238787%20L15.8551518,21.0713319%20L13.6876976,18.3339049%20Z%20M8.21284012,22.6688116%20L5.47541139,24.8362666%20L7.64286559,27.5736954%20L10.3802943,25.4062421%20L8.21284012,22.6688116%20L8.21284012,22.6688116%20Z%20M2.73742874,27.0037217%20L-2.05329146e-16,29.171175%20L2.1674542,31.9086038%20L4.90488294,29.7411487%20L2.73742874,27.0037217%20Z'/%3e%3c/svg%3e",
 	Transaction: "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3e%3cpath%20d='M5.42222222,0%20C2.42907378,0%200,2.42907378%200,5.42222222%20L0,21.2444444%20C0,24.2375929%202.42907378,26.6666667%205.42222222,26.6666667%20L26.5777778,26.6666667%20C29.5709262,26.6666667%2032,24.2375929%2032,21.2444444%20L32,5.42222222%20C32,2.42907378%2029.5709262,0%2026.5777778,0%20L5.42222222,0%20Z%20M5.42222222,1.24444444%20L26.5777778,1.24444444%20C28.9030293,1.24444444%2030.7555556,3.09697049%2030.7555556,5.42222222%20L30.7555556,21.2444444%20C30.7555556,23.569696%2028.9030293,25.4222222%2026.5777778,25.4222222%20L5.42222222,25.4222222%20C3.09697067,25.4222222%201.24444444,23.569696%201.24444444,21.2444444%20L1.24444444,5.42222222%20C1.24444444,3.09697049%203.09697067,1.24444444%205.42222222,1.24444444%20Z%20M6.47833333,3.02222222%20C4.62381138,3.02222222%203.11111111,4.53408978%203.11111111,6.38822916%20L3.11111111,20.2784729%20C3.11111111,22.1326116%204.62381138,23.6444444%206.47833333,23.6444444%20L25.5216676,23.6444444%20C27.3761884,23.6444444%2028.8888889,22.1326116%2028.8888889,20.2784729%20L28.8888889,6.38822916%20C28.8888889,4.53408978%2027.3761884,3.02222222%2025.5216676,3.02222222%20L6.47833333,3.02222222%20Z%20M6.47833333,4.26666667%20L25.5216676,4.26666667%20C26.708592,4.26666667%2027.6444444,5.20228658%2027.6444444,6.38822916%20L27.6444444,20.2784729%20C27.6444444,21.4644142%2026.7085902,22.4%2025.5216676,22.4%20L6.47833333,22.4%20C5.29140818,22.4%204.35555556,21.4644142%204.35555556,20.2784729%20L4.35555556,6.38822916%20C4.35555556,5.20228658%205.29140818,4.26666667%206.47833333,4.26666667%20Z'%20transform='translate(0%203)'/%3e%3c/svg%3e",
 	UserTask: "data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%3e%3cpath%20fill-rule='evenodd'%20d='M10.2627541,4.46821526%20C8.56533304,4.46821526%207.35103844,5.77309525%207.34763254,7.25944235%20L7.34763254,7.25987227%20L7.34763254,7.26028399%20C7.34773978,7.70977831%207.46936895,8.18416901%207.65939789,8.61205296%20C7.79660923,8.92100854%207.96720381,9.2050437%208.17507967,9.43258076%20C6.93963507,9.85525001%205.492251,10.550889%204.76067711,11.9225898%20L4.72125525,11.9965151%20L4.72125525,16.4368954%20L15.804253,16.4368954%20L15.804253,11.9965151%20L15.7648311,11.9225898%20C15.0437794,10.5706182%2013.627715,9.87594759%2012.4042124,9.45152479%20C13.0014917,8.8441609%2013.1776841,8.06023007%2013.1778756,7.2602839%20L13.1778756,7.25987217%20L13.1778756,7.25944226%20C13.1744697,5.77309534%2011.9601753,4.46821526%2010.2627541,4.46821526%20Z%20M9.10379314,6.05093028%20C9.18225435,6.05113956%209.26839763,6.05376041%209.36336394,6.05935773%20C10.1200055,6.10395505%2010.3746594,6.24015394%2010.5704057,6.36932788%20C10.7661511,6.49850182%2010.9041433,6.62146651%2011.4214536,6.63654733%20L11.4216068,6.63654733%20L11.4217791,6.63654733%20C11.8249005,6.62146871%2012.0187682,6.54959631%2012.1577964,6.46818171%20C12.2141325,6.43519172%2012.2614366,6.40089647%2012.3099107,6.36814968%20C12.4380369,6.64278081%2012.5068395,6.94637031%2012.5076189,7.26056444%20C12.5073508,8.15524712%2012.3535399,8.78179824%2011.5331999,9.29451074%20L11.6134465,9.89935919%20C11.7841936,9.95121105%2011.9606895,10.008105%2012.1398252,10.0704926%20C12.1648426,10.1748606%2012.1937475,10.3117461%2012.2131894,10.457268%20C12.2335563,10.6097242%2012.2415667,10.7683466%2012.2290101,10.8874483%20C12.2164535,11.0065501%2012.1794751,11.0708458%2012.1729823,11.0773396%20C11.7560232,11.4942977%2011.0158848,11.7374678%2010.2651555,11.7374678%20C9.51442659,11.7374678%208.7742882,11.4942977%208.35732926,11.0773396%20C8.35083639,11.0708458%208.31385738,11.0065501%208.3013008,10.8874483%20C8.28874431,10.7683466%208.29675452,10.6097242%208.31712196,10.457268%20C8.33667036,10.3109427%208.36580528,10.1732502%208.39091634,10.0686786%20C8.56826288,10.0070052%208.74298493,9.95070847%208.91207758,9.89935919%20L8.95991486,9.25125516%20C8.92096399,9.20130191%208.88127613,9.16820937%208.83390707,9.13267168%20C8.65082188,8.99531604%208.42879176,8.69314546%208.27195886,8.3400085%20C8.11518189,7.98699745%208.01805136,7.58349734%208.01790496,7.26048966%20C8.01887911,6.87323765%208.12309309,6.50204876%208.31450379,6.1814196%20C8.34875231,6.16867162%208.38486727,6.15519833%208.42545719,6.14184818%20C8.56819863,6.09489993%208.76380268,6.05008747%209.1038008,6.05093028%20L9.10379314,6.05093028%20Z%20M7.65464785,10.355422%20C7.65404559,10.3598153%207.65336682,10.364103%207.65277777,10.3685128%20C7.62800845,10.5539176%207.61345386,10.7557287%207.63474988,10.9577275%20C7.65604589,11.1597262%207.7093452,11.3772077%207.88339921,11.551261%20C8.47750275,12.1453652%209.37662055,12.4077139%2010.2651479,12.4077139%20C11.1536749,12.4077139%2012.0527928,12.1453652%2012.6468961,11.551261%20C12.8209504,11.3772077%2012.8742502,11.1597262%2012.8955459,10.9577275%20C12.9168415,10.7557277%2012.9022876,10.5539176%2012.8775182,10.3685128%20C12.8770299,10.3648589%2012.876463,10.3613088%2012.8759661,10.3576661%20C13.779206,10.7537716%2014.6522599,11.3210535%2015.1340069,12.1680416%20L15.1340069,15.7666493%20L13.5302038,15.7666493%20L13.5302038,13.2292891%20L12.8599577,13.2292891%20L12.8599577,15.7666493%20L7.65118814,15.7666493%20L7.65118814,13.2292891%20L6.98094205,13.2292891%20L6.98094205,15.7666493%20L5.39150133,15.7666493%20L5.39150133,12.1680416%20C5.87415617,11.3194564%206.74959206,10.7516277%207.65464785,10.355422%20Z%20M6.49417325,0%20C2.91556566,0%200,2.90326648%200,6.47500003%20L0,19.8583331%20C0,23.4300669%202.91556566,26.3333335%206.49417325,26.3333335%20L25.5058267,26.3333335%20C29.0844353,26.3333335%2032,23.4300669%2032,19.8583331%20L32,6.47500003%20C32,2.90326648%2029.0844353,0%2025.5058267,0%20L6.49417325,0%20Z%20M6.49417325,2.00000006%20L25.5058267,2.00000006%20C28.0147771,2.00000006%2030,3.98043352%2030,6.47500003%20L30,19.8583331%20C30,22.3529%2028.0147771,24.3333336%2025.5058267,24.3333336%20L6.49417325,24.3333336%20C3.98522269,24.3333336%202.00000003,22.3529%202.00000003,19.8583331%20L2.00000003,6.47500003%20C2.00000003,3.98043352%203.98522269,2.00000006%206.49417325,2.00000006%20Z'%20transform='translate(0%203)'/%3e%3c/svg%3e"
-}, wr = (e) => new URL((/* @__PURE__ */ Object.assign({}))[`../../../static/images/bpmn-icons-svg/${e}.svg`], import.meta.url).href, Tr = (e) => Cr[e], Er = (e) => e.split(":")[1], Dr = (e) => {
+}, wr = (e) => new URL((/* #__PURE__ */ Object.assign({}))[`../../../static/images/bpmn-icons-svg/${e}.svg`], import.meta.url).href, Tr = (e) => Cr[e], Er = (e) => e.split(":")[1], Dr = (e) => {
 	let t = e.eventDefinitions;
 	return t && t[0];
 }, Or = (e) => Er(e.$type).replace("EventDefinition", ""), kr = (e) => {
@@ -1085,7 +1085,7 @@ var Wr = k({
 function Kr(e, t, n, r, i, a) {
 	return A(), T("div", Gr);
 }
-var qr = /* @__PURE__ */ q(Wr, [["render", Kr]]), Jr = k({
+var qr = /*#__PURE__*/ q(Wr, [["render", Kr]]), Jr = k({
 	name: "HBpmnDiagramViewer",
 	components: { HBpmnViewer: qr },
 	props: {
@@ -1177,7 +1177,7 @@ function Xr(e, t, r, i, o, c) {
 		_: 1
 	}, 8, ["modelValue"]);
 }
-var Zr = /* @__PURE__ */ q(Jr, [["render", Xr]]);
+var Zr = /*#__PURE__*/ q(Jr, [["render", Xr]]);
 kt.registerLanguage("xml", At), kt.registerLanguage("json", jt);
 var Qr = k({
 	name: "HBpmnCodePreviewer",
@@ -1279,7 +1279,7 @@ function ei(e, t, r, i, o, c) {
 		_: 1
 	}, 8, ["modelValue"]);
 }
-var J = /* @__PURE__ */ q(Qr, [["render", ei]]);
+var J = /*#__PURE__*/ q(Qr, [["render", ei]]);
 Zr.install = (e) => {
 	e.component(Zr.name, Zr);
 }, J.install = (e) => {
@@ -1356,7 +1356,7 @@ function ni(e, n, r, i, o, c) {
 		_: 3
 	}, 8, ["default-opened"]);
 }
-var Y = /* @__PURE__ */ q(ti, [["render", ni]]), ri = k({
+var Y = /*#__PURE__*/ q(ti, [["render", ni]]), ri = k({
 	name: "HButton",
 	props: { tooltip: {
 		type: String,
@@ -1380,7 +1380,7 @@ function ii(e, t, r, i, a, o) {
 		key: "0"
 	} : void 0]), 1040);
 }
-var X = /* @__PURE__ */ q(ri, [["render", ii]]), ai = k({
+var X = /*#__PURE__*/ q(ri, [["render", ii]]), ai = k({
 	name: "HButtonDropdown",
 	props: {
 		label: { type: String },
@@ -1410,7 +1410,7 @@ function oi(e, t, n, i, a, o) {
 		_: 3
 	}, 8, ["label", "icon"]);
 }
-var si = /* @__PURE__ */ q(ai, [["render", oi]]), ci = k({ name: "HButtonGroup" });
+var si = /*#__PURE__*/ q(ai, [["render", oi]]), ci = k({ name: "HButtonGroup" });
 //#endregion
 //#region src/components/widgets/HButtonGroup.vue
 function li(e, t, n, r, a, o) {
@@ -1420,7 +1420,7 @@ function li(e, t, n, r, a, o) {
 		_: 3
 	});
 }
-var Z = /* @__PURE__ */ q(ci, [["render", li]]), ui = k({
+var Z = /*#__PURE__*/ q(ci, [["render", li]]), ui = k({
 	name: "HDialog",
 	props: {
 		modelValue: {
@@ -1518,7 +1518,7 @@ function fi(e, t, r, i, c, u) {
 		_: 3
 	}, 8, ["modelValue"]);
 }
-var pi = /* @__PURE__ */ q(ui, [["render", fi]]), mi = k({
+var pi = /*#__PURE__*/ q(ui, [["render", fi]]), mi = k({
 	name: "HListItem",
 	props: {
 		label: { type: String },
@@ -1553,7 +1553,7 @@ function hi(t, n, r, i, a, o) {
 		_: 1
 	})), [[d], [f]]);
 }
-var gi = /* @__PURE__ */ q(mi, [["render", hi]]), _i = k({ name: "HSeparator" });
+var gi = /*#__PURE__*/ q(mi, [["render", hi]]), _i = k({ name: "HSeparator" });
 //#endregion
 //#region src/components/widgets/HSeparator.vue
 function vi(e, t, n, r, i, a) {
@@ -1563,7 +1563,7 @@ function vi(e, t, n, r, i, a) {
 		color: "grey-6"
 	});
 }
-var Q = /* @__PURE__ */ q(_i, [["render", vi]]), yi = k({
+var Q = /*#__PURE__*/ q(_i, [["render", vi]]), yi = k({
 	name: "HTableActionButton",
 	props: { tooltip: {
 		type: String,
@@ -1588,7 +1588,7 @@ function bi(e, t, r, i, a, o) {
 		key: "0"
 	} : void 0]), 1040);
 }
-var xi = /* @__PURE__ */ q(yi, [["render", bi]]), Si = k({
+var xi = /*#__PURE__*/ q(yi, [["render", bi]]), Si = k({
 	name: "HTableItemDeleteButton",
 	components: { HTableActionButton: xi }
 });
@@ -1602,7 +1602,7 @@ function Ci(e, t, n, r, i, a) {
 		color: "red"
 	}, e.$attrs), null, 16);
 }
-var wi = /* @__PURE__ */ q(Si, [["render", Ci]]);
+var wi = /*#__PURE__*/ q(Si, [["render", Ci]]);
 k({
 	name: "HTableItemEditButton",
 	components: { HTableActionButton: xi }
@@ -1666,7 +1666,7 @@ function Ei(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Di = /* @__PURE__ */ q(Ti, [["render", Ei]]), Oi = k({
+var Di = /*#__PURE__*/ q(Ti, [["render", Ei]]), Oi = k({
 	name: "HTimerPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -1686,7 +1686,7 @@ function ki(e, t, n, r, i, a) {
 		label: "被调用元素"
 	});
 }
-var Ai = /* @__PURE__ */ q(Oi, [["render", ki]]), ji = k({
+var Ai = /*#__PURE__*/ q(Oi, [["render", ki]]), ji = k({
 	name: "HUserSelectTable",
 	components: { HTextField: H },
 	props: {
@@ -1775,7 +1775,7 @@ function Mi(e, t, n, r, i, a) {
 		"onRequest"
 	]);
 }
-var Ni = /* @__PURE__ */ q(ji, [["render", Mi]]), Pi = /* @__PURE__ */ k({
+var Ni = /*#__PURE__*/ q(ji, [["render", Mi]]), Pi = /* @__PURE__ */ k({
 	name: "HCandidateUserTextField",
 	components: {
 		HDialog: pi,
@@ -1783,7 +1783,7 @@ var Ni = /* @__PURE__ */ q(ji, [["render", Mi]]), Pi = /* @__PURE__ */ k({
 		HUserSelectTable: Ni
 	},
 	__name: "HCandidateUserTextField",
-	props: /* @__PURE__ */ ve({
+	props: /*@__PURE__*/ ve({
 		selection: {
 			type: String,
 			default: "multiple"
@@ -1943,7 +1943,7 @@ function Ii(e, t, n, r, i, a) {
 		"onRequest"
 	]);
 }
-var Li = /* @__PURE__ */ q(Fi, [["render", Ii]]), Ri = /* @__PURE__ */ k({
+var Li = /*#__PURE__*/ q(Fi, [["render", Ii]]), Ri = /* @__PURE__ */ k({
 	name: "HCandidateGroupTextField",
 	components: {
 		HDialog: pi,
@@ -1951,7 +1951,7 @@ var Li = /* @__PURE__ */ q(Fi, [["render", Ii]]), Ri = /* @__PURE__ */ k({
 		HTextField: H
 	},
 	__name: "HCandidateGroupTextField",
-	props: /* @__PURE__ */ ve({
+	props: /*@__PURE__*/ ve({
 		label: { type: String },
 		title: {
 			type: String,
@@ -2107,7 +2107,7 @@ function Bi(e, t, r, i, c, u) {
 		_: 1
 	}, 8, ["modelValue"]);
 }
-var Vi = /* @__PURE__ */ q(zi, [["render", Bi]]), Hi = k({
+var Vi = /*#__PURE__*/ q(zi, [["render", Bi]]), Hi = k({
 	name: "HFormSelect",
 	props: { modelValue: { type: String } },
 	setup(e, { emit: t }) {
@@ -2171,7 +2171,7 @@ function Ui(e, t, n, r, i, a) {
 		"onFilter"
 	]);
 }
-var Wi = /* @__PURE__ */ q(Hi, [["render", Ui]]), Gi = k({
+var Wi = /*#__PURE__*/ q(Hi, [["render", Ui]]), Gi = k({
 	name: "HCandidateStarterPanel",
 	components: {
 		HCandidateGroupTextField: Ri,
@@ -2223,7 +2223,7 @@ function Ki(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var qi = /* @__PURE__ */ q(Gi, [["render", Ki]]), Ji = k({
+var qi = /*#__PURE__*/ q(Gi, [["render", Ki]]), Ji = k({
 	name: "HCompensationPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2243,7 +2243,7 @@ function Yi(e, t, n, r, i, a) {
 		label: "补偿"
 	});
 }
-var Xi = /* @__PURE__ */ q(Ji, [["render", Yi]]), Zi = /* @__PURE__ */ k({
+var Xi = /*#__PURE__*/ q(Ji, [["render", Yi]]), Zi = /* @__PURE__ */ k({
 	name: "HConditionPanel",
 	components: {
 		HExpansionItem: Y,
@@ -2387,7 +2387,7 @@ function $i(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var ea = /* @__PURE__ */ q(Qi, [["render", $i]]), ta = k({
+var ea = /*#__PURE__*/ q(Qi, [["render", $i]]), ta = k({
 	name: "HErrorPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2407,7 +2407,7 @@ function na(e, t, n, r, i, a) {
 		label: "错误"
 	});
 }
-var ra = /* @__PURE__ */ q(ta, [["render", na]]), ia = k({
+var ra = /*#__PURE__*/ q(ta, [["render", na]]), ia = k({
 	name: "HTimerPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2427,7 +2427,7 @@ function aa(e, t, n, r, i, a) {
 		label: "上报"
 	});
 }
-var oa = /* @__PURE__ */ q(ia, [["render", aa]]), sa = k({
+var oa = /*#__PURE__*/ q(ia, [["render", aa]]), sa = k({
 	name: "HExecutionListenerPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2446,7 +2446,7 @@ function ca(e, t, n, r, i, a) {
 		count: e.count
 	}, null, 8, ["count"]);
 }
-var la = /* @__PURE__ */ q(sa, [["render", ca]]), ua = k({
+var la = /*#__PURE__*/ q(sa, [["render", ca]]), ua = k({
 	name: "HExtensionPropertiesPanel",
 	components: {
 		HExpansionItem: Y,
@@ -2589,7 +2589,7 @@ function da(e, t, r, i, a, o) {
 		_: 1
 	}, 8, ["count"]);
 }
-var fa = /* @__PURE__ */ q(ua, [["render", da]]), pa = k({
+var fa = /*#__PURE__*/ q(ua, [["render", da]]), pa = k({
 	name: "HExternalTaskPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2609,7 +2609,7 @@ function ma(e, t, n, r, i, a) {
 		label: "外部任务"
 	});
 }
-var ha = /* @__PURE__ */ q(pa, [["render", ma]]), ga = k({
+var ha = /*#__PURE__*/ q(pa, [["render", ma]]), ga = k({
 	name: "HFieldInjectionPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2628,7 +2628,7 @@ function _a(e, t, n, r, i, a) {
 		count: e.count
 	}, null, 8, ["count"]);
 }
-var va = /* @__PURE__ */ q(ga, [["render", _a]]), $ = /* @__PURE__ */ function(e) {
+var va = /*#__PURE__*/ q(ga, [["render", _a]]), $ = /* @__PURE__ */ function(e) {
 	return e.NONE = "NONE", e.CAMUNDA_FORMS = "CAMUNDA_FORMS", e.EMBEDDED_OR_EXTERNAL_TASK_FORMS = "EMBEDDED_OR_EXTERNAL_TASK_FORMS", e.GENERATED_TASK_FORMS = "GENERATED_TASK_FORMS", e;
 }({}), ya = /* @__PURE__ */ function(e) {
 	return e.DEVELOPMENT = "deployment", e.LATEST = "latest", e.VERSION = "version", e;
@@ -2832,7 +2832,7 @@ function Sa(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Ca = /* @__PURE__ */ q(xa, [["render", Sa]]), wa = k({
+var Ca = /*#__PURE__*/ q(xa, [["render", Sa]]), wa = k({
 	name: "HHeadPanel",
 	props: {
 		title: {
@@ -2871,7 +2871,7 @@ function Ea(t, n, r, i, a, o) {
 		_: 1
 	});
 }
-var Da = /* @__PURE__ */ q(wa, [["render", Ea]]), Oa = k({
+var Da = /*#__PURE__*/ q(wa, [["render", Ea]]), Oa = k({
 	name: "HHistoryCleanupPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2891,7 +2891,7 @@ function ka(e, t, n, r, i, a) {
 		label: "历史清理"
 	});
 }
-var Aa = /* @__PURE__ */ q(Oa, [["render", ka]]), ja = k({
+var Aa = /*#__PURE__*/ q(Oa, [["render", ka]]), ja = k({
 	name: "HImplementationPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2911,7 +2911,7 @@ function Ma(e, t, n, r, i, a) {
 		label: "实现"
 	});
 }
-var Na = /* @__PURE__ */ q(ja, [["render", Ma]]), Pa = k({
+var Na = /*#__PURE__*/ q(ja, [["render", Ma]]), Pa = k({
 	name: "HInMappingPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2930,7 +2930,7 @@ function Fa(e, t, n, r, i, a) {
 		count: e.count
 	}, null, 8, ["count"]);
 }
-var Ia = /* @__PURE__ */ q(Pa, [["render", Fa]]), La = k({
+var Ia = /*#__PURE__*/ q(Pa, [["render", Fa]]), La = k({
 	name: "HInMappingPropagationPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2950,7 +2950,7 @@ function Ra(e, t, n, r, i, a) {
 		label: "输入映射分页"
 	});
 }
-var za = /* @__PURE__ */ q(La, [["render", Ra]]), Ba = k({
+var za = /*#__PURE__*/ q(La, [["render", Ra]]), Ba = k({
 	name: "HInputPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2969,7 +2969,7 @@ function Va(e, t, n, r, i, a) {
 		count: e.count
 	}, null, 8, ["count"]);
 }
-var Ha = /* @__PURE__ */ q(Ba, [["render", Va]]), Ua = k({
+var Ha = /*#__PURE__*/ q(Ba, [["render", Va]]), Ua = k({
 	name: "HJobExecutionPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -2989,7 +2989,7 @@ function Wa(e, t, n, r, i, a) {
 		label: "作业执行"
 	});
 }
-var Ga = /* @__PURE__ */ q(Ua, [["render", Wa]]), Ka = k({
+var Ga = /*#__PURE__*/ q(Ua, [["render", Wa]]), Ka = k({
 	name: "HLinkPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3009,7 +3009,7 @@ function qa(e, t, n, r, i, a) {
 		label: "链接"
 	});
 }
-var Ja = /* @__PURE__ */ q(Ka, [["render", qa]]), Ya = k({
+var Ja = /*#__PURE__*/ q(Ka, [["render", qa]]), Ya = k({
 	name: "HMessagePanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3029,7 +3029,7 @@ function Xa(e, t, n, r, i, a) {
 		label: "消息"
 	});
 }
-var Za = /* @__PURE__ */ q(Ya, [["render", Xa]]), Qa = k({
+var Za = /*#__PURE__*/ q(Ya, [["render", Xa]]), Qa = k({
 	name: "HMultiInstancePanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3049,7 +3049,7 @@ function $a(e, t, n, r, i, a) {
 		label: "多实例"
 	});
 }
-var eo = /* @__PURE__ */ q(Qa, [["render", $a]]), to = k({
+var eo = /*#__PURE__*/ q(Qa, [["render", $a]]), to = k({
 	name: "HOutMappingPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3068,7 +3068,7 @@ function no(e, t, n, r, i, a) {
 		count: e.count
 	}, null, 8, ["count"]);
 }
-var ro = /* @__PURE__ */ q(to, [["render", no]]), io = k({
+var ro = /*#__PURE__*/ q(to, [["render", no]]), io = k({
 	name: "HOutMappingPropagationPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3088,7 +3088,7 @@ function ao(e, t, n, r, i, a) {
 		label: "输出映射分页"
 	});
 }
-var oo = /* @__PURE__ */ q(io, [["render", ao]]), so = k({
+var oo = /*#__PURE__*/ q(io, [["render", ao]]), so = k({
 	name: "HOutputPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3107,7 +3107,7 @@ function co(e, t, n, r, i, a) {
 		count: e.count
 	}, null, 8, ["count"]);
 }
-var lo = /* @__PURE__ */ q(so, [["render", co]]), uo = k({
+var lo = /*#__PURE__*/ q(so, [["render", co]]), uo = k({
 	name: "HScriptPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3127,7 +3127,7 @@ function fo(e, t, n, r, i, a) {
 		label: "脚本"
 	});
 }
-var po = /* @__PURE__ */ q(uo, [["render", fo]]), mo = k({
+var po = /*#__PURE__*/ q(uo, [["render", fo]]), mo = k({
 	name: "HSignalPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3147,7 +3147,7 @@ function ho(e, t, n, r, i, a) {
 		label: "信号"
 	});
 }
-var go = /* @__PURE__ */ q(mo, [["render", ho]]), _o = k({
+var go = /*#__PURE__*/ q(mo, [["render", ho]]), _o = k({
 	name: "HStartInitiatorPanel",
 	components: {
 		HExpansionItem: Y,
@@ -3187,7 +3187,7 @@ function vo(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var yo = /* @__PURE__ */ q(_o, [["render", vo]]), bo = k({
+var yo = /*#__PURE__*/ q(_o, [["render", vo]]), bo = k({
 	name: "HTasklistPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3207,7 +3207,7 @@ function xo(e, t, n, r, i, a) {
 		label: "任务列表"
 	});
 }
-var So = /* @__PURE__ */ q(bo, [["render", xo]]), Co = k({
+var So = /*#__PURE__*/ q(bo, [["render", xo]]), Co = k({
 	name: "HTaskListenerPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3226,7 +3226,7 @@ function wo(e, t, n, r, i, a) {
 		count: e.count
 	}, null, 8, ["count"]);
 }
-var To = /* @__PURE__ */ q(Co, [["render", wo]]), Eo = k({
+var To = /*#__PURE__*/ q(Co, [["render", wo]]), Eo = k({
 	name: "HTimerPanel",
 	components: { HExpansionItem: Y },
 	setup() {
@@ -3246,7 +3246,7 @@ function Do(e, t, n, r, i, a) {
 		label: "计时器"
 	});
 }
-var Oo = /* @__PURE__ */ q(Eo, [["render", Do]]), ko = k({
+var Oo = /*#__PURE__*/ q(Eo, [["render", Do]]), ko = k({
 	name: "HUserAssignmentPanel",
 	components: {
 		HCandidateGroupTextField: Ri,
@@ -3492,7 +3492,7 @@ function No(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Po = /* @__PURE__ */ q(Mo, [["render", No]]), Fo = k({
+var Po = /*#__PURE__*/ q(Mo, [["render", No]]), Fo = k({
 	name: "HCommandGroup",
 	components: {
 		HButton: X,
@@ -3543,7 +3543,7 @@ function Io(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Lo = /* @__PURE__ */ q(Fo, [["render", Io]]), Ro = k({
+var Lo = /*#__PURE__*/ q(Fo, [["render", Io]]), Ro = k({
 	name: "HZoomGroup",
 	components: {
 		HButton: X,
@@ -3607,7 +3607,7 @@ function zo(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Bo = /* @__PURE__ */ q(Ro, [["render", zo]]), Vo = k({
+var Bo = /*#__PURE__*/ q(Ro, [["render", zo]]), Vo = k({
 	name: "HAlignGroup",
 	components: {
 		HButton: X,
@@ -3696,7 +3696,7 @@ function Ho(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Uo = /* @__PURE__ */ q(Vo, [["render", Ho]]), Wo = k({
+var Uo = /*#__PURE__*/ q(Vo, [["render", Ho]]), Wo = k({
 	name: "HUploadDialog",
 	components: {
 		HButton: X,
@@ -3831,7 +3831,7 @@ function Go(e, t, r, i, c, u) {
 		_: 1
 	}, 8, ["modelValue"])]);
 }
-var Ko = /* @__PURE__ */ q(Wo, [["render", Go]]), qo = k({
+var Ko = /*#__PURE__*/ q(Wo, [["render", Go]]), qo = k({
 	name: "HPreviewDropdown",
 	components: {
 		HButtonDropdown: si,
@@ -3914,7 +3914,7 @@ function Jo(e, t, n, r, i, a) {
 		"language"
 	])], 64);
 }
-var Yo = /* @__PURE__ */ q(qo, [["render", Jo]]), Xo = k({
+var Yo = /*#__PURE__*/ q(qo, [["render", Jo]]), Xo = k({
 	name: "HDownloadDropdown",
 	components: {
 		HButtonDropdown: si,
@@ -3995,7 +3995,7 @@ function Zo(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Qo = /* @__PURE__ */ q(Xo, [["render", Zo]]), $o = k({
+var Qo = /*#__PURE__*/ q(Xo, [["render", Zo]]), $o = k({
 	name: "HOpenFile",
 	setup() {
 		let e = j(null), { createNewDiagram: t } = Vr(), n = async (e) => {
@@ -4042,7 +4042,7 @@ function es(e, t, n, r, i, a) {
 		_: 1
 	}, 8, ["modelValue"]);
 }
-var ts = /* @__PURE__ */ q($o, [["render", es], ["__scopeId", "data-v-9e03a008"]]), ns = k({
+var ts = /*#__PURE__*/ q($o, [["render", es], ["__scopeId", "data-v-9e03a008"]]), ns = k({
 	name: "HBpmnDesignerToolbar",
 	components: {
 		HAlignGroup: Uo,
@@ -4074,7 +4074,7 @@ function rs(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var is = /* @__PURE__ */ q(ns, [["render", rs]]), as = k({
+var is = /*#__PURE__*/ q(ns, [["render", rs]]), as = k({
 	name: "HBpmnDesigner",
 	components: {
 		HBpmnDesignerToolbar: is,
@@ -4148,7 +4148,7 @@ function os(e, t, n, r, i, a) {
 		_: 1
 	}, 8, ["style"]);
 }
-var ss = /* @__PURE__ */ q(as, [["render", os]]);
+var ss = /*#__PURE__*/ q(as, [["render", os]]);
 //#endregion
 //#region src/components/moddle-designer/index.ts
 ss.install = (e) => {

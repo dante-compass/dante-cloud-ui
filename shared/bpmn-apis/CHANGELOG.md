@@ -1,5 +1,11 @@
 # @herodotus-cloud/bpmn-apis
 
+## 4.6.9
+
+### Patch Changes
+
+- vite 版本升级至 8.0.16
+
 ## 4.6.8
 
 ### Patch Changes

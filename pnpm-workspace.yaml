@@ -14,3 +14,4 @@ minimumReleaseAgeExclude:
   - "@herodotus/api"
   - "@herodotus/core"
   - "@herodotus/framework"
+  - "vite"

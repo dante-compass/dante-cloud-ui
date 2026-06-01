@@ -132,7 +132,7 @@ function Te(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var G = /* @__PURE__ */ W(we, [["render", Te]]), Ee = E({
+var G = /*#__PURE__*/ W(we, [["render", Te]]), Ee = E({
 	name: "HFormUploadDialog",
 	components: { HFormInformation: G },
 	props: { modelValue: {
@@ -231,7 +231,7 @@ function De(a, o, s, c, l, u) {
 		_: 1
 	}, 8, ["modelValue"]);
 }
-var K = /* @__PURE__ */ W(Ee, [["render", De]]), Oe = E({ name: "HCanvasLayout" });
+var K = /*#__PURE__*/ W(Ee, [["render", De]]), Oe = E({ name: "HCanvasLayout" });
 //#endregion
 //#region src/components/library/HCanvasLayout.vue
 function ke(e, n, r, i, a, o) {
@@ -247,7 +247,7 @@ function ke(e, n, r, i, a, o) {
 		_: 3
 	});
 }
-var q = /* @__PURE__ */ W(Oe, [["render", ke]]), Ae = E({
+var q = /*#__PURE__*/ W(Oe, [["render", ke]]), Ae = E({
 	name: "HExpansionItem",
 	props: { headerClass: {
 		type: String,
@@ -272,7 +272,7 @@ function je(e, n, i, a, s, c) {
 		_: 3
 	}, 16, ["header-class"]);
 }
-var J = /* @__PURE__ */ W(Ae, [["render", je]]), Me = E({
+var J = /*#__PURE__*/ W(Ae, [["render", je]]), Me = E({
 	name: "HFormPreviewDialog",
 	components: { HRendererForm: Ce },
 	props: { modelValue: {
@@ -349,7 +349,7 @@ function Ne(a, o, s, c, l, u) {
 		_: 1
 	}, 8, ["modelValue"]);
 }
-var Y = /* @__PURE__ */ W(Me, [["render", Ne]]), Pe = E({
+var Y = /*#__PURE__*/ W(Me, [["render", Ne]]), Pe = E({
 	name: "HCanvasElement",
 	components: { HRendererEngine: Se },
 	props: {
@@ -416,7 +416,7 @@ function Fe(r, i, a, o, s, c) {
 		_: 1
 	}, 8, ["class"]);
 }
-var X = /* @__PURE__ */ W(Pe, [["render", Fe], ["__scopeId", "data-v-8129af03"]]), Ie = E({
+var X = /*#__PURE__*/ W(Pe, [["render", Fe], ["__scopeId", "data-v-8129af03"]]), Ie = E({
 	name: "HCanvasContainer",
 	components: {
 		Draggable: V,
@@ -465,7 +465,7 @@ function Le(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Z = /* @__PURE__ */ W(Ie, [["render", Le], ["__scopeId", "data-v-768a54ef"]]), Q = {
+var Z = /*#__PURE__*/ W(Ie, [["render", Le], ["__scopeId", "data-v-768a54ef"]]), Q = {
 	HideBottomSpace: "hide-bottom-space",
 	ItemAligned: "item-aligned"
 }, Re = { class: "q-gutter-y-sm column" }, ze = { class: "q-gutter-y-sm column" }, Be = /* @__PURE__ */ E({
@@ -783,7 +783,7 @@ function Ge(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Ke = /* @__PURE__ */ W(We, [["render", Ge]]), qe = E({
+var Ke = /*#__PURE__*/ W(We, [["render", Ge]]), qe = E({
 	name: "HSheetPanel",
 	components: { HConditionVariable: Ke }
 });
@@ -796,7 +796,7 @@ function Je(e, t, n, r, i, a) {
 		_: 1
 	});
 }
-var Ye = /* @__PURE__ */ W(qe, [["render", Je]]), Xe = { class: "q-gutter-y-sm column" }, Ze = { class: "q-gutter-y-sm column" }, Qe = /* @__PURE__ */ E({
+var Ye = /*#__PURE__*/ W(qe, [["render", Je]]), Xe = { class: "q-gutter-y-sm column" }, Ze = { class: "q-gutter-y-sm column" }, Qe = /* @__PURE__ */ E({
 	name: "HTextareaPanel",
 	components: {
 		HExpansionItem: J,
@@ -1265,7 +1265,7 @@ function ut(e, t, n, r, i, a) {
 		"clone"
 	])]))), 128))]);
 }
-var dt = /* @__PURE__ */ W(at, [["render", ut], ["__scopeId", "data-v-ae3d4bd2"]]), ft = E({
+var dt = /*#__PURE__*/ W(at, [["render", ut], ["__scopeId", "data-v-ae3d4bd2"]]), ft = E({
 	name: "HDynamicForms",
 	components: {
 		HWidgetPanel: dt,
@@ -1405,7 +1405,7 @@ function pt(t, n, r, i, o, c) {
 		_: 1
 	}, 8, ["container", "style"]);
 }
-var $ = /* @__PURE__ */ W(ft, [["render", pt]]);
+var $ = /*#__PURE__*/ W(ft, [["render", pt]]);
 //#endregion
 //#region src/components/index.ts
 $.install = (e) => {
