@@ -44,7 +44,7 @@ defineOptions({
 
 const { tableRows, totalPages, pagination, loading, findItems, deleteItemById } = useTable<
   OAuth2PersistentTokenConditions,
-  OAuth2PersistentTokenProps
+  OAuth2PersistentTokenEntity
 >(API.core.oauth2PersistentToken(), CONSTANTS.ComponentName.OAUTH2_PERSISTENT, false, {
   direction: "DESC",
   properties: ["lastUsed"],

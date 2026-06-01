@@ -9,3 +9,8 @@ allowBuilds:
   core-js: false
   esbuild: false
   vue-demi: false
+
+minimumReleaseAgeExclude:
+  - "@herodotus/api"
+  - "@herodotus/core"
+  - "@herodotus/framework"

@@ -40,22 +40,22 @@
     }
   },
   "dependencies": {
-    "@herodotus/core": "^1.6.9",
-    "@quasar/extras": "^1.18.0",
+    "@herodotus/core": "^1.6.11",
+    "@quasar/extras": "^2.0.0",
     "disable-devtool": "^0.3.9",
     "filesize": "^11.0.17",
     "lodash-es": "^4.18.1",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "4.7.1",
     "quasar": "^2.19.3",
-    "vue": "^3.5.34",
+    "vue": "^3.5.35",
     "vue-i18n": "^11.4.4"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
     "@eslint/js": "^10.0.1",
-    "@quasar/app-vite": "^2.6.0",
-    "@quasar/vite-plugin": "^1.11.0",
+    "@quasar/app-vite": "^2.6.1",
+    "@quasar/vite-plugin": "^1.12.0",
     "@rolldown/plugin-node-polyfills": "^1.0.3",
     "@tsconfig/node22": "^22.0.5",
     "@types/lodash-es": "^4.17.12",
@@ -69,14 +69,14 @@
     "cross-env": "^10.1.0",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^17.4.2",
-    "eslint": "^10.4.0",
+    "eslint": "^10.4.1",
     "eslint-plugin-vue": "^10.9.1",
     "globals": "^17.6.0",
     "husky": "^9.1.7",
     "jiti": "^2.7.0",
-    "lint-staged": "^17.0.5",
+    "lint-staged": "^17.0.7",
     "npm-run-all2": "^9.0.1",
-    "oxfmt": "^0.51.0",
+    "oxfmt": "^0.52.0",
     "rollup": "4.60.4",
     "rollup-plugin-visualizer": "^7.0.1",
     "sass-embedded": "^1.100.0",
@@ -92,6 +92,7 @@
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-vconsole": "^2.1.1",
     "vite-plugin-vue-devtools": "^8.1.2",
-    "vue-tsc": "^3.3.1"
+    "vue-router": "5.0.7",
+    "vue-tsc": "^3.3.3"
   }
 }
