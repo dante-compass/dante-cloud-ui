@@ -474,7 +474,7 @@ function M(t, i, a, s, l, u) {
 		"schemas"
 	])]))), 128);
 }
-var N = /* @__PURE__ */ j(A, [["render", M]]);
+var N = /*#__PURE__*/ j(A, [["render", M]]);
 N.install = (e) => {
 	e.component(N.name, N);
 }, k.install = (e) => {

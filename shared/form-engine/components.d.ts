@@ -13,5 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     HRendererEngine: typeof import('./src/components/HRendererEngine.vue')['default']
     HRendererForm: typeof import('./src/components/HRendererForm.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/bpmn-designer",
-  "version": "4.6.8",
+  "version": "4.6.10",
   "description": "",
   "keywords": [],
   "author": "",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@bpmn-io/element-template-chooser": "^2.1.0",
-    "@bpmn-io/properties-panel": "3.42.0",
+    "@bpmn-io/properties-panel": "3.44.0",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/components": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
@@ -56,6 +56,6 @@
     "ids": "^3.0.2",
     "pinia": "^3.0.4",
     "preact": "^10.29.2",
-    "vue": "^3.5.34"
+    "vue": "^3.5.35"
   }
 }

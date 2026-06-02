@@ -109,5 +109,7 @@ declare module 'vue' {
     QToolbar: typeof import('quasar')['QToolbar']
     QTooltip: typeof import('quasar')['QTooltip']
     QTr: typeof import('quasar')['QTr']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
   }
 }
