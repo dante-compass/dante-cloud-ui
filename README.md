@@ -10,17 +10,18 @@
     <a href="https://github.com/alibaba/spring-cloud-alibaba" target="_blank"><img src="https://img.shields.io/badge/Spring%20Cloud%20Alibaba-2025.1.0.0-blue.svg?logo=alibabadotcom" alt="Spring Cloud Alibaba 2025.1.0.0"></a>
     <a href="https://github.com/Tencent/spring-cloud-tencent" target="_blank"><img src="https://img.shields.io/badge/Spring%20Cloud%20Tencent-2.1.2.0--2025.0.2-blue.svg?logo=qq" alt="Spring Cloud Tencent 2.1.1.0-2024.0.3"></a>
     <a href="https://nacos.io/zh-cn/index.html" target="_blank"><img src="https://img.shields.io/badge/Nacos-3.2.2-brightgreen.svg?logo=alibabadotcom" alt="Nacos 3.2.2"></a>
-    <a href="https://vuejs.org/" target="_blank"><img src="https://img.shields.io/badge/Vue-3.5-green.svg?logo=vue.js&logoColor=%234FC08D" alt="Vue 3.5"></a>
-    <a href="https://vite.dev/" target="_blank"><img src="https://img.shields.io/badge/Vite-8-green.svg?logo=vite&logoColor=%239135FF" alt="Vue 8"></a>
-    <a href="https://vuetifyjs.com/zh-Hans/" target="_blank"><img src="https://img.shields.io/badge/Vuetify-4-green.svg?logo=vuetify&logoColor=%231867C0" alt="Vuetify 4"></a>
 </p>
 <p align="center">
     <a href="https://my.oschina.net/pointerv" target="_blank"><img src="https://img.shields.io/badge/Author-%E7%A0%81%E5%8C%A0%E5%90%9B-orange" alt="码匠君"></a>
     <a href="./LICENSE"><img src="https://shields.io/badge/License-Apache--2.0-blue.svg?logo=apache" alt="License Apache 2.0"></a>
-    <a href="https://github.com/dante-compass/herodotus-cloud-ui-vuetify" target="_blank"><img src="https://img.shields.io/badge/Version-4.0.7.1-blue.svg?logo=vuetify&logoColor=%231867C0" alt="Dante Cloud UI(New) 4.0.7.1"></a>
+    <a href="https://github.com/dante-compass/dante-cloud-ui" target="_blank"><img src="https://img.shields.io/badge/Version-4.0.7.1-blue.svg?logo=quasar&logoColor=%23050A14" alt="Dante Cloud UI 4.0.7.1"></a>
+    <a href="https://vuejs.org/" target="_blank"><img src="https://img.shields.io/badge/Vue-3.5-green.svg?logo=vue.js&logoColor=%234FC08D" alt="Vue 3.5"></a>
+    <a href="https://vite.dev/" target="_blank"><img src="https://img.shields.io/badge/Vite-8-green.svg?logo=vite&logoColor=%239135FF" alt="Vue 8"></a>
+    <a href="https://vuetifyjs.com/zh-Hans/" target="_blank"><img src="https://img.shields.io/badge/Vuetify-4-green.svg?logo=vuetify&logoColor=%231867C0" alt="Vuetify 4"></a>
     <a href="https://github.com/dromara/dante-cloud" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud-4.0.7.1-red.svg?logo=spring" alt="Dante Cloud 4.0.7.1"></a>
     <a href="https://github.com/dante-compass/dante-engine" target="_blank"><img src="https://img.shields.io/badge/Dante%20Engine-4.0.7.1-red.svg?logo=spring" alt="Dante Engine 4.0.7.1"></a>
     <a href="https://github.com/dante-compass/thingsbrain" target="_blank"><img src="https://img.shields.io/badge/ThingsBrain-4.0.7.1-red.svg?logo=spring" alt="ThingsBrain 4.0.7.1"></a>
+    <a href="https://github.com/dante-compass/herodotus-cloud-ui-vuetify" target="_blank"><img src="https://img.shields.io/badge/Version-4.0.7.1-blue.svg?logo=vuetify&logoColor=%231867C0" alt="Dante Cloud UI(New) 4.0.7.1"></a>
     <a href="https://github.com/dante-compass/dante-cloud-ui"><img src="https://img.shields.io/github/stars/dante-compass/dante-cloud-ui.svg?label=Github%20Stars" alt="Github star"></a>
     <a href="https://github.com/dante-compass/dante-cloud-ui"><img src="https://img.shields.io/github/forks/dante-compass/dante-cloud-ui.svg?label=Github%20Forks" alt="Github fork"></a>
     <a href="https://gitee.com/dante-compass/dante-cloud-ui"><img src="https://gitee.com/dante-compass/dante-cloud-ui/badge/star.svg?theme=dark" alt="Gitee star"></a>
