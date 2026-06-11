@@ -17,7 +17,7 @@
     <a href="https://github.com/dante-compass/dante-cloud-ui" target="_blank"><img src="https://img.shields.io/badge/Version-4.0.7.1-blue.svg?logo=quasar&logoColor=%23050A14" alt="Dante Cloud UI 4.0.7.1"></a>
     <a href="https://vuejs.org/" target="_blank"><img src="https://img.shields.io/badge/Vue-3.5-green.svg?logo=vue.js&logoColor=%234FC08D" alt="Vue 3.5"></a>
     <a href="https://vite.dev/" target="_blank"><img src="https://img.shields.io/badge/Vite-8-green.svg?logo=vite&logoColor=%239135FF" alt="Vue 8"></a>
-    <a href="https://vuetifyjs.com/zh-Hans/" target="_blank"><img src="https://img.shields.io/badge/Vuetify-4-green.svg?logo=vuetify&logoColor=%231867C0" alt="Vuetify 4"></a>
+    <a href="https://quasar.dev/" target="_blank"><img src="https://img.shields.io/badge/Quasar-2-green.svg?logo=quasar&logoColor=%23050A14" alt="Quasar 2"></a>
     <a href="https://github.com/dromara/dante-cloud" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud-4.0.7.1-red.svg?logo=spring" alt="Dante Cloud 4.0.7.1"></a>
     <a href="https://github.com/dante-compass/dante-engine" target="_blank"><img src="https://img.shields.io/badge/Dante%20Engine-4.0.7.1-red.svg?logo=spring" alt="Dante Engine 4.0.7.1"></a>
     <a href="https://github.com/dante-compass/thingsbrain" target="_blank"><img src="https://img.shields.io/badge/ThingsBrain-4.0.7.1-red.svg?logo=spring" alt="ThingsBrain 4.0.7.1"></a>
