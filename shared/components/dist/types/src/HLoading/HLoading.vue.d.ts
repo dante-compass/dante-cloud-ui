@@ -1,4 +1,4 @@
-import { Spinners } from '../lib';
+import { Spinners } from '../../lib';
 interface Props {
     type?: Spinners;
     color?: string;

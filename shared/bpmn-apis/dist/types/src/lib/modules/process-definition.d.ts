@@ -1,4 +1,4 @@
-import { AxiosHttpResult, BatchEntity, BpmnUnionPathParams, ProcessDefinitionEntity, ProcessDefinitionQueryParams, ProcessDefinitionSortBy, ProcessDefinitionDeleteQueryParams, ActivityInstanceStatisticsQueryParams, ActivityInstanceStatisticsEntity, CalledProcessDefinitionEntity, StartFormVariablesQueryParams, StartFormVariablesEntity, FormKeyEntity, ProcessInstanceStatisticsQueryParams, ProcessInstanceStatisticsEntity, XmlEntity, ProcessInstanceEntity, StartInstanceRequestBody, SubmitStartFormRequestBody, ActivateOrSuspendedByIdRequestBody, ActivateOrSuspendedByKeyRequestBody, UpdateHistoryTimeToLiveRequestBody, RestartProcessInstanceRequestBody } from '../../declarations';
+import { AxiosHttpResult, BatchEntity, BpmnUnionPathParams, ProcessDefinitionEntity, ProcessDefinitionQueryParams, ProcessDefinitionSortBy, ProcessDefinitionDeleteQueryParams, ActivityInstanceStatisticsQueryParams, StartFormVariablesQueryParams, ProcessInstanceStatisticsQueryParams, ProcessInstanceEntity, StartInstanceRequestBody, SubmitStartFormRequestBody, ActivateOrSuspendedByIdRequestBody, ActivateOrSuspendedByKeyRequestBody, UpdateHistoryTimeToLiveRequestBody, RestartProcessInstanceRequestBody } from '../../../declarations';
 import { HttpConfig, BpmnQueryService } from '../base';
 declare class ProcessDefinitionService extends BpmnQueryService<ProcessDefinitionEntity, ProcessDefinitionQueryParams, ProcessDefinitionSortBy, ProcessDefinitionDeleteQueryParams> {
     private static instance;
@@ -16,7 +16,7 @@ declare class ProcessDefinitionService extends BpmnQueryService<ProcessDefinitio
      * @param query
      * @returns
      */
-    getActivityInstanceStatistics(path: BpmnUnionPathParams, params: ActivityInstanceStatisticsQueryParams): Promise<AxiosHttpResult<ActivityInstanceStatisticsEntity>>;
+    getActivityInstanceStatistics(path: BpmnUnionPathParams, params: ActivityInstanceStatisticsQueryParams): Promise<AxiosHttpResult<T>>;
     /**
      * For the given process, returns a list of called process definitions corresponding to the CalledProcessDefinition interface in the engine.
      * The list contains all process definitions that are referenced statically by call activities in the given process.
@@ -27,7 +27,7 @@ declare class ProcessDefinitionService extends BpmnQueryService<ProcessDefinitio
      * @param id The id of the process definition.
      * @returns A JSON Array of objects corresponding to the CalledProcessDefinition interface in the engine. The Array can be empty, if the endpoint cannot resolve the called process(es) because the reference is an expression which is resolved by the engine during runtime of the calling process
      */
-    getStaticCalledProcessDefinitions(id: string): Promise<AxiosHttpResult<CalledProcessDefinitionEntity>>;
+    getStaticCalledProcessDefinitions(id: string): Promise<AxiosHttpResult<T>>;
     /**
      * Retrieves the diagram of a process definition.
      *
@@ -39,7 +39,7 @@ declare class ProcessDefinitionService extends BpmnQueryService<ProcessDefinitio
      * @param path {@link BpmnUnionPathParams}
      * @returns The image diagram of this process.
      */
-    getDiagram(path: BpmnUnionPathParams): Promise<AxiosHttpResult<string>>;
+    getDiagram(path: BpmnUnionPathParams): Promise<AxiosHttpResult<T>>;
     /**
      * Retrieves the start form variables for a process definition (only if they are defined via the Generated Task Form approach).
      * The start form variables take form data specified on the start event into account.
@@ -49,21 +49,21 @@ declare class ProcessDefinitionService extends BpmnQueryService<ProcessDefinitio
      * @param params {@link StartFormVariablesQueryParams}
      * @returns A JSON object containing a property for each variable returned. The key is the variable name, the value is a JSON object with the following properties:
      */
-    getStartFormVariables(path: BpmnUnionPathParams, params: StartFormVariablesQueryParams): Promise<AxiosHttpResult<StartFormVariablesEntity>>;
+    getStartFormVariables(path: BpmnUnionPathParams, params: StartFormVariablesQueryParams): Promise<AxiosHttpResult<T>>;
     /**
      * Retrieves the rendered form for a process definition. This method can be used for getting the HTML rendering of a Generated Task Form.
      *
      * @param path {@link BpmnUnionPathParams}
      * @returns An HTML response body providing the rendered (generated) form content.
      */
-    getRenderedFormStartForm(path: BpmnUnionPathParams): Promise<AxiosHttpResult<string>>;
+    getRenderedFormStartForm(path: BpmnUnionPathParams): Promise<AxiosHttpResult<T>>;
     /**
      * Retrieves the key of the start form for a process definition. The form key corresponds to the FormData#formKey property in the engine.
      *
      * @param path {@link BpmnUnionPathParams}
      * @returns A JSON object containing the form key.
      */
-    getStartFormKey(path: BpmnUnionPathParams): Promise<AxiosHttpResult<FormKeyEntity>>;
+    getStartFormKey(path: BpmnUnionPathParams): Promise<AxiosHttpResult<T>>;
     /**
      * Retrieves runtime statistics of the process engine, grouped by process definitions.
      * These statistics include the number of running process instances, optionally the number of failed jobs and also optionally the number
@@ -74,14 +74,14 @@ declare class ProcessDefinitionService extends BpmnQueryService<ProcessDefinitio
      * @param params {@link ProcessInstanceStatisticsQueryParams}
      * @returns A JSON array containing statistics results per process definition
      */
-    getProcessInstanceStatistics(params: ProcessInstanceStatisticsQueryParams): Promise<AxiosHttpResult<ProcessInstanceStatisticsEntity>>;
+    getProcessInstanceStatistics(params: ProcessInstanceStatisticsQueryParams): Promise<AxiosHttpResult<T>>;
     /**
      * Retrieves the BPMN 2.0 XML of a process definition.
      *
      * @param path {@link BpmnUnionPathParams}
      * @returns A JSON object containing the id of the definition and the BPMN 2.0 XML.
      */
-    getXml(path: BpmnUnionPathParams): Promise<AxiosHttpResult<XmlEntity>>;
+    getXml(path: BpmnUnionPathParams): Promise<AxiosHttpResult<T>>;
     /**
      * Retrieves a process definition according to the ProcessDefinition interface in the engine.
      *

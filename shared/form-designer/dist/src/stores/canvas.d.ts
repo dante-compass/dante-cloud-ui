@@ -1,4 +1,4 @@
-import { Element, Schema, ElementConfig, DynamicFormEntity, Sheet, ConditionVariable } from '../declarations';
+import { Element, Schema, ElementConfig, DynamicFormEntity, Sheet, ConditionVariable } from '../../declarations';
 export declare const useFormCanvasStore: import('pinia').StoreDefinition<"FormDesignerCanvas", {
     isClosed: boolean;
     canvasElements: Array<Element>;
@@ -30,10 +30,7 @@ export declare const useFormCanvasStore: import('pinia').StoreDefinition<"FormDe
         sheet: {
             condition?: {
                 variable: string;
-                options: {
-                    label: string;
-                    value: boolean;
-                }[];
+                options: any;
             } | undefined;
         };
         selectedElement: {
@@ -87,10 +84,7 @@ export declare const useFormCanvasStore: import('pinia').StoreDefinition<"FormDe
         sheet: {
             condition?: {
                 variable: string;
-                options: {
-                    label: string;
-                    value: boolean;
-                }[];
+                options: any;
             } | undefined;
         };
         selectedElement: {
@@ -144,10 +138,7 @@ export declare const useFormCanvasStore: import('pinia').StoreDefinition<"FormDe
         sheet: {
             condition?: {
                 variable: string;
-                options: {
-                    label: string;
-                    value: boolean;
-                }[];
+                options: any;
             } | undefined;
         };
         selectedElement: {

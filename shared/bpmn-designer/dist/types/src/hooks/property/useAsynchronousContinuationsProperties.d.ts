@@ -1,4 +1,4 @@
-import { Element } from '../../declarations';
+import { Element } from '../../../declarations';
 export default function useAsynchronousContinuationsProperties(): {
     getBeforeValue: (element: Element) => boolean;
     setBeforeValue: (element: Element, value: boolean) => void;

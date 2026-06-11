@@ -1,5 +1,5 @@
 import { PropType } from 'vue';
-import { Element } from '../declarations';
+import { Element } from '../../declarations';
 declare const _default: typeof __VLS_export;
 export default _default;
 declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{

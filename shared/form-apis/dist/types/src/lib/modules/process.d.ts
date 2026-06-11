@@ -1,4 +1,4 @@
-import { DynamicFormEntity, ProcessCommentsEntity, ProcessSpecificsEntity } from '../../declarations';
+import { DynamicFormEntity, ProcessCommentsEntity, ProcessSpecificsEntity } from '../../../declarations';
 import { HttpConfig, BaseMongoService } from '../base';
 declare class DynamicFormService extends BaseMongoService<DynamicFormEntity> {
     private static instance;

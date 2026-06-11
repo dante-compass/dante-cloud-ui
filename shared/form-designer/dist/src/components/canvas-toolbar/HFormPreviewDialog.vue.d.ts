@@ -44,11 +44,11 @@ declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractP
             required: true;
         };
         elements: {
-            type: import('vue').PropType<Array<import('@herodotus-cloud/form-apis').Element>>;
+            type: import('vue').PropType<Array<Element>>;
             required: true;
         };
     }>, {
-        getDefaultModel: (item: import('@herodotus-cloud/form-apis').Element) => import('@herodotus-cloud/form-apis').VModel;
+        getDefaultModel: (item: Element) => import('@herodotus-cloud/form-apis').VModel;
         modelObject: import('vue').WritableComputedRef<Record<string, any>, Record<string, any>>;
         state: Record<string, any>;
     }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
@@ -58,7 +58,7 @@ declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractP
             required: true;
         };
         elements: {
-            type: import('vue').PropType<Array<import('@herodotus-cloud/form-apis').Element>>;
+            type: import('vue').PropType<Array<Element>>;
             required: true;
         };
     }>> & Readonly<{

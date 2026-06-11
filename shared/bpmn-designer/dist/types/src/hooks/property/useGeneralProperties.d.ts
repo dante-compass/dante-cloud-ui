@@ -1,4 +1,4 @@
-import { Element } from '../../declarations';
+import { Element } from '../../../declarations';
 export default function useGeneralProperties(): {
     isProcess: (element: Element) => boolean;
     getIdValue: (element: Element) => string;
