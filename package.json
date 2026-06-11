@@ -1,7 +1,7 @@
 {
   "name": "herodotus-cloud-ui",
   "private": false,
-  "version": "4.0.7.1",
+  "version": "4.1.0.0",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
