@@ -1,5 +1,15 @@
 # @herodotus-cloud/bpmn-designer
 
+## 4.6.11
+
+### Patch Changes
+
+- 版本发布
+- Updated dependencies
+  - @herodotus-cloud/components@4.6.11
+  - @herodotus-cloud/bpmn-apis@4.6.11
+  - @herodotus-cloud/form-apis@4.6.11
+
 ## 4.6.10
 
 ### Patch Changes

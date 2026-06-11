@@ -1,5 +1,5 @@
 import { PropType } from 'vue';
-import { Element } from '../../declarations';
+import { Element } from '../../../declarations';
 declare const _default: typeof __VLS_export;
 export default _default;
 declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
@@ -31,6 +31,6 @@ declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractP
     }, () => any, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{
         [x: string]: any;
     }> & Readonly<{}>, {
-        schemas: import('@herodotus-cloud/form-apis').Schema[];
+        schemas: Schema[];
     }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;

@@ -1,4 +1,4 @@
-import { Tree } from '../lib/declarations';
+import { Tree } from '../../lib/declarations';
 interface Props {
     items: Tree[];
     label?: string;

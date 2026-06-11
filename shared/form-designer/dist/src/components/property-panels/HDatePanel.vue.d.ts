@@ -1,4 +1,4 @@
-import { Schema } from '../../declarations';
+import { Schema } from '../../../declarations';
 interface Props {
     schema: Schema;
 }

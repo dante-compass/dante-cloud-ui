@@ -15,3 +15,12 @@ minimumReleaseAgeExclude:
   - "@herodotus/core"
   - "@herodotus/framework"
   - "vite"
+  - '@vue/compiler-core'
+  - '@vue/compiler-dom'
+  - '@vue/compiler-sfc'
+  - '@vue/compiler-ssr'
+  - '@vue/reactivity'
+  - '@vue/runtime-core'
+  - '@vue/runtime-dom'
+  - '@vue/server-renderer'
+  - '@vue/shared'
