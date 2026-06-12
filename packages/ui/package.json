@@ -24,9 +24,9 @@
     "@herodotus-cloud/form-apis": "workspace:^",
     "@herodotus-cloud/form-designer": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
-    "@herodotus/api": "^1.6.15",
-    "@herodotus/core": "^1.6.15",
-    "@herodotus/framework": "^1.6.15",
+    "@herodotus/api": "^2.0.0",
+    "@herodotus/core": "^2.0.0",
+    "@herodotus/framework": "^2.0.0",
     "@mdi/js": "^7.4.47",
     "@quasar/extras": "^2.0.0",
     "@rsocket/composite-metadata": "1.0.0-alpha.3",
@@ -45,7 +45,7 @@
     "rsocket-core": "1.0.0-alpha.3",
     "rsocket-websocket-client": "1.0.0-alpha.3",
     "simple-uploader.js": "^0.6.0",
-    "vue": "^3.5.35",
+    "vue": "^3.5.38",
     "vue-cookies": "^1.8.6",
     "vue-i18n": "^11.4.5",
     "vue-router": "^5.1.0",
@@ -53,6 +53,6 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "25.9.2"
+    "@types/node": "25.9.3"
   }
 }

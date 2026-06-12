@@ -1,5 +1,11 @@
 # @herodotus-cloud/form-apis
 
+## 5.0.0
+
+### Major Changes
+
+- 版本发布
+
 ## 4.6.11
 
 ### Patch Changes
