@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 5.1.0
+
+### Minor Changes
+
+- 版本发布
+
 ## 5.0.0
 
 ### Major Changes
