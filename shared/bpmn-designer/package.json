@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/bpmn-designer",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "",
   "keywords": [],
   "author": "",
@@ -44,7 +44,7 @@
     "bpmn-js-bpmnlint": "^0.24.0",
     "bpmn-js-connectors-extension": "^0.4.6",
     "bpmn-js-properties-panel": "^6.0.1",
-    "bpmn-js-token-simulation": "^0.39.3",
+    "bpmn-js-token-simulation": "^0.39.4",
     "bpmn-moddle": "^10.0.0",
     "bpmnlint": "^11.12.1",
     "camunda-bpmn-moddle": "^7.0.1",

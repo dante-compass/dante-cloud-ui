@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import type { Container } from "@tsparticles/engine";
 
-import { shallowRef, onMounted, onUnmounted, nextTick } from "vue";
+import { shallowRef, onMounted, onUnmounted, onBeforeMount } from "vue";
 import { tsParticles } from "@tsparticles/engine";
 import { loadTrianglesPreset } from "@tsparticles/preset-triangles";
 
@@ -19,21 +19,32 @@ const id = shallowRef("HParticles");
 
 let container: Container | undefined;
 
-onMounted(() => {
-  nextTick(async () => {
-    await loadTrianglesPreset(tsParticles);
+const init = async () => {
+  await loadTrianglesPreset(tsParticles);
+};
 
-    container = await tsParticles.load({
-      id: id.value,
-      options,
-    });
+const start = async () => {
+  container?.destroy();
+
+  container = await tsParticles.load({
+    id: id.value,
+    options,
   });
+};
+
+const stop = async () => {
+  container?.destroy();
+};
+
+onBeforeMount(() => {
+  init();
+});
+
+onMounted(() => {
+  start();
 });
 
 onUnmounted(() => {
-  if (container) {
-    container.destroy();
-    container = undefined;
-  }
+  stop();
 });
 </script>
