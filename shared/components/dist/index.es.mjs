@@ -1142,33 +1142,30 @@ wt.install = (e) => {
 };
 //#endregion
 //#region src/HParticles/particles.ts
-var Tt = {
-	fullScreen: { zIndex: 1 },
-	particles: {
-		number: {
-			density: {
-				enable: !0,
-				width: 1920,
-				height: 1080
-			},
-			value: 100
-		},
-		links: {
-			distance: 125,
+var Tt = { particles: {
+	number: {
+		density: {
 			enable: !0,
-			triangles: {
-				enable: !0,
-				opacity: .1
-			}
+			width: 1920,
+			height: 1080
 		},
-		move: {
+		value: 100
+	},
+	links: {
+		distance: 125,
+		enable: !0,
+		triangles: {
 			enable: !0,
-			speed: 5
-		},
-		size: { value: 1 },
-		shape: { type: "circle" }
-	}
-}, Et = ["id"], Dt = /* @__PURE__ */ c({
+			opacity: .1
+		}
+	},
+	move: {
+		enable: !0,
+		speed: 5
+	},
+	size: { value: 1 },
+	shape: { type: "circle" }
+} }, Et = ["id"], Dt = /* @__PURE__ */ c({
 	name: "HParticles",
 	__name: "HParticles",
 	setup(e) {
