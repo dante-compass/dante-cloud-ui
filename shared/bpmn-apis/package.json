@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/bpmn-apis",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "",
   "keywords": [],
   "author": "",
@@ -23,7 +23,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/types/src/index.d.ts",
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.es.mjs",
       "require": "./dist/index.cjs.js"
     },

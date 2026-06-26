@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/form-engine",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "description": "",
   "keywords": [],
   "author": "",
@@ -23,7 +23,7 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/types/src/index.d.ts",
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/index.es.mjs",
       "require": "./dist/index.cjs.js"
     },
@@ -35,6 +35,6 @@
   },
   "dependencies": {
     "@herodotus-cloud/form-apis": "workspace:^",
-    "nanoid": "^5.1.15"
+    "nanoid": "^5.1.16"
   }
 }

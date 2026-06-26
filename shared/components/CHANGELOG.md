@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 5.1.1
+
+### Patch Changes
+
+- [修复] 修复新版本 vite-plugin-dts 生成 types 路径变化引起类型引用错误
+
 ## 5.1.0
 
 ### Minor Changes
