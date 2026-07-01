@@ -1,5 +1,15 @@
 # @herodotus-cloud/form-designer
 
+## 5.1.1
+
+### Patch Changes
+
+- [修复] 修复新版本 vite-plugin-dts 生成 types 路径变化引起类型引用错误
+- Updated dependencies
+  - @herodotus-cloud/form-engine@5.1.1
+  - @herodotus-cloud/components@5.1.1
+  - @herodotus-cloud/form-apis@5.1.1
+
 ## 5.1.0
 
 ### Minor Changes

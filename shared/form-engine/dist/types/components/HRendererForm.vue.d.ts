@@ -1,0 +1,33 @@
+import { PropType } from 'vue';
+import { Element } from '../declarations';
+declare const _default: typeof __VLS_export;
+export default _default;
+declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
+    modelValue: {
+        type: PropType<Record<string, any>>;
+        default: () => {};
+        required: true;
+    };
+    elements: {
+        type: PropType<Array<Element>>;
+        required: true;
+    };
+}>, {
+    getDefaultModel: (item: Element) => import('@herodotus-cloud/form-apis').VModel;
+    modelObject: import('vue').WritableComputedRef<Record<string, any>, Record<string, any>>;
+    state: Record<string, any>;
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
+    modelValue: {
+        type: PropType<Record<string, any>>;
+        default: () => {};
+        required: true;
+    };
+    elements: {
+        type: PropType<Array<Element>>;
+        required: true;
+    };
+}>> & Readonly<{
+    "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
+}>, {
+    modelValue: Record<string, any>;
+}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
