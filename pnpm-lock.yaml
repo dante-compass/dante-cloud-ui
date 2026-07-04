@@ -229,7 +229,7 @@ importers:
         specifier: ^18.19.0
         version: 18.19.0
       bpmn-js-token-simulation:
-        specifier: ^0.39.4
+        specifier: 0.39.4
         version: 0.39.4
       colord:
         specifier: ^2.9.3
@@ -313,7 +313,7 @@ importers:
         specifier: ^5.60.0
         version: 5.60.0(@bpmn-io/properties-panel@3.47.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4)))(bpmn-js@18.19.0)(camunda-bpmn-js-behaviors@1.18.0(bpmn-js@18.19.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.16.0))(diagram-js@15.18.0)
       bpmn-js-token-simulation:
-        specifier: ^0.39.4
+        specifier: 0.39.4
         version: 0.39.4
       bpmn-moddle:
         specifier: ^10.0.0

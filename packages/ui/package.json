@@ -37,7 +37,7 @@
     "animate.css": "^4.1.1",
     "axios": "^1.18.1",
     "bpmn-js": "^18.19.0",
-    "bpmn-js-token-simulation": "^0.39.4",
+    "bpmn-js-token-simulation": "0.39.4",
     "colord": "^2.9.3",
     "echarts": "^6.1.0",
     "element-resize-detector": "^1.2.4",

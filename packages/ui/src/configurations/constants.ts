@@ -128,6 +128,9 @@ export const ComponentName = {
   IOT_DEVICE: "IotDevice",
   IOT_TSL_FUNCTION: "IotTslFunction",
   IOT_TSL_UNIT: "IotTslUnit",
+  THINGS_MQTT_ACCOUNT: "ThingsMqttAccount",
+  THINGS_MQTT_AUTHORITY: "ThingsMqttAuthority",
+  THINGS_MQTT_CATEGORY: "ThingsMqttCategory",
   MGT_CERTIFICATE: "MgtCertificate",
   MGT_CERTIFICATE_FILE: "MgtCertificateFile",
 };

@@ -1,68 +1,80 @@
 <template>
-  <h-data-table
-    v-model:page-size="pageSize"
-    v-model:page-number="pageNumber"
-    v-model:total-pages="totalPages"
-    v-model:total-items="totalItems"
-    :headers="headers"
-    :items="tableRows"
-    :item-value="rowKey"
-    :loading="loading"
-    select-strategy="single"
-    disable-sort
-    @update:options="findItems"
-  >
-    <template #search>
-      <search v-model="conditions"></search>
-    </template>
+  <div class="q-gutter-y-md">
+    <search v-model:conditions="conditions"></search>
+    <h-table
+      :rows="tableRows"
+      :columns="columns"
+      :row-key="rowKey"
+      selection="single"
+      v-model:selected="selected"
+      v-model:pagination="pagination"
+      v-model:pageNumber="pagination.page"
+      :totalPages="totalPages"
+      :loading="loading"
+      status
+      reserved
+      @request="findItems"
+    >
+      <template #top-left>
+        <h-button color="primary" label="新建角色" @click="toCreate" />
+      </template>
 
-    <template #item.superUser="{ value }">
-      <h-column-boolean :value="value"></h-column-boolean>
-    </template>
+      <template #body-cell-superUser="props">
+        <q-td key="superUser" :props="props">
+          <h-boolean-column :value="props.row.superUser"></h-boolean-column>
+        </q-td>
+      </template>
 
-    <template #item.actions="{ item }">
-      <h-action-authorize-button tooltip="配置权限" @click="toAuthorize(item)"></h-action-authorize-button>
-      <h-action-delete-button v-if="!item.reserved" @click="deleteItemById(item[rowKey])"></h-action-delete-button>
-    </template>
-  </h-data-table>
+      <template #body-cell-actions="props">
+        <q-td key="actions" :props="props">
+          <h-dense-icon-button
+            color="brown"
+            icon="mdi-shield-key"
+            tooltip="配置权限"
+            @click="toAuthorize(props.row)"
+          ></h-dense-icon-button>
+        </q-td>
+      </template>
+    </h-table>
+  </div>
 </template>
 
 <script setup lang="ts">
 import type { MqttAccountEntity, MqttAccountConditions, MqttAccountProps } from "@herodotus/api";
-import type { VDataTableHeaders } from "@/composables/declarations";
+import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTable, useDateTime } from "@/composables/hooks";
-import { API, PAGE_NAME } from "@/configurations";
+import { API, CONSTANTS } from "@/configurations";
 
 import Search from "./Search.vue";
 
-defineOptions({ name: PAGE_NAME.THINGS_MQTT_ACCOUNT, components: { Search } });
+defineOptions({ name: CONSTANTS.ComponentName.THINGS_MQTT_ACCOUNT, components: { Search } });
 
-const headers = ref([
-  { key: "clientId", align: "center", title: "Mqtt客户端ID" },
-  { key: "username", align: "center", title: "Mqtt用户名" },
-  { key: "superUser", align: "center", title: "是否为超级用户" },
-  { key: "description", align: "center", title: "备注" },
-  { key: "updateBy", align: "center", title: "最后修改人" },
-  { key: "updateTime", align: "center", title: "修改时间", value: (item) => defaultFormat(item.updateTime) },
-  { key: "reserved", align: "center", title: "保留数据" },
-  { key: "status", align: "center", title: "状态" },
-  { key: "actions", align: "center", title: "操作" },
-]) as Ref<Array<VDataTableHeaders>>;
+const columns: QTableColumnProps = [
+  { name: "clientId", field: "clientId", align: "center", label: "Mqtt客户端ID" },
+  { name: "username", field: "username", align: "center", label: "Mqtt用户名" },
+  { name: "superUser", field: "superUser", align: "center", label: "是否为超级用户" },
+  { name: "description", field: "description", align: "center", label: "备注" },
+  { name: "updateBy", field: "updateBy", align: "center", label: "最后修改人" },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (item) => defaultFormat(item.updateTime),
+  },
+  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
+  { name: "status", field: "status", align: "center", label: "状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 
+const selected = ref([]);
 const rowKey: MqttAccountProps = "id";
 
 const { defaultFormat } = useDateTime();
-const {
-  loading,
-  pageNumber,
-  pageSize,
-  tableRows,
-  totalPages,
-  totalItems,
-  conditions,
-  toAuthorize,
-  deleteItemById,
-  findItems,
-} = useTable<MqttAccountConditions, MqttAccountEntity>(API.core.iotMqttAccount(), PAGE_NAME.THINGS_MQTT_ACCOUNT);
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
+  useTable<MqttAccountConditions, MqttAccountEntity>(
+    API.core.iotMqttAccount(),
+    CONSTANTS.ComponentName.THINGS_MQTT_ACCOUNT,
+  );
 </script>

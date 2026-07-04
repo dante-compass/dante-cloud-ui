@@ -30,25 +30,26 @@ import type { MqttAccountEntity, MqttCategoryEntity, MqttCategoryConditions, Mqt
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTableItem, useTable } from "@/composables/hooks";
-import { API, PAGE_NAME } from "@/configurations";
+import { API, CONSTANTS } from "@/configurations";
 
 defineOptions({ name: "ThingsMqttAccountAuthorize" });
 
 const { editedItem, overlay, title, assign } = useTableItem<MqttAccountEntity>(API.core.iotMqttAccount());
-const { loading, pageNumber, pageSize, tableRows, totalItems, findItems } = useTable<
-  MqttCategoryConditions,
-  MqttCategoryEntity
->(API.core.iotMqttCategory(), PAGE_NAME.THINGS_MQTT_CATEGORY, true);
+const { tableRows, totalPages, pagination, loading } = useTable<MqttCategoryConditions, MqttCategoryEntity>(
+  API.core.iotMqttCategory(),
+  CONSTANTS.ComponentName.THINGS_MQTT_CATEGORY,
+  true,
+);
 
 const selectedItems = ref([]) as Ref<Array<MqttCategoryEntity>>;
 const rowKey: MqttCategoryProps = "id";
 
-const headers = ref([
-  { key: "name", align: "center", title: "主题类别名称" },
-  { key: "area", align: "center", title: "主题使用区域" },
-  { key: "action", align: "center", title: "主题操作类型" },
-  { key: "purpose", align: "center", title: "主题用途" },
-]) as Ref<Array<VDataTableHeaders>>;
+const columns: QTableColumnProps = [
+  { name: "name", field: "name", align: "center", label: "主题类别名称" },
+  { name: "area", field: "area", align: "center", label: "主题使用区域" },
+  { name: "action", field: "action", align: "center", label: "主题操作类型" },
+  { name: "purpose", field: "purpose", align: "center", label: "主题用途" },
+];
 
 onMounted(() => {
   selectedItems.value = editedItem.value.categories;

@@ -58,7 +58,7 @@
 <script setup lang="ts">
 import type { MqttAuthorityConditions } from "@herodotus/api";
 
-defineOptions({ name: "SysElementCondition" });
+defineOptions({ name: "MqttAuthorityConditions" });
 
 const conditions = defineModel<MqttAuthorityConditions>({
   default: () => ({}) as MqttAuthorityConditions,
