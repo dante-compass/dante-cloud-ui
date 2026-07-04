@@ -17,7 +17,7 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "3.46.0",
+    "@bpmn-io/properties-panel": "^3.47.0",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/bpmn-designer": "workspace:^",
     "@herodotus-cloud/components": "workspace:^",
