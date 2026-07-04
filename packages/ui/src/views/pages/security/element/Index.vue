@@ -75,7 +75,7 @@
 import type { SysElementEntity, SysElementConditions, SysElementProps } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { useTable } from "@/composables/hooks";
+import { useTable, useDateTime } from "@/composables/hooks";
 import { CONSTANTS, API } from "@/configurations";
 
 import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } from "@/components";
@@ -94,6 +94,7 @@ defineOptions({
   },
 });
 
+const { defaultFormat } = useDateTime();
 const {
   tableRows,
   totalPages,
@@ -128,6 +129,19 @@ const columns: QTableColumnProps = [
   { name: "isDetailContent", field: "isDetailContent", align: "center", label: "三级路由" },
   { name: "isNotKeepAlive", field: "isNotKeepAlive", align: "center", label: "不缓存" },
   { name: "isIgnoreAuth", field: "isIgnoreAuth", align: "center", label: "忽略认证" },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
+  },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },
   { name: "actions", field: "actions", align: "center", label: "操作" },

@@ -61,24 +61,17 @@ import type { QTableColumnProps } from "@/composables/declarations";
 import { CONSTANTS, API } from "@/configurations";
 
 import { useAuthenticationStore } from "@herodotus/framework";
-import { useTable } from "@/composables/hooks";
+import { useTable, useDateTime } from "@/composables/hooks";
 
 import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/components";
 import { HChangePassword, HSendMessageToUser } from "./components";
 
 defineOptions({
   name: CONSTANTS.ComponentName.SYS_USER,
-
-  components: {
-    HChangePassword,
-    HDeleteButton,
-    HEditButton,
-    HDenseIconButton,
-    HTable,
-    HSendMessageToUser,
-  },
+  components: { HChangePassword, HDeleteButton, HEditButton, HDenseIconButton, HTable, HSendMessageToUser },
 });
 
+const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
   useTable<SysUserConditions, SysUserEntity>(API.core.sysUser(), CONSTANTS.ComponentName.SYS_USER);
 
@@ -95,6 +88,19 @@ const columns: QTableColumnProps = [
   { name: "username", field: "username", align: "center", label: "用户名" },
   { name: "nickname", field: "nickname", align: "center", label: "昵称" },
   { name: "description", field: "description", align: "center", label: "备注" },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
+  },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },
   { name: "actions", field: "actions", align: "center", label: "操作" },

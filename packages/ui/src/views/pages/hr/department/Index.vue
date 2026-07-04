@@ -38,7 +38,7 @@ import type { SysDepartmentEntity, SysDepartmentConditions, SysDepartmentProps }
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { CONSTANTS, API } from "@/configurations";
-import { useTable } from "@/composables/hooks";
+import { useTable, useDateTime } from "@/composables/hooks";
 
 import { HDeleteButton, HEditButton, HTable } from "@/components";
 import { HOrganizationSelect, HOrganizationTree } from "../components";
@@ -55,6 +55,8 @@ defineOptions({
     HOrganizationTree,
   },
 });
+
+const { defaultFormat } = useDateTime();
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
   useTable<SysDepartmentConditions, SysDepartmentEntity>(
@@ -73,6 +75,19 @@ const columns: QTableColumnProps = [
   { name: "shortName", field: "shortName", align: "center", label: "部门简称" },
   { name: "partitionCode", field: "partitionCode", align: "center", label: "分区代码" },
   { name: "description", field: "description", align: "center", label: "备注" },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
+  },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },
   { name: "actions", field: "actions", align: "center", label: "操作" },

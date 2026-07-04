@@ -47,7 +47,7 @@ import type { SysEmployeeEntity, SysEmployeeConditions, SysEmployeeProps } from 
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { CONSTANTS, API } from "@/configurations";
-import { useTable, useDictionary } from "@/composables/hooks";
+import { useTable, useDictionary, useDateTime } from "@/composables/hooks";
 
 import { HDeleteButton, HEditButton, HTable } from "@/components";
 import { HEmployeeCondition } from "../components";
@@ -63,6 +63,7 @@ defineOptions({
   },
 });
 
+const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, conditions, findItems, deleteItemById } =
   useTable<SysEmployeeConditions, SysEmployeeEntity>(API.core.sysEmployee(), CONSTANTS.ComponentName.SYS_EMPLOYEE);
 
@@ -76,6 +77,19 @@ const columns: QTableColumnProps = [
   { name: "gender", field: "gender", align: "center", label: "性别" },
   { name: "identity", field: "identity", align: "center", label: "身份" },
   { name: "description", field: "description", align: "center", label: "备注" },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
+  },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },
   { name: "actions", field: "actions", align: "center", label: "操作" },

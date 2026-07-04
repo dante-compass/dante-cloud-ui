@@ -51,7 +51,7 @@ import { useElementStore } from "@herodotus/framework";
 import { HDeleteButton, HTable } from "@/components";
 
 import { HOrganizationTree, HDepartmentTree } from "../components";
-import { useDictionary } from "@/composables/hooks";
+import { useDictionary, useDateTime } from "@/composables/hooks";
 
 defineOptions({ name: "SysOwnership", components: { HDeleteButton, HDepartmentTree, HTable, HOrganizationTree } });
 
@@ -72,11 +72,25 @@ const rowKey: SysEmployeeProps = "employeeId";
 const router = useRouter();
 const store = useElementStore();
 
+const { defaultFormat } = useDateTime();
 const { getDictionaryItemDisplay } = useDictionary("identity");
 
 const columns: QTableColumnProps = [
   { name: "employeeName", field: "employeeName", align: "center", label: "姓名" },
   { name: "identity", field: "identity", align: "center", label: "身份" },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
+  },
   { name: "actions", field: "actions", align: "center", label: "操作" },
 ];
 

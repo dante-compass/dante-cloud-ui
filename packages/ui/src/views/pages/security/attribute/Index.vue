@@ -49,7 +49,7 @@ import type { SysAttributeEntity, SysAttributeConditions, SysAttributeProps } fr
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { CONSTANTS, API } from "@/configurations";
-import { useTable, useDictionary } from "@/composables/hooks";
+import { useTable, useDictionary, useDateTime } from "@/composables/hooks";
 import { get } from "lodash-es";
 
 import { HEditButton, HTable, HSwaggerColumn } from "@/components";
@@ -64,6 +64,7 @@ defineOptions({
   },
 });
 
+const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
   useTable<SysAttributeConditions, SysAttributeEntity>(
     API.core.sysAttribute(),
@@ -85,6 +86,19 @@ const columns: QTableColumnProps = [
   { name: "attributeCode", field: "attributeCode", align: "center", label: "默认权限代码" },
   { name: "version", field: "version", align: "center", label: "版本控制" },
   { name: "webExpression", field: "webExpression", align: "center", label: "特定表达式" },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
+  },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },
   { name: "actions", field: "actions", align: "center", label: "操作" },

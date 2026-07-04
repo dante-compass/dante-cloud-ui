@@ -40,7 +40,7 @@
 import type { SysDictionaryEntity, SysDictionaryConditions, SysDictionaryProps } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { useTable } from "@/composables/hooks";
+import { useTable, useDateTime } from "@/composables/hooks";
 import { CONSTANTS, API } from "@/configurations";
 
 import { HDeleteButton, HEditButton, HTable } from "@/components";
@@ -58,6 +58,7 @@ defineOptions({
   },
 });
 
+const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
   useTable<SysDictionaryConditions, SysDictionaryEntity>(
     API.core.sysDictionary(),
@@ -75,6 +76,19 @@ const columns: QTableColumnProps = [
   { name: "value", field: "value", align: "center", label: "实际值" },
   { name: "ranking", field: "ranking", align: "center", label: "排序值" },
   { name: "valueType", field: "valueType", align: "center", label: "数据类型" },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
+  },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },
   { name: "actions", field: "actions", align: "center", label: "操作" },

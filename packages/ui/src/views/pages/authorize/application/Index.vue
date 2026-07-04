@@ -37,7 +37,7 @@ import type { QTableColumnProps } from "@/composables/declarations";
 
 import { CONSTANTS, API } from "@/configurations";
 import { moment } from "@herodotus/core";
-import { useTable } from "@/composables/hooks";
+import { useTable, useDateTime } from "@/composables/hooks";
 
 import { HDeleteButton, HEditButton, HTable, HGrantTypeColumn } from "@/components";
 
@@ -45,6 +45,8 @@ defineOptions({
   name: CONSTANTS.ComponentName.OAUTH2_APPLICATION,
   components: { HDeleteButton, HEditButton, HGrantTypeColumn, HTable },
 });
+
+const { defaultFormat, humanize } = useDateTime();
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
   useTable<OAuth2ApplicationConditions, OAuth2ApplicationEntity>(
@@ -68,35 +70,44 @@ const columns: QTableColumnProps = [
     field: "accessTokenTimeToLive",
     align: "center",
     label: "令牌有效期",
-    format: (value) => formatDuration(value),
+    format: (value) => humanize(value),
   },
   {
     name: "refreshTokenTimeToLive",
     field: "refreshTokenTimeToLive",
     align: "center",
     label: "刷新令牌有效期",
-    format: (value) => formatDuration(value),
+    format: (value) => humanize(value),
   },
   {
     name: "authorizationCodeTimeToLive",
     field: "authorizationCodeTimeToLive",
     align: "center",
     label: "授权码有效期",
-    format: (value) => formatDuration(value),
+    format: (value) => humanize(value),
   },
   {
     name: "deviceCodeTimeToLive",
     field: "deviceCodeTimeToLive",
     align: "center",
     label: "激活码有效期",
-    format: (value) => formatDuration(value),
+    format: (value) => humanize(value),
+  },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
   },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },
   { name: "actions", field: "actions", align: "center", label: "操作" },
 ];
-
-const formatDuration = (date: string): string => {
-  return moment.duration(date, "seconds").humanize();
-};
 </script>
