@@ -1,4 +1,4 @@
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 
 import type {
   Conditions,
@@ -6,11 +6,11 @@ import type {
   Page,
   QTablePaginationProps,
   QTableOnRequestParameter,
-} from '@/composables/declarations';
+} from "@/composables/declarations";
 
-import { capitalize } from 'lodash-es';
-import { useElementStore } from '@herodotus/framework';
-import { OperationEnum } from '@herodotus/core';
+import { capitalize } from "lodash-es";
+import { useElementStore } from "@herodotus/framework";
+import { OperationEnum } from "@herodotus/core";
 
 /**
  * 数据表格基础定义。
@@ -63,6 +63,8 @@ export default function useBaseTable<C extends Conditions, I extends Entity, O e
       operation: operation,
       additional: JSON.stringify(additional),
     });
+
+    console.log("-------", componentName);
     router.push({ name: componentName });
   };
 
@@ -71,32 +73,32 @@ export default function useBaseTable<C extends Conditions, I extends Entity, O e
   };
 
   const toEdit = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, 'Content', withSuffix);
+    const componentName = appendSuffix(name, "Content", withSuffix);
     addRoutePushParam(componentName, OperationEnum.EDIT, item, additional);
   };
 
   const toCreate = (additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, 'Content', withSuffix);
+    const componentName = appendSuffix(name, "Content", withSuffix);
     addRoutePushParam(componentName, OperationEnum.CREATE, {} as I, additional);
   };
 
   const toAuthorize = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, 'Authorize', withSuffix);
+    const componentName = appendSuffix(name, "Authorize", withSuffix);
     addRoutePushParam(componentName, OperationEnum.AUTHORIZE, item, additional);
   };
 
   const toInfo = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, 'Info', withSuffix);
+    const componentName = appendSuffix(name, "Info", withSuffix);
     addRoutePushParam(componentName, OperationEnum.INFO, item, additional);
   };
 
   const toSetup = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, 'Setup', withSuffix);
+    const componentName = appendSuffix(name, "Setup", withSuffix);
     addRoutePushParam(componentName, OperationEnum.SETUP, item, additional);
   };
 
   const toInvoke = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, 'Invoke', withSuffix);
+    const componentName = appendSuffix(name, "Invoke", withSuffix);
     addRoutePushParam(componentName, OperationEnum.INVOKE, item, additional);
   };
 

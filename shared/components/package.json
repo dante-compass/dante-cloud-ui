@@ -17,7 +17,7 @@
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.mjs",
-  "types": "dist/types/src/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -28,7 +28,7 @@
       "require": "./dist/index.cjs.js"
     },
     "./resolver": {
-      "types": "./dist/types/src/resolver.d.ts",
+      "types": "./dist/types/resolver.d.ts",
       "import": "./dist/resolver.es.mjs",
       "require": "./dist/resolver.cjs.js"
     },

@@ -14,9 +14,6 @@ import { useEditFinish, useElementStore } from "@herodotus/framework";
  * @returns
  */
 export default function useBaseTableItem<I extends Domain>() {
-  console.log("----------", useEditFinish());
-  const { onFinish } = useEditFinish();
-
   const route = useRoute();
   const store = useElementStore();
 
@@ -69,6 +66,8 @@ export default function useBaseTableItem<I extends Domain>() {
       }
     }
   };
+
+  const { onFinish } = useEditFinish();
 
   return {
     editedItem,
