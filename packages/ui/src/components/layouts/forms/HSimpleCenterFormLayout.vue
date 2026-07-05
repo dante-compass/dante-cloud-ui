@@ -11,39 +11,32 @@
   </h-detail-container>
 </template>
 
-<script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent } from 'vue';
-import HDetailContainer from './HDetailContainer.vue';
+<script setup lang="ts">
+import HDetailContainer from "./HDetailContainer.vue";
 
-import { useEditFinish } from '@herodotus/framework';
+import { useEditFinish } from "@herodotus/framework";
 
-export default defineComponent({
-  name: 'HOssFormLayout',
+defineOptions({ name: "HOssFormLayout", components: { HDetailContainer } });
 
-  components: {
-    HDetailContainer,
-  },
+interface Props {
+  overlay?: boolean;
+  title?: string;
+  hideSave?: boolean;
+}
 
-  emits: ['save'],
-
-  props: {
-    overlay: { type: Boolean, default: false },
-    title: { type: String, default: '' },
-    hideSave: { type: Boolean, default: false },
-  },
-
-  setup(props, { emit }) {
-    const { onFinish } = useEditFinish();
-
-    const onSave = async () => {
-      emit('save');
-    };
-
-    return {
-      onFinish,
-      onSave,
-    };
-  },
+withDefaults(defineProps<Props>(), {
+  overlay: false,
+  title: "",
+  hideSave: false,
 });
+
+const emit = defineEmits<{
+  save: [];
+}>();
+
+const { onFinish } = useEditFinish();
+
+const onSave = async () => {
+  emit("save");
+};
 </script>

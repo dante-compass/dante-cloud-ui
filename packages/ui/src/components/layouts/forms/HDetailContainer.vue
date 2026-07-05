@@ -15,44 +15,36 @@
   </q-card>
 </template>
 
-<script lang="ts">
-import { defineComponent, watch } from 'vue';
-import { useQuasar, QSpinnerGears } from 'quasar';
+<script setup lang="ts">
+import { useQuasar, QSpinnerGears } from "quasar";
 
-import { useEditFinish } from '@herodotus/framework';
+import { useEditFinish } from "@herodotus/framework";
 
-export default defineComponent({
-  name: 'HDetailContainer',
+defineOptions({ name: "HDetailContainer" });
 
-  props: {
-    title: { type: String },
-    overlay: { type: Boolean, default: false },
-  },
+interface Props {
+  title?: string;
+  overlay?: boolean;
+}
 
-  setup(props) {
-    const { onFinish } = useEditFinish();
-    const $q = useQuasar();
-
-    watch(
-      () => props.overlay,
-      (newValue: boolean) => {
-        if (newValue) {
-          $q.loading.show({
-            spinner: QSpinnerGears,
-            // other props
-          });
-        } else {
-          $q.loading.hide();
-        }
-      },
-      {
-        immediate: true,
-      },
-    );
-
-    return {
-      onFinish,
-    };
-  },
+const props = withDefaults(defineProps<Props>(), {
+  overlay: false,
 });
+
+const { onFinish } = useEditFinish();
+const $q = useQuasar();
+
+watch(
+  () => props.overlay,
+  (newValue: boolean) => {
+    if (newValue) {
+      $q.loading.show({
+        spinner: QSpinnerGears,
+        // other props
+      });
+    } else {
+      $q.loading.hide();
+    }
+  },
+);
 </script>

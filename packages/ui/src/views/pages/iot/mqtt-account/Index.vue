@@ -1,6 +1,6 @@
 <template>
   <div class="q-gutter-y-md">
-    <search v-model:conditions="conditions"></search>
+    <search v-model="conditions"></search>
     <h-table
       :rows="tableRows"
       :columns="columns"
@@ -61,7 +61,7 @@ const columns: QTableColumnProps = [
     field: "updateTime",
     align: "center",
     label: "修改时间",
-    format: (item) => defaultFormat(item.updateTime),
+    format: (value) => defaultFormat(value),
   },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },
@@ -72,9 +72,8 @@ const selected = ref([]);
 const rowKey: MqttAccountProps = "id";
 
 const { defaultFormat } = useDateTime();
-const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-  useTable<MqttAccountConditions, MqttAccountEntity>(
-    API.core.iotMqttAccount(),
-    CONSTANTS.ComponentName.THINGS_MQTT_ACCOUNT,
-  );
+const { tableRows, totalPages, pagination, loading, conditions, toCreate, toAuthorize, findItems } = useTable<
+  MqttAccountConditions,
+  MqttAccountEntity
+>(API.core.iotMqttAccount(), CONSTANTS.ComponentName.THINGS_MQTT_ACCOUNT);
 </script>

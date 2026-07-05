@@ -1,9 +1,9 @@
-import type { Domain } from '@herodotus/core';
+import type { Domain } from "@herodotus/core";
 
-import { useRoute } from 'vue-router';
-import { OperationEnum } from '@herodotus/core';
+import { useRoute } from "vue-router";
+import { OperationEnum } from "@herodotus/core";
 
-import { useEditFinish, useElementStore } from '@herodotus/framework';
+import { useEditFinish, useElementStore } from "@herodotus/framework";
 
 /**
  * 表格条目基础定义
@@ -14,16 +14,17 @@ import { useEditFinish, useElementStore } from '@herodotus/framework';
  * @returns
  */
 export default function useBaseTableItem<I extends Domain>() {
+  console.log("----------", useEditFinish());
   const { onFinish } = useEditFinish();
 
   const route = useRoute();
+  const store = useElementStore();
 
   const editedItem = ref({}) as Ref<I>;
   const operation = ref(OperationEnum.CREATE) as Ref<OperationEnum>;
   const additional = ref({}) as Ref<Record<string, unknown>>;
-  const title = ref('');
-  const overlay = ref(false);
-  const store = useElementStore();
+  const title = shallowRef("");
+  const overlay = shallowRef(false);
 
   onMounted(() => {
     parseParam();
@@ -33,13 +34,13 @@ export default function useBaseTableItem<I extends Domain>() {
     if (operation) {
       switch (operation) {
         case OperationEnum.AUTHORIZE:
-          return '配置' + content;
+          return "配置" + content;
         case OperationEnum.EDIT:
-          return '编辑' + content;
+          return "编辑" + content;
         case OperationEnum.INFO:
-          return '查看' + content;
+          return "查看" + content;
         case OperationEnum.CREATE:
-          return '新建' + content;
+          return "新建" + content;
         default:
           return content;
       }

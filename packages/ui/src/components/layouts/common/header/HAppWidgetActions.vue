@@ -13,26 +13,16 @@
   </q-btn>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+<script setup lang="ts">
+import type { WidgetItem } from "@/composables/declarations";
+import { getWidgets } from "@/routers/logic";
 
-import type { WidgetItem } from '@/composables/declarations';
-import { getWidgets } from '@/routers/logic';
+defineOptions({ name: "HAppBreadcrumbs" });
 
-export default defineComponent({
-  name: 'HAppBreadcrumbs',
+const widgets = ref<Array<WidgetItem>>([]);
 
-  setup() {
-    const widgets = ref<Array<WidgetItem>>([]);
-
-    onMounted(() => {
-      widgets.value.push(...getWidgets());
-    });
-
-    return {
-      widgets,
-    };
-  },
+onMounted(() => {
+  widgets.value.push(...getWidgets());
 });
 </script>
 

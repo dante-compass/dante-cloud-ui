@@ -37,57 +37,37 @@
   <q-btn v-else round dense flat color="grey-8" icon="notifications"></q-btn>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref, computed } from 'vue';
+<script setup lang="ts">
+import { storeToRefs } from "pinia";
 
-import { storeToRefs } from 'pinia';
+import { useWebSocketMessage } from "@/composables/hooks";
+import { useNotificationStore } from "@/composables/stores";
+import { VARIABLES } from "@/configurations";
 
-import { useWebSocketMessage } from '@/composables/hooks';
-import { useNotificationStore } from '@/composables/stores';
-import { VARIABLES } from '@/configurations';
+import HAppDialogueNotification from "./HAppDialogueNotification.vue";
+import HAppAnnouncementNotification from "./HAppAnnouncementNotification.vue";
 
-import HAppDialogueNotification from './HAppDialogueNotification.vue';
-import HAppAnnouncementNotification from './HAppAnnouncementNotification.vue';
+defineOptions({ name: "HAppMessageActions", components: { HAppDialogueNotification, HAppAnnouncementNotification } });
 
-export default defineComponent({
-  name: 'HAppMessageActions',
+const notificationStore = useNotificationStore();
+const { totalCount, dialogueCount, announcementCount } = storeToRefs(notificationStore);
+const { connect, disconnect } = useWebSocketMessage();
 
-  components: {
-    HAppDialogueNotification,
-    HAppAnnouncementNotification,
-  },
+const tab = ref("dialogue");
 
-  setup() {
-    const notificationStore = useNotificationStore();
-    const { totalCount, dialogueCount, announcementCount } = storeToRefs(notificationStore);
-    const { connect, disconnect } = useWebSocketMessage();
-
-    const tab = ref('dialogue');
-
-    const isEnabled = computed(() => {
-      return VARIABLES.isUseWebSocket();
-    });
-
-    onMounted(() => {
-      connect();
-    });
-
-    onUnmounted(() => {
-      disconnect();
-    });
-
-    const onSetAllRead = () => {
-      notificationStore.setAllRead();
-    };
-
-    return {
-      tab,
-      totalCount,
-      dialogueCount,
-      announcementCount,
-      isEnabled,
-      onSetAllRead,
-    };
-  },
+const isEnabled = computed(() => {
+  return VARIABLES.isUseWebSocket();
 });
+
+onMounted(() => {
+  connect();
+});
+
+onUnmounted(() => {
+  disconnect();
+});
+
+const onSetAllRead = () => {
+  notificationStore.setAllRead();
+};
 </script>

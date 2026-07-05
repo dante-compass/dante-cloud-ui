@@ -14,23 +14,11 @@
   <h-center-label v-else text="暂没有新消息"></h-center-label>
 </template>
 
-<script lang="ts">
-import { NotificationCategoryEnum } from '@herodotus/api';
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { NotificationCategoryEnum } from "@herodotus/api";
+import { useNotifications } from "@/composables/hooks";
 
-import { useNotifications } from '@/composables/hooks';
+defineOptions({ name: "HAppDialogueNotification" });
 
-export default defineComponent({
-  name: 'HAppDialogueNotification',
-
-  setup() {
-    const { items, hasDialogue, convertDate } = useNotifications(NotificationCategoryEnum.DIALOGUE);
-
-    return {
-      items,
-      hasDialogue,
-      convertDate,
-    };
-  },
-});
+const { items, hasDialogue, convertDate } = useNotifications(NotificationCategoryEnum.DIALOGUE);
 </script>

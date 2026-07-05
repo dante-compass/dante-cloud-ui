@@ -1,6 +1,6 @@
 <template>
   <div class="q-gutter-y-md">
-    <search v-model:conditions="conditions"></search>
+    <search v-model="conditions"></search>
     <h-table
       :rows="tableRows"
       :columns="columns"
@@ -83,7 +83,7 @@ const columns: QTableColumnProps = [
     field: "updateTime",
     align: "center",
     label: "修改时间",
-    format: (item) => defaultFormat(item.updateTime),
+    format: (value) => defaultFormat(value),
   },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },
@@ -94,10 +94,20 @@ const selected = ref([]);
 const rowKey: MqttAuthorityProps = "id";
 
 const { defaultFormat } = useDateTime();
-const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-  useTable<MqttAuthorityConditions, MqttAuthorityEntity>(
-    API.core.iotMqttAuthority(),
-    CONSTANTS.ComponentName.THINGS_MQTT_AUTHORITY,
-  );
+const {
+  tableRows,
+  totalPages,
+  pagination,
+  loading,
+  conditions,
+  toEdit,
+  toCreate,
+  toAuthorize,
+  findItems,
+  deleteItemById,
+} = useTable<MqttAuthorityConditions, MqttAuthorityEntity>(
+  API.core.iotMqttAuthority(),
+  CONSTANTS.ComponentName.THINGS_MQTT_AUTHORITY,
+);
 const { getDictionaryItemDisplay } = useDictionary("Permission", "Action", "Qos", "Retain");
 </script>

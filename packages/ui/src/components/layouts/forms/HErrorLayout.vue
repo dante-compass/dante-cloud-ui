@@ -12,10 +12,6 @@
   </h-container>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'HErrorLayout',
-});
+<script setup lang="ts">
+defineOptions({ name: "HErrorLayout" });
 </script>

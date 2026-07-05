@@ -19,6 +19,7 @@
                 dictionary="Action"
                 label="主题操作"
                 dense
+                class="q-pb-none"
               ></h-dictionary-select>
             </h-column>
             <h-column :cols="2">
@@ -27,14 +28,16 @@
                 dictionary="Permission"
                 label="主题权限"
                 dense
+                class="q-pb-none"
               ></h-dictionary-select>
             </h-column>
             <h-column :cols="2">
               <h-dictionary-select
-                v-model="conditions.permission"
-                dictionary="Permission"
-                label="主题权限"
+                v-model="conditions.qos"
+                dictionary="Qos"
+                label="Qos"
                 dense
+                class="q-pb-none"
               ></h-dictionary-select>
             </h-column>
             <h-column :cols="2">
@@ -43,6 +46,7 @@
                 dictionary="Retain"
                 label="保留数据"
                 dense
+                class="q-pb-none"
               ></h-dictionary-select>
             </h-column>
             <h-column auto>

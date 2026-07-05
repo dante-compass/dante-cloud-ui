@@ -190,20 +190,20 @@ importers:
         specifier: workspace:^
         version: link:../../shared/form-engine
       '@herodotus/api':
-        specifier: ^2.1.3
-        version: 2.1.3
+        specifier: ^2.1.4
+        version: 2.1.4
       '@herodotus/core':
-        specifier: ^2.1.3
-        version: 2.1.3
+        specifier: ^2.1.4
+        version: 2.1.4
       '@herodotus/framework':
-        specifier: ^2.1.3
-        version: 2.1.3
+        specifier: ^2.1.4
+        version: 2.1.4
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
       '@quasar/extras':
-        specifier: ^2.0.1
-        version: 2.0.1
+        specifier: ^2.0.2
+        version: 2.0.2
       '@rsocket/composite-metadata':
         specifier: 1.0.0-alpha.3
         version: 1.0.0-alpha.3
@@ -284,7 +284,7 @@ importers:
         version: 0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4)
       '@bpmn-io/element-template-chooser':
         specifier: ^3.0.0
-        version: 3.0.0(bpmn-js@18.19.0)(diagram-js@15.18.0)
+        version: 3.0.0(bpmn-js@18.19.0)(diagram-js@15.18.1)
       '@bpmn-io/properties-panel':
         specifier: ^3.47.0
         version: 3.47.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4))
@@ -305,13 +305,13 @@ importers:
         version: 18.19.0
       bpmn-js-bpmnlint:
         specifier: ^0.24.0
-        version: 0.24.0(bpmn-js@18.19.0)(bpmnlint@11.12.1)(diagram-js@15.18.0)
+        version: 0.24.0(bpmn-js@18.19.0)(bpmnlint@11.12.1)(diagram-js@15.18.1)
       bpmn-js-connectors-extension:
         specifier: ^0.4.6
-        version: 0.4.6(bpmn-js@18.19.0)(diagram-js@15.18.0)
+        version: 0.4.6(bpmn-js@18.19.0)(diagram-js@15.18.1)
       bpmn-js-properties-panel:
         specifier: ^5.60.0
-        version: 5.60.0(@bpmn-io/properties-panel@3.47.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4)))(bpmn-js@18.19.0)(camunda-bpmn-js-behaviors@1.18.0(bpmn-js@18.19.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.16.0))(diagram-js@15.18.0)
+        version: 5.60.0(@bpmn-io/properties-panel@3.47.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4)))(bpmn-js@18.19.0)(camunda-bpmn-js-behaviors@1.18.0(bpmn-js@18.19.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.16.0))(diagram-js@15.18.1)
       bpmn-js-token-simulation:
         specifier: 0.39.4
         version: 0.39.4
@@ -325,8 +325,8 @@ importers:
         specifier: ^7.0.1
         version: 7.0.1
       diagram-js:
-        specifier: ^15.18.0
-        version: 15.18.0
+        specifier: ^15.18.1
+        version: 15.18.1
       diagram-js-grid:
         specifier: ^2.0.1
         version: 2.0.1
@@ -346,8 +346,8 @@ importers:
         specifier: ^3.0.4
         version: 3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3))
       preact:
-        specifier: ^10.29.3
-        version: 10.29.3
+        specifier: ^10.29.4
+        version: 10.29.4
       vue:
         specifier: ^3.5.39
         version: 3.5.39(typescript@6.0.3)
@@ -358,14 +358,14 @@ importers:
         specifier: ^7.4.47
         version: 7.4.47
       '@tsparticles/engine':
-        specifier: ^4.3.0
-        version: 4.3.0
+        specifier: ^4.3.1
+        version: 4.3.1
       '@tsparticles/preset-triangles':
-        specifier: ^4.3.0
-        version: 4.3.0
+        specifier: ^4.3.1
+        version: 4.3.1
       quasar:
-        specifier: ^2.20.1
-        version: 2.20.1
+        specifier: ^2.21.0
+        version: 2.21.0
 
   shared/form-apis: {}
 
@@ -381,8 +381,8 @@ importers:
         specifier: workspace:^
         version: link:../form-engine
       quasar:
-        specifier: ^2.20.1
-        version: 2.20.1
+        specifier: ^2.21.0
+        version: 2.21.0
       vue:
         specifier: ^3.5.39
         version: 3.5.39(typescript@6.0.3)
@@ -597,10 +597,10 @@ packages:
   '@bpmn-io/feel-lint@3.1.0':
     resolution: {integrity: sha512-nOCYWMXgwR0joU4XKhu4f3P5f4/AsmuyiV1e+fzcXTCh7iMLU8VYdHXSIzZuJ0zxz3Gsnp7A8S8lt+HJ43H6IA==}
 
-  '@bpmn-io/feelers-editor@1.1.0':
-    resolution: {integrity: sha512-qfrHtk+7hSiNTLMbapbNdV3obsrh92IpIBvAEYqirgLjcI55d0ZUDbdXPt7GA2npVqGGh7GcQwA/EJLR52oC2Q==}
+  '@bpmn-io/feelers-editor@1.1.1':
+    resolution: {integrity: sha512-HNvssf1nb/OohOgFxxR0hWIpIb8JBvmr2CQ28GD/5WLPKe3uvu9mpItIjNTCpLxLuVHlsJLNDtLkf2B6tvmt9Q==}
     peerDependencies:
-      '@bpmn-io/cm-theme': ^0.2.0
+      '@bpmn-io/cm-theme': ^0.2.1
 
   '@bpmn-io/feelers-lint@1.0.0':
     resolution: {integrity: sha512-9McPCub8NBSD3gbAM9fu6laGVvb6U/D8Y5Ar/GGvOaAuJ6W34yP5jaV/on4MALTwmmXTDadZjO2RJJNub3JmwQ==}
@@ -632,8 +632,8 @@ packages:
   '@bufbuild/protobuf@2.12.1':
     resolution: {integrity: sha512-BvAMfS6LrgZiryOAZ4pBYucu4wG/Ei/9o9DZ9akbREnMLbPJiom2i8b9C8IsKErQoiKqVhrerzt3kOT/RrzLHg==}
 
-  '@camunda/feel-builtins@1.2.0':
-    resolution: {integrity: sha512-dtfv9TSDiTEivARL2l8qawxsQi9BBajoSUQQIlVXVBwt5rp/FQ9UD2DTzki//RnLnu2V2O69SxGZDhWTT28qQg==}
+  '@camunda/feel-builtins@1.3.0':
+    resolution: {integrity: sha512-ZahpLTeBUjnZEMI6Hu/n9e/oTPcJ8DpWmIyJ00tgVNWM1kqAEcMhARK0GthSrD5NXiSVICNHZ7VRTERMq2FmnA==}
 
   '@changesets/apply-release-plan@7.1.1':
     resolution: {integrity: sha512-9qPCm/rLx/xoOFXIHGB229+4GOL76S4MC+7tyOuTsR6+1jYlfFDQORdvwR5hDA6y4FL2BPt3qpbcQIS+dW85LA==}
@@ -690,12 +690,12 @@ packages:
   '@changesets/write@0.4.0':
     resolution: {integrity: sha512-CdTLvIOPiCNuH71pyDu3rA+Q0n65cmAbXnwWH84rKGiFumFzkmHNT8KHTMEchcxN+Kl8I54xGUhJ7l3E7X396Q==}
 
-  '@clack/core@1.4.2':
-    resolution: {integrity: sha512-0Ty/1Gfm+Kb07sXcuESjyKfwEhSy4Ns1AgeEisHb/bDY5fWme0tTeTkU14T1Gmcs17YIjB/teiDe4uaCghbYqQ==}
+  '@clack/core@1.4.3':
+    resolution: {integrity: sha512-/kr3UWNtdJfxZtPgDqUOmG2pvwlmcLGheex5yiZKdwbzZJxhV+HMNR9QNmyY5cGwTNV6LrR7Jtp+KjhUAP1qBQ==}
     engines: {node: '>= 20.12.0'}
 
-  '@clack/prompts@1.6.0':
-    resolution: {integrity: sha512-EYlRokl8szrP9Z25qT5aepMdBjzBvHF9ZEhzIiUBc9guz/T31EqRgvD0QSgZcpE93xiwrr+OkB4nz0BZyF6fSA==}
+  '@clack/prompts@1.7.0':
+    resolution: {integrity: sha512-y7/yvZ2TPAnR9+jnc00klvNNLkJiXFFrQA/hlLCcxA9a2A4zQIOimyFQ9XfwYKiGD1fb5GY8vbKIIgO8d5Tb2A==}
     engines: {node: '>= 20.12.0'}
 
   '@codemirror/autocomplete@6.20.3':
@@ -955,17 +955,14 @@ packages:
     resolution: {integrity: sha512-+CNAzxglkrpNf/kKywqQfk74QjtceuOE7Qm+AF8miRvPF/wmmK5+OJOgVh3AVTT3RP2mH3+FOaxlE5v72owk0A==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@herodotus/api@2.1.3':
-    resolution: {integrity: sha512-0FzZNnYzPk8F1nk5OQJgozKOrbj7MKiKD+u/YLfTGK0Mml1j4fRStAzCdsXxoqQt/n27SLdpP7eQ0G4PEEUGQw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/api/-/@herodotus/api-2.1.3.tgz}
-
-  '@herodotus/core@2.1.3':
-    resolution: {integrity: sha512-EQ/DXIjtUcaqx5FIKiVn+lcEBdvAJqEAdFg7j0A86pKXFsPLwrhUc+L8zrU0kBcidK9qndAPK4FshNb6Xl26tQ==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-2.1.3.tgz}
+  '@herodotus/api@2.1.4':
+    resolution: {integrity: sha512-byz2es2DcDpRI+ooTIfetqBjGGETaUjtB7dTqe/dCuB6l0hcqnjEYQ5LuQsfiwAx5UXTL+ULN2pThZh4Fy9pPw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/api/-/@herodotus/api-2.1.4.tgz}
 
   '@herodotus/core@2.1.4':
     resolution: {integrity: sha512-RDcKdKUMW1+LseHqfj4KGYC/D7Q8ricpqBT2YolLyE7hYjfFO9OTn0fu5SvXqCcmJCIFX/B1D4pVJBV7Q8HVYw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-2.1.4.tgz}
 
-  '@herodotus/framework@2.1.3':
-    resolution: {integrity: sha512-HqXuaCoZfOhvw4KnsTUkLJomuDbiUHU24ZpZfwo9K1qoQ/gidZ2h5wL5BrkniSqlwZiNedmUepvWSrILNoFDyg==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/framework/-/@herodotus/framework-2.1.3.tgz}
+  '@herodotus/framework@2.1.4':
+    resolution: {integrity: sha512-rbZYAD6EJhxVWTb3+dcZ8FRc0h63OP1+woYXIW89YNGkzyK5xKgA9ynv/6bKND0No3REX3PDY2yCICKODuUhZw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/framework/-/@herodotus/framework-2.1.4.tgz}
 
   '@highlightjs/vue-plugin@2.1.0':
     resolution: {integrity: sha512-E+bmk4ncca+hBEYRV2a+1aIzIV0VSY/e5ArjpuSN9IO7wBJrzUE2u4ESCwrbQD7sAy+jWQjkV5qCCWgc+pu7CQ==}
@@ -1531,9 +1528,6 @@ packages:
   '@quasar/art@1.0.0':
     resolution: {integrity: sha512-IAV8Qg2QM3U2alywUcCELyOlHCUNbJYmiVDRTLgcgmyBlQwo3Wk33eHAyT9cpnV5CqlmuYXe6UZt0Ybi1m0lMA==}
 
-  '@quasar/extras@2.0.1':
-    resolution: {integrity: sha512-gieBBROuXkVhvqXtbcVg4pHR5FDcaK+F9PaY2K2t8+EuK8OB/0aJq306DeF5+/Bqv8ixIXT9KhpRZj0HotaOew==}
-
   '@quasar/extras@2.0.2':
     resolution: {integrity: sha512-BkH/iBISDbLNl5qAdsVNpa/0hxHbd1VwfML4dRwTUb8oGeLqlr00yjYM648KGYB1C8plwhU7LyGziE1JpSa6ZA==}
 
@@ -1822,85 +1816,85 @@ packages:
   '@tsconfig/node22@22.0.5':
     resolution: {integrity: sha512-hLf2ld+sYN/BtOJjHUWOk568dvjFQkHnLNa6zce25GIH+vxKfvTgm3qpaH6ToF5tu/NN0IH66s+Bb5wElHrLcw==}
 
-  '@tsparticles/animation-utils@4.3.0':
-    resolution: {integrity: sha512-ac3eCs+kRC37IZ3JutsoOGaP89bLepMEKMQ9n4vgo1Eu2GV5AE9Fw++B0xOyWtL2wsMdFgx7RVVnw3apYmXMVA==}
+  '@tsparticles/animation-utils@4.3.1':
+    resolution: {integrity: sha512-0yACgR9S6W+4RnNIdLkICKmtIOFvwEdc99vT7e+GCvydyipZEoqsyTdKU40sdoDIu1UEJ1sOXPQsgCj3EpkbFA==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/basic@4.3.0':
-    resolution: {integrity: sha512-OSG4jYh9y09IM+WwZN2cIc1TGjzgDMTqLOxDNctjpFOR9UfnKptaSTSPwcdQZtM2QkPZvc2hmsFtDvbVfUfkRg==}
+  '@tsparticles/basic@4.3.1':
+    resolution: {integrity: sha512-bmPsbN35L99Y3/79WTiUrfMka7PL/NowkK+fVDUke8dLHGBn8BrKpwvAsw45P/updDLY4T10COpB7bd4Z45wfQ==}
 
-  '@tsparticles/canvas-utils@4.3.0':
-    resolution: {integrity: sha512-d+n/yIOQqvkPScKn7xMIarkrWYwMjaBwc2HrZglsnh5vQAjN6ZTVU2mTDaN1c+5RAtZZLojwD1xuySX6O1QEJg==}
+  '@tsparticles/canvas-utils@4.3.1':
+    resolution: {integrity: sha512-KMLzmnHbkuGokD3eo66wVZZG1mmsQ5kDjrfES90/W9+y5jVxOcx0lWOloPNC7T6IdkzmJiJ6bweOJwzhiE+d5g==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/engine@4.3.0':
-    resolution: {integrity: sha512-F8fhSEMl/HUpB2mKw+6vkXreEGEoQUezIywqpWMgBiMuTLbIIvo8U19STFhebM3rD8zxpXrZpnfZoyvEf95a+Q==}
+  '@tsparticles/engine@4.3.1':
+    resolution: {integrity: sha512-WB8oyO0uUNSN+cbNCqqeolc1/qt0IONKD5vlRpNuIf4R2D5d4vjYSjQBzRbmS8MuldrUQZygMWwjx6yd3nkGNA==}
 
-  '@tsparticles/interaction-particles-links@4.3.0':
-    resolution: {integrity: sha512-RAGzbLNbgbwSBHWfB5mja3GnfDPlU/EC/u+KGSjVEnRXICdMTCD9ejx6ghavHzaVQ0WvGIM/CKF6ZxtBSkq6Iw==}
+  '@tsparticles/interaction-particles-links@4.3.1':
+    resolution: {integrity: sha512-KvB3ssa8MUv3znH19/pVdy2Zr/VwoRsWy4Xt/6S+JZe3Df1J1f5MuqK/IjKDdxqPo/v+ZQWmzbor0+oSpaAEpw==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
-      '@tsparticles/plugin-interactivity': 4.3.0
+      '@tsparticles/engine': 4.3.1
+      '@tsparticles/plugin-interactivity': 4.3.1
 
-  '@tsparticles/plugin-blend@4.3.0':
-    resolution: {integrity: sha512-0piWX8FoJaut5YyyKpUYP7DduFIQKLSvU4l0BLnaYFKQ+Vrk5CTqIr7Jmar+1pTWWMtc7fTBr3+L8GI/md9wIg==}
+  '@tsparticles/plugin-blend@4.3.1':
+    resolution: {integrity: sha512-Xmwo04LHLF6OROzmeWSoJATFksMpZGlTU9GP3F4Yd2aFFUq+ErHQkT/DCgYH99xL001FIZX8g16kqmos+7E5ZQ==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-hex-color@4.3.0':
-    resolution: {integrity: sha512-hJm5DbU7OdJEcfH9LK5l+yBDJ0TvWS3udfazDMkqU7KKxA5pYflwfbo/03X5adjQPM1f3GlJF+5cCzraOI1uEA==}
+  '@tsparticles/plugin-hex-color@4.3.1':
+    resolution: {integrity: sha512-p2cf6KHS9N5yaCR94vXHOOtrRurl4/U6olkK7qW5CqGCZMyhxvmaQHbZ0pf6s1cjck8G93ltqsOHacQ8y2quAQ==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-hsl-color@4.3.0':
-    resolution: {integrity: sha512-VXbi5SqaahrQ/0zgGW5ojLDyer//kDunAX4c+rJm3yLAerqbypneulYsOJBebwPUnIDwWrQQxK2VOOdzmkuy8g==}
+  '@tsparticles/plugin-hsl-color@4.3.1':
+    resolution: {integrity: sha512-GJDN41/ZwSakhieLsbEv9SM0EL/or6Ezf3N/JWeYJrAo73YNWh/ahn7WtrOUtrl1cbIvE1QSP+lZqvWYizvlnQ==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-interactivity@4.3.0':
-    resolution: {integrity: sha512-7a1pL6L9CCi6iWvJL06gP4wAoVFoD/FnwQjNM0ZePrmxFxcjHRH5Xhwpml57L7zARYLiphfSDsGEtl6WqGDTYg==}
+  '@tsparticles/plugin-interactivity@4.3.1':
+    resolution: {integrity: sha512-0hnc//T8zd6Xj0g7Q4wTMdNEXfHqEk5BNtgIXEEcL0zCri88eHsfErzr3fSO6EHGqebUTfBcV1IOU6BkrOX8RQ==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-move@4.3.0':
-    resolution: {integrity: sha512-01odJy0GRPyNbtDMeHTW6Y2GaUNoERuiAUbnKJAqt45ytBPAyjsFqqtpvTVvEIIKykP69r2x9aMpNK9Ac+vyRg==}
+  '@tsparticles/plugin-move@4.3.1':
+    resolution: {integrity: sha512-/5SkjHGsnrn58+4EmFPYevqT1huZun29XIacFNScTStC7eCn+muBTPbKmqA6Qtsd/o+kRQFv5c3q3C8hON4GIw==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-rgb-color@4.3.0':
-    resolution: {integrity: sha512-4fGUUDvxsgtv39rgs+vOojN7fHgvgaRHHvQ5C2lKRyGvQuLsD4mmElf+GKZK7MpV2Zp3POZN0Ui5i20JHf2rQQ==}
+  '@tsparticles/plugin-rgb-color@4.3.1':
+    resolution: {integrity: sha512-/OUvvEaACeI1z/m79uGt+zG7XR8oTwgpnl4LEZ+I+Z7IGr4Cwyt+wr6P/7SrKooKHgDSyyNnnLHr1BNhFEV1cQ==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/preset-triangles@4.3.0':
-    resolution: {integrity: sha512-SOnUlbDNHZ613zafCnX5W/DnbQBhqGtlBer9CkCB7lHp0L6zpj2J4XYP9+qfDhIL7vvHdTM1pu9wcbpzOR7zGw==}
+  '@tsparticles/preset-triangles@4.3.1':
+    resolution: {integrity: sha512-c+Aly8Hv4yKum16EyHhRBsVDFeY1dYcq2+FLX+2OZ2unWkGXdKFYWpHRHTraf2lecWoyPv+FGyz/BoyrdRXeYw==}
 
-  '@tsparticles/shape-circle@4.3.0':
-    resolution: {integrity: sha512-jHTgzrP/hSS2fW+/IEmGhGodNVuRX3C4c9X2a0j0d986bDSGI/MbYJm81ZmzWgPF2BCtVPV3XtRsMqLaQr559g==}
+  '@tsparticles/shape-circle@4.3.1':
+    resolution: {integrity: sha512-uW5hPrjJkWK4LpFF/ZIEHjTz9eL1lQhPG0k/Pg5CiThLHiPkSlH/McEqa/63lgPjTU8ibFjkgIhcdqV6b//DsA==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/updater-opacity@4.3.0':
-    resolution: {integrity: sha512-qRrNR5K3VBo73nXpNI5ODjtSLrLG2nA7VhHbfbhShPQMK5EDbPYOWi3UGsou3x/iGSzAaOPyuzc5532o+M2RYA==}
+  '@tsparticles/updater-opacity@4.3.1':
+    resolution: {integrity: sha512-xJJ0opj2uKopxVW2oXOwn7yVy5dTksMImEHunJDS0rdJZkoY2OYiaAQCj3On7K2SMmFHqXs64ZWj3QA+Wy5ytg==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/updater-out-modes@4.3.0':
-    resolution: {integrity: sha512-UWvjptYnVL22wWuc+nz4kptae6yEnBxz8yMsNzTYi8CI/pCEGALKnp8gNEp3rpocvOb57FI/yemNDpUofwI38Q==}
+  '@tsparticles/updater-out-modes@4.3.1':
+    resolution: {integrity: sha512-ZgV34js4HlSaZI5NobZw+1/1A274/dv+t+OSu3VolNKfz1BD25s8tlGDy1U15ogbcvKrJ9aFs0Dt44KFVVdAWw==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/updater-paint@4.3.0':
-    resolution: {integrity: sha512-rNSuPMPyHtZnlemEOJPnVR+7kWBpHi6uv5myl3s5QJE7Z3FmNRbFckdCAeXlZtlqPoffRo0BCMYFbYHb1N9Y/A==}
+  '@tsparticles/updater-paint@4.3.1':
+    resolution: {integrity: sha512-TEq02wbn/LgBg1Ce+SOcUJ61rZhLCyOBm6EBkiDsJKwNtZ3/c2bN4qUrZ5QK+uqmWG0Em7n5z0JXynKh79N1vg==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/updater-size@4.3.0':
-    resolution: {integrity: sha512-UZOC7wy3bkcZe93gVezKHRooAbcae8wipR51EhYxbRIE8d3ttYDupVieWxojViv0XnsG1XfJw3eUZH36ZfRvgw==}
+  '@tsparticles/updater-size@4.3.1':
+    resolution: {integrity: sha512-yk3TzZp0mzx6rhYykEwb/OtpVFf//goY0o+XJx+Yo5JtjZbkLw/GMPE8UurZ8q2gT2BAwl5d0lNUNbQUoY/XRA==}
     peerDependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
@@ -2788,8 +2782,8 @@ packages:
   diagram-js-minimap@5.3.0:
     resolution: {integrity: sha512-FO2yDA8td4Vnu4Yg72ZIA7n6vIOtZWAH0wwwfcg9qrZIfVaaQFgmOpa+RdIBGZtzURZb43HJr5hyiOe3yo2xDA==}
 
-  diagram-js@15.18.0:
-    resolution: {integrity: sha512-aOVeXrjQc1ki0jlrSuwXDoye5nKO6uAtXCtmgQopUvF/aC9aJwoaBOsNvQ2Na9GmMc6X2b3xAefhRChvGgcbgQ==}
+  diagram-js@15.18.1:
+    resolution: {integrity: sha512-tQZEB2PcB5GaD+5EFc9/LnsNqoGEf5QUjluS4mb5rr/ayWva92l7EUCHq9YxpJu65r+D10Zg2NU6axN8begplg==}
 
   didi@11.0.0:
     resolution: {integrity: sha512-PzCfRzQttvFpVcYMbSF7h8EsWjeJpVjWH4qDhB5LkMi1ILvHq4Ob0vhM2wLFziPkbUBi+PAo7ODbe2sacR7nJQ==}
@@ -2863,8 +2857,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.385:
-    resolution: {integrity: sha512-78sa/M08MNAYHQfjoWMvOlKQqZ0ElhSm/L5HNUc96VZ3b+KvDVnngFm8sYQy0XrhTRgAhggHr5abA7yTvRdo4Q==}
+  electron-to-chromium@1.5.387:
+    resolution: {integrity: sha512-TaxwufTFDufvPEoXdhwVrA3UdFWBeWGkYoJ1K8ldF1xe6gKfth6iRNS5lTQ5JPNOHdGQm8PT1QYKUqFLCiUefQ==}
 
   element-resize-detector@1.2.4:
     resolution: {integrity: sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==}
@@ -3342,8 +3336,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  iconv-lite@0.7.2:
-    resolution: {integrity: sha512-im9DjEDQ55s9fL4EYzOAv0yMqmMBSZp6G0VvFyTMPKWxiSBHUj9NW/qqLmXUwXrrM7AvqSlTCfvqRb0cM8yYqw==}
+  iconv-lite@0.7.3:
+    resolution: {integrity: sha512-IKXpvIzjnC9XTAUbVBcMfGS0EPaIXtW6v+zr+RRp+hqULEpo0owZax6wyRwPOJbWbzjYspQwusTsfVr0ifh4uQ==}
     engines: {node: '>=0.10.0'}
 
   ids@3.0.2:
@@ -4084,8 +4078,8 @@ packages:
     resolution: {integrity: sha512-dM0jVuXJPsDN6DvRpea484tCUaMiXWjuCn++HGTqUWzGDjv5tZkEZldAJ/UMlqRYGFrD/etByo4/xOuC/snX2A==}
     engines: {node: '>=20'}
 
-  preact@10.29.3:
-    resolution: {integrity: sha512-D9NL1GAnJZhc3RndVs4gDdxEeU9TcHgywMrhhOsnpdlvFjdbx0gAsLUnH6JEhlJH5giL7Tx5biWPUSEXE/HPzw==}
+  preact@10.29.4:
+    resolution: {integrity: sha512-GMpwh9+NJ8tSmqwIaVyFRQkiKfBEzQ+k7r7tle4W+kaJ+7wJiB9hFz9BixAomMtenPPSBfM4bZhXozGxhf0uFQ==}
 
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -4129,10 +4123,6 @@ packages:
 
   quansync@1.0.0:
     resolution: {integrity: sha512-5xZacEEufv3HSTPQuchrvV6soaiACMFnq1H8wkVioctoH3TRha9Sz66lOxRwPK/qZj7HPiSveih9yAyh98gvqA==}
-
-  quasar@2.20.1:
-    resolution: {integrity: sha512-C+uFyt9/D2B2Dad/c9tGSlyWLMsrz+ROJLm3FKFdY9i+vc1Mk2q/+JyHBmQnuvQCEpUrdiXqcWQbpmZhuvo60A==}
-    engines: {node: '>= 10.18.1', npm: '>= 6.13.4', yarn: '>= 1.21.1'}
 
   quasar@2.21.0:
     resolution: {integrity: sha512-101qA4iBlEF3538xxOA8ekgeell5g9dcj2R5MMaG4wCbhLO52iDmETipCEXPiKtg1H3YWkgBU67QG9Q6GAkY6A==}
@@ -5378,12 +5368,12 @@ snapshots:
   '@bpmn-io/diagram-js-ui@0.2.4':
     dependencies:
       htm: 3.1.1
-      preact: 10.29.3
+      preact: 10.29.4
 
-  '@bpmn-io/element-template-chooser@3.0.0(bpmn-js@18.19.0)(diagram-js@15.18.0)':
+  '@bpmn-io/element-template-chooser@3.0.0(bpmn-js@18.19.0)(diagram-js@15.18.1)':
     dependencies:
       bpmn-js: 18.19.0
-      diagram-js: 15.18.0
+      diagram-js: 15.18.1
 
   '@bpmn-io/extract-process-variables@2.2.1':
     dependencies:
@@ -5394,7 +5384,7 @@ snapshots:
       '@bpmn-io/cm-theme': 0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4)
       '@bpmn-io/feel-lint': 3.1.0
       '@bpmn-io/lang-feel': 4.0.2
-      '@camunda/feel-builtins': 1.2.0
+      '@camunda/feel-builtins': 1.3.0
       '@codemirror/autocomplete': 6.20.3
       '@codemirror/commands': 6.10.4
       '@codemirror/language': 6.12.4
@@ -5410,7 +5400,7 @@ snapshots:
       '@bpmn-io/lezer-feel': 2.5.0
       '@codemirror/language': 6.12.4
 
-  '@bpmn-io/feelers-editor@1.1.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4))':
+  '@bpmn-io/feelers-editor@1.1.1(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4))':
     dependencies:
       '@bpmn-io/cm-theme': 0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4)
       '@bpmn-io/feelers-lint': 1.0.0
@@ -5472,7 +5462,7 @@ snapshots:
   '@bpmn-io/properties-panel@3.47.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4))':
     dependencies:
       '@bpmn-io/feel-editor': 2.6.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4))
-      '@bpmn-io/feelers-editor': 1.1.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4))
+      '@bpmn-io/feelers-editor': 1.1.1(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4))
       '@codemirror/autocomplete': 6.20.3
       '@codemirror/commands': 6.10.4
       '@codemirror/lang-json': 6.0.2
@@ -5489,7 +5479,7 @@ snapshots:
 
   '@bufbuild/protobuf@2.12.1': {}
 
-  '@camunda/feel-builtins@1.2.0': {}
+  '@camunda/feel-builtins@1.3.0': {}
 
   '@changesets/apply-release-plan@7.1.1':
     dependencies:
@@ -5634,14 +5624,14 @@ snapshots:
       human-id: 4.2.0
       prettier: 2.8.8
 
-  '@clack/core@1.4.2':
+  '@clack/core@1.4.3':
     dependencies:
       fast-wrap-ansi: 0.2.2
       sisteransi: 1.0.5
 
-  '@clack/prompts@1.6.0':
+  '@clack/prompts@1.7.0':
     dependencies:
-      '@clack/core': 1.4.2
+      '@clack/core': 1.4.3
       fast-string-width: 3.0.2
       fast-wrap-ansi: 0.2.2
       sisteransi: 1.0.5
@@ -5877,23 +5867,9 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@herodotus/api@2.1.3':
+  '@herodotus/api@2.1.4':
     dependencies:
-      '@herodotus/core': 2.1.3
-    transitivePeerDependencies:
-      - debug
-      - supports-color
-
-  '@herodotus/core@2.1.3':
-    dependencies:
-      axios: 1.18.1
-      crypto-js: 4.2.0
-      generate-avatar: 1.4.10
-      moment: 2.30.1
-      qs: 6.15.3
-      sm-crypto-v2: 1.15.1
-      sweetalert2: 11.26.25
-      ts-md5: 2.0.1
+      '@herodotus/core': 2.1.4
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -5912,9 +5888,9 @@ snapshots:
       - debug
       - supports-color
 
-  '@herodotus/framework@2.1.3':
+  '@herodotus/framework@2.1.4':
     dependencies:
-      '@herodotus/core': 2.1.3
+      '@herodotus/core': 2.1.4
       colord: 2.9.3
       js-base64: 3.8.0
       jwt-decode: 4.0.0
@@ -5954,7 +5930,7 @@ snapshots:
   '@inquirer/external-editor@1.0.3(@types/node@26.1.0)':
     dependencies:
       chardet: 2.2.0
-      iconv-lite: 0.7.2
+      iconv-lite: 0.7.3
     optionalDependencies:
       '@types/node': 26.1.0
 
@@ -6373,7 +6349,7 @@ snapshots:
 
   '@quasar/app-vite@3.0.0-rc.6(@types/node@26.1.0)(esbuild@0.27.7)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3)))(quasar@2.21.0)(sass@1.100.0)(terser@5.48.0)(typescript@6.0.3)(vue-router@5.1.0(@vue/compiler-sfc@3.5.39)(esbuild@0.27.7)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.39(typescript@6.0.3)))(rolldown@1.1.4)(rollup@4.62.2)(vite@8.1.3(@types/node@26.1.0)(esbuild@0.27.7)(jiti@2.7.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.48.0)(yaml@2.9.0))(vue@3.5.39(typescript@6.0.3)))(vue@3.5.39(typescript@6.0.3))(yaml@2.9.0)':
     dependencies:
-      '@clack/prompts': 1.6.0
+      '@clack/prompts': 1.7.0
       '@quasar/art': 1.0.0
       '@quasar/render-ssr-error': 2.2.3
       '@quasar/ssl-certificate': 2.0.0
@@ -6424,8 +6400,6 @@ snapshots:
       - yaml
 
   '@quasar/art@1.0.0': {}
-
-  '@quasar/extras@2.0.1': {}
 
   '@quasar/extras@2.0.2': {}
 
@@ -6599,88 +6573,88 @@ snapshots:
 
   '@tsconfig/node22@22.0.5': {}
 
-  '@tsparticles/animation-utils@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/animation-utils@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/basic@4.3.0':
+  '@tsparticles/basic@4.3.1':
     dependencies:
-      '@tsparticles/engine': 4.3.0
-      '@tsparticles/plugin-blend': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/plugin-hex-color': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/plugin-hsl-color': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/plugin-move': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/plugin-rgb-color': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/shape-circle': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/updater-opacity': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/updater-out-modes': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/updater-paint': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/updater-size': 4.3.0(@tsparticles/engine@4.3.0)
+      '@tsparticles/engine': 4.3.1
+      '@tsparticles/plugin-blend': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/plugin-hex-color': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/plugin-hsl-color': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/plugin-move': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/plugin-rgb-color': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/shape-circle': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/updater-opacity': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/updater-out-modes': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/updater-paint': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/updater-size': 4.3.1(@tsparticles/engine@4.3.1)
 
-  '@tsparticles/canvas-utils@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/canvas-utils@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/engine@4.3.0': {}
+  '@tsparticles/engine@4.3.1': {}
 
-  '@tsparticles/interaction-particles-links@4.3.0(@tsparticles/engine@4.3.0)(@tsparticles/plugin-interactivity@4.3.0(@tsparticles/engine@4.3.0))':
+  '@tsparticles/interaction-particles-links@4.3.1(@tsparticles/engine@4.3.1)(@tsparticles/plugin-interactivity@4.3.1(@tsparticles/engine@4.3.1))':
     dependencies:
-      '@tsparticles/canvas-utils': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/engine': 4.3.0
-      '@tsparticles/plugin-interactivity': 4.3.0(@tsparticles/engine@4.3.0)
+      '@tsparticles/canvas-utils': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/engine': 4.3.1
+      '@tsparticles/plugin-interactivity': 4.3.1(@tsparticles/engine@4.3.1)
 
-  '@tsparticles/plugin-blend@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/plugin-blend@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-hex-color@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/plugin-hex-color@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-hsl-color@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/plugin-hsl-color@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-interactivity@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/plugin-interactivity@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-move@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/plugin-move@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/plugin-rgb-color@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/plugin-rgb-color@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/preset-triangles@4.3.0':
+  '@tsparticles/preset-triangles@4.3.1':
     dependencies:
-      '@tsparticles/basic': 4.3.0
-      '@tsparticles/engine': 4.3.0
-      '@tsparticles/interaction-particles-links': 4.3.0(@tsparticles/engine@4.3.0)(@tsparticles/plugin-interactivity@4.3.0(@tsparticles/engine@4.3.0))
-      '@tsparticles/plugin-interactivity': 4.3.0(@tsparticles/engine@4.3.0)
+      '@tsparticles/basic': 4.3.1
+      '@tsparticles/engine': 4.3.1
+      '@tsparticles/interaction-particles-links': 4.3.1(@tsparticles/engine@4.3.1)(@tsparticles/plugin-interactivity@4.3.1(@tsparticles/engine@4.3.1))
+      '@tsparticles/plugin-interactivity': 4.3.1(@tsparticles/engine@4.3.1)
 
-  '@tsparticles/shape-circle@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/shape-circle@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/updater-opacity@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/updater-opacity@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/animation-utils': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/animation-utils': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/updater-out-modes@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/updater-out-modes@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/updater-paint@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/updater-paint@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/engine': 4.3.1
 
-  '@tsparticles/updater-size@4.3.0(@tsparticles/engine@4.3.0)':
+  '@tsparticles/updater-size@4.3.1(@tsparticles/engine@4.3.1)':
     dependencies:
-      '@tsparticles/animation-utils': 4.3.0(@tsparticles/engine@4.3.0)
-      '@tsparticles/engine': 4.3.0
+      '@tsparticles/animation-utils': 4.3.1(@tsparticles/engine@4.3.1)
+      '@tsparticles/engine': 4.3.1
 
   '@tybys/wasm-util@0.10.3':
     dependencies:
@@ -7290,29 +7264,29 @@ snapshots:
 
   boolbase@1.0.0: {}
 
-  bpmn-js-bpmnlint@0.24.0(bpmn-js@18.19.0)(bpmnlint@11.12.1)(diagram-js@15.18.0):
+  bpmn-js-bpmnlint@0.24.0(bpmn-js@18.19.0)(bpmnlint@11.12.1)(diagram-js@15.18.1):
     dependencies:
       bpmn-js: 18.19.0
       bpmnlint: 11.12.1
-      diagram-js: 15.18.0
+      diagram-js: 15.18.1
       min-dash: 5.0.0
       min-dom: 5.3.0
 
-  bpmn-js-connectors-extension@0.4.6(bpmn-js@18.19.0)(diagram-js@15.18.0):
+  bpmn-js-connectors-extension@0.4.6(bpmn-js@18.19.0)(diagram-js@15.18.1):
     dependencies:
       bpmn-js: 18.19.0
-      diagram-js: 15.18.0
+      diagram-js: 15.18.1
       min-dom: 4.2.1
       tiny-svg: 3.1.3
 
-  bpmn-js-properties-panel@5.60.0(@bpmn-io/properties-panel@3.47.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4)))(bpmn-js@18.19.0)(camunda-bpmn-js-behaviors@1.18.0(bpmn-js@18.19.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.16.0))(diagram-js@15.18.0):
+  bpmn-js-properties-panel@5.60.0(@bpmn-io/properties-panel@3.47.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4)))(bpmn-js@18.19.0)(camunda-bpmn-js-behaviors@1.18.0(bpmn-js@18.19.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.16.0))(diagram-js@15.18.1):
     dependencies:
       '@bpmn-io/extract-process-variables': 2.2.1
       '@bpmn-io/properties-panel': 3.47.0(@bpmn-io/cm-theme@0.2.2(@codemirror/state@6.7.0)(@codemirror/view@6.43.4))
       array-move: 4.0.0
       bpmn-js: 18.19.0
       camunda-bpmn-js-behaviors: 1.18.0(bpmn-js@18.19.0)(camunda-bpmn-moddle@7.0.1)(zeebe-bpmn-moddle@1.16.0)
-      diagram-js: 15.18.0
+      diagram-js: 15.18.1
       ids: 3.0.2
       min-dash: 5.0.0
       min-dom: 5.3.0
@@ -7328,8 +7302,8 @@ snapshots:
   bpmn-js@18.19.0:
     dependencies:
       bpmn-moddle: 10.0.0
-      diagram-js: 15.18.0
-      diagram-js-direct-editing: 3.4.0(diagram-js@15.18.0)
+      diagram-js: 15.18.1
+      diagram-js-direct-editing: 3.4.0(diagram-js@15.18.1)
       ids: 3.0.2
       inherits-browser: 0.1.0
       min-dash: 5.0.0
@@ -7378,7 +7352,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.10.41
       caniuse-lite: 1.0.30001800
-      electron-to-chromium: 1.5.385
+      electron-to-chromium: 1.5.387
       node-releases: 2.0.50
       update-browserslist-db: 1.2.3(browserslist@4.28.4)
 
@@ -7687,9 +7661,9 @@ snapshots:
 
   detect-libc@2.1.2: {}
 
-  diagram-js-direct-editing@3.4.0(diagram-js@15.18.0):
+  diagram-js-direct-editing@3.4.0(diagram-js@15.18.1):
     dependencies:
-      diagram-js: 15.18.0
+      diagram-js: 15.18.1
       min-dash: 5.0.0
       min-dom: 5.3.0
 
@@ -7705,7 +7679,7 @@ snapshots:
       min-dom: 5.3.0
       tiny-svg: 4.1.4
 
-  diagram-js@15.18.0:
+  diagram-js@15.18.1:
     dependencies:
       '@bpmn-io/diagram-js-ui': 0.2.4
       clsx: 2.1.1
@@ -7785,7 +7759,7 @@ snapshots:
     dependencies:
       jake: 10.9.4
 
-  electron-to-chromium@1.5.385: {}
+  electron-to-chromium@1.5.387: {}
 
   element-resize-detector@1.2.4:
     dependencies:
@@ -8292,7 +8266,7 @@ snapshots:
 
   husky@9.1.7: {}
 
-  iconv-lite@0.7.2:
+  iconv-lite@0.7.3:
     dependencies:
       safer-buffer: 2.1.2
 
@@ -8995,7 +8969,7 @@ snapshots:
 
   powershell-utils@0.1.0: {}
 
-  preact@10.29.3: {}
+  preact@10.29.4: {}
 
   prelude-ls@1.2.1: {}
 
@@ -9025,8 +8999,6 @@ snapshots:
   quansync@0.2.11: {}
 
   quansync@1.0.0: {}
-
-  quasar@2.20.1: {}
 
   quasar@2.21.0: {}
 

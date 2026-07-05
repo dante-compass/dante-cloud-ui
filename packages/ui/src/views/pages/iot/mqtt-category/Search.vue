@@ -10,6 +10,7 @@
                 dictionary="Area"
                 label="主题使用区域"
                 dense
+                class="q-pb-none"
               ></h-dictionary-select>
             </h-column>
             <h-column :cols="2">
@@ -18,6 +19,7 @@
                 dictionary="Action"
                 label="主题操作"
                 dense
+                class="q-pb-none"
               ></h-dictionary-select>
             </h-column>
             <h-column :cols="2">
@@ -26,6 +28,7 @@
                 dictionary="Purpose"
                 label="主题用途"
                 dense
+                class="q-pb-none"
               ></h-dictionary-select>
             </h-column>
             <h-column :cols="2"></h-column>

@@ -1,38 +1,49 @@
 <template>
-  <q-breadcrumbs class="q-ml-lg" :class="settings.display.showBreadcrumbsIcon ? '' : 'hidden_icon'">
-    <q-breadcrumbs-el label="首页" icon="home" :to="homePath" />
+  <q-breadcrumbs :class="getClass">
+    <q-breadcrumbs-el label="首页" icon="home" :to="getHomePath"></q-breadcrumbs-el>
     <q-breadcrumbs-el
       v-for="(item, i) in $route.matched"
       :key="i"
-      :label="item.meta.title as unknown as string"
-      :icon="item.meta.icon as unknown as string"
-      :disable="true"
-    />
+      :label="getTitle(item)"
+      :icon="getIcon(item)"
+      disable
+    ></q-breadcrumbs-el>
   </q-breadcrumbs>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import type { RouteLocationMatched } from "vue-router";
 
-import { CONSTANTS } from '@/configurations';
-import { useSettingsStore } from '@herodotus/framework';
+import { CONSTANTS } from "@/configurations";
+import { useSettingsStore } from "@herodotus/framework";
 
-export default defineComponent({
-  name: 'HAppBreadcrumbs',
+defineOptions({ name: "HAppBreadcrumbs" });
 
-  setup(props) {
-    const homePath = CONSTANTS.Path.HOME;
-    const settings = useSettingsStore();
+const settings = useSettingsStore();
 
-    return {
-      homePath,
-      settings,
-    };
-  },
+const getTitle = (item: RouteLocationMatched) => {
+  return item.meta.title as string;
+};
+
+const getIcon = (item: RouteLocationMatched) => {
+  return item.meta.icon as string;
+};
+
+const getHomePath = computed(() => {
+  return CONSTANTS.Path.HOME;
+});
+
+const getClass = computed(() => {
+  const base = "q-ml-lg ";
+  if (settings.display.showBreadcrumbsIcon) {
+    return base;
+  } else {
+    return base + "hidden_icon";
+  }
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .hidden_icon {
   a {
     i {
