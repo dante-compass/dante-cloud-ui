@@ -1,12 +1,12 @@
-import type { Router } from 'vue-router';
-import type { KernelOptions } from '@herodotus/framework';
+import type { Router } from "vue-router";
+import type { KernelOptions } from "@herodotus/framework";
 
-import { initializer, RouterUtilities } from '@herodotus/framework';
-import { Path } from './constants';
-import { VARIABLES } from './variables';
-import { config } from './http';
-import { useWebSocketMessage } from '@/composables/hooks';
-import { useDictionaryStore } from '@/composables/stores';
+import { initializer, RouterUtilities } from "@herodotus/framework";
+import { Path } from "./constants";
+import { VARIABLES } from "./variables";
+import { config } from "./http";
+import { useWebSocketMessage } from "@/composables/hooks";
+import { useDictionaryStore } from "@/composables/stores";
 
 let RouterUtils = {} as RouterUtilities;
 
@@ -39,6 +39,9 @@ const setupKernel = (currentRouter: Router) => {
   initializer(options);
 
   RouterUtils = RouterUtilities.getInstance();
+
+  console.log(RouterUtils.getRouter());
+  console.log(RouterUtils);
 };
 
 export { setupKernel, RouterUtils };

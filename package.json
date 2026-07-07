@@ -34,7 +34,7 @@
     ]
   },
   "dependencies": {
-    "@herodotus/core": "^2.1.4",
+    "@herodotus/core": "^3.0.0",
     "@quasar/extras": "^2.0.2",
     "disable-devtool": "^0.3.9",
     "filesize": "^11.0.19",

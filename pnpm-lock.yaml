@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@herodotus/core':
-        specifier: ^2.1.4
-        version: 2.1.4
+        specifier: ^3.0.0
+        version: 3.0.0
       '@quasar/extras':
         specifier: ^2.0.2
         version: 2.0.2
@@ -190,14 +190,14 @@ importers:
         specifier: workspace:^
         version: link:../../shared/form-engine
       '@herodotus/api':
-        specifier: ^2.1.4
-        version: 2.1.4
+        specifier: ^2.1.6
+        version: 2.1.6
       '@herodotus/core':
-        specifier: ^2.1.4
-        version: 2.1.4
+        specifier: ^2.1.6
+        version: 2.1.6
       '@herodotus/framework':
-        specifier: ^2.1.4
-        version: 2.1.4
+        specifier: ^2.1.6
+        version: 2.1.6
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
@@ -955,14 +955,17 @@ packages:
     resolution: {integrity: sha512-+CNAzxglkrpNf/kKywqQfk74QjtceuOE7Qm+AF8miRvPF/wmmK5+OJOgVh3AVTT3RP2mH3+FOaxlE5v72owk0A==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@herodotus/api@2.1.4':
-    resolution: {integrity: sha512-byz2es2DcDpRI+ooTIfetqBjGGETaUjtB7dTqe/dCuB6l0hcqnjEYQ5LuQsfiwAx5UXTL+ULN2pThZh4Fy9pPw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/api/-/@herodotus/api-2.1.4.tgz}
+  '@herodotus/api@2.1.6':
+    resolution: {integrity: sha512-8IgZoNwuytJbPrNo1M/gN5sJMb03ba8xbbk+UhUu5OTQGXSXaVN1iNdqPMVuEMx2RVU27qz1XtGRe90N9AYuuA==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/api/-/@herodotus/api-2.1.6.tgz}
 
-  '@herodotus/core@2.1.4':
-    resolution: {integrity: sha512-RDcKdKUMW1+LseHqfj4KGYC/D7Q8ricpqBT2YolLyE7hYjfFO9OTn0fu5SvXqCcmJCIFX/B1D4pVJBV7Q8HVYw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-2.1.4.tgz}
+  '@herodotus/core@2.1.6':
+    resolution: {integrity: sha512-RxoAMewNWcDyC8VXgcVPi9UF9/52QOl69jtpn+cXQdxg7FHL6fJWESV6eQ+XBzI91h5LhpJptolB6V5knXV3Ew==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-2.1.6.tgz}
 
-  '@herodotus/framework@2.1.4':
-    resolution: {integrity: sha512-rbZYAD6EJhxVWTb3+dcZ8FRc0h63OP1+woYXIW89YNGkzyK5xKgA9ynv/6bKND0No3REX3PDY2yCICKODuUhZw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/framework/-/@herodotus/framework-2.1.4.tgz}
+  '@herodotus/core@3.0.0':
+    resolution: {integrity: sha512-ER3AU1vkRKlT1z636LZBRM0h+Anv5xWyZJA1aHAfOUVdNU8x5TQeStTpOJlp1xtkY/Q0/zKg4iN5mj2TTZpOQg==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-3.0.0.tgz}
+
+  '@herodotus/framework@2.1.6':
+    resolution: {integrity: sha512-r4wncMplLsWIK8u/0SU1uoi81eDU4MiAyPbUCI+FB6ZF6Bz01a4xi3V91YvypEiwlYQ9pH9m96PDYcrdGDHK8Q==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/framework/-/@herodotus/framework-2.1.6.tgz}
 
   '@highlightjs/vue-plugin@2.1.0':
     resolution: {integrity: sha512-E+bmk4ncca+hBEYRV2a+1aIzIV0VSY/e5ArjpuSN9IO7wBJrzUE2u4ESCwrbQD7sAy+jWQjkV5qCCWgc+pu7CQ==}
@@ -5867,14 +5870,14 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@herodotus/api@2.1.4':
+  '@herodotus/api@2.1.6':
     dependencies:
-      '@herodotus/core': 2.1.4
+      '@herodotus/core': 2.1.6
     transitivePeerDependencies:
       - debug
       - supports-color
 
-  '@herodotus/core@2.1.4':
+  '@herodotus/core@2.1.6':
     dependencies:
       axios: 1.18.1
       crypto-js: 4.2.0
@@ -5888,9 +5891,23 @@ snapshots:
       - debug
       - supports-color
 
-  '@herodotus/framework@2.1.4':
+  '@herodotus/core@3.0.0':
     dependencies:
-      '@herodotus/core': 2.1.4
+      axios: 1.18.1
+      crypto-js: 4.2.0
+      generate-avatar: 1.4.10
+      moment: 2.30.1
+      qs: 6.15.3
+      sm-crypto-v2: 1.15.1
+      sweetalert2: 11.26.25
+      ts-md5: 2.0.1
+    transitivePeerDependencies:
+      - debug
+      - supports-color
+
+  '@herodotus/framework@2.1.6':
+    dependencies:
+      '@herodotus/core': 2.1.6
       colord: 2.9.3
       js-base64: 3.8.0
       jwt-decode: 4.0.0

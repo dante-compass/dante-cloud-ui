@@ -13,8 +13,6 @@ const router = createRouter({
 export async function setupRouter(app: App) {
   app.use(router);
 
-  console.log("-----------", router);
-
   setupKernel(router);
 
   createRouterGuard(router);
