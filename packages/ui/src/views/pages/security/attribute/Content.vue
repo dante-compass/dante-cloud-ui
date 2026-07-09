@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
     <h-dictionary-select
       v-model="editedItem.webExpression"
       dictionary="PermissionExpression"
@@ -31,17 +31,15 @@
 </template>
 
 <script setup lang="ts">
-import type { SysAttributeEntity } from '@herodotus/api';
+import type { SysAttributeEntity } from "@herodotus/api";
 
-import { API } from '@/configurations';
-import { useTableItem } from '@/composables/hooks';
-import { HCenterFormLayout, HDictionarySelect } from '@/components';
+import { API } from "@/configurations";
+import { useTableItem } from "@/composables/hooks";
+import { HCenterFormLayout, HDictionarySelect } from "@/components";
 
-defineOptions({ name: 'SysAttributeContent' });
+defineOptions({ name: "SysAttributeContent" });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysAttributeEntity>(
-  API.core.sysAttribute(),
-);
+const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysAttributeEntity>(API.core.sysAttribute());
 
 const onSave = () => {
   saveOrUpdate();

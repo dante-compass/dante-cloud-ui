@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
     <h-text-field
       v-model.lazy="v.editedItem.tenantId.$model"
       name="tenantId"
@@ -59,7 +59,7 @@ defineOptions({
   },
 });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysTenantDataSourceEntity>(
+const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysTenantDataSourceEntity>(
   API.core.sysTenantDataSource(),
 );
 

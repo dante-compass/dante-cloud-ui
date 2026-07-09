@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
     <h-text-field
       v-model="editedItem.path"
       name="path"
@@ -62,7 +62,7 @@ import { HCenterFormLayout } from "@/components";
 
 defineOptions({ name: "SysElementContent" });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysElementEntity>(API.core.sysElement());
+const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysElementEntity>(API.core.sysElement());
 const { treeItems } = useTreeItems<SysElementConditions, SysElementEntity>(API.core.sysElement());
 
 const onSave = () => {

@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
     <h-text-field
       v-model.lazy="v.editedItem.roleName.$model as string"
       label="角色名称 *"
@@ -21,19 +21,19 @@
 </template>
 
 <script setup lang="ts">
-import type { SysRoleEntity } from '@herodotus/api';
+import type { SysRoleEntity } from "@herodotus/api";
 
-import useVuelidate from '@vuelidate/core';
-import { required, helpers } from '@vuelidate/validators';
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 
-import { API } from '@/configurations';
-import { useTableItem } from '@/composables/hooks';
+import { API } from "@/configurations";
+import { useTableItem } from "@/composables/hooks";
 
-import { HCenterFormLayout } from '@/components';
+import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: 'SysRoleContent' });
+defineOptions({ name: "SysRoleContent" });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysRoleEntity>(API.core.sysRole());
+const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysRoleEntity>(API.core.sysRole());
 
 const isUnique = () => {
   let roleCode = editedItem.value.roleCode;
@@ -60,11 +60,11 @@ const isUnique = () => {
 const rules = {
   editedItem: {
     roleName: {
-      required: helpers.withMessage('角色名称不能为空', required),
+      required: helpers.withMessage("角色名称不能为空", required),
     },
     roleCode: {
-      required: helpers.withMessage('角色代码不能为空', required),
-      isUnique: helpers.withMessage('角色代码已存在，请使用其它代码', helpers.withAsync(isUnique)),
+      required: helpers.withMessage("角色代码不能为空", required),
+      isUnique: helpers.withMessage("角色代码已存在，请使用其它代码", helpers.withAsync(isUnique)),
     },
   },
 };

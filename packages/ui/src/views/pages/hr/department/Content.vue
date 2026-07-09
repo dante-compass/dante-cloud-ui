@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
     <h-text-field
       v-model="editedItem.departmentName"
       name="departmentName"
@@ -38,7 +38,7 @@ import { HOrganizationSelect, HDepartmentSelect } from '../components';
 
 defineOptions({ name: 'SysDepartmentContent', components: { HOrganizationSelect, HDepartmentSelect } });
 
-const { editedItem, operation, title, overlay, additional, saveOrUpdate } = useTableItem<SysDepartmentEntity>(
+const { editedItem, title, overlay, additional, saveOrUpdate } = useTableItem<SysDepartmentEntity>(
   API.core.sysDepartment(),
 );
 

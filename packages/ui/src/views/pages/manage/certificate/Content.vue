@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :operation="operation" :overlay="overlay" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
     <h-text-field
       v-model.lazy="v.editedItem.alias.$model as string"
       label="证书别名 *"
@@ -106,21 +106,20 @@
 </template>
 
 <script setup lang="ts">
-import type { MgtCertificateRequest, MgtCertificateResponse } from '@herodotus/api';
+import type { MgtCertificateRequest, MgtCertificateResponse } from "@herodotus/api";
 
-import useVuelidate from '@vuelidate/core';
-import { required, helpers } from '@vuelidate/validators';
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 
-import { API } from '@/configurations';
-import { useTableItem } from '@/composables/hooks';
-import { isEmpty } from 'lodash-es';
+import { API } from "@/configurations";
+import { useTableItem } from "@/composables/hooks";
+import { isEmpty } from "lodash-es";
 
-defineOptions({ name: 'MgtCertificateContent' });
+defineOptions({ name: "MgtCertificateContent" });
 
-const { editedItem, operation, title, saveOrUpdate, overlay } = useTableItem<
-  MgtCertificateRequest,
-  MgtCertificateResponse
->(API.core.mgtCertificate());
+const { editedItem, title, saveOrUpdate, overlay } = useTableItem<MgtCertificateRequest, MgtCertificateResponse>(
+  API.core.mgtCertificate(),
+);
 
 const isUnique = () => {
   let alias = editedItem.value.alias;
@@ -170,15 +169,15 @@ const loadOptionData = (category: string) => {
 watch(
   () => editedItem.value.certificateCategory,
   (newValue) => {
-    if (newValue === 'ROOT_CA') {
+    if (newValue === "ROOT_CA") {
       showParentSelect.value = false;
-      editedItem.value.parentId = '';
+      editedItem.value.parentId = "";
     } else {
       loadOptionData(newValue);
       showParentSelect.value = true;
     }
 
-    if (newValue === 'END_ENTITY') {
+    if (newValue === "END_ENTITY") {
       showOcspSwitch.value = true;
       editedItem.value.ocsp = false;
     } else {
@@ -191,35 +190,35 @@ watch(
 const rules = {
   editedItem: {
     alias: {
-      required: helpers.withMessage('证书别名不能为空', required),
-      isUnique: helpers.withMessage('证书别名已存在，请使用其它代码', helpers.withAsync(isUnique)),
+      required: helpers.withMessage("证书别名不能为空", required),
+      isUnique: helpers.withMessage("证书别名已存在，请使用其它代码", helpers.withAsync(isUnique)),
     },
     commonName: {
-      required: helpers.withMessage('证书名称不能为空', required),
+      required: helpers.withMessage("证书名称不能为空", required),
     },
     organizationUnit: {
-      required: helpers.withMessage('组织单位不能为空', required),
+      required: helpers.withMessage("组织单位不能为空", required),
     },
     organization: {
-      required: helpers.withMessage('组织不能为空', required),
+      required: helpers.withMessage("组织不能为空", required),
     },
     locality: {
-      required: helpers.withMessage('位置或城市不能为空', required),
+      required: helpers.withMessage("位置或城市不能为空", required),
     },
     stateOrProvince: {
-      required: helpers.withMessage('州或省不能为空', required),
+      required: helpers.withMessage("州或省不能为空", required),
     },
     country: {
-      required: helpers.withMessage('国家或地区不能为空', required),
+      required: helpers.withMessage("国家或地区不能为空", required),
     },
     password: {
-      required: helpers.withMessage('密码不能为空', required),
+      required: helpers.withMessage("密码不能为空", required),
     },
     startTime: {
-      required: helpers.withMessage('开始时间不能为空', required),
+      required: helpers.withMessage("开始时间不能为空", required),
     },
     endTime: {
-      required: helpers.withMessage('结束时间不能为空', required),
+      required: helpers.withMessage("结束时间不能为空", required),
     },
   },
 };

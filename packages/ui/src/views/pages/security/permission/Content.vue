@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
     <h-text-field
       v-model.lazy="v.editedItem.permissionName.$model as string"
       name="permissionName"
@@ -30,9 +30,7 @@ import { HCenterFormLayout } from "@/components";
 
 defineOptions({ name: "SysPermissionContent" });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysPermissionEntity>(
-  API.core.sysPermission(),
-);
+const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysPermissionEntity>(API.core.sysPermission());
 
 const rules = {
   editedItem: {

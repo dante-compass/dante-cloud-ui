@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
     <h-text-field
       v-model.lazy="v.editedItem.employeeName.$model as string"
       name="employeeName"
@@ -19,18 +19,18 @@
 </template>
 
 <script setup lang="ts">
-import type { SysEmployeeEntity } from '@herodotus/api';
+import type { SysEmployeeEntity } from "@herodotus/api";
 
-import useVuelidate from '@vuelidate/core';
-import { required, helpers } from '@vuelidate/validators';
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 
-import { API } from '@/configurations';
-import { useTableItem } from '@/composables/hooks';
-import { HCenterFormLayout, HDictionarySelect } from '@/components';
+import { API } from "@/configurations";
+import { useTableItem } from "@/composables/hooks";
+import { HCenterFormLayout, HDictionarySelect } from "@/components";
 
-defineOptions({ name: 'SysEmployeeContent' });
+defineOptions({ name: "SysEmployeeContent" });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysEmployeeEntity>(API.core.sysEmployee());
+const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysEmployeeEntity>(API.core.sysEmployee());
 
 const isUnique = () => {
   let employeeName = editedItem.value.employeeName;
@@ -57,8 +57,8 @@ const isUnique = () => {
 const rules = {
   editedItem: {
     employeeName: {
-      required: helpers.withMessage('范围代码不能为空', required),
-      isUnique: helpers.withMessage('该人员已存在，请增加区分字符', helpers.withAsync(isUnique)),
+      required: helpers.withMessage("范围代码不能为空", required),
+      isUnique: helpers.withMessage("该人员已存在，请增加区分字符", helpers.withAsync(isUnique)),
     },
   },
 };
