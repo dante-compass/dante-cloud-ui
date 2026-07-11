@@ -1,9 +1,10 @@
-import type { BpmnUnionPathParams, XmlEntity } from '@/composables/declarations';
-import { isEmpty, map } from 'lodash-es';
-import { API } from '@/configurations';
+import type { BpmnUnionPathParams, XmlEntity } from "@/composables/declarations";
+
+import { isEmpty, map } from "lodash-es";
+import { API } from "@/configurations";
 
 export default function useBpmnModeler() {
-  const xml = ref('');
+  const xml = ref("");
   const activityNodes = ref() as Ref<Array<string>>;
 
   const loadXml = (params: BpmnUnionPathParams) => {
@@ -17,21 +18,21 @@ export default function useBpmnModeler() {
           xml.value = data.bpmn20Xml;
         })
         .catch((error) => {
-          console.error('Get Diagram Error!', error);
+          console.error("Get Diagram Error!", error);
         });
     }
   };
 
-  const loadDiagram = (params: BpmnUnionPathParams, processInstanceId = '') => {
+  const loadDiagram = (params: BpmnUnionPathParams, processInstanceId = "") => {
     if (!processInstanceId) {
       loadXml(params);
     } else {
       API.bpmn
         .historyActivityInstance()
-        .getAll({ sortBy: 'startTime', sortOrder: 'desc' }, { processInstanceId: processInstanceId })
+        .getAll({ sortBy: "startTime", sortOrder: "desc" }, { processInstanceId: processInstanceId })
         .then((result) => {
           if (!isEmpty(result)) {
-            const nodes = map(result, 'activityId');
+            const nodes = map(result, "activityId");
             activityNodes.value = nodes;
             loadXml(params);
           }

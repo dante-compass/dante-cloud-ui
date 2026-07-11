@@ -24,9 +24,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from "vue";
-import { defineComponent, ref, onMounted } from "vue";
-
 import type { Sheet, ProcessCommentsEntity, Variables } from "@/composables/declarations";
 
 import { useBpmnProcess } from "@/composables/hooks";
@@ -36,14 +33,7 @@ import { useAuthenticationStore } from "@herodotus/framework";
 import { toast } from "@herodotus/core";
 import { isEmpty } from "lodash-es";
 
-defineOptions({
-  name: PAGE_NAME.WORKFLOW_PROCESS_APPROVE,
-
-  components: {
-    HDetailContainer,
-    HFormSkeleton,
-  },
-});
+defineOptions({ name: PAGE_NAME.WORKFLOW_PROCESS_APPROVE, components: { HDetailContainer, HFormSkeleton } });
 
 const {
   editedItem,
@@ -58,7 +48,8 @@ const {
   condition,
   fetchTaskForm,
   startWorkflowProcess,
-} = useBpmnProcess();
+  onReturn,
+} = useBpmnProcess(PAGE_NAME.WORKFLOW_PROCESS_APPROVE);
 
 const approved = ref<boolean>(true);
 

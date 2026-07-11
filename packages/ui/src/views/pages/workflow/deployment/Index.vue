@@ -23,66 +23,48 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-
+<script setup lang="ts">
 import type {
   DeploymentEntity,
   DeploymentQueryParams,
   DeploymentSortBy,
   DeploymentDeleteQueryParams,
   QTableProps,
-} from '@/composables/declarations';
+} from "@/composables/declarations";
 
-import { moment } from '@herodotus/core';
-import { API } from '@/configurations';
-import { useBpmnTableItems } from '@/composables/hooks';
+import { moment } from "@herodotus/core";
+import { PAGE_NAME, API } from "@/configurations";
+import { useBpmnTableItems } from "@/composables/hooks";
 
-export default defineComponent({
-  name: 'WorkflowDeployment',
+defineOptions({ name: PAGE_NAME.WORKFLOW_DEPLOYMENT });
 
-  setup() {
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
-      useBpmnTableItems<DeploymentEntity, DeploymentQueryParams, DeploymentSortBy, DeploymentDeleteQueryParams>(
-        API.bpmn.deployment(),
-        {
-          sortBy: 'id',
-          sortOrder: 'desc',
-        },
-      );
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
+  useBpmnTableItems<DeploymentEntity, DeploymentQueryParams, DeploymentSortBy, DeploymentDeleteQueryParams>(
+    API.bpmn.deployment(),
+    {
+      sortBy: "id",
+      sortOrder: "desc",
+    },
+    {},
+    false,
+    PAGE_NAME.WORKFLOW_DEPLOYMENT,
+  );
 
-    const selected = ref([]);
-    const rowKey = 'id' as keyof DeploymentEntity;
+const selected = ref([]);
+const rowKey = "id" as keyof DeploymentEntity;
 
-    const columns: QTableProps['columns'] = [
-      { name: 'id', field: 'id', align: 'center', label: 'ID' },
-      { name: 'name', field: 'name', align: 'center', label: '模型名称' },
-      { name: 'source', field: 'source', align: 'center', label: '部署渠道' },
-      {
-        name: 'deploymentTime',
-        field: 'deploymentTime',
-        align: 'center',
-        label: '部署时间',
-        format: (value) => (value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : ''),
-      },
-      { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户ID' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    return {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      conditions,
-      selected,
-      rowKey,
-      columns,
-      toEdit,
-      toCreate,
-      findItems,
-      onDeleteItemById,
-    };
+const columns: QTableProps["columns"] = [
+  { name: "id", field: "id", align: "center", label: "ID" },
+  { name: "name", field: "name", align: "center", label: "模型名称" },
+  { name: "source", field: "source", align: "center", label: "部署渠道" },
+  {
+    name: "deploymentTime",
+    field: "deploymentTime",
+    align: "center",
+    label: "部署时间",
+    format: (value) => (value ? moment(value).format("YYYY-MM-DD HH:mm:ss") : ""),
   },
-});
+  { name: "tenantId", field: "tenantId", align: "center", label: "租户ID" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 </script>

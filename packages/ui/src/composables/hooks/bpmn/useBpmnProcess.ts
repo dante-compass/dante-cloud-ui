@@ -13,8 +13,8 @@ import { toast } from "@herodotus/core";
 import { isEmpty } from "lodash-es";
 import { useAuthenticationStore } from "@herodotus/framework";
 
-export default function useBpmnProcess() {
-  const { editedItem, title, overlay, onReturn } = useBaseTableItem<ProcessSpecificsEntity>();
+export default function useBpmnProcess(componentName: string) {
+  const { editedItem, title, overlay, onReturn } = useBaseTableItem<ProcessSpecificsEntity>(componentName);
 
   const auth = useAuthenticationStore();
 

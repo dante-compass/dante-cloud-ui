@@ -4,14 +4,15 @@
       :instance="instance"
       height="91vh"
       :class="[$q.dark.isActive ? 'bg-dark text-white q-pt-xs' : 'bg-white text-grey-8 q-pt-xs']"
-      @close="onFinish"
+      @close="onReturn"
     ></h-bpmn-designer>
   </q-card>
 </template>
 
 <script setup lang="ts">
 import { useQuasar } from "quasar";
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
+import { useBaseTableItem } from "@/composables/hooks";
 
 defineOptions({
   name: "WidgetsBpmnDesigner",
@@ -19,4 +20,6 @@ defineOptions({
 
 const instance = API.bpmnStorage;
 const $q = useQuasar();
+
+const { onReturn } = useBaseTableItem(PAGE_NAME.WIDGETS_DYNAMIC_FORM);
 </script>

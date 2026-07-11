@@ -23,64 +23,45 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import type { TaskEntity, TaskQueryParams, TaskSortBy, QTableProps } from "@/composables/declarations";
 
-import type { TaskEntity, TaskQueryParams, TaskSortBy, QTableProps } from '@/composables/declarations';
+import { moment } from "@herodotus/core";
+import { PAGE_NAME, API } from "@/configurations";
+import { useAuthenticationStore } from "@herodotus/framework";
+import { useBpmnTableItems } from "@/composables/hooks";
 
-import { moment } from '@herodotus/core';
-import { API } from '@/configurations';
-import { useAuthenticationStore } from '@herodotus/framework';
-import { useBpmnTableItems } from '@/composables/hooks';
+defineOptions({ name: PAGE_NAME.WORKFLOW_DEPLOYMENT_PENDING });
 
-export default defineComponent({
-  name: 'WorkflowDeployment',
+const store = useAuthenticationStore();
 
-  setup() {
-    const store = useAuthenticationStore();
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
+  useBpmnTableItems<TaskEntity, TaskQueryParams, TaskSortBy>(
+    API.bpmn.task(),
+    {
+      sortBy: "id",
+      sortOrder: "desc",
+    },
+    { candidateUser: store.employeeId },
+    false,
+    PAGE_NAME.WORKFLOW_DEPLOYMENT_PENDING,
+  );
 
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
-      useBpmnTableItems<TaskEntity, TaskQueryParams, TaskSortBy>(
-        API.bpmn.task(),
-        {
-          sortBy: 'id',
-          sortOrder: 'desc',
-        },
-        { candidateUser: store.employeeId },
-      );
+const selected = ref([]);
+const rowKey = "id" as keyof TaskEntity;
 
-    const selected = ref([]);
-    const rowKey = 'id' as keyof TaskEntity;
-
-    const columns: QTableProps['columns'] = [
-      { name: 'id', field: 'id', align: 'center', label: 'ID' },
-      { name: 'name', field: 'name', align: 'center', label: '模型名称' },
-      { name: 'source', field: 'source', align: 'center', label: '部署渠道' },
-      {
-        name: 'deploymentTime',
-        field: 'deploymentTime',
-        align: 'center',
-        label: '部署时间',
-        format: (value) => (value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : ''),
-      },
-      { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户ID' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    return {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      conditions,
-      selected,
-      rowKey,
-      columns,
-      toEdit,
-      toCreate,
-      findItems,
-      onDeleteItemById,
-    };
+const columns: QTableProps["columns"] = [
+  { name: "id", field: "id", align: "center", label: "ID" },
+  { name: "name", field: "name", align: "center", label: "模型名称" },
+  { name: "source", field: "source", align: "center", label: "部署渠道" },
+  {
+    name: "deploymentTime",
+    field: "deploymentTime",
+    align: "center",
+    label: "部署时间",
+    format: (value) => (value ? moment(value).format("YYYY-MM-DD HH:mm:ss") : ""),
   },
-});
+  { name: "tenantId", field: "tenantId", align: "center", label: "租户ID" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 </script>

@@ -13,21 +13,13 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, onMounted } from "vue";
-
 import { useBpmnProcess } from "@/composables/hooks";
 import { HDetailContainer, HFormSkeleton } from "@/components";
 import { PAGE_NAME } from "@/configurations";
 
 import { isEmpty } from "lodash-es";
 
-defineOptions({
-  name: PAGE_NAME.WORKFLOW_PROCESS_START,
-  components: {
-    HDetailContainer,
-    HFormSkeleton,
-  },
-});
+defineOptions({ name: PAGE_NAME.WORKFLOW_PROCESS_START, components: { HDetailContainer, HFormSkeleton } });
 
 const {
   editedItem,
@@ -38,7 +30,7 @@ const {
   fetchStartForm,
   deleteProcessSpecifics,
   startWorkflowProcess,
-} = useBpmnProcess();
+} = useBpmnProcess(PAGE_NAME.WORKFLOW_PROCESS_START);
 
 const onSave = () => {
   if (!isEmpty(editedItem.value.state)) {
