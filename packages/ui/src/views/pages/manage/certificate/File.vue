@@ -1,5 +1,5 @@
 <template>
-  <h-full-width-form-layout title="配置人员归属">
+  <h-full-width-form-layout title="配置人员归属" @cancel="onReturn">
     <h-table
       :rows="tableRows"
       :columns="columns"
@@ -44,6 +44,8 @@
 
 <script setup lang="ts">
 import type {
+  MgtCertificateRequest,
+  MgtCertificateResponse,
   MgtCertificateFileRequest,
   MgtCertificateFileResponse,
   MgtCertificateFileConditions,
@@ -53,12 +55,10 @@ import type { QTableColumnProps } from "@/composables/declarations";
 
 import { isEmpty } from "lodash-es";
 
-import { CONSTANTS, API } from "@/configurations";
-import { useTable, useDictionary, useOss } from "@/composables/hooks";
+import { PAGE_NAME, API } from "@/configurations";
+import { useTable, useTableItem, useDictionary, useOss } from "@/composables/hooks";
 
-defineOptions({
-  name: ComponentName.MGT_CERTIFICATE_FILE,
-});
+defineOptions({ name: PAGE_NAME.MGT_CERTIFICATE_FILE });
 
 const selected = ref([]);
 const rowKey: MgtCertificateFileProps = "fileId";
@@ -81,7 +81,12 @@ const { tableRows, totalPages, pagination, loading, toCreate, findItems, deleteI
   MgtCertificateFileConditions,
   MgtCertificateFileRequest,
   MgtCertificateFileResponse
->(API.core.mgtCertificateFile(), ComponentName.MGT_CERTIFICATE_FILE);
+>(API.core.mgtCertificateFile(), PAGE_NAME.MGT_CERTIFICATE);
+
+const { onReturn } = useTableItem<MgtCertificateRequest, MgtCertificateResponse>(
+  API.core.mgtCertificate(),
+  PAGE_NAME.MGT_CERTIFICATE_FILE,
+);
 
 const { getDictionaryItemDisplay } = useDictionary("CertificateCategory", "RevocationReason");
 const { download } = useOss();

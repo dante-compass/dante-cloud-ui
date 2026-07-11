@@ -46,7 +46,7 @@ import type { SysEmployeeEntity, SysEmployeeConditions, SysEmployeeProps } from 
 
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTable, useDictionary, useDateTime } from "@/composables/hooks";
 
 import { HDeleteButton, HEditButton, HTable } from "@/components";

@@ -76,7 +76,7 @@ import type { SysElementEntity, SysElementConditions, SysElementProps } from "@h
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTable, useDateTime } from "@/composables/hooks";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } from "@/components";
 import HElementCondition from "./Search.vue";

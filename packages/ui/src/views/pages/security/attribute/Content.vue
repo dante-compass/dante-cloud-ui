@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-dictionary-select
       v-model="editedItem.webExpression"
       dictionary="PermissionExpression"
@@ -39,7 +39,9 @@ import { HCenterFormLayout, HDictionarySelect } from "@/components";
 
 defineOptions({ name: "SysAttributeContent" });
 
-const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysAttributeEntity>(API.core.sysAttribute());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysAttributeEntity>(
+  API.core.sysAttribute(),
+);
 
 const onSave = () => {
   saveOrUpdate();

@@ -74,7 +74,7 @@ import type { ProductEntity, ProductConditions, ProductProps } from "@herodotus/
 import type { QTableColumnProps, HttpResult } from "@/composables/declarations";
 
 import { useTable } from "@/composables/hooks";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { toast } from "@herodotus/core";
 import { HDeleteButton, HEditButton, HInfoButton, HTable } from "@/components";
 import { useDictionary } from "@/composables/hooks";

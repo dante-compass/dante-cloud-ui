@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model.lazy="v.editedItem.productKey.$model"
       name="productKey"
@@ -57,7 +57,7 @@ defineOptions({
   },
 });
 
-const { editedItem, title, saveOrUpdate } = useTableItem<ProductEntity>(API.core.iotProduct());
+const { editedItem, title, saveOrUpdate, onReturn } = useTableItem<ProductEntity>(API.core.iotProduct());
 
 const isUnique = () => {
   let productKey = editedItem.value.productKey;

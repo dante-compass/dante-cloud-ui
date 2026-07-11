@@ -6,7 +6,7 @@ import useBaseTableItem from "./useBaseTableItem";
 
 export default function useTableItem<I extends Domain, O extends Domain = I>(
   service: AbstractService<I, O>,
-  componentName = "",
+  componentName: string,
 ) {
   const { editedItem, operation, overlay, title, additional, onReturn } = useBaseTableItem<I>(componentName);
 

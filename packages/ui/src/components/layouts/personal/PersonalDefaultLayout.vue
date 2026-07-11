@@ -12,7 +12,7 @@
 import type { RouteLocationNormalizedLoaded } from "vue-router";
 import { useRoute } from "vue-router";
 
-import { useElementStore, useEditFinish } from "@herodotus/framework";
+import { useElementStore } from "@herodotus/framework";
 
 import { LayoutRightDrawer } from "../common";
 import PersonalContainer from "./PersonalContainer.vue";
@@ -20,7 +20,6 @@ import PersonalContainer from "./PersonalContainer.vue";
 defineOptions({ name: "PersonalDefaultLayout", components: { PersonalContainer, LayoutRightDrawer } });
 
 const route = useRoute();
-const { onFinish } = useEditFinish();
 
 const smartCloseDetail = (route: RouteLocationNormalizedLoaded) => {
   const store = useElementStore();
@@ -28,7 +27,6 @@ const smartCloseDetail = (route: RouteLocationNormalizedLoaded) => {
 
   if (isDetailRoute) {
     if (!store.hasParameter(route)) {
-      onFinish();
     }
   }
 };

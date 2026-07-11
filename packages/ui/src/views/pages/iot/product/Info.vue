@@ -1,5 +1,5 @@
 <template>
-  <h-full-width-form-layout :entity="editedItem" :title="title">
+  <h-full-width-form-layout :entity="editedItem" :title="title" @cancel="onReturn">
     <q-splitter v-model="splitterModel">
       <template v-slot:before>
         <q-tabs v-model="tabs" vertical active-color="primary">
@@ -40,5 +40,5 @@ defineOptions({
 const splitterModel = shallowRef(5);
 const tabs = shallowRef();
 
-const { editedItem, title } = useTableItem<ProductEntity>(API.core.iotProduct());
+const { editedItem, title, onReturn } = useTableItem<ProductEntity>(API.core.iotProduct());
 </script>

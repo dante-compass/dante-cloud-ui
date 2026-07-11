@@ -34,7 +34,7 @@
 import type { AccessSourceEntity, AccessSourceConditions, AccessSourceProps } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTable, useImage } from "@/composables/hooks";
 import { useAuthenticationStore } from "@herodotus/framework";
 import { moment } from "@herodotus/core";

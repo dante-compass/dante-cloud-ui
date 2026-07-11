@@ -25,7 +25,7 @@ import type { TslUnitEntity, TslUnitConditions } from "@herodotus/api";
 
 import { useBaseTable } from "@/composables/hooks";
 import { isEmpty } from "lodash-es";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 defineOptions({
   name: "HUnitSelect",

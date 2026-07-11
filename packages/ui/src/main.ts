@@ -20,7 +20,7 @@ import DisableDevtool from "disable-devtool";
 import { setupStore, setupQuasar, setupI18n, setupUploader } from "@/plugins";
 import { setupRouter } from "./routers";
 
-import { CONSTANTS, VARIABLES } from "@/configurations";
+import { PAGE_NAME, VARIABLES } from "@/configurations";
 
 if (typeof (window as any).global === "undefined") {
   (window as any).global = window;

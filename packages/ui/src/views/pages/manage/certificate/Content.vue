@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model.lazy="v.editedItem.alias.$model as string"
       label="证书别名 *"
@@ -117,9 +117,10 @@ import { isEmpty } from "lodash-es";
 
 defineOptions({ name: "MgtCertificateContent" });
 
-const { editedItem, title, saveOrUpdate, overlay } = useTableItem<MgtCertificateRequest, MgtCertificateResponse>(
-  API.core.mgtCertificate(),
-);
+const { editedItem, title, saveOrUpdate, overlay, onReturn } = useTableItem<
+  MgtCertificateRequest,
+  MgtCertificateResponse
+>(API.core.mgtCertificate());
 
 const isUnique = () => {
   let alias = editedItem.value.alias;

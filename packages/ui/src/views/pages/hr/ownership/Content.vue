@@ -1,5 +1,5 @@
 <template>
-  <h-full-width-form-layout title="配置人员归属" :overlay="overlay">
+  <h-full-width-form-layout title="配置人员归属" :overlay="overlay" @cancel="onReturn">
     <div class="q-gutter-y-md">
       <h-employee-condition v-model:conditions="conditions"></h-employee-condition>
 
@@ -41,10 +41,9 @@
 import type { SysEmployeeEntity, SysEmployeeConditions, SysEmployeeAllocatable } from "@herodotus/api";
 import type { HttpResult, QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { toast } from "@herodotus/core";
 import { isEmpty } from "lodash-es";
-import { useEditFinish } from "@herodotus/framework";
 import { useTable, useTableItem, useDictionary } from "@/composables/hooks";
 
 import { HFullWidthFormLayout, HTable } from "@/components";
@@ -52,9 +51,10 @@ import { HEmployeeCondition } from "../components";
 
 defineOptions({ name: "SysOwnershipContent", components: { HEmployeeCondition, HFullWidthFormLayout, HTable } });
 
-const { onFinish } = useEditFinish();
 const { getDictionaryItemDisplay } = useDictionary("Gender", "identity");
-const { editedItem, title, overlay } = useTableItem<SysEmployeeAllocatable>(API.core.sysEmployeeAllocatable());
+const { editedItem, title, overlay, onReturn } = useTableItem<SysEmployeeAllocatable>(
+  API.core.sysEmployeeAllocatable(),
+);
 const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
   SysEmployeeConditions,
   SysEmployeeEntity
@@ -86,7 +86,7 @@ const onSave = () => {
       .then((response) => {
         const result = response as HttpResult<string>;
         overlay.value = false;
-        onFinish();
+        onReturn();
         if (result.message) {
           toast.success(result.message);
         } else {
@@ -95,7 +95,7 @@ const onSave = () => {
       })
       .catch(() => {
         overlay.value = false;
-        onFinish();
+        onReturn();
         toast.error("保存失败");
       });
   }

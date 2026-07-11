@@ -1,7 +1,7 @@
 <template>
   <q-card>
     <q-toolbar>
-      <h-button flat round dense color="red" icon="mdi-arrow-left-box" tooltip="返回" @click="onFinish()"></h-button>
+      <h-button flat round dense color="red" icon="mdi-arrow-left-box" tooltip="返回" @click="onCancel()"></h-button>
       <q-toolbar-title>
         {{ title }}
       </q-toolbar-title>
@@ -18,8 +18,6 @@
 <script setup lang="ts">
 import { useQuasar, QSpinnerGears } from "quasar";
 
-import { useEditFinish } from "@herodotus/framework";
-
 defineOptions({ name: "HDetailContainer" });
 
 interface Props {
@@ -31,7 +29,14 @@ const props = withDefaults(defineProps<Props>(), {
   overlay: false,
 });
 
-const { onFinish } = useEditFinish();
+const emit = defineEmits<{
+  cancel: [];
+}>();
+
+const onCancel = async () => {
+  emit("cancel");
+};
+
 const $q = useQuasar();
 
 watch(

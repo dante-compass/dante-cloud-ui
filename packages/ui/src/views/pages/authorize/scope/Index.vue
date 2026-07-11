@@ -36,7 +36,7 @@
 import type { OAuth2ApplicationConditions, OAuth2ScopeEntity, OAuth2ScopeProps } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTable, useDateTime } from "@/composables/hooks";
 
 import { HDenseIconButton, HDeleteButton, HEditButton, HTable } from "@/components";

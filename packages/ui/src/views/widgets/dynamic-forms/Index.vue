@@ -3,8 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { CONSTANTS, API } from "@/configurations";
-import { useEditFinish } from "@herodotus/framework";
+import { PAGE_NAME, API } from "@/configurations";
 import { useBaseTableItem } from "@/composables/hooks";
 
 defineOptions({
@@ -12,6 +11,5 @@ defineOptions({
 });
 
 const instance = API.bpmnStorage;
-const { onFinish } = useEditFinish();
-const { editedItem } = useBaseTableItem();
+const { editedItem, onReturn } = useBaseTableItem();
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <q-form ref="mqttCategoryForm" validate-on="blur lazy">
       <h-text-field
         v-model.lazy="editedItem.name"
@@ -45,7 +45,9 @@ defineOptions({ name: "ThingsMqttCategoryContent" });
 
 const mqttCategoryForm = ref();
 
-const { editedItem, title, overlay, saveOrUpdate } = useTableItem<MqttCategoryEntity>(API.core.iotMqttCategory());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<MqttCategoryEntity>(
+  API.core.iotMqttCategory(),
+);
 
 const onSave = async () => {
   const { valid } = await mqttCategoryForm.value.validate();

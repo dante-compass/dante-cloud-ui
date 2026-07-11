@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" @save="onSave()" @cancel="onReturn">
     <!-- <h-product-select v-model="editedItem.product" label="所属产品" placeholder="请设置所属产品"></h-product-select> -->
     <h-text-field v-model="editedItem.deviceName" label="设备名称" placeholder="请输入设备名称"></h-text-field>
   </h-center-form-layout>
@@ -21,7 +21,7 @@ defineOptions({
   },
 });
 
-const { editedItem, title, saveOrUpdate } = useTableItem<DeviceEntity>(API.core.iotDevice());
+const { editedItem, title, saveOrUpdate, onReturn } = useTableItem<DeviceEntity>(API.core.iotDevice());
 
 const onSave = () => {
   saveOrUpdate();

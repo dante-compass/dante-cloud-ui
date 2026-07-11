@@ -7,7 +7,6 @@ import type {
   ConditionVariable,
 } from "@/composables/declarations";
 
-import { useEditFinish } from "@herodotus/framework";
 import { useBaseTableItem } from "@/composables/hooks";
 import { API } from "@/configurations";
 import { toast } from "@herodotus/core";
@@ -15,8 +14,8 @@ import { isEmpty } from "lodash-es";
 import { useAuthenticationStore } from "@herodotus/framework";
 
 export default function useBpmnProcess() {
-  const { editedItem, title, overlay } = useBaseTableItem<ProcessSpecificsEntity>();
-  const { onFinish } = useEditFinish();
+  const { editedItem, title, overlay, onReturn } = useBaseTableItem<ProcessSpecificsEntity>();
+
   const auth = useAuthenticationStore();
 
   const formModeler = ref({}) as Ref<FormModeler>;
@@ -107,13 +106,13 @@ export default function useBpmnProcess() {
           )
           .then(() => {
             overlay.value = false;
-            onFinish();
+            onReturn();
             toast.success("保存成功！");
           });
       })
       .catch(() => {
         overlay.value = false;
-        onFinish();
+        onReturn();
         toast.error("保存失败");
       });
   };
@@ -124,11 +123,11 @@ export default function useBpmnProcess() {
       .delete(id)
       .then(() => {
         overlay.value = false;
-        onFinish();
+        onReturn();
       })
       .catch(() => {
         overlay.value = false;
-        onFinish();
+        onReturn();
       });
   };
 
@@ -143,7 +142,7 @@ export default function useBpmnProcess() {
     hasCondition,
     conditionOptions,
     condition,
-    onFinish,
+    onReturn,
     fetchStartForm,
     fetchTaskForm,
     createProcessSpecifics,

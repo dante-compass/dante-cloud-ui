@@ -2,7 +2,7 @@
   <div>
     <q-card class="q-mb-md">
       <q-toolbar>
-        <h-button flat round dense color="red" icon="mdi-arrow-left-box" tooltip="返回" @click="onFinish()"></h-button>
+        <h-button flat round dense color="red" icon="mdi-arrow-left-box" tooltip="返回" @click="onReturn()"></h-button>
         <q-toolbar-title> 设置文件属性 </q-toolbar-title>
       </q-toolbar>
     </q-card>
@@ -135,7 +135,6 @@ import type { ObjectDomain, GetObjectAttributesResult } from '@herodotus/api';
 
 import { isEmpty } from 'lodash-es';
 import { notify, toast } from '@herodotus/core';
-import { useEditFinish } from '@herodotus/framework';
 import { useBaseTableItem, useDateTime, useDictionary, useOss } from '@/composables/hooks';
 import { API } from '@/configurations';
 
@@ -148,9 +147,8 @@ defineOptions({
 
 const { defaultFormat } = useDateTime();
 const { humanObjectSize } = useOss();
-const { onFinish } = useEditFinish();
 const { getDictionaryItemDisplay } = useDictionary('ObjectRetentionMode');
-const { editedItem, additional } = useBaseTableItem<ObjectDomain>();
+const { editedItem, additional, onReturn } = useBaseTableItem<ObjectDomain>();
 
 const loading = shallowRef(false);
 const showVersions = shallowRef(false);
@@ -203,7 +201,7 @@ const deleteObject = (bucketName: string, objectName: string, folderName = '') =
       .delete({ bucketName: bucketName, objectName: objectName })
       .then(() => {
         toast.success('删除成功');
-        onFinish();
+        onReturn();
       })
       .catch((error) => {
         if (error.message) {

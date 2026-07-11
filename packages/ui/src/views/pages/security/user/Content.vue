@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model.lazy="v.editedItem.username.$model"
       name="username"
@@ -26,7 +26,7 @@ import { HCenterFormLayout } from "@/components";
 
 defineOptions({ name: "SysUserContent", components: { HCenterFormLayout } });
 
-const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysUserEntity>(API.core.sysUser());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysUserEntity>(API.core.sysUser());
 
 const isUnique = () => {
   let username = editedItem.value.username;

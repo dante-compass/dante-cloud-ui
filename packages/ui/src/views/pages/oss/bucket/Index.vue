@@ -69,7 +69,7 @@ import type {
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { moment, toast, notify } from "@herodotus/core";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useDictionary } from "@/composables/hooks";
 
 import { HCreateBucketDialog } from "./components";

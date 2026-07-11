@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model.lazy="v.editedItem.roleName.$model as string"
       label="角色名称 *"
@@ -33,7 +33,7 @@ import { HCenterFormLayout } from "@/components";
 
 defineOptions({ name: "SysRoleContent" });
 
-const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysRoleEntity>(API.core.sysRole());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysRoleEntity>(API.core.sysRole());
 
 const isUnique = () => {
   let roleCode = editedItem.value.roleCode;

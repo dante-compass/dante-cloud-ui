@@ -1,5 +1,5 @@
 <template>
-  <h-detail-container :title="receiverName">
+  <h-detail-container :title="receiverName" @cancel="onReturn">
     <h-send-message-field
       :receiver-id="receiverId"
       :receiver-name="receiverName"
@@ -45,13 +45,11 @@ import { HDetailContainer, HUserAvatar } from "@/components";
 import { HSendMessageField } from "@/components";
 import { moment } from "@herodotus/core";
 import { API } from "@/configurations";
-import { useEditFinish } from "@herodotus/framework";
 import { useTableItem, useTable } from "@/composables/hooks";
 
 defineOptions({ name: "MessageInformationContent", components: { HDetailContainer, HUserAvatar, HSendMessageField } });
 
-const { onFinish } = useEditFinish();
-const { editedItem } = useTableItem(API.core.dialogueContact());
+const { editedItem, onReturn } = useTableItem(API.core.dialogueContact());
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
   useTable<DialogueDetailConditions, DialogueDetailEntity>(
@@ -68,7 +66,7 @@ const receiverAvatar = ref("");
 const dialogueId = ref("");
 
 const onSendMessage = () => {
-  onFinish();
+  onReturn();
 };
 
 onMounted(() => {

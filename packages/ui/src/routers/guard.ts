@@ -1,6 +1,6 @@
 import type { Router, RouteRecordRaw } from "vue-router";
 import { useAuthenticationStore, useSystemElement, useElementStore } from "@herodotus/framework";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { Loading, QSpinnerDots } from "quasar";
 

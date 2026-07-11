@@ -29,7 +29,7 @@
 import type { SysRoleEntity, SysUserEntity, SysRoleConditions, SysRoleProps } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem, useTable } from "@/composables/hooks";
 
 import { HAuthorizeList, HAuthorizeLayout } from "@/components";

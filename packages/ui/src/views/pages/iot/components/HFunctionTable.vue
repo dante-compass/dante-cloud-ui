@@ -56,7 +56,7 @@
 import type { TslFunctionEntity, TslFunctionConditions, TslFunctionProps, Specification, Specs } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useTable, useDictionary } from "@/composables/hooks";
 import { HDeleteButton } from "@/components";

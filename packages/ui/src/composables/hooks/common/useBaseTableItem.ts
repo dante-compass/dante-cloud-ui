@@ -13,7 +13,7 @@ import { useElementStore, useDetailPage } from "@herodotus/framework";
  * @param <I> 输入值类型。传递给三级路由页面操作数据类型。通常为输入和输出为相同的实体类型，也可为非实体的 Dto 类型
  * @returns
  */
-export default function useBaseTableItem<I extends Domain>(componentName = "") {
+export default function useBaseTableItem<I extends Domain>(componentName: string) {
   const { parseComponentName, goBack } = useDetailPage();
 
   const route = useRoute();

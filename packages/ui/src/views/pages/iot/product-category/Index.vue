@@ -31,7 +31,7 @@ import type { ProductCategoryEntity, ProductCategoryConditions, ProductCategoryP
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTable } from "@/composables/hooks";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { HDeleteButton, HEditButton, HTable } from "@/components";
 
 defineOptions({

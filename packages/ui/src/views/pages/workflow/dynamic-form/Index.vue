@@ -39,7 +39,7 @@ import type {
   DynamicFormConditions,
 } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { toast, notify } from "@herodotus/core";
 import { useBaseTable } from "@/composables/hooks";
 

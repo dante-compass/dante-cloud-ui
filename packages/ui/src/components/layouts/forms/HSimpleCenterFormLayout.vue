@@ -1,9 +1,9 @@
 <template>
-  <h-detail-container :title="title" :overlay="overlay">
+  <h-detail-container :title="title" :overlay="overlay" @cancel="onCancel">
     <h-container :offset="4">
       <slot></slot>
       <div class="q-mt-sm">
-        <q-btn color="red" @click="onFinish()">取消</q-btn>
+        <q-btn color="red" @click="onCancel()">取消</q-btn>
         <q-btn v-if="!hideSave" color="primary" class="q-ml-sm" @click="onSave()">保存</q-btn>
         <slot name="button"></slot>
       </div>
@@ -13,8 +13,6 @@
 
 <script setup lang="ts">
 import HDetailContainer from "./HDetailContainer.vue";
-
-import { useEditFinish } from "@herodotus/framework";
 
 defineOptions({ name: "HOssFormLayout", components: { HDetailContainer } });
 
@@ -32,11 +30,14 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   save: [];
+  cancel: [];
 }>();
-
-const { onFinish } = useEditFinish();
 
 const onSave = async () => {
   emit("save");
+};
+
+const onCancel = async () => {
+  emit("cancel");
 };
 </script>

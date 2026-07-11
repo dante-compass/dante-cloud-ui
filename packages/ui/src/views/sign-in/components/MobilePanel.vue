@@ -108,7 +108,7 @@ import { useRouter } from "vue-router";
 import { required, helpers } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 import { useAuthenticationStore, SecurityApiResources, useApplicationStore } from "@herodotus/framework";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { toast } from "@herodotus/core";
 
 export default defineComponent({

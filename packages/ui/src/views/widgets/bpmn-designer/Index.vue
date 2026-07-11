@@ -10,15 +10,13 @@
 </template>
 
 <script setup lang="ts">
-import { useQuasar } from 'quasar';
-import { useEditFinish } from '@herodotus/framework';
-import { API } from '@/configurations';
+import { useQuasar } from "quasar";
+import { API } from "@/configurations";
 
 defineOptions({
-  name: 'WidgetsBpmnDesigner',
+  name: "WidgetsBpmnDesigner",
 });
 
 const instance = API.bpmnStorage;
 const $q = useQuasar();
-const { onFinish } = useEditFinish();
 </script>

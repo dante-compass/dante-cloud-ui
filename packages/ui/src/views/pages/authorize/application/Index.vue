@@ -35,7 +35,7 @@
 import type { OAuth2ApplicationEntity, OAuth2ApplicationConditions, OAuth2ApplicationProps } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { moment } from "@herodotus/core";
 import { useTable, useDateTime } from "@/composables/hooks";
 

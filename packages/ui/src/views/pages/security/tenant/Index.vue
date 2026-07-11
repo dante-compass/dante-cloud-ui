@@ -34,7 +34,7 @@ import type {
 } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useTable } from "@/composables/hooks";
 

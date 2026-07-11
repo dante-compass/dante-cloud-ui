@@ -37,7 +37,7 @@
 import type { OAuth2UserLoggingEntity, OAuth2UserLoggingConditions, OAuth2UserLoggingProps } from "@herodotus/api";
 import type { QTableColumnProps, EntityTitle } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { moment } from "@herodotus/core";
 import { useTable, useXlsx } from "@/composables/hooks";
 

@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <q-form ref="mqttAuthorityForm" validate-on="blur lazy">
       <h-text-field
         v-model.lazy="editedItem.topic"
@@ -42,7 +42,9 @@ defineOptions({ name: "ThingsMqttAuthorityContent" });
 
 const mqttAuthorityForm = ref();
 
-const { editedItem, title, overlay, saveOrUpdate } = useTableItem<MqttAuthorityEntity>(API.core.iotMqttAuthority());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<MqttAuthorityEntity>(
+  API.core.iotMqttAuthority(),
+);
 
 const onSave = async () => {
   const { valid } = await mqttAuthorityForm.value.validate();

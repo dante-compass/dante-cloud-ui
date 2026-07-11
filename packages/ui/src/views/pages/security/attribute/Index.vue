@@ -48,7 +48,7 @@ import type { Dictionary } from "@herodotus/core";
 import type { SysAttributeEntity, SysAttributeConditions, SysAttributeProps } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTable, useDictionary, useDateTime } from "@/composables/hooks";
 import { get } from "lodash-es";
 

@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model.lazy="v.editedItem.employeeName.$model as string"
       name="employeeName"
@@ -30,7 +30,7 @@ import { HCenterFormLayout, HDictionarySelect } from "@/components";
 
 defineOptions({ name: "SysEmployeeContent" });
 
-const { editedItem, title, overlay, saveOrUpdate } = useTableItem<SysEmployeeEntity>(API.core.sysEmployee());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysEmployeeEntity>(API.core.sysEmployee());
 
 const isUnique = () => {
   let employeeName = editedItem.value.employeeName;

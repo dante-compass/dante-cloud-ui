@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model.lazy="v.editedItem.scopeCode.$model"
       name="scopeCode"
@@ -25,7 +25,7 @@ import { HCenterFormLayout } from "@/components";
 
 defineOptions({ name: "OAuth2ScopeContent" });
 
-const { editedItem, title, overlay, saveOrUpdate } = useTableItem<OAuth2ScopeEntity>(API.core.oauth2Scope());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<OAuth2ScopeEntity>(API.core.oauth2Scope());
 
 const isUnique = () => {
   let scopeCode = editedItem.value.scopeCode;
