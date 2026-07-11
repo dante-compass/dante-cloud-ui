@@ -109,7 +109,7 @@ import { useRouter } from "vue-router";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { CONSTANTS } from "@/configurations";
+import { Path } from "@/configurations";
 import { toast } from "@herodotus/core";
 import { useCryptoStore, useAuthenticationStore, usePasskey, useApplicationStore } from "@herodotus/framework";
 import SocialSignInList from "./SocialSignInList.vue";

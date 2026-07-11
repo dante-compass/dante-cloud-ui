@@ -8,7 +8,7 @@
 import type { HttpMethod } from "@herodotus/core";
 
 import { useDisplayElement } from "@/composables/hooks";
-import { CONSTANTS } from "@/configurations";
+import { HTTP_METHOD_STYLE_GROUP } from "@/configurations";
 
 export default defineComponent({
   name: "HHttpMethodAvatar",

@@ -15,7 +15,7 @@ import type { PropType } from "vue";
 import { defineComponent } from "vue";
 
 import { useDisplayElement } from "@/composables/hooks";
-import { CONSTANTS } from "@/configurations";
+import { GRANT_TYPE_STYLE_GROUP } from "@/configurations";
 
 import HDenseIconButton from "./HDenseIconButton.vue";
 

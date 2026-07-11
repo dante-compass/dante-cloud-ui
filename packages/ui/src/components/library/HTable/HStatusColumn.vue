@@ -5,7 +5,7 @@
 <script lang="ts">
 import type { Dictionary } from "@herodotus/core";
 
-import { CONSTANTS } from "@/configurations";
+import { DATA_ITEM_STATUS } from "@/configurations";
 
 import HDenseIconButton from "./HDenseIconButton.vue";
 

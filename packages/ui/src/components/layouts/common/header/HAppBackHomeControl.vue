@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { CONSTANTS } from "@/configurations";
+import { Path } from "@/configurations";
 
 defineOptions({ name: "HAppBackHomeControl" });
 

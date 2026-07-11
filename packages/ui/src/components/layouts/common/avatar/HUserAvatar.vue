@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, computed } from "vue";
-
 import { useAuthenticationStore } from "@herodotus/framework";
 import { AvatarUtils } from "@herodotus/core";
 

@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import { CONSTANTS } from "@/configurations";
+import { Path } from "@/configurations";
 import { WidgetRoute } from "./widgets";
 import { SettingRoutes } from "./settings";
 

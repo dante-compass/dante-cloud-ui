@@ -12,14 +12,16 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from "vue-router";
 import type { RouteLocationMatched } from "vue-router";
 
-import { CONSTANTS } from "@/configurations";
+import { Path } from "@/configurations";
 import { useSettingsStore } from "@herodotus/framework";
 
 defineOptions({ name: "HAppBreadcrumbs" });
 
 const settings = useSettingsStore();
+const $route = useRoute();
 
 const getTitle = (item: RouteLocationMatched) => {
   return item.meta.title as string;
