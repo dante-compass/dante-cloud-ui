@@ -45,7 +45,7 @@ import { HTable, HBooleanColumn } from "@/components";
 import { HComplianceCondition } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.OAUTH2_COMPLIANCE,
+  name: ComponentName.OAUTH2_COMPLIANCE,
   components: { HComplianceCondition, HTable, HBooleanColumn },
 });
 
@@ -53,7 +53,7 @@ const { postExport } = useXlsx<OAuth2UserLoggingEntity>();
 const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
   OAuth2UserLoggingConditions,
   OAuth2UserLoggingEntity
->(API.core.oauth2UserLogging(), CONSTANTS.ComponentName.OAUTH2_COMPLIANCE, false, {
+>(API.core.oauth2UserLogging(), ComponentName.OAUTH2_COMPLIANCE, false, {
   direction: "DESC",
   properties: ["createTime"],
 });

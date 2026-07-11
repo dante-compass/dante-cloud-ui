@@ -55,7 +55,7 @@ import { get } from "lodash-es";
 import { HEditButton, HTable, HSwaggerColumn } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_ATTRIBUTE,
+  name: ComponentName.SYS_ATTRIBUTE,
 
   components: {
     HEditButton,
@@ -66,15 +66,10 @@ defineOptions({
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-  useTable<SysAttributeConditions, SysAttributeEntity>(
-    API.core.sysAttribute(),
-    CONSTANTS.ComponentName.SYS_ATTRIBUTE,
-    false,
-    {
-      direction: "ASC",
-      properties: ["url"],
-    },
-  );
+  useTable<SysAttributeConditions, SysAttributeEntity>(API.core.sysAttribute(), ComponentName.SYS_ATTRIBUTE, false, {
+    direction: "ASC",
+    properties: ["url"],
+  });
 
 const rowKey: SysAttributeProps = "attributeId";
 

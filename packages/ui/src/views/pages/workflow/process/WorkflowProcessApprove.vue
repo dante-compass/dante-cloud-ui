@@ -24,20 +24,20 @@
 </template>
 
 <script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, ref, onMounted } from 'vue';
+import type { Ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 
-import type { Sheet, ProcessCommentsEntity, Variables } from '@/composables/declarations';
+import type { Sheet, ProcessCommentsEntity, Variables } from "@/composables/declarations";
 
-import { useBpmnProcess } from '@/composables/hooks';
-import { HDetailContainer, HFormSkeleton } from '@/components';
-import { CONSTANTS, API } from '@/configurations';
-import { useAuthenticationStore } from '@herodotus/framework';
-import { toast } from '@herodotus/core';
-import { isEmpty } from 'lodash-es';
+import { useBpmnProcess } from "@/composables/hooks";
+import { HDetailContainer, HFormSkeleton } from "@/components";
+import { CONSTANTS, API } from "@/configurations";
+import { useAuthenticationStore } from "@herodotus/framework";
+import { toast } from "@herodotus/core";
+import { isEmpty } from "lodash-es";
 
 export default defineComponent({
-  name: CONSTANTS.ComponentName.WORKFLOW_PROCESS_APPROVE,
+  name: ComponentName.WORKFLOW_PROCESS_APPROVE,
 
   components: {
     HDetailContainer,
@@ -64,7 +64,7 @@ export default defineComponent({
     const approved = ref<boolean>(true);
 
     const sheet = ref({}) as Ref<Sheet>;
-    const comments = ref('');
+    const comments = ref("");
 
     const auth = useAuthenticationStore();
 
@@ -78,7 +78,7 @@ export default defineComponent({
           taskId: editedItem.value.taskId as string,
           activityId: editedItem.value.activityId,
           activityName: editedItem.value.activityName,
-          message: '',
+          message: "",
           fullMessage: comments.value,
           tenantId: editedItem.value.tenantId,
         })
@@ -103,13 +103,13 @@ export default defineComponent({
                   })
                   .then(() => {
                     onFinish();
-                    toast.success('保存成功！');
+                    toast.success("保存成功！");
                   });
               });
           }
         })
         .catch(() => {
-          toast.error('保存失败！');
+          toast.error("保存失败！");
         });
     };
 

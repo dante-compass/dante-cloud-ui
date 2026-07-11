@@ -82,7 +82,7 @@ import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } 
 import HElementCondition from "./Search.vue";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_ELEMENT,
+  name: ComponentName.SYS_ELEMENT,
 
   components: {
     HBooleanColumn,
@@ -106,15 +106,10 @@ const {
   findItems,
   deleteItemById,
   conditions,
-} = useTable<SysElementConditions, SysElementEntity>(
-  API.core.sysElement(),
-  CONSTANTS.ComponentName.SYS_ELEMENT,
-  false,
-  {
-    direction: "ASC",
-    properties: ["path"],
-  },
-);
+} = useTable<SysElementConditions, SysElementEntity>(API.core.sysElement(), ComponentName.SYS_ELEMENT, false, {
+  direction: "ASC",
+  properties: ["path"],
+});
 
 const selected = ref([]);
 const rowKey: SysElementProps = "elementId";

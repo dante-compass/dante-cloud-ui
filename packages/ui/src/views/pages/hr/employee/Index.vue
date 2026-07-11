@@ -53,7 +53,7 @@ import { HDeleteButton, HEditButton, HTable } from "@/components";
 import { HEmployeeCondition } from "../components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_EMPLOYEE,
+  name: ComponentName.SYS_EMPLOYEE,
 
   components: {
     HDeleteButton,
@@ -65,7 +65,7 @@ defineOptions({
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, conditions, findItems, deleteItemById } =
-  useTable<SysEmployeeConditions, SysEmployeeEntity>(API.core.sysEmployee(), CONSTANTS.ComponentName.SYS_EMPLOYEE);
+  useTable<SysEmployeeConditions, SysEmployeeEntity>(API.core.sysEmployee(), ComponentName.SYS_EMPLOYEE);
 
 const { getDictionaryItemDisplay } = useDictionary("Gender", "Identity");
 

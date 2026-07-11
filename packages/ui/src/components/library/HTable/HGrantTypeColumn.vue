@@ -11,16 +11,16 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
-import { defineComponent } from 'vue';
+import type { PropType } from "vue";
+import { defineComponent } from "vue";
 
-import { useDisplayElement } from '@/composables/hooks';
-import { CONSTANTS } from '@/configurations';
+import { useDisplayElement } from "@/composables/hooks";
+import { CONSTANTS } from "@/configurations";
 
-import HDenseIconButton from './HDenseIconButton.vue';
+import HDenseIconButton from "./HDenseIconButton.vue";
 
 export default defineComponent({
-  name: 'HGrantTypeColumn',
+  name: "HGrantTypeColumn",
 
   components: {
     HDenseIconButton,
@@ -31,7 +31,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const { icon, color, text } = useDisplayElement(CONSTANTS.GRANT_TYPE_STYLE_GROUP);
+    const { icon, color, text } = useDisplayElement(GRANT_TYPE_STYLE_GROUP);
 
     return {
       icon,

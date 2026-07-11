@@ -68,7 +68,7 @@ import { API, CONSTANTS } from "@/configurations";
 
 import Search from "./Search.vue";
 
-defineOptions({ name: CONSTANTS.ComponentName.THINGS_MQTT_AUTHORITY, components: { Search } });
+defineOptions({ name: ComponentName.THINGS_MQTT_AUTHORITY, components: { Search } });
 
 const columns: QTableColumnProps = [
   { name: "topic", field: "topic", align: "center", label: "主题" },
@@ -107,7 +107,7 @@ const {
   deleteItemById,
 } = useTable<MqttAuthorityConditions, MqttAuthorityEntity>(
   API.core.iotMqttAuthority(),
-  CONSTANTS.ComponentName.THINGS_MQTT_AUTHORITY,
+  ComponentName.THINGS_MQTT_AUTHORITY,
 );
 const { getDictionaryItemDisplay } = useDictionary("Permission", "Action", "Qos", "Retain");
 </script>

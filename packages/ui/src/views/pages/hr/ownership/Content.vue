@@ -58,7 +58,7 @@ const { editedItem, title, overlay } = useTableItem<SysEmployeeAllocatable>(API.
 const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
   SysEmployeeConditions,
   SysEmployeeEntity
->(API.core.sysEmployee(), CONSTANTS.ComponentName.SYS_EMPLOYEE);
+>(API.core.sysEmployee(), ComponentName.SYS_EMPLOYEE);
 
 const selectedItems = ref([]) as Ref<Array<SysEmployeeEntity>>;
 

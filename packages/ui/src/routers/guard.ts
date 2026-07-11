@@ -5,8 +5,8 @@ import { CONSTANTS, API } from "@/configurations";
 import { Loading, QSpinnerDots } from "quasar";
 
 const PageNotFoundRoute: RouteRecordRaw = {
-  path: CONSTANTS.Path.NOT_FOUND,
-  name: CONSTANTS.Path.NOT_FOUND_NAME,
+  path: Path.NOT_FOUND,
+  name: Path.NOT_FOUND_NAME,
   component: () => import("@/components/error/404.vue"),
   meta: {
     title: "ErrorPage",
@@ -45,9 +45,9 @@ export const createRouterGuard = (router: Router) => {
 
     // 有 Token
     if (token) {
-      if (to.path === CONSTANTS.Path.SIGN_IN) {
+      if (to.path === Path.SIGN_IN) {
         // 目的地址还是登录页面，直接跳转到首页。
-        return CONSTANTS.Path.HOME;
+        return Path.HOME;
       } else {
         // 判断动态路由是否已经添加，没有添加则进行添加
         if (!elementStore.isDynamicRouteAdded) {
@@ -67,13 +67,13 @@ export const createRouterGuard = (router: Router) => {
       if (to.meta.isIgnoreAuth) {
         return;
       } else {
-        if (to.path === CONSTANTS.Path.SIGN_IN) {
+        if (to.path === Path.SIGN_IN) {
           localStorage.clear();
           return;
         } else {
           // 重定向到登录页，并携带重定向路径
           return {
-            path: CONSTANTS.Path.SIGN_IN,
+            path: Path.SIGN_IN,
             query: { redirect: to.fullPath },
           };
         }

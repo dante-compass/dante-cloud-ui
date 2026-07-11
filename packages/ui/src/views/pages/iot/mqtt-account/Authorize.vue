@@ -37,7 +37,7 @@ defineOptions({ name: "ThingsMqttAccountAuthorize" });
 const { editedItem, overlay, title, assign } = useTableItem<MqttAccountEntity>(API.core.iotMqttAccount());
 const { tableRows, totalPages, pagination, loading } = useTable<MqttCategoryConditions, MqttCategoryEntity>(
   API.core.iotMqttCategory(),
-  CONSTANTS.ComponentName.THINGS_MQTT_CATEGORY,
+  ComponentName.THINGS_MQTT_CATEGORY,
   true,
 );
 

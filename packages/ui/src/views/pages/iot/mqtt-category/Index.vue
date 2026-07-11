@@ -56,7 +56,7 @@ import { API, CONSTANTS } from "@/configurations";
 
 import Search from "./Search.vue";
 
-defineOptions({ name: CONSTANTS.ComponentName.THINGS_MQTT_CATEGORY, components: { Search } });
+defineOptions({ name: ComponentName.THINGS_MQTT_CATEGORY, components: { Search } });
 
 const columns: QTableColumnProps = [
   { name: "name", field: "name", align: "center", label: "主题类别名称" },
@@ -82,9 +82,6 @@ const rowKey: MqttCategoryProps = "id";
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, conditions, toEdit, toCreate, findItems, deleteItemById } =
-  useTable<MqttCategoryConditions, MqttCategoryEntity>(
-    API.core.iotMqttCategory(),
-    CONSTANTS.ComponentName.THINGS_MQTT_CATEGORY,
-  );
+  useTable<MqttCategoryConditions, MqttCategoryEntity>(API.core.iotMqttCategory(), ComponentName.THINGS_MQTT_CATEGORY);
 const { getDictionaryItemDisplay } = useDictionary("Area", "Action", "Purpose");
 </script>

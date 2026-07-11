@@ -42,7 +42,7 @@ import { useTable, useDateTime } from "@/composables/hooks";
 import { HDenseIconButton, HDeleteButton, HEditButton, HTable } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.OAUTH2_SCOPE,
+  name: ComponentName.OAUTH2_SCOPE,
 
   components: {
     HDeleteButton,
@@ -55,10 +55,7 @@ defineOptions({
 const { defaultFormat } = useDateTime();
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-  useTable<OAuth2ApplicationConditions, OAuth2ScopeEntity>(
-    API.core.oauth2Scope(),
-    CONSTANTS.ComponentName.OAUTH2_SCOPE,
-  );
+  useTable<OAuth2ApplicationConditions, OAuth2ScopeEntity>(API.core.oauth2Scope(), ComponentName.OAUTH2_SCOPE);
 
 const selected = ref([]);
 const rowKey: OAuth2ScopeProps = "scopeId";

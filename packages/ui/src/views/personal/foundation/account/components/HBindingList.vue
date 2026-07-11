@@ -56,7 +56,7 @@ const store = useAuthenticationStore();
 
 const { tableRows, pagination, loading, findItems, conditions } = useTable<AccessSourceConditions, AccessSourceEntity>(
   API.core.socialBinding(),
-  CONSTANTS.ComponentName.SOCIAL_BINDING,
+  ComponentName.SOCIAL_BINDING,
   true,
 );
 const { getSocialLogo } = useImage();

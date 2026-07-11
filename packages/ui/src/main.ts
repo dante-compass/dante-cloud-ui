@@ -1,33 +1,33 @@
-import { createApp } from 'vue';
-import App from './App.vue';
+import { createApp } from "vue";
+import App from "./App.vue";
 
-import 'virtual:uno.css';
+import "virtual:uno.css";
 
-import 'animate.css/animate.min.css';
+import "animate.css/animate.min.css";
 
-import './static/styles/index.scss';
+import "./static/styles/index.scss";
 
-import '@herodotus-cloud/components/style.css';
-import '@herodotus-cloud/bpmn-designer/style.css';
-import '@herodotus-cloud/form-designer/style.css';
+import "@herodotus-cloud/components/style.css";
+import "@herodotus-cloud/bpmn-designer/style.css";
+import "@herodotus-cloud/form-designer/style.css";
 
-import HerodotusBpmnDesigner from '@herodotus-cloud/bpmn-designer';
-import HerodotusFormDesigner from '@herodotus-cloud/form-designer';
-import HerodotusFormEngine from '@herodotus-cloud/form-engine';
+import HerodotusBpmnDesigner from "@herodotus-cloud/bpmn-designer";
+import HerodotusFormDesigner from "@herodotus-cloud/form-designer";
+import HerodotusFormEngine from "@herodotus-cloud/form-engine";
 
-import DisableDevtool from 'disable-devtool';
+import DisableDevtool from "disable-devtool";
 
-import { setupStore, setupQuasar, setupI18n, setupUploader } from '@/plugins';
-import { setupRouter } from './routers';
+import { setupStore, setupQuasar, setupI18n, setupUploader } from "@/plugins";
+import { setupRouter } from "./routers";
 
-import { CONSTANTS, VARIABLES } from '@/configurations';
+import { CONSTANTS, VARIABLES } from "@/configurations";
 
-if (typeof (window as any).global === 'undefined') {
+if (typeof (window as any).global === "undefined") {
   (window as any).global = window;
 }
 
 async function setupApp() {
-  const view = document.createElement('div');
+  const view = document.createElement("div");
   document.body.appendChild(view);
 
   const app = createApp(App);
@@ -49,14 +49,14 @@ async function setupApp() {
   app.use(HerodotusFormDesigner);
   app.use(HerodotusFormEngine);
 
-  app.mount('#app', true);
+  app.mount("#app", true);
 
-  if (!CONSTANTS.IS_DEV) {
+  if (!IS_DEV) {
     if (VARIABLES.isUseDisableDevtool()) {
       const url =
-        import.meta.env.VITE_BASE_URL === '/'
-          ? '/static/forbidden.html'
-          : import.meta.env.VITE_BASE_URL + 'static/forbidden.html';
+        import.meta.env.VITE_BASE_URL === "/"
+          ? "/static/forbidden.html"
+          : import.meta.env.VITE_BASE_URL + "static/forbidden.html";
 
       DisableDevtool({
         url: url,

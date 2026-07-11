@@ -30,7 +30,7 @@ const getIcon = (item: RouteLocationMatched) => {
 };
 
 const getHomePath = computed(() => {
-  return CONSTANTS.Path.HOME;
+  return Path.HOME;
 });
 
 const getClass = computed(() => {

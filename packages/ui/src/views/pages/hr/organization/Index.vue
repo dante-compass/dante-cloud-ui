@@ -58,7 +58,7 @@ import { useTable, useDateTime } from "@/composables/hooks";
 import { HDeleteButton, HEditButton, HTable, HDictionarySelect } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_ORGANIZATION,
+  name: ComponentName.SYS_ORGANIZATION,
 
   components: {
     HDeleteButton,
@@ -72,7 +72,7 @@ const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
   useTable<SysOrganizationConditions, SysOrganizationEntity>(
     API.core.sysOrganization(),
-    CONSTANTS.ComponentName.SYS_ORGANIZATION,
+    ComponentName.SYS_ORGANIZATION,
   );
 
 const selected = ref([]);

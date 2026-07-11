@@ -41,13 +41,13 @@ import { useTable, useDateTime } from "@/composables/hooks";
 import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_ROLE,
+  name: ComponentName.SYS_ROLE,
   components: { HDeleteButton, HEditButton, HDenseIconButton, HTable },
 });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-  useTable<SysRoleConditions, SysRoleEntity>(API.core.sysRole(), CONSTANTS.ComponentName.SYS_ROLE);
+  useTable<SysRoleConditions, SysRoleEntity>(API.core.sysRole(), ComponentName.SYS_ROLE);
 
 const selected = ref([]);
 const rowKey: SysRoleProps = "roleId";

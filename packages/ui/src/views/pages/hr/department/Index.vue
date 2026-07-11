@@ -45,7 +45,7 @@ import { HOrganizationSelect, HOrganizationTree } from "../components";
 import { HDictionarySelect } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_DEPARTMENT,
+  name: ComponentName.SYS_DEPARTMENT,
   components: {
     HDeleteButton,
     HDictionarySelect,
@@ -61,7 +61,7 @@ const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
   useTable<SysDepartmentConditions, SysDepartmentEntity>(
     API.core.sysDepartment(),
-    CONSTANTS.ComponentName.SYS_DEPARTMENT,
+    ComponentName.SYS_DEPARTMENT,
     false,
     {},
     false,

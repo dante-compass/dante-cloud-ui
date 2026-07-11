@@ -41,7 +41,7 @@ import { useTable } from "@/composables/hooks";
 import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_TENANT_DATA_SOURCE,
+  name: ComponentName.SYS_TENANT_DATA_SOURCE,
 
   components: { HDeleteButton, HEditButton, HDenseIconButton, HTable },
 });
@@ -49,7 +49,7 @@ defineOptions({
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
   useTable<SysTenantDataSourceConditions, SysTenantDataSourceEntity>(
     API.core.sysTenantDataSource(),
-    CONSTANTS.ComponentName.SYS_TENANT_DATA_SOURCE,
+    ComponentName.SYS_TENANT_DATA_SOURCE,
   );
 
 const selected = ref([]);

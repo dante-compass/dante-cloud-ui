@@ -1,37 +1,37 @@
-import type { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from "vue-router";
 
-import { CONSTANTS } from '@/configurations';
+import { CONSTANTS } from "@/configurations";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/workflow',
-    component: () => import('@/views/layouts/Index.vue'),
-    meta: { title: '工作流程管理', sort: 5, icon: 'mdi-transit-connection-variant' },
-    redirect: '/workflow/deployment',
+    path: "/workflow",
+    component: () => import("@/views/layouts/Index.vue"),
+    meta: { title: "工作流程管理", sort: 5, icon: "mdi-transit-connection-variant" },
+    redirect: "/workflow/deployment",
     children: [
       {
-        path: '/workflow/deployment',
-        name: 'WorkflowDeployment',
-        meta: { title: '流程部署管理', icon: 'mdi-cloud-braces', isHideAllChild: true },
-        component: () => import('@/views/pages/workflow/deployment/Index.vue'),
+        path: "/workflow/deployment",
+        name: "WorkflowDeployment",
+        meta: { title: "流程部署管理", icon: "mdi-cloud-braces", isHideAllChild: true },
+        component: () => import("@/views/pages/workflow/deployment/Index.vue"),
       },
       {
-        path: '/workflow/process-definition',
-        name: 'WorkflowProcessDefinition',
-        meta: { title: '流程定义管理', icon: 'mdi-xml', isHideAllChild: true },
-        component: () => import('@/views/pages/workflow/process-definition/Index.vue'),
+        path: "/workflow/process-definition",
+        name: "WorkflowProcessDefinition",
+        meta: { title: "流程定义管理", icon: "mdi-xml", isHideAllChild: true },
+        component: () => import("@/views/pages/workflow/process-definition/Index.vue"),
       },
       {
-        path: '/workflow/process-instance',
-        name: 'WorkflowProcessInstance',
-        meta: { title: '流程实例管理', icon: 'mdi-motion-play', isHideAllChild: true },
-        component: () => import('@/views/pages/workflow/process-instance/Index.vue'),
+        path: "/workflow/process-instance",
+        name: "WorkflowProcessInstance",
+        meta: { title: "流程实例管理", icon: "mdi-motion-play", isHideAllChild: true },
+        component: () => import("@/views/pages/workflow/process-instance/Index.vue"),
       },
       {
-        path: '/workflow/dynamic-form',
-        name: CONSTANTS.ComponentName.WORKFLOW_DYNAMIC_FORM,
-        meta: { title: '动态表单管理', icon: 'mdi-monitor-dashboard', isHideAllChild: true },
-        component: () => import('@/views/pages/workflow/dynamic-form/Index.vue'),
+        path: "/workflow/dynamic-form",
+        name: ComponentName.WORKFLOW_DYNAMIC_FORM,
+        meta: { title: "动态表单管理", icon: "mdi-monitor-dashboard", isHideAllChild: true },
+        component: () => import("@/views/pages/workflow/dynamic-form/Index.vue"),
       },
     ],
   },

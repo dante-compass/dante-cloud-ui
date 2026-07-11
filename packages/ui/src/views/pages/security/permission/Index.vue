@@ -35,7 +35,7 @@ import { useTable, useDateTime } from "@/composables/hooks";
 import { HTable } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_PERMISSION,
+  name: ComponentName.SYS_PERMISSION,
 
   components: {
     HTable,
@@ -46,7 +46,7 @@ const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById } = useTable<
   SysPermissionConditions,
   SysPermissionEntity
->(API.core.sysPermission(), CONSTANTS.ComponentName.SYS_PERMISSION);
+>(API.core.sysPermission(), ComponentName.SYS_PERMISSION);
 
 const rowKey: SysPermissionProps = "permissionId";
 

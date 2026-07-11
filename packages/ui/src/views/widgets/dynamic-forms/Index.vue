@@ -3,12 +3,12 @@
 </template>
 
 <script setup lang="ts">
-import { CONSTANTS, API } from '@/configurations';
-import { useEditFinish } from '@herodotus/framework';
-import { useBaseTableItem } from '@/composables/hooks';
+import { CONSTANTS, API } from "@/configurations";
+import { useEditFinish } from "@herodotus/framework";
+import { useBaseTableItem } from "@/composables/hooks";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.WIDGETS_DYNAMIC_FORM,
+  name: ComponentName.WIDGETS_DYNAMIC_FORM,
 });
 
 const instance = API.bpmnStorage;

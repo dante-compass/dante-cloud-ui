@@ -57,7 +57,7 @@ export default defineComponent({
       useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>("HToDoTaskTable", "updateTime", true);
     const { editedItem, fetchProcessSpecifics } = useBpmnProcess();
     const { toEdit } = useBaseTable<ProcessSpecificsConditions, ProcessSpecificsEntity>(
-      CONSTANTS.ComponentName.WORKFLOW_PROCESS_APPROVE,
+      ComponentName.WORKFLOW_PROCESS_APPROVE,
       "updateTime",
     );
 

@@ -8,7 +8,6 @@ import type {
   QTableOnRequestParameter,
 } from "@/composables/declarations";
 
-import { capitalize } from "lodash-es";
 import { useElementStore } from "@herodotus/framework";
 import { OperationEnum } from "@herodotus/core";
 
@@ -62,9 +61,9 @@ export default function useBaseTable<C extends Conditions, I extends Entity, O e
       item: JSON.stringify(item),
       operation: operation,
       additional: JSON.stringify(additional),
+      parentName: name,
     });
 
-    console.log("-------", componentName);
     router.push({ name: componentName });
   };
 
@@ -73,41 +72,41 @@ export default function useBaseTable<C extends Conditions, I extends Entity, O e
   };
 
   const toEdit = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, "Content", withSuffix);
+    const componentName = appendSuffix(name, OperationEnum.CONTENT, withSuffix);
     addRoutePushParam(componentName, OperationEnum.EDIT, item, additional);
   };
 
   const toCreate = (additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, "Content", withSuffix);
+    const componentName = appendSuffix(name, OperationEnum.CONTENT, withSuffix);
     addRoutePushParam(componentName, OperationEnum.CREATE, {} as I, additional);
   };
 
   const toAuthorize = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, "Authorize", withSuffix);
+    const componentName = appendSuffix(name, OperationEnum.AUTHORIZE, withSuffix);
     addRoutePushParam(componentName, OperationEnum.AUTHORIZE, item, additional);
   };
 
   const toInfo = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, "Info", withSuffix);
+    const componentName = appendSuffix(name, OperationEnum.INFO, withSuffix);
     addRoutePushParam(componentName, OperationEnum.INFO, item, additional);
   };
 
   const toSetup = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, "Setup", withSuffix);
+    const componentName = appendSuffix(name, OperationEnum.SETUP, withSuffix);
     addRoutePushParam(componentName, OperationEnum.SETUP, item, additional);
   };
 
   const toInvoke = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, "Invoke", withSuffix);
+    const componentName = appendSuffix(name, OperationEnum.INVOKE, withSuffix);
     addRoutePushParam(componentName, OperationEnum.INVOKE, item, additional);
   };
 
   const toFile = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, capitalize(OperationEnum.FILE), withSuffix);
+    const componentName = appendSuffix(name, OperationEnum.FILE, withSuffix);
     addRoutePushParam(componentName, OperationEnum.FILE, item, additional);
   };
   const toRevocation = (item: I, additional: Record<string, unknown> = {}, withSuffix = true) => {
-    const componentName = appendSuffix(name, capitalize(OperationEnum.REVOCATION), withSuffix);
+    const componentName = appendSuffix(name, OperationEnum.REVOCATION, withSuffix);
     addRoutePushParam(componentName, OperationEnum.REVOCATION, item, additional);
   };
 

@@ -104,18 +104,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, onUnmounted } from 'vue';
-import { useRouter } from 'vue-router';
-import useVuelidate from '@vuelidate/core';
-import { required, helpers } from '@vuelidate/validators';
+import { defineComponent, ref, computed, onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 
-import { CONSTANTS } from '@/configurations';
-import { toast } from '@herodotus/core';
-import { useCryptoStore, useAuthenticationStore, usePasskey, useApplicationStore } from '@herodotus/framework';
-import SocialSignInList from './SocialSignInList.vue';
+import { CONSTANTS } from "@/configurations";
+import { toast } from "@herodotus/core";
+import { useCryptoStore, useAuthenticationStore, usePasskey, useApplicationStore } from "@herodotus/framework";
+import SocialSignInList from "./SocialSignInList.vue";
 
 export default defineComponent({
-  name: 'AccountPanel',
+  name: "AccountPanel",
 
   components: {
     SocialSignInList,
@@ -129,9 +129,9 @@ export default defineComponent({
     const router = useRouter();
     const { authenticator } = usePasskey();
 
-    const username = ref('');
-    const password = ref('');
-    const errorMessage = ref('');
+    const username = ref("");
+    const password = ref("");
+    const errorMessage = ref("");
     const isShowPassword = ref(false);
     const isShowCaptcha = ref(false);
     const isSubmitDisabled = shallowRef(false);
@@ -139,10 +139,10 @@ export default defineComponent({
 
     const rules = {
       username: {
-        required: helpers.withMessage('用户名不能为空', required),
+        required: helpers.withMessage("用户名不能为空", required),
       },
       password: {
-        required: helpers.withMessage('密码不能为空', required),
+        required: helpers.withMessage("密码不能为空", required),
       },
     };
 
@@ -156,9 +156,9 @@ export default defineComponent({
         .then((response) => {
           if (response) {
             isSubmitDisabled.value = false;
-            toast.success('欢迎回来！');
+            toast.success("欢迎回来！");
             router.push({
-              path: CONSTANTS.Path.HOME,
+              path: Path.HOME,
             });
           }
         })
@@ -172,7 +172,7 @@ export default defineComponent({
     };
 
     const onResetError = () => {
-      errorMessage.value = '';
+      errorMessage.value = "";
       hasError.value = false;
     };
 
@@ -183,15 +183,15 @@ export default defineComponent({
         .then((response) => {
           if (response) {
             isSubmitDisabled.value = false;
-            toast.success('欢迎回来！');
+            toast.success("欢迎回来！");
             router.push({
-              path: CONSTANTS.Path.HOME,
+              path: Path.HOME,
             });
           }
         })
         .catch((error) => {
           isSubmitDisabled.value = false;
-          console.log('---eee', error);
+          console.log("---eee", error);
           if (error.message) {
             errorMessage.value = error.message;
             hasError.value = true;
@@ -212,7 +212,7 @@ export default defineComponent({
     });
 
     const promptMessage = computed(() => {
-      return '您还有【' + authentication.remainTimes + '】次尝试机会，之后将会锁定该账户';
+      return "您还有【" + authentication.remainTimes + "】次尝试机会，之后将会锁定该账户";
     });
 
     const isDisabled = computed(() => {
@@ -234,11 +234,11 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      window.addEventListener('keydown', (e) => enterKey(e));
+      window.addEventListener("keydown", (e) => enterKey(e));
     });
 
     onUnmounted(() => {
-      window.removeEventListener('keydown', (e) => enterKey(e), false);
+      window.removeEventListener("keydown", (e) => enterKey(e), false);
     });
 
     return {

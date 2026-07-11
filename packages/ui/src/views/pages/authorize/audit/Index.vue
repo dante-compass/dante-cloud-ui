@@ -48,13 +48,13 @@ import { useTable, useXlsx } from "@/composables/hooks";
 import { HTable, HBooleanColumn } from "@/components";
 import { HAuditCondition } from "@/components";
 
-defineOptions({ name: CONSTANTS.ComponentName.OAUTH2_AUDIT, components: { HAuditCondition, HTable, HBooleanColumn } });
+defineOptions({ name: ComponentName.OAUTH2_AUDIT, components: { HAuditCondition, HTable, HBooleanColumn } });
 
 const { postExport } = useXlsx<OAuth2InterfaceAuditEntity>();
 const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
   OAuth2InterfaceAuditConditions,
   OAuth2InterfaceAuditEntity
->(API.core.oauth2InterfaceAudit(), CONSTANTS.ComponentName.OAUTH2_AUDIT, false, {
+>(API.core.oauth2InterfaceAudit(), ComponentName.OAUTH2_AUDIT, false, {
   direction: "DESC",
   properties: ["createTime"],
 });

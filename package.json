@@ -34,14 +34,14 @@
     ]
   },
   "dependencies": {
-    "@herodotus/core": "^3.1.0",
+    "@herodotus/core": "^3.1.2",
     "@quasar/extras": "^2.0.2",
     "disable-devtool": "^0.3.9",
-    "filesize": "^11.0.19",
+    "filesize": "^11.0.22",
     "lodash-es": "^4.18.1",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "4.7.1",
-    "quasar": "^2.21.1",
+    "quasar": "^2.21.2",
     "vue": "^3.5.39",
     "vue-i18n": "^11.4.6"
   },

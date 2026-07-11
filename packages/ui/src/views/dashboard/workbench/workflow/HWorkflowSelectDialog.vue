@@ -31,8 +31,8 @@
 </template>
 
 <script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, ref, computed } from 'vue';
+import type { Ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
 
 import type {
   ProcessDefinitionEntity,
@@ -42,27 +42,27 @@ import type {
   ProcessSpecificsEntity,
   ProcessSpecificsConditions,
   QTableColumnProps,
-} from '@/composables/declarations';
+} from "@/composables/declarations";
 
-import { CONSTANTS, API } from '@/configurations';
+import { CONSTANTS, API } from "@/configurations";
 
-import { useBaseTable, useBpmnTableItems, useBpmnProcess } from '@/composables/hooks';
-import { isEmpty, isElement } from 'lodash-es';
+import { useBaseTable, useBpmnTableItems, useBpmnProcess } from "@/composables/hooks";
+import { isEmpty, isElement } from "lodash-es";
 
 export default defineComponent({
-  name: 'HWorkflowSelectDialog',
+  name: "HWorkflowSelectDialog",
 
   props: {
     modelValue: { type: Boolean, required: true },
   },
 
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
 
   setup(props, { emit }) {
     const isOpen = computed({
       get: () => props.modelValue,
       set: (newValue) => {
-        emit('update:modelValue', newValue);
+        emit("update:modelValue", newValue);
       },
     });
 
@@ -72,33 +72,33 @@ export default defineComponent({
       ProcessDefinitionSortBy,
       ProcessDefinitionDeleteQueryParams
     >(API.bpmn.processDefinition(), {
-      sortBy: 'id',
-      sortOrder: 'desc',
+      sortBy: "id",
+      sortOrder: "desc",
     });
     const { editedItem, createProcessSpecifics } = useBpmnProcess();
     const { toEdit } = useBaseTable<ProcessSpecificsConditions, ProcessSpecificsEntity>(
-      CONSTANTS.ComponentName.WORKFLOW_PROCESS_START,
-      'updateTime',
+      ComponentName.WORKFLOW_PROCESS_START,
+      "updateTime",
     );
 
     const selected = ref([]) as Ref<Array<ProcessDefinitionEntity>>;
-    const rowKey = 'id' as keyof ProcessDefinitionEntity;
+    const rowKey = "id" as keyof ProcessDefinitionEntity;
 
     const columns: QTableColumnProps = [
-      { name: 'name', field: 'name', align: 'center', label: '模型名称' },
+      { name: "name", field: "name", align: "center", label: "模型名称" },
       {
-        name: 'suspended',
-        field: 'suspended',
-        align: 'center',
-        label: '是否挂起',
-        format: (value) => (value ? '是' : '否'),
+        name: "suspended",
+        field: "suspended",
+        align: "center",
+        label: "是否挂起",
+        format: (value) => (value ? "是" : "否"),
       },
       {
-        name: 'startableInTasklist',
-        field: 'startableInTasklist',
-        align: 'center',
-        label: '是否可启动',
-        format: (value) => (value ? '是' : '否'),
+        name: "startableInTasklist",
+        field: "startableInTasklist",
+        align: "center",
+        label: "是否可启动",
+        format: (value) => (value ? "是" : "否"),
       },
     ];
 

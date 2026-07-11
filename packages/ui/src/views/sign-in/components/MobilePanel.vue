@@ -102,30 +102,30 @@
 </template>
 
 <script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { required, helpers } from '@vuelidate/validators';
-import useVuelidate from '@vuelidate/core';
-import { useAuthenticationStore, SecurityApiResources, useApplicationStore } from '@herodotus/framework';
-import { CONSTANTS, API } from '@/configurations';
-import { toast } from '@herodotus/core';
+import type { Ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
+import { useRouter } from "vue-router";
+import { required, helpers } from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
+import { useAuthenticationStore, SecurityApiResources, useApplicationStore } from "@herodotus/framework";
+import { CONSTANTS, API } from "@/configurations";
+import { toast } from "@herodotus/core";
 
 export default defineComponent({
-  name: 'MobilePanel',
+  name: "MobilePanel",
 
   setup(props) {
     const application = useApplicationStore();
     const authentication = useAuthenticationStore();
     const router = useRouter();
 
-    const mobile = ref('');
-    const verificationCode = ref('');
+    const mobile = ref("");
+    const verificationCode = ref("");
     const TIME_COUNT = ref(120);
     const count = ref();
     const timer = ref(null) as Ref<NodeJS.Timeout | null>;
     const isShowCaptcha = ref(false);
-    const errorMessage = ref('');
+    const errorMessage = ref("");
     const hasError = ref(false);
 
     const showPrompt = ref(true);
@@ -133,15 +133,15 @@ export default defineComponent({
 
     const rules = {
       mobile: {
-        required: helpers.withMessage('手机号码不能为空', required),
+        required: helpers.withMessage("手机号码不能为空", required),
         format: helpers.withMessage(
-          '手机号格式不正确',
+          "手机号格式不正确",
           // 中国手机号(严谨), 根据工信部2019年最新公布的手机号段
           helpers.regex(/^((\+|00)86)?1((3[\d])|(4[5,6,7,9])|(5[0-3,5-9])|(6[5-7])|(7[0-8])|(8[\d])|(9[1,8,9]))\d{8}$/),
         ),
       },
       verificationCode: {
-        required: helpers.withMessage('手机验证码不能为空', required),
+        required: helpers.withMessage("手机验证码不能为空", required),
       },
     };
     const v = useVuelidate(rules, { mobile, verificationCode });
@@ -174,9 +174,9 @@ export default defineComponent({
         .then((response) => {
           if (response) {
             isSubmitDisabled.value = false;
-            toast.success('欢迎回来！');
+            toast.success("欢迎回来！");
             router.push({
-              path: CONSTANTS.Path.HOME,
+              path: Path.HOME,
             });
           }
         })
@@ -190,7 +190,7 @@ export default defineComponent({
     };
 
     const readSeconds = computed(() => {
-      return count.value + ' 秒后获取';
+      return count.value + " 秒后获取";
     });
 
     const prompt = computed(() => {
@@ -198,7 +198,7 @@ export default defineComponent({
     });
 
     const promptMessage = computed(() => {
-      return '您还有【' + authentication.remainTimes + '】次尝试机会，之后将会锁定该账户';
+      return "您还有【" + authentication.remainTimes + "】次尝试机会，之后将会锁定该账户";
     });
 
     const isDisabled = computed(() => {
@@ -221,7 +221,7 @@ export default defineComponent({
     };
 
     const onResetError = () => {
-      errorMessage.value = '';
+      errorMessage.value = "";
       hasError.value = false;
     };
 

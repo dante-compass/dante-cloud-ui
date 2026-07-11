@@ -35,7 +35,7 @@ import { CONSTANTS, API } from "@/configurations";
 import { HDeleteButton, HEditButton, HTable } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.IOT_PRODUCT_CATEGORY,
+  name: ComponentName.IOT_PRODUCT_CATEGORY,
   components: {
     HDeleteButton,
     HEditButton,
@@ -46,7 +46,7 @@ defineOptions({
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById } = useTable<
   ProductCategoryEntity,
   ProductCategoryConditions
->(API.core.iotProductCategory(), CONSTANTS.ComponentName.IOT_PRODUCT_CATEGORY);
+>(API.core.iotProductCategory(), ComponentName.IOT_PRODUCT_CATEGORY);
 
 const selected = ref([]);
 const rowKey: ProductCategoryProps = "id";

@@ -78,7 +78,7 @@ const props = defineProps({
 const { tableRows, totalPages, pagination, loading, findItems, deleteItemById, conditions } = useTable<
   TslFunctionEntity,
   TslFunctionConditions
->(API.core.iotTslFunction(), CONSTANTS.ComponentName.IOT_TSL_FUNCTION);
+>(API.core.iotTslFunction(), ComponentName.IOT_TSL_FUNCTION);
 
 const isOpenDialog = shallowRef<boolean>(false);
 

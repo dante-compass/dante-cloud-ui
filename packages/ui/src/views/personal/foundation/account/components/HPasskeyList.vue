@@ -53,7 +53,7 @@ export default defineComponent({
     const { tableRows, pagination, loading, findItems, conditions } = useTable<
       OAuth2CredentialRecordConditions,
       OAuth2CredentialRecordEntity
-    >(API.core.oauth2CredentialRecord(), CONSTANTS.ComponentName.OAUTH2_CREDENTIAL_RECORD, true);
+    >(API.core.oauth2CredentialRecord(), ComponentName.OAUTH2_CREDENTIAL_RECORD, true);
     const { isSupported } = usePasskey();
 
     const rowKey: OAuth2CredentialRecordProps = "credentialId";

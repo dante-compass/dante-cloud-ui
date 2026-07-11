@@ -185,7 +185,7 @@ const { editedItem, isEdit, title, overlay, saveOrUpdate } = useTableItem<OAuth2
 );
 const { tableRows, pagination, loading } = useTable<OAuth2ScopeConditions, OAuth2ScopeEntity>(
   API.core.oauth2Scope(),
-  CONSTANTS.ComponentName.OAUTH2_SCOPE,
+  ComponentName.OAUTH2_SCOPE,
   true,
 );
 

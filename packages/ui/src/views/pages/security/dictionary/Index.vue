@@ -48,7 +48,7 @@ import HDictionaryCondition from "./Search.vue";
 import { useSettingsStore } from "@herodotus/framework";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_DICTIONARY,
+  name: ComponentName.SYS_DICTIONARY,
 
   components: {
     HDeleteButton,
@@ -60,10 +60,7 @@ defineOptions({
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
-  useTable<SysDictionaryConditions, SysDictionaryEntity>(
-    API.core.sysDictionary(),
-    CONSTANTS.ComponentName.SYS_DICTIONARY,
-  );
+  useTable<SysDictionaryConditions, SysDictionaryEntity>(API.core.sysDictionary(), ComponentName.SYS_DICTIONARY);
 
 const selected = ref([]);
 const rowKey: SysDictionaryProps = "dictionaryId";
@@ -97,6 +94,6 @@ const columns: QTableColumnProps = [
 const settings = useSettingsStore();
 
 const getColor = (item: SysDictionaryEntity) => {
-  return CONSTANTS.COLOR_LIST[item.ordinal];
+  return COLOR_LIST[item.ordinal];
 };
 </script>

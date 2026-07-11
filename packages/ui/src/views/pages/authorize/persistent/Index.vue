@@ -34,7 +34,7 @@ import { moment } from "@herodotus/core";
 import { HDeleteButton, HTable } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.OAUTH2_PERSISTENT,
+  name: ComponentName.OAUTH2_PERSISTENT,
 
   components: {
     HDeleteButton,
@@ -45,7 +45,7 @@ defineOptions({
 const { tableRows, totalPages, pagination, loading, findItems, deleteItemById } = useTable<
   OAuth2PersistentTokenConditions,
   OAuth2PersistentTokenEntity
->(API.core.oauth2PersistentToken(), CONSTANTS.ComponentName.OAUTH2_PERSISTENT, false, {
+>(API.core.oauth2PersistentToken(), ComponentName.OAUTH2_PERSISTENT, false, {
   direction: "DESC",
   properties: ["lastUsed"],
 });

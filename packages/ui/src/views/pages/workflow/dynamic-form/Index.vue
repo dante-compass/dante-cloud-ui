@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { defineComponent, onMounted, ref, watch } from "vue";
 
 import type {
   HttpResult,
@@ -37,17 +37,17 @@ import type {
   QTableOnRequestParameter,
   DynamicFormEntity,
   DynamicFormConditions,
-} from '@/composables/declarations';
+} from "@/composables/declarations";
 
-import { CONSTANTS, API } from '@/configurations';
-import { toast, notify } from '@herodotus/core';
-import { useBaseTable } from '@/composables/hooks';
+import { CONSTANTS, API } from "@/configurations";
+import { toast, notify } from "@herodotus/core";
+import { useBaseTable } from "@/composables/hooks";
 
 export default defineComponent({
-  name: CONSTANTS.ComponentName.WORKFLOW_DYNAMIC_FORM,
+  name: ComponentName.WORKFLOW_DYNAMIC_FORM,
 
   setup(props) {
-    const rowKey = 'id' as keyof DynamicFormEntity;
+    const rowKey = "id" as keyof DynamicFormEntity;
     const selected = ref([]);
 
     const {
@@ -61,18 +61,14 @@ export default defineComponent({
       setPageData,
       showLoading,
       hideLoading,
-    } = useBaseTable<DynamicFormConditions, DynamicFormEntity>(
-      CONSTANTS.ComponentName.WIDGETS_DYNAMIC_FORM,
-      'updateTime',
-      true,
-    );
+    } = useBaseTable<DynamicFormConditions, DynamicFormEntity>(ComponentName.WIDGETS_DYNAMIC_FORM, "updateTime", true);
 
     const columns: QTableColumnProps = [
-      { name: 'id', field: 'id', align: 'center', label: '业务ID' },
-      { name: 'name', field: 'name', align: 'center', label: '名称' },
-      { name: 'activityName', field: 'activityName', align: 'center', label: '适用节点' },
-      { name: 'createTime', field: 'createTime', align: 'center', label: '创建时间' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+      { name: "id", field: "id", align: "center", label: "业务ID" },
+      { name: "name", field: "name", align: "center", label: "名称" },
+      { name: "activityName", field: "activityName", align: "center", label: "适用节点" },
+      { name: "createTime", field: "createTime", align: "center", label: "创建时间" },
+      { name: "actions", field: "actions", align: "center", label: "操作" },
     ];
 
     const fetchDynamicFormByPage = (pageNumber = 1) => {
@@ -108,13 +104,13 @@ export default defineComponent({
             if (result.message) {
               toast.success(result.message);
             } else {
-              toast.success('删除成功');
+              toast.success("删除成功");
             }
 
             fetchDynamicFormByPage(pagination.value.page);
           })
           .catch(() => {
-            toast.error('删除失败');
+            toast.error("删除失败");
           });
       });
     };

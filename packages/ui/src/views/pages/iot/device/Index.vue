@@ -66,7 +66,7 @@ import { CONSTANTS, API } from "@/configurations";
 import { HDeleteButton, HEditButton, HTable, HDenseIconButton } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.IOT_DEVICE,
+  name: ComponentName.IOT_DEVICE,
   components: { HDeleteButton, HEditButton, HTable, HDenseIconButton },
 });
 
@@ -81,7 +81,7 @@ const {
   findItems,
   deleteItemById,
   conditions,
-} = useTable<DeviceEntity, DeviceConditions>(API.core.iotDevice(), CONSTANTS.ComponentName.IOT_DEVICE);
+} = useTable<DeviceEntity, DeviceConditions>(API.core.iotDevice(), ComponentName.IOT_DEVICE);
 
 const selected = ref([]);
 const rowKey: DeviceProps = "id";

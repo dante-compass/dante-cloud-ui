@@ -16,13 +16,13 @@
     >
       <template #body-cell-certificateCategory="props">
         <q-td key="certificateCategory" :props="props">
-          {{ getDictionaryItemDisplay('CertificateCategory', props.row.certificateCategory) }}
+          {{ getDictionaryItemDisplay("CertificateCategory", props.row.certificateCategory) }}
         </q-td>
       </template>
 
       <template #body-cell-revocationReason="props">
         <q-td key="certificateFileCategory" :props="props">
-          {{ getDictionaryItemDisplay('CertificateFileCategory', props.row.certificateFileCategory) }}
+          {{ getDictionaryItemDisplay("CertificateFileCategory", props.row.certificateFileCategory) }}
         </q-td>
       </template>
 
@@ -48,42 +48,42 @@ import type {
   MgtCertificateFileResponse,
   MgtCertificateFileConditions,
   MgtCertificateFileProps,
-} from '@herodotus/api';
-import type { QTableColumnProps } from '@/composables/declarations';
+} from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import { isEmpty } from 'lodash-es';
+import { isEmpty } from "lodash-es";
 
-import { CONSTANTS, API } from '@/configurations';
-import { useTable, useDictionary, useOss } from '@/composables/hooks';
+import { CONSTANTS, API } from "@/configurations";
+import { useTable, useDictionary, useOss } from "@/composables/hooks";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.MGT_CERTIFICATE_FILE,
+  name: ComponentName.MGT_CERTIFICATE_FILE,
 });
 
 const selected = ref([]);
-const rowKey: MgtCertificateFileProps = 'fileId';
+const rowKey: MgtCertificateFileProps = "fileId";
 
 const columns: QTableColumnProps = [
-  { name: 'alias', field: 'alias', align: 'center', label: '证书名称' },
-  { name: 'certificateCategory', field: 'certificateCategory', align: 'center', label: '证书类别' },
+  { name: "alias", field: "alias", align: "center", label: "证书名称" },
+  { name: "certificateCategory", field: "certificateCategory", align: "center", label: "证书类别" },
   {
-    name: 'certificateFileCategory',
-    field: 'certificateFileCategory',
-    align: 'center',
-    label: '证书文件类别',
+    name: "certificateFileCategory",
+    field: "certificateFileCategory",
+    align: "center",
+    label: "证书文件类别",
   },
-  { name: 'fileName', field: 'fileName', align: 'center', label: '文件名' },
-  { name: 'suffix', field: 'suffix', align: 'center', label: '文件后缀' },
-  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+  { name: "fileName", field: "fileName", align: "center", label: "文件名" },
+  { name: "suffix", field: "suffix", align: "center", label: "文件后缀" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
 ];
 
 const { tableRows, totalPages, pagination, loading, toCreate, findItems, deleteItemById } = useTable<
   MgtCertificateFileConditions,
   MgtCertificateFileRequest,
   MgtCertificateFileResponse
->(API.core.mgtCertificateFile(), CONSTANTS.ComponentName.MGT_CERTIFICATE_FILE);
+>(API.core.mgtCertificateFile(), ComponentName.MGT_CERTIFICATE_FILE);
 
-const { getDictionaryItemDisplay } = useDictionary('CertificateCategory', 'RevocationReason');
+const { getDictionaryItemDisplay } = useDictionary("CertificateCategory", "RevocationReason");
 const { download } = useOss();
 
 const onDownload = (item: MgtCertificateFileResponse) => {

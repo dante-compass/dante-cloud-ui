@@ -54,7 +54,7 @@ const { editedItem, title, assign, overlay } = useTableItem<SysAttributeEntity>(
 
 const { tableRows, totalPages, pagination, loading } = useTable<SysPermissionConditions, SysPermissionEntity>(
   API.core.sysPermission(),
-  CONSTANTS.ComponentName.SYS_PERMISSION,
+  ComponentName.SYS_PERMISSION,
   true,
 );
 

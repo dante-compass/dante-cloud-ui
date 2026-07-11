@@ -49,7 +49,7 @@ defineOptions({ name: "OAuth2ScopeAuthorize", components: { HAuthorizeList, HAut
 const { editedItem, title, assign, overlay } = useTableItem<OAuth2ScopeEntity>(API.core.oauth2Scope());
 const { tableRows, pagination, loading } = useTable<SysPermissionConditions, SysPermissionEntity>(
   API.core.sysPermission(),
-  CONSTANTS.ComponentName.SYS_PERMISSION,
+  ComponentName.SYS_PERMISSION,
   true,
 );
 

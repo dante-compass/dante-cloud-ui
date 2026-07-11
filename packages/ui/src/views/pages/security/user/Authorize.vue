@@ -46,7 +46,7 @@ defineOptions({
 const { editedItem, title, assign, overlay } = useTableItem<SysUserEntity>(API.core.sysUser());
 const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEntity>(
   API.core.sysRole(),
-  CONSTANTS.ComponentName.SYS_ROLE,
+  ComponentName.SYS_ROLE,
   true,
 );
 

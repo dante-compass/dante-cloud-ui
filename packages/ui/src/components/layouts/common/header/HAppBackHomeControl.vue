@@ -9,5 +9,5 @@ import { CONSTANTS } from "@/configurations";
 
 defineOptions({ name: "HAppBackHomeControl" });
 
-const homePath = CONSTANTS.Path.HOME;
+const homePath = Path.HOME;
 </script>

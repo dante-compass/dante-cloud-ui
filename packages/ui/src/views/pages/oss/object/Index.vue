@@ -12,12 +12,12 @@
 </template>
 
 <script setup lang="ts">
-import { CONSTANTS } from '@/configurations';
+import { CONSTANTS } from "@/configurations";
 
-import { HOssBucketList, HOssObjectList } from './components';
+import { HOssBucketList, HOssObjectList } from "./components";
 
-defineOptions({ name: CONSTANTS.ComponentName.OSS_OBJECT, components: { HOssBucketList, HOssObjectList } });
+defineOptions({ name: ComponentName.OSS_OBJECT, components: { HOssBucketList, HOssObjectList } });
 
-const bucketName = shallowRef<string>('');
+const bucketName = shallowRef<string>("");
 const version = shallowRef<number>(0);
 </script>
