@@ -32,19 +32,11 @@ import { PAGE_NAME, API } from "@/configurations";
 
 import { HDeleteButton, HEditButton, HTable } from "@/components";
 
-defineOptions({
-  name: ComponentName.SYS_DEFAULT_ROLE,
-
-  components: {
-    HDeleteButton,
-    HEditButton,
-    HTable,
-  },
-});
+defineOptions({ name: PAGE_NAME.SYS_DEFAULT_ROLE, components: { HDeleteButton, HEditButton, HTable } });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-  useTable<SysDefaultRoleConditions, SysDefaultRoleEntity>(API.core.sysDefaultRole(), ComponentName.SYS_DEFAULT_ROLE);
+  useTable<SysDefaultRoleConditions, SysDefaultRoleEntity>(API.core.sysDefaultRole(), PAGE_NAME.SYS_DEFAULT_ROLE);
 
 const selected = ref([]);
 const rowKey: SysDefaultRoleProps = "defaultId";

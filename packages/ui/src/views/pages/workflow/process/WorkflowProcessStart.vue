@@ -12,60 +12,47 @@
   </h-detail-container>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { defineComponent, onMounted } from "vue";
 
 import { useBpmnProcess } from "@/composables/hooks";
 import { HDetailContainer, HFormSkeleton } from "@/components";
-import { CONSTANTS } from "@/configurations";
+import { PAGE_NAME } from "@/configurations";
 
 import { isEmpty } from "lodash-es";
 
-export default defineComponent({
-  name: ComponentName.WORKFLOW_PROCESS_START,
-
+defineOptions({
+  name: PAGE_NAME.WORKFLOW_PROCESS_START,
   components: {
     HDetailContainer,
     HFormSkeleton,
   },
+});
 
-  setup() {
-    const {
-      editedItem,
-      title,
-      overlay,
-      skeleton,
-      formModeler,
-      fetchStartForm,
-      deleteProcessSpecifics,
-      startWorkflowProcess,
-    } = useBpmnProcess();
+const {
+  editedItem,
+  title,
+  overlay,
+  skeleton,
+  formModeler,
+  fetchStartForm,
+  deleteProcessSpecifics,
+  startWorkflowProcess,
+} = useBpmnProcess();
 
-    const onSave = () => {
-      if (!isEmpty(editedItem.value.state)) {
-        startWorkflowProcess(editedItem.value);
-      }
-    };
+const onSave = () => {
+  if (!isEmpty(editedItem.value.state)) {
+    startWorkflowProcess(editedItem.value);
+  }
+};
 
-    const onCancel = () => {
-      if (editedItem.value.created) {
-        deleteProcessSpecifics(editedItem.value.id as string);
-      }
-    };
+const onCancel = () => {
+  if (editedItem.value.created) {
+    deleteProcessSpecifics(editedItem.value.id as string);
+  }
+};
 
-    onMounted(() => {
-      fetchStartForm(editedItem.value.processDefinitionKey as string, editedItem.value.tenantId);
-    });
-
-    return {
-      title,
-      overlay,
-      skeleton,
-      editedItem,
-      formModeler,
-      onSave,
-      onCancel,
-    };
-  },
+onMounted(() => {
+  fetchStartForm(editedItem.value.processDefinitionKey as string, editedItem.value.tenantId);
 });
 </script>

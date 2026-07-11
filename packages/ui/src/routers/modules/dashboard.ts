@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from "vue-router";
-import { CONSTANTS } from "@/configurations";
+import { PAGE_NAME, Path } from "@/configurations";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -28,13 +28,13 @@ const routes: Array<RouteRecordRaw> = [
         children: [
           {
             path: "/dashboard/workbench/process-start",
-            name: ComponentName.WORKFLOW_PROCESS_START,
+            name: PAGE_NAME.WORKFLOW_PROCESS_START,
             meta: { title: "审批流程", icon: "mdi-format-list-group-plus", isDetailContent: true },
             component: () => import("@/views/pages/workflow/process/WorkflowProcessStart.vue"),
           },
           {
             path: "/dashboard/workbench/process-approve",
-            name: ComponentName.WORKFLOW_PROCESS_APPROVE,
+            name: PAGE_NAME.WORKFLOW_PROCESS_APPROVE,
             meta: { title: "任务流程", icon: "mdi-check-decagram", isDetailContent: true },
             component: () => import("@/views/pages/workflow/process/WorkflowProcessApprove.vue"),
           },

@@ -82,16 +82,8 @@ import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } 
 import HElementCondition from "./Search.vue";
 
 defineOptions({
-  name: ComponentName.SYS_ELEMENT,
-
-  components: {
-    HBooleanColumn,
-    HElementCondition,
-    HDenseIconButton,
-    HDeleteButton,
-    HEditButton,
-    HTable,
-  },
+  name: PAGE_NAME.SYS_ELEMENT,
+  components: { HBooleanColumn, HElementCondition, HDenseIconButton, HDeleteButton, HEditButton, HTable },
 });
 
 const { defaultFormat } = useDateTime();
@@ -106,7 +98,7 @@ const {
   findItems,
   deleteItemById,
   conditions,
-} = useTable<SysElementConditions, SysElementEntity>(API.core.sysElement(), ComponentName.SYS_ELEMENT, false, {
+} = useTable<SysElementConditions, SysElementEntity>(API.core.sysElement(), PAGE_NAME.SYS_ELEMENT, false, {
   direction: "ASC",
   properties: ["path"],
 });

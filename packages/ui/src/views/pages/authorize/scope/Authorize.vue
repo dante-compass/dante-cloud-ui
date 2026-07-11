@@ -43,12 +43,15 @@ import { useTableItem, useTable } from "@/composables/hooks";
 import { HTable } from "@/components";
 import { HAuthorizeList, HAuthorizeLayout } from "@/components";
 
-defineOptions({ name: "OAuth2ScopeAuthorize", components: { HAuthorizeList, HAuthorizeLayout, HTable } });
+defineOptions({ name: PAGE_NAME.OAUTH2_SCOPE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout, HTable } });
 
-const { editedItem, title, assign, overlay, onReturn } = useTableItem<OAuth2ScopeEntity>(API.core.oauth2Scope());
+const { editedItem, title, overlay, onReturn } = useTableItem<OAuth2ScopeEntity>(
+  API.core.oauth2Scope(),
+  PAGE_NAME.OAUTH2_SCOPE_AUTHORIZE,
+);
 const { tableRows, pagination, loading } = useTable<SysPermissionConditions, SysPermissionEntity>(
   API.core.sysPermission(),
-  ComponentName.SYS_PERMISSION,
+  PAGE_NAME.SYS_PERMISSION,
   true,
 );
 

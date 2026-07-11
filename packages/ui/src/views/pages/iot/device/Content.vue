@@ -7,21 +7,18 @@
 
 <script setup lang="ts">
 import type { DeviceEntity } from "@herodotus/api";
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout } from "@/components";
 // import { HProductSelect } from "@/composables/iot";
 
-defineOptions({
-  name: "IotDeviceContent",
-  components: {
-    HCenterFormLayout,
-    // HProductSelect,
-  },
-});
+defineOptions({ name: PAGE_NAME.IOT_DEVICE_CONTENT, components: { HCenterFormLayout } });
 
-const { editedItem, title, saveOrUpdate, onReturn } = useTableItem<DeviceEntity>(API.core.iotDevice());
+const { editedItem, title, saveOrUpdate, onReturn } = useTableItem<DeviceEntity>(
+  API.core.iotDevice(),
+  PAGE_NAME.IOT_DEVICE_CONTENT,
+);
 
 const onSave = () => {
   saveOrUpdate();

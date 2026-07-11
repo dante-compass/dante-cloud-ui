@@ -1,7 +1,7 @@
 <template>
   <h-center-form-layout :entity="editedItem" :title="title" @save="onSave()" @cancel="onReturn">
     <h-text-field
-      v-model.lazy="v.editedItem.productKey.$model"
+      v-model.lazy="v.editedItem.productKey.$model as string"
       name="productKey"
       label="ProductKey * "
       placeholder="请输入 ProductKey"
@@ -45,19 +45,16 @@ import { required, helpers } from "@vuelidate/validators";
 
 import type { ProductEntity } from "@herodotus/api";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout, HDictionarySelect } from "@/components";
 
-defineOptions({
-  name: "IotProductContent",
-  components: {
-    HCenterFormLayout,
-    HDictionarySelect,
-  },
-});
+defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CONTENT, components: { HCenterFormLayout, HDictionarySelect } });
 
-const { editedItem, title, saveOrUpdate, onReturn } = useTableItem<ProductEntity>(API.core.iotProduct());
+const { editedItem, title, saveOrUpdate, onReturn } = useTableItem<ProductEntity>(
+  API.core.iotProduct(),
+  PAGE_NAME.IOT_PRODUCT_CONTENT,
+);
 
 const isUnique = () => {
   let productKey = editedItem.value.productKey;

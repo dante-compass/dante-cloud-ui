@@ -85,10 +85,7 @@ import { PAGE_NAME, API } from "@/configurations";
 import { useTable, useDateTime, useDictionary } from "@/composables/hooks";
 import { HDownloadCertificateDialog } from "./components";
 
-defineOptions({
-  name: ComponentName.MGT_CERTIFICATE,
-  components: { HDownloadCertificateDialog },
-});
+defineOptions({ name: PAGE_NAME.MGT_CERTIFICATE, components: { HDownloadCertificateDialog } });
 
 const selected = ref([]);
 const rowKey: MgtCertificateProps = "certId";
@@ -130,7 +127,7 @@ const columns: QTableColumnProps = [
 const { tableRows, totalPages, pagination, loading, toCreate, toFile, toRevocation, findItems, deleteItemById } =
   useTable<MgtCertificateConditions, MgtCertificateRequest, MgtCertificateResponse>(
     API.core.mgtCertificate(),
-    ComponentName.MGT_CERTIFICATE,
+    PAGE_NAME.MGT_CERTIFICATE,
   );
 
 const { defaultFormat } = useDateTime();

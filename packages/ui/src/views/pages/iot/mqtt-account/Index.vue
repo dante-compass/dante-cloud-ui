@@ -44,11 +44,11 @@ import type { MqttAccountEntity, MqttAccountConditions, MqttAccountProps } from 
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTable, useDateTime } from "@/composables/hooks";
-import { API, CONSTANTS } from "@/configurations";
+import { API, PAGE_NAME } from "@/configurations";
 
 import Search from "./Search.vue";
 
-defineOptions({ name: ComponentName.THINGS_MQTT_ACCOUNT, components: { Search } });
+defineOptions({ name: PAGE_NAME.THINGS_MQTT_ACCOUNT, components: { Search } });
 
 const columns: QTableColumnProps = [
   { name: "clientId", field: "clientId", align: "center", label: "Mqtt客户端ID" },
@@ -75,5 +75,5 @@ const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, conditions, toCreate, toAuthorize, findItems } = useTable<
   MqttAccountConditions,
   MqttAccountEntity
->(API.core.iotMqttAccount(), ComponentName.THINGS_MQTT_ACCOUNT);
+>(API.core.iotMqttAccount(), PAGE_NAME.THINGS_MQTT_ACCOUNT);
 </script>

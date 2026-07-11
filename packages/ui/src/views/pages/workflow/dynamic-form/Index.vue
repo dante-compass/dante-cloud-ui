@@ -44,7 +44,7 @@ import { toast, notify } from "@herodotus/core";
 import { useBaseTable } from "@/composables/hooks";
 
 export default defineComponent({
-  name: ComponentName.WORKFLOW_DYNAMIC_FORM,
+  name: PAGE_NAME.WORKFLOW_DYNAMIC_FORM,
 
   setup(props) {
     const rowKey = "id" as keyof DynamicFormEntity;
@@ -61,7 +61,7 @@ export default defineComponent({
       setPageData,
       showLoading,
       hideLoading,
-    } = useBaseTable<DynamicFormConditions, DynamicFormEntity>(ComponentName.WIDGETS_DYNAMIC_FORM, "updateTime", true);
+    } = useBaseTable<DynamicFormConditions, DynamicFormEntity>(PAGE_NAME.WIDGETS_DYNAMIC_FORM, "updateTime", true);
 
     const columns: QTableColumnProps = [
       { name: "id", field: "id", align: "center", label: "业务ID" },

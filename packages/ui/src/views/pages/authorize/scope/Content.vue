@@ -19,13 +19,16 @@ import type { OAuth2ScopeEntity } from "@herodotus/api";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { API } from "@/configurations";
+import { API, PAGE_NAME } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: "OAuth2ScopeContent" });
+defineOptions({ name: PAGE_NAME.OAUTH2_SCOPE_CONTENT });
 
-const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<OAuth2ScopeEntity>(API.core.oauth2Scope());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<OAuth2ScopeEntity>(
+  API.core.oauth2Scope(),
+  PAGE_NAME.OAUTH2_SCOPE_CONTENT,
+);
 
 const isUnique = () => {
   let scopeCode = editedItem.value.scopeCode;

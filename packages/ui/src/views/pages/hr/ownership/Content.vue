@@ -49,16 +49,20 @@ import { useTable, useTableItem, useDictionary } from "@/composables/hooks";
 import { HFullWidthFormLayout, HTable } from "@/components";
 import { HEmployeeCondition } from "../components";
 
-defineOptions({ name: "SysOwnershipContent", components: { HEmployeeCondition, HFullWidthFormLayout, HTable } });
+defineOptions({
+  name: PAGE_NAME.SYS_OWNERSHIP_CONTENT,
+  components: { HEmployeeCondition, HFullWidthFormLayout, HTable },
+});
 
 const { getDictionaryItemDisplay } = useDictionary("Gender", "identity");
 const { editedItem, title, overlay, onReturn } = useTableItem<SysEmployeeAllocatable>(
   API.core.sysEmployeeAllocatable(),
+  PAGE_NAME.SYS_OWNERSHIP_CONTENT,
 );
 const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
   SysEmployeeConditions,
   SysEmployeeEntity
->(API.core.sysEmployee(), ComponentName.SYS_EMPLOYEE);
+>(API.core.sysEmployee(), PAGE_NAME.SYS_EMPLOYEE);
 
 const selectedItems = ref([]) as Ref<Array<SysEmployeeEntity>>;
 

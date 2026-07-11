@@ -21,24 +21,19 @@
 import { shallowRef } from "vue";
 
 import type { ProductEntity } from "@herodotus/api";
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout, HFullWidthFormLayout } from "@/components";
 import { HDictionarySelect } from "@/components";
 import { HFunctionTable } from "../components";
 
 defineOptions({
-  name: "IotProductInfo",
-  components: {
-    HCenterFormLayout,
-    HFullWidthFormLayout,
-    HDictionarySelect,
-    HFunctionTable,
-  },
+  name: PAGE_NAME.IOT_PRODUCT_INFO,
+  components: { HCenterFormLayout, HFullWidthFormLayout, HDictionarySelect, HFunctionTable },
 });
 
 const splitterModel = shallowRef(5);
 const tabs = shallowRef();
 
-const { editedItem, title, onReturn } = useTableItem<ProductEntity>(API.core.iotProduct());
+const { editedItem, title, onReturn } = useTableItem<ProductEntity>(API.core.iotProduct(), PAGE_NAME.IOT_PRODUCT_INFO);
 </script>

@@ -38,36 +38,28 @@ import type { OAuth2UserLoggingEntity, OAuth2UserLoggingConditions, OAuth2UserLo
 import type { QTableColumnProps, EntityTitle } from "@/composables/declarations";
 
 import { PAGE_NAME, API } from "@/configurations";
-import { moment } from "@herodotus/core";
-import { useTable, useXlsx } from "@/composables/hooks";
+import { useTable, useXlsx, useDateTime } from "@/composables/hooks";
 
 import { HTable, HBooleanColumn } from "@/components";
 import { HComplianceCondition } from "@/components";
 
 defineOptions({
-  name: ComponentName.OAUTH2_COMPLIANCE,
+  name: PAGE_NAME.OAUTH2_COMPLIANCE,
   components: { HComplianceCondition, HTable, HBooleanColumn },
 });
 
+const { defaultFormat } = useDateTime();
 const { postExport } = useXlsx<OAuth2UserLoggingEntity>();
 const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
   OAuth2UserLoggingConditions,
   OAuth2UserLoggingEntity
->(API.core.oauth2UserLogging(), ComponentName.OAUTH2_COMPLIANCE, false, {
+>(API.core.oauth2UserLogging(), PAGE_NAME.OAUTH2_COMPLIANCE, false, {
   direction: "DESC",
   properties: ["createTime"],
 });
 
 const selected = ref([]);
 const rowKey: OAuth2UserLoggingProps = "loggingId";
-
-const dateFormat = (date: string) => {
-  if (date) {
-    return moment(date).format("YYYY-MM-DD HH:mm:ss");
-  } else {
-    return "";
-  }
-};
 
 const columns: QTableColumnProps = [
   { name: "principalName", field: "principalName", align: "center", label: "用户名" },
@@ -81,7 +73,7 @@ const columns: QTableColumnProps = [
   { name: "browserName", field: "browserName", align: "center", label: "浏览器" },
   { name: "browserEngineName", field: "browserEngineName", align: "center", label: "浏览器引擎" },
   { name: "operation", field: "operation", align: "center", label: "操作" },
-  { name: "createTime", field: "createTime", align: "center", label: "时间", format: (value) => dateFormat(value) },
+  { name: "createTime", field: "createTime", align: "center", label: "时间", format: (value) => defaultFormat(value) },
 ];
 
 const title: EntityTitle<OAuth2UserLoggingEntity> = {

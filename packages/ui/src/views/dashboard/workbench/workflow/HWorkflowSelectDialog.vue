@@ -77,7 +77,7 @@ export default defineComponent({
     });
     const { editedItem, createProcessSpecifics } = useBpmnProcess();
     const { toEdit } = useBaseTable<ProcessSpecificsConditions, ProcessSpecificsEntity>(
-      ComponentName.WORKFLOW_PROCESS_START,
+      PAGE_NAME.WORKFLOW_PROCESS_START,
       "updateTime",
     );
 

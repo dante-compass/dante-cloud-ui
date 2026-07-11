@@ -46,21 +46,16 @@ import type { SysTenantDataSourceEntity } from "@herodotus/api";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({
-  name: "SysTenantDataSourceContent",
-
-  components: {
-    HCenterFormLayout,
-  },
-});
+defineOptions({ name: PAGE_NAME.SYS_TENANT_DATA_SOURCE_CONTENT, components: { HCenterFormLayout } });
 
 const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysTenantDataSourceEntity>(
   API.core.sysTenantDataSource(),
+  PAGE_NAME.SYS_TENANT_DATA_SOURCE_CONTENT,
 );
 
 const isUnique = () => {

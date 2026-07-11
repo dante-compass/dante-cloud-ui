@@ -41,20 +41,16 @@ import { isEmpty } from "lodash-es";
 
 import { HAuthorizeList, HAuthorizeLayout } from "@/components";
 
-defineOptions({
-  name: "SysAttributeAuthorize",
+defineOptions({ name: PAGE_NAME.SYS_ATTRIBUTE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
-  components: {
-    HAuthorizeList,
-    HAuthorizeLayout,
-  },
-});
-
-const { editedItem, title, assign, overlay } = useTableItem<SysAttributeEntity>(API.core.sysAttribute());
+const { editedItem, title, assign, overlay } = useTableItem<SysAttributeEntity>(
+  API.core.sysAttribute(),
+  PAGE_NAME.SYS_ATTRIBUTE_AUTHORIZE,
+);
 
 const { tableRows, totalPages, pagination, loading } = useTable<SysPermissionConditions, SysPermissionEntity>(
   API.core.sysPermission(),
-  ComponentName.SYS_PERMISSION,
+  PAGE_NAME.SYS_PERMISSION,
   true,
 );
 

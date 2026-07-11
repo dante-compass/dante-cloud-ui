@@ -9,15 +9,16 @@
 <script setup lang="ts">
 import type { SysDictionaryEntity } from "@herodotus/api";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: "SysDictionaryContent" });
+defineOptions({ name: PAGE_NAME.SYS_DICTIONARY_CONTENT });
 
 const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysDictionaryEntity>(
   API.core.sysDictionary(),
+  PAGE_NAME.SYS_DICTIONARY_CONTENT,
 );
 
 const onSave = () => {

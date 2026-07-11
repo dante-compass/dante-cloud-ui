@@ -45,7 +45,7 @@ import type { Page, Sort, QTableColumnProps, QTableOnRequestParameter } from "@/
 
 import { useRouter } from "vue-router";
 import { OperationEnum } from "@herodotus/core";
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useElementStore } from "@herodotus/framework";
 
 import { HDeleteButton, HTable } from "@/components";
@@ -53,7 +53,10 @@ import { HDeleteButton, HTable } from "@/components";
 import { HOrganizationTree, HDepartmentTree } from "../components";
 import { useDictionary, useDateTime } from "@/composables/hooks";
 
-defineOptions({ name: "SysOwnership", components: { HDeleteButton, HDepartmentTree, HTable, HOrganizationTree } });
+defineOptions({
+  name: PAGE_NAME.SYS_OWNERSHIP,
+  components: { HDeleteButton, HDepartmentTree, HTable, HOrganizationTree },
+});
 
 const organizationId = shallowRef("");
 const departmentId = shallowRef("");

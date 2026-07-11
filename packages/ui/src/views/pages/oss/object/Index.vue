@@ -12,11 +12,11 @@
 </template>
 
 <script setup lang="ts">
-import { CONSTANTS } from "@/configurations";
+import { PAGE_NAME } from "@/configurations";
 
 import { HOssBucketList, HOssObjectList } from "./components";
 
-defineOptions({ name: ComponentName.OSS_OBJECT, components: { HOssBucketList, HOssObjectList } });
+defineOptions({ name: PAGE_NAME.OSS_OBJECT, components: { HOssBucketList, HOssObjectList } });
 
 const bucketName = shallowRef<string>("");
 const version = shallowRef<number>(0);

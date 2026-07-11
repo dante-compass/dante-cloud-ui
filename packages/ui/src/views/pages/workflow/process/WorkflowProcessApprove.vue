@@ -23,7 +23,7 @@
   </h-detail-container>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import type { Ref } from "vue";
 import { defineComponent, ref, onMounted } from "vue";
 
@@ -36,107 +36,87 @@ import { useAuthenticationStore } from "@herodotus/framework";
 import { toast } from "@herodotus/core";
 import { isEmpty } from "lodash-es";
 
-export default defineComponent({
-  name: ComponentName.WORKFLOW_PROCESS_APPROVE,
+defineOptions({
+  name: PAGE_NAME.WORKFLOW_PROCESS_APPROVE,
 
   components: {
     HDetailContainer,
     HFormSkeleton,
   },
+});
 
-  setup() {
-    const {
-      editedItem,
-      title,
-      overlay,
-      skeleton,
-      elements,
-      formModeler,
-      hasCondition,
-      conditionOptions,
-      obtainedElements,
-      condition,
-      onFinish,
-      fetchTaskForm,
-      startWorkflowProcess,
-    } = useBpmnProcess();
+const {
+  editedItem,
+  title,
+  overlay,
+  skeleton,
+  elements,
+  formModeler,
+  hasCondition,
+  conditionOptions,
+  obtainedElements,
+  condition,
+  fetchTaskForm,
+  startWorkflowProcess,
+} = useBpmnProcess();
 
-    const approved = ref<boolean>(true);
+const approved = ref<boolean>(true);
 
-    const sheet = ref({}) as Ref<Sheet>;
-    const comments = ref("");
+const sheet = ref({}) as Ref<Sheet>;
+const comments = ref("");
 
-    const auth = useAuthenticationStore();
+const auth = useAuthenticationStore();
 
-    const onSave = () => {
-      API.form
-        .processComments()
-        .saveOrUpdate({
-          username: auth.employeeId,
-          userId: auth.employeeId,
-          processInstanceId: editedItem.value.processDefinitionId as string,
-          taskId: editedItem.value.taskId as string,
-          activityId: editedItem.value.activityId,
-          activityName: editedItem.value.activityName,
-          message: "",
-          fullMessage: comments.value,
-          tenantId: editedItem.value.tenantId,
-        })
-        .then((result) => {
-          const comment = result.data as ProcessCommentsEntity;
-          if (!isEmpty(comment)) {
-            editedItem.value.comments.push(comment);
-            API.form
-              .processSpecifics()
-              .saveOrUpdate(editedItem.value)
-              .then((response) => {
-                const specifics = response.data;
+const onSave = () => {
+  API.form
+    .processComments()
+    .saveOrUpdate({
+      username: auth.employeeId,
+      userId: auth.employeeId,
+      processInstanceId: editedItem.value.processDefinitionId as string,
+      taskId: editedItem.value.taskId as string,
+      activityId: editedItem.value.activityId,
+      activityName: editedItem.value.activityName,
+      message: "",
+      fullMessage: comments.value,
+      tenantId: editedItem.value.tenantId,
+    })
+    .then((result) => {
+      const comment = result.data as ProcessCommentsEntity;
+      if (!isEmpty(comment)) {
+        editedItem.value.comments.push(comment);
+        API.form
+          .processSpecifics()
+          .saveOrUpdate(editedItem.value)
+          .then((response) => {
+            const specifics = response.data;
 
-                const name = condition.value.variable;
-                const variables = {} as Variables;
-                variables[name] = { value: approved.value };
-                API.bpmn
-                  .task()
-                  .complete(specifics.taskId as string, {
-                    variables: variables,
-                    withVariablesInReturn: false,
-                  })
-                  .then(() => {
-                    onFinish();
-                    toast.success("保存成功！");
-                  });
+            const name = condition.value.variable;
+            const variables = {} as Variables;
+            variables[name] = { value: approved.value };
+            API.bpmn
+              .task()
+              .complete(specifics.taskId as string, {
+                variables: variables,
+                withVariablesInReturn: false,
+              })
+              .then(() => {
+                onReturn();
+                toast.success("保存成功！");
               });
-          }
-        })
-        .catch(() => {
-          toast.error("保存失败！");
-        });
-    };
-
-    const onCancel = () => {
-      onFinish;
-    };
-
-    onMounted(() => {
-      fetchTaskForm(editedItem.value.taskId as string);
+          });
+      }
+    })
+    .catch(() => {
+      toast.error("保存失败！");
     });
+};
 
-    return {
-      title,
-      overlay,
-      skeleton,
-      editedItem,
-      formModeler,
-      elements,
-      approved,
-      sheet,
-      hasCondition,
-      conditionOptions,
-      obtainedElements,
-      comments,
-      onSave,
-      onCancel,
-    };
-  },
+const onCancel = () => {
+  onReturn;
+};
+
+onMounted(() => {
+  fetchTaskForm(editedItem.value.taskId as string);
 });
 </script>

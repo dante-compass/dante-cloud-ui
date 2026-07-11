@@ -34,7 +34,7 @@ defineOptions({
 const selectedValue = defineModel<TslUnitEntity | null>();
 
 const { loading, tableRows, totalPages, showLoading, hideLoading } = useBaseTable<TslUnitEntity, TslUnitConditions>(
-  ComponentName.IOT_TSL_UNIT,
+  PAGE_NAME.IOT_TSL_UNIT,
   "updateTime",
   false,
 );

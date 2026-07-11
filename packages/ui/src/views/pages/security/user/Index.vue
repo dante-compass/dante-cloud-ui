@@ -67,13 +67,13 @@ import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/componen
 import { HChangePassword, HSendMessageToUser } from "./components";
 
 defineOptions({
-  name: ComponentName.SYS_USER,
+  name: PAGE_NAME.SYS_USER,
   components: { HChangePassword, HDeleteButton, HEditButton, HDenseIconButton, HTable, HSendMessageToUser },
 });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-  useTable<SysUserConditions, SysUserEntity>(API.core.sysUser(), ComponentName.SYS_USER);
+  useTable<SysUserConditions, SysUserEntity>(API.core.sysUser(), PAGE_NAME.SYS_USER);
 
 const selected = ref([]);
 const rowKey: SysUserProps = "userId";

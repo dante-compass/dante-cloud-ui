@@ -26,14 +26,17 @@ import type { SysRoleEntity } from "@herodotus/api";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: "SysRoleContent" });
+defineOptions({ name: PAGE_NAME.SYS_ROLE_CONTENT });
 
-const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysRoleEntity>(API.core.sysRole());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysRoleEntity>(
+  API.core.sysRole(),
+  PAGE_NAME.SYS_ROLE_CONTENT,
+);
 
 const isUnique = () => {
   let roleCode = editedItem.value.roleCode;

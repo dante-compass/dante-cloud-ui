@@ -34,19 +34,15 @@ import { useTableItem, useTable } from "@/composables/hooks";
 
 import { HAuthorizeList, HAuthorizeLayout } from "@/components";
 
-defineOptions({
-  name: "SysElementAuthorize",
+defineOptions({ name: PAGE_NAME.SYS_ATTRIBUTE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
-  components: {
-    HAuthorizeList,
-    HAuthorizeLayout,
-  },
-});
-
-const { editedItem, title, assign, overlay } = useTableItem<SysElementEntity>(API.core.sysElement());
+const { editedItem, title, assign, overlay } = useTableItem<SysElementEntity>(
+  API.core.sysElement(),
+  PAGE_NAME.SYS_ATTRIBUTE_AUTHORIZE,
+);
 const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEntity>(
   API.core.sysRole(),
-  ComponentName.SYS_ROLE,
+  PAGE_NAME.SYS_ROLE,
   true,
 );
 

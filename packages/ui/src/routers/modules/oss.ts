@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import { CONSTANTS } from "@/configurations";
+import { PAGE_NAME } from "@/configurations";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "/oss/bucket",
-        name: ComponentName.OSS_BUCKET,
+        name: PAGE_NAME.OSS_BUCKET,
         meta: { title: "存储桶管理", icon: "mdi-bucket", isHideAllChild: true },
         component: () => import("@/views/pages/oss/bucket/Index.vue"),
         children: [
@@ -31,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/oss/object",
-        name: ComponentName.OSS_OBJECT,
+        name: PAGE_NAME.OSS_OBJECT,
         meta: { title: "存储对象管理", icon: "mdi-file-cabinet", isHideAllChild: true },
         component: () => import("@/views/pages/oss/object/Index.vue"),
         children: [

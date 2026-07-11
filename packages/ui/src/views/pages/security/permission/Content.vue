@@ -24,14 +24,15 @@ import type { SysPermissionEntity } from "@herodotus/api";
 import { required, helpers } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: "SysPermissionContent" });
+defineOptions({ name: PAGE_NAME.SYS_PERMISSION_CONTENT });
 
 const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysPermissionEntity>(
   API.core.sysPermission(),
+  PAGE_NAME.SYS_PERMISSION_CONTENT,
 );
 
 const rules = {

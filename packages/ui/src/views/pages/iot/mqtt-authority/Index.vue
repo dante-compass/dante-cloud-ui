@@ -64,11 +64,11 @@ import type { MqttAuthorityEntity, MqttAuthorityConditions, MqttAuthorityProps }
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTable, useDateTime, useDictionary } from "@/composables/hooks";
-import { API, CONSTANTS } from "@/configurations";
+import { API, PAGE_NAME } from "@/configurations";
 
 import Search from "./Search.vue";
 
-defineOptions({ name: ComponentName.THINGS_MQTT_AUTHORITY, components: { Search } });
+defineOptions({ name: PAGE_NAME.THINGS_MQTT_AUTHORITY, components: { Search } });
 
 const columns: QTableColumnProps = [
   { name: "topic", field: "topic", align: "center", label: "主题" },
@@ -107,7 +107,7 @@ const {
   deleteItemById,
 } = useTable<MqttAuthorityConditions, MqttAuthorityEntity>(
   API.core.iotMqttAuthority(),
-  ComponentName.THINGS_MQTT_AUTHORITY,
+  PAGE_NAME.THINGS_MQTT_AUTHORITY,
 );
 const { getDictionaryItemDisplay } = useDictionary("Permission", "Action", "Qos", "Retain");
 </script>

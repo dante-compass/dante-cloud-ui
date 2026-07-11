@@ -80,19 +80,10 @@ import { HDeleteButton, HEditButton, HInfoButton, HTable } from "@/components";
 import { useDictionary } from "@/composables/hooks";
 import Search from "./Search.vue";
 
-defineOptions({
-  name: ComponentName.IOT_PRODUCT,
-  components: {
-    HDeleteButton,
-    HEditButton,
-    HInfoButton,
-    HTable,
-    Search,
-  },
-});
+defineOptions({ name: PAGE_NAME.IOT_PRODUCT, components: { HDeleteButton, HEditButton, HInfoButton, HTable, Search } });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toInfo, findItems, deleteItemById, conditions } =
-  useTable<ProductConditions, ProductEntity>(API.core.iotProduct(), ComponentName.IOT_PRODUCT);
+  useTable<ProductConditions, ProductEntity>(API.core.iotProduct(), PAGE_NAME.IOT_PRODUCT);
 
 const selected = ref([]);
 const rowKey: ProductProps = "id";

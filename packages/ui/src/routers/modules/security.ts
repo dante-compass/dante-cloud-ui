@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import { CONSTANTS } from "@/configurations";
+import { PAGE_NAME } from "@/configurations";
 
 /**
  * Meta 参数说明：
@@ -57,7 +57,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "/security/user",
-        name: ComponentName.SYS_USER,
+        name: PAGE_NAME.SYS_USER,
         meta: { title: "用户管理", icon: "mdi-badge-account-horizontal", isHideAllChild: true },
         component: () => import("@/views/pages/security/user/Index.vue"),
         children: [
@@ -82,7 +82,7 @@ const routes: Array<RouteRecordRaw> = [
 
       {
         path: "/security/role",
-        name: ComponentName.SYS_ROLE,
+        name: PAGE_NAME.SYS_ROLE,
         meta: { title: "角色管理", icon: "mdi-shield-account", isHideAllChild: true },
         component: () => import("@/views/pages/security/role/Index.vue"),
         children: [
@@ -102,7 +102,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/security/permission",
-        name: ComponentName.SYS_PERMISSION,
+        name: PAGE_NAME.SYS_PERMISSION,
         meta: { title: "权限管理", icon: "mdi-shield-link-variant", isHideAllChild: true },
         component: () => import("@/views/pages/security/permission/Index.vue"),
         children: [
@@ -120,7 +120,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/security/attribute",
-        name: ComponentName.SYS_ATTRIBUTE,
+        name: PAGE_NAME.SYS_ATTRIBUTE,
         meta: { title: "元数据管理", icon: "mdi-layers-triple", isHideAllChild: true },
         component: () => import("@/views/pages/security/attribute/Index.vue"),
         children: [
@@ -140,7 +140,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/security/default-role",
-        name: ComponentName.SYS_DEFAULT_ROLE,
+        name: PAGE_NAME.SYS_DEFAULT_ROLE,
         meta: { title: "默认角色", icon: "mdi-lock-open-alert", isHideAllChild: true },
         component: () => import("@/views/pages/security/default-role/Index.vue"),
         children: [
@@ -154,7 +154,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/security/element",
-        name: ComponentName.SYS_ELEMENT,
+        name: PAGE_NAME.SYS_ELEMENT,
         meta: { title: "菜单管理", icon: "mdi-clipboard-text", isHideAllChild: true },
         component: () => import("@/views/pages/security/element/Index.vue"),
         children: [
@@ -174,7 +174,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/security/tenant",
-        name: ComponentName.SYS_TENANT_DATA_SOURCE,
+        name: PAGE_NAME.SYS_TENANT_DATA_SOURCE,
         meta: { title: "多租户数据源", icon: "mdi-database-plus", isHideAllChild: true },
         component: () => import("@/views/pages/security/tenant/Index.vue"),
         children: [
@@ -188,7 +188,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/security/dictionary",
-        name: ComponentName.SYS_DICTIONARY,
+        name: PAGE_NAME.SYS_DICTIONARY,
         meta: { title: "数据字典", icon: "mdi-playlist-check", isHideAllChild: true },
         component: () => import("@/views/pages/security/dictionary/Index.vue"),
         children: [

@@ -31,15 +31,16 @@ import type { SysDepartmentEntity } from "@herodotus/api";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 
 import { HOrganizationSelect, HDepartmentSelect } from "../components";
 
-defineOptions({ name: "SysDepartmentContent", components: { HOrganizationSelect, HDepartmentSelect } });
+defineOptions({ name: PAGE_NAME.SYS_DEPARTMENT_CONTENT, components: { HOrganizationSelect, HDepartmentSelect } });
 
 const { editedItem, title, overlay, additional, saveOrUpdate, onReturn } = useTableItem<SysDepartmentEntity>(
   API.core.sysDepartment(),
+  PAGE_NAME.SYS_DEPARTMENT_CONTENT,
 );
 
 const rules = {

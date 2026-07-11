@@ -6,20 +6,16 @@
 
 <script setup lang="ts">
 import type { ProductCategoryEntity } from "@herodotus/api";
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({
-  name: "IotProductCategoryContent",
-  components: {
-    HCenterFormLayout,
-  },
-});
+defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CATEGORY_CONTENT, components: { HCenterFormLayout } });
 
 const { editedItem, title, saveOrUpdate, onReturn } = useTableItem<ProductCategoryEntity>(
   API.core.iotProductCategory(),
+  PAGE_NAME.IOT_PRODUCT_CATEGORY_CONTENT,
 );
 
 const onSave = () => {

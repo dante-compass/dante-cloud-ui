@@ -42,33 +42,25 @@ import type {
 import type { QTableColumnProps, EntityTitle } from "@/composables/declarations";
 
 import { PAGE_NAME, API } from "@/configurations";
-import { moment } from "@herodotus/core";
-import { useTable, useXlsx } from "@/composables/hooks";
+import { useTable, useXlsx, useDateTime } from "@/composables/hooks";
 
 import { HTable, HBooleanColumn } from "@/components";
 import { HAuditCondition } from "@/components";
 
-defineOptions({ name: ComponentName.OAUTH2_AUDIT, components: { HAuditCondition, HTable, HBooleanColumn } });
+defineOptions({ name: PAGE_NAME.OAUTH2_AUDIT, components: { HAuditCondition, HTable, HBooleanColumn } });
 
+const { defaultFormat } = useDateTime();
 const { postExport } = useXlsx<OAuth2InterfaceAuditEntity>();
 const { tableRows, totalPages, pagination, loading, conditions, findItems } = useTable<
   OAuth2InterfaceAuditConditions,
   OAuth2InterfaceAuditEntity
->(API.core.oauth2InterfaceAudit(), ComponentName.OAUTH2_AUDIT, false, {
+>(API.core.oauth2InterfaceAudit(), PAGE_NAME.OAUTH2_AUDIT, false, {
   direction: "DESC",
   properties: ["createTime"],
 });
 
 const selected = ref([]);
 const rowKey: OAuth2InterfaceAuditProps = "auditId";
-
-const dateFormat = (date: string) => {
-  if (date) {
-    return moment(date).format("YYYY-MM-DD HH:mm:ss");
-  } else {
-    return "";
-  }
-};
 
 const columns: QTableColumnProps = [
   { name: "principalName", field: "principalName", align: "center", label: "用户名" },
@@ -84,7 +76,7 @@ const columns: QTableColumnProps = [
   { name: "osName", field: "osName", align: "center", label: "操作系统" },
   { name: "browserName", field: "browserName", align: "center", label: "浏览器" },
   { name: "browserEngineName", field: "browserEngineName", align: "center", label: "浏览器引擎" },
-  { name: "createTime", field: "createTime", align: "center", label: "时间", format: (value) => dateFormat(value) },
+  { name: "createTime", field: "createTime", align: "center", label: "时间", format: (value) => defaultFormat(value) },
 ];
 
 const title: EntityTitle<OAuth2InterfaceAuditEntity> = {

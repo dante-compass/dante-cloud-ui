@@ -33,14 +33,15 @@
 <script setup lang="ts">
 import type { SysAttributeEntity } from "@herodotus/api";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout, HDictionarySelect } from "@/components";
 
-defineOptions({ name: "SysAttributeContent" });
+defineOptions({ name: PAGE_NAME.SYS_ATTRIBUTE_CONTENT });
 
 const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysAttributeEntity>(
   API.core.sysAttribute(),
+  PAGE_NAME.SYS_ATTRIBUTE_CONTENT,
 );
 
 const onSave = () => {

@@ -1,5 +1,5 @@
 import type { RouteRecordRaw } from "vue-router";
-import { CONSTANTS } from "@/configurations";
+import { PAGE_NAME } from "@/configurations";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,7 +10,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "/hr/organization",
-        name: ComponentName.SYS_ORGANIZATION,
+        name: PAGE_NAME.SYS_ORGANIZATION,
         meta: { title: "单位管理", icon: "mdi-bank-outline", isHideAllChild: true },
         component: () => import("@/views/pages/hr/organization/Index.vue"),
         children: [
@@ -24,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/hr/department",
-        name: ComponentName.SYS_DEPARTMENT,
+        name: PAGE_NAME.SYS_DEPARTMENT,
         meta: { title: "部门管理", icon: "mdi-home", isHideAllChild: true },
         component: () => import("@/views/pages/hr/department/Index.vue"),
         children: [
@@ -38,7 +38,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/hr/employee",
-        name: ComponentName.SYS_EMPLOYEE,
+        name: PAGE_NAME.SYS_EMPLOYEE,
         meta: { title: "人员管理", icon: "mdi-card-account-details-star", isHideAllChild: true },
         component: () => import("@/views/pages/hr/employee/Index.vue"),
         children: [
@@ -52,7 +52,7 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "/hr/ownership",
-        name: ComponentName.SYS_OWNERSHIP,
+        name: PAGE_NAME.SYS_OWNERSHIP,
         meta: { title: "人员归属", icon: "mdi-account-switch", isHideAllChild: true },
         component: () => import("@/views/pages/hr/ownership/Index.vue"),
         children: [

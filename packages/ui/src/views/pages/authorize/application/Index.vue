@@ -36,13 +36,12 @@ import type { OAuth2ApplicationEntity, OAuth2ApplicationConditions, OAuth2Applic
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { PAGE_NAME, API } from "@/configurations";
-import { moment } from "@herodotus/core";
 import { useTable, useDateTime } from "@/composables/hooks";
 
 import { HDeleteButton, HEditButton, HTable, HGrantTypeColumn } from "@/components";
 
 defineOptions({
-  name: ComponentName.OAUTH2_APPLICATION,
+  name: PAGE_NAME.OAUTH2_APPLICATION,
   components: { HDeleteButton, HEditButton, HGrantTypeColumn, HTable },
 });
 
@@ -51,7 +50,7 @@ const { defaultFormat, humanize } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
   useTable<OAuth2ApplicationConditions, OAuth2ApplicationEntity>(
     API.core.oauth2Application(),
-    ComponentName.OAUTH2_APPLICATION,
+    PAGE_NAME.OAUTH2_APPLICATION,
   );
 
 const rowKey: OAuth2ApplicationProps = "applicationId";

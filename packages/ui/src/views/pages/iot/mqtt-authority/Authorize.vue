@@ -35,14 +35,17 @@ import type {
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTableItem, useTable } from "@/composables/hooks";
-import { API, CONSTANTS } from "@/configurations";
+import { API, PAGE_NAME } from "@/configurations";
 
-defineOptions({ name: "ThingsMqttAuthorityAuthorize" });
+defineOptions({ name: PAGE_NAME.THINGS_MQTT_AUTHORITY_AUTHORIZE });
 
-const { editedItem, overlay, title, assign } = useTableItem<MqttAuthorityEntity>(API.core.iotMqttAuthority());
+const { editedItem, overlay, title, assign } = useTableItem<MqttAuthorityEntity>(
+  API.core.iotMqttAuthority(),
+  PAGE_NAME.THINGS_MQTT_AUTHORITY_AUTHORIZE,
+);
 const { tableRows, totalPages, pagination, loading } = useTable<MqttCategoryConditions, MqttCategoryEntity>(
   API.core.iotMqttCategory(),
-  ComponentName.THINGS_MQTT_CATEGORY,
+  PAGE_NAME.THINGS_MQTT_CATEGORY,
   true,
 );
 

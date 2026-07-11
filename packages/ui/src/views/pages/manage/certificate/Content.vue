@@ -111,16 +111,16 @@ import type { MgtCertificateRequest, MgtCertificateResponse } from "@herodotus/a
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { isEmpty } from "lodash-es";
 
-defineOptions({ name: "MgtCertificateContent" });
+defineOptions({ name: PAGE_NAME.MGT_CERTIFICATE_CONTENT });
 
 const { editedItem, title, saveOrUpdate, overlay, onReturn } = useTableItem<
   MgtCertificateRequest,
   MgtCertificateResponse
->(API.core.mgtCertificate());
+>(API.core.mgtCertificate(), PAGE_NAME.MGT_CERTIFICATE_CONTENT);
 
 const isUnique = () => {
   let alias = editedItem.value.alias;

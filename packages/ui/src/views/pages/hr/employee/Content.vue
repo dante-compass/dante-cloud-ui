@@ -24,13 +24,16 @@ import type { SysEmployeeEntity } from "@herodotus/api";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout, HDictionarySelect } from "@/components";
 
-defineOptions({ name: "SysEmployeeContent" });
+defineOptions({ name: PAGE_NAME.SYS_EMPLOYEE_CONTENT });
 
-const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysEmployeeEntity>(API.core.sysEmployee());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysEmployeeEntity>(
+  API.core.sysEmployee(),
+  PAGE_NAME.SYS_EMPLOYEE_CONTENT,
+);
 
 const isUnique = () => {
   let employeeName = editedItem.value.employeeName;

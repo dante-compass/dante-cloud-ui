@@ -36,14 +36,15 @@
 import type { MqttAuthorityEntity } from "@herodotus/api";
 
 import { useTableItem } from "@/composables/hooks";
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
-defineOptions({ name: "ThingsMqttAuthorityContent" });
+defineOptions({ name: PAGE_NAME.THINGS_MQTT_AUTHORITY_CONTENT });
 
 const mqttAuthorityForm = ref();
 
 const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<MqttAuthorityEntity>(
   API.core.iotMqttAuthority(),
+  PAGE_NAME.THINGS_MQTT_AUTHORITY_CONTENT,
 );
 
 const onSave = async () => {

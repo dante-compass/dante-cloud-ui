@@ -30,14 +30,17 @@ import type { MqttAccountEntity, MqttCategoryEntity, MqttCategoryConditions, Mqt
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTableItem, useTable } from "@/composables/hooks";
-import { API, CONSTANTS } from "@/configurations";
+import { API, PAGE_NAME } from "@/configurations";
 
-defineOptions({ name: "ThingsMqttAccountAuthorize" });
+defineOptions({ name: PAGE_NAME.THINGS_MQTT_ACCOUNT_AUTHORIZE });
 
-const { editedItem, overlay, title, assign } = useTableItem<MqttAccountEntity>(API.core.iotMqttAccount());
+const { editedItem, overlay, title, assign } = useTableItem<MqttAccountEntity>(
+  API.core.iotMqttAccount(),
+  PAGE_NAME.THINGS_MQTT_ACCOUNT_AUTHORIZE,
+);
 const { tableRows, totalPages, pagination, loading } = useTable<MqttCategoryConditions, MqttCategoryEntity>(
   API.core.iotMqttCategory(),
-  ComponentName.THINGS_MQTT_CATEGORY,
+  PAGE_NAME.THINGS_MQTT_CATEGORY,
   true,
 );
 

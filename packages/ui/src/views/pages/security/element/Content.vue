@@ -56,13 +56,16 @@ import type { SysElementEntity, SysElementConditions } from "@herodotus/api";
 
 import { isEmpty } from "lodash-es";
 import { useTableItem, useTreeItems } from "@/composables/hooks";
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: "SysElementContent" });
+defineOptions({ name: PAGE_NAME.SYS_ELEMENT_CONTENT });
 
-const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysElementEntity>(API.core.sysElement());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysElementEntity>(
+  API.core.sysElement(),
+  PAGE_NAME.SYS_ELEMENT_CONTENT,
+);
 const { treeItems } = useTreeItems<SysElementConditions, SysElementEntity>(API.core.sysElement());
 
 const onSave = () => {

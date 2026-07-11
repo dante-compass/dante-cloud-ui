@@ -45,6 +45,21 @@ export default function useBaseTable<C extends Conditions, I extends Entity, O e
   const store = useElementStore();
   const router = useRouter();
 
+  const routePushParam = (
+    componentName: string,
+    operation: OperationEnum,
+    item = {},
+    additional: Record<string, unknown> = {},
+  ) => {
+    store.addRoutePushParam(componentName, {
+      item: JSON.stringify(item),
+      operation: operation,
+      additional: JSON.stringify(additional),
+      parentName: name,
+    });
+    router.push({ name: componentName });
+  };
+
   /**
    * 进入 Table 详情页(三级路由页面)传递的参数
    * @param componentName 详情页(三级路由页面) 对应的组件名称
@@ -57,14 +72,7 @@ export default function useBaseTable<C extends Conditions, I extends Entity, O e
     item: I = {} as I,
     additional: Record<string, unknown> = {},
   ) => {
-    store.addRoutePushParam(componentName, {
-      item: JSON.stringify(item),
-      operation: operation,
-      additional: JSON.stringify(additional),
-      parentName: name,
-    });
-
-    router.push({ name: componentName });
+    routePushParam(componentName, operation, item, additional);
   };
 
   const appendSuffix = (name: string, suffix: string, withSuffix = true) => {
@@ -152,7 +160,7 @@ export default function useBaseTable<C extends Conditions, I extends Entity, O e
     tableRows,
     totalPages,
     pagination,
-    addRoutePushParam,
+    routePushParam,
     setPagination,
     setPageData,
     showLoading,

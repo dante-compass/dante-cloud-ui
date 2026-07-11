@@ -34,19 +34,12 @@ import { useTable } from "@/composables/hooks";
 import { PAGE_NAME, API } from "@/configurations";
 import { HDeleteButton, HEditButton, HTable } from "@/components";
 
-defineOptions({
-  name: ComponentName.IOT_PRODUCT_CATEGORY,
-  components: {
-    HDeleteButton,
-    HEditButton,
-    HTable,
-  },
-});
+defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CATEGORY, components: { HDeleteButton, HEditButton, HTable } });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById } = useTable<
   ProductCategoryEntity,
   ProductCategoryConditions
->(API.core.iotProductCategory(), ComponentName.IOT_PRODUCT_CATEGORY);
+>(API.core.iotProductCategory(), PAGE_NAME.IOT_PRODUCT_CATEGORY);
 
 const selected = ref([]);
 const rowKey: ProductCategoryProps = "id";

@@ -54,19 +54,11 @@ import { get } from "lodash-es";
 
 import { HEditButton, HTable, HSwaggerColumn } from "@/components";
 
-defineOptions({
-  name: ComponentName.SYS_ATTRIBUTE,
-
-  components: {
-    HEditButton,
-    HTable,
-    HSwaggerColumn,
-  },
-});
+defineOptions({ name: PAGE_NAME.SYS_ATTRIBUTE, components: { HEditButton, HTable, HSwaggerColumn } });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-  useTable<SysAttributeConditions, SysAttributeEntity>(API.core.sysAttribute(), ComponentName.SYS_ATTRIBUTE, false, {
+  useTable<SysAttributeConditions, SysAttributeEntity>(API.core.sysAttribute(), PAGE_NAME.SYS_ATTRIBUTE, false, {
     direction: "ASC",
     properties: ["url"],
   });

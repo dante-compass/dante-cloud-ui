@@ -74,7 +74,7 @@ import { useDictionary } from "@/composables/hooks";
 
 import { HCreateBucketDialog } from "./components";
 
-defineOptions({ name: ComponentName.OSS_BUCKET, components: { HCreateBucketDialog } });
+defineOptions({ name: PAGE_NAME.OSS_BUCKET, components: { HCreateBucketDialog } });
 
 const columns: QTableColumnProps = [
   { name: "bucketName", field: "bucketName", align: "center", label: "Bucket名称" },

@@ -181,6 +181,7 @@ defineOptions({
 
 const { editedItem, isEdit, title, overlay, saveOrUpdate, onReturn } = useTableItem<OAuth2ApplicationEntity>(
   API.core.oauth2Application(),
+  PAGE_NAME.OAUTH2_APPLICATION_CONTENT,
 );
 const { tableRows, pagination, loading } = useTable<OAuth2ScopeConditions, OAuth2ScopeEntity>(
   API.core.oauth2Scope(),

@@ -33,19 +33,15 @@ import { useTableItem, useTable } from "@/composables/hooks";
 
 import { HAuthorizeList, HAuthorizeLayout } from "@/components";
 
-defineOptions({
-  name: "SysDefaultRoleAuthorize",
+defineOptions({ name: PAGE_NAME.SYS_DEFAULT_ROLE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
-  components: {
-    HAuthorizeList,
-    HAuthorizeLayout,
-  },
-});
-
-const { editedItem, title, assign, overlay } = useTableItem<SysDefaultRoleEntity>(API.core.sysDefaultRole());
+const { editedItem, title, assign, overlay } = useTableItem<SysDefaultRoleEntity>(
+  API.core.sysDefaultRole(),
+  PAGE_NAME.SYS_DEFAULT_ROLE_AUTHORIZE,
+);
 const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEntity>(
   API.core.sysRole(),
-  ComponentName.SYS_ROLE,
+  PAGE_NAME.SYS_ROLE,
   true,
 );
 

@@ -35,20 +35,16 @@ import { useTableItem, useTable } from "@/composables/hooks";
 
 import { HAuthorizeList, HAuthorizeLayout } from "@/components";
 
-defineOptions({
-  name: "SysRoleAuthorize",
+defineOptions({ name: PAGE_NAME.SYS_ROLE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
-  components: {
-    HAuthorizeList,
-    HAuthorizeLayout,
-  },
-});
-
-const { editedItem, title, assign, overlay } = useTableItem<SysRoleEntity>(API.core.sysRole());
+const { editedItem, title, assign, overlay } = useTableItem<SysRoleEntity>(
+  API.core.sysRole(),
+  PAGE_NAME.SYS_ROLE_AUTHORIZE,
+);
 
 const { tableRows, totalPages, pagination, loading } = useTable<SysPermissionConditions, SysPermissionEntity>(
   API.core.sysPermission(),
-  ComponentName.SYS_PERMISSION,
+  PAGE_NAME.SYS_PERMISSION,
   true,
 );
 

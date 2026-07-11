@@ -41,26 +41,20 @@ import type { SysDictionaryEntity, SysDictionaryConditions, SysDictionaryProps }
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTable, useDateTime } from "@/composables/hooks";
-import { PAGE_NAME, API } from "@/configurations";
+import { PAGE_NAME, API, COLOR_LIST } from "@/configurations";
 
 import { HDeleteButton, HEditButton, HTable } from "@/components";
 import HDictionaryCondition from "./Search.vue";
 import { useSettingsStore } from "@herodotus/framework";
 
 defineOptions({
-  name: ComponentName.SYS_DICTIONARY,
-
-  components: {
-    HDeleteButton,
-    HEditButton,
-    HTable,
-    HDictionaryCondition,
-  },
+  name: PAGE_NAME.SYS_DICTIONARY,
+  components: { HDeleteButton, HEditButton, HTable, HDictionaryCondition },
 });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById, conditions } =
-  useTable<SysDictionaryConditions, SysDictionaryEntity>(API.core.sysDictionary(), ComponentName.SYS_DICTIONARY);
+  useTable<SysDictionaryConditions, SysDictionaryEntity>(API.core.sysDictionary(), PAGE_NAME.SYS_DICTIONARY);
 
 const selected = ref([]);
 const rowKey: SysDictionaryProps = "dictionaryId";

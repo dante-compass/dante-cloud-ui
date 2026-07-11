@@ -98,7 +98,7 @@ import { format } from "quasar";
 
 import { HDeleteButton, HDenseIconButton, HTable, HChunkUploader, HSimpleUploader } from "@/components";
 import { useBaseTable, useDateTime, useOss } from "@/composables/hooks";
-import { API, CONSTANTS } from "@/configurations";
+import { API, PAGE_NAME } from "@/configurations";
 import { toast, notify } from "@herodotus/core";
 import { isEmpty, split, dropRight, join, initial } from "lodash-es";
 
@@ -140,7 +140,7 @@ const { humanStorageSize } = format;
 
 const rowKey: ObjectDomainProps = "objectName";
 
-const { toEdit } = useBaseTable<ObjectDomainConditions, ObjectDomain>(ComponentName.OSS_OBJECT, "updateTime", false);
+const { toEdit } = useBaseTable<ObjectDomainConditions, ObjectDomain>(PAGE_NAME.OSS_OBJECT, "updateTime", false);
 const { defaultFormat } = useDateTime();
 const { humanObjectSize, displayedObjectName, download } = useOss();
 

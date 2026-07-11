@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 
-import { CONSTANTS } from "@/configurations";
+import { PAGE_NAME } from "@/configurations";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "/manage/certificate",
-        name: ComponentName.MGT_CERTIFICATE,
+        name: PAGE_NAME.MGT_CERTIFICATE,
         meta: { title: "证书管理", icon: "mdi-certificate", isHideAllChild: true },
         component: () => import("@/views/pages/manage/certificate/Index.vue"),
         children: [

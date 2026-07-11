@@ -36,15 +36,16 @@ import type { SysOrganizationEntity } from "@herodotus/api";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout, HDictionarySelect } from "@/components";
 import { HOrganizationSelect } from "../components";
 
-defineOptions({ name: "SysOrganizationContent", components: { HOrganizationSelect } });
+defineOptions({ name: PAGE_NAME.SYS_ORGANIZATION_CONTENT, components: { HOrganizationSelect } });
 
 const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysOrganizationEntity>(
   API.core.sysOrganization(),
+  PAGE_NAME.SYS_ORGANIZATION_CONTENT,
 );
 
 const rules = {
