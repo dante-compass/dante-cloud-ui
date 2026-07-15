@@ -36,20 +36,22 @@ import type {
 } from "@herodotus/api";
 import type { HttpResult, QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { toast } from "@herodotus/core";
-import { useEditFinish } from "@herodotus/framework";
 import { useTableItem, useTable } from "@/composables/hooks";
 
 import { HTable } from "@/components";
 import { HAuthorizeList, HAuthorizeLayout } from "@/components";
 
-defineOptions({ name: "OAuth2ScopeAuthorize", components: { HAuthorizeList, HAuthorizeLayout, HTable } });
+defineOptions({ name: PAGE_NAME.OAUTH2_SCOPE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout, HTable } });
 
-const { editedItem, title, assign, overlay } = useTableItem<OAuth2ScopeEntity>(API.core.oauth2Scope());
+const { editedItem, title, overlay, onReturn } = useTableItem<OAuth2ScopeEntity>(
+  API.core.oauth2Scope(),
+  PAGE_NAME.OAUTH2_SCOPE_AUTHORIZE,
+);
 const { tableRows, pagination, loading } = useTable<SysPermissionConditions, SysPermissionEntity>(
   API.core.sysPermission(),
-  CONSTANTS.ComponentName.SYS_PERMISSION,
+  PAGE_NAME.SYS_PERMISSION,
   true,
 );
 
@@ -60,8 +62,6 @@ const columns: QTableColumnProps = [
   { name: "permissionName", field: "permissionName", align: "center", label: "权限名称" },
   { name: "permissionCode", field: "permissionCode", align: "center", label: "权限代码" },
 ];
-
-const { onFinish } = useEditFinish();
 
 onMounted(() => {
   selectedItems.value = editedItem.value.permissions;
@@ -83,7 +83,7 @@ const onSave = () => {
     .then((response) => {
       const result = response as HttpResult<OAuth2ScopeEntity>;
       overlay.value = false;
-      onFinish();
+      onReturn();
       if (result.message) {
         toast.success(result.message);
       } else {
@@ -92,7 +92,7 @@ const onSave = () => {
     })
     .catch(() => {
       overlay.value = false;
-      onFinish();
+      onReturn();
       toast.error("保存失败");
     });
 };

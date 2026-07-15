@@ -1,17 +1,13 @@
 <template>
-  <h-dynamic-forms container title="Dynamic Forms" :instance="instance" :item="editedItem" @close="onFinish" />
+  <h-dynamic-forms container title="Dynamic Forms" :instance="instance" :item="editedItem" @close="onReturn" />
 </template>
 
 <script setup lang="ts">
-import { CONSTANTS, API } from '@/configurations';
-import { useEditFinish } from '@herodotus/framework';
-import { useBaseTableItem } from '@/composables/hooks';
+import { PAGE_NAME, API } from "@/configurations";
+import { useBaseTableItem } from "@/composables/hooks";
 
-defineOptions({
-  name: CONSTANTS.ComponentName.WIDGETS_DYNAMIC_FORM,
-});
+defineOptions({ name: PAGE_NAME.WIDGETS_DYNAMIC_FORM });
 
 const instance = API.bpmnStorage;
-const { onFinish } = useEditFinish();
-const { editedItem } = useBaseTableItem();
+const { editedItem, onReturn } = useBaseTableItem(PAGE_NAME.WIDGETS_DYNAMIC_FORM);
 </script>

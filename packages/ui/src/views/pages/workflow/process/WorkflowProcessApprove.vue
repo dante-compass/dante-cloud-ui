@@ -23,120 +23,91 @@
   </h-detail-container>
 </template>
 
-<script lang="ts">
-import type { Ref } from 'vue';
-import { defineComponent, ref, onMounted } from 'vue';
+<script setup lang="ts">
+import type { Sheet, ProcessCommentsEntity, Variables } from "@/composables/declarations";
 
-import type { Sheet, ProcessCommentsEntity, Variables } from '@/composables/declarations';
+import { useBpmnProcess } from "@/composables/hooks";
+import { HDetailContainer, HFormSkeleton } from "@/components";
+import { PAGE_NAME, API } from "@/configurations";
+import { useAuthenticationStore } from "@herodotus/framework";
+import { toast } from "@herodotus/core";
+import { isEmpty } from "lodash-es";
 
-import { useBpmnProcess } from '@/composables/hooks';
-import { HDetailContainer, HFormSkeleton } from '@/components';
-import { CONSTANTS, API } from '@/configurations';
-import { useAuthenticationStore } from '@herodotus/framework';
-import { toast } from '@herodotus/core';
-import { isEmpty } from 'lodash-es';
+defineOptions({ name: PAGE_NAME.WORKFLOW_PROCESS_APPROVE, components: { HDetailContainer, HFormSkeleton } });
 
-export default defineComponent({
-  name: CONSTANTS.ComponentName.WORKFLOW_PROCESS_APPROVE,
+const {
+  editedItem,
+  title,
+  overlay,
+  skeleton,
+  elements,
+  formModeler,
+  hasCondition,
+  conditionOptions,
+  obtainedElements,
+  condition,
+  fetchTaskForm,
+  startWorkflowProcess,
+  onReturn,
+} = useBpmnProcess(PAGE_NAME.WORKFLOW_PROCESS_APPROVE);
 
-  components: {
-    HDetailContainer,
-    HFormSkeleton,
-  },
+const approved = ref<boolean>(true);
 
-  setup() {
-    const {
-      editedItem,
-      title,
-      overlay,
-      skeleton,
-      elements,
-      formModeler,
-      hasCondition,
-      conditionOptions,
-      obtainedElements,
-      condition,
-      onFinish,
-      fetchTaskForm,
-      startWorkflowProcess,
-    } = useBpmnProcess();
+const sheet = ref({}) as Ref<Sheet>;
+const comments = ref("");
 
-    const approved = ref<boolean>(true);
+const auth = useAuthenticationStore();
 
-    const sheet = ref({}) as Ref<Sheet>;
-    const comments = ref('');
+const onSave = () => {
+  API.form
+    .processComments()
+    .saveOrUpdate({
+      username: auth.employeeId,
+      userId: auth.employeeId,
+      processInstanceId: editedItem.value.processDefinitionId as string,
+      taskId: editedItem.value.taskId as string,
+      activityId: editedItem.value.activityId,
+      activityName: editedItem.value.activityName,
+      message: "",
+      fullMessage: comments.value,
+      tenantId: editedItem.value.tenantId,
+    })
+    .then((result) => {
+      const comment = result.data as ProcessCommentsEntity;
+      if (!isEmpty(comment)) {
+        editedItem.value.comments.push(comment);
+        API.form
+          .processSpecifics()
+          .saveOrUpdate(editedItem.value)
+          .then((response) => {
+            const specifics = response.data;
 
-    const auth = useAuthenticationStore();
-
-    const onSave = () => {
-      API.form
-        .processComments()
-        .saveOrUpdate({
-          username: auth.employeeId,
-          userId: auth.employeeId,
-          processInstanceId: editedItem.value.processDefinitionId as string,
-          taskId: editedItem.value.taskId as string,
-          activityId: editedItem.value.activityId,
-          activityName: editedItem.value.activityName,
-          message: '',
-          fullMessage: comments.value,
-          tenantId: editedItem.value.tenantId,
-        })
-        .then((result) => {
-          const comment = result.data as ProcessCommentsEntity;
-          if (!isEmpty(comment)) {
-            editedItem.value.comments.push(comment);
-            API.form
-              .processSpecifics()
-              .saveOrUpdate(editedItem.value)
-              .then((response) => {
-                const specifics = response.data;
-
-                const name = condition.value.variable;
-                const variables = {} as Variables;
-                variables[name] = { value: approved.value };
-                API.bpmn
-                  .task()
-                  .complete(specifics.taskId as string, {
-                    variables: variables,
-                    withVariablesInReturn: false,
-                  })
-                  .then(() => {
-                    onFinish();
-                    toast.success('保存成功！');
-                  });
+            const name = condition.value.variable;
+            const variables = {} as Variables;
+            variables[name] = { value: approved.value };
+            API.bpmn
+              .task()
+              .complete(specifics.taskId as string, {
+                variables: variables,
+                withVariablesInReturn: false,
+              })
+              .then(() => {
+                onReturn();
+                toast.success("保存成功！");
               });
-          }
-        })
-        .catch(() => {
-          toast.error('保存失败！');
-        });
-    };
-
-    const onCancel = () => {
-      onFinish;
-    };
-
-    onMounted(() => {
-      fetchTaskForm(editedItem.value.taskId as string);
+          });
+      }
+    })
+    .catch(() => {
+      toast.error("保存失败！");
     });
+};
 
-    return {
-      title,
-      overlay,
-      skeleton,
-      editedItem,
-      formModeler,
-      elements,
-      approved,
-      sheet,
-      hasCondition,
-      conditionOptions,
-      obtainedElements,
-      comments,
-      onSave,
-      onCancel,
-    };
-  },
+const onCancel = () => {
+  onReturn;
+};
+
+onMounted(() => {
+  fetchTaskForm(editedItem.value.taskId as string);
 });
 </script>

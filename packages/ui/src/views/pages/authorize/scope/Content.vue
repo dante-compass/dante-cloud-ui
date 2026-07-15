@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model.lazy="v.editedItem.scopeCode.$model"
       name="scopeCode"
@@ -19,13 +19,16 @@ import type { OAuth2ScopeEntity } from "@herodotus/api";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { API } from "@/configurations";
+import { API, PAGE_NAME } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: "OAuth2ScopeContent" });
+defineOptions({ name: PAGE_NAME.OAUTH2_SCOPE_CONTENT });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<OAuth2ScopeEntity>(API.core.oauth2Scope());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<OAuth2ScopeEntity>(
+  API.core.oauth2Scope(),
+  PAGE_NAME.OAUTH2_SCOPE_CONTENT,
+);
 
 const isUnique = () => {
   let scopeCode = editedItem.value.scopeCode;

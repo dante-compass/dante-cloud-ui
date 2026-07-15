@@ -14,7 +14,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <q-btn color="primary" label="新建表单" @click="toCreate(false)" />
+      <q-btn color="primary" label="新建表单" @click="toCreate({}, false)" />
     </template>
 
     <template #body-cell-actions="props">
@@ -26,9 +26,7 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref, watch } from 'vue';
-
+<script setup lang="ts">
 import type {
   HttpResult,
   Page,
@@ -37,112 +35,90 @@ import type {
   QTableOnRequestParameter,
   DynamicFormEntity,
   DynamicFormConditions,
-} from '@/composables/declarations';
+} from "@/composables/declarations";
 
-import { CONSTANTS, API } from '@/configurations';
-import { toast, notify } from '@herodotus/core';
-import { useBaseTable } from '@/composables/hooks';
+import { PAGE_NAME, API } from "@/configurations";
+import { toast, notify } from "@herodotus/core";
+import { useBaseTable } from "@/composables/hooks";
 
-export default defineComponent({
-  name: CONSTANTS.ComponentName.WORKFLOW_DYNAMIC_FORM,
+defineOptions({ name: PAGE_NAME.WORKFLOW_DYNAMIC_FORM });
 
-  setup(props) {
-    const rowKey = 'id' as keyof DynamicFormEntity;
-    const selected = ref([]);
+const rowKey = "id" as keyof DynamicFormEntity;
+const selected = ref([]);
 
-    const {
-      loading,
-      tableRows,
-      totalPages,
-      pagination,
-      toEdit,
-      toCreate,
-      setPagination,
-      setPageData,
-      showLoading,
-      hideLoading,
-    } = useBaseTable<DynamicFormConditions, DynamicFormEntity>(
-      CONSTANTS.ComponentName.WIDGETS_DYNAMIC_FORM,
-      'updateTime',
-      true,
-    );
+const {
+  loading,
+  tableRows,
+  totalPages,
+  pagination,
+  toEdit,
+  toCreate,
+  setPagination,
+  setPageData,
+  showLoading,
+  hideLoading,
+} = useBaseTable<DynamicFormConditions, DynamicFormEntity>(PAGE_NAME.WIDGETS_DYNAMIC_FORM, "updateTime", true);
 
-    const columns: QTableColumnProps = [
-      { name: 'id', field: 'id', align: 'center', label: '业务ID' },
-      { name: 'name', field: 'name', align: 'center', label: '名称' },
-      { name: 'activityName', field: 'activityName', align: 'center', label: '适用节点' },
-      { name: 'createTime', field: 'createTime', align: 'center', label: '创建时间' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
+const columns: QTableColumnProps = [
+  { name: "id", field: "id", align: "center", label: "业务ID" },
+  { name: "name", field: "name", align: "center", label: "名称" },
+  { name: "activityName", field: "activityName", align: "center", label: "适用节点" },
+  { name: "createTime", field: "createTime", align: "center", label: "创建时间" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 
-    const fetchDynamicFormByPage = (pageNumber = 1) => {
-      showLoading();
-      API.form
-        .dynamicForm()
-        .fetchByPage({
-          pageNumber: pageNumber - 1,
-          pageSize: pagination.value.rowsPerPage,
-        })
-        .then((result) => {
-          const data = result.data as Page<DynamicFormEntity>;
-          setPageData(data);
-          hideLoading();
-        })
-        .catch(() => {
-          hideLoading();
-        });
-    };
-
-    const findItems: QTableOnRequestProps = (props: QTableOnRequestParameter) => {
-      setPagination(props);
-      fetchDynamicFormByPage(pagination.value.page);
-    };
-
-    const onDeleteItemById = (id: string) => {
-      notify.standardDeleteNotify(() => {
-        API.form
-          .dynamicForm()
-          .delete(id)
-          .then((response) => {
-            const result = response as HttpResult<string>;
-            if (result.message) {
-              toast.success(result.message);
-            } else {
-              toast.success('删除成功');
-            }
-
-            fetchDynamicFormByPage(pagination.value.page);
-          })
-          .catch(() => {
-            toast.error('删除失败');
-          });
-      });
-    };
-
-    watch(
-      () => pagination.value.page,
-      (newValue) => {
-        fetchDynamicFormByPage(newValue);
-      },
-    );
-
-    onMounted(() => {
-      fetchDynamicFormByPage(pagination.value.page);
+const fetchDynamicFormByPage = (pageNumber = 1) => {
+  showLoading();
+  API.form
+    .dynamicForm()
+    .fetchByPage({
+      pageNumber: pageNumber - 1,
+      pageSize: pagination.value.rowsPerPage,
+    })
+    .then((result) => {
+      const data = result.data as Page<DynamicFormEntity>;
+      setPageData(data);
+      hideLoading();
+    })
+    .catch(() => {
+      hideLoading();
     });
+};
 
-    return {
-      tableRows,
-      columns,
-      rowKey,
-      selected,
-      pagination,
-      totalPages,
-      loading,
-      findItems,
-      toEdit,
-      toCreate,
-      onDeleteItemById,
-    };
+const findItems: QTableOnRequestProps = (props: QTableOnRequestParameter) => {
+  setPagination(props);
+  fetchDynamicFormByPage(pagination.value.page);
+};
+
+const onDeleteItemById = (id: string) => {
+  notify.standardDeleteNotify(() => {
+    API.form
+      .dynamicForm()
+      .delete(id)
+      .then((response) => {
+        const result = response as HttpResult<string>;
+        if (result.message) {
+          toast.success(result.message);
+        } else {
+          toast.success("删除成功");
+        }
+
+        fetchDynamicFormByPage(pagination.value.page);
+      })
+      .catch(() => {
+        toast.error("删除失败");
+      });
+  });
+};
+
+watch(
+  () => pagination.value.page,
+  (newValue) => {
+    fetchDynamicFormByPage(newValue);
   },
+);
+
+onMounted(() => {
+  fetchDynamicFormByPage(pagination.value.page);
 });
 </script>

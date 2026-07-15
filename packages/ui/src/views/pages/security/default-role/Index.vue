@@ -26,27 +26,17 @@
 import type { SysDefaultRoleEntity, SysDefaultRoleConditions, SysDefaultRoleProps } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { useTable } from "@/composables/hooks";
+import { useTable, useDateTime } from "@/composables/hooks";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { HDeleteButton, HEditButton, HTable } from "@/components";
 
-defineOptions({
-  name: CONSTANTS.ComponentName.SYS_DEFAULT_ROLE,
+defineOptions({ name: PAGE_NAME.SYS_DEFAULT_ROLE, components: { HDeleteButton, HEditButton, HTable } });
 
-  components: {
-    HDeleteButton,
-    HEditButton,
-    HTable,
-  },
-});
-
+const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
-  useTable<SysDefaultRoleConditions, SysDefaultRoleEntity>(
-    API.core.sysDefaultRole(),
-    CONSTANTS.ComponentName.SYS_DEFAULT_ROLE,
-  );
+  useTable<SysDefaultRoleConditions, SysDefaultRoleEntity>(API.core.sysDefaultRole(), PAGE_NAME.SYS_DEFAULT_ROLE);
 
 const selected = ref([]);
 const rowKey: SysDefaultRoleProps = "defaultId";
@@ -60,6 +50,19 @@ const columns: QTableColumnProps = [
     align: "center",
     label: "角色代码",
     format: (value) => `${value.roleCode}`,
+  },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
   },
   { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
   { name: "status", field: "status", align: "center", label: "状态" },

@@ -34,27 +34,23 @@ import type {
 } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useTableItem, useTable } from "@/composables/hooks";
 import { isEmpty } from "lodash-es";
 
 import { HAuthorizeList, HAuthorizeLayout } from "@/components";
 
-defineOptions({
-  name: "SysAttributeAuthorize",
+defineOptions({ name: PAGE_NAME.SYS_ATTRIBUTE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
-  components: {
-    HAuthorizeList,
-    HAuthorizeLayout,
-  },
-});
-
-const { editedItem, title, assign, overlay } = useTableItem<SysAttributeEntity>(API.core.sysAttribute());
+const { editedItem, title, assign, overlay } = useTableItem<SysAttributeEntity>(
+  API.core.sysAttribute(),
+  PAGE_NAME.SYS_ATTRIBUTE_AUTHORIZE,
+);
 
 const { tableRows, totalPages, pagination, loading } = useTable<SysPermissionConditions, SysPermissionEntity>(
   API.core.sysPermission(),
-  CONSTANTS.ComponentName.SYS_PERMISSION,
+  PAGE_NAME.SYS_PERMISSION,
   true,
 );
 

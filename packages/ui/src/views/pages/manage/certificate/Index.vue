@@ -30,23 +30,15 @@
         </q-td>
       </template>
 
-      <template #body-cell-startTime="{ value }">
-        <q-td key="startTime"> {{ defaultFormat(value) }}</q-td>
-      </template>
-
-      <template #body-cell-endTime="{ value }">
-        <q-td key="startTime"> {{ defaultFormat(value) }}</q-td>
-      </template>
-
       <template #body-cell-certificateCategory="props">
         <q-td key="certificateCategory" :props="props">
-          {{ getDictionaryItemDisplay('CertificateCategory', props.row.certificateCategory) }}
+          {{ getDictionaryItemDisplay("CertificateCategory", props.row.certificateCategory) }}
         </q-td>
       </template>
 
       <template #body-cell-revocationReason="props">
         <q-td key="revocationReason" :props="props">
-          {{ getDictionaryItemDisplay('RevocationReason', props.row.revocationReason) }}
+          {{ getDictionaryItemDisplay("RevocationReason", props.row.revocationReason) }}
         </q-td>
       </template>
 
@@ -85,45 +77,61 @@ import type {
   MgtCertificateResponse,
   MgtCertificateConditions,
   MgtCertificateProps,
-} from '@herodotus/api';
-import type { QTableColumnProps } from '@/composables/declarations';
+} from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from '@/configurations';
+import { PAGE_NAME, API } from "@/configurations";
 
-import { useTable, useDateTime, useDictionary } from '@/composables/hooks';
-import { HDownloadCertificateDialog } from './components';
+import { useTable, useDateTime, useDictionary } from "@/composables/hooks";
+import { HDownloadCertificateDialog } from "./components";
 
-defineOptions({
-  name: CONSTANTS.ComponentName.MGT_CERTIFICATE,
-  components: { HDownloadCertificateDialog },
-});
+defineOptions({ name: PAGE_NAME.MGT_CERTIFICATE, components: { HDownloadCertificateDialog } });
 
 const selected = ref([]);
-const rowKey: MgtCertificateProps = 'certId';
+const rowKey: MgtCertificateProps = "certId";
 
 const columns: QTableColumnProps = [
-  { name: 'certificateCategory', field: 'certificateCategory', align: 'center', label: '证书类别' },
-  { name: 'alias', field: 'alias', align: 'center', label: '证书名称' },
-  { name: 'commonName', field: 'commonName', align: 'center', label: '公共名称' },
-  { name: 'serialNumber', field: 'serialNumber', align: 'center', label: '证书序列号' },
-  { name: 'issuerDn', field: 'issuerDn', align: 'center', label: '颁发者 DN' },
-  { name: 'subjectDn', field: 'subjectDn', align: 'center', label: '主题 DN' },
-  { name: 'startTime', field: 'startTime', align: 'center', label: '开始时间' },
-  { name: 'endTime', field: 'endTime', align: 'center', label: '结束时间' },
-  { name: 'password', field: 'password', align: 'center', label: '密码' },
-  { name: 'ocsp', field: 'ocsp', align: 'center', label: 'OCSP 证书' },
-  { name: 'revocationReason', field: 'revocationReason', align: 'center', label: '证书吊销理由' },
-  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+  { name: "certificateCategory", field: "certificateCategory", align: "center", label: "证书类别" },
+  { name: "alias", field: "alias", align: "center", label: "证书名称" },
+  { name: "commonName", field: "commonName", align: "center", label: "公共名称" },
+  { name: "serialNumber", field: "serialNumber", align: "center", label: "证书序列号" },
+  { name: "issuerDn", field: "issuerDn", align: "center", label: "颁发者 DN" },
+  { name: "subjectDn", field: "subjectDn", align: "center", label: "主题 DN" },
+  {
+    name: "startTime",
+    field: "startTime",
+    align: "center",
+    label: "开始时间",
+    format: (value) => defaultFormat(value),
+  },
+  { name: "endTime", field: "endTime", align: "center", label: "结束时间", format: (value) => defaultFormat(value) },
+  { name: "password", field: "password", align: "center", label: "密码" },
+  { name: "ocsp", field: "ocsp", align: "center", label: "OCSP 证书" },
+  { name: "revocationReason", field: "revocationReason", align: "center", label: "证书吊销理由" },
+  {
+    name: "updateBy",
+    field: "updateBy",
+    align: "center",
+    label: "最后修改人",
+  },
+  {
+    name: "updateTime",
+    field: "updateTime",
+    align: "center",
+    label: "修改时间",
+    format: (value) => defaultFormat(value),
+  },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
 ];
 
 const { tableRows, totalPages, pagination, loading, toCreate, toFile, toRevocation, findItems, deleteItemById } =
   useTable<MgtCertificateConditions, MgtCertificateRequest, MgtCertificateResponse>(
     API.core.mgtCertificate(),
-    CONSTANTS.ComponentName.MGT_CERTIFICATE,
+    PAGE_NAME.MGT_CERTIFICATE,
   );
 
 const { defaultFormat } = useDateTime();
-const { getDictionaryItemDisplay } = useDictionary('CertificateCategory', 'RevocationReason');
+const { getDictionaryItemDisplay } = useDictionary("CertificateCategory", "RevocationReason");
 
 const openDialog = shallowRef(false);
 const currentCertId = shallowRef();
@@ -137,7 +145,7 @@ const onShowDownloadDialog = (item: MgtCertificateResponse) => {
 
 watch(openDialog, (newValue) => {
   if (!newValue) {
-    currentCertId.value = '';
+    currentCertId.value = "";
   }
 });
 </script>

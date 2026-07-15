@@ -12,60 +12,39 @@
   </h-detail-container>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted } from 'vue';
+<script setup lang="ts">
+import { useBpmnProcess } from "@/composables/hooks";
+import { HDetailContainer, HFormSkeleton } from "@/components";
+import { PAGE_NAME } from "@/configurations";
 
-import { useBpmnProcess } from '@/composables/hooks';
-import { HDetailContainer, HFormSkeleton } from '@/components';
-import { CONSTANTS } from '@/configurations';
+import { isEmpty } from "lodash-es";
 
-import { isEmpty } from 'lodash-es';
+defineOptions({ name: PAGE_NAME.WORKFLOW_PROCESS_START, components: { HDetailContainer, HFormSkeleton } });
 
-export default defineComponent({
-  name: CONSTANTS.ComponentName.WORKFLOW_PROCESS_START,
+const {
+  editedItem,
+  title,
+  overlay,
+  skeleton,
+  formModeler,
+  fetchStartForm,
+  deleteProcessSpecifics,
+  startWorkflowProcess,
+} = useBpmnProcess(PAGE_NAME.WORKFLOW_PROCESS_START);
 
-  components: {
-    HDetailContainer,
-    HFormSkeleton,
-  },
+const onSave = () => {
+  if (!isEmpty(editedItem.value.state)) {
+    startWorkflowProcess(editedItem.value);
+  }
+};
 
-  setup() {
-    const {
-      editedItem,
-      title,
-      overlay,
-      skeleton,
-      formModeler,
-      fetchStartForm,
-      deleteProcessSpecifics,
-      startWorkflowProcess,
-    } = useBpmnProcess();
+const onCancel = () => {
+  if (editedItem.value.created) {
+    deleteProcessSpecifics(editedItem.value.id as string);
+  }
+};
 
-    const onSave = () => {
-      if (!isEmpty(editedItem.value.state)) {
-        startWorkflowProcess(editedItem.value);
-      }
-    };
-
-    const onCancel = () => {
-      if (editedItem.value.created) {
-        deleteProcessSpecifics(editedItem.value.id as string);
-      }
-    };
-
-    onMounted(() => {
-      fetchStartForm(editedItem.value.processDefinitionKey as string, editedItem.value.tenantId);
-    });
-
-    return {
-      title,
-      overlay,
-      skeleton,
-      editedItem,
-      formModeler,
-      onSave,
-      onCancel,
-    };
-  },
+onMounted(() => {
+  fetchStartForm(editedItem.value.processDefinitionKey as string, editedItem.value.tenantId);
 });
 </script>

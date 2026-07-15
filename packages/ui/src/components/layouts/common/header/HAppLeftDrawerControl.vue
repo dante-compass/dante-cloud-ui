@@ -8,20 +8,10 @@
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { useApplicationStore } from "@herodotus/framework";
 
-import { useApplicationStore } from '@herodotus/framework';
+defineOptions({ name: "HAppLeftDrawerControl" });
 
-export default defineComponent({
-  name: 'HAppLeftDrawerControl',
-
-  setup(props) {
-    const application = useApplicationStore();
-
-    return {
-      application,
-    };
-  },
-});
+const application = useApplicationStore();
 </script>

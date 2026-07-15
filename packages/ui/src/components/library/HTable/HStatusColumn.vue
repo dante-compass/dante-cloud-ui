@@ -3,40 +3,40 @@
 </template>
 
 <script lang="ts">
-import type { Dictionary } from '@herodotus/core';
+import type { Dictionary } from "@herodotus/core";
 
-import { CONSTANTS } from '@/configurations';
+import { DATA_ITEM_STATUS } from "@/configurations";
 
-import HDenseIconButton from './HDenseIconButton.vue';
+import HDenseIconButton from "./HDenseIconButton.vue";
 
-import { isEmpty } from 'lodash-es';
+import { isEmpty } from "lodash-es";
 
 export default defineComponent({
-  name: 'HStatusColumn',
+  name: "HStatusColumn",
 
   components: {
     HDenseIconButton,
   },
 
   props: {
-    type: { type: String, defalut: '0', required: true },
+    type: { type: String, defalut: "0", required: true },
     options: { type: Array as PropType<Array<Dictionary>>, required: true },
   },
 
   setup(props) {
     const color = computed(() => {
-      return CONSTANTS.DATA_ITEM_STATUS[Number(props.type)]!.color;
+      return DATA_ITEM_STATUS[Number(props.type)]!.color;
     });
 
     const icon = computed(() => {
-      return CONSTANTS.DATA_ITEM_STATUS[Number(props.type)]!.icon;
+      return DATA_ITEM_STATUS[Number(props.type)]!.icon;
     });
 
     const tooltip = computed(() => {
       if (!isEmpty(props.options)) {
         return props.options[Number(props.type)]!.label;
       } else {
-        return '';
+        return "";
       }
     });
 

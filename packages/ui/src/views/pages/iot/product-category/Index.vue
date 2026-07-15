@@ -31,22 +31,15 @@ import type { ProductCategoryEntity, ProductCategoryConditions, ProductCategoryP
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTable } from "@/composables/hooks";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { HDeleteButton, HEditButton, HTable } from "@/components";
 
-defineOptions({
-  name: CONSTANTS.ComponentName.IOT_PRODUCT_CATEGORY,
-  components: {
-    HDeleteButton,
-    HEditButton,
-    HTable,
-  },
-});
+defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CATEGORY, components: { HDeleteButton, HEditButton, HTable } });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById } = useTable<
   ProductCategoryEntity,
   ProductCategoryConditions
->(API.core.iotProductCategory(), CONSTANTS.ComponentName.IOT_PRODUCT_CATEGORY);
+>(API.core.iotProductCategory(), PAGE_NAME.IOT_PRODUCT_CATEGORY);
 
 const selected = ref([]);
 const rowKey: ProductCategoryProps = "id";

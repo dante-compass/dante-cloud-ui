@@ -1,4 +1,4 @@
-import { watch, onMounted } from 'vue';
+import { watch, onMounted } from "vue";
 
 import type {
   BpmnQueryByGetService,
@@ -9,11 +9,11 @@ import type {
   Page,
   QTableOnRequestProps,
   QTableOnRequestParameter,
-} from '@/composables/declarations';
+} from "@/composables/declarations";
 
-import { toast, notify } from '@herodotus/core';
+import { toast, notify } from "@herodotus/core";
 
-import { useBaseTable } from '@/composables/hooks';
+import { useBaseTable } from "@/composables/hooks";
 
 export default function useBpmnTableItems<
   E extends BpmnListEntity,
@@ -25,7 +25,7 @@ export default function useBpmnTableItems<
   sortable: BpmnSortable<S>,
   queryParams = {} as Q,
   loadOnMount = true,
-  name = '',
+  name = "",
 ) {
   const {
     loading,
@@ -39,8 +39,7 @@ export default function useBpmnTableItems<
     toCreate,
     toEdit,
     toAuthorize,
-    addRoutePushParam,
-  } = useBaseTable<Q, E, E>(name, 'updateTime', true);
+  } = useBaseTable<Q, E, E>(name, "updateTime", true);
 
   conditions.value = queryParams;
 
@@ -84,13 +83,13 @@ export default function useBpmnTableItems<
 
   const deleteItemById = (id: string, params = {} as D) => {
     notify.standardDeleteNotify(() => {
-      AbstractWriteableService.delete(id, params)
+      AbstractService.delete(id, params)
         .then((response) => {
           findItemsByPage(pagination.value.page, pagination.value.rowsPerPage);
-          toast.success('删除成功');
+          toast.success("删除成功");
         })
         .catch(() => {
-          toast.error('删除失败');
+          toast.error("删除失败");
         });
     });
   };
@@ -138,7 +137,6 @@ export default function useBpmnTableItems<
     toCreate,
     toEdit,
     toAuthorize,
-    addRoutePushParam,
     onDeleteItemById,
   };
 }

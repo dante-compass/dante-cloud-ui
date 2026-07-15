@@ -23,39 +23,24 @@
 import type { OAuth2AuthorizationEntity, OAuth2AuthorizationConditions } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
-import { useTable } from "@/composables/hooks";
-import { moment } from "@herodotus/core";
+import { PAGE_NAME, API } from "@/configurations";
+import { useTable, useDateTime } from "@/composables/hooks";
 
 import { HDeleteButton, HTable } from "@/components";
 
-defineOptions({
-  name: CONSTANTS.ComponentName.OAUTH2_TOKEN,
+defineOptions({ name: PAGE_NAME.OAUTH2_TOKEN, components: { HDeleteButton, HTable } });
 
-  components: {
-    HDeleteButton,
-    HTable,
-  },
-});
-
+const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, findItems, deleteItemById } = useTable<
   OAuth2AuthorizationConditions,
   OAuth2AuthorizationEntity
->(API.core.oauth2Authorization(), CONSTANTS.ComponentName.OAUTH2_TOKEN, false, {
+>(API.core.oauth2Authorization(), PAGE_NAME.OAUTH2_TOKEN, false, {
   direction: "DESC",
   properties: ["accessTokenIssuedAt"],
 });
 
 const selected = ref([]);
 const rowKey = "id" as keyof OAuth2AuthorizationEntity;
-
-const dateFormat = (date: string) => {
-  if (date) {
-    return moment(date).format("YYYY-MM-DD HH:mm:ss");
-  } else {
-    return "";
-  }
-};
 
 const columns: QTableColumnProps = [
   { name: "registeredClientId", field: "registeredClientId", align: "center", label: "客户端ID" },
@@ -66,28 +51,28 @@ const columns: QTableColumnProps = [
     field: "accessTokenIssuedAt",
     align: "center",
     label: "访问Token颁发时间",
-    format: (value) => dateFormat(value),
+    format: (value) => defaultFormat(value),
   },
   {
     name: "accessTokenExpiresAt",
     field: "accessTokenExpiresAt",
     align: "center",
     label: "访问Token过期时间",
-    format: (value) => dateFormat(value),
+    format: (value) => defaultFormat(value),
   },
   {
     name: "refreshTokenIssuedAt",
     field: "refreshTokenIssuedAt",
     align: "center",
     label: "刷新Token颁发时间",
-    format: (value) => dateFormat(value),
+    format: (value) => defaultFormat(value),
   },
   {
     name: "refreshTokenExpiresAt",
     field: "refreshTokenExpiresAt",
     align: "center",
     label: "刷新Token过期时间",
-    format: (value) => dateFormat(value),
+    format: (value) => defaultFormat(value),
   },
   { name: "actions", field: "actions", align: "center", label: "操作" },
 ];

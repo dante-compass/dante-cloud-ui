@@ -4,20 +4,10 @@
   </q-btn>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { Path } from "@/configurations";
 
-import { CONSTANTS } from '@/configurations';
+defineOptions({ name: "HAppBackHomeControl" });
 
-export default defineComponent({
-  name: 'HAppBackHomeControl',
-
-  setup(props) {
-    const homePath = CONSTANTS.Path.HOME;
-
-    return {
-      homePath,
-    };
-  },
-});
+const homePath = Path.HOME;
 </script>

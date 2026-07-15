@@ -5,20 +5,20 @@
 </template>
 
 <script lang="ts">
-import type { HttpMethod } from '@herodotus/core';
+import type { HttpMethod } from "@herodotus/core";
 
-import { useDisplayElement } from '@/composables/hooks';
-import { CONSTANTS } from '@/configurations';
+import { useDisplayElement } from "@/composables/hooks";
+import { HTTP_METHOD_STYLE_GROUP } from "@/configurations";
 
 export default defineComponent({
-  name: 'HHttpMethodAvatar',
+  name: "HHttpMethodAvatar",
 
   props: {
     method: { type: String as PropType<HttpMethod>, required: true },
   },
 
   setup() {
-    const { icon, color } = useDisplayElement(CONSTANTS.HTTP_METHOD_STYLE_GROUP);
+    const { icon, color } = useDisplayElement(HTTP_METHOD_STYLE_GROUP);
 
     return {
       color,

@@ -27,25 +27,19 @@ import type {
 } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
-import { useTable } from "@/composables/hooks";
+import { PAGE_NAME, API } from "@/configurations";
+import { useTable, useDateTime } from "@/composables/hooks";
 import { moment } from "@herodotus/core";
 
 import { HDeleteButton, HTable } from "@/components";
 
-defineOptions({
-  name: CONSTANTS.ComponentName.OAUTH2_PERSISTENT,
+defineOptions({ name: PAGE_NAME.OAUTH2_PERSISTENT, components: { HDeleteButton, HTable } });
 
-  components: {
-    HDeleteButton,
-    HTable,
-  },
-});
-
+const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, findItems, deleteItemById } = useTable<
   OAuth2PersistentTokenConditions,
   OAuth2PersistentTokenEntity
->(API.core.oauth2PersistentToken(), CONSTANTS.ComponentName.OAUTH2_PERSISTENT, false, {
+>(API.core.oauth2PersistentToken(), PAGE_NAME.OAUTH2_PERSISTENT, false, {
   direction: "DESC",
   properties: ["lastUsed"],
 });
@@ -54,19 +48,17 @@ const selected = ref([]);
 const rowKey: OAuth2PersistentTokenProps = "series";
 const deleteKey: OAuth2PersistentTokenProps = "username";
 
-const dateFormat = (date: string) => {
-  if (date) {
-    return moment(date).format("YYYY-MM-DD HH:mm:ss");
-  } else {
-    return "";
-  }
-};
-
 const columns: QTableColumnProps = [
   { name: "series", field: "series", align: "center", label: "Remember Me ID" },
   { name: "username", field: "username", align: "center", label: "用户名" },
   { name: "token", field: "token", align: "center", label: "Token 值" },
-  { name: "lastUsed", field: "lastUsed", align: "center", label: "上次使用时间", format: (value) => dateFormat(value) },
+  {
+    name: "lastUsed",
+    field: "lastUsed",
+    align: "center",
+    label: "上次使用时间",
+    format: (value) => defaultFormat(value),
+  },
   { name: "actions", field: "actions", align: "center", label: "操作" },
 ];
 

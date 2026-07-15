@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model="editedItem.path"
       name="path"
@@ -56,13 +56,16 @@ import type { SysElementEntity, SysElementConditions } from "@herodotus/api";
 
 import { isEmpty } from "lodash-es";
 import { useTableItem, useTreeItems } from "@/composables/hooks";
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: "SysElementContent" });
+defineOptions({ name: PAGE_NAME.SYS_ELEMENT_CONTENT });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysElementEntity>(API.core.sysElement());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysElementEntity>(
+  API.core.sysElement(),
+  PAGE_NAME.SYS_ELEMENT_CONTENT,
+);
 const { treeItems } = useTreeItems<SysElementConditions, SysElementEntity>(API.core.sysElement());
 
 const onSave = () => {

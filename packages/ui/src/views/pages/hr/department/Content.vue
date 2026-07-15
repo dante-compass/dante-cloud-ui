@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model="editedItem.departmentName"
       name="departmentName"
@@ -26,26 +26,27 @@
 </template>
 
 <script setup lang="ts">
-import type { SysDepartmentEntity } from '@herodotus/api';
+import type { SysDepartmentEntity } from "@herodotus/api";
 
-import useVuelidate from '@vuelidate/core';
-import { required, helpers } from '@vuelidate/validators';
+import useVuelidate from "@vuelidate/core";
+import { required, helpers } from "@vuelidate/validators";
 
-import { API } from '@/configurations';
-import { useTableItem } from '@/composables/hooks';
+import { PAGE_NAME, API } from "@/configurations";
+import { useTableItem } from "@/composables/hooks";
 
-import { HOrganizationSelect, HDepartmentSelect } from '../components';
+import { HOrganizationSelect, HDepartmentSelect } from "../components";
 
-defineOptions({ name: 'SysDepartmentContent', components: { HOrganizationSelect, HDepartmentSelect } });
+defineOptions({ name: PAGE_NAME.SYS_DEPARTMENT_CONTENT, components: { HOrganizationSelect, HDepartmentSelect } });
 
-const { editedItem, operation, title, overlay, additional, saveOrUpdate } = useTableItem<SysDepartmentEntity>(
+const { editedItem, title, overlay, additional, saveOrUpdate, onReturn } = useTableItem<SysDepartmentEntity>(
   API.core.sysDepartment(),
+  PAGE_NAME.SYS_DEPARTMENT_CONTENT,
 );
 
 const rules = {
   editedItem: {
     departmentName: {
-      required: helpers.withMessage('单位不能为空', required),
+      required: helpers.withMessage("单位不能为空", required),
     },
   },
 };

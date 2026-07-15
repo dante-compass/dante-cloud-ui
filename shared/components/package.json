@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/components",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "",
   "keywords": [],
   "author": "",
@@ -17,7 +17,7 @@
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.mjs",
-  "types": "dist/types/src/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -28,7 +28,7 @@
       "require": "./dist/index.cjs.js"
     },
     "./resolver": {
-      "types": "./dist/types/src/resolver.d.ts",
+      "types": "./dist/types/resolver.d.ts",
       "import": "./dist/resolver.es.mjs",
       "require": "./dist/resolver.cjs.js"
     },
@@ -40,8 +40,8 @@
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",
-    "@tsparticles/engine": "^4.3.0",
-    "@tsparticles/preset-triangles": "^4.3.0",
-    "quasar": "^2.20.1"
+    "@tsparticles/engine": "^4.3.2",
+    "@tsparticles/preset-triangles": "^4.3.2",
+    "quasar": "^2.21.3"
   }
 }

@@ -34,22 +34,21 @@ import type {
 } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useTable } from "@/composables/hooks";
 
 import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/components";
 
 defineOptions({
-  name: CONSTANTS.ComponentName.SYS_TENANT_DATA_SOURCE,
-
+  name: PAGE_NAME.SYS_TENANT_DATA_SOURCE,
   components: { HDeleteButton, HEditButton, HDenseIconButton, HTable },
 });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
   useTable<SysTenantDataSourceConditions, SysTenantDataSourceEntity>(
     API.core.sysTenantDataSource(),
-    CONSTANTS.ComponentName.SYS_TENANT_DATA_SOURCE,
+    PAGE_NAME.SYS_TENANT_DATA_SOURCE,
   );
 
 const selected = ref([]);

@@ -25,7 +25,7 @@ import type { TslUnitEntity, TslUnitConditions } from "@herodotus/api";
 
 import { useBaseTable } from "@/composables/hooks";
 import { isEmpty } from "lodash-es";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 defineOptions({
   name: "HUnitSelect",
@@ -34,7 +34,7 @@ defineOptions({
 const selectedValue = defineModel<TslUnitEntity | null>();
 
 const { loading, tableRows, totalPages, showLoading, hideLoading } = useBaseTable<TslUnitEntity, TslUnitConditions>(
-  CONSTANTS.ComponentName.IOT_TSL_UNIT,
+  PAGE_NAME.IOT_TSL_UNIT,
   "updateTime",
   false,
 );

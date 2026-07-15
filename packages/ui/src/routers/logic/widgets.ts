@@ -1,25 +1,25 @@
-import type { RouteRecordRaw } from 'vue-router';
+import type { RouteRecordRaw } from "vue-router";
 
-import type { WidgetItem } from '@/composables/declarations';
-import { CONSTANTS } from '@/configurations';
+import type { WidgetItem } from "@/composables/declarations";
+import { PAGE_NAME } from "@/configurations";
 
 const WidgetRoute: RouteRecordRaw = {
-  path: '/widgets',
-  component: () => import('@/views/layouts/Widgets.vue'),
-  meta: { title: '应用程序部件', icon: 'mdi-apps-box' },
-  redirect: '/widgets/bpmn-designer',
+  path: "/widgets",
+  component: () => import("@/views/layouts/Widgets.vue"),
+  meta: { title: "应用程序部件", icon: "mdi-apps-box" },
+  redirect: "/widgets/bpmn-designer",
   children: [
     {
-      path: '/widgets/bpmn-designer',
-      name: 'WidgetsBpmnDesigner',
-      meta: { title: '流程设计器', icon: 'mdi-list-status' },
-      component: () => import('@/views/widgets/bpmn-designer/Index.vue'),
+      path: "/widgets/bpmn-designer",
+      name: "WidgetsBpmnDesigner",
+      meta: { title: "流程设计器", icon: "mdi-list-status" },
+      component: () => import("@/views/widgets/bpmn-designer/Index.vue"),
     },
     {
-      path: '/widgets/dynamic-forms',
-      name: CONSTANTS.ComponentName.WIDGETS_DYNAMIC_FORM,
-      meta: { title: '动态表单', icon: 'mdi-format-textbox' },
-      component: () => import('@/views/widgets/dynamic-forms/Index.vue'),
+      path: "/widgets/dynamic-forms",
+      name: PAGE_NAME.WIDGETS_DYNAMIC_FORM,
+      meta: { title: "动态表单", icon: "mdi-format-textbox" },
+      component: () => import("@/views/widgets/dynamic-forms/Index.vue"),
     },
   ],
 };

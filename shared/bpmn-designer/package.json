@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/bpmn-designer",
-  "version": "5.1.1",
+  "version": "5.1.2",
   "description": "",
   "keywords": [],
   "author": "",
@@ -17,7 +17,7 @@
   },
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.mjs",
-  "types": "dist/types/src/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -34,28 +34,29 @@
     "registry": "https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/"
   },
   "dependencies": {
+    "@bpmn-io/cm-theme": "^0.2.2",
     "@bpmn-io/element-template-chooser": "^3.0.0",
-    "@bpmn-io/properties-panel": "3.46.0",
+    "@bpmn-io/properties-panel": "^3.47.0",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/components": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
     "@highlightjs/vue-plugin": "^2.1.0",
-    "bpmn-js": "^18.19.0",
+    "bpmn-js": "^18.21.0",
     "bpmn-js-bpmnlint": "^0.24.0",
     "bpmn-js-connectors-extension": "^0.4.6",
-    "bpmn-js-properties-panel": "^6.0.1",
-    "bpmn-js-token-simulation": "^0.39.4",
+    "bpmn-js-properties-panel": "^5.61.0",
+    "bpmn-js-token-simulation": "0.40.0",
     "bpmn-moddle": "^10.0.0",
     "bpmnlint": "^11.12.1",
     "camunda-bpmn-moddle": "^7.0.1",
-    "diagram-js": "^15.18.0",
+    "diagram-js": "^15.22.0",
     "diagram-js-grid": "^2.0.1",
-    "diagram-js-minimap": "^5.3.0",
+    "diagram-js-minimap": "^5.4.0",
     "didi": "^11.0.0",
     "highlight.js": "^11.11.1",
     "ids": "^3.0.2",
     "pinia": "^3.0.4",
-    "preact": "^10.29.3",
+    "preact": "^10.29.7",
     "vue": "^3.5.39"
   }
 }

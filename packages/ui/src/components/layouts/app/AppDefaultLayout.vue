@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import { useQuasar } from "quasar";
 import { useSettingsStore, useElementStore } from "@herodotus/framework";
 
 import { HAppHeader, LayoutContainer, LayoutLeftDrawer, LayoutRightDrawer } from "../common";
@@ -25,6 +26,7 @@ defineOptions({
 });
 
 const settings = useSettingsStore();
+const $q = useQuasar();
 
 const store = useElementStore();
 

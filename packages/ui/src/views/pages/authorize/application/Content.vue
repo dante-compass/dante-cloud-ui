@@ -1,5 +1,5 @@
 <template>
-  <h-authorize-layout :title="title" :overlay="overlay">
+  <h-authorize-layout :title="title" :overlay="overlay" @cancel="onReturn">
     <h-container mode="three" wider="center" :offset="4">
       <h-text-field
         v-model="editedItem.applicationName"
@@ -134,7 +134,7 @@
         <h-switch v-model="editedItem.reserved" label="是否为保留数据"></h-switch>
       </div>
       <div>
-        <q-btn color="red" @click="onFinish()">取消</q-btn>
+        <q-btn color="red" @click="onReturn">取消</q-btn>
         <q-btn color="primary" class="q-ml-sm" @click="onSave()">保存</q-btn>
       </div>
     </h-container>
@@ -169,23 +169,23 @@ import type { QTableColumnProps } from "@/composables/declarations";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { useEditFinish } from "@herodotus/framework";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { HAuthorizeLayout, HDictionarySelect } from "@/components";
 import { includes } from "lodash-es";
 import { useTableItem, useTable, useDictionary } from "@/composables/hooks";
 
 defineOptions({
-  name: "OAuth2ApplicationContent",
+  name: PAGE_NAME.OAUTH2_APPLICATION_CONTENT,
   components: { HAuthorizeLayout, HDictionarySelect },
 });
 
-const { editedItem, isEdit, title, overlay, saveOrUpdate } = useTableItem<OAuth2ApplicationEntity>(
+const { editedItem, isEdit, title, overlay, saveOrUpdate, onReturn } = useTableItem<OAuth2ApplicationEntity>(
   API.core.oauth2Application(),
+  PAGE_NAME.OAUTH2_APPLICATION_CONTENT,
 );
 const { tableRows, pagination, loading } = useTable<OAuth2ScopeConditions, OAuth2ScopeEntity>(
   API.core.oauth2Scope(),
-  CONSTANTS.ComponentName.OAUTH2_SCOPE,
+  PAGE_NAME.OAUTH2_SCOPE,
   true,
 );
 
@@ -196,8 +196,6 @@ const columns: QTableColumnProps = [
   { name: "scopeName", field: "scopeName", align: "center", label: "范围名称" },
   { name: "description", field: "description", align: "center", label: "说明" },
 ];
-
-const { onFinish } = useEditFinish();
 
 const isRedirectUrisRequired = () => {
   let authorizationGrantTypes = editedItem.value.authorizationGrantTypes;

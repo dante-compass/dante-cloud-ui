@@ -23,15 +23,15 @@
 </template>
 
 <script lang="ts">
-import type { HttpMethod } from '@herodotus/core';
+import type { HttpMethod } from "@herodotus/core";
 
-import { useDisplayElement } from '@/composables/hooks';
-import { useSettingsStore } from '@herodotus/framework';
+import { useDisplayElement } from "@/composables/hooks";
+import { useSettingsStore } from "@herodotus/framework";
 
-import { CONSTANTS } from '@/configurations';
+import { HTTP_METHOD_STYLE_GROUP } from "@/configurations";
 
 export default defineComponent({
-  name: 'HSwaggerColumn',
+  name: "HSwaggerColumn",
 
   props: {
     method: { type: String as PropType<HttpMethod>, required: true },
@@ -40,7 +40,7 @@ export default defineComponent({
   },
 
   setup() {
-    const { color } = useDisplayElement(CONSTANTS.HTTP_METHOD_STYLE_GROUP);
+    const { color } = useDisplayElement(HTTP_METHOD_STYLE_GROUP);
     const settings = useSettingsStore();
 
     const dense = computed(() => {
@@ -48,7 +48,7 @@ export default defineComponent({
     });
 
     const size = computed(() => {
-      return settings.display.table.dense ? 'sm' : 'md';
+      return settings.display.table.dense ? "sm" : "md";
     });
 
     return {

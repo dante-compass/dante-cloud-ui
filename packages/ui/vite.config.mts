@@ -79,15 +79,15 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         exclude: ["**/environment.js"],
       }),
       // VConsole 调试工具配置，若没有此配置，则调试工具控制台不会打印日志
-      viteVConsole({
-        entry: [fileURLToPath(new URL("./src/main.ts", import.meta.url))], // entry file
-        enabled: command !== "build" || mode === "development", // build production
-        config: {
-          // vconsole options
-          maxLogNumber: 1000,
-          theme: "light",
-        },
-      }),
+      // viteVConsole({
+      //   entry: [fileURLToPath(new URL("./src/main.ts", import.meta.url))], // entry file
+      //   enabled: command !== "build" || mode === "development", // build production
+      //   config: {
+      //     // vconsole options
+      //     maxLogNumber: 1000,
+      //     theme: "light",
+      //   },
+      // }),
       createHtmlPlugin({
         inject: {
           data: {

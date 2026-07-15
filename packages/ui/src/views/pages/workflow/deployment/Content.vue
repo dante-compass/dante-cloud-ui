@@ -2,10 +2,8 @@
   <h-bpmn-designer></h-bpmn-designer>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { PAGE_NAME } from "@/configurations";
 
-export default defineComponent({
-  name: 'WorkflowDeploymentContent',
-});
+defineOptions({ name: PAGE_NAME.WORKFLOW_DEPLOYMENT_CONTENT });
 </script>

@@ -30,7 +30,7 @@ import type {
 } from "@herodotus/api";
 import type { QTableColumnProps, HttpResult } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { moment, toast, notify } from "@herodotus/core";
 import { useTable } from "@/composables/hooks";
 import { useAuthenticationStore, SecurityApiResources, usePasskey } from "@herodotus/framework";
@@ -53,7 +53,7 @@ export default defineComponent({
     const { tableRows, pagination, loading, findItems, conditions } = useTable<
       OAuth2CredentialRecordConditions,
       OAuth2CredentialRecordEntity
-    >(API.core.oauth2CredentialRecord(), CONSTANTS.ComponentName.OAUTH2_CREDENTIAL_RECORD, true);
+    >(API.core.oauth2CredentialRecord(), PAGE_NAME.OAUTH2_CREDENTIAL_RECORD, true);
     const { isSupported } = usePasskey();
 
     const rowKey: OAuth2CredentialRecordProps = "credentialId";

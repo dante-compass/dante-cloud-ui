@@ -1,11 +1,14 @@
-import type { Domain, HttpResult } from '@herodotus/core';
+import type { Domain, HttpResult } from "@herodotus/core";
 
-import { AbstractService, OperationEnum } from '@herodotus/core';
-import { toast } from '@herodotus/core';
-import useBaseTableItem from './useBaseTableItem';
+import { AbstractService, OperationEnum } from "@herodotus/core";
+import { toast } from "@herodotus/core";
+import useBaseTableItem from "./useBaseTableItem";
 
-export default function useTableItem<I extends Domain, O extends Domain = I>(service: AbstractService<I, O>) {
-  const { editedItem, operation, overlay, title, additional, onFinish } = useBaseTableItem<I>();
+export default function useTableItem<I extends Domain, O extends Domain = I>(
+  service: AbstractService<I, O>,
+  componentName: string,
+) {
+  const { editedItem, operation, overlay, title, additional, onReturn } = useBaseTableItem<I>(componentName);
 
   const isEdit = computed(() => {
     return operation.value === OperationEnum.EDIT;
@@ -21,14 +24,14 @@ export default function useTableItem<I extends Domain, O extends Domain = I>(ser
         if (result.message) {
           toast.success(result.message);
         } else {
-          toast.success('保存成功');
+          toast.success("保存成功");
         }
-        onFinish();
+        onReturn();
       })
       .catch(() => {
         overlay.value = false;
-        toast.error('保存失败');
-        onFinish();
+        toast.error("保存失败");
+        onReturn();
       });
   };
 
@@ -39,17 +42,17 @@ export default function useTableItem<I extends Domain, O extends Domain = I>(ser
       .then((response) => {
         const result = response as HttpResult<O>;
         overlay.value = false;
-        onFinish();
+        onReturn();
         if (result.message) {
           toast.success(result.message);
         } else {
-          toast.success('保存成功');
+          toast.success("保存成功");
         }
       })
       .catch(() => {
         overlay.value = false;
-        onFinish();
-        toast.error('保存失败');
+        onReturn();
+        toast.error("保存失败");
       });
   };
 
@@ -59,7 +62,7 @@ export default function useTableItem<I extends Domain, O extends Domain = I>(ser
     overlay,
     title,
     additional,
-    onFinish,
+    onReturn,
     saveOrUpdate,
     assign,
     isEdit,

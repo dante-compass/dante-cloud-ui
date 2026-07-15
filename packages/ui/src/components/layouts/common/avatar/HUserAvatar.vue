@@ -4,61 +4,57 @@
   </q-avatar>
 </template>
 
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
+<script setup lang="ts">
+import { useAuthenticationStore } from "@herodotus/framework";
+import { AvatarUtils } from "@herodotus/core";
 
-import { useAuthenticationStore } from '@herodotus/framework';
-import { AvatarUtils } from '@herodotus/core';
+defineOptions({ name: "HUserAvatar" });
 
-export default defineComponent({
-  name: 'HUserAvatar',
+interface Props {
+  id?: string;
+  avatar?: string;
+  fromStore?: boolean;
+}
 
-  props: {
-    id: { type: String, default: '' },
-    avatar: { type: String, default: '' },
-    fromStore: { type: Boolean, default: false },
-  },
+const props = withDefaults(defineProps<Props>(), {
+  id: "",
+  avatar: "",
+  fromStore: false,
+});
 
-  setup(props) {
-    const authenticationStore = useAuthenticationStore();
+const authenticationStore = useAuthenticationStore();
 
-    const defaultAvatar = 'https://cdn.quasar.dev/img/boy-avatar.png';
+const defaultAvatar = "https://cdn.quasar.dev/img/boy-avatar.png";
 
-    const readFromStore = () => {
-      if (authenticationStore.avatar) {
-        return authenticationStore.avatar;
-      } else {
-        if (authenticationStore.userId) {
-          return AvatarUtils.generate(authenticationStore.userId);
-        } else {
-          return defaultAvatar;
-        }
-      }
-    };
+const readFromStore = () => {
+  if (authenticationStore.avatar) {
+    return authenticationStore.avatar;
+  } else {
+    if (authenticationStore.userId) {
+      return AvatarUtils.generate(authenticationStore.userId);
+    } else {
+      return defaultAvatar;
+    }
+  }
+};
 
-    const readFromProps = () => {
-      if (props.avatar) {
-        return props.avatar;
-      } else {
-        if (props.id) {
-          return AvatarUtils.generate(props.id);
-        } else {
-          return defaultAvatar;
-        }
-      }
-    };
+const readFromProps = () => {
+  if (props.avatar) {
+    return props.avatar;
+  } else {
+    if (props.id) {
+      return AvatarUtils.generate(props.id);
+    } else {
+      return defaultAvatar;
+    }
+  }
+};
 
-    const src = computed(() => {
-      if (props.fromStore) {
-        return readFromStore();
-      } else {
-        return readFromProps();
-      }
-    });
-
-    return {
-      src,
-    };
-  },
+const src = computed(() => {
+  if (props.fromStore) {
+    return readFromStore();
+  } else {
+    return readFromProps();
+  }
 });
 </script>

@@ -74,25 +74,16 @@ import type { ProductEntity, ProductConditions, ProductProps } from "@herodotus/
 import type { QTableColumnProps, HttpResult } from "@/composables/declarations";
 
 import { useTable } from "@/composables/hooks";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { toast } from "@herodotus/core";
 import { HDeleteButton, HEditButton, HInfoButton, HTable } from "@/components";
 import { useDictionary } from "@/composables/hooks";
 import Search from "./Search.vue";
 
-defineOptions({
-  name: CONSTANTS.ComponentName.IOT_PRODUCT,
-  components: {
-    HDeleteButton,
-    HEditButton,
-    HInfoButton,
-    HTable,
-    Search,
-  },
-});
+defineOptions({ name: PAGE_NAME.IOT_PRODUCT, components: { HDeleteButton, HEditButton, HInfoButton, HTable, Search } });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toInfo, findItems, deleteItemById, conditions } =
-  useTable<ProductConditions, ProductEntity>(API.core.iotProduct(), CONSTANTS.ComponentName.IOT_PRODUCT);
+  useTable<ProductConditions, ProductEntity>(API.core.iotProduct(), PAGE_NAME.IOT_PRODUCT);
 
 const selected = ref([]);
 const rowKey: ProductProps = "id";

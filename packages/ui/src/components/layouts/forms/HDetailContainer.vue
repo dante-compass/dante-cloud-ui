@@ -1,7 +1,7 @@
 <template>
   <q-card>
     <q-toolbar>
-      <h-button flat round dense color="red" icon="mdi-arrow-left-box" tooltip="返回" @click="onFinish()"></h-button>
+      <h-button flat round dense color="red" icon="mdi-arrow-left-box" tooltip="返回" @click="onCancel()"></h-button>
       <q-toolbar-title>
         {{ title }}
       </q-toolbar-title>
@@ -15,44 +15,41 @@
   </q-card>
 </template>
 
-<script lang="ts">
-import { defineComponent, watch } from 'vue';
-import { useQuasar, QSpinnerGears } from 'quasar';
+<script setup lang="ts">
+import { useQuasar, QSpinnerGears } from "quasar";
 
-import { useEditFinish } from '@herodotus/framework';
+defineOptions({ name: "HDetailContainer" });
 
-export default defineComponent({
-  name: 'HDetailContainer',
+interface Props {
+  title?: string;
+  overlay?: boolean;
+}
 
-  props: {
-    title: { type: String },
-    overlay: { type: Boolean, default: false },
-  },
-
-  setup(props) {
-    const { onFinish } = useEditFinish();
-    const $q = useQuasar();
-
-    watch(
-      () => props.overlay,
-      (newValue: boolean) => {
-        if (newValue) {
-          $q.loading.show({
-            spinner: QSpinnerGears,
-            // other props
-          });
-        } else {
-          $q.loading.hide();
-        }
-      },
-      {
-        immediate: true,
-      },
-    );
-
-    return {
-      onFinish,
-    };
-  },
+const props = withDefaults(defineProps<Props>(), {
+  overlay: false,
 });
+
+const emit = defineEmits<{
+  cancel: [];
+}>();
+
+const onCancel = async () => {
+  emit("cancel");
+};
+
+const $q = useQuasar();
+
+watch(
+  () => props.overlay,
+  (newValue: boolean) => {
+    if (newValue) {
+      $q.loading.show({
+        spinner: QSpinnerGears,
+        // other props
+      });
+    } else {
+      $q.loading.hide();
+    }
+  },
+);
 </script>

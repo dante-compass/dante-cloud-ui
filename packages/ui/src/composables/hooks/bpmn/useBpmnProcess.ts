@@ -5,19 +5,17 @@ import type {
   FormModeler,
   Element,
   ConditionVariable,
-  ExtendedTaskEntity,
-} from '@/composables/declarations';
+} from "@/composables/declarations";
 
-import { useEditFinish } from '@herodotus/framework';
-import { useBaseTableItem } from '@/composables/hooks';
-import { API } from '@/configurations';
-import { toast } from '@herodotus/core';
-import { isEmpty } from 'lodash-es';
-import { useAuthenticationStore } from '@herodotus/framework';
+import { useBaseTableItem } from "@/composables/hooks";
+import { API } from "@/configurations";
+import { toast } from "@herodotus/core";
+import { isEmpty } from "lodash-es";
+import { useAuthenticationStore } from "@herodotus/framework";
 
-export default function useBpmnProcess() {
-  const { editedItem, title, overlay } = useBaseTableItem<ProcessSpecificsEntity>();
-  const { onFinish } = useEditFinish();
+export default function useBpmnProcess(componentName: string) {
+  const { editedItem, title, overlay, onReturn } = useBaseTableItem<ProcessSpecificsEntity>(componentName);
+
   const auth = useAuthenticationStore();
 
   const formModeler = ref({}) as Ref<FormModeler>;
@@ -50,7 +48,7 @@ export default function useBpmnProcess() {
     }
   };
 
-  const fetchStartForm = async (key: string, tenantId = '') => {
+  const fetchStartForm = async (key: string, tenantId = "") => {
     skeleton.value = true;
     const result = await API.bpmn.processDefinition().getStartFormKey({ key: key, tenantId: tenantId });
     const data = result as FormKeyEntity;
@@ -68,9 +66,9 @@ export default function useBpmnProcess() {
     }
   };
 
-  const createProcessSpecifics = async (processDefinitionKey: string, tenantId = '') => {
+  const createProcessSpecifics = async (processDefinitionKey: string, tenantId = "") => {
     const result = await API.form.processSpecifics().saveOrUpdate({
-      id: '',
+      id: "",
       state: {},
       comments: [],
       processDefinitionKey: processDefinitionKey,
@@ -102,20 +100,20 @@ export default function useBpmnProcess() {
           .start(
             { key: data.processDefinitionKey },
             {
-              variables: { currentUserId: { type: 'String', value: auth.employeeId } },
+              variables: { currentUserId: { type: "String", value: auth.employeeId } },
               businessKey: data.id as string,
             },
           )
           .then(() => {
             overlay.value = false;
-            onFinish();
-            toast.success('保存成功！');
+            onReturn();
+            toast.success("保存成功！");
           });
       })
       .catch(() => {
         overlay.value = false;
-        onFinish();
-        toast.error('保存失败');
+        onReturn();
+        toast.error("保存失败");
       });
   };
 
@@ -125,11 +123,11 @@ export default function useBpmnProcess() {
       .delete(id)
       .then(() => {
         overlay.value = false;
-        onFinish();
+        onReturn();
       })
       .catch(() => {
         overlay.value = false;
-        onFinish();
+        onReturn();
       });
   };
 
@@ -144,7 +142,7 @@ export default function useBpmnProcess() {
     hasCondition,
     conditionOptions,
     condition,
-    onFinish,
+    onReturn,
     fetchStartForm,
     fetchTaskForm,
     createProcessSpecifics,

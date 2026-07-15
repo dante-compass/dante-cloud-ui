@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model.lazy="v.editedItem.permissionName.$model as string"
       name="permissionName"
@@ -24,14 +24,15 @@ import type { SysPermissionEntity } from "@herodotus/api";
 import { required, helpers } from "@vuelidate/validators";
 import useVuelidate from "@vuelidate/core";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: "SysPermissionContent" });
+defineOptions({ name: PAGE_NAME.SYS_PERMISSION_CONTENT });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysPermissionEntity>(
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysPermissionEntity>(
   API.core.sysPermission(),
+  PAGE_NAME.SYS_PERMISSION_CONTENT,
 );
 
 const rules = {

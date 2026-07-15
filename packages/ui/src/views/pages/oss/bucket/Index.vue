@@ -28,7 +28,7 @@
       <template #body-cell-versioning="props">
         <q-td key="versioning" :props="props">
           <q-chip v-if="props.row.versioning" color="purple">{{
-            getDictionaryItemDisplay('BucketVersioning', props.row.versioning)
+            getDictionaryItemDisplay("BucketVersioning", props.row.versioning)
           }}</q-chip>
         </q-td>
       </template>
@@ -58,42 +58,42 @@
 </template>
 
 <script setup lang="ts">
-import type { HttpResult } from '@herodotus/core';
+import type { HttpResult } from "@herodotus/core";
 import type {
   BucketDomain,
   BucketDetailsDomain,
   BucketDetailsDomainProps,
   PutBucketPolicyResult,
   DeleteBucketResult,
-} from '@herodotus/api';
-import type { QTableColumnProps } from '@/composables/declarations';
+} from "@herodotus/api";
+import type { QTableColumnProps } from "@/composables/declarations";
 
-import { moment, toast, notify } from '@herodotus/core';
-import { CONSTANTS, API } from '@/configurations';
-import { useDictionary } from '@/composables/hooks';
+import { moment, toast, notify } from "@herodotus/core";
+import { PAGE_NAME, API } from "@/configurations";
+import { useDictionary } from "@/composables/hooks";
 
-import { HCreateBucketDialog } from './components';
+import { HCreateBucketDialog } from "./components";
 
-defineOptions({ name: CONSTANTS.ComponentName.OSS_BUCKET, components: { HCreateBucketDialog } });
+defineOptions({ name: PAGE_NAME.OSS_BUCKET, components: { HCreateBucketDialog } });
 
 const columns: QTableColumnProps = [
-  { name: 'bucketName', field: 'bucketName', align: 'center', label: 'Bucket名称' },
+  { name: "bucketName", field: "bucketName", align: "center", label: "Bucket名称" },
   {
-    name: 'creationDate',
-    field: 'creationDate',
-    align: 'center',
-    label: '创建时间',
-    format: (value) => (value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : ''),
+    name: "creationDate",
+    field: "creationDate",
+    align: "center",
+    label: "创建时间",
+    format: (value) => (value ? moment(value).format("YYYY-MM-DD HH:mm:ss") : ""),
   },
-  { name: 'doesPublic', field: 'doesPublic', align: 'center', label: '访问权限' },
-  { name: 'versioning', field: 'versioning', align: 'center', label: '版本控制状态' },
-  { name: 'objectLockEnabled', field: 'objectLockEnabled', align: 'center', label: '对象锁定状态' },
-  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+  { name: "doesPublic", field: "doesPublic", align: "center", label: "访问权限" },
+  { name: "versioning", field: "versioning", align: "center", label: "版本控制状态" },
+  { name: "objectLockEnabled", field: "objectLockEnabled", align: "center", label: "对象锁定状态" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
 ];
 
-const rowKey: BucketDetailsDomainProps = 'bucketName';
+const rowKey: BucketDetailsDomainProps = "bucketName";
 
-const { getDictionaryItemDisplay } = useDictionary('BucketVersioning');
+const { getDictionaryItemDisplay } = useDictionary("BucketVersioning");
 
 const pageNumber = shallowRef(1);
 const pageSize = shallowRef(10);
@@ -131,12 +131,12 @@ const onDeleteBucket = (bucketName: string) => {
           if (result.message) {
             toast.success(result.message);
           } else {
-            toast.success('操作成功！');
+            toast.success("操作成功！");
           }
 
           fetchAllBuckets();
         } else {
-          toast.warning('服务端异常！');
+          toast.warning("服务端异常！");
         }
       });
   });
@@ -152,11 +152,11 @@ const onChangePolicy = (item: BucketDetailsDomain, event: boolean) => {
         if (result.message) {
           toast.success(result.message);
         } else {
-          toast.success('操作成功！');
+          toast.success("操作成功！");
         }
         fetchAllBuckets();
       } else {
-        toast.warning('服务端异常！');
+        toast.warning("服务端异常！");
       }
     });
 };

@@ -45,95 +45,75 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-
+<script setup lang="ts">
 import type {
   ProcessDefinitionEntity,
   ProcessDefinitionQueryParams,
   ProcessDefinitionSortBy,
   ProcessDefinitionDeleteQueryParams,
   QTableProps,
-} from '@/composables/declarations';
+} from "@/composables/declarations";
 
-import { API } from '@/configurations';
+import { PAGE_NAME, API } from "@/configurations";
 
-import { HDenseIconButton } from '@/components';
-import { useBpmnTableItems } from '@/composables/hooks';
-import { HBpmnViewDiagramDialog, HBpmnViewXmlDialog } from '../components';
+import { HDenseIconButton } from "@/components";
+import { useBpmnTableItems } from "@/composables/hooks";
+import { HBpmnViewDiagramDialog, HBpmnViewXmlDialog } from "../components";
 
-export default defineComponent({
-  name: 'WorkflowProcessDefinition',
-
-  components: {
-    HDenseIconButton,
-    HBpmnViewDiagramDialog,
-    HBpmnViewXmlDialog,
-  },
-
-  setup() {
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
-      useBpmnTableItems<
-        ProcessDefinitionEntity,
-        ProcessDefinitionQueryParams,
-        ProcessDefinitionSortBy,
-        ProcessDefinitionDeleteQueryParams
-      >(API.bpmn.processDefinition(), {
-        sortBy: 'id',
-        sortOrder: 'desc',
-      });
-
-    const selected = ref([]);
-    const rowKey = 'id' as keyof ProcessDefinitionEntity;
-    const viewDiagram = ref(false);
-    const viewXml = ref(false);
-
-    const columns: QTableProps['columns'] = [
-      { name: 'key', field: 'key', align: 'center', label: 'KEY' },
-      { name: 'version', field: 'version', align: 'center', label: '版本' },
-      { name: 'deploymentId', field: 'deploymentId', align: 'center', label: '部署ID' },
-      { name: 'name', field: 'name', align: 'center', label: '模型名称' },
-      { name: 'resource', field: 'resource', align: 'center', label: '资源名称' },
-      { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户ID' },
-      {
-        name: 'suspended',
-        field: 'suspended',
-        align: 'center',
-        label: '是否挂起',
-        format: (value) => (value ? '是' : '否'),
-      },
-      {
-        name: 'startableInTasklist',
-        field: 'startableInTasklist',
-        align: 'center',
-        label: '是否可启动',
-        format: (value) => (value ? '是' : '否'),
-      },
-      {
-        name: 'historyTimeToLive',
-        field: 'historyTimeToLive',
-        align: 'center',
-        label: '历史数据保留时长',
-      },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    return {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      conditions,
-      selected,
-      rowKey,
-      columns,
-      toEdit,
-      toCreate,
-      findItems,
-      onDeleteItemById,
-      viewDiagram,
-      viewXml,
-    };
-  },
+defineOptions({
+  name: PAGE_NAME.WORKFLOW_PROCESS_DEFINITION,
+  components: { HDenseIconButton, HBpmnViewDiagramDialog, HBpmnViewXmlDialog },
 });
+
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
+  useBpmnTableItems<
+    ProcessDefinitionEntity,
+    ProcessDefinitionQueryParams,
+    ProcessDefinitionSortBy,
+    ProcessDefinitionDeleteQueryParams
+  >(
+    API.bpmn.processDefinition(),
+    {
+      sortBy: "id",
+      sortOrder: "desc",
+    },
+    {},
+    false,
+    PAGE_NAME.WORKFLOW_PROCESS_DEFINITION,
+  );
+
+const selected = ref([]);
+const rowKey = "id" as keyof ProcessDefinitionEntity;
+const viewDiagram = ref(false);
+const viewXml = ref(false);
+
+const columns: QTableProps["columns"] = [
+  { name: "key", field: "key", align: "center", label: "KEY" },
+  { name: "version", field: "version", align: "center", label: "版本" },
+  { name: "deploymentId", field: "deploymentId", align: "center", label: "部署ID" },
+  { name: "name", field: "name", align: "center", label: "模型名称" },
+  { name: "resource", field: "resource", align: "center", label: "资源名称" },
+  { name: "tenantId", field: "tenantId", align: "center", label: "租户ID" },
+  {
+    name: "suspended",
+    field: "suspended",
+    align: "center",
+    label: "是否挂起",
+    format: (value) => (value ? "是" : "否"),
+  },
+  {
+    name: "startableInTasklist",
+    field: "startableInTasklist",
+    align: "center",
+    label: "是否可启动",
+    format: (value) => (value ? "是" : "否"),
+  },
+  {
+    name: "historyTimeToLive",
+    field: "historyTimeToLive",
+    align: "center",
+    label: "历史数据保留时长",
+  },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 </script>

@@ -280,13 +280,13 @@ function Vt() {
 		let t = a(e);
 		return B(t) ? {} : t[0];
 	}, s = (e) => B(e.values) ? [] : e.values, c = (e) => {
-		let t = s(o(i(n(e))));
-		return B(t) ? [] : V(t, (e) => Ve(e, ["name", "value"]));
+		let t = n(e), r = i(t), a = o(r), c = s(a);
+		return B(c) ? [] : V(c, (e) => Ve(e, ["name", "value"]));
 	}, l = (t, r) => {
-		let c = i(n(t)), l = o(c);
-		if (!B(l)) {
-			let n = He(s(l), [r], "name");
-			e().updateModdleProperties(t, l, { values: n }), B(n) && e().updateModdleProperties(t, c, { values: Ke(a(c), l) });
+		let c = n(t), l = i(c), u = o(l);
+		if (!B(u)) {
+			let n = He(s(u), [r], "name");
+			e().updateModdleProperties(t, u, { values: n }), B(n) && e().updateModdleProperties(t, l, { values: Ke(a(l), u) });
 		}
 	}, u = (a, s) => {
 		let c = n(a), l = i(c);
@@ -969,7 +969,8 @@ function Vr() {
 		createBpmnModeler: r,
 		createNewDiagram: a,
 		create: (e = "") => {
-			o(r("#designer", "#camunda-panel")), a(e);
+			let t = r("#designer", "#camunda-panel");
+			o(t), a(e);
 		},
 		destroy: () => {
 			B(t.modeler) || (t.modeler.destroy(), t.$reset());
@@ -1812,12 +1813,16 @@ var Ni = /*#__PURE__*/ q(ji, [["render", Mi]]), Pi = /* @__PURE__ */ k({
 		}, o = () => {
 			a(), B(i.value) ? t.value = "" : t.value = Be(V(i.value, (e) => e.id), ",");
 		}, s = () => {
-			t.value && (i.value = V(Ue(t.value), (e) => ({
-				id: e,
-				firstName: "",
-				lastName: "",
-				email: ""
-			}))), r.value = !0;
+			if (t.value) {
+				let e = Ue(t.value);
+				i.value = V(e, (e) => ({
+					id: e,
+					firstName: "",
+					lastName: "",
+					email: ""
+				}));
+			}
+			r.value = !0;
 		};
 		return (a, c) => {
 			let l = n, u = m;
@@ -1971,11 +1976,15 @@ var Li = /*#__PURE__*/ q(Fi, [["render", Ii]]), Ri = /* @__PURE__ */ k({
 		}, o = () => {
 			a(), B(i.value) ? t.value = "" : t.value = Be(V(i.value, (e) => e.id), ",");
 		}, s = () => {
-			t.value && (i.value = V(Ue(t.value), (e) => ({
-				id: e,
-				name: "",
-				type: ""
-			}))), r.value = !0;
+			if (t.value) {
+				let e = Ue(t.value);
+				i.value = V(e, (e) => ({
+					id: e,
+					name: "",
+					type: ""
+				}));
+			}
+			r.value = !0;
 		};
 		return (a, c) => {
 			let l = n, u = m;

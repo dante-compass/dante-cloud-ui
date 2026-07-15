@@ -1,5 +1,5 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" :operation="operation" @save="onSave()">
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
     <h-text-field
       v-model.lazy="v.editedItem.username.$model"
       name="username"
@@ -19,14 +19,17 @@ import type { SysUserEntity } from "@herodotus/api";
 import useVuelidate from "@vuelidate/core";
 import { required, helpers } from "@vuelidate/validators";
 
-import { API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useTableItem } from "@/composables/hooks";
 import { HCenterFormLayout } from "@/components";
 
-defineOptions({ name: "SysUserContent", components: { HCenterFormLayout } });
+defineOptions({ name: PAGE_NAME.SYS_USER_CONTENT, components: { HCenterFormLayout } });
 
-const { editedItem, operation, title, overlay, saveOrUpdate } = useTableItem<SysUserEntity>(API.core.sysUser());
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<SysUserEntity>(
+  API.core.sysUser(),
+  PAGE_NAME.SYS_USER_CONTENT,
+);
 
 const isUnique = () => {
   let username = editedItem.value.username;

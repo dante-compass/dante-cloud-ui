@@ -61,14 +61,11 @@ import type { DeviceEntity, DeviceProps, DeviceConditions } from "@herodotus/api
 import type { QTableColumnProps } from "@/composables/declarations";
 
 import { useTable } from "@/composables/hooks";
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { HDeleteButton, HEditButton, HTable, HDenseIconButton } from "@/components";
 
-defineOptions({
-  name: CONSTANTS.ComponentName.IOT_DEVICE,
-  components: { HDeleteButton, HEditButton, HTable, HDenseIconButton },
-});
+defineOptions({ name: PAGE_NAME.IOT_DEVICE, components: { HDeleteButton, HEditButton, HTable, HDenseIconButton } });
 
 const {
   tableRows,
@@ -81,7 +78,7 @@ const {
   findItems,
   deleteItemById,
   conditions,
-} = useTable<DeviceEntity, DeviceConditions>(API.core.iotDevice(), CONSTANTS.ComponentName.IOT_DEVICE);
+} = useTable<DeviceConditions, DeviceEntity>(API.core.iotDevice(), PAGE_NAME.IOT_DEVICE);
 
 const selected = ref([]);
 const rowKey: DeviceProps = "id";

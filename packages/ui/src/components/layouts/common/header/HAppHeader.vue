@@ -20,31 +20,29 @@
   </q-header>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import HAppBreadcrumbs from "./HAppBreadcrumbs.vue";
+import HAppTabsView from "./HAppTabsView.vue";
+import HAppToolbarActions from "./HAppToolbarActions.vue";
+import HAppLeftDrawerControl from "./HAppLeftDrawerControl.vue";
+import HAppBackHomeControl from "./HAppBackHomeControl.vue";
 
-import HAppBreadcrumbs from './HAppBreadcrumbs.vue';
-import HAppTabsView from './HAppTabsView.vue';
-import HAppToolbarActions from './HAppToolbarActions.vue';
-import HAppLeftDrawerControl from './HAppLeftDrawerControl.vue';
-import HAppBackHomeControl from './HAppBackHomeControl.vue';
+defineOptions({
+  name: "HAppHeader",
+  components: { HAppBreadcrumbs, HAppLeftDrawerControl, HAppBackHomeControl, HAppTabsView, HAppToolbarActions },
+});
 
-export default defineComponent({
-  name: 'HAppHeader',
+interface Props {
+  tabView?: boolean;
+  breadcrumbs?: boolean;
+  backHome?: boolean;
+  message?: boolean;
+}
 
-  components: {
-    HAppBreadcrumbs,
-    HAppLeftDrawerControl,
-    HAppBackHomeControl,
-    HAppTabsView,
-    HAppToolbarActions,
-  },
-
-  props: {
-    tabView: { type: Boolean, default: true },
-    breadcrumbs: { type: Boolean, default: true },
-    backHome: { type: Boolean, default: false },
-    message: { type: Boolean, default: false },
-  },
+withDefaults(defineProps<Props>(), {
+  tabView: true,
+  breadcrumbs: true,
+  backHome: false,
+  message: false,
 });
 </script>

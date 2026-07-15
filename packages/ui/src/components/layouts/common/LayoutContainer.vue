@@ -26,55 +26,46 @@
   </q-page-container>
 </template>
 
-<script lang="ts">
-import type { VNode, RendererNode, RendererElement } from 'vue';
-import { defineComponent, defineAsyncComponent, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import { storeToRefs } from 'pinia';
+<script setup lang="ts">
+import type { VNode, RendererNode, RendererElement } from "vue";
 
-import type { RouteLocationNormalizedLoaded } from 'vue-router';
+import { useRoute } from "vue-router";
+import { storeToRefs } from "pinia";
 
-import { useElementStore } from '@herodotus/framework';
+import type { RouteLocationNormalizedLoaded } from "vue-router";
 
-export default defineComponent({
-  name: 'HAppContainer',
+import { useElementStore } from "@herodotus/framework";
 
-  setup() {
-    const route = useRoute();
-    const store = useElementStore();
-    const { cachedRoutes } = storeToRefs(store);
+defineOptions({ name: "HAppContainer" });
 
-    const keepAlives = cachedRoutes.value;
+const route = useRoute();
+const store = useElementStore();
+const { cachedRoutes } = storeToRefs(store);
 
-    const getComponent = (
-      component: VNode<RendererNode, RendererElement, { [key: string]: any }>,
-      route: RouteLocationNormalizedLoaded,
-    ) => {
-      // @ts-ignore
-      if (component.type.name !== route.name && store.isValidDetailRoute(route)) {
-        return defineAsyncComponent({
-          loader: store.getDetailComponent(route.name as string),
-          delay: 2000,
-        });
-      }
+const keepAlives = cachedRoutes.value;
 
-      return component;
-    };
+const getComponent = (
+  component: VNode<RendererNode, RendererElement, { [key: string]: any }>,
+  route: RouteLocationNormalizedLoaded,
+) => {
+  // @ts-ignore
+  if (component.type.name !== route.name && store.isValidDetailRoute(route)) {
+    return defineAsyncComponent({
+      loader: store.getDetailComponent(route.name as string),
+      delay: 2000,
+    });
+  }
 
-    watch(
-      () => route.path,
-      () => {
-        store.addCachedRoute(route);
-      },
-      {
-        immediate: true,
-      },
-    );
+  return component;
+};
 
-    return {
-      keepAlives,
-      getComponent,
-    };
+watch(
+  () => route.path,
+  () => {
+    store.addCachedRoute(route);
   },
-});
+  {
+    immediate: true,
+  },
+);
 </script>

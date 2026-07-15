@@ -1,5 +1,5 @@
 <template>
-  <h-detail-container :title="title" :overlay="overlay">
+  <h-detail-container :title="title" :overlay="overlay" @cancel="onCancel">
     <h-container :offset="4">
       <slot></slot>
       <h-text-field v-model="entity.description" label="备注" placeholder="请输入备注"></h-text-field>
@@ -8,7 +8,7 @@
       <q-separator></q-separator>
       <h-switch v-model="entity.reserved" label="是否为保留数据"></h-switch>
       <div>
-        <q-btn color="red" @click="onFinish()">取消</q-btn>
+        <q-btn color="red" @click="onCancel">取消</q-btn>
         <q-btn color="primary" class="q-ml-sm" @click="onSave()">保存</q-btn>
         <slot name="button"></slot>
       </div>
@@ -17,14 +17,13 @@
 </template>
 
 <script setup lang="ts">
-import type { AbstractSysEntity, AbstractSysDto } from '@herodotus/core';
+import type { AbstractSysEntity, AbstractSysDto } from "@herodotus/core";
 
-import { useEditFinish } from '@herodotus/framework';
-import { HDictionarySelect } from '../../library/HSelect';
-import HDetailContainer from './HDetailContainer.vue';
+import { HDictionarySelect } from "../../library/HSelect";
+import HDetailContainer from "./HDetailContainer.vue";
 
 defineOptions({
-  name: 'HCenterFormLayout',
+  name: "HCenterFormLayout",
   components: {
     HDetailContainer,
     HDictionarySelect,
@@ -40,16 +39,19 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   entity: () => ({}) as AbstractSysEntity | AbstractSysDto,
   overlay: false,
-  title: '',
+  title: "",
 });
 
 const emit = defineEmits<{
   save: [];
+  cancel: [];
 }>();
 
-const { onFinish } = useEditFinish();
-
 const onSave = async () => {
-  emit('save');
+  emit("save");
+};
+
+const onCancel = async () => {
+  emit("cancel");
 };
 </script>

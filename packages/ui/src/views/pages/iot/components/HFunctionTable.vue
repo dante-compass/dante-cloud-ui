@@ -56,7 +56,7 @@
 import type { TslFunctionEntity, TslFunctionConditions, TslFunctionProps, Specification, Specs } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useTable, useDictionary } from "@/composables/hooks";
 import { HDeleteButton } from "@/components";
@@ -78,7 +78,7 @@ const props = defineProps({
 const { tableRows, totalPages, pagination, loading, findItems, deleteItemById, conditions } = useTable<
   TslFunctionEntity,
   TslFunctionConditions
->(API.core.iotTslFunction(), CONSTANTS.ComponentName.IOT_TSL_FUNCTION);
+>(API.core.iotTslFunction(), PAGE_NAME.IOT_TSL_FUNCTION);
 
 const isOpenDialog = shallowRef<boolean>(false);
 

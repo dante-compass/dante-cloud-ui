@@ -39,7 +39,7 @@ import type {
   ProcessSpecificsConditions,
 } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 
 import { useBaseTable, useBpmnProcess } from "@/composables/hooks";
 import { useAuthenticationStore } from "@herodotus/framework";
@@ -57,7 +57,7 @@ export default defineComponent({
       useBaseTable<ExtendedTaskConditions, ExtendedTaskEntity>("HToDoTaskTable", "updateTime", true);
     const { editedItem, fetchProcessSpecifics } = useBpmnProcess();
     const { toEdit } = useBaseTable<ProcessSpecificsConditions, ProcessSpecificsEntity>(
-      CONSTANTS.ComponentName.WORKFLOW_PROCESS_APPROVE,
+      PAGE_NAME.WORKFLOW_PROCESS_APPROVE,
       "updateTime",
     );
 

@@ -4,21 +4,22 @@
       :instance="instance"
       height="91vh"
       :class="[$q.dark.isActive ? 'bg-dark text-white q-pt-xs' : 'bg-white text-grey-8 q-pt-xs']"
-      @close="onFinish"
+      @close="onReturn"
     ></h-bpmn-designer>
   </q-card>
 </template>
 
 <script setup lang="ts">
-import { useQuasar } from 'quasar';
-import { useEditFinish } from '@herodotus/framework';
-import { API } from '@/configurations';
+import { useQuasar } from "quasar";
+import { PAGE_NAME, API } from "@/configurations";
+import { useBaseTableItem } from "@/composables/hooks";
 
 defineOptions({
-  name: 'WidgetsBpmnDesigner',
+  name: "WidgetsBpmnDesigner",
 });
 
 const instance = API.bpmnStorage;
 const $q = useQuasar();
-const { onFinish } = useEditFinish();
+
+const { onReturn } = useBaseTableItem(PAGE_NAME.WIDGETS_DYNAMIC_FORM);
 </script>

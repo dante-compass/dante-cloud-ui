@@ -51,81 +51,61 @@
   </q-toolbar>
 </template>
 
-<script lang="ts">
-import { defineComponent, watch, inject } from 'vue';
-import { useRoute } from 'vue-router';
-import { storeToRefs } from 'pinia';
+<script setup lang="ts">
+import { useRoute } from "vue-router";
+import { storeToRefs } from "pinia";
 
-import type { Tab } from '@herodotus/framework';
+import type { Tab } from "@herodotus/framework";
 
-import { useTabsViewStore } from '@herodotus/framework';
-import { refreshTabInjectionKey } from '@/composables/symbols';
+import { useTabsViewStore } from "@herodotus/framework";
+import { refreshTabInjectionKey } from "@/composables/symbols";
 
-export default defineComponent({
-  name: 'HAppTabsView',
+defineOptions({ name: "HAppTabsView" });
 
-  setup(props) {
-    const route = useRoute();
+const route = useRoute();
 
-    const store = useTabsViewStore();
-    const {
-      tabs,
-      isNotLastTab,
-      disableCloseCurrentTab,
-      disableCloseRightTabs,
-      disableCloseLeftTabs,
-      disableRefreshCurrentTab,
-    } = storeToRefs(store);
-    const { closeTab, smartTab, closeCurrentTab, closeOtherTabs, closeLeftTabs, closeRightTabs } = store;
+const store = useTabsViewStore();
+const {
+  tabs,
+  isNotLastTab,
+  disableCloseCurrentTab,
+  disableCloseRightTabs,
+  disableCloseLeftTabs,
+  disableRefreshCurrentTab,
+} = storeToRefs(store);
+const { closeTab, smartTab, closeCurrentTab, closeOtherTabs, closeLeftTabs, closeRightTabs } = store;
 
-    const refreshTab = inject<Function>(refreshTabInjectionKey);
+const refreshTab = inject<Function>(refreshTabInjectionKey);
 
-    watch(
-      () => route.path,
-      () => {
-        smartTab(route);
-      },
-      { immediate: true },
-    );
-
-    const onCloseTab = (tab: Tab) => {
-      closeTab(tab);
-    };
-
-    const onCloseCurrentTab = () => {
-      closeCurrentTab();
-    };
-
-    const onCloseOtherTabs = () => {
-      closeOtherTabs();
-    };
-
-    const onCloseLeftTabs = () => {
-      closeLeftTabs();
-    };
-
-    const onCloseRightTabs = () => {
-      closeRightTabs();
-    };
-
-    const onRefresh = () => {
-      refreshTab && refreshTab();
-    };
-
-    return {
-      onCloseTab,
-      onCloseCurrentTab,
-      onCloseOtherTabs,
-      onCloseLeftTabs,
-      onCloseRightTabs,
-      onRefresh,
-      tabs,
-      isNotLastTab,
-      disableCloseCurrentTab,
-      disableCloseRightTabs,
-      disableCloseLeftTabs,
-      disableRefreshCurrentTab,
-    };
+watch(
+  () => route.path,
+  () => {
+    smartTab(route);
   },
-});
+  { immediate: true },
+);
+
+const onCloseTab = (tab: Tab) => {
+  closeTab(tab);
+};
+
+const onCloseCurrentTab = () => {
+  closeCurrentTab();
+};
+
+const onCloseOtherTabs = () => {
+  closeOtherTabs();
+};
+
+const onCloseLeftTabs = () => {
+  closeLeftTabs();
+};
+
+const onCloseRightTabs = () => {
+  closeRightTabs();
+};
+
+const onRefresh = () => {
+  refreshTab && refreshTab();
+};
 </script>

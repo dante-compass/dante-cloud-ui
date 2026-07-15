@@ -1,23 +1,23 @@
-import type { Router, RouteRecordRaw } from 'vue-router';
-import { useAuthenticationStore, useSystemElement, useElementStore } from '@herodotus/framework';
-import { CONSTANTS, API } from '@/configurations';
+import type { Router, RouteRecordRaw } from "vue-router";
+import { useAuthenticationStore, useSystemElement, useElementStore } from "@herodotus/framework";
+import { Path, API } from "@/configurations";
 
-import { Loading, QSpinnerDots } from 'quasar';
+import { Loading, QSpinnerDots } from "quasar";
 
 const PageNotFoundRoute: RouteRecordRaw = {
-  path: CONSTANTS.Path.NOT_FOUND,
-  name: CONSTANTS.Path.NOT_FOUND_NAME,
-  component: () => import('@/components/error/404.vue'),
+  path: Path.NOT_FOUND,
+  name: Path.NOT_FOUND_NAME,
+  component: () => import("@/components/error/404.vue"),
   meta: {
-    title: 'ErrorPage',
+    title: "ErrorPage",
   },
 };
 
-const routeModules = import.meta.glob('./modules/**/*.ts', {
+const routeModules = import.meta.glob("./modules/**/*.ts", {
   eager: true,
 });
 
-const vueModules = import.meta.glob('../views/**/*.vue');
+const vueModules = import.meta.glob("../views/**/*.vue");
 
 const locate = (item: string) => {
   return `../${item}`;
@@ -30,11 +30,11 @@ const getRoutesFromServer = (roles: string[]) => {
 const { initBackendSecurity } = useSystemElement(vueModules, locate, getRoutesFromServer);
 
 export const createRouterGuard = (router: Router) => {
-  router.beforeEach(async (to, from, next) => {
+  router.beforeEach(async (to, from) => {
     Loading.show({
       spinner: QSpinnerDots,
       spinnerSize: 100,
-      spinnerColor: 'blue-10',
+      spinnerColor: "blue-10",
       delay: 200,
     });
 
@@ -45,37 +45,37 @@ export const createRouterGuard = (router: Router) => {
 
     // 有 Token
     if (token) {
-      if (to.path === CONSTANTS.Path.SIGN_IN) {
+      if (to.path === Path.SIGN_IN) {
         // 目的地址还是登录页面，直接跳转到首页。
-        return CONSTANTS.Path.HOME;
+        return Path.HOME;
       } else {
         // 判断动态路由是否已经添加，没有添加则进行添加
         if (!elementStore.isDynamicRouteAdded) {
           await initBackendSecurity(router, authStore.roles);
           router.addRoute(PageNotFoundRoute);
-          const redirectPath = (from.query.redirect || to.path) as string;
-          const redirectURI = decodeURIComponent(redirectPath);
-          const nextPath = to.path === redirectURI ? { ...to, replace: true } : { path: redirectURI };
-          next(nextPath);
-          return;
-        } else {
-          next();
-          return;
+          // 重新导航到目标页面
+          if (to.path !== from.path) {
+            return to.path;
+          } else {
+            return;
+          }
         }
+        return;
       }
     } else {
       // 没有Token，同时是忽略权限验证的页面
       if (to.meta.isIgnoreAuth) {
-        next();
         return;
       } else {
-        if (to.path === CONSTANTS.Path.SIGN_IN) {
+        if (to.path === Path.SIGN_IN) {
           localStorage.clear();
-          next();
           return;
         } else {
-          next(CONSTANTS.Path.SIGN_IN);
-          return;
+          // 重定向到登录页，并携带重定向路径
+          return {
+            path: Path.SIGN_IN,
+            query: { redirect: to.fullPath },
+          };
         }
       }
     }

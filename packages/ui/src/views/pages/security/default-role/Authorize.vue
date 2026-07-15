@@ -28,24 +28,20 @@
 import type { SysRoleEntity, SysRoleConditions, SysRoleProps, SysDefaultRoleEntity } from "@herodotus/api";
 import type { QTableColumnProps } from "@/composables/declarations";
 
-import { CONSTANTS, API } from "@/configurations";
+import { PAGE_NAME, API } from "@/configurations";
 import { useTableItem, useTable } from "@/composables/hooks";
 
 import { HAuthorizeList, HAuthorizeLayout } from "@/components";
 
-defineOptions({
-  name: "SysDefaultRoleAuthorize",
+defineOptions({ name: PAGE_NAME.SYS_DEFAULT_ROLE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
-  components: {
-    HAuthorizeList,
-    HAuthorizeLayout,
-  },
-});
-
-const { editedItem, title, assign, overlay } = useTableItem<SysDefaultRoleEntity>(API.core.sysDefaultRole());
+const { editedItem, title, assign, overlay } = useTableItem<SysDefaultRoleEntity>(
+  API.core.sysDefaultRole(),
+  PAGE_NAME.SYS_DEFAULT_ROLE_AUTHORIZE,
+);
 const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEntity>(
   API.core.sysRole(),
-  CONSTANTS.ComponentName.SYS_ROLE,
+  PAGE_NAME.SYS_ROLE,
   true,
 );
 

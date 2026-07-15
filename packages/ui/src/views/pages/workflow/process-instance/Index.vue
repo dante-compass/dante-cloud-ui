@@ -35,83 +35,62 @@
   </h-table>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-
+<script setup lang="ts">
 import type {
   ProcessInstanceEntity,
   ProcessInstanceQueryParams,
   ProcessInstanceSortBy,
   ProcessInstanceDeleteQueryParams,
   QTableProps,
-} from '@/composables/declarations';
+} from "@/composables/declarations";
 
-import { API } from '@/configurations';
-import { HDenseIconButton } from '@/components';
-import { useBpmnTableItems } from '@/composables/hooks';
-import { HBpmnViewDiagramDialog } from '../components';
+import { PAGE_NAME, API } from "@/configurations";
+import { HDenseIconButton } from "@/components";
+import { useBpmnTableItems } from "@/composables/hooks";
+import { HBpmnViewDiagramDialog } from "../components";
 
-export default defineComponent({
-  name: 'WorkflowProcessInstance',
+defineOptions({ name: PAGE_NAME.WORKFLOW_PROCESS_INSTANCE, components: { HDenseIconButton, HBpmnViewDiagramDialog } });
 
-  components: {
-    HDenseIconButton,
-    HBpmnViewDiagramDialog,
+const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
+  useBpmnTableItems<
+    ProcessInstanceEntity,
+    ProcessInstanceQueryParams,
+    ProcessInstanceSortBy,
+    ProcessInstanceDeleteQueryParams
+  >(
+    API.bpmn.processInstance(),
+    {
+      sortBy: "businessKey",
+      sortOrder: "desc",
+    },
+    {},
+    false,
+    PAGE_NAME.WORKFLOW_PROCESS_INSTANCE,
+  );
+
+const selected = ref([]);
+const rowKey = "id" as keyof ProcessInstanceEntity;
+const viewProgress = ref(false);
+
+const columns: QTableProps["columns"] = [
+  { name: "id", field: "id", align: "center", label: "ID" },
+  { name: "definitionId", field: "definitionId", align: "center", label: "定义ID" },
+  { name: "businessKey", field: "businessKey", align: "center", label: "BusinessKey" },
+  {
+    name: "suspended",
+    field: "suspended",
+    align: "center",
+    label: "是否挂起",
+    format: (value) => (value ? "是" : "否"),
   },
-
-  setup() {
-    const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
-      useBpmnTableItems<
-        ProcessInstanceEntity,
-        ProcessInstanceQueryParams,
-        ProcessInstanceSortBy,
-        ProcessInstanceDeleteQueryParams
-      >(API.bpmn.processInstance(), {
-        sortBy: 'businessKey',
-        sortOrder: 'desc',
-      });
-
-    const selected = ref([]);
-    const rowKey = 'id' as keyof ProcessInstanceEntity;
-    const viewProgress = ref(false);
-
-    const columns: QTableProps['columns'] = [
-      { name: 'id', field: 'id', align: 'center', label: 'ID' },
-      { name: 'definitionId', field: 'definitionId', align: 'center', label: '定义ID' },
-      { name: 'businessKey', field: 'businessKey', align: 'center', label: 'BusinessKey' },
-      {
-        name: 'suspended',
-        field: 'suspended',
-        align: 'center',
-        label: '是否挂起',
-        format: (value) => (value ? '是' : '否'),
-      },
-      {
-        name: 'ended',
-        field: 'ended',
-        align: 'center',
-        label: '是否结束',
-        format: (value) => (value ? '是' : '否'),
-      },
-      { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户ID' },
-      { name: 'actions', field: 'actions', align: 'center', label: '操作' },
-    ];
-
-    return {
-      tableRows,
-      totalPages,
-      pagination,
-      loading,
-      conditions,
-      selected,
-      rowKey,
-      columns,
-      toEdit,
-      toCreate,
-      findItems,
-      onDeleteItemById,
-      viewProgress,
-    };
+  {
+    name: "ended",
+    field: "ended",
+    align: "center",
+    label: "是否结束",
+    format: (value) => (value ? "是" : "否"),
   },
-});
+  { name: "tenantId", field: "tenantId", align: "center", label: "租户ID" },
+  { name: "actions", field: "actions", align: "center", label: "操作" },
+];
 </script>

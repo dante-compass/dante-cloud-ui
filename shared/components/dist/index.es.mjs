@@ -497,7 +497,11 @@ var at = { class: "row items-center justify-end" }, ot = { class: "row items-cen
 			}
 			return t;
 		}, u = (e) => {
-			!Ye(e) && Ye(i.value) && (i.value = l(e), o.value = Je(i.value, (e) => e.id == r.value)?.name);
+			if (!Ye(e) && Ye(i.value)) {
+				i.value = l(e);
+				let t = Je(i.value, (e) => e.id == r.value);
+				o.value = t?.name;
+			}
 		};
 		return S(() => n.items, (e) => {
 			Ye(e) || u(e);
@@ -797,8 +801,8 @@ var yt = /* @__PURE__ */ c({
 			}
 		}, c = (e, t) => {
 			if (e && t) {
-				let r = t;
-				n.value = Ke.duration(e, r).toISOString();
+				let r = t, i = Ke.duration(e, r).toISOString();
+				n.value = i;
 			}
 		};
 		return S(n, (e) => {

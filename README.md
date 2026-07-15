@@ -9,19 +9,19 @@
     <a href="https://spring.io/projects/spring-cloud" target="_blank"><img src="https://img.shields.io/badge/Spring%20Cloud-2025.1.2-blue.svg?logo=springboot" alt="Spring Cloud 2025.1.2"></a>
     <a href="https://github.com/alibaba/spring-cloud-alibaba" target="_blank"><img src="https://img.shields.io/badge/Spring%20Cloud%20Alibaba-2025.1.0.0-blue.svg?logo=alibabadotcom" alt="Spring Cloud Alibaba 2025.1.0.0"></a>
     <a href="https://github.com/Tencent/spring-cloud-tencent" target="_blank"><img src="https://img.shields.io/badge/Spring%20Cloud%20Tencent-2.1.2.0--2025.0.2-blue.svg?logo=qq" alt="Spring Cloud Tencent 2.1.1.0-2024.0.3"></a>
-    <a href="https://nacos.io/zh-cn/index.html" target="_blank"><img src="https://img.shields.io/badge/Nacos-3.2.2-brightgreen.svg?logo=alibabadotcom" alt="Nacos 3.2.2"></a>
+    <a href="https://nacos.io/zh-cn/index.html" target="_blank"><img src="https://img.shields.io/badge/Nacos-3.2.3-brightgreen.svg?logo=alibabadotcom" alt="Nacos 3.2.3"></a>
 </p>
 <p align="center">
     <a href="https://my.oschina.net/pointerv" target="_blank"><img src="https://img.shields.io/badge/Author-%E7%A0%81%E5%8C%A0%E5%90%9B-orange" alt="码匠君"></a>
     <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-blue.svg?logo=apache" alt="License Apache 2.0"></a>
-    <a href="https://github.com/dante-compass/dante-cloud-ui" target="_blank"><img src="https://img.shields.io/badge/Version-4.1.0.3-blue.svg?logo=quasar&logoColor=%23050A14" alt="Dante Cloud UI 4.1.0.3"></a>
+    <a href="https://github.com/dante-compass/dante-cloud-ui" target="_blank"><img src="https://img.shields.io/badge/Version-4.1.0.4-blue.svg?logo=quasar&logoColor=%23050A14" alt="Dante Cloud UI 4.1.0.4"></a>
     <a href="https://vuejs.org/" target="_blank"><img src="https://img.shields.io/badge/Vue-3.5-green.svg?logo=vue.js&logoColor=%234FC08D" alt="Vue 3.5"></a>
     <a href="https://vite.dev/" target="_blank"><img src="https://img.shields.io/badge/Vite-8-green.svg?logo=vite&logoColor=%239135FF" alt="Vue 8"></a>
     <a href="https://quasar.dev/" target="_blank"><img src="https://img.shields.io/badge/Quasar-2-green.svg?logo=quasar&logoColor=%23050A14" alt="Quasar 2"></a>
-    <a href="https://github.com/dromara/dante-cloud" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud-4.1.0.3-red.svg?logo=spring" alt="Dante Cloud 4.1.0.3"></a>
-    <a href="https://github.com/dante-compass/dante-engine" target="_blank"><img src="https://img.shields.io/badge/Dante%20Engine-4.1.0.3-red.svg?logo=spring" alt="Dante Engine 4.1.0.3"></a>
-    <a href="https://github.com/dante-compass/thingsbrain" target="_blank"><img src="https://img.shields.io/badge/ThingsBrain-4.1.0.3-red.svg?logo=spring" alt="ThingsBrain 4.1.0.3"></a>
-    <a href="https://github.com/dante-compass/herodotus-cloud-ui-vuetify" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud%20UI(New)-4.1.0.3-blue.svg?logo=vuetify&logoColor=%231867C0" alt="Dante Cloud UI(New) 4.1.0.3"></a>
+    <a href="https://github.com/dromara/dante-cloud" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud-4.1.0.4-red.svg?logo=spring" alt="Dante Cloud 4.1.0.4"></a>
+    <a href="https://github.com/dante-compass/dante-engine" target="_blank"><img src="https://img.shields.io/badge/Dante%20Engine-4.1.0.4-red.svg?logo=spring" alt="Dante Engine 4.1.0.4"></a>
+    <a href="https://github.com/dante-compass/thingsbrain" target="_blank"><img src="https://img.shields.io/badge/ThingsBrain-4.1.0.4-red.svg?logo=spring" alt="ThingsBrain 4.1.0.4"></a>
+    <a href="https://github.com/dante-compass/herodotus-cloud-ui-vuetify" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud%20UI(New)-4.1.0.4-blue.svg?logo=vuetify&logoColor=%231867C0" alt="Dante Cloud UI(New) 4.1.0.4"></a>
     <a href="https://github.com/dante-compass/dante-cloud-ui"><img src="https://img.shields.io/github/stars/dante-compass/dante-cloud-ui.svg?label=Github%20Stars" alt="Github star"></a>
     <a href="https://github.com/dante-compass/dante-cloud-ui"><img src="https://img.shields.io/github/forks/dante-compass/dante-cloud-ui.svg?label=Github%20Forks" alt="Github fork"></a>
     <a href="https://gitee.com/dante-compass/dante-cloud-ui"><img src="https://gitee.com/dante-compass/dante-cloud-ui/badge/star.svg?theme=dark" alt="Gitee star"></a>
@@ -92,7 +92,146 @@
 
 > 注意：新版前端（Vuetify 版）与旧版前端（Quasar 版）共享模块，开发时需要以（Vuetify 版）为主，详情参见：[前端【共享模块】](https://www.herodotus.cn/get-started/install/frontend.html#_5-%E5%85%B1%E4%BA%AB%E6%A8%A1%E5%9D%97)
 
-# [一]、项目地址
+# [一]、开源协议
+
+## 1. 变更声明
+
+自 **v3.3.6.0** 版本起，Dante Cloud 以及 Dante Engine 子项目开源协议 **【永久】** 变更为为 Apache License Version 2.0。可用于个人学习、毕设，允许商业使用，禁止二次开源。严禁搬运至 CSDN 下载等平台进行售卖。
+
+## 2. 补充条款
+
+使用时务必遵守以下补充条款。
+
+- 不得将本软件应用于危害国家安全、荣誉和利益的行为，不能以任何形式用于非法为目的的行为。
+- 在延伸的代码中（修改现有源代码衍生的代码中）需要带有原来代码中的协议、版权声明和其他原作者 规定需要包含的说明（请尊重原作者的著作权，不要删除或修改文件中的Copyright和@author信息） 更不要，全局替换源代码中的 Dante Cloud、Herodotus 或 码匠君 等字样，否则你将违反本协议条款承担责任。
+- 您若套用本软件的一些代码或功能参考，请保留源文件中的版权和作者，需要在您的软件介绍明显位置 说明出处，举例：本软件基于 Dante Cloud 微服务架构 或 Dante Engine，并附带链接：<https://www.herodotus.cn>
+- 任何基于本软件而产生的一切法律纠纷和责任，均与作者无关。
+- 如果你对本软件有改进，希望可以贡献给我们，双向奔赴互相成就才是王道。
+- 本项目已申请软件著作权，请尊重开源。
+
+# [二]、工程结构
+
+`Dante Cloud` 自 2.7.X 版本起，由原有单一的工程拆分为 `Dante Cloud` 和 `Dante Engine` 两个工程。`Dante Cloud` 为主要应用运行以及子模块组合工程，`Dante Engine` 为核心组件库工程。
+
+该种设计是对于原有工程代码高度抽象，不仅可以提升底层通用代码的复用性，让代码不局限于 `Dante Cloud` 项目本身还可以为更多的项目所使用。用户使用 `Dante Cloud`，收获的不仅是一套微服务系统，更是一套可以灵活拆分和状态装配的组件库。可以像乐高一样随意组合搭建您自己的应用系统。
+
+## 1. 主工程 Dante Cloud 工程结构
+
+```shell
+dante-cloud
+├── configurations -- 配置文件脚本和统一Docker build上下文目录
+├── dante-cloud-dependencies -- 工程 Bom 定义，统一控制工程模块
+├── dante-cloud-module -- “半成品”组件模块分组(可以再此建立业务代码模块，以模块的形式实现代码的共享以及架构的切换)
+├    ├── dante-cloud-commons -- 微服务版公共辅助代码模块
+├    └── dante-monolith-autoconfigure -- 单体版自动配置模块
+├── dante-cloud-packages -- 基础核心Starter
+├    ├── authentication-spring-boot-starter -- OAuth2 授权服务器自动配置 Starter(主要用于微服务版和单体版统一认证)
+├    ├── authorization-servlet-spring-boot-starter -- 阻塞式 OAuth2 资源服务器自动配置 Starter(除了 Monitor 等特殊服务以外，所有服务均需依赖)
+├    ├── facility-alibaba-spring-boot-starter -- 面向 Spring Cloud Alibaba 的微服务基础设施适配 Starter
+├    ├── facility-spring-boot-starter -- 基础设施切换依赖 Starter(用于切换 Alibaba、Tencent和原生微服务基础设施环境)
+├    ├── facility-tencent-spring-boot-starter -- 面向 Spring Cloud Tencent 的微服务基础设施适配模块 Starter
+├    ├── fegin-client-spring-boot-starter -- Feign 客户端自动配置 Starter
+├    ├── rpc-client-oss-spring-boot-starter -- 服务间通信客户端自动配置 Starter(OSS 作为客户端访问其它服务)
+├    ├── rpc-client-uaa-spring-boot-starter -- 服务间通信客户端自动配置 Starter(UAA 作为客户端端访问其它服务)
+├    └── rpc-server-upms-spring-boot-starter -- 服务间通信服务端自动配置 Starter(UPMS 作为服务端为其它服务提供访问)
+├── dante-cloud-platform -- 平台核心服务
+├    ├── dante-cloud-gateway -- 统一网关服务
+├    ├── dante-cloud-message -- 平台消息服务
+├    ├── dante-cloud-monitor -- Spring Boot Admin 监控服务
+├    ├── dante-cloud-uaa -- 账户管理和统一认证模块
+├    └── dante-cloud-upms -- 统一权限管理系统服务
+├── dante-cloud-services -- 平台业务服务
+├    ├── dante-cloud-bpmn-ability -- 工作流服务
+├    ├── dante-cloud-bpmn-logic -- 工作流基础代码模块
+├    ├── dante-cloud-oss-ability -- 对象存储服务
+└──  └── dante-monolith-application -- Dante Cloud 单体版应用模块
+```
+
+## 2. 组件库 Dante Engine 工程结构
+
+```shell
+dante-engine
+├── dante-assistant -- 辅助功能模块
+├    ├── dante-assistant-access -- 第三方登录接入辅助功能模块
+├    ├── dante-assistant-captcha -- 验证码辅助功能模块
+├    └── dante-assistant-oss -- AWS SDK V2 对象存储辅助功能模
+├── dante-data -- 数据访问模块
+├    ├── dante-data-commons -- 数据访问通用代码模块
+├    ├── dante-data-jpa -- 以 JPA 作为数据访问层的通用代码模块
+├    └── dante-data-rest -- 关联数据访问层的REST开发通用代码模块
+├── dante-dependencies -- 工程 Bom 定义，统一管理工程模块
+├── dante-framework -- Dante Cloud 框架核心基础模块
+├    ├── dante-autoconfigure -- 基础自动配置模块
+├    ├── dante-cache -- 缓存相关基础代码模块
+├    ├── dante-core -- 核心定义模块
+├    ├── dante-hibernate -- Hibernate 扩展模块
+├    ├── dante-security -- Security 相关基础代码模块
+├    ├── dante-spring -- SpringBoot 相关基础代码模块
+├    └── dante-web -- Web 服务相关基础代码模块
+├── dante-logic -- 系统内置功能业务逻辑模块
+├    ├── dante-logic-identity -- 身份认证功能业务逻辑模块
+├    ├── dante-logic-message -- 系统消息业务逻辑模块
+├    └── dante-logic-upms -- UPMS 业务逻辑模块
+├── dante-message -- 消息模块
+├    ├── dante-message-autoconfigure -- 消息自动配置模块
+├    ├── dante-message-commons -- 消息通用代码模块
+├    ├── dante-message-emqx -- Emqx 封装模块
+├    └── dante-message-servlet-websocket -- 基于 Servlet 环境下的 Websocket 功能封装模块
+├── dante-oauth2 -- OAuth2 认证模块
+├    ├── dante-authentication-autoconfigure -- OAuth2 授权服务器基础内容自动配置模块
+├    ├── dante-authorization-autoconfigure -- OAuth2 资源服务器基础内容自动配置模块
+├    ├── dante-oauth2-authentication -- Spring Authorization Server 授权服务器核心功能封装模块
+├    ├── dante-oauth2-authorization -- Spring Authorization Server 资源服务器核心功能封装模块
+├    ├── dante-oauth2-commons -- OAuth2 共性通用代码模块
+├    └── dante-oauth2-extension -- Spring Authorization Server 功能扩展模块
+├── dante-persistence -- 数据访问层模块
+├    ├── dante-persistence-commons -- 数据访问层通用代码模块
+├    ├── dante-persistence-autoconfigure -- 数据访问层模块自动配置
+├    └── dante-persistence-sas-jpa -- 以 JPA 作为 SAS 核心数据访问层代码实现模块
+├── dante-rest -- 系统内置功能 REST 接口模块
+├    ├── dante-rest-oss -- 对象存储功能 REST 接口模块
+├    ├── dante-rest-identity -- 身份认证功能 REST 接口模块
+├    ├── dante-rest-message -- 消息功能 REST 接口模块
+├    └── dante-rest-upms -- UPMS 功能 REST 接口模块
+├── dante-starter -- Starters
+├    ├── cache-spring-boot-starter -- 缓存自动配置 Starter
+├    ├── data-rdbms-spring-boot-starter -- 关系型数据库数据访问层自动配置 Starter
+├    ├── logging-spring-boot-starter -- 日志收集和聚合自动配置 Starter
+├    ├── oss-spring-boot-starter -- 基于 AWS SDK V2 对象存储自动配置 Starter
+├    ├── reactive-container-spring-boot-starter -- Reactive 容器基础配置自动配置 Starter
+├    ├── servlet-container-spring-boot-starter -- 基于 JPA 的多租户自动配置 Starter
+├    ├── servlet-message-spring-boot-starter -- Servlet 环境消息模块自动配置 Starter
+├    ├── tenant-spring-boot-starter -- 基于 JPA 的多租户自动配置 Starter
+├    ├── web-spring-boot-starter -- Web 微服务通用 Starter
+├    └── webmvc-spring-boot-starter -- WebMvc 类型应用自动配置 Starter
+└──  readme -- README 相关素材放置目录
+```
+
+# [三]、版本分支
+
+## 1. 版本号说明
+
+本系统版本号，分为四段。
+
+- 第一段、第二段和第三段，与 Spring Boot 版本对应，根据采用的 Spring Boot 版本变更。例如，当前采用 Spring Boot 2.4.6 版本，那么就以
+  2.4.6.X 开头
+- 第四段，表示在当前 Spring Boot 版本下，系统功能维护及优化情况。
+
+## 2. 分支说明
+
+|        分支名称        | 对应 Spring 生态版本                     | 对应 JDK 版本 | 用途               | 现状                                                                                           |
+| :--------------------: | ---------------------------------------- | ------------- | ------------------ | ---------------------------------------------------------------------------------------------- |
+|         master         | Spring Boot 4.1 和 Spring Cloud 2025.1.2 | JDK 25        | 主要发布分支       | 推荐使用代码分支                                                                               |
+|        develop         | Spring Boot 4.1 和 Spring Cloud 2025.1.2 | JDK 25        | Development 分支   | 新功能、ISSUE 均以此分支作为开发，发布后会 PR 至 master 分支                                   |
+|         4.0.X          | Spring Boot 4.0 和 Spring Cloud 2025.1.1 | JDK 25        | 历史版本           | 基于 Spring Boot 4.0 时代开发的代码分支，稳定可用                                              |
+|         3.5.X          | Spring Boot 3.5 和 Spring Cloud 2025.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.5 时代开发的代码分支，稳定可用，不再维护                                    |
+|         3.4.X          | Spring Boot 3.4 和 Spring Cloud 2024.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.4 时代开发的代码分支，稳定可用，不再维护                                    |
+|      3.2.X-3.3.X       | Spring Boot 3.3 和 Spring Cloud 2023.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.3 时代开发的代码分支，稳定可用，不再维护                                    |
+|         3.1.X          | Spring Boot 3.1 和 Spring Cloud 2022.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.1 时代开发的代码分支，稳定可用，不再维护                                    |
+|         2.7.X          | Spring Boot 2.7 和 Spring Cloud 2021.0.X | JDK 8         | 历史版本，停止维护 | 基于 Spring Boot 2.7 时代开发的代码分支，稳定可用，不再维护                                    |
+| spring-security-oauth2 | Spring Boot 2.6 和 Spring Cloud 2021.0.X | JDK 8         | 历史版本，停止维护 | 基于原 Spring Security OAuth2 实现的微服务，稳定可用，因相关组件均不在维护，所以该版本不再维护 |
+
+# [四]、项目地址
 
 ## 1. Dante Cloud 主工程
 
@@ -121,151 +260,6 @@
 
 - **Gitee**：[https://gitee.com/dante-compass/thingsbrain](https://gitee.com/dante-compass/thingsbrain)
 - **Github**：[https://github.com/dante-compass/thingsbrain](https://github.com/dante-compass/thingsbrain)
-
-# [二]、开源协议
-
-## 1. 变更声明
-
-自 **v3.3.6.0** 版本起，Dante Cloud 以及 Dante Engine 子项目开源协议 **【永久】** 变更为为 Apache License Version 2.0。可用于个人学习、毕设，允许商业使用，禁止二次开源。严禁搬运至 CSDN 下载等平台进行售卖。
-
-## 2. 补充条款
-
-使用时务必遵守以下补充条款。
-
-- 不得将本软件应用于危害国家安全、荣誉和利益的行为，不能以任何形式用于非法为目的的行为。
-- 在延伸的代码中（修改现有源代码衍生的代码中）需要带有原来代码中的协议、版权声明和其他原作者 规定需要包含的说明（请尊重原作者的著作权，不要删除或修改文件中的Copyright和@author信息） 更不要，全局替换源代码中的 Dante Cloud、Herodotus 或 码匠君 等字样，否则你将违反本协议条款承担责任。
-- 您若套用本软件的一些代码或功能参考，请保留源文件中的版权和作者，需要在您的软件介绍明显位置 说明出处，举例：本软件基于 Dante Cloud 微服务架构 或 Dante Engine，并附带链接：<https://www.herodotus.cn>
-- 任何基于本软件而产生的一切法律纠纷和责任，均与作者无关。
-- 如果你对本软件有改进，希望可以贡献给我们，双向奔赴互相成就才是王道。
-- 本项目已申请软件著作权，请尊重开源。
-
-# [三]、工程结构
-
-## 1. 主工程结构
-
-```shell
-dante-cloud
-├── configurations -- 配置文件脚本和统一Docker build上下文目录
-├── dependencies -- 工程Maven顶级依赖，统一控制版本和依赖
-├── module -- 依赖组件半成品拼装工程(可以再此建立业务代码模块，以模块的形式实现代码的共享以及架构的切换)
-├    ├── dante-module-common -- Module 相关模块公共辅助代码模块
-├    └── dante-monomer-autoconfigure -- 单体版自动配置模块
-├── packages -- 基础核心Starter
-├    ├── authentication-spring-boot-starter -- OAuth2 授权服务器自动配置 Starter(主要用于 UAA 认证服务器以及单体版 Dante Cloud)
-├    ├── authorization-servlet-spring-boot-starter -- 阻塞式 OAuth2 资源服务器自动配置 Starter(除了 Monitor 等特殊服务以外，所有服务均需依赖)
-├    ├── facility-spring-boot-starter -- 基础设施切换依赖 Starter
-├    ├── rpc-client-uaa-spring-boot-starter -- 服务间通信客户端自动配置 Starter(UAA 作为客户端端访问其它服务)
-├    └── rpc-server-upms-spring-boot-starter -- 服务间通信服务端自动配置 Starter(UPMS 作为服务端为其它服务提供访问)
-├── platform -- 平台核心服务
-├    ├── dante-cloud-gateway -- 统一网关服务
-├    ├── dante-cloud-message -- 系统消息服务
-├    ├── dante-cloud-monitor -- Spring Boot Admin 监控服务
-├    ├── dante-cloud-upms -- 统一权限管理系统服务
-├    └── dante-cloud-uaa -- 账户管理和统一认证模块
-├── services -- 平台业务服务
-├    ├── dante-cloud-bpmn-ability -- 工作流服务
-├    ├── dante-cloud-bpmn-logic -- 工作流基础代码包
-├    ├── dante-cloud-oss-ability -- 对象存储服务
-└──  └── dante-monomer-application -- Dante Cloud 单体版应用模块
-```
-
-## 2. 组件库结构
-
-```shell
-dante-engine
-├── dante-assistant -- 辅助功能模块
-├    ├── dante-assistant-access -- 第三方登录接入辅助功能模块
-├    ├── dante-assistant-captcha -- 验证码辅助功能模块
-├    └── dante-assistant-oss -- AWS SDK V2 对象存储辅助功能模
-├── dante-cache -- 缓存功能模块
-├    ├── dante-cache-caffeine -- Caffeine 缓存功能封装模块
-├    ├── dante-cache-commons -- 缓存通用代码模块
-├    ├── dante-cache-jetcache -- JetCache 缓存功能封装模块
-├    └── dante-cache-redis -- Redis 缓存功能封装模块
-├── dante-data -- 数据访问模块
-├    ├── dante-data-commons -- 数据访问通用代码模块
-├    ├── dante-data-jpa -- 以 JPA 作为数据访问层的通用代码模块
-├    ├── dante-data-mongodb -- 以 MongoDB 作为数据访问层的通用代码模块
-├    └── dante-data-rest -- 关联数据访问层的REST开发通用代码模块
-├── dante-dependencies -- 工程 Bom 定义，统一管理工程模块
-├── dante-framework -- Dante Cloud 框架核心基础模块
-├    ├── dante-autoconfigure -- 基础自动配置模块
-├    ├── dante-core -- 核心定义模块
-├    ├── dante-hibernate -- Hibernate 扩展模块
-├    ├── dante-security -- Security 相关基础代码模块
-├    ├── dante-spring -- SpringBoot 相关基础代码模块
-├    └── dante-web -- Web 服务 相关基础代码模块
-├── dante-logic -- 系统内置功能业务逻辑模块
-├    ├── dante-logic-identity -- 身份认证功能业务逻辑模块
-├    ├── dante-logic-message -- 系统消息业务逻辑模块
-├    └── dante-logic-upms -- UPMS 业务逻辑模块
-├── dante-message -- 消息模块
-├    ├── dante-message-autoconfigure -- 消息自动配置模块
-├    ├── dante-message-commons -- 消息通用代码模块
-├    └── dante-message-servlet-websocket -- 基于 Servlet 环境下的 Websocket 功能封装模块
-├── dante-oauth2 -- OAuth2 认证模块
-├    ├── dante-authentication-autoconfigure -- OAuth2 授权服务器基础内容自动配置模块
-├    ├── dante-authorization-autoconfigure -- OAuth2 资源服务器基础内容自动配置模块
-├    ├── dante-oauth2-authentication -- Spring Authorization Server 授权服务器核心功能封装模块
-├    ├── dante-oauth2-authorization -- Spring Authorization Server 资源服务器核心功能封装模块
-├    ├── dante-oauth2-commons -- OAuth2 共性通用代码模块
-├    └── dante-oauth2-extension -- Spring Authorization Server 功能扩展模块
-├── dante-persistence -- 数据存储层模块
-├    ├── dante-persistence-commons -- 数据存储通用代码模块
-├    ├── dante-persistence-sas-autoconfigure -- SAS 核心数据访问层模块自动配置
-├    ├── dante-persistence-sas-jpa -- 以 JPA 作为 SAS 核心数据访问层代码实现模块
-├    ├── dante-persistence-sys-autoconfigure -- 系统审计数据访问层模块自动配置
-├    └── dante-persistence-sys-jpa -- 以 JPA 作为系统审计数据访问层代码实现模块
-├── dante-rest -- 系统内置功能 REST 接口模块
-├    ├── dante-rest-oss -- 对象存储功能 REST 接口模块
-├    ├── dante-rest-identity -- 身份认证功能 REST 接口模块
-├    ├── dante-rest-message -- 消息功能 REST 接口模块
-├    └── dante-rest-upms -- UPMS 功能 REST 接口模块
-├── dante-starter -- Starters
-├    ├── cache-spring-boot-starter -- 缓存自动配置 Starter
-├    ├── captcha-spring-boot-starter -- 验证码自动配置 Starter
-├    ├── data-mongodb-spring-boot-starter -- MongoDB 数据访问层自动配置 Starter
-├    ├── data-rdbms-spring-boot-starter -- 关系型数据库数据访问层自动配置 Starter
-├    ├── facility-alibaba-spring-boot-starter -- 面向 Spring Cloud Alibaba 的微服务基础设施适配 Starter
-├    ├── facility-gateway-spring-boot-starter -- Alibaba Sentinel 在 Gateway 环境下基础设施适配 Starter
-├    ├── facility-kafka-spring-boot-starter -- 基于 Kafka 的消息事件自动配置 Starter
-├    ├── facility-tencent-spring-boot-starter -- 面向 Spring Cloud Tencent 的微服务基础设施适配模块 Starter
-├    ├── fegin-client-spring-boot-starter -- Feign 客户端自动配置 Starter
-├    ├── logging-spring-boot-starter -- 日志收集和聚合自动配置 Starter
-├    ├── oss-spring-boot-starter -- 基于 AWS SDK V2 对象存储自动配置 Starter
-├    ├── reactive-container-spring-boot-starter -- Reactive 容器基础配置自动配置 Starter
-├    ├── servlet-container-spring-boot-starter -- 基于 JPA 的多租户自动配置 Starter
-├    ├── servlet-message-spring-boot-starter -- Servlet 环境消息模块自动配置 Starter
-├    ├── tenant-spring-boot-starter -- 基于 JPA 的多租户自动配置 Starter
-├    ├── web-spring-boot-starter -- Web 微服务通用 Starter
-├    └── webmvc-spring-boot-starter -- WebMvc 类型应用自动配置 Starter
-└──  readme -- README 相关素材放置目录
-```
-
-# [四]、版本分支
-
-## 1. 版本号说明
-
-本系统版本号，分为四段。
-
-- 第一段和第二段，与 Spring Boot 版本对应，根据采用的 Spring Boot 版本变更。例如，当前采用 Spring Boot 2.4.6 版本，那么就以
-  2.4.X.X 开头
-- 第三段，表示系统功能的变化
-- 第四段，表示系统功能维护及优化情况
-
-## 2. 分支说明
-
-|        分支名称        | 对应 Spring 生态版本                     | 对应 JDK 版本 | 用途               | 现状                                                                                           |
-| :--------------------: | ---------------------------------------- | ------------- | ------------------ | ---------------------------------------------------------------------------------------------- |
-|         master         | Spring Boot 4.1 和 Spring Cloud 2025.1.2 | JDK 25        | 主要发布分支       | 推荐使用代码分支                                                                               |
-|        develop         | Spring Boot 4.1 和 Spring Cloud 2025.1.2 | JDK 25        | Development 分支   | 新功能、ISSUE 均以此分支作为开发，发布后会 PR 至 master 分支                                   |
-|         4.0.X          | Spring Boot 4.0 和 Spring Cloud 2025.1.1 | JDK 25        | 历史版本           | 基于 Spring Boot 4.0 时代开发的代码分支，稳定可用                                              |
-|         3.5.X          | Spring Boot 3.5 和 Spring Cloud 2025.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.5 时代开发的代码分支，稳定可用，不再维护                                    |
-|         3.4.X          | Spring Boot 3.4 和 Spring Cloud 2024.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.4 时代开发的代码分支，稳定可用，不再维护                                    |
-|      3.2.X-3.3.X       | Spring Boot 3.3 和 Spring Cloud 2023.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.3 时代开发的代码分支，稳定可用，不再维护                                    |
-|         3.1.X          | Spring Boot 3.1 和 Spring Cloud 2022.0.X | JDK 17        | 历史版本，停止维护 | 基于 Spring Boot 3.1 时代开发的代码分支，稳定可用，不再维护                                    |
-|         2.7.X          | Spring Boot 2.7 和 Spring Cloud 2021.0.X | JDK 8         | 历史版本，停止维护 | 基于 Spring Boot 2.7 时代开发的代码分支，稳定可用，不再维护                                    |
-| spring-security-oauth2 | Spring Boot 2.6 和 Spring Cloud 2021.0.X | JDK 8         | 历史版本，停止维护 | 基于原 Spring Security OAuth2 实现的微服务，稳定可用，因相关组件均不在维护，所以该版本不再维护 |
 
 # [五]、安全测试
 
