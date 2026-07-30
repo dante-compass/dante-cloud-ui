@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 5.1.3
+
+### Patch Changes
+
+- 升级依赖版本
+
 ## 5.1.2
 
 ### Patch Changes

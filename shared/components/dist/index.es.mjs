@@ -739,10 +739,10 @@ var J = /* @__PURE__ */ function(e) {
 			oe();
 		}, { immediate: !0 }), (e, n) => c.value ? (h(), t(X, p(d({ key: 0 }, e.$attrs)), {
 			default: C(() => [s(Y, { cols: i.value }, {
-				default: C(() => [b.value ? _(e.$slots, "default", { key: 0 }) : _(e.$slots, "left", { key: 1 })]),
+				default: C(() => [b.value ? _(e.$slots, "default", {}, void 0, void 0, 0) : _(e.$slots, "left", {}, void 0, void 0, 1)]),
 				_: 3
 			}, 8, ["cols"]), s(Y, { cols: o.value }, {
-				default: C(() => [x.value ? _(e.$slots, "default", { key: 0 }) : _(e.$slots, "right", { key: 1 })]),
+				default: C(() => [x.value ? _(e.$slots, "default", {}, void 0, void 0, 0) : _(e.$slots, "right", {}, void 0, void 0, 1)]),
 				_: 3
 			}, 8, ["cols"])]),
 			_: 3
