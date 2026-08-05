@@ -1,6 +1,8 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-import type { WebSocketOperations, DialogueDetailEntity, Entity } from '@/composables/declarations';
+import type { Entity } from "@herodotus/core";
+import type { DialogueDetailEntity } from "@herodotus/api";
+import type { WebSocketOperations } from "@/composables/declarations";
 import type {
   RSocket,
   Payload,
@@ -9,22 +11,22 @@ import type {
   OnExtensionSubscriber,
   Requestable,
   Cancellable,
-} from 'rsocket-core';
+} from "rsocket-core";
 
-import { API } from '@/configurations';
-import { isFunction } from 'lodash-es';
+import { API } from "@/configurations";
+import { isFunction } from "lodash-es";
 
-import { RSocketConnector } from 'rsocket-core';
-import { WebsocketClientTransport } from 'rsocket-websocket-client';
+import { RSocketConnector } from "rsocket-core";
+import { WebsocketClientTransport } from "rsocket-websocket-client";
 import {
   WellKnownMimeType,
   encodeRoute,
   encodeCompositeMetadata,
   encodeBearerAuthMetadata,
-} from '@rsocket/composite-metadata';
-import { useAuthenticationStore } from '@herodotus/framework';
+} from "@rsocket/composite-metadata";
+import { useAuthenticationStore } from "@herodotus/framework";
 
-export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
+export const useRSocketWebSocketStore = defineStore("RSocketWebSocket", {
   state: () => ({
     rsocket: {} as RSocket,
     client: {} as RSocketConnector,
@@ -43,36 +45,36 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
 
     // ---------- 通用响应返回方法 ----------
     onCancel(): void {
-      console.warn('[RSocket] onCancel - 操作取消');
+      console.warn("[RSocket] onCancel - 操作取消");
     },
 
     onComplete(): void {
-      console.log('[RSocket] onComplete - 操作完成');
+      console.log("[RSocket] onComplete - 操作完成");
     },
 
     onNext(payload: Payload, isComplete: boolean): void {
       const data = payload.data as Buffer;
-      console.log('[RSocket] onNext payload ', this.decodeData(data));
-      console.log('[RSocket] onNext isComplete ', isComplete);
+      console.log("[RSocket] onNext payload ", this.decodeData(data));
+      console.log("[RSocket] onNext isComplete ", isComplete);
     },
 
     onExtension(extendedType: number, content: Buffer | null | undefined, canBeIgnored: boolean): void {
-      console.log('[RSocket] onExtension extendedType ', extendedType);
-      console.log('[RSocket] onExtension content ', content);
-      console.log('[RSocket] onExtension canBeIgnored ', canBeIgnored);
+      console.log("[RSocket] onExtension extendedType ", extendedType);
+      console.log("[RSocket] onExtension content ", content);
+      console.log("[RSocket] onExtension canBeIgnored ", canBeIgnored);
     },
 
     onRequest(requestN: number): void {
-      console.log('[RSocket] onExtension content ', requestN);
+      console.log("[RSocket] onExtension content ", requestN);
     },
 
     onError(error: Error): void {
-      console.error('[RSocket] onError : 传输失败!', error);
+      console.error("[RSocket] onError : 传输失败!", error);
     },
 
     // 客户端配置方法
     getRSocketWebSocketAddress(): string {
-      const address = `ws://${location.host}/reactive` + API.core.getConfig().getMsg(false) + '/websocket';
+      const address = `ws://${location.host}/reactive` + API.core.getConfig().getMsg(false) + "/websocket";
       // const address = 'ws://192.168.101.10:8847/herodotus-cloud-message/websocket';
       // const address = 'ws://localhost:9997/websocket';
       return address;
@@ -101,7 +103,7 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
         metadataMimeType: WellKnownMimeType.MESSAGE_RSOCKET_COMPOSITE_METADATA.string,
         payload: {
           data: this.encodeData({ id: userId, name: username }),
-          metadata: this.createMetadata('SETUP'),
+          metadata: this.createMetadata("SETUP"),
         },
       };
     },
@@ -123,8 +125,8 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
         responder: {
           fireAndForget: (payload: Payload, responderStream: OnTerminalSubscriber) => {
             const data = this.decodeData(payload.data as Buffer);
-            console.log('[RSocket] fireAndForget responder data', data);
-            console.log('[RSocket] fireAndForget responder responderStream', responderStream);
+            console.log("[RSocket] fireAndForget responder data", data);
+            console.log("[RSocket] fireAndForget responder responderStream", responderStream);
 
             if (isFunction(operation.pullNotifications)) {
               operation.pullNotifications();
@@ -142,9 +144,9 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
             initialRequestN: number,
             responderStream: OnTerminalSubscriber & OnNextSubscriber & OnExtensionSubscriber,
           ) => {
-            console.log('[RSocket] requestStream responder data', this.decodeData(payload.data as Buffer));
-            console.log('[RSocket] requestStream responder initialRequestN', initialRequestN);
-            console.log('[RSocket] requestStream responder responderStream', responderStream);
+            console.log("[RSocket] requestStream responder data", this.decodeData(payload.data as Buffer));
+            console.log("[RSocket] requestStream responder initialRequestN", initialRequestN);
+            console.log("[RSocket] requestStream responder responderStream", responderStream);
             return {
               onComplete: this.onComplete,
               onNext: this.onNext,
@@ -164,10 +166,10 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
               Requestable &
               Cancellable,
           ) => {
-            console.log('[RSocket] requestResponse responder data', this.decodeData(payload.data as Buffer));
-            console.log('[RSocket] requestResponse responder initialRequestN', initialRequestN);
-            console.log('[RSocket] requestResponse responder isCompleted', isCompleted);
-            console.log('[RSocket] requestResponse responder responderStream', responderStream);
+            console.log("[RSocket] requestResponse responder data", this.decodeData(payload.data as Buffer));
+            console.log("[RSocket] requestResponse responder initialRequestN", initialRequestN);
+            console.log("[RSocket] requestResponse responder isCompleted", isCompleted);
+            console.log("[RSocket] requestResponse responder responderStream", responderStream);
             return responderStream;
           },
 
@@ -176,8 +178,8 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
             responderStream: OnTerminalSubscriber & OnNextSubscriber & OnExtensionSubscriber,
           ) => {
             const data = this.decodeData(payload.data as Buffer);
-            console.log('[RSocket] requestResponse responder data', data);
-            console.log('[RSocket] requestResponse responder responderStream', responderStream);
+            console.log("[RSocket] requestResponse responder data", data);
+            console.log("[RSocket] requestResponse responder responderStream", responderStream);
             return {
               onExtension: this.onExtension,
               cancel: this.onCancel,
@@ -191,8 +193,8 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
       if (this.client) {
         this.client.connect().then((socket) => {
           if (socket) {
-            console.info('连接 RSocket Server 成功');
-            console.log('[RSocket] core ---', socket);
+            console.info("连接 RSocket Server 成功");
+            console.log("[RSocket] core ---", socket);
             this.rsocket = socket;
 
             // this.fireAndForget('sdfsfsfsfsffs', 'echo');
@@ -262,7 +264,7 @@ export const useRSocketWebSocketStore = defineStore('RSocketWebSocket', {
     sendNotice(content: string): void {},
 
     sendToUser(detail: DialogueDetailEntity) {
-      this.fireAndForget(detail, 'personal');
+      this.fireAndForget(detail, "personal");
     },
   },
 });
