@@ -12,7 +12,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <q-btn color="primary" label="新建单位" @click="toCreate()" />
+      <q-btn color="primary" icon="mdi-plus" label="新建单位" @click="toCreate()" />
     </template>
 
     <template #body-cell-actions="props">
@@ -42,12 +42,12 @@ import type {
   ProcessInstanceSortBy,
   ProcessInstanceDeleteQueryParams,
   QTableProps,
-} from "@/composables/declarations";
+} from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { HDenseIconButton } from "@/components";
-import { useBpmnTableItems } from "@/composables/hooks";
-import { HBpmnViewDiagramDialog } from "../components";
+import { PAGE_NAME, API } from '@/configurations';
+import { HDenseIconButton } from '@/components';
+import { useBpmnTableItems } from '@/composables/hooks';
+import { HBpmnViewDiagramDialog } from '../components';
 
 defineOptions({ name: PAGE_NAME.WORKFLOW_PROCESS_INSTANCE, components: { HDenseIconButton, HBpmnViewDiagramDialog } });
 
@@ -60,8 +60,8 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
   >(
     API.bpmn.processInstance(),
     {
-      sortBy: "businessKey",
-      sortOrder: "desc",
+      sortBy: 'businessKey',
+      sortOrder: 'desc',
     },
     {},
     false,
@@ -69,28 +69,28 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
   );
 
 const selected = ref([]);
-const rowKey = "id" as keyof ProcessInstanceEntity;
+const rowKey = 'id' as keyof ProcessInstanceEntity;
 const viewProgress = ref(false);
 
-const columns: QTableProps["columns"] = [
-  { name: "id", field: "id", align: "center", label: "ID" },
-  { name: "definitionId", field: "definitionId", align: "center", label: "定义ID" },
-  { name: "businessKey", field: "businessKey", align: "center", label: "BusinessKey" },
+const columns: QTableProps['columns'] = [
+  { name: 'id', field: 'id', align: 'center', label: 'ID' },
+  { name: 'definitionId', field: 'definitionId', align: 'center', label: '定义ID' },
+  { name: 'businessKey', field: 'businessKey', align: 'center', label: 'BusinessKey' },
   {
-    name: "suspended",
-    field: "suspended",
-    align: "center",
-    label: "是否挂起",
-    format: (value) => (value ? "是" : "否"),
+    name: 'suspended',
+    field: 'suspended',
+    align: 'center',
+    label: '是否挂起',
+    format: (value) => (value ? '是' : '否'),
   },
   {
-    name: "ended",
-    field: "ended",
-    align: "center",
-    label: "是否结束",
-    format: (value) => (value ? "是" : "否"),
+    name: 'ended',
+    field: 'ended',
+    align: 'center',
+    label: '是否结束',
+    format: (value) => (value ? '是' : '否'),
   },
-  { name: "tenantId", field: "tenantId", align: "center", label: "租户ID" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户ID' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 </script>

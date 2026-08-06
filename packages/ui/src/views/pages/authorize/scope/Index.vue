@@ -14,7 +14,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <h-button color="primary" label="新建范围" @click="toCreate" />
+      <h-button color="primary" icon="mdi-plus" label="新建范围" @click="toCreate" />
     </template>
 
     <template #body-cell-actions="props">

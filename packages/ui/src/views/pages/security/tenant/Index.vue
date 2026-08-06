@@ -14,7 +14,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <h-button color="primary" label="新建数据源" @click="toCreate" />
+      <h-button color="primary" icon="mdi-plus" label="新建数据源" @click="toCreate" />
     </template>
 
     <template #body-cell-actions="props">
@@ -31,14 +31,14 @@ import type {
   SysTenantDataSourceEntity,
   SysTenantDataSourceConditions,
   SysTenantDataSourceProps,
-} from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+} from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
+import { PAGE_NAME, API } from '@/configurations';
 
-import { useTable } from "@/composables/hooks";
+import { useTable } from '@/composables/hooks';
 
-import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/components";
+import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from '@/components';
 
 defineOptions({
   name: PAGE_NAME.SYS_TENANT_DATA_SOURCE,
@@ -52,17 +52,17 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthoriz
   );
 
 const selected = ref([]);
-const rowKey: SysTenantDataSourceProps = "datasourceId";
+const rowKey: SysTenantDataSourceProps = 'datasourceId';
 
 const columns: QTableColumnProps = [
-  { name: "tenantId", field: "tenantId", align: "center", label: "租户标识ID" },
-  { name: "username", field: "username", align: "center", label: "数据库用户名" },
-  { name: "password", field: "password", align: "center", label: "数据库密码" },
-  { name: "driverClassName", field: "driverClassName", align: "center", label: "驱动" },
-  { name: "url", field: "url", align: "center", label: "url" },
-  { name: "description", field: "description", align: "center", label: "备注" },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户标识ID' },
+  { name: 'username', field: 'username', align: 'center', label: '数据库用户名' },
+  { name: 'password', field: 'password', align: 'center', label: '数据库密码' },
+  { name: 'driverClassName', field: 'driverClassName', align: 'center', label: '驱动' },
+  { name: 'url', field: 'url', align: 'center', label: 'url' },
+  { name: 'description', field: 'description', align: 'center', label: '备注' },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 </script>

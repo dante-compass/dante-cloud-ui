@@ -12,7 +12,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <q-btn color="primary" label="新建单位" @click="toCreate()" />
+      <q-btn color="primary" icon="mdi-plus" label="新建单位" @click="toCreate()" />
     </template>
 
     <template #body-cell-actions="props">
@@ -52,13 +52,13 @@ import type {
   ProcessDefinitionSortBy,
   ProcessDefinitionDeleteQueryParams,
   QTableProps,
-} from "@/composables/declarations";
+} from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
+import { PAGE_NAME, API } from '@/configurations';
 
-import { HDenseIconButton } from "@/components";
-import { useBpmnTableItems } from "@/composables/hooks";
-import { HBpmnViewDiagramDialog, HBpmnViewXmlDialog } from "../components";
+import { HDenseIconButton } from '@/components';
+import { useBpmnTableItems } from '@/composables/hooks';
+import { HBpmnViewDiagramDialog, HBpmnViewXmlDialog } from '../components';
 
 defineOptions({
   name: PAGE_NAME.WORKFLOW_PROCESS_DEFINITION,
@@ -74,8 +74,8 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
   >(
     API.bpmn.processDefinition(),
     {
-      sortBy: "id",
-      sortOrder: "desc",
+      sortBy: 'id',
+      sortOrder: 'desc',
     },
     {},
     false,
@@ -83,37 +83,37 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
   );
 
 const selected = ref([]);
-const rowKey = "id" as keyof ProcessDefinitionEntity;
+const rowKey = 'id' as keyof ProcessDefinitionEntity;
 const viewDiagram = ref(false);
 const viewXml = ref(false);
 
-const columns: QTableProps["columns"] = [
-  { name: "key", field: "key", align: "center", label: "KEY" },
-  { name: "version", field: "version", align: "center", label: "版本" },
-  { name: "deploymentId", field: "deploymentId", align: "center", label: "部署ID" },
-  { name: "name", field: "name", align: "center", label: "模型名称" },
-  { name: "resource", field: "resource", align: "center", label: "资源名称" },
-  { name: "tenantId", field: "tenantId", align: "center", label: "租户ID" },
+const columns: QTableProps['columns'] = [
+  { name: 'key', field: 'key', align: 'center', label: 'KEY' },
+  { name: 'version', field: 'version', align: 'center', label: '版本' },
+  { name: 'deploymentId', field: 'deploymentId', align: 'center', label: '部署ID' },
+  { name: 'name', field: 'name', align: 'center', label: '模型名称' },
+  { name: 'resource', field: 'resource', align: 'center', label: '资源名称' },
+  { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户ID' },
   {
-    name: "suspended",
-    field: "suspended",
-    align: "center",
-    label: "是否挂起",
-    format: (value) => (value ? "是" : "否"),
+    name: 'suspended',
+    field: 'suspended',
+    align: 'center',
+    label: '是否挂起',
+    format: (value) => (value ? '是' : '否'),
   },
   {
-    name: "startableInTasklist",
-    field: "startableInTasklist",
-    align: "center",
-    label: "是否可启动",
-    format: (value) => (value ? "是" : "否"),
+    name: 'startableInTasklist',
+    field: 'startableInTasklist',
+    align: 'center',
+    label: '是否可启动',
+    format: (value) => (value ? '是' : '否'),
   },
   {
-    name: "historyTimeToLive",
-    field: "historyTimeToLive",
-    align: "center",
-    label: "历史数据保留时长",
+    name: 'historyTimeToLive',
+    field: 'historyTimeToLive',
+    align: 'center',
+    label: '历史数据保留时长',
   },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 </script>

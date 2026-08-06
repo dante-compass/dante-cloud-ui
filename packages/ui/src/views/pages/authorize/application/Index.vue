@@ -13,7 +13,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <q-btn color="primary" label="新建应用" @click="toCreate()" />
+      <q-btn color="primary" icon="mdi-plus" label="新建应用" @click="toCreate()" />
     </template>
 
     <template #body-cell-authorizationGrantTypes="props">

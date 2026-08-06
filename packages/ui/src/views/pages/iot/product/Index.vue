@@ -16,36 +16,36 @@
       @request="findItems"
     >
       <template #top-left>
-        <h-button color="primary" label="新建产品" @click="toCreate" />
+        <h-button color="primary" icon="mdi-plus" label="新建产品" @click="toCreate" />
       </template>
 
       <template #body-cell-category="props">
         <q-td key="category" :props="props">
-          {{ props.row.category ? props.row.category.categoryName : "" }}
+          {{ props.row.category ? props.row.category.categoryName : '' }}
         </q-td>
       </template>
 
       <template #body-cell-nodeType="props">
         <q-td key="nodeType" :props="props">
-          {{ getDictionaryItemDisplay("NodeType", props.row.nodeType) }}
+          {{ getDictionaryItemDisplay('NodeType', props.row.nodeType) }}
         </q-td>
       </template>
 
       <template #body-cell-gatewayProtocol="props">
         <q-td key="gatewayProtocol" :props="props">
-          {{ getDictionaryItemDisplay("GatewayProtocol", props.row.gatewayProtocol) }}
+          {{ getDictionaryItemDisplay('GatewayProtocol', props.row.gatewayProtocol) }}
         </q-td>
       </template>
 
       <template #body-cell-networkingMethod="props">
         <q-td key="networkingMethod" :props="props">
-          {{ getDictionaryItemDisplay("NetworkingMethod", props.row.networkingMethod) }}
+          {{ getDictionaryItemDisplay('NetworkingMethod', props.row.networkingMethod) }}
         </q-td>
       </template>
 
       <template #body-cell-authenticationMode="props">
         <q-td key="authenticationMode" :props="props">
-          {{ getDictionaryItemDisplay("AuthenticationMode", props.row.authenticationMode) }}
+          {{ getDictionaryItemDisplay('AuthenticationMode', props.row.authenticationMode) }}
         </q-td>
       </template>
 
@@ -70,15 +70,15 @@
 </template>
 
 <script setup lang="ts">
-import type { ProductEntity, ProductConditions, ProductProps } from "@herodotus/api";
-import type { QTableColumnProps, HttpResult } from "@/composables/declarations";
+import type { ProductEntity, ProductConditions, ProductProps } from '@herodotus/api';
+import type { QTableColumnProps, HttpResult } from '@/composables/declarations';
 
-import { useTable } from "@/composables/hooks";
-import { PAGE_NAME, API } from "@/configurations";
-import { toast } from "@herodotus/core";
-import { HDeleteButton, HEditButton, HInfoButton, HTable } from "@/components";
-import { useDictionary } from "@/composables/hooks";
-import Search from "./Search.vue";
+import { useTable } from '@/composables/hooks';
+import { PAGE_NAME, API } from '@/configurations';
+import { toast } from '@herodotus/core';
+import { HDeleteButton, HEditButton, HInfoButton, HTable } from '@/components';
+import { useDictionary } from '@/composables/hooks';
+import Search from './Search.vue';
 
 defineOptions({ name: PAGE_NAME.IOT_PRODUCT, components: { HDeleteButton, HEditButton, HInfoButton, HTable, Search } });
 
@@ -86,34 +86,34 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toInfo, fi
   useTable<ProductConditions, ProductEntity>(API.core.iotProduct(), PAGE_NAME.IOT_PRODUCT);
 
 const selected = ref([]);
-const rowKey: ProductProps = "id";
+const rowKey: ProductProps = 'id';
 
 const { getDictionaryItemDisplay } = useDictionary(
-  "NodeType",
-  "GatewayProtocol",
-  "NetworkingMethod",
-  "AuthenticationMethod",
+  'NodeType',
+  'GatewayProtocol',
+  'NetworkingMethod',
+  'AuthenticationMethod',
 );
 
 const columns: QTableColumnProps = [
-  { name: "productKey", field: "productKey", align: "center", label: "ProductKey" },
-  { name: "productName", field: "productName", align: "center", label: "产品名称" },
-  { name: "category", field: "category", align: "center", label: "所属品类" },
-  { name: "nodeType", field: "nodeType", align: "center", label: "节点类型" },
-  { name: "gatewayProtocol", field: "gatewayProtocol", align: "center", label: "网关协议" },
-  { name: "networkingMethod", field: "networkingMethod", align: "center", label: "联网方式" },
+  { name: 'productKey', field: 'productKey', align: 'center', label: 'ProductKey' },
+  { name: 'productName', field: 'productName', align: 'center', label: '产品名称' },
+  { name: 'category', field: 'category', align: 'center', label: '所属品类' },
+  { name: 'nodeType', field: 'nodeType', align: 'center', label: '节点类型' },
+  { name: 'gatewayProtocol', field: 'gatewayProtocol', align: 'center', label: '网关协议' },
+  { name: 'networkingMethod', field: 'networkingMethod', align: 'center', label: '联网方式' },
   {
-    name: "authenticationMethod",
-    field: "authenticationMethod",
-    align: "center",
-    label: "认证方式",
+    name: 'authenticationMethod',
+    field: 'authenticationMethod',
+    align: 'center',
+    label: '认证方式',
   },
-  { name: "registration", field: "registration", align: "center", label: "开启动态注册" },
-  { name: "release", field: "release", align: "center", label: "是否发布" },
-  { name: "quantity", field: "quantity", align: "center", label: "设备数量" },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'registration', field: 'registration', align: 'center', label: '开启动态注册' },
+  { name: 'release', field: 'release', align: 'center', label: '是否发布' },
+  { name: 'quantity', field: 'quantity', align: 'center', label: '设备数量' },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
 const onRegistrationChange = (item: ProductEntity, event: boolean) => {
@@ -126,11 +126,11 @@ const onRegistrationChange = (item: ProductEntity, event: boolean) => {
       if (result.message) {
         toast.success(result.message);
       } else {
-        toast.success("操作成功");
+        toast.success('操作成功');
       }
     })
     .catch((error) => {
-      toast.error("操作失败");
+      toast.error('操作失败');
     });
 };
 </script>

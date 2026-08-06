@@ -5,6 +5,7 @@ import { HCardTitle, HChartCard } from "./HCard";
 import { HDateTime, HDuration } from "./HDateTime";
 import { HDivider } from "./HDivider";
 import { HDialog } from "./HDialog";
+import { HLabelItem } from "./HItem";
 import { HSwitch, HTextField, HSelect, HIconSelect, HFieldLabel, HTreeField, HLabel, HCenterLabel } from "./HForm";
 import { HColumn, HContainer, HRow } from "./HGrid";
 import { HListItem } from "./HList";
@@ -39,6 +40,7 @@ const components = [
   HSwitch,
   HTextField,
   HVisibilityButton,
+  HLabelItem,
 ];
 
 const install = (app: App) => {
@@ -70,6 +72,7 @@ export {
   HSignInBackground,
   HSwitch,
   HTextField,
+  HLabelItem,
   HVisibilityButton,
 };
 

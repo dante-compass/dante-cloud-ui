@@ -25,6 +25,7 @@ const components = [
   "HSignInBackground",
   "HSwitch",
   "HTextField",
+  "HLabelItem",
   "HVisibilityButton",
 ];
 

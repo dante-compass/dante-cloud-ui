@@ -15,7 +15,7 @@
       @request="findItems"
     >
       <template #top-left>
-        <h-button color="primary" label="新建用户" @click="toCreate" />
+        <h-button color="primary" icon="mdi-plus" label="新建用户" @click="toCreate" />
       </template>
 
       <template #body-cell-actions="props">
@@ -55,16 +55,16 @@
 </template>
 
 <script setup lang="ts">
-import type { SysUserEntity, SysUserConditions, SysUserProps } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { SysUserEntity, SysUserConditions, SysUserProps } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
+import { PAGE_NAME, API } from '@/configurations';
 
-import { useAuthenticationStore } from "@herodotus/framework";
-import { useTable, useDateTime } from "@/composables/hooks";
+import { useAuthenticationStore } from '@herodotus/framework';
+import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from "@/components";
-import { HChangePassword, HSendMessageToUser } from "./components";
+import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from '@/components';
+import { HChangePassword, HSendMessageToUser } from './components';
 
 defineOptions({
   name: PAGE_NAME.SYS_USER,
@@ -76,34 +76,34 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthoriz
   useTable<SysUserConditions, SysUserEntity>(API.core.sysUser(), PAGE_NAME.SYS_USER);
 
 const selected = ref([]);
-const rowKey: SysUserProps = "userId";
+const rowKey: SysUserProps = 'userId';
 const showChangePasswordDialog = ref(false);
 const showSendMessageToUserDialog = ref(false);
-const currentUserId = ref("");
-const currentUsername = ref("");
-const currentUserAvatar = ref("");
+const currentUserId = ref('');
+const currentUsername = ref('');
+const currentUserAvatar = ref('');
 const store = useAuthenticationStore();
 
 const columns: QTableColumnProps = [
-  { name: "username", field: "username", align: "center", label: "用户名" },
-  { name: "nickname", field: "nickname", align: "center", label: "昵称" },
-  { name: "description", field: "description", align: "center", label: "备注" },
+  { name: 'username', field: 'username', align: 'center', label: '用户名' },
+  { name: 'nickname', field: 'nickname', align: 'center', label: '昵称' },
+  { name: 'description', field: 'description', align: 'center', label: '备注' },
   {
-    name: "updateBy",
-    field: "updateBy",
-    align: "center",
-    label: "最后修改人",
+    name: 'updateBy',
+    field: 'updateBy',
+    align: 'center',
+    label: '最后修改人',
   },
   {
-    name: "updateTime",
-    field: "updateTime",
-    align: "center",
-    label: "修改时间",
+    name: 'updateTime',
+    field: 'updateTime',
+    align: 'center',
+    label: '修改时间',
     format: (value) => defaultFormat(value),
   },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
 const onChangePassword = (item: SysUserEntity) => {
