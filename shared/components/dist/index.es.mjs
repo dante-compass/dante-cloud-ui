@@ -671,7 +671,8 @@ var J = /* @__PURE__ */ function(e) {
 			if (n.align !== "none") {
 				let e = t.align;
 				return n.self && (e = t.self), e + "-" + n.align;
-			} else return "";
+			}
+			return "";
 		}, l = (e) => o(e, "x"), u = (e) => o(e, "y"), d = (e) => {
 			e && i.push(e);
 		}, p = () => i.length > 1 ? i.join(" ") : i.length === 1 ? i[0] : t.row, m = () => {
@@ -714,9 +715,7 @@ var J = /* @__PURE__ */ function(e) {
 				case "end":
 					re(_t);
 					break;
-				default:
-					ie();
-					break;
+				default: ie();
 			}
 			else switch (r.wider) {
 				case "center":
@@ -730,9 +729,7 @@ var J = /* @__PURE__ */ function(e) {
 				case "end":
 					ae(), re(vt);
 					break;
-				default:
-					y();
-					break;
+				default: y();
 			}
 		};
 		return S(() => r, () => {

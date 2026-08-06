@@ -1,5 +1,13 @@
 # @herodotus-cloud/form-engine
 
+## 5.1.4
+
+### Patch Changes
+
+- 物模型API完成
+- Updated dependencies
+  - @herodotus-cloud/form-apis@5.1.4
+
 ## 5.1.3
 
 ### Patch Changes

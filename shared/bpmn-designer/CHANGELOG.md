@@ -1,5 +1,15 @@
 # @herodotus-cloud/bpmn-designer
 
+## 5.1.4
+
+### Patch Changes
+
+- 物模型API完成
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.4
+  - @herodotus-cloud/bpmn-apis@5.1.4
+  - @herodotus-cloud/form-apis@5.1.4
+
 ## 5.1.3
 
 ### Patch Changes

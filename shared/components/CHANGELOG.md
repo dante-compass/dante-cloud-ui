@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 5.1.4
+
+### Patch Changes
+
+- 物模型API完成
+
 ## 5.1.3
 
 ### Patch Changes

@@ -332,8 +332,8 @@ function Ht() {
 		},
 		resetGeneratedTaskFormsValues: (e) => {
 			if (t(e)) {
-				let t = n(e);
-				B(r(t)) || o(e, t);
+				let t = n(e), i = r(t);
+				B(i) || o(e, t);
 			}
 		},
 		resetProperties: (t) => {
@@ -2702,9 +2702,7 @@ var va = /*#__PURE__*/ q(ga, [["render", _a]]), $ = /* @__PURE__ */ function(e) 
 				case $.EMBEDDED_OR_EXTERNAL_TASK_FORMS:
 					r(t.activeElement, ""), d(t.activeElement);
 					break;
-				default:
-					d(t.activeElement);
-					break;
+				default: d(t.activeElement);
 			}
 		};
 		return P(() => t.activeElement.id, () => {
@@ -3409,11 +3407,11 @@ var jo = /* @__PURE__ */ k({
 		}
 	},
 	setup(e) {
-		let t = j(!0), { panelGroups: n } = Je(W()), r = (e) => {
+		let t = j(!0), n = W(), { panelGroups: r } = Je(n), i = (e) => {
 			let t = e, n = e.indexOf("__");
 			return n !== -1 && (t = e.substring(n + 2)), t = Ge(t), "H" + t + "Panel";
 		};
-		return (i, a) => {
+		return (n, a) => {
 			let o = ee, s = re, c = u;
 			return A(), C(c, {
 				modelValue: t.value,
@@ -3436,7 +3434,7 @@ var jo = /* @__PURE__ */ k({
 							"title",
 							"icon",
 							"name"
-						]), (A(!0), T(me, null, Te(N(n), (e, t) => (A(), C(ke(r(e.id)), { key: t }))), 128))]),
+						]), (A(!0), T(me, null, Te(N(r), (e, t) => (A(), C(ke(i(e.id)), { key: t }))), 128))]),
 						_: 1
 					})]),
 					_: 1
@@ -3453,10 +3451,10 @@ var jo = /* @__PURE__ */ k({
 		HSeparator: Q
 	},
 	setup() {
-		let e = W(), { showMiniMap: t, showBpmnLint: n } = Je(Ft());
+		let e = W(), t = Ft(), { showMiniMap: n, showBpmnLint: r } = Je(t);
 		return {
-			showMiniMap: t,
-			showBpmnLint: n,
+			showMiniMap: n,
+			showBpmnLint: r,
 			toggleSimulation: () => {
 				let t = e.modeler.get("toggleMode");
 				t && t.toggleMode();
@@ -3575,10 +3573,10 @@ var Lo = /*#__PURE__*/ q(Fo, [["render", Io]]), Ro = k({
 		return {
 			onZoomReset: r,
 			onZoomMinus: (t = 0) => {
-				e.value = t || Math.floor(e.value * 100 - .1 * 100) / 100, r(e.value);
+				e.value = t || Math.floor(e.value * 100 - 10) / 100, r(e.value);
 			},
 			onZoomPlus: (t = 0) => {
-				e.value = t || Math.floor(e.value * 100 + .1 * 100) / 100, r(e.value);
+				e.value = t || Math.floor(e.value * 100 + 10) / 100, r(e.value);
 			},
 			percentage: S(() => Math.floor(e.value * 10) * 10 + "%")
 		};

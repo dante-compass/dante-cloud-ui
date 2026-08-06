@@ -1142,14 +1142,14 @@ var Ye = /*#__PURE__*/ W(qe, [["render", Je]]), Xe = { class: "q-gutter-y-sm col
 	},
 	__name: "HPropertyPanel",
 	setup(e) {
-		let { isInformationPanel: n, currentSchema: r, currentPanel: i } = ge(H()), a = he("info"), o = he("display");
-		return (e, s) => {
+		let n = H(), { isInformationPanel: r, currentSchema: i, currentPanel: a } = ge(n), o = he("info"), s = he("display");
+		return (e, n) => {
 			let c = _, l = te, u = h, d = v, f = ee, p = t;
-			return M(n) ? (D(), x(p, { key: 0 }, {
+			return M(r) ? (D(), x(p, { key: 0 }, {
 				default: P(() => [
 					T(l, {
-						modelValue: a.value,
-						"onUpdate:modelValue": s[0] ||= (e) => a.value = e,
+						modelValue: o.value,
+						"onUpdate:modelValue": n[0] ||= (e) => o.value = e,
 						dense: "",
 						class: "text-grey",
 						"active-color": "primary",
@@ -1165,8 +1165,8 @@ var Ye = /*#__PURE__*/ W(qe, [["render", Je]]), Xe = { class: "q-gutter-y-sm col
 					}, 8, ["modelValue"]),
 					T(u),
 					T(f, {
-						modelValue: a.value,
-						"onUpdate:modelValue": s[1] ||= (e) => a.value = e,
+						modelValue: o.value,
+						"onUpdate:modelValue": n[1] ||= (e) => o.value = e,
 						animated: ""
 					}, {
 						default: P(() => [T(d, { name: "info" }, {
@@ -1180,8 +1180,8 @@ var Ye = /*#__PURE__*/ W(qe, [["render", Je]]), Xe = { class: "q-gutter-y-sm col
 			})) : (D(), x(p, { key: 1 }, {
 				default: P(() => [
 					T(l, {
-						modelValue: o.value,
-						"onUpdate:modelValue": s[2] ||= (e) => o.value = e,
+						modelValue: s.value,
+						"onUpdate:modelValue": n[2] ||= (e) => s.value = e,
 						dense: "",
 						class: "text-grey",
 						"active-color": "primary",
@@ -1200,15 +1200,15 @@ var Ye = /*#__PURE__*/ W(qe, [["render", Je]]), Xe = { class: "q-gutter-y-sm col
 					}, 8, ["modelValue"]),
 					T(u),
 					T(f, {
-						modelValue: o.value,
-						"onUpdate:modelValue": s[3] ||= (e) => o.value = e,
+						modelValue: s.value,
+						"onUpdate:modelValue": n[3] ||= (e) => s.value = e,
 						animated: ""
 					}, {
 						default: P(() => [T(d, {
 							name: "display",
 							class: "q-pa-none"
 						}, {
-							default: P(() => [(D(), x(me(M(i)), { schema: M(r) }, null, 8, ["schema"]))]),
+							default: P(() => [(D(), x(me(M(a)), { schema: M(i) }, null, 8, ["schema"]))]),
 							_: 1
 						}), T(d, {
 							name: "sheet",
