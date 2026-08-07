@@ -14,8 +14,8 @@
 
     <template v-if="!$slots['top-right']" #top-right="props">
       <h-table-action
-        v-model="separator"
-        :inFullscreen="props.inFullscreen"
+        v-model:separator="separator"
+        :fullscreen="props.inFullscreen"
         @toggle-fullscreen="props.toggleFullscreen"
       ></h-table-action>
     </template>
@@ -25,7 +25,7 @@
     </template>
 
     <template v-if="!showAll && !$slots.pagination" #pagination>
-      <h-pagination v-model="pageNumberVModel" :max="totalPages" />
+      <h-pagination v-model="pageNumber" :max="totalPages" />
     </template>
 
     <template v-if="reserved && !$slots['body-cell-reserved']" #body-cell-reserved="props">
@@ -53,37 +53,35 @@ import HTableAction from './HTableAction.vue';
 import HStatusColumn from './HStatusColumn.vue';
 import HReservedColumn from './HReservedColumn.vue';
 
-defineOptions({
-  name: 'HTable',
-  components: {
-    HReservedColumn,
-    HStatusColumn,
-    HTableAction,
-  },
+defineOptions({ name: 'HTable', components: { HReservedColumn, HStatusColumn, HTableAction } });
+
+interface Props {
+  rows: Array<Entity>;
+  totalPages: number;
+  loading?: boolean;
+  showAll?: boolean;
+  status?: boolean;
+  reserved?: boolean;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  loading: false,
+  showAll: false,
+  status: false,
+  reserved: false,
 });
 
-const props = defineProps({
-  rows: { type: Array as PropType<Array<Entity>>, required: true },
-  pageNumber: { type: Number, default: 0 },
-  totalPages: { type: Number },
-  loading: { type: Boolean, default: false },
-  showAll: { type: Boolean, default: false },
-  status: { type: Boolean, default: false },
-  reserved: { type: Boolean, default: false },
+const pageNumber = defineModel('pageNumber', {
+  required: true,
+  default: 0,
 });
 
 const emit = defineEmits(['update:pageNumber']);
 
 const settings = useSettingsStore();
 const { options } = useDictionary('DataItemStatus');
-const separator = shallowRef('horizontal') as ShallowRef<QTableSeparatorProps>;
 
-const pageNumberVModel = computed({
-  get: () => props.pageNumber,
-  set: (newValue) => {
-    emit('update:pageNumber', newValue);
-  },
-});
+const separator = shallowRef<QTableSeparatorProps>('horizontal');
 
 const rowsPerPageOptions = computed(() => {
   return props.showAll ? [0] : [5, 10, 15, 20, 25, 50];

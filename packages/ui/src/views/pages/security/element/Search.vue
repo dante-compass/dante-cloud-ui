@@ -1,57 +1,59 @@
 <template>
-  <q-list>
-    <q-expansion-item label="查询条件：" default-opened>
-      <q-card>
-        <q-card-section>
-          <h-row align="center" gutter="md" horizontal>
-            <h-column :cols="2">
-              <h-text-field
-                v-model="conditionsModelValue.path"
-                debounce="1000"
-                label="请求路径"
-                dense
-                class="q-pb-none"
-              ></h-text-field>
-            </h-column>
-            <h-column :cols="2">
-              <h-text-field
-                v-model="conditionsModelValue.title"
-                debounce="1000"
-                label="组件标题"
-                dense
-                class="q-pb-none"
-              ></h-text-field>
-            </h-column>
-            <h-column :cols="2"></h-column>
-            <h-column :cols="2"></h-column>
-            <h-column :cols="2"></h-column>
-            <h-column auto>
-              <h-button color="red" icon="mdi-broom" tooltip="清空" @click.stop="onClear()"></h-button>
-            </h-column>
-          </h-row>
-        </q-card-section>
-      </q-card>
-    </q-expansion-item>
-  </q-list>
+  <q-card>
+    <q-list>
+      <q-expansion-item label="查询条件：" default-opened>
+        <q-card>
+          <q-card-section>
+            <h-row align="center" gutter="md" horizontal>
+              <h-column :cols="2">
+                <h-text-field
+                  v-model="conditionsModelValue.path"
+                  debounce="1000"
+                  label="请求路径"
+                  dense
+                  class="q-pb-none"
+                ></h-text-field>
+              </h-column>
+              <h-column :cols="2">
+                <h-text-field
+                  v-model="conditionsModelValue.title"
+                  debounce="1000"
+                  label="组件标题"
+                  dense
+                  class="q-pb-none"
+                ></h-text-field>
+              </h-column>
+              <h-column :cols="2"></h-column>
+              <h-column :cols="2"></h-column>
+              <h-column :cols="2"></h-column>
+              <h-column auto>
+                <h-button color="red" icon="mdi-broom" tooltip="清空" @click.stop="onClear()"></h-button>
+              </h-column>
+            </h-row>
+          </q-card-section>
+        </q-card>
+      </q-expansion-item>
+    </q-list>
+  </q-card>
 </template>
 
 <script lang="ts">
-import type { SysElementConditions } from "@herodotus/api";
+import type { SysElementConditions } from '@herodotus/api';
 
 export default defineComponent({
-  name: "HElementCondition",
+  name: 'HElementCondition',
 
   props: {
     conditions: { type: Object as PropType<SysElementConditions>, required: true },
   },
 
-  emits: ["update:conditions"],
+  emits: ['update:conditions'],
 
   setup(props, { emit }) {
     const conditionsModelValue = computed({
       get: () => props.conditions,
       set: (newValue) => {
-        emit("update:conditions", newValue);
+        emit('update:conditions', newValue);
       },
     });
 
