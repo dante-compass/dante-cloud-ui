@@ -1,5 +1,11 @@
 # @herodotus-cloud/bpmn-apis
 
+## 5.1.5
+
+### Patch Changes
+
+- 升级依赖包，重新编译库
+
 ## 5.1.4
 
 ### Patch Changes

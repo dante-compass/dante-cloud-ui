@@ -1,5 +1,15 @@
 # @herodotus-cloud/form-designer
 
+## 5.1.5
+
+### Patch Changes
+
+- 升级依赖包，重新编译库
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.5
+  - @herodotus-cloud/form-apis@5.1.5
+  - @herodotus-cloud/form-engine@5.1.5
+
 ## 5.1.4
 
 ### Patch Changes

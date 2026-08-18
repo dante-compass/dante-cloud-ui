@@ -17,18 +17,18 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "^3.48.0",
+    "@bpmn-io/properties-panel": "^3.49.1",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/bpmn-designer": "workspace:^",
     "@herodotus-cloud/components": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
     "@herodotus-cloud/form-designer": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
-    "@herodotus/api": "^3.1.5",
-    "@herodotus/core": "^3.1.5",
-    "@herodotus/framework": "^3.1.5",
+    "@herodotus/api": "^3.1.6",
+    "@herodotus/core": "^3.1.6",
+    "@herodotus/framework": "^3.1.6",
     "@mdi/js": "^7.4.47",
-    "@quasar/extras": "^2.0.2",
+    "@quasar/extras": "^2.0.3",
     "@rsocket/composite-metadata": "1.0.0-alpha.3",
     "@stomp/stompjs": "^7.3.0",
     "@vuelidate/core": "^2.0.3",
@@ -36,12 +36,12 @@
     "@vueuse/core": "^14.4.0",
     "animate.css": "^4.1.1",
     "axios": "^1.19.0",
-    "bpmn-js": "^18.22.1",
+    "bpmn-js": "^18.24.0",
     "bpmn-js-token-simulation": "0.40.0",
     "colord": "^2.9.3",
     "echarts": "^6.1.0",
     "element-resize-detector": "^1.2.4",
-    "js-base64": "^3.9.2",
+    "js-base64": "^3.9.3",
     "rsocket-core": "1.0.0-alpha.3",
     "rsocket-websocket-client": "1.0.0-alpha.3",
     "simple-uploader.js": "^0.6.0",
@@ -53,6 +53,6 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "26.1.2"
+    "@types/node": "26.2.0"
   }
 }
