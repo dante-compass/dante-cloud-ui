@@ -191,6 +191,7 @@ export const PAGE_NAME = (() => {
   const IOT_PRODUCT_INFO = IOT_PRODUCT + OperationEnum.INFO;
   const IOT_DEVICE = "IotDevice";
   const IOT_DEVICE_CONTENT = IOT_DEVICE + OperationEnum.CONTENT;
+  const IOT_DEVICE_INFO = IOT_DEVICE + OperationEnum.INFO;
   const IOT_TSL_FUNCTION = "IotTslFunction";
   const IOT_TSL_UNIT = "IotTslUnit";
   const THINGS_MQTT_ACCOUNT = "ThingsMqttAccount";
@@ -272,6 +273,7 @@ export const PAGE_NAME = (() => {
     IOT_PRODUCT_INFO,
     IOT_DEVICE,
     IOT_DEVICE_CONTENT,
+    IOT_DEVICE_INFO,
     IOT_TSL_FUNCTION,
     IOT_TSL_UNIT,
     THINGS_MQTT_ACCOUNT,

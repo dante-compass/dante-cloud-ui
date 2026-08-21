@@ -1,5 +1,45 @@
 # @herodotus-cloud/form-designer
 
+## 5.1.6
+
+### Patch Changes
+
+- 版本发布
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.6
+  - @herodotus-cloud/form-apis@5.1.6
+  - @herodotus-cloud/form-engine@5.1.6
+
+## 5.1.5
+
+### Patch Changes
+
+- 升级依赖包，重新编译库
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.5
+  - @herodotus-cloud/form-apis@5.1.5
+  - @herodotus-cloud/form-engine@5.1.5
+
+## 5.1.4
+
+### Patch Changes
+
+- 物模型API完成
+- Updated dependencies
+  - @herodotus-cloud/form-engine@5.1.4
+  - @herodotus-cloud/components@5.1.4
+  - @herodotus-cloud/form-apis@5.1.4
+
+## 5.1.3
+
+### Patch Changes
+
+- 升级依赖版本
+- Updated dependencies
+  - @herodotus-cloud/form-engine@5.1.3
+  - @herodotus-cloud/components@5.1.3
+  - @herodotus-cloud/form-apis@5.1.3
+
 ## 5.1.2
 
 ### Patch Changes

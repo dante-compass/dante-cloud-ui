@@ -16,7 +16,7 @@
       @request="findItems"
     >
       <template #top-left>
-        <h-button color="primary" label="新建菜单" @click="toCreate" />
+        <h-button color="primary" icon="mdi-plus" label="新建菜单" @click="toCreate" />
       </template>
 
       <template #body-cell-icon="props">
@@ -72,14 +72,14 @@
 </template>
 
 <script setup lang="ts">
-import type { SysElementEntity, SysElementConditions, SysElementProps } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { SysElementEntity, SysElementConditions, SysElementProps } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { useTable, useDateTime } from "@/composables/hooks";
-import { PAGE_NAME, API } from "@/configurations";
+import { useTable, useDateTime } from '@/composables/hooks';
+import { PAGE_NAME, API } from '@/configurations';
 
-import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } from "@/components";
-import HElementCondition from "./Search.vue";
+import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } from '@/components';
+import HElementCondition from './Search.vue';
 
 defineOptions({
   name: PAGE_NAME.SYS_ELEMENT,
@@ -99,38 +99,38 @@ const {
   deleteItemById,
   conditions,
 } = useTable<SysElementConditions, SysElementEntity>(API.core.sysElement(), PAGE_NAME.SYS_ELEMENT, false, {
-  direction: "ASC",
-  properties: ["path"],
+  direction: 'ASC',
+  properties: ['path'],
 });
 
 const selected = ref([]);
-const rowKey: SysElementProps = "elementId";
+const rowKey: SysElementProps = 'elementId';
 
 const columns: QTableColumnProps = [
-  { name: "title", field: "title", align: "center", label: "标题" },
-  { name: "name", field: "name", align: "center", label: "组件名称" },
-  { name: "path", field: "path", align: "center", label: "请求路径" },
-  { name: "icon", field: "icon", align: "center", label: "图标" },
-  { name: "isHaveChild", field: "isHaveChild", align: "center", label: "有子节点" },
-  { name: "isHideAllChild", field: "isHideAllChild", align: "center", label: "隐藏下级节点" },
-  { name: "isDetailContent", field: "isDetailContent", align: "center", label: "三级路由" },
-  { name: "isNotKeepAlive", field: "isNotKeepAlive", align: "center", label: "不缓存" },
-  { name: "isIgnoreAuth", field: "isIgnoreAuth", align: "center", label: "忽略认证" },
+  { name: 'title', field: 'title', align: 'center', label: '标题' },
+  { name: 'name', field: 'name', align: 'center', label: '组件名称' },
+  { name: 'path', field: 'path', align: 'center', label: '请求路径' },
+  { name: 'icon', field: 'icon', align: 'center', label: '图标' },
+  { name: 'isHaveChild', field: 'isHaveChild', align: 'center', label: '有子节点' },
+  { name: 'isHideAllChild', field: 'isHideAllChild', align: 'center', label: '隐藏下级节点' },
+  { name: 'isDetailContent', field: 'isDetailContent', align: 'center', label: '三级路由' },
+  { name: 'isNotKeepAlive', field: 'isNotKeepAlive', align: 'center', label: '不缓存' },
+  { name: 'isIgnoreAuth', field: 'isIgnoreAuth', align: 'center', label: '忽略认证' },
   {
-    name: "updateBy",
-    field: "updateBy",
-    align: "center",
-    label: "最后修改人",
+    name: 'updateBy',
+    field: 'updateBy',
+    align: 'center',
+    label: '最后修改人',
   },
   {
-    name: "updateTime",
-    field: "updateTime",
-    align: "center",
-    label: "修改时间",
+    name: 'updateTime',
+    field: 'updateTime',
+    align: 'center',
+    label: '修改时间',
     format: (value) => defaultFormat(value),
   },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 </script>

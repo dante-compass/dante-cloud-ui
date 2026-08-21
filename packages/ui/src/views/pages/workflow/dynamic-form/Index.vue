@@ -14,7 +14,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <q-btn color="primary" label="新建表单" @click="toCreate({}, false)" />
+      <q-btn color="primary" icon="mdi-plus" label="新建表单" @click="toCreate({}, false)" />
     </template>
 
     <template #body-cell-actions="props">
@@ -35,15 +35,15 @@ import type {
   QTableOnRequestParameter,
   DynamicFormEntity,
   DynamicFormConditions,
-} from "@/composables/declarations";
+} from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { toast, notify } from "@herodotus/core";
-import { useBaseTable } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { toast, notify } from '@herodotus/core';
+import { useBaseTable } from '@/composables/hooks';
 
 defineOptions({ name: PAGE_NAME.WORKFLOW_DYNAMIC_FORM });
 
-const rowKey = "id" as keyof DynamicFormEntity;
+const rowKey = 'id' as keyof DynamicFormEntity;
 const selected = ref([]);
 
 const {
@@ -57,14 +57,14 @@ const {
   setPageData,
   showLoading,
   hideLoading,
-} = useBaseTable<DynamicFormConditions, DynamicFormEntity>(PAGE_NAME.WIDGETS_DYNAMIC_FORM, "updateTime", true);
+} = useBaseTable<DynamicFormConditions, DynamicFormEntity>(PAGE_NAME.WIDGETS_DYNAMIC_FORM, 'updateTime', true);
 
 const columns: QTableColumnProps = [
-  { name: "id", field: "id", align: "center", label: "业务ID" },
-  { name: "name", field: "name", align: "center", label: "名称" },
-  { name: "activityName", field: "activityName", align: "center", label: "适用节点" },
-  { name: "createTime", field: "createTime", align: "center", label: "创建时间" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'id', field: 'id', align: 'center', label: '业务ID' },
+  { name: 'name', field: 'name', align: 'center', label: '名称' },
+  { name: 'activityName', field: 'activityName', align: 'center', label: '适用节点' },
+  { name: 'createTime', field: 'createTime', align: 'center', label: '创建时间' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
 const fetchDynamicFormByPage = (pageNumber = 1) => {
@@ -100,13 +100,13 @@ const onDeleteItemById = (id: string) => {
         if (result.message) {
           toast.success(result.message);
         } else {
-          toast.success("删除成功");
+          toast.success('删除成功');
         }
 
         fetchDynamicFormByPage(pagination.value.page);
       })
       .catch(() => {
-        toast.error("删除失败");
+        toast.error('删除失败');
       });
   });
 };

@@ -1,7 +1,7 @@
 <template>
   <q-card>
     <q-card-section>
-      <q-btn color="primary" label="新建流程" @click="isOpenDialog = true" />
+      <q-btn color="primary" icon="mdi-plus" label="新建流程" @click="isOpenDialog = true" />
     </q-card-section>
 
     <q-tabs v-model="tab" active-color="primary" align="left">

@@ -1,5 +1,29 @@
 # @herodotus-cloud/components
 
+## 5.1.6
+
+### Patch Changes
+
+- 版本发布
+
+## 5.1.5
+
+### Patch Changes
+
+- 升级依赖包，重新编译库
+
+## 5.1.4
+
+### Patch Changes
+
+- 物模型API完成
+
+## 5.1.3
+
+### Patch Changes
+
+- 升级依赖版本
+
 ## 5.1.2
 
 ### Patch Changes

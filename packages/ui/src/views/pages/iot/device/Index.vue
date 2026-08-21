@@ -15,7 +15,7 @@
       @request="findItems"
     >
       <template #top-left>
-        <h-button color="primary" label="添加设备" @click="toCreate" />
+        <h-button color="primary" icon="mdi-plus" label="添加设备" @click="toCreate" />
       </template>
 
       <template #body-cell-product="props">
@@ -49,6 +49,7 @@
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
           <h-edit-button @click="toEdit(props.row)"></h-edit-button>
+          <h-info-button @click="toInfo(props.row)"></h-info-button>
           <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
         </q-td>
       </template>
@@ -57,13 +58,13 @@
 </template>
 
 <script setup lang="ts">
-import type { DeviceEntity, DeviceProps, DeviceConditions } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { DeviceEntity, DeviceProps, DeviceConditions } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { useTable } from "@/composables/hooks";
-import { PAGE_NAME, API } from "@/configurations";
+import { useTable, useDateTime } from '@/composables/hooks';
+import { PAGE_NAME, API } from '@/configurations';
 
-import { HDeleteButton, HEditButton, HTable, HDenseIconButton } from "@/components";
+import { HDeleteButton, HEditButton, HTable, HDenseIconButton } from '@/components';
 
 defineOptions({ name: PAGE_NAME.IOT_DEVICE, components: { HDeleteButton, HEditButton, HTable, HDenseIconButton } });
 
@@ -74,25 +75,32 @@ const {
   loading,
   toEdit,
   toCreate,
+  toInfo,
   toAuthorize,
   findItems,
   deleteItemById,
   conditions,
 } = useTable<DeviceConditions, DeviceEntity>(API.core.iotDevice(), PAGE_NAME.IOT_DEVICE);
+const { defaultFormat } = useDateTime();
 
 const selected = ref([]);
-const rowKey: DeviceProps = "id";
+const rowKey: DeviceProps = 'id';
 
 const columns: QTableColumnProps = [
-  { name: "deviceName", field: "deviceName", align: "center", label: "设备名称" },
-  { name: "product", field: "product", align: "center", label: "设备所属产品" },
-  { name: "clientId", field: "clientId", align: "center", label: "Client ID" },
-  { name: "enabled", field: "enabled", align: "center", label: "启用/禁用" },
-  { name: "activated", field: "activated", align: "center", label: "是否激活" },
-  { name: "connected_at", field: "connected_at", align: "center", label: "最后上线时间" },
-  { name: "disconnected_at", field: "disconnected_at", align: "center", label: "最后下线时间" },
-  { name: "connected", field: "connected", align: "center", label: "是否在线" },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'deviceName', field: 'deviceName', align: 'center', label: '设备名称' },
+  { name: 'product', field: 'product', align: 'center', label: '设备所属产品' },
+  { name: 'clientId', field: 'clientId', align: 'center', label: 'Client ID' },
+  { name: 'enabled', field: 'enabled', align: 'center', label: '启用/禁用' },
+  { name: 'activated', field: 'activated', align: 'center', label: '是否激活' },
+  { name: 'updateBy', field: 'updateBy', align: 'center', label: '最后修改人' },
+  {
+    name: 'updateTime',
+    field: 'updateTime',
+    align: 'center',
+    label: '修改时间',
+    format: (value) => defaultFormat(value),
+  },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 </script>

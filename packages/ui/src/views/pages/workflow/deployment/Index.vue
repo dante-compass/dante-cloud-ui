@@ -12,7 +12,7 @@
     @request="findItems"
   >
     <template #top-left>
-      <q-btn color="primary" label="新建模型" to="/widgets/bpmn-designer" />
+      <q-btn color="primary" icon="mdi-plus" label="新建模型" to="/widgets/bpmn-designer" />
     </template>
 
     <template #body-cell-actions="props">
@@ -30,11 +30,11 @@ import type {
   DeploymentSortBy,
   DeploymentDeleteQueryParams,
   QTableProps,
-} from "@/composables/declarations";
+} from '@/composables/declarations';
 
-import { moment } from "@herodotus/core";
-import { PAGE_NAME, API } from "@/configurations";
-import { useBpmnTableItems } from "@/composables/hooks";
+import { moment } from '@herodotus/core';
+import { PAGE_NAME, API } from '@/configurations';
+import { useBpmnTableItems } from '@/composables/hooks';
 
 defineOptions({ name: PAGE_NAME.WORKFLOW_DEPLOYMENT });
 
@@ -42,8 +42,8 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
   useBpmnTableItems<DeploymentEntity, DeploymentQueryParams, DeploymentSortBy, DeploymentDeleteQueryParams>(
     API.bpmn.deployment(),
     {
-      sortBy: "id",
-      sortOrder: "desc",
+      sortBy: 'id',
+      sortOrder: 'desc',
     },
     {},
     false,
@@ -51,20 +51,20 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
   );
 
 const selected = ref([]);
-const rowKey = "id" as keyof DeploymentEntity;
+const rowKey = 'id' as keyof DeploymentEntity;
 
-const columns: QTableProps["columns"] = [
-  { name: "id", field: "id", align: "center", label: "ID" },
-  { name: "name", field: "name", align: "center", label: "模型名称" },
-  { name: "source", field: "source", align: "center", label: "部署渠道" },
+const columns: QTableProps['columns'] = [
+  { name: 'id', field: 'id', align: 'center', label: 'ID' },
+  { name: 'name', field: 'name', align: 'center', label: '模型名称' },
+  { name: 'source', field: 'source', align: 'center', label: '部署渠道' },
   {
-    name: "deploymentTime",
-    field: "deploymentTime",
-    align: "center",
-    label: "部署时间",
-    format: (value) => (value ? moment(value).format("YYYY-MM-DD HH:mm:ss") : ""),
+    name: 'deploymentTime',
+    field: 'deploymentTime',
+    align: 'center',
+    label: '部署时间',
+    format: (value) => (value ? moment(value).format('YYYY-MM-DD HH:mm:ss') : ''),
   },
-  { name: "tenantId", field: "tenantId", align: "center", label: "租户ID" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户ID' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 </script>
