@@ -1,5 +1,11 @@
 # @herodotus-cloud/bpmn-apis
 
+## 5.1.6
+
+### Patch Changes
+
+- 版本发布
+
 ## 5.1.5
 
 ### Patch Changes
