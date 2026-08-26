@@ -37,7 +37,7 @@
     "@herodotus-cloud/components": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
-    "quasar": "^2.25.1",
+    "quasar": "^2.27.0",
     "vue": "^3.5.41",
     "vuedraggable": "4.1.0"
   }

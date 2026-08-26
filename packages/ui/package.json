@@ -17,7 +17,7 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "^3.49.2",
+    "@bpmn-io/properties-panel": "^3.52.0",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/bpmn-designer": "workspace:^",
     "@herodotus-cloud/components": "workspace:^",
@@ -38,7 +38,7 @@
     "axios": "^1.19.0",
     "bpmn-js": "^18.25.1",
     "bpmn-js-token-simulation": "0.40.0",
-    "colord": "^2.9.5",
+    "colord": "^2.10.0",
     "echarts": "^6.1.0",
     "element-resize-detector": "^1.2.4",
     "js-base64": "^3.9.3",
@@ -47,12 +47,12 @@
     "simple-uploader.js": "^0.6.0",
     "vue": "^3.5.41",
     "vue-cookies": "^1.8.6",
-    "vue-i18n": "^11.4.8",
+    "vue-i18n": "^11.4.9",
     "vue-router": "^5.2.0",
     "vue-simple-uploader": "^1.0.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "26.2.0"
+    "@types/node": "26.3.0"
   }
 }
