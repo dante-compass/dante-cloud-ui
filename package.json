@@ -49,7 +49,7 @@
     "pinia-plugin-persistedstate": "4.7.1",
     "quasar": "^2.27.0",
     "vue": "^3.5.41",
-    "vue-i18n": "^11.4.9"
+    "vue-i18n": "^11.4.10"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.1",
