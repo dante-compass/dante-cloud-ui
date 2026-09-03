@@ -40,8 +40,8 @@
   },
   "dependencies": {
     "@mdi/js": "^7.4.47",
-    "@tsparticles/engine": "^4.3.2",
-    "@tsparticles/preset-triangles": "^4.3.2",
-    "quasar": "^2.27.0"
+    "@tsparticles/engine": "^4.4.0",
+    "@tsparticles/preset-triangles": "^4.4.0",
+    "quasar": "^2.28.0"
   }
 }
