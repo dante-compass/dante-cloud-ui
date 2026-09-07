@@ -17,7 +17,7 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "^3.53.0",
+    "@bpmn-io/properties-panel": "^3.54.0",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/bpmn-designer": "workspace:^",
     "@herodotus-cloud/components": "workspace:^",
@@ -36,7 +36,7 @@
     "@vueuse/core": "^14.4.0",
     "animate.css": "^4.1.1",
     "axios": "^1.20.0",
-    "bpmn-js": "^18.27.0",
+    "bpmn-js": "^18.28.0",
     "bpmn-js-token-simulation": "0.40.0",
     "colord": "^2.10.0",
     "echarts": "^6.1.0",
