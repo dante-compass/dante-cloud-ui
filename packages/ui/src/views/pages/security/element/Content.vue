@@ -1,5 +1,17 @@
 <template>
   <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
+    <h-label text="应用类型:"></h-label>
+    <h-dictionary-toggle
+      v-model="editedItem.clientType"
+      dictionary="ClientType"
+      default-value="0"
+    ></h-dictionary-toggle>
+    <h-label text="菜单场景:"></h-label>
+    <h-dictionary-toggle
+      v-model="editedItem.menuScenario"
+      dictionary="MenuScenario"
+      default-value="0"
+    ></h-dictionary-toggle>
     <h-text-field
       v-model="editedItem.path"
       name="path"
@@ -52,13 +64,13 @@
 </template>
 
 <script setup lang="ts">
-import type { SysElementEntity, SysElementConditions } from "@herodotus/api";
+import type { SysElementEntity, SysElementConditions } from '@herodotus/api';
 
-import { isEmpty } from "lodash-es";
-import { useTableItem, useTreeItems } from "@/composables/hooks";
-import { PAGE_NAME, API } from "@/configurations";
+import { isEmpty } from 'lodash-es';
+import { useTableItem, useTreeItems } from '@/composables/hooks';
+import { PAGE_NAME, API } from '@/configurations';
 
-import { HCenterFormLayout } from "@/components";
+import { HCenterFormLayout } from '@/components';
 
 defineOptions({ name: PAGE_NAME.SYS_ELEMENT_CONTENT });
 

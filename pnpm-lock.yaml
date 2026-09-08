@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@herodotus/core':
-        specifier: ^3.1.7
-        version: 3.1.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: ^3.1.8
+        version: 3.1.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@quasar/extras':
         specifier: ^2.0.4
         version: 2.0.4
@@ -190,14 +190,14 @@ importers:
         specifier: workspace:^
         version: link:../../shared/form-engine
       '@herodotus/api':
-        specifier: ^3.1.7
-        version: 3.1.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: ^3.1.8
+        version: 3.1.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@herodotus/core':
-        specifier: ^3.1.7
-        version: 3.1.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: ^3.1.8
+        version: 3.1.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@herodotus/framework':
-        specifier: ^3.1.7
-        version: 3.1.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: ^3.1.8
+        version: 3.1.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
@@ -826,14 +826,14 @@ packages:
     resolution: {integrity: sha512-IkO+/KEUvwbVpiURZg+P7zF74z5Jxe0UgJxVni+RtoHQ6IZieXaO02kmadomap/q+l6bc/jdPGGqTjhuZnuz1Q==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@herodotus/api@3.1.7':
-    resolution: {integrity: sha512-lh6JKjzDsKHbZLhrmvJG4e5ke2B3BZwS3mJmjmwFj++H0E8ghLSKqDxVvtKIxmeHJbmyuJfbDE2JeyCLpPhMOQ==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/api/-/@herodotus/api-3.1.7.tgz}
+  '@herodotus/api@3.1.8':
+    resolution: {integrity: sha512-NDw4z5D/8tKcJQ5DBjapxL9fLMFvli5FJb5GXQu5B9agMsrEjUF8psEPLyrokaxXbx6kCxbqSWESy+540esbgw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/api/-/@herodotus/api-3.1.8.tgz}
 
-  '@herodotus/core@3.1.7':
-    resolution: {integrity: sha512-uLRVapETvvdQgj+M2HVRBryrvuc5LwwOr7HjuEBdDq1F6PbjyiY9RMoqJQWVnnECQ+FVMzWEzagdZndhzg8XAQ==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-3.1.7.tgz}
+  '@herodotus/core@3.1.8':
+    resolution: {integrity: sha512-+DtgtFXzeVP50cJNsfTkCFVntxsq+D1Ahds+tvdaT4XnZi4+I6ZP3DQiWshBV1gCdnQsscFOb+yR7wmMI5vI1A==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-3.1.8.tgz}
 
-  '@herodotus/framework@3.1.7':
-    resolution: {integrity: sha512-2XtA0UM3KHf9C7nc3gn4A+eR56FM9RjGjqnPFgjICiheP8t68SXdaQlUhSQGAuocfTrqQXYNC9LyI8lpu5L9Ww==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/framework/-/@herodotus/framework-3.1.7.tgz}
+  '@herodotus/framework@3.1.8':
+    resolution: {integrity: sha512-8mL2C6gMMN+9WRYmrLOUm+HzCP/hH0fI4FRVC5hmHj4vuZmBfw87lTNImyDfoZ83km+BUbB/8Wiod/FlStP7zw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/framework/-/@herodotus/framework-3.1.8.tgz}
 
   '@highlightjs/vue-plugin@2.1.0':
     resolution: {integrity: sha512-E+bmk4ncca+hBEYRV2a+1aIzIV0VSY/e5ArjpuSN9IO7wBJrzUE2u4ESCwrbQD7sAy+jWQjkV5qCCWgc+pu7CQ==}
@@ -864,8 +864,8 @@ packages:
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
-  '@iconify/utils@3.1.6':
-    resolution: {integrity: sha512-9n9RQsMcfgXa8aXrHIMGAFwlm+YpY/HxRqBgCQzeMMimdOBA7hvfqDdWE/Zg5sr5SinaY78zYTPkSfG7Sy+moA==}
+  '@iconify/utils@3.1.7':
+    resolution: {integrity: sha512-JZHlwdID+dy+lTgbYC8NEC4zeugqeYsc6jewvzb4c58kHauJn+X7rNwQjxz5p2qSjqaEeQoLkCIQ9v/H4PK0/w==}
 
   '@inquirer/external-editor@1.0.3':
     resolution: {integrity: sha512-RWbSrDiYmO4LbejWY7ttpxczuwQyZLBUyygsA9Nsv95hpzUWwnNTVQmAq3xuh7vNwCp07UTmE5i11XAEExx4RA==}
@@ -5747,14 +5747,14 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@herodotus/api@3.1.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
+  '@herodotus/api@3.1.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
-      '@herodotus/core': 3.1.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@herodotus/core': 3.1.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
     transitivePeerDependencies:
       - debug
       - supports-color
 
-  '@herodotus/core@3.1.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
+  '@herodotus/core@3.1.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
       axios: 1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       crypto-js: 4.2.0
@@ -5768,9 +5768,9 @@ snapshots:
       - debug
       - supports-color
 
-  '@herodotus/framework@3.1.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
+  '@herodotus/framework@3.1.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
-      '@herodotus/core': 3.1.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@herodotus/core': 3.1.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       colord: 2.10.0
       js-base64: 3.9.3
       jwt-decode: 4.0.0
@@ -5801,7 +5801,7 @@ snapshots:
 
   '@iconify/types@2.0.0': {}
 
-  '@iconify/utils@3.1.6':
+  '@iconify/utils@3.1.7':
     dependencies:
       '@antfu/install-pkg': 2.0.1
       '@iconify/types': 2.0.0
@@ -6795,7 +6795,7 @@ snapshots:
 
   '@unocss/preset-icons@66.10.0':
     dependencies:
-      '@iconify/utils': 3.1.6
+      '@iconify/utils': 3.1.7
       '@unocss/core': 66.10.0
       ofetch: 1.5.1
 
@@ -9652,7 +9652,7 @@ snapshots:
   unplugin-icons@23.0.1(@vue/compiler-sfc@3.5.42):
     dependencies:
       '@antfu/install-pkg': 1.1.0
-      '@iconify/utils': 3.1.6
+      '@iconify/utils': 3.1.7
       local-pkg: 1.2.1
       obug: 2.1.4
       unplugin: 2.3.11

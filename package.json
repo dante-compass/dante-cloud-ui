@@ -40,7 +40,7 @@
     }
   },
   "dependencies": {
-    "@herodotus/core": "^3.1.7",
+    "@herodotus/core": "^3.1.8",
     "@quasar/extras": "^2.0.4",
     "disable-devtool": "^0.3.9",
     "filesize": "^11.0.23",
