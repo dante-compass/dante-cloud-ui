@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 5.1.8
+
+### Patch Changes
+
+- Node 版本升级至 24.21.0
+
 ## 5.1.7
 
 ### Patch Changes

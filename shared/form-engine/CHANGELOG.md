@@ -1,5 +1,13 @@
 # @herodotus-cloud/form-engine
 
+## 5.1.8
+
+### Patch Changes
+
+- Node 版本升级至 24.21.0
+- Updated dependencies
+  - @herodotus-cloud/form-apis@5.1.8
+
 ## 5.1.7
 
 ### Patch Changes
