@@ -19,6 +19,7 @@ declare const __VLS_export: import('vue').DefineComponent<{}, {
         classes?: string | ((row: any) => string);
         headerStyle?: string;
         headerClasses?: string;
+        autoWidth?: boolean;
     }[];
     openDialog: Ref<boolean, boolean>;
     count: import('vue').ComputedRef<number>;

@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/form-designer",
-  "version": "5.1.8",
+  "version": "5.1.9",
   "description": "",
   "keywords": [],
   "author": "",
@@ -37,7 +37,7 @@
     "@herodotus-cloud/components": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
-    "quasar": "^2.30.1",
+    "quasar": "^2.32.3",
     "vue": "^3.5.42",
     "vuedraggable": "4.1.0"
   }

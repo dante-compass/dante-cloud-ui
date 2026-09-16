@@ -17,6 +17,7 @@ declare const __VLS_export: import('vue').DefineComponent<{}, {}, {}, {}, {}, im
             classes?: string | ((row: any) => string);
             headerStyle?: string;
             headerClasses?: string;
+            autoWidth?: boolean;
         }[];
         tableRows: import('vue').Ref<import('@herodotus-cloud/form-apis').QBaseDataItem<boolean>[], import('@herodotus-cloud/form-apis').QBaseDataItem<boolean>[]>;
         condition: import('@herodotus-cloud/form-apis').ConditionVariable;

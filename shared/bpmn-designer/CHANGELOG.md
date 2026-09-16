@@ -1,5 +1,15 @@
 # @herodotus-cloud/bpmn-designer
 
+## 5.1.9
+
+### Patch Changes
+
+- 升级依赖包，重新编译库。
+- Updated dependencies
+  - @herodotus-cloud/bpmn-apis@5.1.9
+  - @herodotus-cloud/components@5.1.9
+  - @herodotus-cloud/form-apis@5.1.9
+
 ## 5.1.8
 
 ### Patch Changes
