@@ -1,5 +1,11 @@
 # @herodotus-cloud/form-apis
 
+## 5.1.10
+
+### Patch Changes
+
+- 升级 Github Action 版本
+
 ## 5.1.9
 
 ### Patch Changes
