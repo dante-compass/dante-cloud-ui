@@ -26,19 +26,19 @@
 </template>
 
 <script setup lang="ts">
-import type { SysRoleEntity, SysElementEntity, SysRoleConditions, SysRoleProps } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { SysRoleEntity, SysElementEntity, SysRoleConditions, SysRoleProps } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { useTableItem, useTable } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { useTableItem, useTable } from '@/composables/hooks';
 
-import { HAuthorizeList, HAuthorizeLayout } from "@/components";
+import { HAuthorizeList, HAuthorizeLayout } from '@/components';
 
-defineOptions({ name: PAGE_NAME.SYS_ATTRIBUTE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
+defineOptions({ name: PAGE_NAME.SYS_ELEMENT_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
 const { editedItem, title, assign, overlay } = useTableItem<SysElementEntity>(
   API.core.sysElement(),
-  PAGE_NAME.SYS_ATTRIBUTE_AUTHORIZE,
+  PAGE_NAME.SYS_ELEMENT_AUTHORIZE,
 );
 const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEntity>(
   API.core.sysRole(),
@@ -47,11 +47,11 @@ const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEn
 );
 
 const selectedItems = ref([]) as Ref<Array<SysRoleEntity>>;
-const rowKey: SysRoleProps = "roleId";
+const rowKey: SysRoleProps = 'roleId';
 
 const columns: QTableColumnProps = [
-  { name: "roleName", field: "roleName", align: "center", label: "角色名称" },
-  { name: "roleCode", field: "roleCode", align: "center", label: "角色代码" },
+  { name: 'roleName', field: 'roleName', align: 'center', label: '角色名称' },
+  { name: 'roleCode', field: 'roleCode', align: 'center', label: '角色代码' },
 ];
 
 onMounted(() => {

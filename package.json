@@ -40,7 +40,7 @@
     }
   },
   "dependencies": {
-    "@herodotus/core": "^3.1.13",
+    "@herodotus/core": "^3.1.14",
     "@quasar/extras": "^2.1.0",
     "disable-devtool": "^0.3.9",
     "filesize": "^11.0.24",
@@ -86,7 +86,7 @@
     "unplugin-icons": "^24.0.0",
     "unplugin-vue-components": "^32.1.0",
     "vconsole": "^3.15.1",
-    "vite": "^8.3.0",
+    "vite": "^8.3.1",
     "vite-plugin-compression2": "^2.5.3",
     "vite-plugin-dts": "^5.1.1",
     "vite-plugin-html": "^3.2.2",
