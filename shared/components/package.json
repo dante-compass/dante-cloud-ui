@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/components",
-  "version": "5.1.10",
+  "version": "5.1.11",
   "description": "",
   "keywords": [],
   "author": "",
@@ -42,6 +42,6 @@
     "@mdi/js": "^7.4.47",
     "@tsparticles/engine": "^4.4.0",
     "@tsparticles/preset-triangles": "^4.4.0",
-    "quasar": "^2.33.0"
+    "quasar": "^2.33.1"
   }
 }

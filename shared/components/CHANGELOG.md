@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 5.1.11
+
+### Patch Changes
+
+- 新增管理 API
+
 ## 5.1.10
 
 ### Patch Changes

@@ -216,18 +216,6 @@ var at = { class: "row items-center justify-end" }, ot = { class: "row items-cen
 	}
 }), st = [
 	{
-		text: "年",
-		value: "years"
-	},
-	{
-		text: "月",
-		value: "months"
-	},
-	{
-		text: "周",
-		value: "weeks"
-	},
-	{
 		text: "天",
 		value: "days"
 	},
