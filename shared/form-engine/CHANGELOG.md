@@ -1,5 +1,13 @@
 # @herodotus-cloud/form-engine
 
+## 5.1.12
+
+### Patch Changes
+
+- [新增] 新增 OAuth2 资源标识和 OAuth2 保护资源元数据管理功能菜单及数据初始化脚本
+- Updated dependencies
+  - @herodotus-cloud/form-apis@5.1.12
+
 ## 5.1.11
 
 ### Patch Changes
