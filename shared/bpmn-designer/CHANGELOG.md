@@ -1,5 +1,15 @@
 # @herodotus-cloud/bpmn-designer
 
+## 5.1.13
+
+### Patch Changes
+
+- [重构] 重命名 OAuth2 资源标识和 OAuth2 保护资源元数据相关类命名，明晰代码用途减少理解困难
+- Updated dependencies
+  - @herodotus-cloud/bpmn-apis@5.1.13
+  - @herodotus-cloud/components@5.1.13
+  - @herodotus-cloud/form-apis@5.1.13
+
 ## 5.1.12
 
 ### Patch Changes

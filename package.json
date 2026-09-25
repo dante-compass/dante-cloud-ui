@@ -40,7 +40,7 @@
     }
   },
   "dependencies": {
-    "@herodotus/core": "^3.1.14",
+    "@herodotus/core": "^3.1.16",
     "@quasar/extras": "^2.1.0",
     "disable-devtool": "^0.3.9",
     "filesize": "^11.0.24",
@@ -70,7 +70,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^18.0.3",
     "eslint": "^10.11.0",
-    "eslint-plugin-vue": "^10.11.0",
+    "eslint-plugin-vue": "^10.11.1",
     "globals": "^17.12.0",
     "husky": "^9.1.7",
     "jiti": "^2.7.0",

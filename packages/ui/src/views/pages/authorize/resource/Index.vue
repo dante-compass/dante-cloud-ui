@@ -27,25 +27,17 @@
 </template>
 
 <script setup lang="ts">
-import type {
-  OAuth2ResourceIndicatorEntity,
-  OAuth2ResourceIndicatorConditions,
-  OAuth2ResourceIndicatorProps,
-} from '@herodotus/api';
+import type { OAuth2ResourceEntity, OAuth2ResourceConditions, OAuth2ResourceProps } from '@herodotus/api';
 import type { QTableColumnProps } from '@/composables/declarations';
 
 import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime } from '@/composables/hooks';
-import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from '@/components';
 
-defineOptions({
-  name: PAGE_NAME.OAUTH2_RESOURCE_INDICATOR,
-  components: { HDeleteButton, HEditButton, HDenseIconButton, HTable },
-});
+defineOptions({ name: PAGE_NAME.OAUTH2_RESOURCE });
 
 const columns: QTableColumnProps = [
-  { name: 'indicatorName', field: 'indicatorName', align: 'center', label: '资源名称' },
-  { name: 'indicatorValue', field: 'indicatorValue', align: 'center', label: '资源值' },
+  { name: 'resourceName', field: 'resourceName', align: 'center', label: '资源名称' },
+  { name: 'resourceCode', field: 'resourceCode', align: 'center', label: '资源代码' },
   { name: 'description', field: 'description', align: 'center', label: '备注' },
   {
     name: 'updateBy',
@@ -65,13 +57,13 @@ const columns: QTableColumnProps = [
   { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
-const rowKey: OAuth2ResourceIndicatorProps = 'indicatorId';
+const rowKey: OAuth2ResourceProps = 'resourceId';
 
 const selected = ref([]);
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, deleteItemById, findItems } = useTable<
-  OAuth2ResourceIndicatorConditions,
-  OAuth2ResourceIndicatorEntity
->(API.core.oauth2ResourceIndicator(), PAGE_NAME.OAUTH2_RESOURCE_INDICATOR);
+  OAuth2ResourceConditions,
+  OAuth2ResourceEntity
+>(API.core.oauth2Resource(), PAGE_NAME.OAUTH2_RESOURCE);
 </script>
