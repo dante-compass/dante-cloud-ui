@@ -14,14 +14,14 @@
 <p align="center">
     <a href="https://my.oschina.net/pointerv" target="_blank"><img src="https://img.shields.io/badge/Author-%E7%A0%81%E5%8C%A0%E5%90%9B-orange" alt="码匠君"></a>
     <a href="./LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-blue.svg?logo=apache" alt="License Apache 2.0"></a>
-    <a href="https://github.com/dante-compass/dante-cloud-ui" target="_blank"><img src="https://img.shields.io/badge/Version-4.1.1.0-blue.svg?logo=quasar&logoColor=%23050A14" alt="Dante Cloud UI 4.1.1.0"></a>
+    <a href="https://github.com/dante-compass/dante-cloud-ui" target="_blank"><img src="https://img.shields.io/badge/Version-4.1.1.1-blue.svg?logo=quasar&logoColor=%23050A14" alt="Dante Cloud UI 4.1.1.1"></a>
     <a href="https://vuejs.org/" target="_blank"><img src="https://img.shields.io/badge/Vue-3.5-green.svg?logo=vue.js&logoColor=%234FC08D" alt="Vue 3.5"></a>
     <a href="https://vite.dev/" target="_blank"><img src="https://img.shields.io/badge/Vite-8-green.svg?logo=vite&logoColor=%239135FF" alt="Vue 8"></a>
     <a href="https://quasar.dev/" target="_blank"><img src="https://img.shields.io/badge/Quasar-2-green.svg?logo=quasar&logoColor=%23050A14" alt="Quasar 2"></a>
-    <a href="https://github.com/dromara/dante-cloud" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud-4.1.1.0-red.svg?logo=spring" alt="Dante Cloud 4.1.1.0"></a>
-    <a href="https://github.com/dante-compass/dante-engine" target="_blank"><img src="https://img.shields.io/badge/Dante%20Engine-4.1.1.0-red.svg?logo=spring" alt="Dante Engine 4.1.1.0"></a>
-    <a href="https://github.com/dante-compass/thingsbrain" target="_blank"><img src="https://img.shields.io/badge/ThingsBrain-4.1.1.0-red.svg?logo=spring" alt="ThingsBrain 4.1.1.0"></a>
-    <a href="https://github.com/dante-compass/herodotus-cloud-ui-vuetify" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud%20UI(New)-4.1.1.0-blue.svg?logo=vuetify&logoColor=%231867C0" alt="Dante Cloud UI(New) 4.1.1.0"></a>
+    <a href="https://github.com/dromara/dante-cloud" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud-4.1.1.1-red.svg?logo=spring" alt="Dante Cloud 4.1.1.1"></a>
+    <a href="https://github.com/dante-compass/dante-engine" target="_blank"><img src="https://img.shields.io/badge/Dante%20Engine-4.1.1.1-red.svg?logo=spring" alt="Dante Engine 4.1.1.1"></a>
+    <a href="https://github.com/dante-compass/thingsbrain" target="_blank"><img src="https://img.shields.io/badge/ThingsBrain-4.1.1.1-red.svg?logo=spring" alt="ThingsBrain 4.1.1.1"></a>
+    <a href="https://github.com/dante-compass/herodotus-cloud-ui-vuetify" target="_blank"><img src="https://img.shields.io/badge/Dante%20Cloud%20UI(New)-4.1.1.1-blue.svg?logo=vuetify&logoColor=%231867C0" alt="Dante Cloud UI(New) 4.1.1.1"></a>
     <a href="https://github.com/dante-compass/dante-cloud-ui"><img src="https://img.shields.io/github/stars/dante-compass/dante-cloud-ui.svg?label=Github%20Stars" alt="Github star"></a>
     <a href="https://github.com/dante-compass/dante-cloud-ui"><img src="https://img.shields.io/github/forks/dante-compass/dante-cloud-ui.svg?label=Github%20Forks" alt="Github fork"></a>
     <a href="https://gitee.com/dante-compass/dante-cloud-ui"><img src="https://gitee.com/dante-compass/dante-cloud-ui/badge/star.svg?theme=dark" alt="Gitee star"></a>
@@ -41,7 +41,7 @@
 
 # 企业级技术中台与云原生微服务基座
 
-**Dante Cloud** 国内首个支持阻塞式和响应式服务并行的、开箱即用的企业级云原生微服务基座。是采用**领域驱动模型(DDD)**设计思想，以「**高质量代码、低安全漏洞**」为核心，基于 Spring 生态全域开源技术，高度**模块化和组件化设计**，支持**智能电视、IoT等物联网设备**认证，满足**国家三级等保要求**，支持**接口国密数字信封加解密**等一系列安全体系的一站式多租户微服务解决方案。独创的可以“**一套代码实现微服务和单体两种架构灵活切换**”的企业级应用系统。
+**Dante Cloud** 国内首个支持阻塞式和响应式服务并行的、开箱即用的企业级云原生微服务基座和面向 AI Agent 开发的智能基座。是采用**领域驱动模型(DDD)**设计思想，以「**高质量代码、低安全漏洞**」为核心，基于 Spring 生态全域开源技术，高度**模块化和组件化设计**，支持**智能电视、IoT等物联网设备**认证，满足**国家三级等保要求**，支持**接口国密数字信封加解密**等一系列安全体系的一站式多租户微服务解决方案。独创的可以“**一套代码实现微服务和单体两种架构灵活切换**”的企业级应用系统，赋能企业级智能应用构建。
 
 ## 一、项目理念
 

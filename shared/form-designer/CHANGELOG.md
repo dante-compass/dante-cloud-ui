@@ -1,5 +1,85 @@
 # @herodotus-cloud/form-designer
 
+## 5.1.14
+
+### Patch Changes
+
+- 版本发布
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.14
+  - @herodotus-cloud/form-apis@5.1.14
+  - @herodotus-cloud/form-engine@5.1.14
+
+## 5.1.13
+
+### Patch Changes
+
+- [重构] 重命名 OAuth2 资源标识和 OAuth2 保护资源元数据相关类命名，明晰代码用途减少理解困难
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.13
+  - @herodotus-cloud/form-apis@5.1.13
+  - @herodotus-cloud/form-engine@5.1.13
+
+## 5.1.12
+
+### Patch Changes
+
+- [新增] 新增 OAuth2 资源标识和 OAuth2 保护资源元数据管理功能菜单及数据初始化脚本
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.12
+  - @herodotus-cloud/form-apis@5.1.12
+  - @herodotus-cloud/form-engine@5.1.12
+
+## 5.1.11
+
+### Patch Changes
+
+- 新增管理 API
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.11
+  - @herodotus-cloud/form-apis@5.1.11
+  - @herodotus-cloud/form-engine@5.1.11
+
+## 5.1.10
+
+### Patch Changes
+
+- 升级 Github Action 版本
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.10
+  - @herodotus-cloud/form-apis@5.1.10
+  - @herodotus-cloud/form-engine@5.1.10
+
+## 5.1.9
+
+### Patch Changes
+
+- 升级依赖包，重新编译库。
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.9
+  - @herodotus-cloud/form-apis@5.1.9
+  - @herodotus-cloud/form-engine@5.1.9
+
+## 5.1.8
+
+### Patch Changes
+
+- Node 版本升级至 24.21.0
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.8
+  - @herodotus-cloud/form-apis@5.1.8
+  - @herodotus-cloud/form-engine@5.1.8
+
+## 5.1.7
+
+### Patch Changes
+
+- [重构] OAuth2Application 原 ApplicationType 字段修改为 ClientType，以规避与 MCP OAuth2 协议中 application_type 产生冲突
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.7
+  - @herodotus-cloud/form-apis@5.1.7
+  - @herodotus-cloud/form-engine@5.1.7
+
 ## 5.1.6
 
 ### Patch Changes

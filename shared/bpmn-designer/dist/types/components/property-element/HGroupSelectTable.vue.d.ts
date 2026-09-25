@@ -48,6 +48,7 @@ declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractP
         classes?: string | ((row: any) => string);
         headerStyle?: string;
         headerClasses?: string;
+        autoWidth?: boolean;
     }[];
     findItems: import('@herodotus-cloud/components').QTableOnRequestProps;
     onClear: () => void;

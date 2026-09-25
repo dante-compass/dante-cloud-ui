@@ -18,8 +18,8 @@
       <h-text-field v-model="editedItem.logo" label="应用图标(可选)" placeholder="请输入应用图标"></h-text-field>
       <h-text-field v-model="editedItem.homepage" label="应用主页(可选)" placeholder="请输入应用主页"></h-text-field>
       <h-dictionary-select
-        v-model="editedItem.applicationType"
-        dictionary="ApplicationType"
+        v-model="editedItem.clientType"
+        dictionary="ClientType"
         label="应用类型"
       ></h-dictionary-select>
       <h-dictionary-select

@@ -19,6 +19,22 @@
         <h-button color="primary" icon="mdi-plus" label="新建菜单" @click="toCreate" />
       </template>
 
+      <template #body-cell-clientType="props">
+        <q-td key="clientType" :props="props">
+          <q-chip v-if="props.row.clientType" color="purple">{{
+            getDictionaryItemDisplay('ClientType', props.row.clientType)
+          }}</q-chip>
+        </q-td>
+      </template>
+
+      <template #body-cell-menuScenario="props">
+        <q-td key="menuScenario" :props="props">
+          <q-chip v-if="props.row.menuScenario" color="purple">{{
+            getDictionaryItemDisplay('MenuScenario', props.row.menuScenario)
+          }}</q-chip>
+        </q-td>
+      </template>
+
       <template #body-cell-icon="props">
         <q-td key="icon" :props="props">
           <h-dense-icon-button color="primary" :icon="props.row.icon" :tooltip="props.row.icon"></h-dense-icon-button>
@@ -75,7 +91,7 @@
 import type { SysElementEntity, SysElementConditions, SysElementProps } from '@herodotus/api';
 import type { QTableColumnProps } from '@/composables/declarations';
 
-import { useTable, useDateTime } from '@/composables/hooks';
+import { useTable, useDateTime, useDictionary } from '@/composables/hooks';
 import { PAGE_NAME, API } from '@/configurations';
 
 import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } from '@/components';
@@ -110,6 +126,8 @@ const columns: QTableColumnProps = [
   { name: 'title', field: 'title', align: 'center', label: '标题' },
   { name: 'name', field: 'name', align: 'center', label: '组件名称' },
   { name: 'path', field: 'path', align: 'center', label: '请求路径' },
+  { name: 'clientType', field: 'clientType', align: 'center', label: '应用类型' },
+  { name: 'menuScenario', field: 'menuScenario', align: 'center', label: '菜单场景' },
   { name: 'icon', field: 'icon', align: 'center', label: '图标' },
   { name: 'isHaveChild', field: 'isHaveChild', align: 'center', label: '有子节点' },
   { name: 'isHideAllChild', field: 'isHideAllChild', align: 'center', label: '隐藏下级节点' },
@@ -133,4 +151,6 @@ const columns: QTableColumnProps = [
   { name: 'status', field: 'status', align: 'center', label: '状态' },
   { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
+
+const { getDictionaryItemDisplay } = useDictionary('ClientTyp', 'ElementCategory', 'MenuScenario');
 </script>

@@ -3,6 +3,7 @@
   "semi": true,
   "singleQuote": true,
   "printWidth": 120,
+  "htmlWhitespaceSensitivity": "ignore",
   "sortPackageJson": false,
   "ignorePatterns": []
 }

@@ -7,75 +7,6 @@ export const IS_PROD = import.meta.env.PROD;
 export const IS_DEV = import.meta.env.DEV;
 export const IS_SERVER = import.meta.env.SSR;
 
-export const HTTP_METHOD_STYLE_GROUP: DisplayElementGroup = {
-  PUT: { color: "orange", icon: "mdi-book-remove-multiple" },
-  DELETE: { color: "red", icon: "mdi-book-minus-multiple" },
-  POST: { color: "green", icon: "mdi-book-plus-multiple" },
-  GET: { color: "blue", icon: "mdi-book-multiple" },
-  ALL: { color: "black", icon: "mdi-book-cog" },
-};
-
-export const DATA_ITEM_STATUS: Array<DisplayElement> = [
-  { color: "positive", icon: "mdi-circle" },
-  { color: "negative", icon: "mdi-circle" },
-  { color: "warning", icon: "mdi-circle" },
-  { color: "info", icon: "mdi-circle" },
-];
-
-export const COLOR_LIST: Array<string> = [
-  "positive",
-  "negative",
-  "info",
-  "warning",
-  "accent",
-  "secondary",
-  "primary",
-  "red",
-  "pink",
-  "purple",
-  "deep-purple",
-  "indigo",
-  "blue",
-  "light-blue",
-  "cyan",
-  "teal",
-  "green",
-  "light-green",
-  "lime",
-  "yellow",
-  "amber",
-  "orange",
-  "deep-orange",
-  "brown",
-  "grey",
-  "blue-grey",
-];
-
-export const DEFAULT_HTTP_METHOD_STYLE: DisplayElement = HTTP_METHOD_STYLE_GROUP.GET!;
-
-export const GRANT_TYPE_STYLE_GROUP: DisplayElementGroup = {
-  authorization_code: { color: "pink", icon: "mdi-security", text: "授权码认证" },
-  client_credentials: { color: "orange", icon: "mdi-arrow-decision-auto", text: "客户端凭证认证" },
-  refresh_token: { color: "indigo", icon: "mdi-cog-refresh", text: "刷新令牌认证" },
-  password: { color: "cyan", icon: "mdi-file-key", text: "密码认证" },
-  social_credentials: { color: "light-blue", icon: "mdi-charity", text: "社交化认证" },
-  webauthn_credentials: {
-    color: "secondary",
-    icon: "mdi-account-key",
-    text: "Passkey 通行密钥认证",
-  },
-  "urn:ietf:params:oauth:grant-type:device_code": {
-    color: "primary",
-    icon: "mdi-devices",
-    text: "设备激活码认证",
-  },
-  "urn:ietf:params:oauth:grant-type:jwt-bearer": {
-    color: "purple",
-    icon: "mdi-file-hidden",
-    text: "JWT Bearer 认证",
-  },
-};
-
 export const Path = {
   ROOT: "/",
   // 登录
@@ -148,6 +79,10 @@ export const PAGE_NAME = (() => {
   const OAUTH2_SCOPE_CONTENT = OAUTH2_SCOPE + OperationEnum.CONTENT;
   const OAUTH2_SCOPE_AUTHORIZE = OAUTH2_SCOPE + OperationEnum.AUTHORIZE;
   const OAUTH2_TOKEN = "OAuth2Token";
+  const OAUTH2_RESOURCE = "OAuth2Resource";
+  const OAUTH2_RESOURCE_CONTENT = OAUTH2_RESOURCE + OperationEnum.CONTENT;
+  const OAUTH2_SUPPORTED_SCOPE = "OAuth2SupportedScope";
+  const OAUTH2_SUPPORTED_SCOPE_CONTENT = OAUTH2_SUPPORTED_SCOPE + OperationEnum.CONTENT;
   const SYS_ATTRIBUTE = "SysAttribute";
   const SYS_ATTRIBUTE_CONTENT = SYS_ATTRIBUTE + OperationEnum.CONTENT;
   const SYS_ATTRIBUTE_AUTHORIZE = SYS_ATTRIBUTE + OperationEnum.AUTHORIZE;
@@ -230,6 +165,10 @@ export const PAGE_NAME = (() => {
     OAUTH2_SCOPE_CONTENT,
     OAUTH2_SCOPE_AUTHORIZE,
     OAUTH2_TOKEN,
+    OAUTH2_RESOURCE,
+    OAUTH2_RESOURCE_CONTENT,
+    OAUTH2_SUPPORTED_SCOPE,
+    OAUTH2_SUPPORTED_SCOPE_CONTENT,
     SYS_ATTRIBUTE,
     SYS_ATTRIBUTE_CONTENT,
     SYS_ATTRIBUTE_AUTHORIZE,
@@ -302,3 +241,76 @@ export const PAGE_NAME = (() => {
     SOCIAL_BINDING,
   };
 })();
+
+export const DATA_ITEM_STATUS: Array<DisplayElement> = [
+  { color: "positive", icon: "mdi-circle" },
+  { color: "negative", icon: "mdi-circle" },
+  { color: "warning", icon: "mdi-circle" },
+  { color: "info", icon: "mdi-circle" },
+];
+
+export const HTTP_METHOD_STYLE_GROUP: DisplayElementGroup = {
+  PUT: { color: "orange", icon: "mdi-book-remove-multiple" },
+  DELETE: { color: "red", icon: "mdi-book-minus-multiple" },
+  POST: { color: "green", icon: "mdi-book-plus-multiple" },
+  GET: { color: "blue", icon: "mdi-book-multiple" },
+  MCP_TOOL: { color: "orange", icon: "mdi-book-remove-multiple" },
+  MCP_RESOURCE: { color: "red", icon: "mdi-book-minus-multiple" },
+  MCP_PROMPT: { color: "green", icon: "mdi-book-plus-multiple" },
+  MCP_COMPLETE: { color: "blue", icon: "mdi-book-multiple" },
+  ALL: { color: "black", icon: "mdi-book-cog" },
+};
+
+export const DEFAULT_HTTP_METHOD_STYLE: DisplayElement = HTTP_METHOD_STYLE_GROUP.GET!;
+
+export const GRANT_TYPE_STYLE_GROUP: DisplayElementGroup = {
+  authorization_code: { color: "pink", icon: "mdi-security", text: "授权码认证" },
+  client_credentials: { color: "orange", icon: "mdi-arrow-decision-auto", text: "客户端凭证认证" },
+  refresh_token: { color: "indigo", icon: "mdi-cog-refresh", text: "刷新令牌认证" },
+  password: { color: "cyan", icon: "mdi-file-key", text: "密码认证" },
+  social_credentials: { color: "light-blue", icon: "mdi-charity", text: "社交化认证" },
+  webauthn_credentials: {
+    color: "secondary",
+    icon: "mdi-account-key",
+    text: "Passkey 通行密钥认证",
+  },
+  "urn:ietf:params:oauth:grant-type:device_code": {
+    color: "primary",
+    icon: "mdi-devices",
+    text: "设备激活码认证",
+  },
+  "urn:ietf:params:oauth:grant-type:jwt-bearer": {
+    color: "purple",
+    icon: "mdi-file-hidden",
+    text: "JWT Bearer 认证",
+  },
+};
+
+export const COLOR_LIST: Array<string> = [
+  "positive",
+  "negative",
+  "info",
+  "warning",
+  "accent",
+  "secondary",
+  "primary",
+  "red",
+  "pink",
+  "purple",
+  "deep-purple",
+  "indigo",
+  "blue",
+  "light-blue",
+  "cyan",
+  "teal",
+  "green",
+  "light-green",
+  "lime",
+  "yellow",
+  "amber",
+  "orange",
+  "deep-orange",
+  "brown",
+  "grey",
+  "blue-grey",
+];
