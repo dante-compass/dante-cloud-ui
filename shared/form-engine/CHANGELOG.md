@@ -1,5 +1,13 @@
 # @herodotus-cloud/form-engine
 
+## 5.1.15
+
+### Patch Changes
+
+- 升级 PNPM 版本，重新编译库。
+- Updated dependencies
+  - @herodotus-cloud/form-apis@5.1.15
+
 ## 5.1.14
 
 ### Patch Changes

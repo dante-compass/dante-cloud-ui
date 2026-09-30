@@ -1,5 +1,15 @@
 # @herodotus-cloud/bpmn-designer
 
+## 5.1.15
+
+### Patch Changes
+
+- 升级 PNPM 版本，重新编译库。
+- Updated dependencies
+  - @herodotus-cloud/bpmn-apis@5.1.15
+  - @herodotus-cloud/components@5.1.15
+  - @herodotus-cloud/form-apis@5.1.15
+
 ## 5.1.14
 
 ### Patch Changes

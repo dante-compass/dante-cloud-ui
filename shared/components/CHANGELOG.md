@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 5.1.15
+
+### Patch Changes
+
+- 升级 PNPM 版本，重新编译库。
+
 ## 5.1.14
 
 ### Patch Changes
