@@ -1,5 +1,15 @@
 # @herodotus-cloud/form-designer
 
+## 5.1.16
+
+### Patch Changes
+
+- 升级 Vite 和 Quasar 版本
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.16
+  - @herodotus-cloud/form-apis@5.1.16
+  - @herodotus-cloud/form-engine@5.1.16
+
 ## 5.1.15
 
 ### Patch Changes
