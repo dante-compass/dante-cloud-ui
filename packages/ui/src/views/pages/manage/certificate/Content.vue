@@ -106,21 +106,21 @@
 </template>
 
 <script setup lang="ts">
-import type { MgtCertificateRequest, MgtCertificateResponse } from "@herodotus/api";
+import type { PkiCertificateRequest, PkiCertificateResponse } from '@herodotus/api';
 
-import useVuelidate from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
+import useVuelidate from '@vuelidate/core';
+import { required, helpers } from '@vuelidate/validators';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { useTableItem } from "@/composables/hooks";
-import { isEmpty } from "lodash-es";
+import { PAGE_NAME, API } from '@/configurations';
+import { useTableItem } from '@/composables/hooks';
+import { isEmpty } from 'lodash-es';
 
-defineOptions({ name: PAGE_NAME.MGT_CERTIFICATE_CONTENT });
+defineOptions({ name: PAGE_NAME.PKI_CERTIFICATE_CONTENT });
 
 const { editedItem, title, saveOrUpdate, overlay, onReturn } = useTableItem<
-  MgtCertificateRequest,
-  MgtCertificateResponse
->(API.core.mgtCertificate(), PAGE_NAME.MGT_CERTIFICATE_CONTENT);
+  PkiCertificateRequest,
+  PkiCertificateResponse
+>(API.core.pkiCertificate(), PAGE_NAME.PKI_CERTIFICATE_CONTENT);
 
 const isUnique = () => {
   let alias = editedItem.value.alias;
@@ -128,10 +128,10 @@ const isUnique = () => {
   return new Promise((resolve, reject) => {
     if (alias) {
       API.core
-        .mgtCertificate()
+        .pkiCertificate()
         .findByAlias(alias)
         .then((result) => {
-          let cert = result.data as MgtCertificateResponse;
+          let cert = result.data as PkiCertificateResponse;
           // 如果能够查询到roleCode
           // 如果该roleCode 对应的 roleId 与当前 editedItem中的roleId相同
           // 则认为是编辑状态，而且employeeName 没有变化，那么就校验通过。
@@ -144,7 +144,7 @@ const isUnique = () => {
   });
 };
 
-const parentOptions = ref([]) as Ref<Array<MgtCertificateResponse>>;
+const parentOptions = ref([]) as Ref<Array<PkiCertificateResponse>>;
 const showParentLoading = shallowRef(false);
 const showParentSelect = shallowRef(false);
 const showOcspSwitch = shallowRef(false);
@@ -153,7 +153,7 @@ const loadOptionData = (category: string) => {
   showParentLoading.value = true;
   if (category) {
     API.core
-      .mgtCertificate()
+      .pkiCertificate()
       .findAllByCertificateCategory(category)
       .then((result) => {
         if (result.data) {
@@ -170,15 +170,15 @@ const loadOptionData = (category: string) => {
 watch(
   () => editedItem.value.certificateCategory,
   (newValue) => {
-    if (newValue === "ROOT_CA") {
+    if (newValue === 'ROOT_CA') {
       showParentSelect.value = false;
-      editedItem.value.parentId = "";
+      editedItem.value.parentId = '';
     } else {
       loadOptionData(newValue);
       showParentSelect.value = true;
     }
 
-    if (newValue === "END_ENTITY") {
+    if (newValue === 'END_ENTITY') {
       showOcspSwitch.value = true;
       editedItem.value.ocsp = false;
     } else {
@@ -191,35 +191,35 @@ watch(
 const rules = {
   editedItem: {
     alias: {
-      required: helpers.withMessage("证书别名不能为空", required),
-      isUnique: helpers.withMessage("证书别名已存在，请使用其它代码", helpers.withAsync(isUnique)),
+      required: helpers.withMessage('证书别名不能为空', required),
+      isUnique: helpers.withMessage('证书别名已存在，请使用其它代码', helpers.withAsync(isUnique)),
     },
     commonName: {
-      required: helpers.withMessage("证书名称不能为空", required),
+      required: helpers.withMessage('证书名称不能为空', required),
     },
     organizationUnit: {
-      required: helpers.withMessage("组织单位不能为空", required),
+      required: helpers.withMessage('组织单位不能为空', required),
     },
     organization: {
-      required: helpers.withMessage("组织不能为空", required),
+      required: helpers.withMessage('组织不能为空', required),
     },
     locality: {
-      required: helpers.withMessage("位置或城市不能为空", required),
+      required: helpers.withMessage('位置或城市不能为空', required),
     },
     stateOrProvince: {
-      required: helpers.withMessage("州或省不能为空", required),
+      required: helpers.withMessage('州或省不能为空', required),
     },
     country: {
-      required: helpers.withMessage("国家或地区不能为空", required),
+      required: helpers.withMessage('国家或地区不能为空', required),
     },
     password: {
-      required: helpers.withMessage("密码不能为空", required),
+      required: helpers.withMessage('密码不能为空', required),
     },
     startTime: {
-      required: helpers.withMessage("开始时间不能为空", required),
+      required: helpers.withMessage('开始时间不能为空', required),
     },
     endTime: {
-      required: helpers.withMessage("结束时间不能为空", required),
+      required: helpers.withMessage('结束时间不能为空', required),
     },
   },
 };

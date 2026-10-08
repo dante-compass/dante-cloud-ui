@@ -66,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MgtCertificateFileRequest, MgtCertificateFileResponse } from '@herodotus/api';
+import type { PkiCertificateFileRequest, PkiCertificateFileResponse } from '@herodotus/api';
 
 import { toast } from '@herodotus/core';
 
@@ -91,7 +91,7 @@ const loading = shallowRef(false);
 
 const { download } = useOss();
 
-const editedItem = ref({}) as Ref<MgtCertificateFileRequest>;
+const editedItem = ref({}) as Ref<PkiCertificateFileRequest>;
 
 const showKeyStore = computed(() => {
   return editedItem.value.certificateFileCategory === 'KEY_STORE';
@@ -109,10 +109,10 @@ const onSave = () => {
   loading.value = true;
   editedItem.value.certId = props.certId as string;
   API.core
-    .mgtCertificateFile()
+    .pkiCertificateFile()
     .saveOrUpdate(editedItem.value)
     .then((response) => {
-      const data = response.data as MgtCertificateFileResponse;
+      const data = response.data as PkiCertificateFileResponse;
       loading.value = false;
       openDialog.value = false;
       if (data) {
@@ -125,6 +125,6 @@ const onSave = () => {
 };
 
 onUnmounted(() => {
-  editedItem.value = {} as MgtCertificateFileRequest;
+  editedItem.value = {} as PkiCertificateFileRequest;
 });
 </script>

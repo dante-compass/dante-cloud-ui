@@ -64,8 +64,8 @@ export const ComponentName = {
   THINGS_MQTT_ACCOUNT: "ThingsMqttAccount",
   THINGS_MQTT_AUTHORITY: "ThingsMqttAuthority",
   THINGS_MQTT_CATEGORY: "ThingsMqttCategory",
-  MGT_CERTIFICATE: "MgtCertificate",
-  MGT_CERTIFICATE_FILE: "MgtCertificateFile",
+  MGT_CERTIFICATE: "PkiCertificate",
+  MGT_CERTIFICATE_FILE: "PkiCertificateFile",
 };
 
 export const PAGE_NAME = (() => {
@@ -111,9 +111,9 @@ export const PAGE_NAME = (() => {
   const SYS_USER = "SysUser";
   const SYS_USER_CONTENT = SYS_USER + OperationEnum.CONTENT;
   const SYS_USER_AUTHORIZE = SYS_USER + OperationEnum.AUTHORIZE;
-  const MGT_CERTIFICATE = "MgtCertificate";
-  const MGT_CERTIFICATE_CONTENT = MGT_CERTIFICATE + OperationEnum.CONTENT;
-  const MGT_CERTIFICATE_FILE = MGT_CERTIFICATE + OperationEnum.FILE;
+  const PKI_CERTIFICATE = "PkiCertificate";
+  const PKI_CERTIFICATE_CONTENT = PKI_CERTIFICATE + OperationEnum.CONTENT;
+  const PKI_CERTIFICATE_FILE = PKI_CERTIFICATE + OperationEnum.FILE;
   const OSS_BUCKET = "OssBucket";
   const OSS_BUCKET_CONTENT = OSS_BUCKET + OperationEnum.CONTENT;
   const OSS_OBJECT = "OssObject";
@@ -197,9 +197,9 @@ export const PAGE_NAME = (() => {
     SYS_USER,
     SYS_USER_CONTENT,
     SYS_USER_AUTHORIZE,
-    MGT_CERTIFICATE,
-    MGT_CERTIFICATE_CONTENT,
-    MGT_CERTIFICATE_FILE,
+    PKI_CERTIFICATE,
+    PKI_CERTIFICATE_CONTENT,
+    PKI_CERTIFICATE_FILE,
     OSS_BUCKET,
     OSS_BUCKET_CONTENT,
     OSS_OBJECT,

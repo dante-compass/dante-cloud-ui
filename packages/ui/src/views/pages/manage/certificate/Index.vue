@@ -73,10 +73,10 @@
 
 <script setup lang="ts">
 import type {
-  MgtCertificateRequest,
-  MgtCertificateResponse,
-  MgtCertificateConditions,
-  MgtCertificateProps,
+  PkiCertificateRequest,
+  PkiCertificateResponse,
+  PkiCertificateConditions,
+  PkiCertificateProps,
 } from '@herodotus/api';
 import type { QTableColumnProps } from '@/composables/declarations';
 
@@ -85,10 +85,10 @@ import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime, useDictionary } from '@/composables/hooks';
 import { HDownloadCertificateDialog } from './components';
 
-defineOptions({ name: PAGE_NAME.MGT_CERTIFICATE, components: { HDownloadCertificateDialog } });
+defineOptions({ name: PAGE_NAME.PKI_CERTIFICATE, components: { HDownloadCertificateDialog } });
 
 const selected = ref([]);
-const rowKey: MgtCertificateProps = 'certId';
+const rowKey: PkiCertificateProps = 'certId';
 
 const columns: QTableColumnProps = [
   { name: 'certificateCategory', field: 'certificateCategory', align: 'center', label: '证书类别' },
@@ -125,9 +125,9 @@ const columns: QTableColumnProps = [
 ];
 
 const { tableRows, totalPages, pagination, loading, toCreate, toFile, toRevocation, findItems, deleteItemById } =
-  useTable<MgtCertificateConditions, MgtCertificateRequest, MgtCertificateResponse>(
-    API.core.mgtCertificate(),
-    PAGE_NAME.MGT_CERTIFICATE,
+  useTable<PkiCertificateConditions, PkiCertificateRequest, PkiCertificateResponse>(
+    API.core.pkiCertificate(),
+    PAGE_NAME.PKI_CERTIFICATE,
   );
 
 const { defaultFormat } = useDateTime();
@@ -136,7 +136,7 @@ const { getDictionaryItemDisplay } = useDictionary('CertificateCategory', 'Revoc
 const openDialog = shallowRef(false);
 const currentCertId = shallowRef();
 
-const onShowDownloadDialog = (item: MgtCertificateResponse) => {
+const onShowDownloadDialog = (item: PkiCertificateResponse) => {
   currentCertId.value = item.certId;
   if (currentCertId.value) {
     openDialog.value = true;

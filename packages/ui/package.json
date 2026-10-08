@@ -17,16 +17,16 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
-    "@bpmn-io/properties-panel": "^3.56.0",
+    "@bpmn-io/properties-panel": "^3.56.1",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/bpmn-designer": "workspace:^",
     "@herodotus-cloud/components": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
     "@herodotus-cloud/form-designer": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
-    "@herodotus/api": "^3.1.19",
-    "@herodotus/core": "^3.1.19",
-    "@herodotus/framework": "^3.1.19",
+    "@herodotus/api": "^3.1.20",
+    "@herodotus/core": "^3.1.20",
+    "@herodotus/framework": "^3.1.20",
     "@mdi/js": "^7.4.47",
     "@quasar/extras": "^2.1.0",
     "@rsocket/composite-metadata": "1.0.0-alpha.3",
@@ -47,12 +47,12 @@
     "simple-uploader.js": "^0.6.0",
     "vue": "^3.5.43",
     "vue-cookies": "^1.8.6",
-    "vue-i18n": "^11.4.12",
+    "vue-i18n": "^11.4.13",
     "vue-router": "^5.3.1",
     "vue-simple-uploader": "^1.0.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "26.6.3"
+    "@types/node": "26.6.4"
   }
 }

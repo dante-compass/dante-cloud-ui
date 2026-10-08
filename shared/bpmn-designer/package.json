@@ -1,6 +1,6 @@
 {
   "name": "@herodotus-cloud/bpmn-designer",
-  "version": "5.1.16",
+  "version": "5.1.17",
   "description": "",
   "keywords": [],
   "author": "",
@@ -36,7 +36,7 @@
   "dependencies": {
     "@bpmn-io/cm-theme": "^0.2.2",
     "@bpmn-io/element-template-chooser": "^3.0.0",
-    "@bpmn-io/properties-panel": "^3.56.0",
+    "@bpmn-io/properties-panel": "^3.56.1",
     "@herodotus-cloud/bpmn-apis": "workspace:^",
     "@herodotus-cloud/components": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",

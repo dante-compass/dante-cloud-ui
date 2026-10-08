@@ -1,13 +1,13 @@
 type __VLS_ModelProps = {
     modelValue: string | number | null | undefined;
 };
-declare var __VLS_9: {}, __VLS_12: {}, __VLS_15: {};
+declare var __VLS_8: {}, __VLS_11: {}, __VLS_14: {};
 type __VLS_Slots = {} & {
-    append?: (props: typeof __VLS_9) => any;
+    append?: (props: typeof __VLS_8) => any;
 } & {
-    before?: (props: typeof __VLS_12) => any;
+    before?: (props: typeof __VLS_11) => any;
 } & {
-    after?: (props: typeof __VLS_15) => any;
+    after?: (props: typeof __VLS_14) => any;
 };
 declare const __VLS_base: import('vue').DefineComponent<__VLS_ModelProps, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {
     "update:modelValue": (value: string | number | null | undefined) => any;

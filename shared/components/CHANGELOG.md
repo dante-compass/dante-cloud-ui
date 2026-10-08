@@ -1,5 +1,11 @@
 # @herodotus-cloud/components
 
+## 5.1.17
+
+### Patch Changes
+
+- [重构] 重构证书关联模块代码及数据表命名，统一使用 pki 作为命名前缀
+
 ## 5.1.16
 
 ### Patch Changes

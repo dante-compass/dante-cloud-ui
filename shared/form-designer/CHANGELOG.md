@@ -1,5 +1,15 @@
 # @herodotus-cloud/form-designer
 
+## 5.1.17
+
+### Patch Changes
+
+- [重构] 重构证书关联模块代码及数据表命名，统一使用 pki 作为命名前缀
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.17
+  - @herodotus-cloud/form-apis@5.1.17
+  - @herodotus-cloud/form-engine@5.1.17
+
 ## 5.1.16
 
 ### Patch Changes

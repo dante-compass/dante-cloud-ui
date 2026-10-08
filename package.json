@@ -40,7 +40,7 @@
     }
   },
   "dependencies": {
-    "@herodotus/core": "^3.1.19",
+    "@herodotus/core": "^3.1.20",
     "@quasar/extras": "^2.1.0",
     "disable-devtool": "^0.3.9",
     "filesize": "^11.0.25",
@@ -49,7 +49,7 @@
     "pinia-plugin-persistedstate": "4.7.1",
     "quasar": "^2.34.0",
     "vue": "^3.5.43",
-    "vue-i18n": "^11.4.12"
+    "vue-i18n": "^11.4.13"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",
@@ -59,7 +59,7 @@
     "@rolldown/plugin-node-polyfills": "^1.0.3",
     "@tsconfig/node22": "^22.0.6",
     "@types/lodash-es": "^4.17.12",
-    "@types/node": "^26.6.3",
+    "@types/node": "^26.6.4",
     "@types/qs": "^6.15.1",
     "@vitejs/plugin-vue": "^6.0.9",
     "@vue/eslint-config-prettier": "^10.2.0",
@@ -68,16 +68,16 @@
     "commitizen": "^4.3.2",
     "cross-env": "^10.1.0",
     "cz-conventional-changelog": "^3.3.0",
-    "dotenv": "^18.0.5",
-    "eslint": "^10.11.0",
+    "dotenv": "^18.0.6",
+    "eslint": "^10.12.0",
     "eslint-plugin-vue": "^10.11.1",
     "globals": "^17.13.0",
     "husky": "^9.1.7",
     "jiti": "^2.7.0",
     "lint-staged": "^17.6.0",
     "npm-run-all2": "^9.0.3",
-    "oxfmt": "^0.71.0",
-    "rollup": "4.63.6",
+    "oxfmt": "^0.72.0",
+    "rollup": "4.64.1",
     "rollup-plugin-visualizer": "^7.1.1",
     "sass-embedded": "^1.105.1",
     "typescript": "6.0.3",
@@ -86,13 +86,13 @@
     "unplugin-icons": "^24.0.0",
     "unplugin-vue-components": "^32.1.0",
     "vconsole": "^3.15.1",
-    "vite": "^8.3.2",
+    "vite": "^8.3.3",
     "vite-plugin-compression2": "^2.5.3",
-    "vite-plugin-dts": "^5.1.1",
+    "vite-plugin-dts": "^5.1.2",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-vconsole": "^2.1.1",
     "vite-plugin-vue-devtools": "^8.2.1",
     "vue-router": "5.3.1",
-    "vue-tsc": "^3.3.11"
+    "vue-tsc": "^3.3.12"
   }
 }

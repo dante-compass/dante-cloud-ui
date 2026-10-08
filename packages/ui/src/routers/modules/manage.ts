@@ -11,13 +11,13 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "/manage/certificate",
-        name: PAGE_NAME.MGT_CERTIFICATE,
+        name: PAGE_NAME.PKI_CERTIFICATE,
         meta: { title: "证书管理", icon: "mdi-certificate", isHideAllChild: true },
         component: () => import("@/views/pages/manage/certificate/Index.vue"),
         children: [
           {
             path: "/manage/certificate/content",
-            name: "MgtCertificateContent",
+            name: "PkiCertificateContent",
             meta: { title: "证书详情", icon: "mdi-file-certificate", isDetailContent: true },
             component: () => import("@/views/pages/manage/certificate/Content.vue"),
           },

@@ -14,8 +14,8 @@ declare const __VLS_export: import('vue').DefineComponent<__VLS_PublicProps, {},
     "onUpdate:modelValue"?: ((value: string | number | boolean) => any) | undefined;
 }>, {
     color: string;
-    trueValue: boolean | string | number;
-    falseValue: boolean | string | number;
+    trueValue: string | number | boolean;
+    falseValue: string | number | boolean;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;
 declare const _default: typeof __VLS_export;
 export default _default;
