@@ -258,11 +258,7 @@ var at = { class: "row items-center justify-end" }, ot = { class: "row items-cen
 			r = Object.keys(qe).map((e) => Xe(e));
 		});
 		let c = (e, t, n) => {
-			if (e.length < 3) {
-				n();
-				return;
-			}
-			t(() => {
+			e.length < 3 ? n() : t(() => {
 				let t = e.toLowerCase();
 				i.value = r.filter((e) => e.toLowerCase().match(t));
 			});

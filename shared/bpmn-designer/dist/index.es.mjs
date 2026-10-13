@@ -1,9 +1,9 @@
 import { QAvatar as e, QBadge as t, QBtn as n, QBtnDropdown as r, QBtnGroup as i, QCard as a, QCardActions as o, QCardSection as s, QCheckbox as c, QDialog as l, QDrawer as u, QExpansionItem as d, QFile as f, QIcon as p, QInput as m, QItem as h, QItemLabel as g, QItemSection as _, QLayout as v, QList as ee, QPage as y, QPageContainer as te, QPopupEdit as ne, QScrollArea as re, QSelect as ie, QSeparator as b, QSpace as x, QSpinnerGears as ae, QTable as oe, QTd as se, QToggle as ce, QToolbar as le, QTooltip as ue, QTr as de, copyToClipboard as fe, useQuasar as pe } from "quasar";
 import { Fragment as me, computed as S, createBlock as C, createCommentVNode as w, createElementBlock as T, createElementVNode as E, createSlots as he, createTextVNode as D, createVNode as O, defineComponent as k, guardReactiveProps as ge, markRaw as _e, mergeModels as ve, mergeProps as ye, nextTick as be, normalizeProps as xe, normalizeStyle as Se, onBeforeUnmount as Ce, onMounted as we, openBlock as A, ref as j, renderList as Te, renderSlot as Ee, resolveComponent as De, resolveDirective as Oe, resolveDynamicComponent as ke, toDisplayString as M, unref as N, useModel as Ae, watch as P, withCtx as F, withDirectives as je, withModifiers as Me } from "vue";
 import { Swal as Ne, Swal as Pe, toast as Fe, toast as I } from "@herodotus/core";
-import { getBusinessObject as Ie, getBusinessObject as L, is as R, is as z, isAny as Le } from "bpmn-js/lib/util/ModelUtil";
-import { add as Re } from "diagram-js/lib/util/Collections";
-import { isArray as ze, isEmpty as B, join as Be, map as V, pick as Ve, pullAllBy as He, split as Ue, upperCase as We, upperFirst as Ge, without as Ke } from "lodash-es";
+import { getBusinessObject as L, getBusinessObject as R, is as z, is as B, isAny as Ie } from "bpmn-js/lib/util/ModelUtil";
+import { add as Le } from "diagram-js/lib/util/Collections";
+import { isArray as Re, isEmpty as V, join as ze, map as Be, pick as Ve, pullAllBy as He, split as Ue, upperCase as We, upperFirst as Ge, without as Ke } from "lodash-es";
 import { defineStore as qe, storeToRefs as Je } from "pinia";
 import Ye from "bpmn-js/lib/Modeler";
 import Xe from "camunda-bpmn-moddle/resources/camunda";
@@ -47,7 +47,7 @@ var U = class e {
 		return this.instance;
 	}
 	isArray(e) {
-		return ze(e);
+		return Re(e);
 	}
 	switchColor = (e) => {
 		switch (e) {
@@ -60,11 +60,7 @@ var U = class e {
 		}
 	};
 	print(e = "default", t, n = !1) {
-		if (typeof t == "object") {
-			this.isArray(t) ? console.table(t) : console.dir(t);
-			return;
-		}
-		n ? console.log(`%c ${t} `, `background:${this.switchColor(e)}; padding: 2px; border-radius: 4px; color: #fff;`) : console.log(`%c ${t} `, `border: 1px solid ${this.switchColor(e)};
+		typeof t == "object" ? this.isArray(t) ? console.table(t) : console.dir(t) : n ? console.log(`%c ${t} `, `background:${this.switchColor(e)}; padding: 2px; border-radius: 4px; color: #fff;`) : console.log(`%c ${t} `, `border: 1px solid ${this.switchColor(e)};
           padding: 2px; border-radius: 4px;
           color: ${this.switchColor(e)};`);
 	}
@@ -72,12 +68,8 @@ var U = class e {
 		this.print(e, t, !0);
 	}
 	pretty(e = "primary", t, n) {
-		if (typeof n == "object") {
-			console.group("Console Group", t), console.log(`%c ${t}`, `background:${this.switchColor(e)};border:1px solid ${this.switchColor(e)};
-          padding: 1px; border-radius: 4px; color: #fff;`), this.isArray(n) ? console.table(n) : console.dir(n), console.groupEnd();
-			return;
-		}
-		console.log(`%c ${t} %c ${n} %c`, `background:${this.switchColor(e)};border:1px solid ${this.switchColor(e)};
+		typeof n == "object" ? (console.group("Console Group", t), console.log(`%c ${t}`, `background:${this.switchColor(e)};border:1px solid ${this.switchColor(e)};
+          padding: 1px; border-radius: 4px; color: #fff;`), this.isArray(n) ? console.table(n) : console.dir(n), console.groupEnd()) : console.log(`%c ${t} %c ${n} %c`, `background:${this.switchColor(e)};border:1px solid ${this.switchColor(e)};
         padding: 1px; border-radius: 4px 0 0 4px; color: #fff;`, `border:1px solid ${this.switchColor(e)};
         padding: 1px; border-radius: 0 4px 4px 0; color: ${this.switchColor(e)};`, "background:transparent");
 	}
@@ -142,16 +134,16 @@ var U = class e {
 //#endregion
 //#region src/hooks/property/usePropertyElements.ts
 function G() {
-	let e = W(), { processEngine: t } = Ft(), n = () => e.modeler, r = () => e.modeling, i = () => e.moddle, a = () => e.canvas, o = () => n().get("bpmnFactory"), s = (e) => R(e, "bpmn:Participant"), c = (e) => {
-		let t = L(e);
+	let e = W(), { processEngine: t } = Ft(), n = () => e.modeler, r = () => e.modeling, i = () => e.moddle, a = () => e.canvas, o = () => n().get("bpmnFactory"), s = (e) => z(e, "bpmn:Participant"), c = (e) => {
+		let t = R(e);
 		return s(e) ? t.get("processRef") : t;
 	}, l = (e, t, n = {}) => {
 		let r = i().create(e, t);
 		return n && (r.$parent = n), r;
-	}, u = (e) => !!L(e).extensionElements, d = (e) => {
-		let t = L(e), n = t.extensionElements;
-		return B(n) && (n = l("bpmn:ExtensionElements", { values: [] }, t), r().updateModdleProperties(e, t, { extensionElements: n })), n;
-	}, f = (e) => B(e.values) ? [] : e.values;
+	}, u = (e) => !!R(e).extensionElements, d = (e) => {
+		let t = R(e), n = t.extensionElements;
+		return V(n) && (n = l("bpmn:ExtensionElements", { values: [] }, t), r().updateModdleProperties(e, t, { extensionElements: n })), n;
+	}, f = (e) => V(e.values) ? [] : e.values;
 	return {
 		processEngine: t,
 		getModeler: n,
@@ -165,7 +157,7 @@ function G() {
 		getExtensionElementsValues: f,
 		getFirstExtensionElementsValue: (e) => {
 			let t = f(e);
-			return B(t) ? {} : t[0];
+			return V(t) ? {} : t[0];
 		},
 		setExtensionElementsValues: (e, t, n) => {
 			r().updateModdleProperties(e, t, { values: [...t.get("values"), ...n] });
@@ -180,15 +172,15 @@ function G() {
 function Lt() {
 	let { getModeling: e } = G();
 	return {
-		getBeforeValue: (e) => L(e).asyncBefore,
+		getBeforeValue: (e) => R(e).asyncBefore,
 		setBeforeValue: (t, n) => {
 			e().updateProperties(t, { asyncBefore: n });
 		},
-		getAfterValue: (e) => L(e).asyncAfter,
+		getAfterValue: (e) => R(e).asyncAfter,
 		setAfterValue: (t, n) => {
 			e().updateProperties(t, { asyncAfter: n });
 		},
-		getExclusiveValue: (e) => L(e).exclusive,
+		getExclusiveValue: (e) => R(e).exclusive,
 		setExclusiveValue: (t, n) => {
 			e().updateProperties(t, { exclusive: n });
 		}
@@ -199,11 +191,11 @@ function Lt() {
 function Rt() {
 	let { getModeling: e } = G();
 	return {
-		getCandidateStarterGroupsValue: (e) => L(e).candidateStarterGroups,
+		getCandidateStarterGroupsValue: (e) => R(e).candidateStarterGroups,
 		setCandidateStarterGroupsValue: (t, n) => {
 			e().updateProperties(t, { candidateStarterGroups: n });
 		},
-		getCandidateStarterUsersValue: (e) => L(e).candidateStarterUsers,
+		getCandidateStarterUsersValue: (e) => R(e).candidateStarterUsers,
 		setCandidateStarterUsersValue: (t, n) => {
 			e().updateProperties(t, { candidateStarterUsers: n });
 		}
@@ -213,11 +205,11 @@ function Rt() {
 //#region src/hooks/property/useConditionProperties.ts
 function zt() {
 	let { getModeling: e, createModdleElement: t } = G(), n = (n, r = !1) => {
-		let i = L(n), a = i.conditionExpression;
-		return B(a) ? r ? (a = t("bpmn:FormalExpression", {}, i), e().updateModdleProperties(n, i, { conditionExpression: a }), a) : {} : a;
+		let i = R(n), a = i.conditionExpression;
+		return V(a) ? r ? (a = t("bpmn:FormalExpression", {}, i), e().updateModdleProperties(n, i, { conditionExpression: a }), a) : {} : a;
 	}, r = (e) => {
 		let t = n(e);
-		return B(t) ? "" : t.body;
+		return V(t) ? "" : t.body;
 	};
 	return {
 		getConditionExpressionValue: r,
@@ -227,7 +219,7 @@ function zt() {
 		},
 		getFormatValue: (e) => {
 			let t = n(e);
-			return B(t) ? "" : t.language;
+			return V(t) ? "" : t.language;
 		},
 		setFormatValue: (t, r) => {
 			let i = n(t, !0);
@@ -235,7 +227,7 @@ function zt() {
 		},
 		getResourceValue: (e) => {
 			let t = n(e);
-			return B(t) ? "" : t.resource;
+			return V(t) ? "" : t.resource;
 		},
 		setResourceValue: (t, r) => {
 			let i = n(t, !0);
@@ -247,7 +239,7 @@ function zt() {
 			e().updateModdleProperties(t, i, { body: r });
 		},
 		resetConditionExpression: (n) => {
-			let r = L(n), i = r.conditionExpression;
+			let r = R(n), i = r.conditionExpression;
 			i = t("bpmn:FormalExpression", {}, r), e().updateModdleProperties(n, r, { conditionExpression: i });
 		}
 	};
@@ -256,15 +248,15 @@ function zt() {
 //#region src/hooks/property/useDocumentProperties.ts
 function Bt() {
 	let e = "text/plain", { getModeling: t, getBpmnFactory: n } = G(), r = (t) => {
-		if (!B(t)) return t.find((t) => (t.textFormat || e) === e);
-	}, i = (e) => L(e).documentation, a = (e) => r(i(e));
+		if (!V(t)) return t.find((t) => (t.textFormat || e) === e);
+	}, i = (e) => R(e).documentation, a = (e) => r(i(e));
 	return {
 		getDocumentationValue: (e) => {
 			let t = a(e);
 			return t && t.text;
 		},
 		setDocumentationValue: (e, r) => {
-			let i = L(e), o = a(e);
+			let i = R(e), o = a(e);
 			if (o) return r ? t().updateModdleProperties(e, o, { text: r }) : t().updateModdleProperties(e, i, { documentation: Ke(i.get("documentation"), o) });
 			if (r) {
 				let a = n().create("bpmn:Documentation", { text: r });
@@ -276,26 +268,26 @@ function Bt() {
 //#endregion
 //#region src/hooks/property/useExtensionProperties.ts
 function Vt() {
-	let { getModeling: e, createModdleElement: t, getRelevantBusinessObject: n, processEngine: r } = G(), i = (e) => B(e.extensionElements) ? {} : e.extensionElements, a = (e) => B(e.values) ? [] : e.values, o = (e) => {
+	let { getModeling: e, createModdleElement: t, getRelevantBusinessObject: n, processEngine: r } = G(), i = (e) => V(e.extensionElements) ? {} : e.extensionElements, a = (e) => V(e.values) ? [] : e.values, o = (e) => {
 		let t = a(e);
-		return B(t) ? {} : t[0];
-	}, s = (e) => B(e.values) ? [] : e.values, c = (e) => {
+		return V(t) ? {} : t[0];
+	}, s = (e) => V(e.values) ? [] : e.values, c = (e) => {
 		let t = n(e), r = i(t), a = o(r), c = s(a);
-		return B(c) ? [] : V(c, (e) => Ve(e, ["name", "value"]));
+		return V(c) ? [] : Be(c, (e) => Ve(e, ["name", "value"]));
 	}, l = (t, r) => {
 		let c = n(t), l = i(c), u = o(l);
-		if (!B(u)) {
+		if (!V(u)) {
 			let n = He(s(u), [r], "name");
-			e().updateModdleProperties(t, u, { values: n }), B(n) && e().updateModdleProperties(t, l, { values: Ke(a(l), u) });
+			e().updateModdleProperties(t, u, { values: n }), V(n) && e().updateModdleProperties(t, l, { values: Ke(a(l), u) });
 		}
 	}, u = (a, s) => {
 		let c = n(a), l = i(c);
-		B(l) && (l = t("bpmn:ExtensionElements", { values: [] }, c), e().updateModdleProperties(a, c, { extensionElements: l }));
+		V(l) && (l = t("bpmn:ExtensionElements", { values: [] }, c), e().updateModdleProperties(a, c, { extensionElements: l }));
 		let u = o(l);
-		B(u) && (u = t(`${r}:Properties`, { values: [] }, l), e().updateModdleProperties(a, l, { values: [...l.get("values"), u] })), d(a, s, u);
+		V(u) && (u = t(`${r}:Properties`, { values: [] }, l), e().updateModdleProperties(a, l, { values: [...l.get("values"), u] })), d(a, s, u);
 	}, d = (n, i, a) => {
-		if (!B(i)) {
-			let o = V(i, (e) => t(`${r}:Property`, e, a));
+		if (!V(i)) {
+			let o = Be(i, (e) => t(`${r}:Property`, e, a));
 			e().updateModdleProperties(n, a, { values: o });
 		}
 	};
@@ -310,30 +302,30 @@ function Vt() {
 function Ht() {
 	let { getModeling: e, hasExtensionElements: t, getExtensionElements: n, getExtensionElementsValues: r, setExtensionElementsValues: i, createModdleElement: a, resetExtensionElementsValues: o } = G();
 	return {
-		getFormKeyValue: (e) => L(e).formKey,
+		getFormKeyValue: (e) => R(e).formKey,
 		setFormKeyValue: (t, n) => {
 			e().updateProperties(t, { formKey: n });
 		},
-		getFormRefValue: (e) => L(e).formRef,
+		getFormRefValue: (e) => R(e).formRef,
 		setFormRefValue: (t, n) => {
 			e().updateProperties(t, { formRef: n });
 		},
-		getFormRefVersionValue: (e) => L(e).formRefVersion,
+		getFormRefVersionValue: (e) => R(e).formRefVersion,
 		setFormRefVersionValue: (t, n) => {
 			e().updateProperties(t, { formRefVersion: n });
 		},
-		getFormRefBindingValue: (e) => L(e).formRefBinding,
+		getFormRefBindingValue: (e) => R(e).formRefBinding,
 		setFormRefBindingValue: (t, n) => {
 			e().updateProperties(t, { formRefBinding: n });
 		},
 		setGeneratedTaskFormsValues: (e) => {
 			let t = n(e), o = r(t);
-			B(o) && (o = a("camunda:FormData", { fields: [] }, t), i(e, t, o));
+			V(o) && (o = a("camunda:FormData", { fields: [] }, t), i(e, t, o));
 		},
 		resetGeneratedTaskFormsValues: (e) => {
 			if (t(e)) {
 				let t = n(e), i = r(t);
-				B(i) || o(e, t);
+				V(i) || o(e, t);
 			}
 		},
 		resetProperties: (t) => {
@@ -345,15 +337,15 @@ function Ht() {
 //#endregion
 //#region src/hooks/property/useGeneralProperties.ts
 function Ut() {
-	let { getModeling: e, getBpmnFactory: t, getCanvas: n } = G(), r = /\s/, i = /^([a-z][\w-.]*:)?[a-z_][\w-.]*$/i, a = /^[a-z_][\w-.]*$/i, o = /((\d|([1-9](\d*))).){2}(\d|([1-9](\d*)))/, s = Ft(), c = (e) => Le(e, [
+	let { getModeling: e, getBpmnFactory: t, getCanvas: n } = G(), r = /\s/, i = /^([a-z][\w-.]*:)?[a-z_][\w-.]*$/i, a = /^[a-z_][\w-.]*$/i, o = /((\d|([1-9](\d*))).){2}(\d|([1-9](\d*)))/, s = Ft(), c = (e) => Ie(e, [
 		"bpmn:Collaboration",
 		"bpmn:DataAssociation",
 		"bpmn:Association"
-	]), l = (e) => R(e, "bpmn:Process"), u = (e) => R(e, "bpmn:TextAnnotation"), d = (e) => R(e, "bpmn:Group"), f = (e) => {
+	]), l = (e) => z(e, "bpmn:Process"), u = (e) => z(e, "bpmn:TextAnnotation"), d = (e) => z(e, "bpmn:Group"), f = (e) => {
 		let n = t().create("bpmn:CategoryValue"), r = t().create("bpmn:Category", { categoryValue: [n] });
-		return Re(e.get("rootElements"), r, 0), L(r).$parent = e, L(n).$parent = r, n;
+		return Le(e.get("rootElements"), r, 0), R(r).$parent = e, R(n).$parent = r, n;
 	}, p = (e, t) => {
-		let n = L(t).$parent;
+		let n = R(t).$parent;
 		e.categoryValueRef = f(n);
 	};
 	return {
@@ -363,11 +355,11 @@ function Ut() {
 			e().updateProperties(t, { id: n });
 		},
 		getNameValue: (e) => {
-			let t = L(e);
-			return c(e) ? "" : u(e) ? t.text : R(e, "bpmn:Group") ? t.categoryValueRef.value : t.name;
+			let t = R(e);
+			return c(e) ? "" : u(e) ? t.text : z(e, "bpmn:Group") ? t.categoryValueRef.value : t.name;
 		},
 		setNameValue: (t, r) => {
-			let i = L(t);
+			let i = R(t);
 			if (!c(t)) {
 				if (u(t)) return e().updateProperties(t, { text: r });
 				if (d(t)) return i.categoryValueRef || p(i, n().getRootElement()), e().updateLabel(t, r);
@@ -398,7 +390,7 @@ function Ut() {
 function Wt() {
 	let { getModeling: e } = G();
 	return {
-		getInitiatorValue: (e) => L(e).initiator,
+		getInitiatorValue: (e) => R(e).initiator,
 		setInitiatorValue: (t, n) => {
 			e().updateProperties(t, { initiator: n });
 		}
@@ -409,27 +401,27 @@ function Wt() {
 function Gt() {
 	let { getModeling: e } = G();
 	return {
-		getAssigneeValue: (e) => L(e).assignee,
+		getAssigneeValue: (e) => R(e).assignee,
 		setAssigneeValue: (t, n) => {
 			e().updateProperties(t, { assignee: n });
 		},
-		getCandidateGroupsValue: (e) => L(e).candidateGroups,
+		getCandidateGroupsValue: (e) => R(e).candidateGroups,
 		setCandidateGroupsValue: (t, n) => {
 			e().updateProperties(t, { candidateGroups: n });
 		},
-		getCandidateUsersValue: (e) => L(e).candidateUsers,
+		getCandidateUsersValue: (e) => R(e).candidateUsers,
 		setCandidateUsersValue: (t, n) => {
 			e().updateProperties(t, { candidateUsers: n });
 		},
-		getDueDateValue: (e) => L(e).dueDate,
+		getDueDateValue: (e) => R(e).dueDate,
 		setDueDateValue: (t, n) => {
 			e().updateProperties(t, { dueDate: n });
 		},
-		getFollowUpDateValue: (e) => L(e).followUpDate,
+		getFollowUpDateValue: (e) => R(e).followUpDate,
 		setFollowUpDateValue: (t, n) => {
 			e().updateProperties(t, { followUpDate: n });
 		},
-		getPriorityValue: (e) => L(e).priority,
+		getPriorityValue: (e) => R(e).priority,
 		setPriorityValue: (t, n) => {
 			e().updateProperties(t, { priority: n });
 		}
@@ -586,18 +578,18 @@ var qt = "data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%
 	let t = e.eventDefinitions;
 	return t && t[0];
 }, Or = (e) => Er(e.$type).replace("EventDefinition", ""), kr = (e) => {
-	let t = Ie(e), n = Ie(e.source);
-	return !z(e, "bpmn:SequenceFlow") || !n ? !1 : n.default && n.default === t && (z(n, "bpmn:Gateway") || z(n, "bpmn:Activity"));
+	let t = L(e), n = L(e.source);
+	return !B(e, "bpmn:SequenceFlow") || !n ? !1 : n.default && n.default === t && (B(n, "bpmn:Gateway") || B(n, "bpmn:Activity"));
 }, Ar = (e) => {
-	let t = Ie(e), n = Ie(e.source);
-	return !z(e, "bpmn:SequenceFlow") || !n ? !1 : t.conditionExpression && z(n, "bpmn:Activity");
+	let t = L(e), n = L(e.source);
+	return !B(e, "bpmn:SequenceFlow") || !n ? !1 : t.conditionExpression && B(n, "bpmn:Activity");
 }, jr = (e) => {
-	let { type: t } = e, n = Er(t), r = Ie(e), i = Dr(r);
-	return i ? (n = `${Or(i)}${n}`, (z(e, "bpmn:StartEvent") && !wt(e) || z(e, "bpmn:BoundaryEvent") && r.cancelActivity === !1) && (n = `${n}NonInterrupting`), n) : (z(e, "bpmn:SubProcess") && !z(e, "bpmn:Transaction") && (n = St(e) ? `Event${n}` : `${Ct(e) && !Tt(e) ? "Expanded" : "Collapsed"}${n}`), kr(e) && (n = "DefaultFlow"), Ar(e) && (n = "ConditionalFlow"), n);
+	let { type: t } = e, n = Er(t), r = L(e), i = Dr(r);
+	return i ? (n = `${Or(i)}${n}`, (B(e, "bpmn:StartEvent") && !wt(e) || B(e, "bpmn:BoundaryEvent") && r.cancelActivity === !1) && (n = `${n}NonInterrupting`), n) : (B(e, "bpmn:SubProcess") && !B(e, "bpmn:Transaction") && (n = St(e) ? `Event${n}` : `${Ct(e) && !Tt(e) ? "Expanded" : "Collapsed"}${n}`), kr(e) && (n = "DefaultFlow"), Ar(e) && (n = "ConditionalFlow"), n);
 }, Mr = 500;
 function Nr(e, t, n) {
 	this.getGroups = function(e) {
-		let r = jr(e), i = Er(e.type), a = !B(e.businessObject.loopCharacteristics) && e.businessObject.loopCharacteristics.$type === "bpmn:MultiInstanceLoopCharacteristics", o = t(i) + "(" + We(i) + ")", s = Tr(r), c = e.businessObject.name;
+		let r = jr(e), i = Er(e.type), a = !V(e.businessObject.loopCharacteristics) && e.businessObject.loopCharacteristics.$type === "bpmn:MultiInstanceLoopCharacteristics", o = t(i) + "(" + We(i) + ")", s = Tr(r), c = e.businessObject.name;
 		return function(t) {
 			return n.fire("herodotus.element.changed", {
 				panelGroups: t,
@@ -956,7 +948,7 @@ function Vr() {
 		let r = e.processId, a = e.processName;
 		try {
 			let e = Date.now(), o = r || `Process_${e}`, s = a || `业务流程_${e}`, c = n || i(o, s), { warnings: l } = await t.modeler.importXML(c);
-			B(l) ? U.prettyPrimary("Diagram xml imported", "Succeed!") : U.prettyWarn("Diagram xml imported has warnings", l);
+			V(l) ? U.prettyPrimary("Diagram xml imported", "Succeed!") : U.prettyWarn("Diagram xml imported has warnings", l);
 		} catch (e) {
 			U.prettyError("[HBM] |- Could not create BPMN 2.0 diagram!", e);
 		}
@@ -973,7 +965,7 @@ function Vr() {
 			o(t), a(e);
 		},
 		destroy: () => {
-			B(t.modeler) || (t.modeler.destroy(), t.$reset());
+			V(t.modeler) || (t.modeler.destroy(), t.$reset());
 		}
 	};
 }
@@ -1032,7 +1024,7 @@ function Ur(e, t, n) {
 		t.zoom("fit-viewport", {
 			x: 0,
 			y: 0
-		}), B(n) || n.forEach((e) => {
+		}), V(n) || n.forEach((e) => {
 			t.addMarker(e, "highlight");
 			let n = document.querySelector(".highlight")?.querySelector(".djs-visual rect");
 			n && n.setAttribute("stroke-dasharray", "4,4");
@@ -1043,7 +1035,7 @@ function Ur(e, t, n) {
 			r = i(), a(e);
 		},
 		destroy: () => {
-			B(r) || r.destroy();
+			V(r) || r.destroy();
 		}
 	};
 }
@@ -1807,15 +1799,15 @@ var Ni = /*#__PURE__*/ q(ji, [["render", Mi]]), Pi = /* @__PURE__ */ k({
 	emits: ["update:modelValue"],
 	setup(e) {
 		let t = Ae(e, "modelValue"), r = j(!1), i = j([]);
-		S(() => B(i.value));
+		S(() => V(i.value));
 		let a = () => {
 			r.value = !1;
 		}, o = () => {
-			a(), B(i.value) ? t.value = "" : t.value = Be(V(i.value, (e) => e.id), ",");
+			a(), V(i.value) ? t.value = "" : t.value = ze(Be(i.value, (e) => e.id), ",");
 		}, s = () => {
 			if (t.value) {
 				let e = Ue(t.value);
-				i.value = V(e, (e) => ({
+				i.value = Be(e, (e) => ({
 					id: e,
 					firstName: "",
 					lastName: "",
@@ -1974,11 +1966,11 @@ var Li = /*#__PURE__*/ q(Fi, [["render", Ii]]), Ri = /* @__PURE__ */ k({
 		let t = Ae(e, "modelValue"), r = j(!1), i = j([]), a = () => {
 			r.value = !1;
 		}, o = () => {
-			a(), B(i.value) ? t.value = "" : t.value = Be(V(i.value, (e) => e.id), ",");
+			a(), V(i.value) ? t.value = "" : t.value = ze(Be(i.value, (e) => e.id), ",");
 		}, s = () => {
 			if (t.value) {
 				let e = Ue(t.value);
-				i.value = V(e, (e) => ({
+				i.value = Be(e, (e) => ({
 					id: e,
 					name: "",
 					type: ""
@@ -2127,7 +2119,7 @@ var Vi = /*#__PURE__*/ q(zi, [["render", Bi]]), Hi = k({
 			}
 		}), r = It(), i = j([]), a = async () => {
 			let e = (await r.dynamicFormService.fetchAll()).data;
-			B(e) || (i.value = e.map((e) => ({
+			V(e) || (i.value = e.map((e) => ({
 				label: e.name + "-" + e.activityName,
 				value: e.id
 			})));
@@ -2483,9 +2475,9 @@ var la = /*#__PURE__*/ q(sa, [["render", ca]]), ua = k({
 				label: "操作"
 			}
 		], o = j([]), s = S(() => o.value.length), c = (t) => {
-			B(t) || (i.value = !1, o.value.push(t), n(e.activeElement, o.value), d());
+			V(t) || (i.value = !1, o.value.push(t), n(e.activeElement, o.value), d());
 		}, l = (t) => {
-			B(o.value) || (r(e.activeElement, t), d());
+			V(o.value) || (r(e.activeElement, t), d());
 		}, u = () => {
 			n(e.activeElement, o.value), d();
 		}, d = () => {
@@ -2784,7 +2776,7 @@ var va = /*#__PURE__*/ q(ga, [["render", _a]]), $ = /* @__PURE__ */ function(e) 
 			},
 			updateId: (e) => {
 				let t = p(i.activeElement, e);
-				B(t) ? o(i.activeElement, e) : I.error(t);
+				V(t) ? o(i.activeElement, e) : I.error(t);
 			},
 			updateVersionTag: (e) => {
 				m(e) ? f(i.activeElement, e) : I.error("版本号必须符合语义化版本2.0.0 要点");
@@ -3509,7 +3501,7 @@ var Po = /*#__PURE__*/ q(Mo, [["render", No]]), Fo = k({
 	setup() {
 		let { createNewDiagram: e } = Vr(), t = W(), n = {};
 		return be(() => {
-			B(t.modeler) || (n = t.modeler.get("commandStack"));
+			V(t.modeler) || (n = t.modeler.get("commandStack"));
 		}), {
 			onUndo: () => {
 				n && n.undo();
@@ -3560,7 +3552,7 @@ var Lo = /*#__PURE__*/ q(Fo, [["render", Io]]), Ro = k({
 	setup() {
 		let e = j(1), t = W(), n = {};
 		be(() => {
-			B(t.modeler) || (n = t.modeler.get("canvas"), t.modeler.on("canvas.viewbox.changed", (t) => {
+			V(t.modeler) || (n = t.modeler.get("canvas"), t.modeler.on("canvas.viewbox.changed", (t) => {
 				e.value = t.scale;
 			}));
 		});
@@ -3624,7 +3616,7 @@ var Bo = /*#__PURE__*/ q(Ro, [["render", zo]]), Vo = k({
 	setup() {
 		let e = W(), t = {}, n = {}, r = {};
 		be(() => {
-			B(e.modeler) || (t = e.modeler.get("modeling"), n = e.modeler.get("selection"), r = e.modeler.get("alignElements"));
+			V(e.modeler) || (t = e.modeler.get("modeling"), n = e.modeler.get("selection"), r = e.modeler.get("alignElements"));
 		});
 		let i = (e) => {
 			if (t && n) {
@@ -4171,4 +4163,4 @@ var cs = [
 	cs.map((t) => e.component(t.name, t));
 } };
 //#endregion
-export { Kt as BpmnLinter, Et as BpmnQueryByGetService, Dt as DeploymentService, J as HBpmnCodePreviewer, ss as HBpmnDesigner, Zr as HBpmnDiagramViewer, Pr as HerodotusPropertiesProviderModule, Cr as ImageIndexes, U as Logger, Ne as Swal, Br as Translator, Re as add, ls as default, wr as getAssetsFile, Tr as getBpmnIcon, Er as getRawType, R as is, Le as isAny, jr as parseElementType, Fe as toast };
+export { Kt as BpmnLinter, Et as BpmnQueryByGetService, Dt as DeploymentService, J as HBpmnCodePreviewer, ss as HBpmnDesigner, Zr as HBpmnDiagramViewer, Pr as HerodotusPropertiesProviderModule, Cr as ImageIndexes, U as Logger, Ne as Swal, Br as Translator, Le as add, ls as default, wr as getAssetsFile, Tr as getBpmnIcon, L as getBusinessObject, Er as getRawType, z as is, Ie as isAny, jr as parseElementType, Fe as toast };

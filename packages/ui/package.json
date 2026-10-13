@@ -24,13 +24,13 @@
     "@herodotus-cloud/form-apis": "workspace:^",
     "@herodotus-cloud/form-designer": "workspace:^",
     "@herodotus-cloud/form-engine": "workspace:^",
-    "@herodotus/api": "^3.1.20",
-    "@herodotus/core": "^3.1.20",
-    "@herodotus/framework": "^3.1.20",
+    "@herodotus/api": "^3.1.21",
+    "@herodotus/core": "^3.1.21",
+    "@herodotus/framework": "^3.1.21",
     "@mdi/js": "^7.4.47",
     "@quasar/extras": "^2.1.0",
     "@rsocket/composite-metadata": "1.0.0-alpha.3",
-    "@stomp/stompjs": "^7.3.0",
+    "@stomp/stompjs": "^7.4.0",
     "@vuelidate/core": "^2.0.3",
     "@vuelidate/validators": "^2.0.4",
     "@vueuse/core": "^15.0.0",
@@ -47,12 +47,12 @@
     "simple-uploader.js": "^0.6.0",
     "vue": "^3.5.43",
     "vue-cookies": "^1.8.6",
-    "vue-i18n": "^11.4.13",
-    "vue-router": "^5.3.1",
+    "vue-i18n": "^11.4.14",
+    "vue-router": "^5.4.0",
     "vue-simple-uploader": "^1.0.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@types/node": "26.6.4"
+    "@types/node": "26.6.5"
   }
 }

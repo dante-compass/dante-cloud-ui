@@ -1,5 +1,11 @@
 # @herodotus-cloud/form-apis
 
+## 5.1.18
+
+### Patch Changes
+
+- 升级依赖包，重新编译库。
+
 ## 5.1.17
 
 ### Patch Changes
