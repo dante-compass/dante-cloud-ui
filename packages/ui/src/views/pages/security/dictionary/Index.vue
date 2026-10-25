@@ -28,8 +28,11 @@
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
-          <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>
@@ -43,13 +46,13 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { useTable, useDateTime } from '@/composables/hooks';
 import { PAGE_NAME, API, COLOR_LIST } from '@/configurations';
 
-import { HDeleteButton, HEditButton, HTable } from '@/components';
+import { HDeleteButton, HActionEditButton, HTable } from '@/components';
 import HDictionaryCondition from './Search.vue';
 import { useSettingsStore } from '@herodotus/framework';
 
 defineOptions({
   name: PAGE_NAME.SYS_DICTIONARY,
-  components: { HDeleteButton, HEditButton, HTable, HDictionaryCondition },
+  components: { HDeleteButton, HActionEditButton, HTable, HDictionaryCondition },
 });
 
 const { defaultFormat } = useDateTime();

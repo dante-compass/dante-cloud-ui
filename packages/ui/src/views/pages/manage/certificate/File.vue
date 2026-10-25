@@ -28,14 +28,17 @@
 
       <template #body-cell-ocsp="props">
         <q-td key="ocsp" :props="props">
-          <h-boolean-column :value="props.row.ocsp"></h-boolean-column>
+          <h-column-boolean :value="props.row.ocsp"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
           <h-download-button @click="onDownload(props.row)"></h-download-button>
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>

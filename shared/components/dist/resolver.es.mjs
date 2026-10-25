@@ -1,4 +1,4 @@
-//#region src/resolver.ts
+// src/resolver.ts
 var e = /* @__PURE__ */ "HButton.HCardTitle.HCenterLabel.HChartCard.HColumn.HContainer.HDateTime.HDivider.HDialog.HDuration.HIconButton.HIconSelect.HFieldLabel.HTreeField.HLabel.HListItem.HLoading.HPagination.HParticles.HRow.HSelect.HSignInBackground.HSwitch.HTextField.HLabelItem.HVisibilityButton".split(".");
 function t(t) {
 	return e.includes(t);
@@ -18,5 +18,4 @@ function n() {
 		}
 	};
 }
-//#endregion
 export { n as HerodotusResolver, n as default };

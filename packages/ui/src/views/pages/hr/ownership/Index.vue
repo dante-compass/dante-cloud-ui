@@ -25,13 +25,13 @@
 
         <template #body-cell-identity="props">
           <q-td key="identity" :props="props">
-            {{ getDictionaryItemDisplay("Identity", props.row.identity) }}
+            {{ getDictionaryItemDisplay('Identity', props.row.identity) }}
           </q-td>
         </template>
 
         <template #body-cell-actions="props">
           <q-td key="actions" :props="props">
-            <h-delete-button tooltip="删除归属" @click="deleteAllocatable(props.row)"></h-delete-button>
+            <h-action-delete-button tooltip="删除归属" @click="deleteAllocatable(props.row)"></h-action-delete-button>
           </q-td>
         </template>
       </h-table>
@@ -40,29 +40,29 @@
 </template>
 
 <script setup lang="ts">
-import type { SysEmployeeEntity, SysEmployeeProps } from "@herodotus/api";
-import type { Page, Sort, QTableColumnProps, QTableOnRequestParameter } from "@/composables/declarations";
+import type { SysEmployeeEntity, SysEmployeeProps } from '@herodotus/api';
+import type { Page, Sort, QTableColumnProps, QTableOnRequestParameter } from '@/composables/declarations';
 
-import { useRouter } from "vue-router";
-import { OperationEnum } from "@herodotus/core";
-import { PAGE_NAME, API } from "@/configurations";
-import { useElementStore } from "@herodotus/framework";
+import { useRouter } from 'vue-router';
+import { OperationEnum } from '@herodotus/core';
+import { PAGE_NAME, API } from '@/configurations';
+import { useElementStore } from '@herodotus/framework';
 
-import { HDeleteButton, HTable } from "@/components";
+import { HDeleteButton, HTable } from '@/components';
 
-import { HOrganizationTree, HDepartmentTree } from "../components";
-import { useDictionary, useDateTime } from "@/composables/hooks";
+import { HOrganizationTree, HDepartmentTree } from '../components';
+import { useDictionary, useDateTime } from '@/composables/hooks';
 
 defineOptions({
   name: PAGE_NAME.SYS_OWNERSHIP,
   components: { HDeleteButton, HDepartmentTree, HTable, HOrganizationTree },
 });
 
-const organizationId = shallowRef("");
-const departmentId = shallowRef("");
+const organizationId = shallowRef('');
+const departmentId = shallowRef('');
 const loading = shallowRef(false);
 const pagination = ref({
-  sortBy: "updateTime",
+  sortBy: 'updateTime',
   descending: false,
   page: 1,
   rowsPerPage: 10,
@@ -71,30 +71,30 @@ const pagination = ref({
 const tableRows = ref([]) as Ref<Array<SysEmployeeEntity>>;
 const totalPages = shallowRef(0);
 const selected = ref([]);
-const rowKey: SysEmployeeProps = "employeeId";
+const rowKey: SysEmployeeProps = 'employeeId';
 const router = useRouter();
 const store = useElementStore();
 
 const { defaultFormat } = useDateTime();
-const { getDictionaryItemDisplay } = useDictionary("identity");
+const { getDictionaryItemDisplay } = useDictionary('identity');
 
 const columns: QTableColumnProps = [
-  { name: "employeeName", field: "employeeName", align: "center", label: "姓名" },
-  { name: "identity", field: "identity", align: "center", label: "身份" },
+  { name: 'employeeName', field: 'employeeName', align: 'center', label: '姓名' },
+  { name: 'identity', field: 'identity', align: 'center', label: '身份' },
   {
-    name: "updateBy",
-    field: "updateBy",
-    align: "center",
-    label: "最后修改人",
+    name: 'updateBy',
+    field: 'updateBy',
+    align: 'center',
+    label: '最后修改人',
   },
   {
-    name: "updateTime",
-    field: "updateTime",
-    align: "center",
-    label: "修改时间",
+    name: 'updateTime',
+    field: 'updateTime',
+    align: 'center',
+    label: '修改时间',
     format: (value) => defaultFormat(value),
   },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
 const sort = {} as Sort;
@@ -169,7 +169,7 @@ const isShowOperation = computed(() => {
 });
 
 const toAllocatable = () => {
-  const routeName = "SysOwnershipContent";
+  const routeName = 'SysOwnershipContent';
   store.addRoutePushParam(routeName, {
     item: JSON.stringify({
       organizationId: organizationId.value,

@@ -1,5 +1,11 @@
 # @herodotus-cloud/form-apis
 
+## 5.1.19
+
+### Patch Changes
+
+- 新增任务调度 API 定义
+
 ## 5.1.18
 
 ### Patch Changes

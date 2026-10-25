@@ -31,67 +31,67 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-dense-icon-button
+        <h-action-button
           color="brown"
           icon="mdi-shield-key"
           tooltip="配置归属权限"
           @click="toAuthorize(props.row)"
-        ></h-dense-icon-button>
-        <h-edit-button @click="toEdit(props.row)"></h-edit-button>
+        ></h-action-button>
+        <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
       </q-td>
     </template>
   </h-table>
 </template>
 
 <script setup lang="ts">
-import type { Dictionary } from "@herodotus/core";
-import type { SysAttributeEntity, SysAttributeConditions, SysAttributeProps } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { Dictionary } from '@herodotus/core';
+import type { SysAttributeEntity, SysAttributeConditions, SysAttributeProps } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { useTable, useDictionary, useDateTime } from "@/composables/hooks";
-import { get } from "lodash-es";
+import { PAGE_NAME, API } from '@/configurations';
+import { useTable, useDictionary, useDateTime } from '@/composables/hooks';
+import { get } from 'lodash-es';
 
-import { HEditButton, HTable, HSwaggerColumn } from "@/components";
+import { HActionEditButton, HTable, HSwaggerColumn } from '@/components';
 
-defineOptions({ name: PAGE_NAME.SYS_ATTRIBUTE, components: { HEditButton, HTable, HSwaggerColumn } });
+defineOptions({ name: PAGE_NAME.SYS_ATTRIBUTE, components: { HActionEditButton, HTable, HSwaggerColumn } });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
   useTable<SysAttributeConditions, SysAttributeEntity>(API.core.sysAttribute(), PAGE_NAME.SYS_ATTRIBUTE, false, {
-    direction: "ASC",
-    properties: ["url"],
+    direction: 'ASC',
+    properties: ['url'],
   });
 
-const rowKey: SysAttributeProps = "attributeId";
+const rowKey: SysAttributeProps = 'attributeId';
 
 const selected = ref([]);
 const index = ref({}) as Ref<Record<string, Dictionary>>;
 
 const columns: QTableColumnProps = [
-  { name: "requestMethod", field: "requestMethod", align: "center", label: "权限接口" },
-  { name: "attributeCode", field: "attributeCode", align: "center", label: "默认权限代码" },
-  { name: "version", field: "version", align: "center", label: "版本控制" },
-  { name: "webExpression", field: "webExpression", align: "center", label: "特定表达式" },
+  { name: 'requestMethod', field: 'requestMethod', align: 'center', label: '权限接口' },
+  { name: 'attributeCode', field: 'attributeCode', align: 'center', label: '默认权限代码' },
+  { name: 'version', field: 'version', align: 'center', label: '版本控制' },
+  { name: 'webExpression', field: 'webExpression', align: 'center', label: '特定表达式' },
   {
-    name: "updateBy",
-    field: "updateBy",
-    align: "center",
-    label: "最后修改人",
+    name: 'updateBy',
+    field: 'updateBy',
+    align: 'center',
+    label: '最后修改人',
   },
   {
-    name: "updateTime",
-    field: "updateTime",
-    align: "center",
-    label: "修改时间",
+    name: 'updateTime',
+    field: 'updateTime',
+    align: 'center',
+    label: '修改时间',
     format: (value) => defaultFormat(value),
   },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
-const { options } = useDictionary("PermissionExpression");
+const { options } = useDictionary('PermissionExpression');
 
 onMounted(() => {
   if (options.value) {
@@ -103,6 +103,6 @@ onMounted(() => {
 
 const getText = (key: string) => {
   let object = index.value[key];
-  return get(object, "text");
+  return get(object, 'text');
 };
 </script>

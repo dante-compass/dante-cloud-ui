@@ -1,6 +1,6 @@
 import { Axios as e, ContentTypeEnum as t, ContentTypeEnum as n, HttpConfig as r, Service as i, Swal as a, moment as o, moment as s, toast as c } from "@herodotus/core";
 import { endsWith as l, isEmpty as u, trimEnd as d } from "lodash-es";
-//#region src/lib/base/path.ts
+// src/lib/base/path.ts
 var f = class {
 	address;
 	action = "";
@@ -603,5 +603,4 @@ var f = class {
 	let n = new r(e, t);
 	return N.getInstance(n);
 };
-//#endregion
 export { e as Axios, y as BaseBpmnService, N as BpmnApiResources, g as BpmnQueryByGetService, v as BpmnQueryByPostService, _ as BpmnQueryService, h as BpmnService, t as ContentTypeEnum, b as DeploymentService, O as GroupMemberService, D as GroupService, w as HistoryActivityInstanceService, T as HistoryProcessInstanceService, E as HistoryTaskService, r as HttpConfig, x as ProcessDefinitionService, S as ProcessInstanceService, m as RelationPathParamBuilder, i as Service, a as Swal, C as TaskService, j as TenantGroupService, k as TenantService, A as TenantUserService, p as UnionPathParamBuilder, M as UserService, P as createBpmnApi, o as moment, c as toast };

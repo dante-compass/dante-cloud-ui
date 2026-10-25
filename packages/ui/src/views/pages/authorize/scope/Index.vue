@@ -19,29 +19,35 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-dense-icon-button
+        <h-action-button
           color="brown"
           icon="mdi-vector-intersection"
           tooltip="配置权限"
           @click="toAuthorize(props.row)"
-        ></h-dense-icon-button>
-        <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-        <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+        ></h-action-button>
+        <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
+        <h-action-delete-button
+          v-if="!props.row.reserved"
+          @click="deleteItemById(props.row[rowKey])"
+        ></h-action-delete-button>
       </q-td>
     </template>
   </h-table>
 </template>
 
 <script setup lang="ts">
-import type { OAuth2ApplicationConditions, OAuth2ScopeEntity, OAuth2ScopeProps } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { OAuth2ApplicationConditions, OAuth2ScopeEntity, OAuth2ScopeProps } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { useTable, useDateTime } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HDenseIconButton, HDeleteButton, HEditButton, HTable } from "@/components";
+import { HActionButton, HDeleteButton, HActionEditButton, HTable } from '@/components';
 
-defineOptions({ name: PAGE_NAME.OAUTH2_SCOPE, components: { HDeleteButton, HDenseIconButton, HEditButton, HTable } });
+defineOptions({
+  name: PAGE_NAME.OAUTH2_SCOPE,
+  components: { HDeleteButton, HActionButton, HActionEditButton, HTable },
+});
 
 const { defaultFormat } = useDateTime();
 
@@ -49,27 +55,27 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthoriz
   useTable<OAuth2ApplicationConditions, OAuth2ScopeEntity>(API.core.oauth2Scope(), PAGE_NAME.OAUTH2_SCOPE);
 
 const selected = ref([]);
-const rowKey: OAuth2ScopeProps = "scopeId";
+const rowKey: OAuth2ScopeProps = 'scopeId';
 
 const columns: QTableColumnProps = [
-  { name: "scopeCode", field: "scopeCode", align: "center", label: "范围代码" },
-  { name: "scopeName", field: "scopeName", align: "center", label: "范围名称" },
-  { name: "description", field: "description", align: "center", label: "说明" },
+  { name: 'scopeCode', field: 'scopeCode', align: 'center', label: '范围代码' },
+  { name: 'scopeName', field: 'scopeName', align: 'center', label: '范围名称' },
+  { name: 'description', field: 'description', align: 'center', label: '说明' },
   {
-    name: "updateBy",
-    field: "updateBy",
-    align: "center",
-    label: "最后修改人",
+    name: 'updateBy',
+    field: 'updateBy',
+    align: 'center',
+    label: '最后修改人',
   },
   {
-    name: "updateTime",
-    field: "updateTime",
-    align: "center",
-    label: "修改时间",
+    name: 'updateTime',
+    field: 'updateTime',
+    align: 'center',
+    label: '修改时间',
     format: (value) => defaultFormat(value),
   },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 </script>

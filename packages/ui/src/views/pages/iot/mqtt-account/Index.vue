@@ -21,18 +21,18 @@
 
       <template #body-cell-superUser="props">
         <q-td key="superUser" :props="props">
-          <h-boolean-column :value="props.row.superUser"></h-boolean-column>
+          <h-column-boolean :value="props.row.superUser"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
-          <h-dense-icon-button
+          <h-action-button
             color="brown"
             icon="mdi-shield-key"
             tooltip="配置权限"
             @click="toAuthorize(props.row)"
-          ></h-dense-icon-button>
+          ></h-action-button>
         </q-td>
       </template>
     </h-table>
@@ -40,36 +40,36 @@
 </template>
 
 <script setup lang="ts">
-import type { MqttAccountEntity, MqttAccountConditions, MqttAccountProps } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { MqttAccountEntity, MqttAccountConditions, MqttAccountProps } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { useTable, useDateTime } from "@/composables/hooks";
-import { API, PAGE_NAME } from "@/configurations";
+import { useTable, useDateTime } from '@/composables/hooks';
+import { API, PAGE_NAME } from '@/configurations';
 
-import Search from "./Search.vue";
+import Search from './Search.vue';
 
 defineOptions({ name: PAGE_NAME.THINGS_MQTT_ACCOUNT, components: { Search } });
 
 const columns: QTableColumnProps = [
-  { name: "clientId", field: "clientId", align: "center", label: "Mqtt客户端ID" },
-  { name: "username", field: "username", align: "center", label: "Mqtt用户名" },
-  { name: "superUser", field: "superUser", align: "center", label: "是否为超级用户" },
-  { name: "description", field: "description", align: "center", label: "备注" },
-  { name: "updateBy", field: "updateBy", align: "center", label: "最后修改人" },
+  { name: 'clientId', field: 'clientId', align: 'center', label: 'Mqtt客户端ID' },
+  { name: 'username', field: 'username', align: 'center', label: 'Mqtt用户名' },
+  { name: 'superUser', field: 'superUser', align: 'center', label: '是否为超级用户' },
+  { name: 'description', field: 'description', align: 'center', label: '备注' },
+  { name: 'updateBy', field: 'updateBy', align: 'center', label: '最后修改人' },
   {
-    name: "updateTime",
-    field: "updateTime",
-    align: "center",
-    label: "修改时间",
+    name: 'updateTime',
+    field: 'updateTime',
+    align: 'center',
+    label: '修改时间',
     format: (value) => defaultFormat(value),
   },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
 const selected = ref([]);
-const rowKey: MqttAccountProps = "id";
+const rowKey: MqttAccountProps = 'id';
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, conditions, toCreate, toAuthorize, findItems } = useTable<

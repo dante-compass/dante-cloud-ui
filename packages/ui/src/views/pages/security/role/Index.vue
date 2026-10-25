@@ -19,14 +19,17 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-dense-icon-button
+        <h-action-button
           color="brown"
           icon="mdi-shield-key"
           tooltip="配置权限"
           @click="toAuthorize(props.row)"
-        ></h-dense-icon-button>
-        <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-        <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+        ></h-action-button>
+        <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
+        <h-action-delete-button
+          v-if="!props.row.reserved"
+          @click="deleteItemById(props.row[rowKey])"
+        ></h-action-delete-button>
       </q-td>
     </template>
   </h-table>
@@ -38,9 +41,9 @@ import type { QTableColumnProps } from '@/composables/declarations';
 
 import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime } from '@/composables/hooks';
-import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from '@/components';
+import { HDeleteButton, HActionEditButton, HActionButton, HTable } from '@/components';
 
-defineOptions({ name: PAGE_NAME.SYS_ROLE, components: { HDeleteButton, HEditButton, HDenseIconButton, HTable } });
+defineOptions({ name: PAGE_NAME.SYS_ROLE, components: { HDeleteButton, HActionEditButton, HActionButton, HTable } });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =

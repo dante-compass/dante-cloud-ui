@@ -21,12 +21,12 @@
 
       <template #body-cell-mobile="props">
         <q-td key="mobile" :props="props">
-          <h-boolean-column :value="props.row.mobile"></h-boolean-column>
+          <h-column-boolean :value="props.row.mobile"></h-column-boolean>
         </q-td>
       </template>
       <template #body-cell-mobileBrowser="props">
         <q-td key="mobileBrowser" :props="props">
-          <h-boolean-column :value="props.row.mobileBrowser"></h-boolean-column>
+          <h-column-boolean :value="props.row.mobileBrowser"></h-column-boolean>
         </q-td>
       </template>
     </h-table>
@@ -34,18 +34,18 @@
 </template>
 
 <script setup lang="ts">
-import type { OAuth2UserLoggingEntity, OAuth2UserLoggingConditions, OAuth2UserLoggingProps } from "@herodotus/api";
-import type { QTableColumnProps, EntityTitle } from "@/composables/declarations";
+import type { OAuth2UserLoggingEntity, OAuth2UserLoggingConditions, OAuth2UserLoggingProps } from '@herodotus/api';
+import type { QTableColumnProps, EntityTitle } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { useTable, useXlsx, useDateTime } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { useTable, useXlsx, useDateTime } from '@/composables/hooks';
 
-import { HTable, HBooleanColumn } from "@/components";
-import { HComplianceCondition } from "@/components";
+import { HTable, HColumnBoolean } from '@/components';
+import { HComplianceCondition } from '@/components';
 
 defineOptions({
   name: PAGE_NAME.OAUTH2_COMPLIANCE,
-  components: { HComplianceCondition, HTable, HBooleanColumn },
+  components: { HComplianceCondition, HTable, HColumnBoolean },
 });
 
 const { defaultFormat } = useDateTime();
@@ -54,49 +54,49 @@ const { tableRows, totalPages, pagination, loading, conditions, findItems } = us
   OAuth2UserLoggingConditions,
   OAuth2UserLoggingEntity
 >(API.core.oauth2UserLogging(), PAGE_NAME.OAUTH2_COMPLIANCE, false, {
-  direction: "DESC",
-  properties: ["createTime"],
+  direction: 'DESC',
+  properties: ['createTime'],
 });
 
 const selected = ref([]);
-const rowKey: OAuth2UserLoggingProps = "loggingId";
+const rowKey: OAuth2UserLoggingProps = 'loggingId';
 
 const columns: QTableColumnProps = [
-  { name: "principalName", field: "principalName", align: "center", label: "用户名" },
-  { name: "clientId", field: "clientId", align: "center", label: "客户端ID" },
-  { name: "ip", field: "ip", align: "center", label: "IP地址" },
-  { name: "location", field: "location", align: "center", label: "位置" },
-  { name: "mobile", field: "mobile", align: "center", label: "移动端？" },
-  { name: "mobileBrowser", field: "mobileBrowser", align: "center", label: "是移动端浏览器" },
-  { name: "platformName", field: "platformName", align: "center", label: "平台" },
-  { name: "osName", field: "osName", align: "center", label: "操作系统" },
-  { name: "browserName", field: "browserName", align: "center", label: "浏览器" },
-  { name: "browserEngineName", field: "browserEngineName", align: "center", label: "浏览器引擎" },
-  { name: "operation", field: "operation", align: "center", label: "操作" },
-  { name: "createTime", field: "createTime", align: "center", label: "时间", format: (value) => defaultFormat(value) },
+  { name: 'principalName', field: 'principalName', align: 'center', label: '用户名' },
+  { name: 'clientId', field: 'clientId', align: 'center', label: '客户端ID' },
+  { name: 'ip', field: 'ip', align: 'center', label: 'IP地址' },
+  { name: 'location', field: 'location', align: 'center', label: '位置' },
+  { name: 'mobile', field: 'mobile', align: 'center', label: '移动端？' },
+  { name: 'mobileBrowser', field: 'mobileBrowser', align: 'center', label: '是移动端浏览器' },
+  { name: 'platformName', field: 'platformName', align: 'center', label: '平台' },
+  { name: 'osName', field: 'osName', align: 'center', label: '操作系统' },
+  { name: 'browserName', field: 'browserName', align: 'center', label: '浏览器' },
+  { name: 'browserEngineName', field: 'browserEngineName', align: 'center', label: '浏览器引擎' },
+  { name: 'operation', field: 'operation', align: 'center', label: '操作' },
+  { name: 'createTime', field: 'createTime', align: 'center', label: '时间', format: (value) => defaultFormat(value) },
 ];
 
 const title: EntityTitle<OAuth2UserLoggingEntity> = {
-  createTime: "创建时间",
-  updateTime: "更新时间",
-  loggingId: "ID",
-  principalName: "用户名",
-  clientId: "OAuth2 客户端ID",
-  ip: "IP地址",
-  mobile: "是移动端 ?",
-  browserName: "浏览器",
-  mobileBrowser: "是移动端浏览器 ?",
-  browserVersion: "浏览器版本",
-  platformName: "平台",
-  osName: "操作系统",
-  osVersion: "操作系统版本",
-  browserEngineName: "浏览器引擎",
-  browserEngineVersion: "浏览器引擎版本",
-  operation: "执行操作",
-  location: "登录位置",
+  createTime: '创建时间',
+  updateTime: '更新时间',
+  loggingId: 'ID',
+  principalName: '用户名',
+  clientId: 'OAuth2 客户端ID',
+  ip: 'IP地址',
+  mobile: '是移动端 ?',
+  browserName: '浏览器',
+  mobileBrowser: '是移动端浏览器 ?',
+  browserVersion: '浏览器版本',
+  platformName: '平台',
+  osName: '操作系统',
+  osVersion: '操作系统版本',
+  browserEngineName: '浏览器引擎',
+  browserEngineVersion: '浏览器引擎版本',
+  operation: '执行操作',
+  location: '登录位置',
 };
 
 const onExportExcel = () => {
-  postExport(tableRows.value, title, "日志审计");
+  postExport(tableRows.value, title, '日志审计');
 };
 </script>

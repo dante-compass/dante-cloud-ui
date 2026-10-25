@@ -15,7 +15,7 @@ import { defineComponent } from 'vue';
 import { useSettingsStore } from '@herodotus/framework';
 
 export default defineComponent({
-  name: 'HDenseIconButton',
+  name: 'HActionButton',
 
   props: {
     color: { type: String, default: 'grey-8' },

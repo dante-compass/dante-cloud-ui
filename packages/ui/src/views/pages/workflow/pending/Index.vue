@@ -17,7 +17,10 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-delete-button v-if="!props.row.reserved" @click="onDeleteItemById(props.row[rowKey])"></h-delete-button>
+        <h-action-delete-button
+          v-if="!props.row.reserved"
+          @click="onDeleteItemById(props.row[rowKey])"
+        ></h-action-delete-button>
       </q-td>
     </template>
   </h-table>

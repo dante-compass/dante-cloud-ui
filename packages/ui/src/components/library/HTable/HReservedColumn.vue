@@ -1,11 +1,11 @@
 <template>
-  <h-dense-icon-button
+  <h-action-button
     v-if="status"
     color="negative"
     icon="mdi-delete-forever"
     tooltip="不允许删除的数据"
-  ></h-dense-icon-button>
-  <h-dense-icon-button v-else color="positive" icon="mdi-delete-empty" tooltip="允许删除的数据"></h-dense-icon-button>
+  ></h-action-button>
+  <h-action-button v-else color="positive" icon="mdi-delete-empty" tooltip="允许删除的数据"></h-action-button>
 </template>
 
 <script lang="ts">
@@ -13,13 +13,13 @@ import { defineComponent } from 'vue';
 
 import { useSettingsStore } from '@herodotus/framework';
 
-import HDenseIconButton from './HDenseIconButton.vue';
+import HActionButton from './HActionButton.vue';
 
 export default defineComponent({
   name: 'HReservedColumn',
 
   components: {
-    HDenseIconButton,
+    HActionButton,
   },
 
   props: {

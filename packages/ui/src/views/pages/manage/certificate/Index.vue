@@ -20,13 +20,13 @@
 
       <template #body-cell-issuerDn="{ value }">
         <q-td key="issuerDn">
-          <h-dense-icon-button color="orange" icon="mdi-invoice-text-check" :tooltip="value"></h-dense-icon-button>
+          <h-action-button color="orange" icon="mdi-invoice-text-check" :tooltip="value"></h-action-button>
         </q-td>
       </template>
 
       <template #body-cell-subjectDn="{ value }">
         <q-td key="subjectDn">
-          <h-dense-icon-button color="teal" icon="mdi-invoice-text-edit" :tooltip="value"></h-dense-icon-button>
+          <h-action-button color="teal" icon="mdi-invoice-text-edit" :tooltip="value"></h-action-button>
         </q-td>
       </template>
 
@@ -44,26 +44,29 @@
 
       <template #body-cell-ocsp="props">
         <q-td key="ocsp" :props="props">
-          <h-boolean-column :value="props.row.ocsp"></h-boolean-column>
+          <h-column-boolean :value="props.row.ocsp"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
           <h-download-button @click="onShowDownloadDialog(props.row)"></h-download-button>
-          <h-dense-icon-button
+          <h-action-button
             color="amber"
             icon="mdi-file-search"
             tooltip="查看证书文件"
             @click="toFile(props.row)"
-          ></h-dense-icon-button>
-          <h-dense-icon-button
+          ></h-action-button>
+          <h-action-button
             color="red"
             icon="mdi-file-lock"
             tooltip="查看证书文件"
             @click="toRevocation(props.row)"
-          ></h-dense-icon-button>
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          ></h-action-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>

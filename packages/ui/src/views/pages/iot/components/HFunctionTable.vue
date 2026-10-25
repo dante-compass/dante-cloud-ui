@@ -21,7 +21,7 @@
 
       <template #body-cell-dimension="props">
         <q-td key="dimension" :props="props">
-          {{ getDictionaryItemDisplay("Dimension", props.row.dimension) }}
+          {{ getDictionaryItemDisplay('Dimension', props.row.dimension) }}
         </q-td>
       </template>
 
@@ -39,7 +39,10 @@
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>
@@ -53,17 +56,17 @@
 </template>
 
 <script setup lang="ts">
-import type { TslFunctionEntity, TslFunctionConditions, TslFunctionProps, Specification, Specs } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { TslFunctionEntity, TslFunctionConditions, TslFunctionProps, Specification, Specs } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
+import { PAGE_NAME, API } from '@/configurations';
 
-import { useTable, useDictionary } from "@/composables/hooks";
-import { HDeleteButton } from "@/components";
-import HAddFunctionDialog from "./HAddFunctionDialog.vue";
+import { useTable, useDictionary } from '@/composables/hooks';
+import { HDeleteButton } from '@/components';
+import HAddFunctionDialog from './HAddFunctionDialog.vue';
 
 defineOptions({
-  name: "HFunctionTable",
+  name: 'HFunctionTable',
   components: {
     HDeleteButton,
     HAddFunctionDialog,
@@ -83,58 +86,58 @@ const { tableRows, totalPages, pagination, loading, findItems, deleteItemById, c
 const isOpenDialog = shallowRef<boolean>(false);
 
 const selected = ref<Array<string>>([]);
-const rowKey: TslFunctionProps = "id";
+const rowKey: TslFunctionProps = 'id';
 
 const columns: QTableColumnProps = [
-  { name: "dimension", field: "dimension", align: "center", label: "功能类型" },
-  { name: "name", field: "name", align: "center", label: "功能名称" },
-  { name: "identifier", field: "identifier", align: "center", label: "标识符" },
-  { name: "type", field: "type", align: "center", label: "数据类型" },
-  { name: "specs", field: "specs", align: "left", label: "数据定义" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'dimension', field: 'dimension', align: 'center', label: '功能类型' },
+  { name: 'name', field: 'name', align: 'center', label: '功能名称' },
+  { name: 'identifier', field: 'identifier', align: 'center', label: '标识符' },
+  { name: 'type', field: 'type', align: 'center', label: '数据类型' },
+  { name: 'specs', field: 'specs', align: 'left', label: '数据定义' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
-const { getDictionaryItemDisplay } = useDictionary("Dimension", "ArgumentType", "CallType", "EventType");
+const { getDictionaryItemDisplay } = useDictionary('Dimension', 'ArgumentType', 'CallType', 'EventType');
 
 const ArgumentType = (item: TslFunctionEntity) => {
-  if (item.dimension === "properties") {
-    return getDictionaryItemDisplay("ArgumentType", item.type);
+  if (item.dimension === 'properties') {
+    return getDictionaryItemDisplay('ArgumentType', item.type);
   } else {
-    return "-";
+    return '-';
   }
 };
 
 const convertMap = (obj: Record<string, string>) => {
   const result: Array<string> = [];
   Object.keys(obj).forEach((key) => {
-    result.push([key, obj[key]].join(" ~ "));
+    result.push([key, obj[key]].join(' ~ '));
   });
-  return result.join(" <br/> ");
+  return result.join(' <br/> ');
 };
 
 const dataType = (attribute: Specification<Specs>) => {
   switch (attribute.dataType.type) {
-    case "int":
-    case "float":
-    case "double":
-      return "取值范围：" + attribute.dataType.specs.min + "~" + attribute.dataType.specs.max;
-    case "bool":
-      return "布尔值：" + convertMap(attribute.dataType.specs);
-    case "enum":
-      return "枚举值：" + convertMap(attribute.dataType.specs);
-    case "text":
-      return "数据长度：" + attribute.dataType.specs.length;
+    case 'int':
+    case 'float':
+    case 'double':
+      return '取值范围：' + attribute.dataType.specs.min + '~' + attribute.dataType.specs.max;
+    case 'bool':
+      return '布尔值：' + convertMap(attribute.dataType.specs);
+    case 'enum':
+      return '枚举值：' + convertMap(attribute.dataType.specs);
+    case 'text':
+      return '数据长度：' + attribute.dataType.specs.length;
     default:
-      return "-";
+      return '-';
   }
 };
 
 const dataSpecs = (item: TslFunctionEntity): string => {
   switch (item.dimension) {
-    case "services":
-      return "调用方式：" + getDictionaryItemDisplay("CallType", item.callType);
-    case "events":
-      return "事件类型：" + getDictionaryItemDisplay("EventType", item.eventType);
+    case 'services':
+      return '调用方式：' + getDictionaryItemDisplay('CallType', item.callType);
+    case 'events':
+      return '事件类型：' + getDictionaryItemDisplay('EventType', item.eventType);
     default:
       return dataType(item.specs);
   }

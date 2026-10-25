@@ -17,19 +17,14 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-dense-icon-button
+        <h-action-button
           color="brown"
           icon="mdi-image-area"
           tooltip="查看流程图"
           @click="viewDiagram = true"
-        ></h-dense-icon-button>
-        <h-dense-icon-button
-          color="purple"
-          icon="mdi-xml"
-          tooltip="查看XML"
-          @click="viewXml = true"
-        ></h-dense-icon-button>
-        <h-delete-button @click="onDeleteItemById(props.row[rowKey])"></h-delete-button>
+        ></h-action-button>
+        <h-action-button color="purple" icon="mdi-xml" tooltip="查看XML" @click="viewXml = true"></h-action-button>
+        <h-action-delete-button @click="onDeleteItemById(props.row[rowKey])"></h-action-delete-button>
         <h-bpmn-view-diagram-dialog
           v-model="viewDiagram"
           :definition-key="props.row['key']"
@@ -56,13 +51,13 @@ import type {
 
 import { PAGE_NAME, API } from '@/configurations';
 
-import { HDenseIconButton } from '@/components';
+import { HActionButton } from '@/components';
 import { useBpmnTableItems } from '@/composables/hooks';
 import { HBpmnViewDiagramDialog, HBpmnViewXmlDialog } from '../components';
 
 defineOptions({
   name: PAGE_NAME.WORKFLOW_PROCESS_DEFINITION,
-  components: { HDenseIconButton, HBpmnViewDiagramDialog, HBpmnViewXmlDialog },
+  components: { HActionButton, HBpmnViewDiagramDialog, HBpmnViewXmlDialog },
 });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =

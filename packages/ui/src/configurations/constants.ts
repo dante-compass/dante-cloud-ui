@@ -153,6 +153,9 @@ export const PAGE_NAME = (() => {
   const MESSAGE_INFORMATION_CONTENT = MESSAGE_INFORMATION + OperationEnum.CONTENT;
   const MESSAGE_SETTING = "MessageSetting";
   const SOCIAL_BINDING = "SocialBinding";
+  const TASK_DEFINITION = "TaskDefinition";
+  const TASK_DEFINITION_CONTENT = TASK_DEFINITION + OperationEnum.CONTENT;
+  const TASK_EXECUTION_HISTORY = "TaskExecutionHistory";
 
   return {
     OAUTH2_APPLICATION,
@@ -239,6 +242,9 @@ export const PAGE_NAME = (() => {
     MESSAGE_INFORMATION_CONTENT,
     MESSAGE_SETTING,
     SOCIAL_BINDING,
+    TASK_DEFINITION,
+    TASK_DEFINITION_CONTENT,
+    TASK_EXECUTION_HISTORY,
   };
 })();
 

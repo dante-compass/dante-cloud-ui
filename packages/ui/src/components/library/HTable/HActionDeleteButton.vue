@@ -1,17 +1,17 @@
 <template>
-  <h-dense-icon-button color="red" icon="mdi-delete" :tooltip="tooltip"></h-dense-icon-button>
+  <h-action-button color="red" icon="mdi-delete" :tooltip="tooltip"></h-action-button>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import HDenseIconButton from './HDenseIconButton.vue';
+import HActionButton from './HActionButton.vue';
 
 export default defineComponent({
-  name: 'HDeleteButton',
+  name: 'HActionDeleteButton',
 
   components: {
-    HDenseIconButton,
+    HActionButton,
   },
 
   props: {

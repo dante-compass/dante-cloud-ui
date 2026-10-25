@@ -1,5 +1,15 @@
 # @herodotus-cloud/form-designer
 
+## 5.1.19
+
+### Patch Changes
+
+- 新增任务调度 API 定义
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.19
+  - @herodotus-cloud/form-apis@5.1.19
+  - @herodotus-cloud/form-engine@5.1.19
+
 ## 5.1.18
 
 ### Patch Changes

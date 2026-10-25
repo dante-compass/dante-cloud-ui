@@ -26,11 +26,11 @@
 
       <template #body-cell-connected="props">
         <q-td key="connected" :props="props">
-          <h-dense-icon-button
+          <h-action-button
             :color="props.row.connected ? 'positive' : 'warning'"
             :icon="props.row.connected ? 'mdi-access-point-network' : 'mdi-access-point-network-off'"
             :tooltip="props.row.connected ? '在线' : '离线'"
-          ></h-dense-icon-button>
+          ></h-action-button>
         </q-td>
       </template>
 
@@ -48,9 +48,12 @@
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
-          <h-edit-button @click="toEdit(props.row)"></h-edit-button>
+          <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
           <h-info-button @click="toInfo(props.row)"></h-info-button>
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>
@@ -64,9 +67,9 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { useTable, useDateTime } from '@/composables/hooks';
 import { PAGE_NAME, API } from '@/configurations';
 
-import { HDeleteButton, HEditButton, HTable, HDenseIconButton } from '@/components';
+import { HDeleteButton, HActionEditButton, HTable, HActionButton } from '@/components';
 
-defineOptions({ name: PAGE_NAME.IOT_DEVICE, components: { HDeleteButton, HEditButton, HTable, HDenseIconButton } });
+defineOptions({ name: PAGE_NAME.IOT_DEVICE, components: { HDeleteButton, HActionEditButton, HTable, HActionButton } });
 
 const {
   tableRows,
