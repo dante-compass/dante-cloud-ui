@@ -1,5 +1,41 @@
 # @herodotus-cloud/components
 
+## 5.1.20
+
+### Patch Changes
+
+- 版本发布
+
+## 5.1.19
+
+### Patch Changes
+
+- 新增任务调度 API 定义
+
+## 5.1.18
+
+### Patch Changes
+
+- 升级依赖包，重新编译库。
+
+## 5.1.17
+
+### Patch Changes
+
+- [重构] 重构证书关联模块代码及数据表命名，统一使用 pki 作为命名前缀
+
+## 5.1.16
+
+### Patch Changes
+
+- 升级 Vite 和 Quasar 版本
+
+## 5.1.15
+
+### Patch Changes
+
+- 升级 PNPM 版本，重新编译库。
+
 ## 5.1.14
 
 ### Patch Changes

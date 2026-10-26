@@ -1,18 +1,18 @@
 <template>
-  <h-dense-icon-button v-if="value" :color="trueColor" :icon="trueIcon" :tooltip="trueTooltip"></h-dense-icon-button>
-  <h-dense-icon-button v-else :color="falseColor" :icon="falseIcon" :tooltip="falseTooltip"></h-dense-icon-button>
+  <h-action-button v-if="value" :color="trueColor" :icon="trueIcon" :tooltip="trueTooltip"></h-action-button>
+  <h-action-button v-else :color="falseColor" :icon="falseIcon" :tooltip="falseTooltip"></h-action-button>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-import HDenseIconButton from './HDenseIconButton.vue';
+import HActionButton from './HActionButton.vue';
 
 export default defineComponent({
-  name: 'HBooleanColumn',
+  name: 'HColumnBoolean',
 
   components: {
-    HDenseIconButton,
+    HActionButton,
   },
 
   props: {

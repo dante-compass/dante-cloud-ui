@@ -1,21 +1,21 @@
-import HTable from './HTable.vue';
+import HTable from "./HTable.vue";
 
-import HBooleanColumn from './HBooleanColumn.vue';
-import HDeleteButton from './HDeleteButton.vue';
-import HDenseIconButton from './HDenseIconButton.vue';
-import HEditButton from './HEditButton.vue';
-import HInfoButton from './HInfoButton.vue';
-import HGrantTypeColumn from './HGrantTypeColumn.vue';
-import HStatusColumn from './HStatusColumn.vue';
-import HSwaggerColumn from './HSwaggerColumn.vue';
-import HReservedColumn from './HReservedColumn.vue';
+import HColumnBoolean from "./HColumnBoolean.vue";
+import HActionDeleteButton from "./HActionDeleteButton.vue";
+import HActionButton from "./HActionButton.vue";
+import HActionEditButton from "./HActionEditButton.vue";
+import HInfoButton from "./HInfoButton.vue";
+import HGrantTypeColumn from "./HGrantTypeColumn.vue";
+import HStatusColumn from "./HStatusColumn.vue";
+import HSwaggerColumn from "./HSwaggerColumn.vue";
+import HReservedColumn from "./HReservedColumn.vue";
 
 export {
   HTable,
-  HBooleanColumn,
-  HDeleteButton,
-  HEditButton,
-  HDenseIconButton,
+  HColumnBoolean,
+  HActionDeleteButton,
+  HActionEditButton,
+  HActionButton,
   HGrantTypeColumn,
   HStatusColumn,
   HSwaggerColumn,

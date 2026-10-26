@@ -21,66 +21,69 @@
 
       <template #body-cell-clientType="props">
         <q-td key="clientType" :props="props">
-          <q-chip v-if="props.row.clientType" color="purple">{{
-            getDictionaryItemDisplay('ClientType', props.row.clientType)
-          }}</q-chip>
+          <q-chip v-if="props.row.clientType" color="purple">
+            {{ getDictionaryItemDisplay('ClientType', props.row.clientType) }}
+          </q-chip>
         </q-td>
       </template>
 
       <template #body-cell-menuScenario="props">
         <q-td key="menuScenario" :props="props">
-          <q-chip v-if="props.row.menuScenario" color="purple">{{
-            getDictionaryItemDisplay('MenuScenario', props.row.menuScenario)
-          }}</q-chip>
+          <q-chip v-if="props.row.menuScenario" color="purple">
+            {{ getDictionaryItemDisplay('MenuScenario', props.row.menuScenario) }}
+          </q-chip>
         </q-td>
       </template>
 
       <template #body-cell-icon="props">
         <q-td key="icon" :props="props">
-          <h-dense-icon-button color="primary" :icon="props.row.icon" :tooltip="props.row.icon"></h-dense-icon-button>
+          <h-action-button color="primary" :icon="props.row.icon" :tooltip="props.row.icon"></h-action-button>
         </q-td>
       </template>
 
       <template #body-cell-isHaveChild="props">
         <q-td key="isHaveChild" :props="props">
-          <h-boolean-column :value="props.row.isHaveChild"></h-boolean-column>
+          <h-column-boolean :value="props.row.isHaveChild"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-isNotKeepAlive="props">
         <q-td key="isNotKeepAlive" :props="props">
-          <h-boolean-column :value="props.row.isNotKeepAlive"></h-boolean-column>
+          <h-column-boolean :value="props.row.isNotKeepAlive"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-isHideAllChild="props">
         <q-td key="isHideAllChild" :props="props">
-          <h-boolean-column :value="props.row.isHideAllChild"></h-boolean-column>
+          <h-column-boolean :value="props.row.isHideAllChild"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-isDetailContent="props">
         <q-td key="isDetailContent" :props="props">
-          <h-boolean-column :value="props.row.isDetailContent"></h-boolean-column>
+          <h-column-boolean :value="props.row.isDetailContent"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-isIgnoreAuth="props">
         <q-td key="isIgnoreAuth" :props="props">
-          <h-boolean-column :value="props.row.isIgnoreAuth"></h-boolean-column>
+          <h-column-boolean :value="props.row.isIgnoreAuth"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
-          <h-dense-icon-button
+          <h-action-button
             color="brown"
             icon="mdi-account-box-edit-outline"
             tooltip="配置角色"
             @click="toAuthorize(props.row)"
-          ></h-dense-icon-button>
-          <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          ></h-action-button>
+          <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>
@@ -94,12 +97,12 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { useTable, useDateTime, useDictionary } from '@/composables/hooks';
 import { PAGE_NAME, API } from '@/configurations';
 
-import { HDeleteButton, HEditButton, HTable, HBooleanColumn, HDenseIconButton } from '@/components';
+import { HDeleteButton, HActionEditButton, HTable, HColumnBoolean, HActionButton } from '@/components';
 import HElementCondition from './Search.vue';
 
 defineOptions({
   name: PAGE_NAME.SYS_ELEMENT,
-  components: { HBooleanColumn, HElementCondition, HDenseIconButton, HDeleteButton, HEditButton, HTable },
+  components: { HColumnBoolean, HElementCondition, HActionButton, HDeleteButton, HActionEditButton, HTable },
 });
 
 const { defaultFormat } = useDateTime();

@@ -36,7 +36,7 @@ declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractP
     columns: {
         name: string;
         label: string;
-        field: string | ((row: any) => any);
+        field?: string | ((row: any) => any);
         required?: boolean;
         align?: "left" | "right" | "center";
         sortable?: boolean;

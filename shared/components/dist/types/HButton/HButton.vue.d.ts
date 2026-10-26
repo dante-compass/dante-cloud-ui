@@ -1,9 +1,9 @@
 interface Props {
     tooltip?: string;
 }
-declare var __VLS_16: {};
+declare var __VLS_15: {};
 type __VLS_Slots = {} & {
-    loading?: (props: typeof __VLS_16) => any;
+    loading?: (props: typeof __VLS_15) => any;
 };
 declare const __VLS_base: import('vue').DefineComponent<Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<Props> & Readonly<{}>, {
     tooltip: string;

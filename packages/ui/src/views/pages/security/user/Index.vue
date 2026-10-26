@@ -20,27 +20,30 @@
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
-          <h-dense-icon-button
+          <h-action-button
             v-if="showMessageAction(props.row)"
             color="warning"
             icon="mdi-email-edit"
             tooltip="发送消息"
             @click="onSendMessageToUser(props.row)"
-          ></h-dense-icon-button>
-          <h-dense-icon-button
+          ></h-action-button>
+          <h-action-button
             color="orange"
             icon="mdi-key-chain"
             tooltip="设置/修改密码"
             @click="onChangePassword(props.row)"
-          ></h-dense-icon-button>
-          <h-dense-icon-button
+          ></h-action-button>
+          <h-action-button
             color="brown"
             icon="mdi-account-box-edit-outline"
             tooltip="配置角色"
             @click="toAuthorize(props.row)"
-          ></h-dense-icon-button>
-          <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          ></h-action-button>
+          <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>
@@ -63,12 +66,12 @@ import { PAGE_NAME, API } from '@/configurations';
 import { useAuthenticationStore } from '@herodotus/framework';
 import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from '@/components';
+import { HDeleteButton, HActionEditButton, HActionButton, HTable } from '@/components';
 import { HChangePassword, HSendMessageToUser } from './components';
 
 defineOptions({
   name: PAGE_NAME.SYS_USER,
-  components: { HChangePassword, HDeleteButton, HEditButton, HDenseIconButton, HTable, HSendMessageToUser },
+  components: { HChangePassword, HDeleteButton, HActionEditButton, HActionButton, HTable, HSendMessageToUser },
 });
 
 const { defaultFormat } = useDateTime();

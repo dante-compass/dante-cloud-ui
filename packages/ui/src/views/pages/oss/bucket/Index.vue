@@ -27,15 +27,15 @@
 
       <template #body-cell-versioning="props">
         <q-td key="versioning" :props="props">
-          <q-chip v-if="props.row.versioning" color="purple">{{
-            getDictionaryItemDisplay('BucketVersioning', props.row.versioning)
-          }}</q-chip>
+          <q-chip v-if="props.row.versioning" color="purple">
+            {{ getDictionaryItemDisplay('BucketVersioning', props.row.versioning) }}
+          </q-chip>
         </q-td>
       </template>
 
       <template #body-cell-objectLockEnabled="props">
         <q-td key="objectLockEnabled" :props="props">
-          <h-boolean-column
+          <h-column-boolean
             :value="props.row.objectLockEnabled"
             true-color="positive"
             false-color="negative"
@@ -43,13 +43,16 @@
             false-icon="mdi-lock-open"
             true-tooltip="已开启对象锁定"
             false-tooltip="未开启对象锁定"
-          ></h-boolean-column>
+          ></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
-          <h-delete-button v-if="!props.row.reserved" @click="onDeleteBucket(props.row[rowKey])"></h-delete-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="onDeleteBucket(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>

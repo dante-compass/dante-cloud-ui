@@ -19,8 +19,11 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-        <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+        <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
+        <h-action-delete-button
+          v-if="!props.row.reserved"
+          @click="deleteItemById(props.row[rowKey])"
+        ></h-action-delete-button>
       </q-td>
     </template>
   </h-table>
@@ -38,11 +41,11 @@ import { PAGE_NAME, API } from '@/configurations';
 
 import { useTable } from '@/composables/hooks';
 
-import { HDeleteButton, HEditButton, HDenseIconButton, HTable } from '@/components';
+import { HDeleteButton, HActionEditButton, HActionButton, HTable } from '@/components';
 
 defineOptions({
   name: PAGE_NAME.SYS_TENANT_DATA_SOURCE,
-  components: { HDeleteButton, HEditButton, HDenseIconButton, HTable },
+  components: { HDeleteButton, HActionEditButton, HActionButton, HTable },
 });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =

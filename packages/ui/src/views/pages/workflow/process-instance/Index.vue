@@ -17,13 +17,16 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-dense-icon-button
+        <h-action-button
           color="positive"
           icon="mdi-progress-check"
           tooltip="当前进度"
           @click="viewProgress = true"
-        ></h-dense-icon-button>
-        <h-delete-button v-if="!props.row.reserved" @click="onDeleteItemById(props.row[rowKey])"></h-delete-button>
+        ></h-action-button>
+        <h-action-delete-button
+          v-if="!props.row.reserved"
+          @click="onDeleteItemById(props.row[rowKey])"
+        ></h-action-delete-button>
         <h-bpmn-view-diagram-dialog
           v-model="viewProgress"
           :definition-id="props.row['definitionId']"
@@ -45,11 +48,11 @@ import type {
 } from '@/composables/declarations';
 
 import { PAGE_NAME, API } from '@/configurations';
-import { HDenseIconButton } from '@/components';
+import { HActionButton } from '@/components';
 import { useBpmnTableItems } from '@/composables/hooks';
 import { HBpmnViewDiagramDialog } from '../components';
 
-defineOptions({ name: PAGE_NAME.WORKFLOW_PROCESS_INSTANCE, components: { HDenseIconButton, HBpmnViewDiagramDialog } });
+defineOptions({ name: PAGE_NAME.WORKFLOW_PROCESS_INSTANCE, components: { HActionButton, HBpmnViewDiagramDialog } });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, onDeleteItemById, conditions } =
   useBpmnTableItems<

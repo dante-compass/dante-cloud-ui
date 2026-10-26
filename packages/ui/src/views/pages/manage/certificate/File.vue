@@ -16,26 +16,29 @@
     >
       <template #body-cell-certificateCategory="props">
         <q-td key="certificateCategory" :props="props">
-          {{ getDictionaryItemDisplay("CertificateCategory", props.row.certificateCategory) }}
+          {{ getDictionaryItemDisplay('CertificateCategory', props.row.certificateCategory) }}
         </q-td>
       </template>
 
       <template #body-cell-revocationReason="props">
         <q-td key="certificateFileCategory" :props="props">
-          {{ getDictionaryItemDisplay("CertificateFileCategory", props.row.certificateFileCategory) }}
+          {{ getDictionaryItemDisplay('CertificateFileCategory', props.row.certificateFileCategory) }}
         </q-td>
       </template>
 
       <template #body-cell-ocsp="props">
         <q-td key="ocsp" :props="props">
-          <h-boolean-column :value="props.row.ocsp"></h-boolean-column>
+          <h-column-boolean :value="props.row.ocsp"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
           <h-download-button @click="onDownload(props.row)"></h-download-button>
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>
@@ -44,54 +47,54 @@
 
 <script setup lang="ts">
 import type {
-  MgtCertificateRequest,
-  MgtCertificateResponse,
-  MgtCertificateFileRequest,
-  MgtCertificateFileResponse,
-  MgtCertificateFileConditions,
-  MgtCertificateFileProps,
-} from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+  PkiCertificateRequest,
+  PkiCertificateResponse,
+  PkiCertificateFileRequest,
+  PkiCertificateFileResponse,
+  PkiCertificateFileConditions,
+  PkiCertificateFileProps,
+} from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { isEmpty } from "lodash-es";
+import { isEmpty } from 'lodash-es';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { useTable, useTableItem, useDictionary, useOss } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { useTable, useTableItem, useDictionary, useOss } from '@/composables/hooks';
 
-defineOptions({ name: PAGE_NAME.MGT_CERTIFICATE_FILE });
+defineOptions({ name: PAGE_NAME.PKI_CERTIFICATE_FILE });
 
 const selected = ref([]);
-const rowKey: MgtCertificateFileProps = "fileId";
+const rowKey: PkiCertificateFileProps = 'fileId';
 
 const columns: QTableColumnProps = [
-  { name: "alias", field: "alias", align: "center", label: "证书名称" },
-  { name: "certificateCategory", field: "certificateCategory", align: "center", label: "证书类别" },
+  { name: 'alias', field: 'alias', align: 'center', label: '证书名称' },
+  { name: 'certificateCategory', field: 'certificateCategory', align: 'center', label: '证书类别' },
   {
-    name: "certificateFileCategory",
-    field: "certificateFileCategory",
-    align: "center",
-    label: "证书文件类别",
+    name: 'certificateFileCategory',
+    field: 'certificateFileCategory',
+    align: 'center',
+    label: '证书文件类别',
   },
-  { name: "fileName", field: "fileName", align: "center", label: "文件名" },
-  { name: "suffix", field: "suffix", align: "center", label: "文件后缀" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'fileName', field: 'fileName', align: 'center', label: '文件名' },
+  { name: 'suffix', field: 'suffix', align: 'center', label: '文件后缀' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
 const { tableRows, totalPages, pagination, loading, toCreate, findItems, deleteItemById } = useTable<
-  MgtCertificateFileConditions,
-  MgtCertificateFileRequest,
-  MgtCertificateFileResponse
->(API.core.mgtCertificateFile(), PAGE_NAME.MGT_CERTIFICATE);
+  PkiCertificateFileConditions,
+  PkiCertificateFileRequest,
+  PkiCertificateFileResponse
+>(API.core.pkiCertificateFile(), PAGE_NAME.PKI_CERTIFICATE);
 
-const { onReturn } = useTableItem<MgtCertificateRequest, MgtCertificateResponse>(
-  API.core.mgtCertificate(),
-  PAGE_NAME.MGT_CERTIFICATE_FILE,
+const { onReturn } = useTableItem<PkiCertificateRequest, PkiCertificateResponse>(
+  API.core.pkiCertificate(),
+  PAGE_NAME.PKI_CERTIFICATE_FILE,
 );
 
-const { getDictionaryItemDisplay } = useDictionary("CertificateCategory", "RevocationReason");
+const { getDictionaryItemDisplay } = useDictionary('CertificateCategory', 'RevocationReason');
 const { download } = useOss();
 
-const onDownload = (item: MgtCertificateFileResponse) => {
+const onDownload = (item: PkiCertificateFileResponse) => {
   if (!isEmpty(item)) {
     download(item.bucketName, item.fileName, item.fileSize);
   }

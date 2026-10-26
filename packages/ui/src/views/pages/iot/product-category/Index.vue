@@ -19,22 +19,25 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-        <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+        <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
+        <h-action-delete-button
+          v-if="!props.row.reserved"
+          @click="deleteItemById(props.row[rowKey])"
+        ></h-action-delete-button>
       </q-td>
     </template>
   </h-table>
 </template>
 
 <script setup lang="ts">
-import type { ProductCategoryEntity, ProductCategoryConditions, ProductCategoryProps } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { ProductCategoryEntity, ProductCategoryConditions, ProductCategoryProps } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { useTable } from "@/composables/hooks";
-import { PAGE_NAME, API } from "@/configurations";
-import { HDeleteButton, HEditButton, HTable } from "@/components";
+import { useTable } from '@/composables/hooks';
+import { PAGE_NAME, API } from '@/configurations';
+import { HDeleteButton, HActionEditButton, HTable } from '@/components';
 
-defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CATEGORY, components: { HDeleteButton, HEditButton, HTable } });
+defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CATEGORY, components: { HDeleteButton, HActionEditButton, HTable } });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById } = useTable<
   ProductCategoryEntity,
@@ -42,13 +45,13 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
 >(API.core.iotProductCategory(), PAGE_NAME.IOT_PRODUCT_CATEGORY);
 
 const selected = ref([]);
-const rowKey: ProductCategoryProps = "id";
+const rowKey: ProductCategoryProps = 'id';
 
 const columns: QTableColumnProps = [
-  { name: "id", field: "id", align: "center", label: "产品品类ID" },
-  { name: "name", field: "name", align: "center", label: "产品品类名称" },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'id', field: 'id', align: 'center', label: '产品品类ID' },
+  { name: 'name', field: 'name', align: 'center', label: '产品品类名称' },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 </script>

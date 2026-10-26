@@ -20,13 +20,13 @@
 
       <template #body-cell-issuerDn="{ value }">
         <q-td key="issuerDn">
-          <h-dense-icon-button color="orange" icon="mdi-invoice-text-check" :tooltip="value"></h-dense-icon-button>
+          <h-action-button color="orange" icon="mdi-invoice-text-check" :tooltip="value"></h-action-button>
         </q-td>
       </template>
 
       <template #body-cell-subjectDn="{ value }">
         <q-td key="subjectDn">
-          <h-dense-icon-button color="teal" icon="mdi-invoice-text-edit" :tooltip="value"></h-dense-icon-button>
+          <h-action-button color="teal" icon="mdi-invoice-text-edit" :tooltip="value"></h-action-button>
         </q-td>
       </template>
 
@@ -44,26 +44,29 @@
 
       <template #body-cell-ocsp="props">
         <q-td key="ocsp" :props="props">
-          <h-boolean-column :value="props.row.ocsp"></h-boolean-column>
+          <h-column-boolean :value="props.row.ocsp"></h-column-boolean>
         </q-td>
       </template>
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
           <h-download-button @click="onShowDownloadDialog(props.row)"></h-download-button>
-          <h-dense-icon-button
+          <h-action-button
             color="amber"
             icon="mdi-file-search"
             tooltip="查看证书文件"
             @click="toFile(props.row)"
-          ></h-dense-icon-button>
-          <h-dense-icon-button
+          ></h-action-button>
+          <h-action-button
             color="red"
             icon="mdi-file-lock"
             tooltip="查看证书文件"
             @click="toRevocation(props.row)"
-          ></h-dense-icon-button>
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          ></h-action-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>
@@ -73,10 +76,10 @@
 
 <script setup lang="ts">
 import type {
-  MgtCertificateRequest,
-  MgtCertificateResponse,
-  MgtCertificateConditions,
-  MgtCertificateProps,
+  PkiCertificateRequest,
+  PkiCertificateResponse,
+  PkiCertificateConditions,
+  PkiCertificateProps,
 } from '@herodotus/api';
 import type { QTableColumnProps } from '@/composables/declarations';
 
@@ -85,10 +88,10 @@ import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime, useDictionary } from '@/composables/hooks';
 import { HDownloadCertificateDialog } from './components';
 
-defineOptions({ name: PAGE_NAME.MGT_CERTIFICATE, components: { HDownloadCertificateDialog } });
+defineOptions({ name: PAGE_NAME.PKI_CERTIFICATE, components: { HDownloadCertificateDialog } });
 
 const selected = ref([]);
-const rowKey: MgtCertificateProps = 'certId';
+const rowKey: PkiCertificateProps = 'certId';
 
 const columns: QTableColumnProps = [
   { name: 'certificateCategory', field: 'certificateCategory', align: 'center', label: '证书类别' },
@@ -125,9 +128,9 @@ const columns: QTableColumnProps = [
 ];
 
 const { tableRows, totalPages, pagination, loading, toCreate, toFile, toRevocation, findItems, deleteItemById } =
-  useTable<MgtCertificateConditions, MgtCertificateRequest, MgtCertificateResponse>(
-    API.core.mgtCertificate(),
-    PAGE_NAME.MGT_CERTIFICATE,
+  useTable<PkiCertificateConditions, PkiCertificateRequest, PkiCertificateResponse>(
+    API.core.pkiCertificate(),
+    PAGE_NAME.PKI_CERTIFICATE,
   );
 
 const { defaultFormat } = useDateTime();
@@ -136,7 +139,7 @@ const { getDictionaryItemDisplay } = useDictionary('CertificateCategory', 'Revoc
 const openDialog = shallowRef(false);
 const currentCertId = shallowRef();
 
-const onShowDownloadDialog = (item: MgtCertificateResponse) => {
+const onShowDownloadDialog = (item: PkiCertificateResponse) => {
   currentCertId.value = item.certId;
   if (currentCertId.value) {
     openDialog.value = true;

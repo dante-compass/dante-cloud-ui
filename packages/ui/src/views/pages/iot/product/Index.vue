@@ -60,9 +60,12 @@
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
-          <h-edit-button @click="toEdit(props.row)"></h-edit-button>
+          <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
           <h-info-button @click="toInfo(props.row)"></h-info-button>
-          <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+          <h-action-delete-button
+            v-if="!props.row.reserved"
+            @click="deleteItemById(props.row[rowKey])"
+          ></h-action-delete-button>
         </q-td>
       </template>
     </h-table>
@@ -76,11 +79,14 @@ import type { QTableColumnProps, HttpResult } from '@/composables/declarations';
 import { useTable } from '@/composables/hooks';
 import { PAGE_NAME, API } from '@/configurations';
 import { toast } from '@herodotus/core';
-import { HDeleteButton, HEditButton, HInfoButton, HTable } from '@/components';
+import { HDeleteButton, HActionEditButton, HInfoButton, HTable } from '@/components';
 import { useDictionary } from '@/composables/hooks';
 import Search from './Search.vue';
 
-defineOptions({ name: PAGE_NAME.IOT_PRODUCT, components: { HDeleteButton, HEditButton, HInfoButton, HTable, Search } });
+defineOptions({
+  name: PAGE_NAME.IOT_PRODUCT,
+  components: { HDeleteButton, HActionEditButton, HInfoButton, HTable, Search },
+});
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toInfo, findItems, deleteItemById, conditions } =
   useTable<ProductConditions, ProductEntity>(API.core.iotProduct(), PAGE_NAME.IOT_PRODUCT);

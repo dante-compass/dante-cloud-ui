@@ -6,7 +6,7 @@ import { Swal as ve, Swal as ye, toast as be, toast as xe } from "@herodotus/cor
 import { ElementUtils as L, HRendererEngine as Se, HRendererForm as Ce, WIDGET_DEFINITIONS as R } from "@herodotus-cloud/form-engine";
 import { HSwitch as z, HTextField as B } from "@herodotus-cloud/components";
 import V from "vuedraggable";
-//#region src/stores/canvas.ts
+// src/stores/canvas.ts
 var H = F("FormDesignerCanvas", {
 	state: () => ({
 		isClosed: !1,
@@ -97,8 +97,7 @@ var H = F("FormDesignerCanvas", {
 	for (let [e, r] of t) n[e] = r;
 	return n;
 };
-//#endregion
-//#region src/components/canvas-toolbar/HFormInformation.vue
+// src/components/canvas-toolbar/HFormInformation.vue
 function Te(e, t, n, r, i, a) {
 	let o = l, s = d;
 	return D(), x(s, null, {
@@ -182,8 +181,7 @@ var G = /*#__PURE__*/ W(we, [["render", Te]]), Ee = E({
 		};
 	}
 });
-//#endregion
-//#region src/components/canvas-toolbar/HFormUploadDialog.vue
+// src/components/canvas-toolbar/HFormUploadDialog.vue
 function De(a, o, s, c, l, u) {
 	let d = g, f = e, p = r, m = G, h = n, _ = t, v = i;
 	return D(), x(v, {
@@ -232,8 +230,7 @@ function De(a, o, s, c, l, u) {
 	}, 8, ["modelValue"]);
 }
 var K = /*#__PURE__*/ W(Ee, [["render", De]]), Oe = E({ name: "HCanvasLayout" });
-//#endregion
-//#region src/components/library/HCanvasLayout.vue
+// src/components/library/HCanvasLayout.vue
 function ke(e, n, r, i, a, o) {
 	let s = t, c = f, l = p;
 	return D(), x(l, null, {
@@ -254,8 +251,7 @@ var q = /*#__PURE__*/ W(Oe, [["render", ke]]), Ae = E({
 		default: "text-primary"
 	} }
 });
-//#endregion
-//#region src/components/library/HExpansionItem.vue
+// src/components/library/HExpansionItem.vue
 function je(e, n, i, a, s, c) {
 	let l = r, u = t, d = o;
 	return D(), x(d, le({
@@ -297,8 +293,7 @@ var J = /*#__PURE__*/ W(Ae, [["render", je]]), Me = E({
 		};
 	}
 });
-//#endregion
-//#region src/components/canvas-toolbar/HFormPreviewDialog.vue
+// src/components/canvas-toolbar/HFormPreviewDialog.vue
 function Ne(a, o, s, c, l, u) {
 	let d = g, f = e, p = r, m = A("h-renderer-form"), h = n, _ = t, v = i;
 	return D(), x(v, {
@@ -374,8 +369,7 @@ var Y = /*#__PURE__*/ W(Me, [["render", Ne]]), Pe = E({
 		};
 	}
 });
-//#endregion
-//#region src/components/canvas/HCanvasElement.vue
+// src/components/canvas/HCanvasElement.vue
 function Fe(r, i, a, o, s, c) {
 	let l = A("h-renderer-engine"), u = e, d = n, f = t;
 	return D(), x(f, {
@@ -434,8 +428,7 @@ var X = /*#__PURE__*/ W(Pe, [["render", Fe], ["__scopeId", "data-v-8129af03"]]),
 		};
 	}
 });
-//#endregion
-//#region src/components/canvas/HCanvasContainer.vue
+// src/components/canvas/HCanvasContainer.vue
 function Le(e, t, n, r, i, a) {
 	let o = X, s = A("draggable"), c = q;
 	return D(), x(c, null, {
@@ -724,8 +717,7 @@ var Z = /*#__PURE__*/ W(Ie, [["render", Le], ["__scopeId", "data-v-768a54ef"]]),
 		};
 	}
 });
-//#endregion
-//#region src/components/property-elements/HConditionVariable.vue
+// src/components/property-elements/HConditionVariable.vue
 function Ge(e, t, n, r, i, a) {
 	let o = A("h-text-field"), s = l, c = m, u = ne, d = ae, f = y, p = J;
 	return D(), x(p, {
@@ -787,8 +779,7 @@ var Ke = /*#__PURE__*/ W(We, [["render", Ge]]), qe = E({
 	name: "HSheetPanel",
 	components: { HConditionVariable: Ke }
 });
-//#endregion
-//#region src/components/property-panels/HSheetPanel.vue
+// src/components/property-panels/HSheetPanel.vue
 function Je(e, t, n, r, i, a) {
 	let o = Ke, s = d;
 	return D(), x(s, { bordered: "" }, {
@@ -1322,8 +1313,7 @@ var dt = /*#__PURE__*/ W(at, [["render", ut], ["__scopeId", "data-v-ae3d4bd2"]])
 		};
 	}
 });
-//#endregion
-//#region src/components/HDynamicForms.vue
+// src/components/HDynamicForms.vue
 function pt(t, n, r, i, o, c) {
 	let l = e, d = ie, f = re, p = s, m = dt, h = a, g = it, _ = Z, v = Y, ee = K, y = u;
 	return D(), x(y, {
@@ -1406,15 +1396,12 @@ function pt(t, n, r, i, o, c) {
 	}, 8, ["container", "style"]);
 }
 var $ = /*#__PURE__*/ W(ft, [["render", pt]]);
-//#endregion
-//#region src/components/index.ts
+// src/components/index.ts
 $.install = (e) => {
 	e.component($.name, $);
 };
-//#endregion
-//#region src/index.ts
+// src/index.ts
 var mt = [$], ht = { install: (e) => {
 	mt.map((t) => e.component(t.name, t));
 } };
-//#endregion
 export { Q as Attributes, L as ElementUtils, $ as HDynamicForms, ve as Swal, R as WIDGET_DEFINITIONS, ht as default, be as toast };

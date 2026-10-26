@@ -5,8 +5,7 @@ import * as qe from "@mdi/js";
 import { find as Je, isEmpty as Ye, kebabCase as Xe } from "lodash-es";
 import { tsParticles as Ze } from "@tsparticles/engine";
 import { loadTrianglesPreset as Qe } from "@tsparticles/preset-triangles";
-//#endregion
-//#region src/HButton/HButton.vue
+// src/HButton/HButton.vue
 var M = /* @__PURE__ */ c({
 	name: "HButton",
 	components: {
@@ -78,8 +77,7 @@ M.install = (e) => {
 }, P.install = (e) => {
 	e.component(P.name, P);
 };
-//#endregion
-//#region src/HCard/HCardTitle.vue?vue&type=script&setup=true&lang.ts
+// src/HCard/HCardTitle.vue?vue&type=script&setup=true&lang.ts
 var $e = { class: "title-toolbar row items-center q-pr-sm" }, et = { class: "card-title q-my-xs q-mr-sm cursor-pointer" }, tt = /*@__PURE__*/ c({
 	name: "HCardTitle",
 	__name: "HCardTitle",
@@ -128,8 +126,7 @@ F.install = (e) => {
 }, I.install = (e) => {
 	e.component(I.name, I);
 };
-//#endregion
-//#region src/HDateTime/HDateTime.vue?vue&type=script&setup=true&lang.ts
+// src/HDateTime/HDateTime.vue?vue&type=script&setup=true&lang.ts
 var at = { class: "row items-center justify-end" }, ot = { class: "row items-center justify-end" }, L = /* @__PURE__ */ c({
 	name: "HDateTime",
 	components: {
@@ -258,11 +255,7 @@ var at = { class: "row items-center justify-end" }, ot = { class: "row items-cen
 			r = Object.keys(qe).map((e) => Xe(e));
 		});
 		let c = (e, t, n) => {
-			if (e.length < 3) {
-				n();
-				return;
-			}
-			t(() => {
+			e.length < 3 ? n() : t(() => {
 				let t = e.toLowerCase();
 				i.value = r.filter((e) => e.toLowerCase().match(t));
 			});
@@ -589,8 +582,7 @@ V.install = (e) => {
 }, J.install = (e) => {
 	e.component(J.name, J);
 };
-//#endregion
-//#region src/lib/enums/index.ts
+// src/lib/enums/index.ts
 var Y = /* @__PURE__ */ function(e) {
 	return e.xs = "xs", e.sm = "sm", e.md = "md", e.lg = "lg", e.xl = "xl", e;
 }({}), ht = /* @__PURE__ */ function(e) {
@@ -769,8 +761,7 @@ X.install = (e) => {
 }, Z.install = (e) => {
 	e.component(Z.name, Z);
 };
-//#endregion
-//#region src/HDateTime/HDuration.vue
+// src/HDateTime/HDuration.vue
 var vt = /* @__PURE__ */ c({
 	name: "HDuration",
 	components: {
@@ -839,8 +830,7 @@ L.install = (e) => {
 }, vt.install = (e) => {
 	e.component(vt.name, vt);
 };
-//#endregion
-//#region src/HDivider/HDivider.vue
+// src/HDivider/HDivider.vue
 var $ = /* @__PURE__ */ c({
 	name: "HDivider",
 	components: {
@@ -872,13 +862,11 @@ var $ = /* @__PURE__ */ c({
 		}, 8, ["offset", "wider"]));
 	}
 });
-//#endregion
-//#region src/HDivider/index.ts
+// src/HDivider/index.ts
 $.install = (e) => {
 	e.component($.name, $);
 };
-//#endregion
-//#region src/HDialog/HDialog.vue?vue&type=script&setup=true&lang.ts
+// src/HDialog/HDialog.vue?vue&type=script&setup=true&lang.ts
 var yt = { class: "text-h6" }, bt = /* @__PURE__ */ c({
 	name: "HDialog",
 	components: {
@@ -999,13 +987,11 @@ var yt = { class: "text-h6" }, bt = /* @__PURE__ */ c({
 		}, 16, ["modelValue"]));
 	}
 });
-//#endregion
-//#region src/HDialog/index.ts
+// src/HDialog/index.ts
 bt.install = (e) => {
 	e.component(bt.name, bt);
 };
-//#endregion
-//#region src/HItem/HLabelItem.vue?vue&type=script&setup=true&lang.ts
+// src/HItem/HLabelItem.vue?vue&type=script&setup=true&lang.ts
 var xt = { class: "w-20" }, St = { class: "w-50" }, Ct = /* @__PURE__ */ c({
 	name: "HLabelItem",
 	components: {
@@ -1050,13 +1036,11 @@ var xt = { class: "w-20" }, St = { class: "w-50" }, Ct = /* @__PURE__ */ c({
 		], 2));
 	}
 });
-//#endregion
-//#region src/HItem/index.ts
+// src/HItem/index.ts
 Ct.install = (e) => {
 	e.component(Ct.name, Ct);
 };
-//#endregion
-//#region src/HList/HListItem.vue
+// src/HList/HListItem.vue
 var wt = /* @__PURE__ */ c({
 	name: "HListItem",
 	components: {
@@ -1089,13 +1073,11 @@ var wt = /* @__PURE__ */ c({
 		};
 	}
 });
-//#endregion
-//#region src/HList/index.ts
+// src/HList/index.ts
 wt.install = (e) => {
 	e.component(wt.name, wt);
 };
-//#endregion
-//#region src/HLoading/HLoading.vue
+// src/HLoading/HLoading.vue
 var Tt = /* @__PURE__ */ c({
 	name: "HLoading",
 	components: {
@@ -1144,13 +1126,11 @@ var Tt = /* @__PURE__ */ c({
 		}, 8, ["color"]));
 	}
 });
-//#endregion
-//#region src/HLoading/index.ts
+// src/HLoading/index.ts
 Tt.install = (e) => {
 	e.component(Tt.name, Tt);
 };
-//#endregion
-//#region src/HPagination/HPagination.vue
+// src/HPagination/HPagination.vue
 var Et = /* @__PURE__ */ c({
 	name: "HPagination",
 	components: { QPagination: pe },
@@ -1187,13 +1167,11 @@ var Et = /* @__PURE__ */ c({
 		]));
 	}
 });
-//#endregion
-//#region src/HPagination/index.ts
+// src/HPagination/index.ts
 Et.install = (e) => {
 	e.component(Et.name, Et);
 };
-//#endregion
-//#region src/HParticles/particles.ts
+// src/HParticles/particles.ts
 var Dt = { particles: {
 	number: {
 		density: {
@@ -1240,13 +1218,11 @@ var Dt = { particles: {
 		}), (e, n) => (h(), r("div", { id: t.value }, [_(e.$slots, "default")], 8, Ot));
 	}
 });
-//#endregion
-//#region src/HParticles/index.ts
+// src/HParticles/index.ts
 kt.install = (e) => {
 	e.component(kt.name, kt);
 };
-//#endregion
-//#region src/HBackground/HSignInCornerBottom.vue?vue&type=script&setup=true&lang.ts
+// src/HBackground/HSignInCornerBottom.vue?vue&type=script&setup=true&lang.ts
 var At = {
 	version: "1.1",
 	xmlns: "http://www.w3.org/2000/svg",
@@ -1343,13 +1319,11 @@ var At = {
 		}, null, 8, ["start-color", "end-color"])])]));
 	}
 }), [["__scopeId", "data-v-0558c2f2"]]);
-//#endregion
-//#region src/HBackground/index.ts
+// src/HBackground/index.ts
 Ht.install = (e) => {
 	e.component(Ht.name, Ht);
 };
-//#endregion
-//#region src/index.ts
+// src/index.ts
 var Ut = [
 	M,
 	F,
@@ -1380,5 +1354,4 @@ var Ut = [
 ], Wt = { install: (e) => {
 	Ut.map((t) => t.install(e));
 } };
-//#endregion
 export { Y as BreakPointEnum, lt as Content, st as DURATION_UNITS, R as Grid, M as HButton, F as HCardTitle, J as HCenterLabel, I as HChartCard, X as HColumn, Q as HContainer, L as HDateTime, bt as HDialog, $ as HDivider, vt as HDuration, W as HFieldLabel, N as HIconButton, V as HIconSelect, q as HLabel, Ct as HLabelItem, wt as HListItem, Tt as HLoading, Et as HPagination, kt as HParticles, Z as HRow, H as HSelect, Ht as HSignInBackground, U as HSwitch, G as HTextField, K as HTreeField, P as HVisibilityButton, ht as SpinnerEnum, ct as Symbol, dt as createBackgroundColor, z as createClass, B as createColClass, ut as createTextColor, Wt as default, Ge as moment };

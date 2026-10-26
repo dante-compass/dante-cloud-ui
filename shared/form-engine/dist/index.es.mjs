@@ -2,7 +2,7 @@ import { Fragment as e, computed as t, createElementBlock as n, createVNode as r
 import { nanoid as d } from "nanoid";
 import { cloneDeep as f, isEmpty as p } from "lodash-es";
 import { QIcon as m, QInput as h, QItem as g, QItemSection as _, QList as v } from "quasar";
-//#region src/lib/core/engine.ts
+// src/lib/core/engine.ts
 var y = (e) => "onUpdate:" + e, b = (e) => "update:" + e, x = (e, t, n) => {
 	let r = y(e), i = b(e), a = {};
 	return a[e] = t[e], a[r] = (e) => {
@@ -460,8 +460,7 @@ var y = (e) => "onUpdate:" + e, b = (e) => "update:" + e, x = (e, t, n) => {
 	for (let [e, r] of t) n[e] = r;
 	return n;
 };
-//#endregion
-//#region src/components/HRendererForm.vue
+// src/components/HRendererForm.vue
 function M(t, i, a, s, l, u) {
 	let d = k;
 	return o(!0), n(e, null, c(t.elements, (e) => (o(), n("div", { key: e.id }, [r(d, {
@@ -480,8 +479,7 @@ N.install = (e) => {
 }, k.install = (e) => {
 	e.component(k.name, k);
 };
-//#endregion
-//#region src/index.ts
+// src/index.ts
 var P = [
 	m,
 	v,
@@ -491,5 +489,4 @@ var P = [
 ], F = [k, N], I = { install: (e) => {
 	F.map((t) => e.component(t.name, t)), P.map((t) => e.component(t.name, t));
 } };
-//#endregion
 export { O as ElementUtils, k as HRendererEngine, N as HRendererForm, w as SCHEMA_DEFINITIONS, D as WIDGET_DEFINITIONS, I as default, C as renderSchema };

@@ -1,7 +1,7 @@
-import { Axios as e, ContentTypeEnum as t, ContentTypeEnum as n, HttpConfig as r, Service as i, Swal as a, moment as o, toast as s } from "@herodotus/core";
-import { endsWith as c, isEmpty as l, trimEnd as u } from "lodash-es";
-//#region src/lib/base/path.ts
-var d = class {
+import { Axios as e, ContentTypeEnum as t, ContentTypeEnum as n, HttpConfig as r, Service as i, Swal as a, moment as o, moment as s, toast as c } from "@herodotus/core";
+import { endsWith as l, isEmpty as u, trimEnd as d } from "lodash-es";
+// src/lib/base/path.ts
+var f = class {
 	address;
 	action = "";
 	constructor(e) {
@@ -9,7 +9,7 @@ var d = class {
 	}
 	getWellFormedAddress() {
 		let e = this.address;
-		return c(e, "/") ? u(e, "/") : e;
+		return l(e, "/") ? d(e, "/") : e;
 	}
 	addAction(e) {
 		this.action = e;
@@ -17,7 +17,7 @@ var d = class {
 	appendAction(e) {
 		return this.action ? e + "/" + this.action : e;
 	}
-}, f = class extends d {
+}, p = class extends f {
 	id = "";
 	key = "";
 	tenantId = "";
@@ -34,7 +34,7 @@ var d = class {
 		let e = this.getWellFormedAddress();
 		return this.id ? e += "/" + this.id : (this.key && (e += "/key/" + this.key), this.tenantId && (e += "/tenant-id/" + this.tenantId)), this.appendAction(e);
 	}
-}, p = class extends d {
+}, m = class extends f {
 	id = "";
 	relationId = "";
 	constructor(e) {
@@ -47,16 +47,16 @@ var d = class {
 		let e = this.getWellFormedAddress();
 		return e += "/" + this.id, e = this.appendAction(e), e += "/" + this.relationId, e;
 	}
-}, m = class extends i {
+}, h = class extends i {
 	getCountAddress() {
 		return this.getBaseAddress() + "/count";
 	}
 	createAddressByParam(e, t = "") {
-		let n = new f(this.getBaseAddress());
+		let n = new p(this.getBaseAddress());
 		return t ? n.withParam(e).setAction(t).build() : n.withParam(e).build();
 	}
 	createAddressByRelation(e, t, n) {
-		return new p(this.getBaseAddress()).withParam({
+		return new m(this.getBaseAddress()).withParam({
 			id: e,
 			relationId: t,
 			action: n
@@ -66,9 +66,9 @@ var d = class {
 		return this.createAddressByParam({ id: e }, t);
 	}
 	delete(e, t = {}) {
-		return l(t) ? this.getConfig().getHttp().delete(this.createAddressById(e)) : this.getConfig().getHttp().deleteWithParams(this.createAddressById(e), t);
+		return u(t) ? this.getConfig().getHttp().delete(this.createAddressById(e)) : this.getConfig().getHttp().deleteWithParams(this.createAddressById(e), t);
 	}
-}, h = class extends m {
+}, g = class extends h {
 	getCount(e = {}) {
 		return new Promise((t, n) => {
 			this.getConfig().getHttp().get(this.getCountAddress(), e).then((e) => {
@@ -125,11 +125,11 @@ var d = class {
 			});
 		});
 	}
-}, g = class extends h {
+}, _ = class extends g {
 	get(e) {
 		return this.getConfig().getHttp().get(this.createAddressById(e));
 	}
-}, _ = class extends g {
+}, v = class extends _ {
 	getPostCount(e = {}) {
 		return new Promise((t, n) => {
 			this.getConfig().getHttp().get(this.getCountAddress(), e).then((e) => {
@@ -144,7 +144,7 @@ var d = class {
 			firstResult: (e.pageNumber - 1) * e.pageSize,
 			maxResults: e.pageSize
 		}, a = {};
-		return l(n) || (a = Object.assign(r, { sorting: n })), new Promise((n, r) => {
+		return u(n) || (a = Object.assign(r, { sorting: n })), new Promise((n, r) => {
 			this.getConfig().getHttp().postWithParams(this.getBaseAddress(), i, a).then((r) => {
 				n({
 					content: r,
@@ -167,7 +167,7 @@ var d = class {
 			});
 		});
 	}
-}, v = class extends _ {}, y = class e extends g {
+}, y = class extends v {}, b = class e extends _ {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -188,7 +188,7 @@ var d = class {
 		let t = new FormData();
 		t.append("deployment-name", e.deploymentName), t.append("deploy-changed-only", e.deployChangedOnly ? "true" : "false"), t.append("enable-duplicate-filtering", this.getDuplicateFiltering(e)), t.append("deployment-source", e.deploymentSource ? e.deploymentSource : "Dante Cloud UI");
 		let r = e.deploymentActivationTime ? e.deploymentActivationTime : /* @__PURE__ */ new Date();
-		t.append("deployment-activation-time", o(r).utc().format()), e.tenantId && t.append("tenant-id", e.tenantId);
+		t.append("deployment-activation-time", s(r).utc().format()), e.tenantId && t.append("tenant-id", e.tenantId);
 		let i = new Blob([e.resource], { type: "application/octet-stream" });
 		return t.append("data", i, (/* @__PURE__ */ new Date()).getTime() + ".bpmn"), this.getConfig().getHttp().post(this.getCreateAddress(), t, { contentType: n.MULTI_PART });
 	}
@@ -209,7 +209,7 @@ var d = class {
 		let e = this.getBaseAddress() + "/registered";
 		return this.getConfig().getHttp().get(e);
 	}
-}, b = class e extends g {
+}, x = class e extends _ {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -279,7 +279,7 @@ var d = class {
 	restartAsync(e, t) {
 		return this.getConfig().getHttp().post(this.createAddressById(e, "restart-async"), t);
 	}
-}, x = class e extends v {
+}, S = class e extends y {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -342,7 +342,7 @@ var d = class {
 		let t = this.getBaseAddress() + "suspended-async";
 		return this.getConfig().getHttp().post(t, e);
 	}
-}, S = class e extends v {
+}, C = class e extends y {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -401,7 +401,7 @@ var d = class {
 	handleBpmnEscalation(e, t) {
 		return this.getConfig().getHttp().post(this.createAddressById(e, "bpmnEscalation"), t);
 	}
-}, C = class e extends _ {
+}, w = class e extends v {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -412,7 +412,7 @@ var d = class {
 	getBaseAddress() {
 		return this.getConfig().getBpmn() + "/history/activity-instance";
 	}
-}, w = class e extends _ {
+}, T = class e extends v {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -423,7 +423,7 @@ var d = class {
 	getBaseAddress() {
 		return this.getConfig().getBpmn() + "/history/process-instance";
 	}
-}, T = class e extends _ {
+}, E = class e extends v {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -434,7 +434,7 @@ var d = class {
 	getBaseAddress() {
 		return this.getConfig().getBpmn() + "/history/task";
 	}
-}, E = class e extends v {
+}, D = class e extends y {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -454,7 +454,7 @@ var d = class {
 	update(e, t) {
 		return this.getConfig().getHttp().put(this.createAddressById(e), t);
 	}
-}, D = class e extends m {
+}, O = class e extends h {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -474,7 +474,7 @@ var d = class {
 	deleteByRelation(e, t) {
 		return this.getConfig().getHttp().delete(this.getRelationAddress(e, t));
 	}
-}, O = class e extends g {
+}, k = class e extends _ {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -494,7 +494,7 @@ var d = class {
 	update(e, t) {
 		return this.getConfig().getHttp().put(this.createAddressById(e), t);
 	}
-}, k = class e extends m {
+}, A = class e extends h {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -514,7 +514,7 @@ var d = class {
 	deleteByRelation(e, t) {
 		return this.getConfig().getHttp().delete(this.getRelationAddress(e, t));
 	}
-}, A = class e extends m {
+}, j = class e extends h {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -534,7 +534,7 @@ var d = class {
 	deleteByRelation(e, t) {
 		return this.getConfig().getHttp().delete(this.getRelationAddress(e, t));
 	}
-}, j = class e extends h {
+}, M = class e extends g {
 	static instance;
 	constructor(e) {
 		super(e);
@@ -548,7 +548,7 @@ var d = class {
 	getCreateAddress() {
 		return this.getBaseAddress() + "/create";
 	}
-}, M = class e {
+}, N = class e {
 	static instance;
 	config = {};
 	constructor(e) {
@@ -561,47 +561,46 @@ var d = class {
 		return this.config;
 	}
 	deployment() {
-		return y.getInstance(this.config);
-	}
-	processDefinition() {
 		return b.getInstance(this.config);
 	}
-	processInstance() {
+	processDefinition() {
 		return x.getInstance(this.config);
 	}
-	task() {
+	processInstance() {
 		return S.getInstance(this.config);
 	}
-	historyActivityInstance() {
+	task() {
 		return C.getInstance(this.config);
 	}
-	historyProcessInstance() {
+	historyActivityInstance() {
 		return w.getInstance(this.config);
 	}
-	historyTask() {
+	historyProcessInstance() {
 		return T.getInstance(this.config);
 	}
-	group() {
+	historyTask() {
 		return E.getInstance(this.config);
 	}
-	groupMember() {
+	group() {
 		return D.getInstance(this.config);
 	}
-	tenant() {
+	groupMember() {
 		return O.getInstance(this.config);
 	}
-	tenantUser() {
+	tenant() {
 		return k.getInstance(this.config);
 	}
-	tenantGroup() {
+	tenantUser() {
 		return A.getInstance(this.config);
 	}
-	user() {
+	tenantGroup() {
 		return j.getInstance(this.config);
 	}
-}, N = (e, t) => {
+	user() {
+		return M.getInstance(this.config);
+	}
+}, P = (e, t) => {
 	let n = new r(e, t);
-	return M.getInstance(n);
+	return N.getInstance(n);
 };
-//#endregion
-export { e as Axios, v as BaseBpmnService, M as BpmnApiResources, h as BpmnQueryByGetService, _ as BpmnQueryByPostService, g as BpmnQueryService, m as BpmnService, t as ContentTypeEnum, y as DeploymentService, D as GroupMemberService, E as GroupService, C as HistoryActivityInstanceService, w as HistoryProcessInstanceService, T as HistoryTaskService, r as HttpConfig, b as ProcessDefinitionService, x as ProcessInstanceService, p as RelationPathParamBuilder, i as Service, a as Swal, S as TaskService, A as TenantGroupService, O as TenantService, k as TenantUserService, f as UnionPathParamBuilder, j as UserService, N as createBpmnApi, s as toast };
+export { e as Axios, y as BaseBpmnService, N as BpmnApiResources, g as BpmnQueryByGetService, v as BpmnQueryByPostService, _ as BpmnQueryService, h as BpmnService, t as ContentTypeEnum, b as DeploymentService, O as GroupMemberService, D as GroupService, w as HistoryActivityInstanceService, T as HistoryProcessInstanceService, E as HistoryTaskService, r as HttpConfig, x as ProcessDefinitionService, S as ProcessInstanceService, m as RelationPathParamBuilder, i as Service, a as Swal, C as TaskService, j as TenantGroupService, k as TenantService, A as TenantUserService, p as UnionPathParamBuilder, M as UserService, P as createBpmnApi, o as moment, c as toast };

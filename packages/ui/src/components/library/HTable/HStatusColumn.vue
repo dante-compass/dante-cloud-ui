@@ -1,25 +1,25 @@
 <template>
-  <h-dense-icon-button :color="color" :icon="icon" :tooltip="tooltip"></h-dense-icon-button>
+  <h-action-button :color="color" :icon="icon" :tooltip="tooltip"></h-action-button>
 </template>
 
 <script lang="ts">
-import type { Dictionary } from "@herodotus/core";
+import type { Dictionary } from '@herodotus/core';
 
-import { DATA_ITEM_STATUS } from "@/configurations";
+import { DATA_ITEM_STATUS } from '@/configurations';
 
-import HDenseIconButton from "./HDenseIconButton.vue";
+import HActionButton from './HActionButton.vue';
 
-import { isEmpty } from "lodash-es";
+import { isEmpty } from 'lodash-es';
 
 export default defineComponent({
-  name: "HStatusColumn",
+  name: 'HStatusColumn',
 
   components: {
-    HDenseIconButton,
+    HActionButton,
   },
 
   props: {
-    type: { type: String, defalut: "0", required: true },
+    type: { type: String, defalut: '0', required: true },
     options: { type: Array as PropType<Array<Dictionary>>, required: true },
   },
 
@@ -36,7 +36,7 @@ export default defineComponent({
       if (!isEmpty(props.options)) {
         return props.options[Number(props.type)]!.label;
       } else {
-        return "";
+        return '';
       }
     });
 

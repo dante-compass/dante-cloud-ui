@@ -24,8 +24,11 @@
 
         <template #body-cell-actions="props">
           <q-td key="actions" :props="props">
-            <h-edit-button @click="toEdit(props.row)"></h-edit-button>
-            <h-delete-button v-if="!props.row.reserved" @click="deleteItemById(props.row[rowKey])"></h-delete-button>
+            <h-action-edit-button @click="toEdit(props.row)"></h-action-edit-button>
+            <h-action-delete-button
+              v-if="!props.row.reserved"
+              @click="deleteItemById(props.row[rowKey])"
+            ></h-action-delete-button>
           </q-td>
         </template>
       </h-table>
@@ -34,19 +37,19 @@
 </template>
 
 <script setup lang="ts">
-import type { SysDepartmentEntity, SysDepartmentConditions, SysDepartmentProps } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { SysDepartmentEntity, SysDepartmentConditions, SysDepartmentProps } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { useTable, useDateTime } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HDeleteButton, HEditButton, HTable } from "@/components";
-import { HOrganizationSelect, HOrganizationTree } from "../components";
-import { HDictionarySelect } from "@/components";
+import { HDeleteButton, HActionEditButton, HTable } from '@/components';
+import { HOrganizationSelect, HOrganizationTree } from '../components';
+import { HDictionarySelect } from '@/components';
 
 defineOptions({
   name: PAGE_NAME.SYS_DEPARTMENT,
-  components: { HDeleteButton, HDictionarySelect, HEditButton, HOrganizationSelect, HTable, HOrganizationTree },
+  components: { HDeleteButton, HDictionarySelect, HActionEditButton, HOrganizationSelect, HTable, HOrganizationTree },
 });
 
 const { defaultFormat } = useDateTime();
@@ -61,32 +64,32 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
   );
 
 const selected = ref([]);
-const rowKey: SysDepartmentProps = "departmentId";
+const rowKey: SysDepartmentProps = 'departmentId';
 
 const columns: QTableColumnProps = [
-  { name: "departmentName", field: "departmentName", align: "center", label: "部门名称" },
-  { name: "shortName", field: "shortName", align: "center", label: "部门简称" },
-  { name: "partitionCode", field: "partitionCode", align: "center", label: "分区代码" },
-  { name: "description", field: "description", align: "center", label: "备注" },
+  { name: 'departmentName', field: 'departmentName', align: 'center', label: '部门名称' },
+  { name: 'shortName', field: 'shortName', align: 'center', label: '部门简称' },
+  { name: 'partitionCode', field: 'partitionCode', align: 'center', label: '分区代码' },
+  { name: 'description', field: 'description', align: 'center', label: '备注' },
   {
-    name: "updateBy",
-    field: "updateBy",
-    align: "center",
-    label: "最后修改人",
+    name: 'updateBy',
+    field: 'updateBy',
+    align: 'center',
+    label: '最后修改人',
   },
   {
-    name: "updateTime",
-    field: "updateTime",
-    align: "center",
-    label: "修改时间",
+    name: 'updateTime',
+    field: 'updateTime',
+    align: 'center',
+    label: '修改时间',
     format: (value) => defaultFormat(value),
   },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
-  { name: "actions", field: "actions", align: "center", label: "操作" },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
-const organizationId = shallowRef("");
+const organizationId = shallowRef('');
 
 const findItemsWithCondition = () => {
   if (organizationId.value) {

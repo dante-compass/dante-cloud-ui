@@ -1,6 +1,6 @@
 import { Axios as e, HttpConfig as t, Service as n, moment as r } from "@herodotus/core";
 import { isEmpty as i } from "lodash-es";
-//#region src/lib/base/service.ts
+// src/lib/base/service.ts
 var a = class extends n {
 	getConditionAddress() {
 		return this.getBaseAddress() + "/condition";
@@ -85,5 +85,4 @@ var a = class extends n {
 	let r = new t(e, n);
 	return l.getInstance(r);
 };
-//#endregion
 export { e as Axios, a as BaseMongoService, o as DynamicFormService, l as FormApiResources, t as HttpConfig, s as ProcessCommentsService, c as ProcessSpecificsService, n as Service, u as createFormApi, r as moment };

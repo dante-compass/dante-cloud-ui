@@ -19,8 +19,8 @@
 
     <template #body-cell-actions="props">
       <q-td key="actions" :props="props">
-        <h-edit-button @click="toEdit(props.row, {}, false)"></h-edit-button>
-        <h-delete-button @click="onDeleteItemById(props.row[rowKey])"></h-delete-button>
+        <h-action-edit-button @click="toEdit(props.row, {}, false)"></h-action-edit-button>
+        <h-action-delete-button @click="onDeleteItemById(props.row[rowKey])"></h-action-delete-button>
       </q-td>
     </template>
   </h-table>
