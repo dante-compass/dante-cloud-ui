@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@herodotus/core':
-        specifier: ^3.1.24
-        version: 3.1.24(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: ^3.1.25
+        version: 3.1.25(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@quasar/extras':
         specifier: ^2.1.0
         version: 2.1.0
@@ -18,8 +18,8 @@ importers:
         specifier: ^0.3.9
         version: 0.3.9
       filesize:
-        specifier: ^11.0.28
-        version: 11.0.28
+        specifier: ^11.0.29
+        version: 11.0.29
       lodash-es:
         specifier: ^4.18.1
         version: 4.18.1
@@ -190,14 +190,14 @@ importers:
         specifier: workspace:^
         version: link:../../shared/form-engine
       '@herodotus/api':
-        specifier: ^3.1.24
-        version: 3.1.24(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: ^3.1.25
+        version: 3.1.25(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@herodotus/core':
-        specifier: ^3.1.24
-        version: 3.1.24(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: ^3.1.25
+        version: 3.1.25(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@herodotus/framework':
-        specifier: ^3.1.24
-        version: 3.1.24(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: ^3.1.25
+        version: 3.1.25(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
@@ -812,14 +812,14 @@ packages:
     resolution: {integrity: sha512-IkO+/KEUvwbVpiURZg+P7zF74z5Jxe0UgJxVni+RtoHQ6IZieXaO02kmadomap/q+l6bc/jdPGGqTjhuZnuz1Q==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
-  '@herodotus/api@3.1.24':
-    resolution: {integrity: sha512-hTffU8fdwn36h6WPPlRed1FnquA2JO9S/c/kwcOWYbgKU/WdxSCMH05Kg3IbfTIl+yC99FAzJLHpEA8kQh/lNA==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/api/-/@herodotus/api-3.1.24.tgz}
+  '@herodotus/api@3.1.25':
+    resolution: {integrity: sha512-EwQsxknhYRj9j0NGN2qlrIm2b5A3GXVrVLbXqwzWNcVdDD+vo1J/aPff8kieQUfy98FBAZ3jbHWuF/JK1NEdQA==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/api/-/@herodotus/api-3.1.25.tgz}
 
-  '@herodotus/core@3.1.24':
-    resolution: {integrity: sha512-YzmUGlaxrtnr5KOVkhoenJCZvlrE2GqylprSMwglg+R1Gw1aA0c5zgzIfKPXqjm+mUKAJ2unSmdmBIheXMLJQw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-3.1.24.tgz}
+  '@herodotus/core@3.1.25':
+    resolution: {integrity: sha512-DHqRV0xAfLoP900EOAUrdpa0cairHqhsDqxfAVZla/ipy8AM/Nk+gWgbCzeCapElcz52y+HSnqX9x6RdjXqTmg==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-3.1.25.tgz}
 
-  '@herodotus/framework@3.1.24':
-    resolution: {integrity: sha512-TmrA9n2KHZILJKe7LL2dt4/S5SKrivZIarvGHGw5AwEh6n6hgQBFuexHPIPV1O3XjH+z+HghWvU21DPUUzYUlw==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/framework/-/@herodotus/framework-3.1.24.tgz}
+  '@herodotus/framework@3.1.25':
+    resolution: {integrity: sha512-NNISxuFJwquj2W03qfVUgmLyQr9ZoSc1Di4ETYcgAwb/sceMNxMPFXFa1x5pPtBAngma1ZpJ5eH0KDKBzcy/pA==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/framework/-/@herodotus/framework-3.1.25.tgz}
 
   '@highlightjs/vue-plugin@2.1.0':
     resolution: {integrity: sha512-E+bmk4ncca+hBEYRV2a+1aIzIV0VSY/e5ArjpuSN9IO7wBJrzUE2u4ESCwrbQD7sAy+jWQjkV5qCCWgc+pu7CQ==}
@@ -2980,8 +2980,8 @@ packages:
   filelist@1.0.6:
     resolution: {integrity: sha512-5giy2PkLYY1cP39p17Ech+2xlpTRL9HLspOfEgm0L6CwBXBTgsK5ou0JtzYuepxkaQ/tvhCFIJ5uXo0OrM2DxA==}
 
-  filesize@11.0.28:
-    resolution: {integrity: sha512-tsZcwUmhL0WQpsxe9Oua6FBjb0aBTRkXobZBhQdkoII0pYgy9h+cXm5tp13Fsr8dSwp1+UVDxNwAFULDpxkXaw==}
+  filesize@11.0.29:
+    resolution: {integrity: sha512-+Mkmp8keoklLzAnvP/RQGDUEWEpjGmhvm4d4U739C1ZnkqxqoSqdLHnjv9/4QX6lltKSRk6qzQI7+94JVDtuCA==}
     engines: {node: '>= 10.8.0'}
 
   fill-range@7.1.1:
@@ -4377,8 +4377,8 @@ packages:
     resolution: {integrity: sha512-U+/AXT6LWsxnj2vz9HeUuPWBNgdWxjyIEjEPdbJARC9txmgPzo2VEdqnFo4hHaNyMPtycyVJrSaQYeQv/PoyyA==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
-  tabbable@6.5.0:
-    resolution: {integrity: sha512-wieBHXygIm7OyQOu5hQlkk62/WyCFYGlWg7L6/ZCUZwx0o398Zkn4pVmMyfYhfMG8kGrj/Krt8eIk6UKC6VzwA==}
+  tabbable@6.5.1:
+    resolution: {integrity: sha512-dMCuwDUY6Noz3zVKLefBC4wq+aJV20yc7vWmM7uTNGwtQSFF5kX7OUIUsxuVajz/bdt5Xqdah3/0NLjth+cM5A==}
 
   tagged-tag@1.0.0:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
@@ -5576,14 +5576,14 @@ snapshots:
       '@eslint/core': 1.2.1
       levn: 0.4.1
 
-  '@herodotus/api@3.1.24(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
+  '@herodotus/api@3.1.25(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
-      '@herodotus/core': 3.1.24(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@herodotus/core': 3.1.25(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
     transitivePeerDependencies:
       - debug
       - supports-color
 
-  '@herodotus/core@3.1.24(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
+  '@herodotus/core@3.1.25(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
       axios: 1.20.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       crypto-js: 4.2.0
@@ -5597,9 +5597,9 @@ snapshots:
       - debug
       - supports-color
 
-  '@herodotus/framework@3.1.24(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
+  '@herodotus/framework@3.1.25(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
-      '@herodotus/core': 3.1.24(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@herodotus/core': 3.1.25(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       colord: 2.10.0
       js-base64: 3.9.4
       jwt-decode: 4.0.0
@@ -7708,7 +7708,7 @@ snapshots:
     dependencies:
       minimatch: 5.1.9
 
-  filesize@11.0.28: {}
+  filesize@11.0.29: {}
 
   fill-range@7.1.1:
     dependencies:
@@ -7745,7 +7745,7 @@ snapshots:
 
   focus-trap@8.2.3:
     dependencies:
-      tabbable: 6.5.0
+      tabbable: 6.5.1
 
   follow-redirects@1.16.1(debug@4.4.3(supports-color@8.1.1)):
     optionalDependencies:
@@ -9030,7 +9030,7 @@ snapshots:
       '@dual-bundle/import-meta-resolve': 4.2.1
       '@pkgr/core': 0.3.6
 
-  tabbable@6.5.0: {}
+  tabbable@6.5.1: {}
 
   tagged-tag@1.0.0: {}
 
