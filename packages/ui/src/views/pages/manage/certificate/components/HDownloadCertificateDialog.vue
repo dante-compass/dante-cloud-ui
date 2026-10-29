@@ -8,7 +8,7 @@
       </q-card-section>
 
       <q-card-section>
-        <h-label text="证书类别：" size="subtitle-1" weight="bolder" align="left" class="q-mb-sm"></h-label>
+        <h-label text="证书类别：" class="q-mb-sm"></h-label>
         <h-dictionary-toggle
           v-model="editedItem.certificateFileCategory"
           dictionary="CertificateFileCategory"
@@ -16,14 +16,14 @@
         ></h-dictionary-toggle>
         <q-separator class="q-my-md"></q-separator>
         <template v-if="showKeyStore">
-          <h-label text="KeyStore 文件格式:" size="subtitle-1" weight="bolder" align="left" class="q-mb-sm"></h-label>
+          <h-label text="KeyStore 文件格式:" class="q-mb-sm"></h-label>
           <h-dictionary-toggle
             class="q-mb-sm"
             v-model="editedItem.keyStoreFormat"
             dictionary="KeyStoreFormat"
             default-value="JKS"
           ></h-dictionary-toggle>
-          <h-label text="KeyStore 类别:" size="subtitle-1" weight="bolder" align="left" class="q-mb-sm"></h-label>
+          <h-label text="KeyStore 类别:" class="q-mb-sm"></h-label>
           <h-dictionary-select
             class="q-mb-sm"
             v-model="editedItem.keyStoreCategory"
@@ -32,7 +32,7 @@
           ></h-dictionary-select>
         </template>
         <template v-if="showPrivateKey">
-          <h-label text="私钥文件格式:" size="subtitle-1" weight="bolder" align="left" class="q-mb-sm"></h-label>
+          <h-label text="私钥文件格式:" class="q-mb-sm"></h-label>
           <h-dictionary-toggle
             class="q-mb-sm"
             v-model="editedItem.pemPrivateKeyFormat"
@@ -43,7 +43,7 @@
           <v-switch v-model="editedItem.encryptPrivateKey" label="是否加密 PEM 中存储的私钥"></v-switch>
         </template>
         <template v-if="showCertificate">
-          <h-label text="证书文件格式:" size="subtitle-1" weight="bolder" align="left" class="q-mb-sm"></h-label>
+          <h-label text="证书文件格式:" class="q-mb-sm"></h-label>
           <h-dictionary-toggle
             class="mb-md"
             v-model="editedItem.pemCertificateFormat"

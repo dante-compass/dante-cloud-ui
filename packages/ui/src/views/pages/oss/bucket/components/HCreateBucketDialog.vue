@@ -20,7 +20,7 @@
               (v: string) => regxRule(v) || '存储桶名称只能为小字母、数字、点或横线，最多60个字符',
             ]"
           ></h-text-field>
-          <h-label text="功能:" size="subtitle-1" weight="bolder" align="left" class="q-mb-sm"></h-label>
+          <h-label text="功能:" class="q-mb-sm"></h-label>
           <q-separator class="q-my-md"></q-separator>
           <h-switch v-model="editedItem.objectLockEnabled" label="是否开启对象锁定"></h-switch>
         </q-form>

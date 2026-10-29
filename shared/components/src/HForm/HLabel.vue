@@ -28,9 +28,9 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  size: '',
-  weight: 'medium',
-  align: 'center',
+  size: 'subtitle-1',
+  weight: 'bolder',
+  align: 'left',
 });
 
 const getTextClass = (value: string) => {

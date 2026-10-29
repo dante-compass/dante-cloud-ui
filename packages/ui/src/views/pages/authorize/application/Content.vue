@@ -91,19 +91,19 @@
         bottom-slots
       ></q-select>
       <h-divider label="令牌设置(Token Settings)" class="q-mb-md"></h-divider>
-      <h-label text="令牌格式" size="subtitle-1" weight="bolder" align="left"></h-label>
+      <h-label text="令牌格式"></h-label>
       <h-dictionary-option
         v-model="editedItem.tokenFormat"
         dictionary="TokenFormat"
         default-value="reference"
       ></h-dictionary-option>
-      <h-label text="令牌有效期" size="subtitle-1" weight="bolder" align="left"></h-label>
+      <h-label text="令牌有效期"></h-label>
       <h-duration v-model="editedItem.accessTokenTimeToLive" label="令牌有效期"></h-duration>
-      <h-label text="刷新令牌有效期" size="subtitle-1" weight="bolder" align="left"></h-label>
+      <h-label text="刷新令牌有效期"></h-label>
       <h-duration v-model="editedItem.refreshTokenTimeToLive" label="刷新令牌有效期"></h-duration>
-      <h-label text="授权码有效期" size="subtitle-1" weight="bolder" align="left"></h-label>
+      <h-label text="授权码有效期"></h-label>
       <h-duration v-model="editedItem.authorizationCodeTimeToLive" label="授权码有效期"></h-duration>
-      <h-label text="设备激活码有效期" size="subtitle-1" weight="bolder" align="left"></h-label>
+      <h-label text="设备激活码有效期"></h-label>
       <h-duration v-model="editedItem.deviceCodeTimeToLive" label="设备激活码有效期"></h-duration>
       <div class="column q-mb-sm">
         <h-switch v-model="editedItem.reuseRefreshTokens" label="是否允许重用刷新令牌"></h-switch>
@@ -163,16 +163,16 @@
 </template>
 
 <script setup lang="ts">
-import type { OAuth2ApplicationEntity, OAuth2ScopeEntity, OAuth2ScopeConditions } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { OAuth2ApplicationEntity, OAuth2ScopeEntity, OAuth2ScopeConditions } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import useVuelidate from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
+import useVuelidate from '@vuelidate/core';
+import { required, helpers } from '@vuelidate/validators';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { HAuthorizeLayout, HDictionarySelect } from "@/components";
-import { includes } from "lodash-es";
-import { useTableItem, useTable, useDictionary } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { HAuthorizeLayout, HDictionarySelect } from '@/components';
+import { includes } from 'lodash-es';
+import { useTableItem, useTable, useDictionary } from '@/composables/hooks';
 
 defineOptions({
   name: PAGE_NAME.OAUTH2_APPLICATION_CONTENT,
@@ -189,19 +189,19 @@ const { tableRows, pagination, loading } = useTable<OAuth2ScopeConditions, OAuth
   true,
 );
 
-const { options } = useDictionary("AllJwsAlgorithm");
+const { options } = useDictionary('AllJwsAlgorithm');
 
 const columns: QTableColumnProps = [
-  { name: "scopeCode", field: "scopeCode", align: "center", label: "范围代码" },
-  { name: "scopeName", field: "scopeName", align: "center", label: "范围名称" },
-  { name: "description", field: "description", align: "center", label: "说明" },
+  { name: 'scopeCode', field: 'scopeCode', align: 'center', label: '范围代码' },
+  { name: 'scopeName', field: 'scopeName', align: 'center', label: '范围名称' },
+  { name: 'description', field: 'description', align: 'center', label: '说明' },
 ];
 
 const isRedirectUrisRequired = () => {
   let authorizationGrantTypes = editedItem.value.authorizationGrantTypes;
   let redirectUris = editedItem.value.redirectUris;
 
-  if (authorizationGrantTypes && authorizationGrantTypes.includes("authorization_code") && !redirectUris) {
+  if (authorizationGrantTypes && authorizationGrantTypes.includes('authorization_code') && !redirectUris) {
     return false;
   } else {
     return true;
@@ -214,16 +214,16 @@ const state = computed(() => ({ editedItem: editedItem.value }));
 const rules = {
   editedItem: {
     applicationName: {
-      required: helpers.withMessage("应用名称不能为空", required),
+      required: helpers.withMessage('应用名称不能为空', required),
     },
     authorizationGrantTypes: {
-      required: helpers.withMessage("认证模式不能为空", required),
+      required: helpers.withMessage('认证模式不能为空', required),
     },
     clientAuthenticationMethods: {
-      required: helpers.withMessage("客户端验证模式不能为空", required),
+      required: helpers.withMessage('客户端验证模式不能为空', required),
     },
     redirectUris: {
-      isRedirectUrisRequired: helpers.withMessage("授权码模式下 Redirect URI 不能为空", isRedirectUrisRequired),
+      isRedirectUrisRequired: helpers.withMessage('授权码模式下 Redirect URI 不能为空', isRedirectUrisRequired),
     },
   },
 };
@@ -239,11 +239,11 @@ const onSave = () => {
 };
 
 const includePrivateKeyJwt = () => {
-  return includes(editedItem.value.clientAuthenticationMethods, "private_key_jwt");
+  return includes(editedItem.value.clientAuthenticationMethods, 'private_key_jwt');
 };
 
 const includeClientSecretJwt = () => {
-  return includes(editedItem.value.clientAuthenticationMethods, "client_secret_jwt");
+  return includes(editedItem.value.clientAuthenticationMethods, 'client_secret_jwt');
 };
 
 const onlyHasPrivateKeyJwt = () => {
