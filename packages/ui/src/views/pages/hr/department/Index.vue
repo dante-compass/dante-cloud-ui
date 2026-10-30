@@ -6,7 +6,7 @@
     <h-column lg="10" md="10" sm="6" xs="12">
       <h-table
         :rows="tableRows"
-        :columns="columns"
+        :columns="headers"
         :row-key="rowKey"
         selection="single"
         v-model:selected="selected"
@@ -43,13 +43,20 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HDeleteButton, HActionEditButton, HTable } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HTable } from '@/components';
 import { HOrganizationSelect, HOrganizationTree } from '../components';
 import { HDictionarySelect } from '@/components';
 
 defineOptions({
   name: PAGE_NAME.SYS_DEPARTMENT,
-  components: { HDeleteButton, HDictionarySelect, HActionEditButton, HOrganizationSelect, HTable, HOrganizationTree },
+  components: {
+    HActionDeleteButton,
+    HDictionarySelect,
+    HActionEditButton,
+    HOrganizationSelect,
+    HTable,
+    HOrganizationTree,
+  },
 });
 
 const { defaultFormat } = useDateTime();
@@ -66,7 +73,7 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
 const selected = ref([]);
 const rowKey: SysDepartmentProps = 'departmentId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'departmentName', field: 'departmentName', align: 'center', label: '部门名称' },
   { name: 'shortName', field: 'shortName', align: 'center', label: '部门简称' },
   { name: 'partitionCode', field: 'partitionCode', align: 'center', label: '分区代码' },

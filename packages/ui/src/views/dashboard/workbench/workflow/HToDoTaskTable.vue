@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -61,7 +61,7 @@ export default defineComponent({
       'updateTime',
     );
 
-    const columns: QTableColumnProps = [
+    const headers: QTableColumnProps = [
       { name: 'businessKey', field: 'businessKey', align: 'center', label: '业务ID' },
       { name: 'startUsername', field: 'startUsername', align: 'center', label: '发起人' },
       { name: 'startTime', field: 'startTime', align: 'center', label: '申请时间' },

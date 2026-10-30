@@ -539,9 +539,9 @@ var at = { class: "row items-center justify-end" }, ot = { class: "row items-cen
 	name: "HLabel",
 	__name: "HLabel",
 	props: {
-		size: { default: "" },
-		weight: { default: "medium" },
-		align: { default: "center" },
+		size: { default: "subtitle-1" },
+		weight: { default: "bolder" },
+		align: { default: "left" },
 		text: {}
 	},
 	setup(t) {

@@ -2,7 +2,7 @@
   <h-authorize-layout :title="title" :overlay="overlay">
     <q-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selectedItems"
@@ -25,13 +25,13 @@
 </template>
 
 <script setup lang="ts">
-import type { SysRoleEntity, SysRoleConditions, SysRoleProps, SysDefaultRoleEntity } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { SysRoleEntity, SysRoleConditions, SysRoleProps, SysDefaultRoleEntity } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { useTableItem, useTable } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { useTableItem, useTable } from '@/composables/hooks';
 
-import { HAuthorizeList, HAuthorizeLayout } from "@/components";
+import { HAuthorizeList, HAuthorizeLayout } from '@/components';
 
 defineOptions({ name: PAGE_NAME.SYS_DEFAULT_ROLE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
@@ -46,11 +46,11 @@ const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEn
 );
 
 const selectedItems = ref([]) as Ref<Array<SysRoleEntity>>;
-const rowKey: SysRoleProps = "roleId";
+const rowKey: SysRoleProps = 'roleId';
 
-const columns: QTableColumnProps = [
-  { name: "roleName", field: "roleName", align: "center", label: "角色名称" },
-  { name: "roleCode", field: "roleCode", align: "center", label: "角色代码" },
+const headers: QTableColumnProps = [
+  { name: 'roleName', field: 'roleName', align: 'center', label: '角色名称' },
+  { name: 'roleCode', field: 'roleCode', align: 'center', label: '角色代码' },
 ];
 
 onMounted(() => {

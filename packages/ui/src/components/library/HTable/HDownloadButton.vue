@@ -5,5 +5,5 @@
 <script setup lang="ts">
 import HActionButton from './HActionButton.vue';
 
-defineOptions({ name: 'HDeleteButton', components: { HActionButton } });
+defineOptions({ name: 'HActionDeleteButton', components: { HActionButton } });
 </script>

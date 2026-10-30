@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-h6 q-my-md">Passkey(无密码登录)</div>
-    <q-table :rows="tableRows" :columns="columns" :row-key="rowKey" flat bordered hide-bottom :loading="loading">
+    <q-table :rows="tableRows" :columns="headers" :row-key="rowKey" flat bordered hide-bottom :loading="loading">
       <template v-slot:top>
         <h-button
           :disabled="isRegisterButtonDisable"
@@ -38,7 +38,7 @@ import { moment, toast, notify } from '@herodotus/core';
 import { useTable } from '@/composables/hooks';
 import { useAuthenticationStore, SecurityApiResources, usePasskey } from '@herodotus/framework';
 
-import { HDeleteButton } from '@/components';
+import { HActionDeleteButton } from '@/components';
 
 import HPasskeyRegisterDialog from './HPasskeyRegisterDialog.vue';
 
@@ -46,7 +46,7 @@ export default defineComponent({
   name: 'HPasskeyList',
 
   components: {
-    HDeleteButton,
+    HActionDeleteButton,
     HPasskeyRegisterDialog,
   },
 
@@ -61,7 +61,7 @@ export default defineComponent({
 
     const rowKey: OAuth2CredentialRecordProps = 'credentialId';
 
-    const columns: QTableColumnProps = [
+    const headers: QTableColumnProps = [
       {
         name: 'index',
         label: '序号',

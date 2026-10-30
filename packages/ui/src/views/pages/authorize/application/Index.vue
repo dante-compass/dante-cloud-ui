@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:pagination="pagination"
@@ -41,11 +41,11 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HDeleteButton, HActionEditButton, HTable, HGrantTypeColumn } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HTable, HGrantTypeColumn } from '@/components';
 
 defineOptions({
   name: PAGE_NAME.OAUTH2_APPLICATION,
-  components: { HDeleteButton, HActionEditButton, HGrantTypeColumn, HTable },
+  components: { HActionDeleteButton, HActionEditButton, HGrantTypeColumn, HTable },
 });
 
 const { defaultFormat, humanize } = useDateTime();
@@ -58,7 +58,7 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthoriz
 
 const rowKey: OAuth2ApplicationProps = 'applicationId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'applicationName', field: 'applicationName', align: 'center', label: '应用名称' },
   { name: 'abbreviation', field: 'abbreviation', align: 'center', label: '应用简称' },
   {

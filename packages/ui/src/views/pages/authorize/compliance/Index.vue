@@ -3,7 +3,7 @@
     <h-compliance-condition v-model:conditions="conditions"></h-compliance-condition>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -61,7 +61,7 @@ const { tableRows, totalPages, pagination, loading, conditions, findItems } = us
 const selected = ref([]);
 const rowKey: OAuth2UserLoggingProps = 'loggingId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'principalName', field: 'principalName', align: 'center', label: '用户名' },
   { name: 'clientId', field: 'clientId', align: 'center', label: '客户端ID' },
   { name: 'ip', field: 'ip', align: 'center', label: 'IP地址' },

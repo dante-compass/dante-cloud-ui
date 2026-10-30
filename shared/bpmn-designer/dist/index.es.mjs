@@ -1682,7 +1682,7 @@ var Ai = /*#__PURE__*/ q(Oi, [["render", ki]]), ji = k({
 			fieldValue: l,
 			selectedItems: c,
 			rowKey: "id",
-			columns: [{
+			headers: [{
 				name: "id",
 				field: "id",
 				align: "center",
@@ -1707,7 +1707,7 @@ function Mi(e, t, n, r, i, a) {
 		dense: "",
 		flat: "",
 		rows: e.tableRows,
-		columns: e.columns,
+		columns: e.headers,
 		"row-key": e.rowKey,
 		selection: e.selection,
 		selected: e.selectedItems,
@@ -1845,7 +1845,7 @@ var Ni = /*#__PURE__*/ q(ji, [["render", Mi]]), Pi = /* @__PURE__ */ k({
 			fieldValue: l,
 			selectedItems: c,
 			rowKey: "id",
-			columns: [
+			headers: [
 				{
 					name: "id",
 					field: "id",
@@ -1879,7 +1879,7 @@ function Ii(e, t, n, r, i, a) {
 		dense: "",
 		flat: "",
 		rows: e.tableRows,
-		columns: e.columns,
+		columns: e.headers,
 		"row-key": e.rowKey,
 		selection: "multiple",
 		selected: e.selectedItems,

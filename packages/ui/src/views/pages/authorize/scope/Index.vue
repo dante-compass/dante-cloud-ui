@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -42,11 +42,11 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HActionButton, HDeleteButton, HActionEditButton, HTable } from '@/components';
+import { HActionButton, HActionDeleteButton, HActionEditButton, HTable } from '@/components';
 
 defineOptions({
   name: PAGE_NAME.OAUTH2_SCOPE,
-  components: { HDeleteButton, HActionButton, HActionEditButton, HTable },
+  components: { HActionDeleteButton, HActionButton, HActionEditButton, HTable },
 });
 
 const { defaultFormat } = useDateTime();
@@ -57,7 +57,7 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthoriz
 const selected = ref([]);
 const rowKey: OAuth2ScopeProps = 'scopeId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'scopeCode', field: 'scopeCode', align: 'center', label: '范围代码' },
   { name: 'scopeName', field: 'scopeName', align: 'center', label: '范围名称' },
   { name: 'description', field: 'description', align: 'center', label: '说明' },

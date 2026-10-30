@@ -150,7 +150,7 @@
       ></h-text-field>
       <q-table
         :rows="tableRows"
-        :columns="columns"
+        :columns="headers"
         row-key="scopeId"
         selection="multiple"
         v-model:selected="editedItem.scopes"
@@ -191,7 +191,7 @@ const { tableRows, pagination, loading } = useTable<OAuth2ScopeConditions, OAuth
 
 const { options } = useDictionary('AllJwsAlgorithm');
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'scopeCode', field: 'scopeCode', align: 'center', label: '范围代码' },
   { name: 'scopeName', field: 'scopeName', align: 'center', label: '范围名称' },
   { name: 'description', field: 'description', align: 'center', label: '说明' },

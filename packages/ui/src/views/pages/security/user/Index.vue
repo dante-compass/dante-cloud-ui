@@ -2,7 +2,7 @@
   <div>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -66,12 +66,12 @@ import { PAGE_NAME, API } from '@/configurations';
 import { useAuthenticationStore } from '@herodotus/framework';
 import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HDeleteButton, HActionEditButton, HActionButton, HTable } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HActionButton, HTable } from '@/components';
 import { HChangePassword, HSendMessageToUser } from './components';
 
 defineOptions({
   name: PAGE_NAME.SYS_USER,
-  components: { HChangePassword, HDeleteButton, HActionEditButton, HActionButton, HTable, HSendMessageToUser },
+  components: { HChangePassword, HActionDeleteButton, HActionEditButton, HActionButton, HTable, HSendMessageToUser },
 });
 
 const { defaultFormat } = useDateTime();
@@ -87,7 +87,7 @@ const currentUsername = ref('');
 const currentUserAvatar = ref('');
 const store = useAuthenticationStore();
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'username', field: 'username', align: 'center', label: '用户名' },
   { name: 'nickname', field: 'nickname', align: 'center', label: '昵称' },
   { name: 'description', field: 'description', align: 'center', label: '备注' },

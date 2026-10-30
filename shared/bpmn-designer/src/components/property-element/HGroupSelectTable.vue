@@ -3,7 +3,7 @@
     dense
     flat
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="multiple"
     v-model:selected="selectedItems"
@@ -70,7 +70,7 @@ export default defineComponent({
       }
     });
 
-    const columns: QTableColumnProps = [
+    const headers: QTableColumnProps = [
       { name: 'id', field: 'id', align: 'center', label: 'ID' },
       { name: 'name', field: 'name', align: 'center', label: '名称' },
       { name: 'type', field: 'type', align: 'center', label: '类型' },
@@ -88,7 +88,7 @@ export default defineComponent({
       fieldValue,
       selectedItems,
       rowKey,
-      columns,
+      headers,
       findItems,
       onClear,
     };

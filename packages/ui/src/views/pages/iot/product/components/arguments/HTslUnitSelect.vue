@@ -11,7 +11,7 @@
     <template v-slot:option="scope">
       <q-item v-bind="scope.itemProps">
         <q-item-section>
-          <q-item-label>{{ scope.opt.name + " / " + scope.opt.symbol }}</q-item-label>
+          <q-item-label>{{ scope.opt.name + ' / ' + scope.opt.symbol }}</q-item-label>
         </q-item-section>
       </q-item>
     </template>
@@ -19,27 +19,27 @@
 </template>
 
 <script setup lang="ts">
-import type { QSelect, QSelectProps } from "@/composables/declarations";
-import type { Page } from "@herodotus/core";
-import type { TslUnitEntity, TslUnitConditions } from "@herodotus/api";
+import type { QSelect, QSelectProps } from '@/composables/declarations';
+import type { Page } from '@herodotus/core';
+import type { TslUnitEntity, TslUnitConditions } from '@herodotus/api';
 
-import { useBaseTable } from "@/composables/hooks";
-import { isEmpty } from "lodash-es";
-import { PAGE_NAME, API } from "@/configurations";
+import { useBaseTable } from '@/composables/hooks';
+import { isEmpty } from 'lodash-es';
+import { PAGE_NAME, API } from '@/configurations';
 
 defineOptions({
-  name: "HUnitSelect",
+  name: 'HUnitSelect',
 });
 
 const selectedValue = defineModel<TslUnitEntity | null>();
 
-const { loading, tableRows, totalPages, showLoading, hideLoading } = useBaseTable<TslUnitEntity, TslUnitConditions>(
+const { loading, tableRows, totalPages, showLoading, hideLoading } = useBaseTable<TslUnitConditions, TslUnitEntity>(
   PAGE_NAME.IOT_TSL_UNIT,
-  "updateTime",
+  'updateTime',
   false,
 );
 
-const options = ref<Array<TslUnitEntity>>([]);
+const options = ref<TslUnitEntity[]>([]);
 
 const nextPage = ref<number>(2);
 
@@ -75,7 +75,7 @@ const findItemsByPage = (pageNumber = 1, pageSize = 10): Promise<void> => {
   });
 };
 
-const onScroll: QSelectProps["onVirtualScroll"] = ({ index, from, to, ref }) => {
+const onScroll: QSelectProps['onVirtualScroll'] = ({ index, from, to, ref }) => {
   const lastIndex = options.value.length - 1;
 
   if (loading.value !== true && nextPage.value <= totalPages.value && to === lastIndex) {

@@ -2,7 +2,7 @@
   <h-authorize-layout :title="title" :overlay="overlay">
     <q-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="multiple"
       v-model:selected="selectedItems"
@@ -49,7 +49,7 @@ const { tableRows, pagination, loading } = useTable<SysRoleConditions, SysRoleEn
 const selectedItems = ref([]) as Ref<Array<SysRoleEntity>>;
 const rowKey: SysRoleProps = 'roleId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'roleName', field: 'roleName', align: 'center', label: '角色名称' },
   { name: 'roleCode', field: 'roleCode', align: 'center', label: '角色代码' },
 ];

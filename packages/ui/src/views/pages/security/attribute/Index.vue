@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -68,7 +68,7 @@ const rowKey: SysAttributeProps = 'attributeId';
 const selected = ref([]);
 const index = ref({}) as Ref<Record<string, Dictionary>>;
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'requestMethod', field: 'requestMethod', align: 'center', label: '权限接口' },
   { name: 'attributeCode', field: 'attributeCode', align: 'center', label: '默认权限代码' },
   { name: 'version', field: 'version', align: 'center', label: '版本控制' },

@@ -1,65 +1,88 @@
 <template>
-  <h-center-form-layout :entity="editedItem" :title="title" @save="onSave()" @cancel="onReturn">
-    <h-text-field
-      v-model.lazy="v.editedItem.productKey.$model as string"
-      name="productKey"
-      label="ProductKey * "
-      placeholder="请输入 ProductKey"
-      debounce="5000"
-      :error="v.editedItem.productKey.$error"
-      :error-message="v.editedItem.productKey.$errors[0] ? v.editedItem.productKey.$errors[0].$message : ''"
-    ></h-text-field>
-    <h-text-field v-model="editedItem.productName" label="产品名称" placeholder="请输入产品名称"></h-text-field>
-    <!-- <h-tree-field
+  <h-center-form-layout :entity="editedItem" :title="title" :overlay="overlay" @save="onSave()" @cancel="onReturn">
+    <v-form ref="productForm" validate-on="blur lazy">
+      <q-select
+        filled
+        v-model="editedItem.category"
+        use-input
+        hide-selected
+        fill-input
+        input-debounce="0"
+        :options="items"
+        option-title="name"
+        option-value="id"
+        map-options
+        @filter="filterFn"
+      >
+        <template #no-option>
+          <q-item>
+            <q-item-section class="text-grey">No results</q-item-section>
+          </q-item>
+        </template>
+      </q-select>
+      <h-text-field
+        v-model.lazy="editedItem.productKey"
+        name="productKey"
+        label="ProductKey *"
+        placeholder="请输入 ProductKey"
+        :rules="[
+          (v: string) => !!v || 'ProductKey不能为空',
+          (v: string) => (v && v.length >= 5) || 'ProductKey至少5个字符',
+          (v: string) => isUniqueRule(v),
+        ]"
+      ></h-text-field>
+      <h-text-field v-model="editedItem.productName" label="产品名称" placeholder="请输入产品名称"></h-text-field>
+      <!-- <h-tree-field
       v-model="categoryId"
       :items="treeItems"
       :value="categoryName"
       bottom-slots
       label="所属品类"
     ></h-tree-field> -->
-    <h-dictionary-select v-model="editedItem.nodeType" dictionary="NodeType" label="节点类型"></h-dictionary-select>
-    <h-dictionary-select
-      v-if="isShowGatewayProtocol"
-      v-model="editedItem.gatewayProtocol"
-      dictionary="GatewayProtocol"
-      label="网关协议"
-    ></h-dictionary-select>
-    <h-dictionary-select
-      v-if="isShowNetworkingMethod"
-      v-model="editedItem.networkingMethod"
-      dictionary="NetworkingMethod"
-      label="联网方式"
-    ></h-dictionary-select>
-    <h-dictionary-select
-      v-model="editedItem.authenticationMode"
-      dictionary="AuthenticationMode"
-      label="认证方式"
-    ></h-dictionary-select>
+      <h-dictionary-select v-model="editedItem.nodeType" dictionary="NodeType" label="节点类型"></h-dictionary-select>
+      <h-dictionary-select
+        v-if="isShowGatewayProtocol"
+        v-model="editedItem.gatewayProtocol"
+        dictionary="GatewayProtocol"
+        label="网关协议"
+      ></h-dictionary-select>
+      <h-dictionary-select
+        v-if="isShowNetworkingMethod"
+        v-model="editedItem.networkingMethod"
+        dictionary="NetworkingMethod"
+        label="联网方式"
+      ></h-dictionary-select>
+      <h-dictionary-select
+        v-model="editedItem.authenticationMode"
+        dictionary="AuthenticationMode"
+        label="认证方式"
+      ></h-dictionary-select>
+    </v-form>
   </h-center-form-layout>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import useVuelidate from "@vuelidate/core";
-import { required, helpers } from "@vuelidate/validators";
+import type { ProductEntity, ProductCategoryEntity, ProductCategoryConditions } from '@herodotus/api';
 
-import type { ProductEntity } from "@herodotus/api";
+import { useAutocomplete } from '@herodotus/framework';
+import { useTableItem } from '@/composables/hooks';
+import { API, PAGE_NAME } from '@/configurations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { useTableItem } from "@/composables/hooks";
-import { HCenterFormLayout, HDictionarySelect } from "@/components";
+defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CONTENT });
 
-defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CONTENT, components: { HCenterFormLayout, HDictionarySelect } });
+const productForm = ref();
 
-const { editedItem, title, saveOrUpdate, onReturn } = useTableItem<ProductEntity>(
+const { editedItem, title, overlay, saveOrUpdate, onReturn } = useTableItem<ProductEntity>(
   API.core.iotProduct(),
   PAGE_NAME.IOT_PRODUCT_CONTENT,
 );
+const { loading, items, search } = useAutocomplete<ProductCategoryConditions, ProductCategoryEntity>(
+  'name',
+  API.core.iotProductCategory(),
+);
 
-const isUnique = () => {
-  let productKey = editedItem.value.productKey;
-
-  return new Promise((resolve, reject) => {
+const validateProductKey = async (productKey: string) => {
+  return await new Promise((resolve, reject) => {
     if (productKey) {
       API.core
         .iotProduct()
@@ -78,35 +101,38 @@ const isUnique = () => {
   });
 };
 
-const rules = {
-  editedItem: {
-    productKey: {
-      required: helpers.withMessage("ProductKey不能为空", required),
-      regex: helpers.withMessage("用户名只能包含字母，数字，下划线，减号", helpers.regex(/^[a-zA-Z0-9_-]{4,16}$/)),
-      isUnique: helpers.withMessage("ProductKey已存在，请使用其它ProductKey", helpers.withAsync(isUnique)),
-    },
-  },
+const isUniqueRule = (roleCode: string) => {
+  return validateProductKey(roleCode)
+    .then((validate) => {
+      if (validate) {
+        return true;
+      } else {
+        return 'ProductKey已被占用，请改用其它ProductKey';
+      }
+    })
+    .catch(() => {
+      return '后端服务暂时不可用';
+    });
 };
 
-const v = useVuelidate(rules, { editedItem }, { $lazy: true });
-
 const isShowGatewayProtocol = computed(() => {
-  return editedItem.value.nodeType === "1";
+  return editedItem.value.nodeType === '1';
 });
 
 const isShowNetworkingMethod = computed(() => {
-  return editedItem.value.nodeType === "0" || editedItem.value.nodeType === "2";
+  return editedItem.value.nodeType === '0' || editedItem.value.nodeType === '2';
 });
 
-const onSave = () => {
-  if (!v.value.$anyDirty) {
+const filterFn = (val: string, update: any, abort: any) => {
+  update(() => {
+    search.value = val.toLocaleLowerCase();
+  });
+};
+
+const onSave = async () => {
+  const { success } = await productForm.value.validate();
+  if (success) {
     saveOrUpdate();
-  } else {
-    v.value.$validate().then((result) => {
-      if (result) {
-        saveOrUpdate();
-      }
-    });
   }
 };
 </script>

@@ -3,7 +3,7 @@
     <search v-model="conditions"></search>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -70,7 +70,7 @@ import Search from './Search.vue';
 
 defineOptions({ name: PAGE_NAME.TASK_DEFINITION, components: { Search } });
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'serviceId', field: 'serviceId', align: 'left', label: '服务ID' },
   { name: 'taskId', field: 'taskId', align: 'left', label: '任务ID' },
   { name: 'taskName', field: 'taskName', align: 'center', label: '任务名称' },

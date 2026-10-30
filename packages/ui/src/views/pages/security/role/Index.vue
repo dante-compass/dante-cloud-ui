@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -41,9 +41,12 @@ import type { QTableColumnProps } from '@/composables/declarations';
 
 import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime } from '@/composables/hooks';
-import { HDeleteButton, HActionEditButton, HActionButton, HTable } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HActionButton, HTable } from '@/components';
 
-defineOptions({ name: PAGE_NAME.SYS_ROLE, components: { HDeleteButton, HActionEditButton, HActionButton, HTable } });
+defineOptions({
+  name: PAGE_NAME.SYS_ROLE,
+  components: { HActionDeleteButton, HActionEditButton, HActionButton, HTable },
+});
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
@@ -52,7 +55,7 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthoriz
 const selected = ref([]);
 const rowKey: SysRoleProps = 'roleId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'roleName', field: 'roleName', align: 'center', label: '角色名称' },
   { name: 'roleCode', field: 'roleCode', align: 'center', label: '角色代码' },
   { name: 'description', field: 'description', align: 'center', label: '备注' },

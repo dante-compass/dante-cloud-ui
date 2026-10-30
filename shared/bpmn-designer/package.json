@@ -41,7 +41,7 @@
     "@herodotus-cloud/components": "workspace:^",
     "@herodotus-cloud/form-apis": "workspace:^",
     "@highlightjs/vue-plugin": "^2.1.0",
-    "bpmn-js": "^18.31.0",
+    "bpmn-js": "^18.31.1",
     "bpmn-js-bpmnlint": "^0.25.0",
     "bpmn-js-connectors-extension": "^0.4.6",
     "bpmn-js-properties-panel": "^6.0.1",
@@ -56,7 +56,7 @@
     "highlight.js": "^11.12.0",
     "ids": "^3.0.2",
     "pinia": "^4.1.0",
-    "preact": "^11.0.2",
+    "preact": "^11.1.0",
     "vue": "^3.5.44"
   }
 }

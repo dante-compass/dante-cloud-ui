@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -42,7 +42,7 @@ import { useTable, useDateTime } from '@/composables/hooks';
 
 defineOptions({ name: PAGE_NAME.OAUTH2_SUPPORTED_SCOPE });
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'scopeName', field: 'scopeName', align: 'center', label: '范围名称' },
   { name: 'scopeCode', field: 'scopeCode', align: 'center', label: '范围代码' },
   { name: 'description', field: 'description', align: 'center', label: '备注' },

@@ -2,7 +2,7 @@
   <div>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -93,7 +93,7 @@ defineOptions({ name: PAGE_NAME.PKI_CERTIFICATE, components: { HDownloadCertific
 const selected = ref([]);
 const rowKey: PkiCertificateProps = 'certId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'certificateCategory', field: 'certificateCategory', align: 'center', label: '证书类别' },
   { name: 'alias', field: 'alias', align: 'center', label: '证书名称' },
   { name: 'commonName', field: 'commonName', align: 'center', label: '公共名称' },

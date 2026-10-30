@@ -3,7 +3,7 @@
     <h-audit-condition v-model:conditions="conditions"></h-audit-condition>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -62,7 +62,7 @@ const { tableRows, totalPages, pagination, loading, conditions, findItems } = us
 const selected = ref([]);
 const rowKey: OAuth2InterfaceAuditProps = 'auditId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'principalName', field: 'principalName', align: 'center', label: '用户名' },
   { name: 'clientId', field: 'clientId', align: 'center', label: '客户端ID' },
   { name: 'ip', field: 'ip', align: 'center', label: 'IP地址' },
