@@ -17,7 +17,7 @@
     >
       <template #body-cell-taskType="props">
         <q-td key="taskType" :props="props">
-          <q-chip v-if="props.row.taskType" color="teal">
+          <q-chip v-if="props.row.taskType" :color="getTaskTypeColor(props.row)">
             {{ getDictionaryItemDisplay('TaskType', props.row.taskType) }}
           </q-chip>
         </q-td>
@@ -33,16 +33,25 @@
 
       <template #body-cell-paused="props">
         <q-td key="paused" :props="props">
-          <q-chip v-if="props.row.paused" color="error" dense outline>已暂停</q-chip>
-          <q-chip v-else color="success" dense outline>已暂停</q-chip>
+          <div v-if="props.row.available">
+            <q-chip v-if="props.row.paused" color="error" dense outline>已暂停</q-chip>
+            <q-chip v-else color="success" dense outline>已暂停</q-chip>
+          </div>
+        </q-td>
+      </template>
+
+      <template #body-cell-available="props">
+        <q-td key="available" :props="props">
+          <q-chip v-if="props.row.available" color="error" dense outline>未启用</q-chip>
+          <q-chip v-else color="success" dense outline>已启用</q-chip>
         </q-td>
       </template>
 
       <template #body-cell-actions="props">
         <q-td key="actions" :props="props">
           <h-action-button
-            :color="props.row.paused ? 'mdi-play' : 'mdi-pause'"
-            :icon="props.row.paused ? 'success' : 'error'"
+            :icon="props.row.paused ? 'mdi-play' : 'mdi-pause'"
+            :color="props.row.paused ? 'success' : 'error'"
             :tooltip="props.row.paused ? '恢复' : '暂停'"
             @click="toggle(props.row)"
           ></h-action-button>
@@ -64,7 +73,7 @@ import type { QTableColumnProps } from '@/composables/declarations';
 
 import { toast } from '@herodotus/core';
 import { useTable, useDateTime, useDictionary } from '@/composables/hooks';
-import { API, PAGE_NAME } from '@/configurations';
+import { API, PAGE_NAME, TASK_TYPE_STYLE_GROUP } from '@/configurations';
 
 import Search from './Search.vue';
 
@@ -74,7 +83,9 @@ const headers: QTableColumnProps = [
   { name: 'serviceId', field: 'serviceId', align: 'left', label: '服务ID' },
   { name: 'taskId', field: 'taskId', align: 'left', label: '任务ID' },
   { name: 'taskName', field: 'taskName', align: 'center', label: '任务名称' },
+  { name: 'methodName', field: 'methodName', align: 'center', label: '方法名称' },
   { name: 'taskType', field: 'taskType', align: 'center', label: '任务类型' },
+  { name: 'expression', field: 'expression', align: 'center', label: 'CRON 表达式' },
   { name: 'timezone', field: 'timezone', align: 'center', label: '指定时区' },
   {
     name: 'interval',
@@ -97,7 +108,7 @@ const headers: QTableColumnProps = [
     label: '超时时间',
     format: (value) => humanize(value),
   },
-  { name: 'methodName', field: 'methodName', align: 'center', label: '方法名称' },
+
   {
     name: 'retryInterval',
     field: 'retryInterval',
@@ -122,8 +133,6 @@ const headers: QTableColumnProps = [
     label: '修改时间',
     format: (value) => defaultFormat(value),
   },
-  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-  { name: 'status', field: 'status', align: 'center', label: '状态' },
   { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
@@ -132,18 +141,14 @@ const rowKey: TaskDefinitionProps = 'taskId';
 
 const { defaultFormat, humanize } = useDateTime();
 const { getDictionaryItemDisplay } = useDictionary('TaskType', 'Backoff');
-const {
-  tableRows,
-  totalPages,
-  pagination,
-  loading,
-  conditions,
-  toEdit,
-  toCreate,
-  toAuthorize,
-  findItems,
-  deleteItemById,
-} = useTable<TaskDefinitionConditions, TaskDefinitionEntity>(API.core.taskDefinition(), PAGE_NAME.TASK_DEFINITION);
+const { tableRows, totalPages, pagination, loading, conditions, toEdit, findItems, deleteItemById } = useTable<
+  TaskDefinitionConditions,
+  TaskDefinitionEntity
+>(API.core.taskDefinition(), PAGE_NAME.TASK_DEFINITION);
+
+const getTaskTypeColor = (type: string) => {
+  return TASK_TYPE_STYLE_GROUP[type].color;
+};
 
 const toggle = (item: TaskDefinitionEntity) => {
   API.core
@@ -153,6 +158,7 @@ const toggle = (item: TaskDefinitionEntity) => {
       const result = response as HttpResult<TaskDefinitionEntity>;
       if (result.message) {
         toast.success(result.message);
+        findItems({ pagination: pagination.value, getCellValue: (col: any, row: any) => {} });
       } else {
         toast.success('操作成功');
       }

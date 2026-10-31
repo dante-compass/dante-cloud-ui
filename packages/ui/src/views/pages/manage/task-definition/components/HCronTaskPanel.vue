@@ -10,7 +10,7 @@
       ]"
     ></h-text-field>
     <v-text-field v-model="editedItem.timezone" label="指定时区" placeholder="请输入任务名称"></v-text-field>
-    <h-label text="最大执行时间"></h-label>
+    <h-label text="最大执行时间："></h-label>
     <h-duration v-model="editedItem.timeout"></h-duration>
     <h-retry-policy-panel v-model="editedItem"></h-retry-policy-panel>
   </div>

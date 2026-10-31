@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h-label text="延迟执行时间"></h-label>
+    <h-label text="延迟执行时间："></h-label>
     <h-duration v-model="editedItem.initialDelay"></h-duration>
   </div>
 </template>

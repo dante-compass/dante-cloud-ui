@@ -1,7 +1,7 @@
-import Uploader, { File, Chunk } from 'simple-uploader.js';
+import Uploader, { File, Chunk } from "simple-uploader.js";
 export interface DisplayElement {
   color: string;
-  icon: string;
+  icon?: string;
   text?: string;
 }
 

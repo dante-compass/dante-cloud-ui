@@ -17,7 +17,7 @@
     >
       <template #body-cell-taskType="props">
         <q-td key="taskType" :props="props">
-          <q-chip v-if="props.row.taskType" color="teal">
+          <q-chip v-if="props.row.taskType" :color="getTaskTypeColor(props.row)">
             {{ getDictionaryItemDisplay('TaskType', props.row.taskType) }}
           </q-chip>
         </q-td>
@@ -50,7 +50,7 @@ import type {
 import type { QTableColumnProps } from '@/composables/declarations';
 
 import { useTable, useDateTime, useDictionary } from '@/composables/hooks';
-import { API, PAGE_NAME } from '@/configurations';
+import { API, PAGE_NAME, TASK_TYPE_STYLE_GROUP } from '@/configurations';
 
 import Search from './Search.vue';
 
@@ -72,14 +72,6 @@ const headers: QTableColumnProps = [
   { name: 'duration', field: 'duration', align: 'center', label: '执行耗时', format: (value) => humanize(value) },
   { name: 'succeeded', field: 'succeeded', align: 'center', label: '是否成功' },
   { name: 'errorMessage', field: 'errorMessage', align: 'center', label: '错误信息' },
-  {
-    name: 'updateTime',
-    field: 'updateTime',
-    align: 'center',
-    label: '修改时间',
-  },
-  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
-  { name: 'status', field: 'status', align: 'center', label: '状态' },
   { name: 'actions', field: 'actions', align: 'center', label: '操作' },
 ];
 
@@ -92,4 +84,8 @@ const { tableRows, totalPages, pagination, loading, conditions, findItems, delet
   TaskExecutionHistoryConditions,
   TaskExecutionHistoryEntity
 >(API.core.taskExecutionHistory(), PAGE_NAME.TASK_EXECUTION_HISTORY);
+
+const getTaskTypeColor = (type: string) => {
+  return TASK_TYPE_STYLE_GROUP[type].color;
+};
 </script>

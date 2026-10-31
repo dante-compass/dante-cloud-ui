@@ -292,6 +292,13 @@ export const GRANT_TYPE_STYLE_GROUP: DisplayElementGroup = {
   },
 };
 
+export const TASK_TYPE_STYLE_GROUP: DisplayElementGroup = {
+  ONE_TIME: { color: "orange" },
+  FIXED_DELAY: { color: "purple" },
+  FIXED_RATE: { color: "deep-purple" },
+  CRON: { color: "lime" },
+};
+
 export const COLOR_LIST: Array<string> = [
   "positive",
   "negative",
