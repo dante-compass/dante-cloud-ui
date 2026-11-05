@@ -8,10 +8,12 @@ interface Props {
     auto?: boolean;
     color?: string;
 }
-declare var __VLS_1: {};
-type __VLS_Slots = {} & {
-    default?: (props: typeof __VLS_1) => any;
+declare const __VLS_template: () => {
+    __VLS_Slots: {
+        default?: (props: {}) => any;
+    };
 };
+type __VLS_Slots = ReturnType<typeof __VLS_template>['__VLS_Slots'];
 declare const __VLS_base: import('vue').DefineComponent<Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<Props> & Readonly<{}>, {
     color: string;
     xs: string;

@@ -22,22 +22,24 @@ interface Props {
      */
     offset?: number;
 }
-declare var __VLS_13: {}, __VLS_15: {}, __VLS_23: {}, __VLS_25: {}, __VLS_39: {}, __VLS_47: {}, __VLS_55: {};
-type __VLS_Slots = {} & {
-    default?: (props: typeof __VLS_13) => any;
-} & {
-    left?: (props: typeof __VLS_15) => any;
-} & {
-    default?: (props: typeof __VLS_23) => any;
-} & {
-    right?: (props: typeof __VLS_25) => any;
-} & {
-    left?: (props: typeof __VLS_39) => any;
-} & {
-    default?: (props: typeof __VLS_47) => any;
-} & {
-    right?: (props: typeof __VLS_55) => any;
+declare const __VLS_template: () => {
+    __VLS_Slots: {
+        default?: (props: {}) => any;
+    } & {
+        left?: (props: {}) => any;
+    } & {
+        default?: (props: {}) => any;
+    } & {
+        right?: (props: {}) => any;
+    } & {
+        left?: (props: {}) => any;
+    } & {
+        default?: (props: {}) => any;
+    } & {
+        right?: (props: {}) => any;
+    };
 };
+type __VLS_Slots = ReturnType<typeof __VLS_template>['__VLS_Slots'];
 declare const __VLS_base: import('vue').DefineComponent<Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<Props> & Readonly<{}>, {
     offset: number;
     mode: "two" | "three";

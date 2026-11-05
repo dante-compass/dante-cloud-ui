@@ -5,22 +5,30 @@
 </template>
 
 <script setup lang="ts">
-import type { Container } from "@tsparticles/engine";
+import type { Container } from '@tsparticles/engine';
 
-import { shallowRef, onMounted, onUnmounted, onBeforeMount } from "vue";
-import { tsParticles } from "@tsparticles/engine";
-import { loadTrianglesPreset } from "@tsparticles/preset-triangles";
+import { shallowRef, onMounted, onUnmounted, onBeforeMount } from 'vue';
+import { tsParticles } from '@tsparticles/engine';
+import { loadTrianglesPreset } from '@tsparticles/preset-triangles';
 
-import { options } from "./particles";
+import { options } from './particles';
 
-defineOptions({ name: "HParticles" });
+defineOptions({ name: 'HParticles' });
 
-const id = shallowRef("HParticles");
+const id = shallowRef('HParticles');
 
 let container: Container | undefined;
 
+const isPluginRegistered = (): boolean => {
+  return tsParticles.pluginManager.presets.has('triangles');
+};
+
 const init = async () => {
-  await loadTrianglesPreset(tsParticles);
+  if (isPluginRegistered()) {
+    return;
+  } else {
+    await loadTrianglesPreset(tsParticles);
+  }
 };
 
 const start = async () => {

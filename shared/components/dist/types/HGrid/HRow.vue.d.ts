@@ -1,8 +1,10 @@
 import { PropType } from 'vue';
-declare var __VLS_1: {};
-type __VLS_Slots = {} & {
-    default?: (props: typeof __VLS_1) => any;
+declare const __VLS_template: () => {
+    __VLS_Slots: {
+        default?: (props: {}) => any;
+    };
 };
+type __VLS_Slots = ReturnType<typeof __VLS_template>['__VLS_Slots'];
 declare const __VLS_base: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
     column: {
         type: BooleanConstructor;
