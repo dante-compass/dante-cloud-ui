@@ -1,5 +1,11 @@
 # @herodotus-cloud/bpmn-apis
 
+## 5.1.21
+
+### Patch Changes
+
+- [重构] 前端改用 @noble/hashes 和 @scure/base 重构 PKCE 代码，替代已过时的 crypto-js
+
 ## 5.1.20
 
 ### Patch Changes
