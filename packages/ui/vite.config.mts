@@ -19,7 +19,8 @@ import VueDevTools from "vite-plugin-vue-devtools";
 import nodePolyfills from "@rolldown/plugin-node-polyfills";
 
 import { visualizer } from "rollup-plugin-visualizer";
-import { HerodotusResolver } from "@herodotus-cloud/components/resolver";
+import { HerodotusComponentResolver } from "@herodotus-cloud/components/resolver";
+import { HerodotusExtensionResolver } from "@herodotus/extensions/resolver";
 
 const lifecycle = process.env.npm_lifecycle_event;
 
@@ -60,7 +61,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         dts: "types/components.d.ts",
         resolvers: [
           QuasarResolver(),
-          HerodotusResolver(),
+          HerodotusComponentResolver(),
+          HerodotusExtensionResolver(),
           IconsResolver({
             customCollections: ["custom"],
           }),

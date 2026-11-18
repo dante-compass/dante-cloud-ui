@@ -1,5 +1,11 @@
 # @herodotus-cloud/bpmn-apis
 
+## 5.1.22
+
+### Patch Changes
+
+- [重构] 重构前端 Quasar 版本部分功能页面代码，保持与 Vuetify 版本一致
+
 ## 5.1.21
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @herodotus-cloud/form-designer
 
+## 5.1.22
+
+### Patch Changes
+
+- [重构] 重构前端 Quasar 版本部分功能页面代码，保持与 Vuetify 版本一致
+- Updated dependencies
+  - @herodotus-cloud/components@5.1.22
+  - @herodotus-cloud/form-apis@5.1.22
+  - @herodotus-cloud/form-engine@5.1.22
+
 ## 5.1.21
 
 ### Patch Changes

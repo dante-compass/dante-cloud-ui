@@ -195,6 +195,9 @@ importers:
       '@herodotus/core':
         specifier: ^3.1.31
         version: 3.1.31(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      '@herodotus/extensions':
+        specifier: ^3.1.31
+        version: 3.1.31(typescript@6.0.3)
       '@herodotus/framework':
         specifier: ^3.1.31
         version: 3.1.31(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
@@ -357,12 +360,6 @@ importers:
       '@mdi/js':
         specifier: ^7.4.47
         version: 7.4.47
-      '@tsparticles/engine':
-        specifier: ^4.6.0
-        version: 4.6.0
-      '@tsparticles/preset-triangles':
-        specifier: ^4.6.0
-        version: 4.6.0
       quasar:
         specifier: ^2.35.5
         version: 2.35.5
@@ -823,6 +820,9 @@ packages:
 
   '@herodotus/core@3.1.31':
     resolution: {integrity: sha512-tlLPHPQf0nhOEXJLulKj52n8z4CVECxairPyFln1hiv5hC7t0lQZzDVek4rwlUgK7OXt9u/MrVaqwb9j12FlVA==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/core/-/@herodotus/core-3.1.31.tgz}
+
+  '@herodotus/extensions@3.1.31':
+    resolution: {integrity: sha512-QEzqnaMfk3+U6azU0RSFLv/kBIfHUctg4Q7IeT0Z59B/KGCWR4qiJPDH0h5DjuDLcOhD/T7m1T94p9ieI0Xgjg==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/extensions/-/@herodotus/extensions-3.1.31.tgz}
 
   '@herodotus/framework@3.1.31':
     resolution: {integrity: sha512-12OhSlBMQVyJQa1XH6m59QNu8ddUAoj7m4n2lWPFDDImPlraDaJ/PFR7FfGxFJztIBd2hJJC85dXDWibXnwfxQ==, tarball: https://packages.aliyun.com/6652f3b6ced1b9e566e189fa/npm/npm-registry/@herodotus/framework/-/@herodotus/framework-3.1.31.tgz}
@@ -3744,6 +3744,9 @@ packages:
   ofetch@1.5.1:
     resolution: {integrity: sha512-2W4oUZlVaqAPAil6FUg/difl6YhqhUR7x2eZY4bQCko22UXg3hptq9KLQdqFClV+Wu85UX7hNtdGTngi/1BxcA==}
 
+  ogl@1.0.11:
+    resolution: {integrity: sha512-kUpC154AFfxi16pmZUK4jk3J+8zxwTWGPo03EoYA8QPbzikHoaC82n6pNTbd+oEaJonaE8aPWBlX7ad9zrqLsA==}
+
   ohash@2.0.12:
     resolution: {integrity: sha512-65S/5gk9YSsaRjcyf7Nfa6h/d3E8/1gslpXfI4W7Dxn/oap8IKRuNT5VXkLQ1YFKIEg4apRY4Pj6aiwFzrDdmw==}
 
@@ -5628,6 +5631,15 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - supports-color
+
+  '@herodotus/extensions@3.1.31(typescript@6.0.3)':
+    dependencies:
+      '@tsparticles/engine': 4.6.0
+      '@tsparticles/preset-triangles': 4.6.0
+      ogl: 1.0.11
+      vue: 3.5.45(typescript@6.0.3)
+    transitivePeerDependencies:
+      - typescript
 
   '@herodotus/framework@3.1.31(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
@@ -8438,6 +8450,8 @@ snapshots:
       destr: 2.0.5
       node-fetch-native: 1.6.7
       ufo: 1.6.4
+
+  ogl@1.0.11: {}
 
   ohash@2.0.12: {}
 

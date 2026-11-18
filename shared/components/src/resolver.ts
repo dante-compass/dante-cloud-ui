@@ -19,10 +19,8 @@ const components = [
   "HListItem",
   "HLoading",
   "HPagination",
-  "HParticles",
   "HRow",
   "HSelect",
-  "HSignInBackground",
   "HSwitch",
   "HTextField",
   "HLabelItem",
@@ -35,7 +33,7 @@ function isValidComponent(name: string) {
 /**
  * Herodotus UI 组件解析器
  */
-export function HerodotusResolver(): ComponentResolver {
+export function HerodotusComponentResolver(): ComponentResolver {
   return {
     type: "component",
     resolve: (name: string) => {
@@ -57,4 +55,4 @@ export function HerodotusResolver(): ComponentResolver {
   };
 }
 
-export default HerodotusResolver;
+export default HerodotusComponentResolver;

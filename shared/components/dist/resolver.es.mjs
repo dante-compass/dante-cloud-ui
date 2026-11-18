@@ -1,5 +1,30 @@
 // src/resolver.ts
-var e = /* @__PURE__ */ "HButton.HCardTitle.HCenterLabel.HChartCard.HColumn.HContainer.HDateTime.HDivider.HDialog.HDuration.HIconButton.HIconSelect.HFieldLabel.HTreeField.HLabel.HListItem.HLoading.HPagination.HParticles.HRow.HSelect.HSignInBackground.HSwitch.HTextField.HLabelItem.HVisibilityButton".split(".");
+var e = [
+	"HButton",
+	"HCardTitle",
+	"HCenterLabel",
+	"HChartCard",
+	"HColumn",
+	"HContainer",
+	"HDateTime",
+	"HDivider",
+	"HDialog",
+	"HDuration",
+	"HIconButton",
+	"HIconSelect",
+	"HFieldLabel",
+	"HTreeField",
+	"HLabel",
+	"HListItem",
+	"HLoading",
+	"HPagination",
+	"HRow",
+	"HSelect",
+	"HSwitch",
+	"HTextField",
+	"HLabelItem",
+	"HVisibilityButton"
+];
 function t(t) {
 	return e.includes(t);
 }
@@ -18,4 +43,4 @@ function n() {
 		}
 	};
 }
-export { n as HerodotusResolver, n as default };
+export { n as HerodotusComponentResolver, n as default };

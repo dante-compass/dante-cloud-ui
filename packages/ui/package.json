@@ -26,6 +26,7 @@
     "@herodotus-cloud/form-engine": "workspace:^",
     "@herodotus/api": "^3.1.31",
     "@herodotus/core": "^3.1.31",
+    "@herodotus/extensions": "^3.1.31",
     "@herodotus/framework": "^3.1.31",
     "@mdi/js": "^7.4.47",
     "@quasar/extras": "^2.1.0",
