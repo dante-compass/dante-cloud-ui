@@ -13,6 +13,7 @@
     <h-label text="最大执行时间："></h-label>
     <h-duration v-model="editedItem.timeout"></h-duration>
     <h-retry-policy-panel v-model="editedItem"></h-retry-policy-panel>
+    <h-misfire-policy-panel v-model="editedItem"></h-misfire-policy-panel>
   </div>
 </template>
 
@@ -20,8 +21,9 @@
 import type { TaskDefinitionEntity } from '@herodotus/api';
 
 import HRetryPolicyPanel from './HRetryPolicyPanel.vue';
+import HMisfirePolicyPanel from './HMisfirePolicyPanel.vue';
 
-defineOptions({ name: 'HCronTaskPanel', components: { HRetryPolicyPanel } });
+defineOptions({ name: 'HCronTaskPanel', components: { HRetryPolicyPanel, HMisfirePolicyPanel } });
 
 const editedItem = defineModel<TaskDefinitionEntity>({
   default: () => ({}) as TaskDefinitionEntity,
