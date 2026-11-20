@@ -3,7 +3,7 @@
     <search v-model="conditions"></search>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -61,7 +61,7 @@ import Search from './Search.vue';
 
 defineOptions({ name: PAGE_NAME.THINGS_MQTT_CATEGORY, components: { Search } });
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'name', field: 'name', align: 'center', label: '主题类别名称' },
   { name: 'area', field: 'area', align: 'center', label: '主题使用区域' },
   { name: 'action', field: 'action', align: 'center', label: '主题操作类型' },

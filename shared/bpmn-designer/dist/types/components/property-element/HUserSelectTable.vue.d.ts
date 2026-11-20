@@ -37,7 +37,7 @@ declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractP
     fieldValue: import('vue').Ref<string, string>;
     selectedItems: import('vue').WritableComputedRef<UserEntity[], UserEntity[]>;
     rowKey: keyof UserEntity;
-    columns: {
+    headers: {
         name: string;
         label: string;
         field?: string | ((row: any) => any);

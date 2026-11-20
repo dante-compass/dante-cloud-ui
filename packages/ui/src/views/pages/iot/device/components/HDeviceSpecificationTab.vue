@@ -1,37 +1,37 @@
 <template>
   <q-card flat>
     <q-card-section>
-      <!-- <v-tabs v-model="tab" class="font-weight-bold">
-        <v-tab text="运行状态" value="properties"></v-tab>
-        <v-tab text="事件管理" value="events"></v-tab>
-        <v-tab text="服务调用" value="services"></v-tab>
-      </v-tabs>
+      <q-tabs v-model="tab" class="font-weight-bold">
+        <q-tab text="运行状态" value="properties"></q-tab>
+        <q-tab text="事件管理" value="events"></q-tab>
+        <q-tab text="服务调用" value="services"></q-tab>
+      </q-tabs>
 
-      <v-divider></v-divider>
+      <q-separator></q-separator>
 
-      <v-tabs-window v-model="tab">
-        <v-tabs-window-item value="properties">
+      <q-tab-panels v-model="tab">
+        <q-tab-panel name="properties">
           <h-specification-property-tab
             :product-id="productId"
             :product-key="productKey"
             :device-name="deviceName"
           ></h-specification-property-tab>
-        </v-tabs-window-item>
-        <v-tabs-window-item value="events">
+        </q-tab-panel>
+        <q-tab-panel name="events">
           <h-specification-event-tab
             :product-id="productId"
             :product-key="productKey"
             :device-name="deviceName"
           ></h-specification-event-tab>
-        </v-tabs-window-item>
-        <v-tabs-window-item value="services">
+        </q-tab-panel>
+        <q-tab-panel name="services">
           <h-specification-service-tab
             :product-id="productId"
             :product-key="productKey"
             :device-name="deviceName"
           ></h-specification-service-tab>
-        </v-tabs-window-item>
-      </v-tabs-window> -->
+        </q-tab-panel>
+      </q-tab-panels>
     </q-card-section>
   </q-card>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -35,9 +35,9 @@ import type { QTableColumnProps } from '@/composables/declarations';
 
 import { useTable } from '@/composables/hooks';
 import { PAGE_NAME, API } from '@/configurations';
-import { HDeleteButton, HActionEditButton, HTable } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HTable } from '@/components';
 
-defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CATEGORY, components: { HDeleteButton, HActionEditButton, HTable } });
+defineOptions({ name: PAGE_NAME.IOT_PRODUCT_CATEGORY, components: { HActionDeleteButton, HActionEditButton, HTable } });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems, deleteItemById } = useTable<
   ProductCategoryEntity,
@@ -47,7 +47,7 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
 const selected = ref([]);
 const rowKey: ProductCategoryProps = 'id';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'id', field: 'id', align: 'center', label: '产品品类ID' },
   { name: 'name', field: 'name', align: 'center', label: '产品品类名称' },
   { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },

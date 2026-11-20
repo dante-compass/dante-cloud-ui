@@ -11,8 +11,6 @@ import { HColumn, HContainer, HRow } from "./HGrid";
 import { HListItem } from "./HList";
 import { HLoading } from "./HLoading";
 import { HPagination } from "./HPagination";
-import { HParticles } from "./HParticles";
-import { HSignInBackground } from "./HBackground";
 
 const components = [
   HButton,
@@ -33,10 +31,8 @@ const components = [
   HListItem,
   HLoading,
   HPagination,
-  HParticles,
   HRow,
   HSelect,
-  HSignInBackground,
   HSwitch,
   HTextField,
   HVisibilityButton,
@@ -66,10 +62,8 @@ export {
   HListItem,
   HLoading,
   HPagination,
-  HParticles,
   HRow,
   HSelect,
-  HSignInBackground,
   HSwitch,
   HTextField,
   HLabelItem,

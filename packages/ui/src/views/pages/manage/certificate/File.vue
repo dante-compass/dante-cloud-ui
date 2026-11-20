@@ -2,7 +2,7 @@
   <h-full-width-form-layout title="配置人员归属" @cancel="onReturn">
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -66,7 +66,7 @@ defineOptions({ name: PAGE_NAME.PKI_CERTIFICATE_FILE });
 const selected = ref([]);
 const rowKey: PkiCertificateFileProps = 'fileId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'alias', field: 'alias', align: 'center', label: '证书名称' },
   { name: 'certificateCategory', field: 'certificateCategory', align: 'center', label: '证书类别' },
   {

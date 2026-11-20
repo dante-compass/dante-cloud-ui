@@ -2,7 +2,7 @@
   <h-authorize-layout :title="title" :overlay="overlay">
     <q-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="multiple"
       v-model:selected="selectedItems"
@@ -31,15 +31,15 @@ import type {
   SysPermissionEntity,
   SysPermissionConditions,
   SysPermissionProps,
-} from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+} from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
+import { PAGE_NAME, API } from '@/configurations';
 
-import { useTableItem, useTable } from "@/composables/hooks";
-import { isEmpty } from "lodash-es";
+import { useTableItem, useTable } from '@/composables/hooks';
+import { isEmpty } from 'lodash-es';
 
-import { HAuthorizeList, HAuthorizeLayout } from "@/components";
+import { HAuthorizeList, HAuthorizeLayout } from '@/components';
 
 defineOptions({ name: PAGE_NAME.SYS_ATTRIBUTE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
@@ -55,11 +55,11 @@ const { tableRows, totalPages, pagination, loading } = useTable<SysPermissionCon
 );
 
 const selectedItems = ref([]) as Ref<Array<SysPermissionEntity>>;
-const rowKey: SysPermissionProps = "permissionId";
+const rowKey: SysPermissionProps = 'permissionId';
 
-const columns: QTableColumnProps = [
-  { name: "permissionName", field: "permissionName", align: "center", label: "权限名称" },
-  { name: "permissionCode", field: "permissionCode", align: "center", label: "权限代码" },
+const headers: QTableColumnProps = [
+  { name: 'permissionName', field: 'permissionName', align: 'center', label: '权限名称' },
+  { name: 'permissionCode', field: 'permissionCode', align: 'center', label: '权限代码' },
 ];
 
 onMounted(() => {
@@ -69,7 +69,7 @@ onMounted(() => {
 const onSave = () => {
   let attributeId = editedItem.value.attributeId;
   let permissions = selectedItems.value.map((item) => item[rowKey]);
-  const items = !isEmpty(permissions) ? permissions : [""];
+  const items = !isEmpty(permissions) ? permissions : [''];
   assign({ attributeId: attributeId, permissions: items });
 };
 </script>

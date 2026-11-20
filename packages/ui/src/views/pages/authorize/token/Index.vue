@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -26,9 +26,9 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HDeleteButton, HTable } from '@/components';
+import { HActionDeleteButton, HTable } from '@/components';
 
-defineOptions({ name: PAGE_NAME.OAUTH2_TOKEN, components: { HDeleteButton, HTable } });
+defineOptions({ name: PAGE_NAME.OAUTH2_TOKEN, components: { HActionDeleteButton, HTable } });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, findItems, deleteItemById } = useTable<
@@ -42,7 +42,7 @@ const { tableRows, totalPages, pagination, loading, findItems, deleteItemById } 
 const selected = ref([]);
 const rowKey = 'id' as keyof OAuth2AuthorizationEntity;
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'registeredClientId', field: 'registeredClientId', align: 'center', label: '客户端ID' },
   { name: 'principalName', field: 'principalName', align: 'center', label: '用户名' },
   { name: 'authorizationGrantType', field: 'authorizationGrantType', align: 'center', label: '认证模式' },

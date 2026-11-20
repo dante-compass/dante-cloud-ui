@@ -2,7 +2,7 @@
   <h-authorize-layout :title="title" :overlay="overlay">
     <q-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="multiple"
       v-model:selected="selectedItems"
@@ -31,11 +31,11 @@ import type {
   MqttCategoryEntity,
   MqttCategoryConditions,
   MqttCategoryProps,
-} from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+} from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { useTableItem, useTable } from "@/composables/hooks";
-import { API, PAGE_NAME } from "@/configurations";
+import { useTableItem, useTable } from '@/composables/hooks';
+import { API, PAGE_NAME } from '@/configurations';
 
 defineOptions({ name: PAGE_NAME.THINGS_MQTT_AUTHORITY_AUTHORIZE });
 
@@ -50,13 +50,13 @@ const { tableRows, totalPages, pagination, loading } = useTable<MqttCategoryCond
 );
 
 const selectedItems = ref([]) as Ref<Array<MqttCategoryEntity>>;
-const rowKey: MqttCategoryProps = "id";
+const rowKey: MqttCategoryProps = 'id';
 
-const columns: QTableColumnProps = [
-  { name: "name", field: "name", align: "center", label: "主题类别名称" },
-  { name: "area", field: "area", align: "center", label: "主题使用区域" },
-  { name: "action", field: "action", align: "center", label: "主题操作类型" },
-  { name: "purpose", field: "purpose", align: "center", label: "主题用途" },
+const headers: QTableColumnProps = [
+  { name: 'name', field: 'name', align: 'center', label: '主题类别名称' },
+  { name: 'area', field: 'area', align: 'center', label: '主题使用区域' },
+  { name: 'action', field: 'action', align: 'center', label: '主题操作类型' },
+  { name: 'purpose', field: 'purpose', align: 'center', label: '主题用途' },
 ];
 
 onMounted(() => {

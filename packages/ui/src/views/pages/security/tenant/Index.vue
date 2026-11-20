@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -41,11 +41,11 @@ import { PAGE_NAME, API } from '@/configurations';
 
 import { useTable } from '@/composables/hooks';
 
-import { HDeleteButton, HActionEditButton, HActionButton, HTable } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HActionButton, HTable } from '@/components';
 
 defineOptions({
   name: PAGE_NAME.SYS_TENANT_DATA_SOURCE,
-  components: { HDeleteButton, HActionEditButton, HActionButton, HTable },
+  components: { HActionDeleteButton, HActionEditButton, HActionButton, HTable },
 });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
@@ -57,7 +57,7 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthoriz
 const selected = ref([]);
 const rowKey: SysTenantDataSourceProps = 'datasourceId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'tenantId', field: 'tenantId', align: 'center', label: '租户标识ID' },
   { name: 'username', field: 'username', align: 'center', label: '数据库用户名' },
   { name: 'password', field: 'password', align: 'center', label: '数据库密码' },

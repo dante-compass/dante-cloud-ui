@@ -3,7 +3,7 @@
     <h-employee-condition v-model:conditions="conditions"></h-employee-condition>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -52,12 +52,12 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDictionary, useDateTime } from '@/composables/hooks';
 
-import { HDeleteButton, HActionEditButton, HTable } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HTable } from '@/components';
 import { HEmployeeCondition } from '../components';
 
 defineOptions({
   name: PAGE_NAME.SYS_EMPLOYEE,
-  components: { HDeleteButton, HActionEditButton, HEmployeeCondition, HTable },
+  components: { HActionDeleteButton, HActionEditButton, HEmployeeCondition, HTable },
 });
 
 const { defaultFormat } = useDateTime();
@@ -69,7 +69,7 @@ const { getDictionaryItemDisplay } = useDictionary('Gender', 'Identity');
 const selected = ref([]);
 const rowKey: SysEmployeeProps = 'employeeId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'employeeName', field: 'employeeName', align: 'center', label: '人员姓名' },
   { name: 'gender', field: 'gender', align: 'center', label: '性别' },
   { name: 'identity', field: 'identity', align: 'center', label: '身份' },

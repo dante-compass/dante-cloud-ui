@@ -22,7 +22,7 @@
 
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -58,11 +58,11 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime } from '@/composables/hooks';
 
-import { HDeleteButton, HActionEditButton, HTable, HDictionarySelect } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HTable, HDictionarySelect } from '@/components';
 
 defineOptions({
   name: PAGE_NAME.SYS_ORGANIZATION,
-  components: { HDeleteButton, HDictionarySelect, HActionEditButton, HTable },
+  components: { HActionDeleteButton, HDictionarySelect, HActionEditButton, HTable },
 });
 
 const { defaultFormat } = useDateTime();
@@ -73,7 +73,7 @@ const selected = ref([]);
 const rowKey: SysOrganizationProps = 'organizationId';
 const categroy = ref('');
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'organizationName', field: 'organizationName', align: 'center', label: '单位名称' },
   { name: 'shortName', field: 'shortName', align: 'center', label: '单位简称' },
   { name: 'partitionCode', field: 'partitionCode', align: 'center', label: '分区代码' },

@@ -2,7 +2,7 @@
   <div>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="multiple"
       v-model:selected="selected"
@@ -96,7 +96,7 @@ import type { QTableColumnProps } from '@/composables/declarations';
 
 import { format } from 'quasar';
 
-import { HDeleteButton, HActionButton, HTable, HChunkUploader, HSimpleUploader } from '@/components';
+import { HActionDeleteButton, HActionButton, HTable, HChunkUploader, HSimpleUploader } from '@/components';
 import { useBaseTable, useDateTime, useOss } from '@/composables/hooks';
 import { API, PAGE_NAME } from '@/configurations';
 import { toast, notify } from '@herodotus/core';
@@ -104,7 +104,7 @@ import { isEmpty, split, dropRight, join, initial } from 'lodash-es';
 
 defineOptions({
   name: 'HOssObjectList',
-  components: { HDeleteButton, HActionButton, HTable, HChunkUploader, HSimpleUploader },
+  components: { HActionDeleteButton, HActionButton, HTable, HChunkUploader, HSimpleUploader },
 });
 
 interface Props {
@@ -117,7 +117,7 @@ const bucketName = defineModel<string>({
   required: true,
 });
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   {
     name: 'objectName',
     field: 'objectName',

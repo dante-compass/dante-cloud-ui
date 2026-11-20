@@ -2,7 +2,7 @@
   <h-authorize-layout :title="title" :overlay="overlay">
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="multiple"
       v-model:selected="selectedItems"
@@ -33,15 +33,15 @@ import type {
   OAuth2ScopeEntity,
   OAuth2ScopeAssignedBody,
   OAuth2PermissionBody,
-} from "@herodotus/api";
-import type { HttpResult, QTableColumnProps } from "@/composables/declarations";
+} from '@herodotus/api';
+import type { HttpResult, QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { toast } from "@herodotus/core";
-import { useTableItem, useTable } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { toast } from '@herodotus/core';
+import { useTableItem, useTable } from '@/composables/hooks';
 
-import { HTable } from "@/components";
-import { HAuthorizeList, HAuthorizeLayout } from "@/components";
+import { HTable } from '@/components';
+import { HAuthorizeList, HAuthorizeLayout } from '@/components';
 
 defineOptions({ name: PAGE_NAME.OAUTH2_SCOPE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout, HTable } });
 
@@ -56,11 +56,11 @@ const { tableRows, pagination, loading } = useTable<SysPermissionConditions, Sys
 );
 
 const selectedItems = ref([]) as Ref<Array<SysPermissionEntity>>;
-const rowKey: SysPermissionProps = "permissionId";
+const rowKey: SysPermissionProps = 'permissionId';
 
-const columns: QTableColumnProps = [
-  { name: "permissionName", field: "permissionName", align: "center", label: "权限名称" },
-  { name: "permissionCode", field: "permissionCode", align: "center", label: "权限代码" },
+const headers: QTableColumnProps = [
+  { name: 'permissionName', field: 'permissionName', align: 'center', label: '权限名称' },
+  { name: 'permissionCode', field: 'permissionCode', align: 'center', label: '权限代码' },
 ];
 
 onMounted(() => {
@@ -87,13 +87,13 @@ const onSave = () => {
       if (result.message) {
         toast.success(result.message);
       } else {
-        toast.success("保存成功");
+        toast.success('保存成功');
       }
     })
     .catch(() => {
       overlay.value = false;
       onReturn();
-      toast.error("保存失败");
+      toast.error('保存失败');
     });
 };
 </script>

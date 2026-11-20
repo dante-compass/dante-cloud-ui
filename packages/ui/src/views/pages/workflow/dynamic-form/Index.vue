@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -59,7 +59,7 @@ const {
   hideLoading,
 } = useBaseTable<DynamicFormConditions, DynamicFormEntity>(PAGE_NAME.WIDGETS_DYNAMIC_FORM, 'updateTime', true);
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'id', field: 'id', align: 'center', label: '业务ID' },
   { name: 'name', field: 'name', align: 'center', label: '名称' },
   { name: 'activityName', field: 'activityName', align: 'center', label: '适用节点' },

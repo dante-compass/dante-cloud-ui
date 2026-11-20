@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -33,9 +33,9 @@ import { useTable, useDateTime } from '@/composables/hooks';
 
 import { PAGE_NAME, API } from '@/configurations';
 
-import { HDeleteButton, HActionEditButton, HTable } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HTable } from '@/components';
 
-defineOptions({ name: PAGE_NAME.SYS_DEFAULT_ROLE, components: { HDeleteButton, HActionEditButton, HTable } });
+defineOptions({ name: PAGE_NAME.SYS_DEFAULT_ROLE, components: { HActionDeleteButton, HActionEditButton, HTable } });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthorize, findItems, deleteItemById } =
@@ -44,7 +44,7 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toAuthoriz
 const selected = ref([]);
 const rowKey: SysDefaultRoleProps = 'defaultId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'description', field: 'description', align: 'center', label: '名称' },
   { name: 'scene', field: 'scene', align: 'center', label: '代码' },
   {

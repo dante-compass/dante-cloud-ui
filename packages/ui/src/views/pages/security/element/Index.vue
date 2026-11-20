@@ -3,7 +3,7 @@
     <h-element-condition v-model:conditions="conditions"></h-element-condition>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -97,12 +97,12 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { useTable, useDateTime, useDictionary } from '@/composables/hooks';
 import { PAGE_NAME, API } from '@/configurations';
 
-import { HDeleteButton, HActionEditButton, HTable, HColumnBoolean, HActionButton } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HTable, HColumnBoolean, HActionButton } from '@/components';
 import HElementCondition from './Search.vue';
 
 defineOptions({
   name: PAGE_NAME.SYS_ELEMENT,
-  components: { HColumnBoolean, HElementCondition, HActionButton, HDeleteButton, HActionEditButton, HTable },
+  components: { HColumnBoolean, HElementCondition, HActionButton, HActionDeleteButton, HActionEditButton, HTable },
 });
 
 const { defaultFormat } = useDateTime();
@@ -125,7 +125,7 @@ const {
 const selected = ref([]);
 const rowKey: SysElementProps = 'elementId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'title', field: 'title', align: 'center', label: '标题' },
   { name: 'name', field: 'name', align: 'center', label: '组件名称' },
   { name: 'path', field: 'path', align: 'center', label: '请求路径' },

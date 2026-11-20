@@ -9,7 +9,7 @@
     <h-column lg="6" md="6" sm="6" xs="12">
       <h-table
         :rows="tableRows"
-        :columns="columns"
+        :columns="headers"
         :row-key="rowKey"
         selection="single"
         v-model:selected="selected"
@@ -48,14 +48,14 @@ import { OperationEnum } from '@herodotus/core';
 import { PAGE_NAME, API } from '@/configurations';
 import { useElementStore } from '@herodotus/framework';
 
-import { HDeleteButton, HTable } from '@/components';
+import { HActionDeleteButton, HTable } from '@/components';
 
 import { HOrganizationTree, HDepartmentTree } from '../components';
 import { useDictionary, useDateTime } from '@/composables/hooks';
 
 defineOptions({
   name: PAGE_NAME.SYS_OWNERSHIP,
-  components: { HDeleteButton, HDepartmentTree, HTable, HOrganizationTree },
+  components: { HActionDeleteButton, HDepartmentTree, HTable, HOrganizationTree },
 });
 
 const organizationId = shallowRef('');
@@ -78,7 +78,7 @@ const store = useElementStore();
 const { defaultFormat } = useDateTime();
 const { getDictionaryItemDisplay } = useDictionary('identity');
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'employeeName', field: 'employeeName', align: 'center', label: '姓名' },
   { name: 'identity', field: 'identity', align: 'center', label: '身份' },
   {

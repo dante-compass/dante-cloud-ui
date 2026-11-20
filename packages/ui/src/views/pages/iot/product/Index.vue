@@ -3,7 +3,7 @@
     <search v-model="conditions"></search>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -79,13 +79,13 @@ import type { QTableColumnProps, HttpResult } from '@/composables/declarations';
 import { useTable } from '@/composables/hooks';
 import { PAGE_NAME, API } from '@/configurations';
 import { toast } from '@herodotus/core';
-import { HDeleteButton, HActionEditButton, HInfoButton, HTable } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HInfoButton, HTable } from '@/components';
 import { useDictionary } from '@/composables/hooks';
 import Search from './Search.vue';
 
 defineOptions({
   name: PAGE_NAME.IOT_PRODUCT,
-  components: { HDeleteButton, HActionEditButton, HInfoButton, HTable, Search },
+  components: { HActionDeleteButton, HActionEditButton, HInfoButton, HTable, Search },
 });
 
 const { tableRows, totalPages, pagination, loading, toEdit, toCreate, toInfo, findItems, deleteItemById, conditions } =
@@ -101,7 +101,7 @@ const { getDictionaryItemDisplay } = useDictionary(
   'AuthenticationMethod',
 );
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'productKey', field: 'productKey', align: 'center', label: 'ProductKey' },
   { name: 'productName', field: 'productName', align: 'center', label: '产品名称' },
   { name: 'category', field: 'category', align: 'center', label: '所属品类' },

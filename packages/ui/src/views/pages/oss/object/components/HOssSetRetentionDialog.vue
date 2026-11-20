@@ -9,13 +9,13 @@
 
       <q-card-section class="q-py-none">
         <q-form ref="setRetentionForm">
-          <h-label text="类型:" size="subtitle-1" weight="bolder" align="left" class="q-my-md"></h-label>
+          <h-label text="类型:" class="q-my-md"></h-label>
           <h-dictionary-toggle
             v-model="editedItem.retentionMode"
             dictionary="ObjectRetentionMode"
             default-value="COMPLIANCE"
           ></h-dictionary-toggle>
-          <h-label text="时间:" size="subtitle-1" weight="bolder" align="left" class="q-my-md"></h-label>
+          <h-label text="时间:" class="q-my-md"></h-label>
           <q-input outlined v-model="editedItem.retainUntilDate" mask="date" :rules="['date']">
             <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">

@@ -10,9 +10,7 @@ import { HColumn, HContainer, HRow } from './HGrid';
 import { HListItem } from './HList';
 import { HLoading } from './HLoading';
 import { HPagination } from './HPagination';
-import { HParticles } from './HParticles';
-import { HSignInBackground } from './HBackground';
-export { HButton, HCardTitle, HCenterLabel, HChartCard, HColumn, HContainer, HDateTime, HDivider, HDialog, HDuration, HIconButton, HIconSelect, HFieldLabel, HTreeField, HLabel, HListItem, HLoading, HPagination, HParticles, HRow, HSelect, HSignInBackground, HSwitch, HTextField, HLabelItem, HVisibilityButton, };
+export { HButton, HCardTitle, HCenterLabel, HChartCard, HColumn, HContainer, HDateTime, HDivider, HDialog, HDuration, HIconButton, HIconSelect, HFieldLabel, HTreeField, HLabel, HListItem, HLoading, HPagination, HRow, HSelect, HSwitch, HTextField, HLabelItem, HVisibilityButton, };
 export * from './lib';
 declare const _default: {
     install: (app: App) => void;

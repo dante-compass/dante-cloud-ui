@@ -1,29 +1,29 @@
 <template>
-  <h-data-table
-    v-model:page-size="pageSize"
-    v-model:page-number="pageNumber"
-    v-model:total-pages="totalPages"
-    v-model:total-items="totalItems"
-    :headers="headers"
-    :items="tableRows"
-    :item-value="rowKey"
+  <h-table
+    :rows="tableRows"
+    :columns="headers"
+    :row-key="rowKey"
+    selection="single"
+    v-model:selected="selected"
+    v-model:pagination="pagination"
+    v-model:pageNumber="pagination.page"
+    :totalPages="totalPages"
     :loading="loading"
-    :show-select="false"
-    select-strategy="single"
-    disable-sort
-    @update:options="fetchItems"
+    status
+    reserved
+    @request="fetchItems"
   >
     <template #item.type="{ item }">
       <v-chip v-if="getPropertyType(item)" density="compact" rounded="lg" color="purple" label>
         {{ getPropertyType(item) }}
       </v-chip>
     </template>
-  </h-data-table>
+  </h-table>
 </template>
 
 <script setup lang="ts">
 import type { TslFunctionProps } from '@herodotus/api';
-import type { VDataTableHeaders } from '@/composables/declarations';
+import type { QTableColumnProps, HttpResult } from '@/composables/declarations';
 
 import { useDateTime } from '@/composables/hooks';
 import { useTslFunctionTable } from '../../composables/hooks';
@@ -38,18 +38,24 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { loading, pageNumber, pageSize, tableRows, totalPages, totalItems, findPropertiesByPage, getPropertyType } =
-  useTslFunctionTable();
+const { tableRows, totalPages, pagination, loading, findPropertiesByPage, getPropertyType } = useTslFunctionTable();
 const { defaultFormat } = useDateTime();
 
-const headers = ref([
-  { key: 'identifier', align: 'center', title: '属性标识符' },
-  { key: 'name', align: 'center', title: '属性名称' },
-  { key: 'type', align: 'center', title: '数据类型' },
-  { key: 'updateTime', align: 'center', title: '更新时间', value: (item) => defaultFormat(item.updateTime) },
-  { key: 'actions', align: 'center', title: '操作' },
-]) as Ref<Array<VDataTableHeaders>>;
+const headers: QTableColumnProps = [
+  { name: 'identifier', field: 'identifier', align: 'center', label: '属性标识符' },
+  { name: 'name', field: 'name', align: 'center', label: '属性名称' },
+  { name: 'type', field: 'type', align: 'center', label: '数据类型' },
+  {
+    name: 'updateTime',
+    field: 'updateTime',
+    align: 'center',
+    label: '更新时间',
+    format: (value) => defaultFormat(value),
+  },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+];
 
+const selected = ref([]);
 const rowKey: TslFunctionProps = 'id';
 
 watch(

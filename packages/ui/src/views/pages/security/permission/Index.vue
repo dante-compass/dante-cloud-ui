@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:pagination="pagination"
@@ -47,7 +47,7 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
 
 const rowKey: SysPermissionProps = 'permissionId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'permissionName', field: 'permissionName', align: 'center', label: '权限名称' },
   { name: 'permissionCode', field: 'permissionCode', align: 'center', label: '权限代码' },
   { name: 'description', field: 'description', align: 'center', label: '备注' },

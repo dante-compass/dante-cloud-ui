@@ -1,7 +1,7 @@
 <template>
   <h-table
     :rows="tableRows"
-    :columns="columns"
+    :columns="headers"
     :row-key="rowKey"
     selection="single"
     v-model:selected="selected"
@@ -31,9 +31,9 @@ import { PAGE_NAME, API } from '@/configurations';
 import { useTable, useDateTime } from '@/composables/hooks';
 import { moment } from '@herodotus/core';
 
-import { HDeleteButton, HTable } from '@/components';
+import { HActionDeleteButton, HTable } from '@/components';
 
-defineOptions({ name: PAGE_NAME.OAUTH2_PERSISTENT, components: { HDeleteButton, HTable } });
+defineOptions({ name: PAGE_NAME.OAUTH2_PERSISTENT, components: { HActionDeleteButton, HTable } });
 
 const { defaultFormat } = useDateTime();
 const { tableRows, totalPages, pagination, loading, findItems, deleteItemById } = useTable<
@@ -48,7 +48,7 @@ const selected = ref([]);
 const rowKey: OAuth2PersistentTokenProps = 'series';
 const deleteKey: OAuth2PersistentTokenProps = 'username';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'series', field: 'series', align: 'center', label: 'Remember Me ID' },
   { name: 'username', field: 'username', align: 'center', label: '用户名' },
   { name: 'token', field: 'token', align: 'center', label: 'Token 值' },

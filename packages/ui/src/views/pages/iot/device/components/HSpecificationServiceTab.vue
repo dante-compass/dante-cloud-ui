@@ -1,23 +1,23 @@
 <template>
   <div>
-    <h-data-table
-      v-model:page-size="pageSize"
-      v-model:page-number="pageNumber"
-      v-model:total-pages="totalPages"
-      v-model:total-items="totalItems"
-      :headers="headers"
-      :items="tableRows"
-      :item-value="rowKey"
+    <h-table
+      :rows="tableRows"
+      :columns="headers"
+      :row-key="rowKey"
+      selection="single"
+      v-model:selected="selected"
+      v-model:pagination="pagination"
+      v-model:pageNumber="pagination.page"
+      :totalPages="totalPages"
       :loading="loading"
-      :show-select="false"
-      select-strategy="single"
-      disable-sort
-      @update:options="fetchItems"
+      status
+      reserved
+      @request="fetchItems"
     >
       <template #item.actions="{ item }">
         <h-action-button tooltip="调用服务" icon="mdi-function" @click="invoke(item)"></h-action-button>
       </template>
-    </h-data-table>
+    </h-table>
     <h-device-service-dialog
       v-model="openDialog"
       :product-key="productKey"
@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import type { TslFunctionEntity, TslFunctionProps, TslArgumentEntity } from '@herodotus/api';
-import type { VDataTableHeaders } from '@/composables/declarations';
+import type { QTableColumnProps, HttpResult } from '@/composables/declarations';
 
 import { useTslFunctionTable } from '../../composables/hooks';
 
@@ -46,14 +46,15 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { loading, pageNumber, pageSize, tableRows, totalPages, totalItems, findServicesByPage } = useTslFunctionTable();
+const { tableRows, totalPages, pagination, loading, findServicesByPage } = useTslFunctionTable();
 
-const headers = ref([
-  { key: 'identifier', align: 'center', title: '服务标识符' },
-  { key: 'name', align: 'center', title: '服务名称' },
-  { key: 'actions', align: 'center', title: '操作' },
-]) as Ref<Array<VDataTableHeaders>>;
+const headers: QTableColumnProps = [
+  { name: 'identifier', field: 'identifier', align: 'center', label: '服务标识符' },
+  { name: 'name', field: 'name', align: 'center', label: '服务名称' },
+  { name: 'actions', field: 'actions', align: 'center', label: '操作' },
+];
 
+const selected = ref([]);
 const rowKey: TslFunctionProps = 'id';
 
 const entities = ref([]) as Ref<TslArgumentEntity[]>;

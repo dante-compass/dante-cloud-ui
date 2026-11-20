@@ -2,10 +2,12 @@ interface Props {
     title?: string;
     subtitle?: string;
 }
-declare var __VLS_24: {};
-type __VLS_Slots = {} & {
-    default?: (props: typeof __VLS_24) => any;
+declare const __VLS_template: () => {
+    __VLS_Slots: {
+        default?: (props: {}) => any;
+    };
 };
+type __VLS_Slots = ReturnType<typeof __VLS_template>['__VLS_Slots'];
 declare const __VLS_base: import('vue').DefineComponent<Props, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<Props> & Readonly<{}>, {
     subtitle: string;
 }, {}, {}, {}, string, import('vue').ComponentProvideOptions, false, {}, any>;

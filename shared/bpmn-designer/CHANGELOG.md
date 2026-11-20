@@ -1,5 +1,35 @@
 # @herodotus-cloud/bpmn-designer
 
+## 5.1.23
+
+### Patch Changes
+
+- 版本发布
+- Updated dependencies
+  - @herodotus-cloud/bpmn-apis@5.1.23
+  - @herodotus-cloud/components@5.1.23
+  - @herodotus-cloud/form-apis@5.1.23
+
+## 5.1.22
+
+### Patch Changes
+
+- [重构] 重构前端 Quasar 版本部分功能页面代码，保持与 Vuetify 版本一致
+- Updated dependencies
+  - @herodotus-cloud/bpmn-apis@5.1.22
+  - @herodotus-cloud/components@5.1.22
+  - @herodotus-cloud/form-apis@5.1.22
+
+## 5.1.21
+
+### Patch Changes
+
+- [重构] 前端改用 @noble/hashes 和 @scure/base 重构 PKCE 代码，替代已过时的 crypto-js
+- Updated dependencies
+  - @herodotus-cloud/bpmn-apis@5.1.21
+  - @herodotus-cloud/components@5.1.21
+  - @herodotus-cloud/form-apis@5.1.21
+
 ## 5.1.20
 
 ### Patch Changes

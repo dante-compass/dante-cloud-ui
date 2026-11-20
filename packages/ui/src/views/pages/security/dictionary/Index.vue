@@ -3,7 +3,7 @@
     <h-dictionary-condition v-model:conditions="conditions"></h-dictionary-condition>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -46,13 +46,13 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { useTable, useDateTime } from '@/composables/hooks';
 import { PAGE_NAME, API, COLOR_LIST } from '@/configurations';
 
-import { HDeleteButton, HActionEditButton, HTable } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HTable } from '@/components';
 import HDictionaryCondition from './Search.vue';
 import { useSettingsStore } from '@herodotus/framework';
 
 defineOptions({
   name: PAGE_NAME.SYS_DICTIONARY,
-  components: { HDeleteButton, HActionEditButton, HTable, HDictionaryCondition },
+  components: { HActionDeleteButton, HActionEditButton, HTable, HDictionaryCondition },
 });
 
 const { defaultFormat } = useDateTime();
@@ -62,7 +62,7 @@ const { tableRows, totalPages, pagination, loading, toEdit, toCreate, findItems,
 const selected = ref([]);
 const rowKey: SysDictionaryProps = 'dictionaryId';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'category', field: 'category', align: 'center', label: '分类' },
   { name: 'ordinal', field: 'ordinal', align: 'center', label: '索引值' },
   { name: 'name', field: 'name', align: 'center', label: '字面量' },

@@ -2,7 +2,7 @@
   <div>
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       :loading="loading"
@@ -79,7 +79,7 @@ import { HCreateBucketDialog } from './components';
 
 defineOptions({ name: PAGE_NAME.OSS_BUCKET, components: { HCreateBucketDialog } });
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'bucketName', field: 'bucketName', align: 'center', label: 'Bucket名称' },
   {
     name: 'creationDate',

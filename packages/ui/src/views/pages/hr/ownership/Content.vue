@@ -5,7 +5,7 @@
 
       <h-table
         :rows="tableRows"
-        :columns="columns"
+        :columns="headers"
         row-key="employeeId"
         selection="multiple"
         v-model:selected="selectedItems"
@@ -19,13 +19,13 @@
       >
         <template #body-cell-gender="props">
           <q-td key="gender" :props="props">
-            {{ getDictionaryItemDisplay("Gender", props.row.identity) }}
+            {{ getDictionaryItemDisplay('Gender', props.row.identity) }}
           </q-td>
         </template>
 
         <template #body-cell-identity="props">
           <q-td key="identity" :props="props">
-            {{ getDictionaryItemDisplay("Identity", props.row.identity) }}
+            {{ getDictionaryItemDisplay('Identity', props.row.identity) }}
           </q-td>
         </template>
       </h-table>
@@ -38,23 +38,23 @@
 </template>
 
 <script setup lang="ts">
-import type { SysEmployeeEntity, SysEmployeeConditions, SysEmployeeAllocatable } from "@herodotus/api";
-import type { HttpResult, QTableColumnProps } from "@/composables/declarations";
+import type { SysEmployeeEntity, SysEmployeeConditions, SysEmployeeAllocatable } from '@herodotus/api';
+import type { HttpResult, QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
-import { toast } from "@herodotus/core";
-import { isEmpty } from "lodash-es";
-import { useTable, useTableItem, useDictionary } from "@/composables/hooks";
+import { PAGE_NAME, API } from '@/configurations';
+import { toast } from '@herodotus/core';
+import { isEmpty } from 'lodash-es';
+import { useTable, useTableItem, useDictionary } from '@/composables/hooks';
 
-import { HFullWidthFormLayout, HTable } from "@/components";
-import { HEmployeeCondition } from "../components";
+import { HFullWidthFormLayout, HTable } from '@/components';
+import { HEmployeeCondition } from '../components';
 
 defineOptions({
   name: PAGE_NAME.SYS_OWNERSHIP_CONTENT,
   components: { HEmployeeCondition, HFullWidthFormLayout, HTable },
 });
 
-const { getDictionaryItemDisplay } = useDictionary("Gender", "identity");
+const { getDictionaryItemDisplay } = useDictionary('Gender', 'identity');
 const { editedItem, title, overlay, onReturn } = useTableItem<SysEmployeeAllocatable>(
   API.core.sysEmployeeAllocatable(),
   PAGE_NAME.SYS_OWNERSHIP_CONTENT,
@@ -66,18 +66,18 @@ const { tableRows, totalPages, pagination, loading, conditions, findItems } = us
 
 const selectedItems = ref([]) as Ref<Array<SysEmployeeEntity>>;
 
-const columns: QTableColumnProps = [
-  { name: "employeeName", field: "employeeName", align: "center", label: "人员姓名" },
-  { name: "gender", field: "gender", align: "center", label: "性别" },
-  { name: "identity", field: "identity", align: "center", label: "身份" },
-  { name: "description", field: "description", align: "center", label: "备注" },
-  { name: "reserved", field: "reserved", align: "center", label: "保留数据" },
-  { name: "status", field: "status", align: "center", label: "状态" },
+const headers: QTableColumnProps = [
+  { name: 'employeeName', field: 'employeeName', align: 'center', label: '人员姓名' },
+  { name: 'gender', field: 'gender', align: 'center', label: '性别' },
+  { name: 'identity', field: 'identity', align: 'center', label: '身份' },
+  { name: 'description', field: 'description', align: 'center', label: '备注' },
+  { name: 'reserved', field: 'reserved', align: 'center', label: '保留数据' },
+  { name: 'status', field: 'status', align: 'center', label: '状态' },
 ];
 
 const onSave = () => {
   if (isEmpty(selectedItems.value)) {
-    toast.warning("您还没有选择任何人员！");
+    toast.warning('您还没有选择任何人员！');
   } else {
     overlay.value = true;
     API.core
@@ -94,13 +94,13 @@ const onSave = () => {
         if (result.message) {
           toast.success(result.message);
         } else {
-          toast.success("保存成功");
+          toast.success('保存成功');
         }
       })
       .catch(() => {
         overlay.value = false;
         onReturn();
-        toast.error("保存失败");
+        toast.error('保存失败');
       });
   }
 };

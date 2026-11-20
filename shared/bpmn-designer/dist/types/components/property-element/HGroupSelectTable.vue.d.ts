@@ -33,7 +33,7 @@ declare const __VLS_export: import('vue').DefineComponent<import('vue').ExtractP
     fieldValue: import('vue').Ref<string, string>;
     selectedItems: import('vue').WritableComputedRef<GroupEntity[], GroupEntity[]>;
     rowKey: keyof GroupEntity;
-    columns: {
+    headers: {
         name: string;
         label: string;
         field?: string | ((row: any) => any);

@@ -2,7 +2,7 @@
   <h-authorize-layout :title="title" :overlay="overlay">
     <q-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="multiple"
       v-model:selected="selectedItems"
@@ -26,14 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import type { SysRoleEntity, SysPermissionEntity, SysPermissionConditions, SysPermissionProps } from "@herodotus/api";
-import type { QTableColumnProps } from "@/composables/declarations";
+import type { SysRoleEntity, SysPermissionEntity, SysPermissionConditions, SysPermissionProps } from '@herodotus/api';
+import type { QTableColumnProps } from '@/composables/declarations';
 
-import { PAGE_NAME, API } from "@/configurations";
+import { PAGE_NAME, API } from '@/configurations';
 
-import { useTableItem, useTable } from "@/composables/hooks";
+import { useTableItem, useTable } from '@/composables/hooks';
 
-import { HAuthorizeList, HAuthorizeLayout } from "@/components";
+import { HAuthorizeList, HAuthorizeLayout } from '@/components';
 
 defineOptions({ name: PAGE_NAME.SYS_ROLE_AUTHORIZE, components: { HAuthorizeList, HAuthorizeLayout } });
 
@@ -49,11 +49,11 @@ const { tableRows, totalPages, pagination, loading } = useTable<SysPermissionCon
 );
 
 const selectedItems = ref([]) as Ref<Array<SysPermissionEntity>>;
-const rowKey: SysPermissionProps = "permissionId";
+const rowKey: SysPermissionProps = 'permissionId';
 
-const columns: QTableColumnProps = [
-  { name: "permissionName", field: "permissionName", align: "center", label: "权限名称" },
-  { name: "permissionCode", field: "permissionCode", align: "center", label: "权限代码" },
+const headers: QTableColumnProps = [
+  { name: 'permissionName', field: 'permissionName', align: 'center', label: '权限名称' },
+  { name: 'permissionCode', field: 'permissionCode', align: 'center', label: '权限代码' },
 ];
 
 onMounted(() => {

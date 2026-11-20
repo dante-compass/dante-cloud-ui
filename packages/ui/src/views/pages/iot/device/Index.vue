@@ -2,7 +2,7 @@
   <div class="q-gutter-y-md">
     <h-table
       :rows="tableRows"
-      :columns="columns"
+      :columns="headers"
       :row-key="rowKey"
       selection="single"
       v-model:selected="selected"
@@ -67,9 +67,12 @@ import type { QTableColumnProps } from '@/composables/declarations';
 import { useTable, useDateTime } from '@/composables/hooks';
 import { PAGE_NAME, API } from '@/configurations';
 
-import { HDeleteButton, HActionEditButton, HTable, HActionButton } from '@/components';
+import { HActionDeleteButton, HActionEditButton, HTable, HActionButton } from '@/components';
 
-defineOptions({ name: PAGE_NAME.IOT_DEVICE, components: { HDeleteButton, HActionEditButton, HTable, HActionButton } });
+defineOptions({
+  name: PAGE_NAME.IOT_DEVICE,
+  components: { HActionDeleteButton, HActionEditButton, HTable, HActionButton },
+});
 
 const {
   tableRows,
@@ -89,7 +92,7 @@ const { defaultFormat } = useDateTime();
 const selected = ref([]);
 const rowKey: DeviceProps = 'id';
 
-const columns: QTableColumnProps = [
+const headers: QTableColumnProps = [
   { name: 'deviceName', field: 'deviceName', align: 'center', label: '设备名称' },
   { name: 'product', field: 'product', align: 'center', label: '设备所属产品' },
   { name: 'clientId', field: 'clientId', align: 'center', label: 'Client ID' },

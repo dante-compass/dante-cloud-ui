@@ -17,13 +17,13 @@
 </template>
 
 <script setup lang="ts">
-import type { AbstractSysEntity, AbstractSysDto } from "@herodotus/core";
+import type { AbstractSysEntity, AbstractSysDto } from '@herodotus/core';
 
-import { HDictionarySelect } from "../../library/HSelect";
-import HDetailContainer from "./HDetailContainer.vue";
+import { HDictionarySelect } from '../../library/HDictionary/index.ts';
+import HDetailContainer from './HDetailContainer.vue';
 
 defineOptions({
-  name: "HCenterFormLayout",
+  name: 'HCenterFormLayout',
   components: {
     HDetailContainer,
     HDictionarySelect,
@@ -39,7 +39,7 @@ interface Props {
 withDefaults(defineProps<Props>(), {
   entity: () => ({}) as AbstractSysEntity | AbstractSysDto,
   overlay: false,
-  title: "",
+  title: '',
 });
 
 const emit = defineEmits<{
@@ -48,10 +48,10 @@ const emit = defineEmits<{
 }>();
 
 const onSave = async () => {
-  emit("save");
+  emit('save');
 };
 
 const onCancel = async () => {
-  emit("cancel");
+  emit('cancel');
 };
 </script>
